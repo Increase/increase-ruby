@@ -101,9 +101,6 @@ module Increase
       required :type, enum: -> { Increase::Card::Type }
 
       # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
-      #   Some parameter documentations has been truncated, see {Increase::Models::Card}
-      #   for more details.
-      #
       #   Cards may operate on credit, debit, or prepaid BINs. They’ll immediately work
       #   for online purchases after you create them. All cards work on a good funds
       #   model, and maintain a maximum limit of 100% of the Account’s available balance
@@ -114,17 +111,23 @@ module Increase
       #
       #   @param account_id [String] The identifier for the account this card belongs to.
       #
-      #   @param authorization_controls [Increase::Models::Card::AuthorizationControls, nil] Controls that restrict how this card can be used.
+      #   @param authorization_controls [Increase::Models::Card::AuthorizationControls, nil]
+      #     Controls that restrict how this card can be used.
       #
       #   @param billing_address [Increase::Models::Card::BillingAddress] The Card's billing address.
       #
       #   @param bin [String] The Bank Identification Number (BIN) of the Card.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the Card was created.
       #
       #   @param description [String, nil] The card's description for display purposes.
       #
-      #   @param digital_wallet [Increase::Models::Card::DigitalWallet, nil] The contact information used in the two-factor steps for digital wallet card cre
+      #   @param digital_wallet [Increase::Models::Card::DigitalWallet, nil]
+      #     The contact information used in the two-factor steps for digital wallet card
+      #     creation. At least one field must be present to complete the digital wallet
+      #     steps.
       #
       #   @param entity_id [String, nil] The identifier for the entity associated with this card.
       #
@@ -132,13 +135,19 @@ module Increase
       #
       #   @param expiration_year [Integer] The year the card expires in YYYY format (e.g., 2025).
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param last4 [String] The last 4 digits of the Card's Primary Account Number.
       #
-      #   @param status [Symbol, Increase::Models::Card::Status] This indicates if payments can be made with the card.
+      #   @param status [Symbol, Increase::Models::Card::Status]
+      #     This indicates if payments can be made with the card.
       #
-      #   @param type [Symbol, Increase::Models::Card::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::Card::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card`.
 
       # @see Increase::Models::Card#authorization_controls
       class AuthorizationControls < Increase::Internal::Type::BaseModel
@@ -174,18 +183,22 @@ module Increase
         required :usage, -> { Increase::Card::AuthorizationControls::Usage }, nil?: true
 
         # @!method initialize(merchant_acceptor_identifier:, merchant_category_code:, merchant_country:, usage:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Card::AuthorizationControls} for more details.
-        #
         #   Controls that restrict how this card can be used.
         #
-        #   @param merchant_acceptor_identifier [Increase::Models::Card::AuthorizationControls::MerchantAcceptorIdentifier, nil] Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations
+        #   @param merchant_acceptor_identifier [Increase::Models::Card::AuthorizationControls::MerchantAcceptorIdentifier, nil]
+        #     Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations
+        #     on this card.
         #
-        #   @param merchant_category_code [Increase::Models::Card::AuthorizationControls::MerchantCategoryCode, nil] Restricts which Merchant Category Codes are allowed or blocked for authorization
+        #   @param merchant_category_code [Increase::Models::Card::AuthorizationControls::MerchantCategoryCode, nil]
+        #     Restricts which Merchant Category Codes are allowed or blocked for
+        #     authorizations on this card.
         #
-        #   @param merchant_country [Increase::Models::Card::AuthorizationControls::MerchantCountry, nil] Restricts which merchant countries are allowed or blocked for authorizations on
+        #   @param merchant_country [Increase::Models::Card::AuthorizationControls::MerchantCountry, nil]
+        #     Restricts which merchant countries are allowed or blocked for authorizations on
+        #     this card.
         #
-        #   @param usage [Increase::Models::Card::AuthorizationControls::Usage, nil] Controls how many times this card can be used.
+        #   @param usage [Increase::Models::Card::AuthorizationControls::Usage, nil]
+        #     Controls how many times this card can be used.
 
         # @see Increase::Models::Card::AuthorizationControls#merchant_acceptor_identifier
         class MerchantAcceptorIdentifier < Increase::Internal::Type::BaseModel
@@ -213,9 +226,11 @@ module Increase
           #   Restricts which Merchant Acceptor IDs are allowed or blocked for authorizations
           #   on this card.
           #
-          #   @param allowed [Array<Increase::Models::Card::AuthorizationControls::MerchantAcceptorIdentifier::Allowed>, nil] The Merchant Acceptor IDs that are allowed for authorizations on this card.
+          #   @param allowed [Array<Increase::Models::Card::AuthorizationControls::MerchantAcceptorIdentifier::Allowed>, nil]
+          #     The Merchant Acceptor IDs that are allowed for authorizations on this card.
           #
-          #   @param blocked [Array<Increase::Models::Card::AuthorizationControls::MerchantAcceptorIdentifier::Blocked>, nil] The Merchant Acceptor IDs that are blocked for authorizations on this card.
+          #   @param blocked [Array<Increase::Models::Card::AuthorizationControls::MerchantAcceptorIdentifier::Blocked>, nil]
+          #     The Merchant Acceptor IDs that are blocked for authorizations on this card.
 
           class Allowed < Increase::Internal::Type::BaseModel
             # @!attribute identifier
@@ -266,9 +281,11 @@ module Increase
           #   Restricts which Merchant Category Codes are allowed or blocked for
           #   authorizations on this card.
           #
-          #   @param allowed [Array<Increase::Models::Card::AuthorizationControls::MerchantCategoryCode::Allowed>, nil] The Merchant Category Codes that are allowed for authorizations on this card.
+          #   @param allowed [Array<Increase::Models::Card::AuthorizationControls::MerchantCategoryCode::Allowed>, nil]
+          #     The Merchant Category Codes that are allowed for authorizations on this card.
           #
-          #   @param blocked [Array<Increase::Models::Card::AuthorizationControls::MerchantCategoryCode::Blocked>, nil] The Merchant Category Codes that are blocked for authorizations on this card.
+          #   @param blocked [Array<Increase::Models::Card::AuthorizationControls::MerchantCategoryCode::Blocked>, nil]
+          #     The Merchant Category Codes that are blocked for authorizations on this card.
 
           class Allowed < Increase::Internal::Type::BaseModel
             # @!attribute code
@@ -319,9 +336,11 @@ module Increase
           #   Restricts which merchant countries are allowed or blocked for authorizations on
           #   this card.
           #
-          #   @param allowed [Array<Increase::Models::Card::AuthorizationControls::MerchantCountry::Allowed>, nil] The merchant countries that are allowed for authorizations on this card.
+          #   @param allowed [Array<Increase::Models::Card::AuthorizationControls::MerchantCountry::Allowed>, nil]
+          #     The merchant countries that are allowed for authorizations on this card.
           #
-          #   @param blocked [Array<Increase::Models::Card::AuthorizationControls::MerchantCountry::Blocked>, nil] The merchant countries that are blocked for authorizations on this card.
+          #   @param blocked [Array<Increase::Models::Card::AuthorizationControls::MerchantCountry::Blocked>, nil]
+          #     The merchant countries that are blocked for authorizations on this card.
 
           class Allowed < Increase::Internal::Type::BaseModel
             # @!attribute country
@@ -368,16 +387,17 @@ module Increase
           required :single_use, -> { Increase::Card::AuthorizationControls::Usage::SingleUse }, nil?: true
 
           # @!method initialize(category:, multi_use:, single_use:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::Card::AuthorizationControls::Usage} for more details.
-          #
           #   Controls how many times this card can be used.
           #
-          #   @param category [Symbol, Increase::Models::Card::AuthorizationControls::Usage::Category] Whether the card is for a single use or multiple uses.
+          #   @param category [Symbol, Increase::Models::Card::AuthorizationControls::Usage::Category]
+          #     Whether the card is for a single use or multiple uses.
           #
-          #   @param multi_use [Increase::Models::Card::AuthorizationControls::Usage::MultiUse, nil] Controls for multi-use cards. Required if and only if `category` is `multi_use`.
+          #   @param multi_use [Increase::Models::Card::AuthorizationControls::Usage::MultiUse, nil]
+          #     Controls for multi-use cards. Required if and only if `category` is `multi_use`.
           #
-          #   @param single_use [Increase::Models::Card::AuthorizationControls::Usage::SingleUse, nil] Controls for single-use cards. Required if and only if `category` is `single_use
+          #   @param single_use [Increase::Models::Card::AuthorizationControls::Usage::SingleUse, nil]
+          #     Controls for single-use cards. Required if and only if `category` is
+          #     `single_use`.
 
           # Whether the card is for a single use or multiple uses.
           #
@@ -409,13 +429,11 @@ module Increase
                      nil?: true
 
             # @!method initialize(spending_limits:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::Card::AuthorizationControls::Usage::MultiUse} for more
-            #   details.
-            #
             #   Controls for multi-use cards. Required if and only if `category` is `multi_use`.
             #
-            #   @param spending_limits [Array<Increase::Models::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit>, nil] Spending limits for this card. The most restrictive limit applies if multiple li
+            #   @param spending_limits [Array<Increase::Models::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit>, nil]
+            #     Spending limits for this card. The most restrictive limit applies if multiple
+            #     limits match.
 
             class SpendingLimit < Increase::Internal::Type::BaseModel
               # @!attribute interval
@@ -443,13 +461,12 @@ module Increase
               required :settlement_amount, Integer
 
               # @!method initialize(interval:, merchant_category_codes:, settlement_amount:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit}
-              #   for more details.
+              #   @param interval [Symbol, Increase::Models::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval]
+              #     The interval at which the spending limit is enforced.
               #
-              #   @param interval [Symbol, Increase::Models::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::Interval] The interval at which the spending limit is enforced.
-              #
-              #   @param merchant_category_codes [Array<Increase::Models::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode>, nil] The Merchant Category Codes (MCCs) this spending limit applies to. If not set, t
+              #   @param merchant_category_codes [Array<Increase::Models::Card::AuthorizationControls::Usage::MultiUse::SpendingLimit::MerchantCategoryCode>, nil]
+              #     The Merchant Category Codes (MCCs) this spending limit applies to. If not set,
+              #     the limit applies to all transactions.
               #
               #   @param settlement_amount [Integer] The maximum settlement amount permitted in the given interval.
 
@@ -504,7 +521,8 @@ module Increase
             #   Controls for single-use cards. Required if and only if `category` is
             #   `single_use`.
             #
-            #   @param settlement_amount [Increase::Models::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount] The settlement amount constraint for this single-use card.
+            #   @param settlement_amount [Increase::Models::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount]
+            #     The settlement amount constraint for this single-use card.
 
             # @see Increase::Models::Card::AuthorizationControls::Usage::SingleUse#settlement_amount
             class SettlementAmount < Increase::Internal::Type::BaseModel
@@ -524,7 +542,8 @@ module Increase
               # @!method initialize(comparison:, value:)
               #   The settlement amount constraint for this single-use card.
               #
-              #   @param comparison [Symbol, Increase::Models::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison] The operator used to compare the settlement amount.
+              #   @param comparison [Symbol, Increase::Models::Card::AuthorizationControls::Usage::SingleUse::SettlementAmount::Comparison]
+              #     The operator used to compare the settlement amount.
               #
               #   @param value [Integer] The settlement amount value.
 
@@ -618,18 +637,21 @@ module Increase
         required :phone, String, nil?: true
 
         # @!method initialize(digital_card_profile_id:, email:, phone:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Card::DigitalWallet} for more details.
-        #
         #   The contact information used in the two-factor steps for digital wallet card
         #   creation. At least one field must be present to complete the digital wallet
         #   steps.
         #
-        #   @param digital_card_profile_id [String, nil] The digital card profile assigned to this digital card. Card profiles may also b
+        #   @param digital_card_profile_id [String, nil]
+        #     The digital card profile assigned to this digital card. Card profiles may also
+        #     be assigned at the program level.
         #
-        #   @param email [String, nil] An email address that can be used to verify the cardholder via one-time passcode
+        #   @param email [String, nil]
+        #     An email address that can be used to verify the cardholder via one-time passcode
+        #     over email.
         #
-        #   @param phone [String, nil] A phone number that can be used to verify the cardholder via one-time passcode o
+        #   @param phone [String, nil]
+        #     A phone number that can be used to verify the cardholder via one-time passcode
+        #     over SMS.
       end
 
       # This indicates if payments can be made with the card.

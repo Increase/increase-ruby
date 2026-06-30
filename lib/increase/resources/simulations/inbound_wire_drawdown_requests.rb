@@ -4,10 +4,6 @@ module Increase
   module Resources
     class Simulations
       class InboundWireDrawdownRequests
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::InboundWireDrawdownRequestCreateParams} for more
-        # details.
-        #
         # Simulates receiving an
         # [Inbound Wire Drawdown Request](#inbound-wire-drawdown-requests).
         #
@@ -19,23 +15,37 @@ module Increase
         #
         # @param creditor_routing_number [String] The creditor's routing number.
         #
-        # @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
+        # @param currency [String]
+        #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
+        #   requested. Will always be "USD".
         #
-        # @param recipient_account_number_id [String] The Account Number to which the recipient of this request is being requested to
+        # @param recipient_account_number_id [String]
+        #   The Account Number to which the recipient of this request is being requested to
+        #   send funds from.
         #
-        # @param creditor_address_line1 [String] A free-form address field set by the sender representing the first line of the c
+        # @param creditor_address_line1 [String]
+        #   A free-form address field set by the sender representing the first line of the
+        #   creditor's address.
         #
-        # @param creditor_address_line2 [String] A free-form address field set by the sender representing the second line of the
+        # @param creditor_address_line2 [String]
+        #   A free-form address field set by the sender representing the second line of the
+        #   creditor's address.
         #
-        # @param creditor_address_line3 [String] A free-form address field set by the sender representing the third line of the c
+        # @param creditor_address_line3 [String]
+        #   A free-form address field set by the sender representing the third line of the
+        #   creditor's address.
         #
         # @param creditor_name [String] A free-form name field set by the sender representing the creditor's name.
         #
         # @param debtor_account_number [String] The debtor's account number.
         #
-        # @param debtor_address_line1 [String] A free-form address field set by the sender representing the first line of the d
+        # @param debtor_address_line1 [String]
+        #   A free-form address field set by the sender representing the first line of the
+        #   debtor's address.
         #
-        # @param debtor_address_line2 [String] A free-form address field set by the sender representing the second line of the
+        # @param debtor_address_line2 [String]
+        #   A free-form address field set by the sender representing the second line of the
+        #   debtor's address.
         #
         # @param debtor_address_line3 [String] A free-form address field set by the sender.
         #
@@ -43,11 +53,15 @@ module Increase
         #
         # @param debtor_routing_number [String] The debtor's routing number.
         #
-        # @param end_to_end_identification [String] A free-form reference string set by the sender, to help identify the transfer.
+        # @param end_to_end_identification [String]
+        #   A free-form reference string set by the sender, to help identify the transfer.
         #
         # @param instruction_identification [String] The sending bank's identifier for the wire transfer.
         #
-        # @param unique_end_to_end_transaction_reference [String] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
+        # @param unique_end_to_end_transaction_reference [String]
+        #   The Unique End-to-end Transaction Reference
+        #   ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+        #   of the transfer.
         #
         # @param unstructured_remittance_information [String] A free-form message set by the sender.
         #

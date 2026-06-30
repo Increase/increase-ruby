@@ -60,9 +60,6 @@ module Increase
       required :url, String
 
       # @!method initialize(id:, created_at:, idempotency_key:, oauth_connection_id:, selected_event_categories:, status:, type:, url:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EventSubscription} for more details.
-      #
       #   Webhooks are event notifications we send to you by HTTPS POST requests. Event
       #   Subscriptions are how you configure your application to listen for them. You can
       #   create an Event Subscription through your
@@ -74,15 +71,25 @@ module Increase
       #
       #   @param created_at [Time] The time the event subscription was created.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param oauth_connection_id [String, nil] If specified, this subscription will only receive webhooks for Events associated
+      #   @param oauth_connection_id [String, nil]
+      #     If specified, this subscription will only receive webhooks for Events associated
+      #     with this OAuth Connection.
       #
-      #   @param selected_event_categories [Array<Increase::Models::EventSubscription::SelectedEventCategory>, nil] If specified, this subscription will only receive webhooks for Events with the s
+      #   @param selected_event_categories [Array<Increase::Models::EventSubscription::SelectedEventCategory>, nil]
+      #     If specified, this subscription will only receive webhooks for Events with the
+      #     specified `category`.
       #
-      #   @param status [Symbol, Increase::Models::EventSubscription::Status] This indicates if we'll send notifications to this subscription.
+      #   @param status [Symbol, Increase::Models::EventSubscription::Status]
+      #     This indicates if we'll send notifications to this subscription.
       #
-      #   @param type [Symbol, Increase::Models::EventSubscription::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::EventSubscription::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `event_subscription`.
       #
       #   @param url [String] The webhook url where we'll send notifications.
 
@@ -96,7 +103,8 @@ module Increase
                  nil?: true
 
         # @!method initialize(event_category:)
-        #   @param event_category [Symbol, Increase::Models::EventSubscription::SelectedEventCategory::EventCategory, nil] The category of the Event.
+        #   @param event_category [Symbol, Increase::Models::EventSubscription::SelectedEventCategory::EventCategory, nil]
+        #     The category of the Event.
 
         # The category of the Event.
         #

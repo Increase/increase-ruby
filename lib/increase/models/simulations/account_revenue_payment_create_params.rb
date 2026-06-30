@@ -42,19 +42,21 @@ module Increase
         optional :period_start, Time
 
         # @!method initialize(account_id:, amount:, accrued_on_account_id: nil, period_end: nil, period_start: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::AccountRevenuePaymentCreateParams} for more
-        #   details.
-        #
         #   @param account_id [String] The identifier of the Account the Account Revenue Payment should be paid to.
         #
         #   @param amount [Integer] The account revenue amount in cents. Must be positive.
         #
-        #   @param accrued_on_account_id [String] The identifier of the Account the account revenue accrued on. Defaults to `accou
+        #   @param accrued_on_account_id [String]
+        #     The identifier of the Account the account revenue accrued on. Defaults to
+        #     `account_id`.
         #
-        #   @param period_end [Time] The end of the account revenue period. If not provided, defaults to the current
+        #   @param period_end [Time]
+        #     The end of the account revenue period. If not provided, defaults to the current
+        #     time.
         #
-        #   @param period_start [Time] The start of the account revenue period. If not provided, defaults to the curren
+        #   @param period_start [Time]
+        #     The start of the account revenue period. If not provided, defaults to the
+        #     current time.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

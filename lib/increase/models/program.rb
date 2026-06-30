@@ -70,9 +70,6 @@ module Increase
       required :updated_at, Time
 
       # @!method initialize(id:, bank:, billing_account_id:, created_at:, default_digital_card_profile_id:, interest_rate:, lending:, name:, type:, updated_at:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::Program} for more details.
-      #
       #   Programs determine the compliance and commercial terms of Accounts. By default,
       #   you have a Commercial Banking program for managing your own funds. If you are
       #   lending or managing funds on behalf of your customers, or otherwise engaged in
@@ -84,19 +81,29 @@ module Increase
       #
       #   @param billing_account_id [String, nil] The Program billing account.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
+      #     was created.
       #
-      #   @param default_digital_card_profile_id [String, nil] The default configuration for digital cards attached to this Program.
+      #   @param default_digital_card_profile_id [String, nil]
+      #     The default configuration for digital cards attached to this Program.
       #
-      #   @param interest_rate [String] The Interest Rate currently being earned on the accounts in this program, as a s
+      #   @param interest_rate [String]
+      #     The Interest Rate currently being earned on the accounts in this program, as a
+      #     string containing a decimal number. For example, a 1% interest rate would be
+      #     represented as "0.01".
       #
       #   @param lending [Increase::Models::Program::Lending, nil] The lending details for the program.
       #
       #   @param name [String] The name of the Program.
       #
-      #   @param type [Symbol, Increase::Models::Program::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::Program::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `program`.
       #
-      #   @param updated_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
+      #   @param updated_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Program
+      #     was last updated.
 
       # The Bank the Program is with.
       #

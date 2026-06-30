@@ -79,30 +79,40 @@ module Increase
       optional :source_account_number_id, String
 
       # @!method initialize(account_id:, amount:, creditor:, remittance:, account_number: nil, debtor: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::WireTransferCreateParams} for more details.
-      #
       #   @param account_id [String] The identifier for the account that will send the transfer.
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
-      #   @param creditor [Increase::Models::WireTransferCreateParams::Creditor] The person or business that is receiving the funds from the transfer.
+      #   @param creditor [Increase::Models::WireTransferCreateParams::Creditor]
+      #     The person or business that is receiving the funds from the transfer.
       #
-      #   @param remittance [Increase::Models::WireTransferCreateParams::Remittance] Additional remittance information related to the wire transfer.
+      #   @param remittance [Increase::Models::WireTransferCreateParams::Remittance]
+      #     Additional remittance information related to the wire transfer.
       #
       #   @param account_number [String] The account number for the destination account.
       #
-      #   @param debtor [Increase::Models::WireTransferCreateParams::Debtor] The person or business whose funds are being transferred. This is only necessary
+      #   @param debtor [Increase::Models::WireTransferCreateParams::Debtor]
+      #     The person or business whose funds are being transferred. This is only necessary
+      #     if you're transferring from a commingled account. Otherwise, we'll use the
+      #     associated entity's details.
       #
-      #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      #   @param external_account_id [String]
+      #     The ID of an External Account to initiate a transfer to. If this parameter is
+      #     provided, `account_number` and `routing_number` must be absent.
       #
-      #   @param inbound_wire_drawdown_request_id [String] The ID of an Inbound Wire Drawdown Request in response to which this transfer is
+      #   @param inbound_wire_drawdown_request_id [String]
+      #     The ID of an Inbound Wire Drawdown Request in response to which this transfer is
+      #     being sent.
       #
-      #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      #   @param require_approval [Boolean]
+      #     Whether the transfer requires explicit approval via the dashboard or API.
       #
-      #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
+      #   @param routing_number [String]
+      #     The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
+      #     destination account.
       #
-      #   @param source_account_number_id [String] The ID of an Account Number that will be passed to the wire's recipient
+      #   @param source_account_number_id [String]
+      #     The ID of an Account Number that will be passed to the wire's recipient
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -124,7 +134,8 @@ module Increase
         #
         #   @param name [String] The person or business's name.
         #
-        #   @param address [Increase::Models::WireTransferCreateParams::Creditor::Address] The person or business's address.
+        #   @param address [Increase::Models::WireTransferCreateParams::Creditor::Address]
+        #     The person or business's address.
 
         # @see Increase::Models::WireTransferCreateParams::Creditor#address
         class Address < Increase::Internal::Type::BaseModel
@@ -137,7 +148,8 @@ module Increase
           # @!method initialize(unstructured:)
           #   The person or business's address.
           #
-          #   @param unstructured [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured] Unstructured address lines.
+          #   @param unstructured [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured]
+          #     Unstructured address lines.
 
           # @see Increase::Models::WireTransferCreateParams::Creditor::Address#unstructured
           class Unstructured < Increase::Internal::Type::BaseModel
@@ -193,16 +205,18 @@ module Increase
         optional :unstructured, -> { Increase::WireTransferCreateParams::Remittance::Unstructured }
 
         # @!method initialize(category:, tax: nil, unstructured: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireTransferCreateParams::Remittance} for more details.
-        #
         #   Additional remittance information related to the wire transfer.
         #
-        #   @param category [Symbol, Increase::Models::WireTransferCreateParams::Remittance::Category] The type of remittance information being passed.
+        #   @param category [Symbol, Increase::Models::WireTransferCreateParams::Remittance::Category]
+        #     The type of remittance information being passed.
         #
-        #   @param tax [Increase::Models::WireTransferCreateParams::Remittance::Tax] Internal Revenue Service (IRS) tax repayment information. Required if `category`
+        #   @param tax [Increase::Models::WireTransferCreateParams::Remittance::Tax]
+        #     Internal Revenue Service (IRS) tax repayment information. Required if `category`
+        #     is equal to `tax`.
         #
-        #   @param unstructured [Increase::Models::WireTransferCreateParams::Remittance::Unstructured] Unstructured remittance information. Required if `category` is equal to `unstruc
+        #   @param unstructured [Increase::Models::WireTransferCreateParams::Remittance::Unstructured]
+        #     Unstructured remittance information. Required if `category` is equal to
+        #     `unstructured`.
 
         # The type of remittance information being passed.
         #
@@ -243,15 +257,16 @@ module Increase
           required :type_code, String
 
           # @!method initialize(date:, identification_number:, type_code:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::WireTransferCreateParams::Remittance::Tax} for more details.
-          #
           #   Internal Revenue Service (IRS) tax repayment information. Required if `category`
           #   is equal to `tax`.
           #
-          #   @param date [Date] The month and year the tax payment is for, in YYYY-MM-DD format. The day is igno
+          #   @param date [Date]
+          #     The month and year the tax payment is for, in YYYY-MM-DD format. The day is
+          #     ignored.
           #
-          #   @param identification_number [String] The 9-digit Tax Identification Number (TIN) or Employer Identification Number (E
+          #   @param identification_number [String]
+          #     The 9-digit Tax Identification Number (TIN) or Employer Identification Number
+          #     (EIN).
           #
           #   @param type_code [String] The 5-character tax type code.
         end
@@ -292,7 +307,8 @@ module Increase
         #
         #   @param name [String] The person or business's name.
         #
-        #   @param address [Increase::Models::WireTransferCreateParams::Debtor::Address] The person or business's address.
+        #   @param address [Increase::Models::WireTransferCreateParams::Debtor::Address]
+        #     The person or business's address.
 
         # @see Increase::Models::WireTransferCreateParams::Debtor#address
         class Address < Increase::Internal::Type::BaseModel
@@ -305,7 +321,8 @@ module Increase
           # @!method initialize(unstructured:)
           #   The person or business's address.
           #
-          #   @param unstructured [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured] Unstructured address lines.
+          #   @param unstructured [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured]
+          #     Unstructured address lines.
 
           # @see Increase::Models::WireTransferCreateParams::Debtor::Address#unstructured
           class Unstructured < Increase::Internal::Type::BaseModel

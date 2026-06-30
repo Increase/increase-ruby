@@ -14,7 +14,8 @@ module Increase
       required :intrafi_account_enrollment_id, String
 
       # @!method initialize(intrafi_account_enrollment_id:, request_options: {})
-      #   @param intrafi_account_enrollment_id [String] The Identifier of the IntraFi Account Enrollment to remove from IntraFi.
+      #   @param intrafi_account_enrollment_id [String]
+      #     The Identifier of the IntraFi Account Enrollment to remove from IntraFi.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

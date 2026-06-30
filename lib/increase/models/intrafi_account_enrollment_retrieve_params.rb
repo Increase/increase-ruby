@@ -14,7 +14,8 @@ module Increase
       required :intrafi_account_enrollment_id, String
 
       # @!method initialize(intrafi_account_enrollment_id:, request_options: {})
-      #   @param intrafi_account_enrollment_id [String] The identifier of the IntraFi Account Enrollment to retrieve.
+      #   @param intrafi_account_enrollment_id [String]
+      #     The identifier of the IntraFi Account Enrollment to retrieve.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

@@ -3,22 +3,27 @@
 module Increase
   module Resources
     class EventSubscriptions
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::EventSubscriptionCreateParams} for more details.
-      #
       # Create an Event Subscription
       #
       # @overload create(url:, oauth_connection_id: nil, selected_event_categories: nil, shared_secret: nil, status: nil, request_options: {})
       #
       # @param url [String] The URL you'd like us to send webhooks to.
       #
-      # @param oauth_connection_id [String] If specified, this subscription will only receive webhooks for Events associated
+      # @param oauth_connection_id [String]
+      #   If specified, this subscription will only receive webhooks for Events associated
+      #   with the specified OAuth Connection.
       #
-      # @param selected_event_categories [Array<Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory>] If specified, this subscription will only receive webhooks for Events with the s
+      # @param selected_event_categories [Array<Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory>]
+      #   If specified, this subscription will only receive webhooks for Events with the
+      #   specified `category`. If specifying a Real-Time Decision event category, only
+      #   one Event Category can be specified for the Event Subscription.
       #
-      # @param shared_secret [String] The key that will be used to sign webhooks. If no value is passed, a random stri
+      # @param shared_secret [String]
+      #   The key that will be used to sign webhooks. If no value is passed, a random
+      #   string will be used as default.
       #
-      # @param status [Symbol, Increase::Models::EventSubscriptionCreateParams::Status] The status of the event subscription. Defaults to `active` if not specified.
+      # @param status [Symbol, Increase::Models::EventSubscriptionCreateParams::Status]
+      #   The status of the event subscription. Defaults to `active` if not specified.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -62,7 +67,8 @@ module Increase
       #
       # @param event_subscription_id [String] The identifier of the Event Subscription.
       #
-      # @param status [Symbol, Increase::Models::EventSubscriptionUpdateParams::Status] The status to update the Event Subscription with.
+      # @param status [Symbol, Increase::Models::EventSubscriptionUpdateParams::Status]
+      #   The status to update the Event Subscription with.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -80,18 +86,21 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::EventSubscriptionListParams} for more details.
-      #
       # List Event Subscriptions
       #
       # @overload list(cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

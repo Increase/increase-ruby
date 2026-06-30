@@ -22,7 +22,8 @@ module Increase
       # @!method initialize(physical_card_id:, status:, request_options: {})
       #   @param physical_card_id [String] The Physical Card identifier.
       #
-      #   @param status [Symbol, Increase::Models::PhysicalCardUpdateParams::Status] The status to update the Physical Card to.
+      #   @param status [Symbol, Increase::Models::PhysicalCardUpdateParams::Status]
+      #     The status to update the Physical Card to.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

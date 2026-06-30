@@ -23,12 +23,11 @@ module Increase
                  -> { Increase::Internal::Type::ArrayOf[Increase::Simulations::EntityUpdateValidationParams::Issue] }
 
         # @!method initialize(entity_id:, issues:, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::EntityUpdateValidationParams} for more details.
-        #
         #   @param entity_id [String] The identifier of the Entity whose validation status to update.
         #
-        #   @param issues [Array<Increase::Models::Simulations::EntityUpdateValidationParams::Issue>] The validation issues to attach. If no issues are provided, the validation statu
+        #   @param issues [Array<Increase::Models::Simulations::EntityUpdateValidationParams::Issue>]
+        #     The validation issues to attach. If no issues are provided, the validation
+        #     status will be set to `valid`.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -40,7 +39,8 @@ module Increase
           required :category, enum: -> { Increase::Simulations::EntityUpdateValidationParams::Issue::Category }
 
           # @!method initialize(category:)
-          #   @param category [Symbol, Increase::Models::Simulations::EntityUpdateValidationParams::Issue::Category] The type of issue.
+          #   @param category [Symbol, Increase::Models::Simulations::EntityUpdateValidationParams::Issue::Category]
+          #     The type of issue.
 
           # The type of issue.
           #

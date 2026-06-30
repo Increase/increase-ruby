@@ -22,12 +22,12 @@ module Increase
       optional :reason, enum: -> { Increase::InboundACHTransferDeclineParams::Reason }
 
       # @!method initialize(inbound_ach_transfer_id:, reason: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundACHTransferDeclineParams} for more details.
-      #
       #   @param inbound_ach_transfer_id [String] The identifier of the Inbound ACH Transfer to decline.
       #
-      #   @param reason [Symbol, Increase::Models::InboundACHTransferDeclineParams::Reason] The reason why this transfer will be returned. If this parameter is unset, the r
+      #   @param reason [Symbol, Increase::Models::InboundACHTransferDeclineParams::Reason]
+      #     The reason why this transfer will be returned. If this parameter is unset, the
+      #     return codes will be `payment_stopped` for debits and
+      #     `credit_entry_refused_by_receiver` for credits.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

@@ -23,9 +23,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::InboundMailItemListParams} for more details.
-      #
       # List Inbound Mail Items
       #
       # @overload list(created_at: nil, cursor: nil, limit: nil, lockbox_address_id: nil, lockbox_recipient_id: nil, request_options: {})
@@ -34,11 +31,14 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param lockbox_address_id [String] Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
       #
-      # @param lockbox_recipient_id [String] Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.
+      # @param lockbox_recipient_id [String]
+      #   Filter Inbound Mail Items to ones sent to the provided Lockbox Recipient.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -66,7 +66,8 @@ module Increase
       #
       # @param inbound_mail_item_id [String] The identifier of the Inbound Mail Item to action.
       #
-      # @param checks [Array<Increase::Models::InboundMailItemActionParams::Check>] The actions to perform on the Inbound Mail Item.
+      # @param checks [Array<Increase::Models::InboundMailItemActionParams::Check>]
+      #   The actions to perform on the Inbound Mail Item.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

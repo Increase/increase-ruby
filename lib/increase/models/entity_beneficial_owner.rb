@@ -57,9 +57,6 @@ module Increase
       required :type, enum: -> { Increase::EntityBeneficialOwner::Type }
 
       # @!method initialize(id:, company_title:, created_at:, entity_id:, idempotency_key:, individual:, prongs:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EntityBeneficialOwner} for more details.
-      #
       #   Beneficial owners are the individuals who control or own 25% or more of a
       #   `corporation` entity. Beneficial owners are always people, and never
       #   organizations. Generally, you will need to submit between 1 and 5 beneficial
@@ -70,17 +67,26 @@ module Increase
       #
       #   @param company_title [String, nil] This person's role or title within the entity.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Benefic
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
+      #     Beneficial Owner was created.
       #
       #   @param entity_id [String] The identifier of the Entity to which this beneficial owner belongs.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param individual [Increase::Models::EntityBeneficialOwner::Individual] Personal details for the beneficial owner.
+      #   @param individual [Increase::Models::EntityBeneficialOwner::Individual]
+      #     Personal details for the beneficial owner.
       #
-      #   @param prongs [Array<Symbol, Increase::Models::EntityBeneficialOwner::Prong>] Why this person is considered a beneficial owner of the entity.
+      #   @param prongs [Array<Symbol, Increase::Models::EntityBeneficialOwner::Prong>]
+      #     Why this person is considered a beneficial owner of the entity.
       #
-      #   @param type [Symbol, Increase::Models::EntityBeneficialOwner::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::EntityBeneficialOwner::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `entity_beneficial_owner`.
 
       # @see Increase::Models::EntityBeneficialOwner#individual
       class Individual < Increase::Internal::Type::BaseModel
@@ -119,7 +125,8 @@ module Increase
         #
         #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
         #
-        #   @param identification [Increase::Models::EntityBeneficialOwner::Individual::Identification, nil] A means of verifying the person's identity.
+        #   @param identification [Increase::Models::EntityBeneficialOwner::Individual::Identification, nil]
+        #     A means of verifying the person's identity.
         #
         #   @param name [String] The person's legal name.
 
@@ -163,9 +170,6 @@ module Increase
           required :zip, String, nil?: true
 
           # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityBeneficialOwner::Individual::Address} for more details.
-          #
           #   The person's address.
           #
           #   @param city [String, nil] The city, district, town, or village of the address.
@@ -176,7 +180,9 @@ module Increase
           #
           #   @param line2 [String, nil] The second line of the address.
           #
-          #   @param state [String, nil] The two-letter United States Postal Service (USPS) abbreviation for the US state
+          #   @param state [String, nil]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the US
+          #     state, province, or region of the address.
           #
           #   @param zip [String, nil] The ZIP or postal code of the address.
         end
@@ -199,15 +205,14 @@ module Increase
           required :number_last4, String
 
           # @!method initialize(method_:, number_last4:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityBeneficialOwner::Individual::Identification} for more
-          #   details.
-          #
           #   A means of verifying the person's identity.
           #
-          #   @param method_ [Symbol, Increase::Models::EntityBeneficialOwner::Individual::Identification::Method] A method that can be used to verify the individual's identity.
+          #   @param method_ [Symbol, Increase::Models::EntityBeneficialOwner::Individual::Identification::Method]
+          #     A method that can be used to verify the individual's identity.
           #
-          #   @param number_last4 [String] The last 4 digits of the identification number that can be used to verify the in
+          #   @param number_last4 [String]
+          #     The last 4 digits of the identification number that can be used to verify the
+          #     individual's identity.
 
           # A method that can be used to verify the individual's identity.
           #

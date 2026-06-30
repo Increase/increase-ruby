@@ -43,18 +43,23 @@ module Increase
       optional :status, enum: -> { Increase::EventSubscriptionCreateParams::Status }
 
       # @!method initialize(url:, oauth_connection_id: nil, selected_event_categories: nil, shared_secret: nil, status: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EventSubscriptionCreateParams} for more details.
-      #
       #   @param url [String] The URL you'd like us to send webhooks to.
       #
-      #   @param oauth_connection_id [String] If specified, this subscription will only receive webhooks for Events associated
+      #   @param oauth_connection_id [String]
+      #     If specified, this subscription will only receive webhooks for Events associated
+      #     with the specified OAuth Connection.
       #
-      #   @param selected_event_categories [Array<Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory>] If specified, this subscription will only receive webhooks for Events with the s
+      #   @param selected_event_categories [Array<Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory>]
+      #     If specified, this subscription will only receive webhooks for Events with the
+      #     specified `category`. If specifying a Real-Time Decision event category, only
+      #     one Event Category can be specified for the Event Subscription.
       #
-      #   @param shared_secret [String] The key that will be used to sign webhooks. If no value is passed, a random stri
+      #   @param shared_secret [String]
+      #     The key that will be used to sign webhooks. If no value is passed, a random
+      #     string will be used as default.
       #
-      #   @param status [Symbol, Increase::Models::EventSubscriptionCreateParams::Status] The status of the event subscription. Defaults to `active` if not specified.
+      #   @param status [Symbol, Increase::Models::EventSubscriptionCreateParams::Status]
+      #     The status of the event subscription. Defaults to `active` if not specified.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -67,7 +72,8 @@ module Increase
                  enum: -> { Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory }
 
         # @!method initialize(event_category:)
-        #   @param event_category [Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory] The category of the Event to subscribe to.
+        #   @param event_category [Symbol, Increase::Models::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory]
+        #     The category of the Event to subscribe to.
 
         # The category of the Event to subscribe to.
         #

@@ -3,18 +3,19 @@
 module Increase
   module Resources
     class Files
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::FileCreateParams} for more details.
-      #
       # To upload a file to Increase, you'll need to send a request of Content-Type
       # `multipart/form-data`. The request should contain the file you would like to
       # upload, as well as the parameters for creating a file.
       #
       # @overload create(file:, purpose:, description: nil, request_options: {})
       #
-      # @param file [Pathname, StringIO, IO, String, Increase::FilePart] The file contents. This should follow the specifications of [RFC 7578](https://d
+      # @param file [Pathname, StringIO, IO, String, Increase::FilePart]
+      #   The file contents. This should follow the specifications of
+      #   [RFC 7578](https://datatracker.ietf.org/doc/html/rfc7578) which defines file
+      #   transfers for the multipart/form-data protocol.
       #
-      # @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
+      # @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose]
+      #   What the File will be used for in Increase's systems.
       #
       # @param description [String] The description you choose to give the File.
       #
@@ -55,9 +56,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::FileListParams} for more details.
-      #
       # List Files
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, purpose: nil, request_options: {})
@@ -66,9 +64,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param purpose [Increase::Models::FileListParams::Purpose]
       #

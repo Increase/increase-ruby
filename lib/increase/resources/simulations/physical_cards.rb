@@ -4,9 +4,6 @@ module Increase
   module Resources
     class Simulations
       class PhysicalCards
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::PhysicalCardCreateParams} for more details.
-        #
         # This endpoint allows you to simulate receiving a tracking update for a Physical
         # Card, to simulate the progress of a shipment.
         #
@@ -14,9 +11,12 @@ module Increase
         #
         # @param physical_card_id [String] The Physical Card you would like to action.
         #
-        # @param category [Symbol, Increase::Models::Simulations::PhysicalCardCreateParams::Category] The type of tracking event.
+        # @param category [Symbol, Increase::Models::Simulations::PhysicalCardCreateParams::Category]
+        #   The type of tracking event.
         #
-        # @param carrier_estimated_delivery_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the ca
+        # @param carrier_estimated_delivery_at [Time]
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+        #   carrier expects the card to be delivered.
         #
         # @param city [String] The city where the event took place.
         #
@@ -48,7 +48,8 @@ module Increase
         #
         # @param physical_card_id [String] The Physical Card you would like to action.
         #
-        # @param shipment_status [Symbol, Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus] The shipment status to move the Physical Card to.
+        # @param shipment_status [Symbol, Increase::Models::Simulations::PhysicalCardAdvanceShipmentParams::ShipmentStatus]
+        #   The shipment status to move the Physical Card to.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

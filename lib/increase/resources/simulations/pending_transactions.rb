@@ -4,16 +4,14 @@ module Increase
   module Resources
     class Simulations
       class PendingTransactions
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::PendingTransactionReleaseInboundFundsHoldParams}
-        # for more details.
-        #
         # This endpoint simulates immediately releasing an Inbound Funds Hold, which might
         # be created as a result of, for example, an ACH debit.
         #
         # @overload release_inbound_funds_hold(pending_transaction_id, request_options: {})
         #
-        # @param pending_transaction_id [String] The pending transaction to release. The pending transaction must have a `inbound
+        # @param pending_transaction_id [String]
+        #   The pending transaction to release. The pending transaction must have a
+        #   `inbound_funds_hold` source.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

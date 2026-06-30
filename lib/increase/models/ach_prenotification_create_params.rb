@@ -93,14 +93,13 @@ module Increase
                enum: -> { Increase::ACHPrenotificationCreateParams::StandardEntryClassCode }
 
       # @!method initialize(account_id:, account_number:, routing_number:, addendum: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, credit_debit_indicator: nil, effective_date: nil, individual_id: nil, individual_name: nil, standard_entry_class_code: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::ACHPrenotificationCreateParams} for more details.
-      #
       #   @param account_id [String] The Increase identifier for the account that will send the ACH Prenotification.
       #
       #   @param account_number [String] The account number for the destination account.
       #
-      #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
+      #   @param routing_number [String]
+      #     The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
+      #     destination account.
       #
       #   @param addendum [String] Additional information that will be sent to the recipient.
       #
@@ -112,15 +111,23 @@ module Increase
       #
       #   @param company_name [String] The name by which the recipient knows you.
       #
-      #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
+      #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator]
+      #     Whether the Prenotification is for a future debit or credit.
       #
-      #   @param effective_date [Date] The ACH Prenotification effective date in [ISO 8601](https://en.wikipedia.org/wi
+      #   @param effective_date [Date]
+      #     The ACH Prenotification effective date in
+      #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
       #
       #   @param individual_id [String] Your identifier for the recipient.
       #
-      #   @param individual_name [String] The name of therecipient. This value is informational and not verified by the re
+      #   @param individual_name [String]
+      #     The name of therecipient. This value is informational and not verified by the
+      #     recipient's bank.
       #
-      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
+      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode]
+      #     The
+      #     [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      #     to use for the ACH Prenotification.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

@@ -61,9 +61,6 @@ module Increase
       required :type, enum: -> { Increase::CardPayment::Type }
 
       # @!method initialize(id:, account_id:, card_id:, created_at:, digital_wallet_token_id:, elements:, physical_card_id:, state:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardPayment} for more details.
-      #
       #   Card Payments group together interactions related to a single card payment, such
       #   as an authorization and its corresponding settlement.
       #
@@ -73,17 +70,22 @@ module Increase
       #
       #   @param card_id [String] The Card identifier for this payment.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card Pa
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card
+      #     Payment was created.
       #
       #   @param digital_wallet_token_id [String, nil] The Digital Wallet Token identifier for this payment.
       #
-      #   @param elements [Array<Increase::Models::CardPayment::Element>] The interactions related to this card payment.
+      #   @param elements [Array<Increase::Models::CardPayment::Element>]
+      #     The interactions related to this card payment.
       #
       #   @param physical_card_id [String, nil] The Physical Card identifier for this payment.
       #
       #   @param state [Increase::Models::CardPayment::State] The summarized state of this card payment.
       #
-      #   @param type [Symbol, Increase::Models::CardPayment::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardPayment::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card_payment`.
 
       class Element < Increase::Internal::Type::BaseModel
         # @!attribute category
@@ -221,38 +223,88 @@ module Increase
         optional :other, -> { Increase::CardPayment::Element::Other }, nil?: true
 
         # @!method initialize(category:, created_at:, card_authentication: nil, card_authorization: nil, card_authorization_expiration: nil, card_balance_inquiry: nil, card_decline: nil, card_financial: nil, card_fuel_confirmation: nil, card_increment: nil, card_refund: nil, card_reversal: nil, card_settlement: nil, card_validation: nil, other: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPayment::Element} for more details.
+        #   @param category [Symbol, Increase::Models::CardPayment::Element::Category]
+        #     The type of the resource. We may add additional possible values for this enum
+        #     over time; your application should be able to handle such additions gracefully.
         #
-        #   @param category [Symbol, Increase::Models::CardPayment::Element::Category] The type of the resource. We may add additional possible values for this enum ov
+        #   @param created_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the card payment element was created.
         #
-        #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param card_authentication [Increase::Models::CardPayment::Element::CardAuthentication, nil]
+        #     A Card Authentication object. This field will be present in the JSON response if
+        #     and only if `category` is equal to `card_authentication`. Card Authentications
+        #     are attempts to authenticate a transaction or a card with 3DS.
         #
-        #   @param card_authentication [Increase::Models::CardPayment::Element::CardAuthentication, nil] A Card Authentication object. This field will be present in the JSON response if
+        #   @param card_authorization [Increase::Models::CardPayment::Element::CardAuthorization, nil]
+        #     A Card Authorization object. This field will be present in the JSON response if
+        #     and only if `category` is equal to `card_authorization`. Card Authorizations are
+        #     temporary holds placed on a customer's funds with the intent to later clear a
+        #     transaction.
         #
-        #   @param card_authorization [Increase::Models::CardPayment::Element::CardAuthorization, nil] A Card Authorization object. This field will be present in the JSON response if
+        #   @param card_authorization_expiration [Increase::Models::CardPayment::Element::CardAuthorizationExpiration, nil]
+        #     A Card Authorization Expiration object. This field will be present in the JSON
+        #     response if and only if `category` is equal to `card_authorization_expiration`.
+        #     Card Authorization Expirations are cancellations of authorizations that were
+        #     never settled by the acquirer.
         #
-        #   @param card_authorization_expiration [Increase::Models::CardPayment::Element::CardAuthorizationExpiration, nil] A Card Authorization Expiration object. This field will be present in the JSON r
+        #   @param card_balance_inquiry [Increase::Models::CardPayment::Element::CardBalanceInquiry, nil]
+        #     A Card Balance Inquiry object. This field will be present in the JSON response
+        #     if and only if `category` is equal to `card_balance_inquiry`. Card Balance
+        #     Inquiries are transactions that allow merchants to check the available balance
+        #     on a card without placing a hold on funds, commonly used when a customer
+        #     requests their balance at an ATM.
         #
-        #   @param card_balance_inquiry [Increase::Models::CardPayment::Element::CardBalanceInquiry, nil] A Card Balance Inquiry object. This field will be present in the JSON response i
+        #   @param card_decline [Increase::Models::CardPayment::Element::CardDecline, nil]
+        #     A Card Decline object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `card_decline`.
         #
-        #   @param card_decline [Increase::Models::CardPayment::Element::CardDecline, nil] A Card Decline object. This field will be present in the JSON response if and on
+        #   @param card_financial [Increase::Models::CardPayment::Element::CardFinancial, nil]
+        #     A Card Financial object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `card_financial`. Card Financials are card
+        #     transactions that have cleared and settled. Unlike a Card Settlement, which
+        #     clears a previous authorization, a Card Financial is authorized and cleared in a
+        #     single message.
         #
-        #   @param card_financial [Increase::Models::CardPayment::Element::CardFinancial, nil] A Card Financial object. This field will be present in the JSON response if and
+        #   @param card_fuel_confirmation [Increase::Models::CardPayment::Element::CardFuelConfirmation, nil]
+        #     A Card Fuel Confirmation object. This field will be present in the JSON response
+        #     if and only if `category` is equal to `card_fuel_confirmation`. Card Fuel
+        #     Confirmations update the amount of a Card Authorization after a fuel pump
+        #     transaction is completed.
         #
-        #   @param card_fuel_confirmation [Increase::Models::CardPayment::Element::CardFuelConfirmation, nil] A Card Fuel Confirmation object. This field will be present in the JSON response
+        #   @param card_increment [Increase::Models::CardPayment::Element::CardIncrement, nil]
+        #     A Card Increment object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `card_increment`. Card Increments increase the
+        #     pending amount of an authorized transaction.
         #
-        #   @param card_increment [Increase::Models::CardPayment::Element::CardIncrement, nil] A Card Increment object. This field will be present in the JSON response if and
+        #   @param card_refund [Increase::Models::CardPayment::Element::CardRefund, nil]
+        #     A Card Refund object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `card_refund`. Card Refunds move money back to
+        #     the cardholder. While they are usually connected to a Card Settlement, an
+        #     acquirer can also refund money directly to a card without relation to a
+        #     transaction.
         #
-        #   @param card_refund [Increase::Models::CardPayment::Element::CardRefund, nil] A Card Refund object. This field will be present in the JSON response if and onl
+        #   @param card_reversal [Increase::Models::CardPayment::Element::CardReversal, nil]
+        #     A Card Reversal object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `card_reversal`. Card Reversals cancel parts of
+        #     or the entirety of an existing Card Authorization.
         #
-        #   @param card_reversal [Increase::Models::CardPayment::Element::CardReversal, nil] A Card Reversal object. This field will be present in the JSON response if and o
+        #   @param card_settlement [Increase::Models::CardPayment::Element::CardSettlement, nil]
+        #     A Card Settlement object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `card_settlement`. Card Settlements are card
+        #     transactions that have cleared and settled. While a settlement is usually
+        #     preceded by an authorization, an acquirer can also directly clear a transaction
+        #     without first authorizing it.
         #
-        #   @param card_settlement [Increase::Models::CardPayment::Element::CardSettlement, nil] A Card Settlement object. This field will be present in the JSON response if and
+        #   @param card_validation [Increase::Models::CardPayment::Element::CardValidation, nil]
+        #     An Inbound Card Validation object. This field will be present in the JSON
+        #     response if and only if `category` is equal to `card_validation`. Inbound Card
+        #     Validations are requests from a merchant to verify that a card number and
+        #     optionally its address and/or Card Verification Value are valid.
         #
-        #   @param card_validation [Increase::Models::CardPayment::Element::CardValidation, nil] An Inbound Card Validation object. This field will be present in the JSON respon
-        #
-        #   @param other [Increase::Models::CardPayment::Element::Other, nil] If the category of this Transaction source is equal to `other`, this field will
+        #   @param other [Increase::Models::CardPayment::Element::Other, nil]
+        #     If the category of this Transaction source is equal to `other`, this field will
+        #     contain an empty object, otherwise it will contain null.
 
         # The type of the resource. We may add additional possible values for this enum
         # over time; your application should be able to handle such additions gracefully.
@@ -572,30 +624,43 @@ module Increase
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthentication::Type }
 
           # @!method initialize(id:, access_control_server_transaction_identifier:, billing_address_city:, billing_address_country:, billing_address_line1:, billing_address_line2:, billing_address_line3:, billing_address_postal_code:, billing_address_state:, card_id:, card_payment_id:, cardholder_email:, cardholder_name:, challenge:, created_at:, deny_reason:, device_channel:, directory_server_transaction_identifier:, merchant_acceptor_id:, merchant_category_code:, merchant_country:, merchant_name:, message_category:, prior_authenticated_card_payment_id:, real_time_decision_id:, requestor_authentication_indicator:, requestor_challenge_indicator:, requestor_name:, requestor_url:, shipping_address_city:, shipping_address_country:, shipping_address_line1:, shipping_address_line2:, shipping_address_line3:, shipping_address_postal_code:, shipping_address_state:, status:, three_d_secure_server_transaction_identifier:, type:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardAuthentication} for more details.
-          #
           #   A Card Authentication object. This field will be present in the JSON response if
           #   and only if `category` is equal to `card_authentication`. Card Authentications
           #   are attempts to authenticate a transaction or a card with 3DS.
           #
           #   @param id [String] The Card Authentication identifier.
           #
-          #   @param access_control_server_transaction_identifier [String] A unique identifier assigned by the Access Control Server (us) for this transact
+          #   @param access_control_server_transaction_identifier [String]
+          #     A unique identifier assigned by the Access Control Server (us) for this
+          #     transaction.
           #
-          #   @param billing_address_city [String, nil] The city of the cardholder billing address associated with the card used for thi
+          #   @param billing_address_city [String, nil]
+          #     The city of the cardholder billing address associated with the card used for
+          #     this purchase.
           #
-          #   @param billing_address_country [String, nil] The country of the cardholder billing address associated with the card used for
+          #   @param billing_address_country [String, nil]
+          #     The country of the cardholder billing address associated with the card used for
+          #     this purchase.
           #
-          #   @param billing_address_line1 [String, nil] The first line of the cardholder billing address associated with the card used f
+          #   @param billing_address_line1 [String, nil]
+          #     The first line of the cardholder billing address associated with the card used
+          #     for this purchase.
           #
-          #   @param billing_address_line2 [String, nil] The second line of the cardholder billing address associated with the card used
+          #   @param billing_address_line2 [String, nil]
+          #     The second line of the cardholder billing address associated with the card used
+          #     for this purchase.
           #
-          #   @param billing_address_line3 [String, nil] The third line of the cardholder billing address associated with the card used f
+          #   @param billing_address_line3 [String, nil]
+          #     The third line of the cardholder billing address associated with the card used
+          #     for this purchase.
           #
-          #   @param billing_address_postal_code [String, nil] The postal code of the cardholder billing address associated with the card used
+          #   @param billing_address_postal_code [String, nil]
+          #     The postal code of the cardholder billing address associated with the card used
+          #     for this purchase.
           #
-          #   @param billing_address_state [String, nil] The US state of the cardholder billing address associated with the card used for
+          #   @param billing_address_state [String, nil]
+          #     The US state of the cardholder billing address associated with the card used for
+          #     this purchase.
           #
           #   @param card_id [String] The identifier of the Card.
           #
@@ -605,33 +670,52 @@ module Increase
           #
           #   @param cardholder_name [String, nil] The name of the cardholder.
           #
-          #   @param challenge [Increase::Models::CardPayment::Element::CardAuthentication::Challenge, nil] Details about the challenge, if one was requested.
+          #   @param challenge [Increase::Models::CardPayment::Element::CardAuthentication::Challenge, nil]
+          #     Details about the challenge, if one was requested.
           #
-          #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card Au
+          #   @param created_at [Time]
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card
+          #     Authentication was attempted.
           #
-          #   @param deny_reason [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DenyReason, nil] The reason why this authentication attempt was denied, if it was.
+          #   @param deny_reason [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DenyReason, nil]
+          #     The reason why this authentication attempt was denied, if it was.
           #
-          #   @param device_channel [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel] The device channel of the card authentication attempt.
+          #   @param device_channel [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel]
+          #     The device channel of the card authentication attempt.
           #
-          #   @param directory_server_transaction_identifier [String] A unique identifier assigned by the Directory Server (the card network) for this
+          #   @param directory_server_transaction_identifier [String]
+          #     A unique identifier assigned by the Directory Server (the card network) for this
+          #     transaction.
           #
-          #   @param merchant_acceptor_id [String, nil] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String, nil]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String, nil] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String, nil]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_country [String, nil] The country the merchant resides in.
           #
           #   @param merchant_name [String, nil] The name of the merchant.
           #
-          #   @param message_category [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory] The message category of the card authentication attempt.
+          #   @param message_category [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory]
+          #     The message category of the card authentication attempt.
           #
-          #   @param prior_authenticated_card_payment_id [String, nil] The ID of a prior Card Authentication that the requestor used to authenticate th
+          #   @param prior_authenticated_card_payment_id [String, nil]
+          #     The ID of a prior Card Authentication that the requestor used to authenticate
+          #     this cardholder for a previous transaction.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this authent
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     authentication attempt.
           #
-          #   @param requestor_authentication_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator, nil] The 3DS requestor authentication indicator describes why the authentication atte
+          #   @param requestor_authentication_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorAuthenticationIndicator, nil]
+          #     The 3DS requestor authentication indicator describes why the authentication
+          #     attempt is performed, such as for a recurring transaction.
           #
-          #   @param requestor_challenge_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator, nil] Indicates whether a challenge is requested for this transaction.
+          #   @param requestor_challenge_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::RequestorChallengeIndicator, nil]
+          #     Indicates whether a challenge is requested for this transaction.
           #
           #   @param requestor_name [String] The name of the 3DS requestor.
           #
@@ -639,23 +723,34 @@ module Increase
           #
           #   @param shipping_address_city [String, nil] The city of the shipping address associated with this purchase.
           #
-          #   @param shipping_address_country [String, nil] The country of the shipping address associated with this purchase.
+          #   @param shipping_address_country [String, nil]
+          #     The country of the shipping address associated with this purchase.
           #
-          #   @param shipping_address_line1 [String, nil] The first line of the shipping address associated with this purchase.
+          #   @param shipping_address_line1 [String, nil]
+          #     The first line of the shipping address associated with this purchase.
           #
-          #   @param shipping_address_line2 [String, nil] The second line of the shipping address associated with this purchase.
+          #   @param shipping_address_line2 [String, nil]
+          #     The second line of the shipping address associated with this purchase.
           #
-          #   @param shipping_address_line3 [String, nil] The third line of the shipping address associated with this purchase.
+          #   @param shipping_address_line3 [String, nil]
+          #     The third line of the shipping address associated with this purchase.
           #
-          #   @param shipping_address_postal_code [String, nil] The postal code of the shipping address associated with this purchase.
+          #   @param shipping_address_postal_code [String, nil]
+          #     The postal code of the shipping address associated with this purchase.
           #
-          #   @param shipping_address_state [String, nil] The US state of the shipping address associated with this purchase.
+          #   @param shipping_address_state [String, nil]
+          #     The US state of the shipping address associated with this purchase.
           #
-          #   @param status [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status] The status of the card authentication.
+          #   @param status [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Status]
+          #     The status of the card authentication.
           #
-          #   @param three_d_secure_server_transaction_identifier [String] A unique identifier assigned by the 3DS Server initiating the authentication att
+          #   @param three_d_secure_server_transaction_identifier [String]
+          #     A unique identifier assigned by the 3DS Server initiating the authentication
+          #     attempt for this transaction.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_authentication`.
 
           # @see Increase::Models::CardPayment::Element::CardAuthentication#challenge
           class Challenge < Increase::Internal::Type::BaseModel
@@ -700,23 +795,26 @@ module Increase
             required :verification_value, String, nil?: true
 
             # @!method initialize(attempts:, created_at:, one_time_code:, real_time_decision_id:, verification_method:, verification_value:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardAuthentication::Challenge} for more
-            #   details.
-            #
             #   Details about the challenge, if one was requested.
             #
-            #   @param attempts [Array<Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt>] Details about the challenge verification attempts, if any happened.
+            #   @param attempts [Array<Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt>]
+            #     Details about the challenge verification attempts, if any happened.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card Au
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Card
+            #     Authentication Challenge was started.
             #
             #   @param one_time_code [String] The one-time code used for the Card Authentication Challenge.
             #
-            #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision used to deliver this challenge.
+            #   @param real_time_decision_id [String, nil]
+            #     The identifier of the Real-Time Decision used to deliver this challenge.
             #
-            #   @param verification_method [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod] The method used to verify the Card Authentication Challenge.
+            #   @param verification_method [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod]
+            #     The method used to verify the Card Authentication Challenge.
             #
-            #   @param verification_value [String, nil] E.g., the email address or phone number used for the Card Authentication Challen
+            #   @param verification_value [String, nil]
+            #     E.g., the email address or phone number used for the Card Authentication
+            #     Challenge.
 
             class Attempt < Increase::Internal::Type::BaseModel
               # @!attribute created_at
@@ -734,13 +832,12 @@ module Increase
                        enum: -> { Increase::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome }
 
               # @!method initialize(created_at:, outcome:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt}
-              #   for more details.
+              #   @param created_at [Time]
+              #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time of the Card
+              #     Authentication Challenge Attempt.
               #
-              #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time of the Card Authenti
-              #
-              #   @param outcome [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome] The outcome of the Card Authentication Challenge Attempt.
+              #   @param outcome [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::Challenge::Attempt::Outcome]
+              #     The outcome of the Card Authentication Challenge Attempt.
 
               # The outcome of the Card Authentication Challenge Attempt.
               #
@@ -837,11 +934,14 @@ module Increase
             # @!method initialize(browser:, category:, merchant_initiated:)
             #   The device channel of the card authentication attempt.
             #
-            #   @param browser [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser, nil] Fields specific to the browser device channel.
+            #   @param browser [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser, nil]
+            #     Fields specific to the browser device channel.
             #
-            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Category] The category of the device channel.
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Category]
+            #     The category of the device channel.
             #
-            #   @param merchant_initiated [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated, nil] Fields specific to merchant initiated transactions.
+            #   @param merchant_initiated [Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated, nil]
+            #     Fields specific to merchant initiated transactions.
 
             # @see Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel#browser
             class Browser < Increase::Internal::Type::BaseModel
@@ -886,7 +986,8 @@ module Increase
               #
               #   @param ip_address [String, nil] The IP address of the cardholder's browser.
               #
-              #   @param javascript_enabled [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled, nil] Whether JavaScript is enabled in the cardholder's browser.
+              #   @param javascript_enabled [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::Browser::JavascriptEnabled, nil]
+              #     Whether JavaScript is enabled in the cardholder's browser.
               #
               #   @param language [String, nil] The language of the cardholder's browser.
               #
@@ -940,7 +1041,8 @@ module Increase
               # @!method initialize(indicator:)
               #   Fields specific to merchant initiated transactions.
               #
-              #   @param indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator] The merchant initiated indicator for the transaction.
+              #   @param indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::DeviceChannel::MerchantInitiated::Indicator]
+              #     The merchant initiated indicator for the transaction.
 
               # The merchant initiated indicator for the transaction.
               #
@@ -1039,11 +1141,14 @@ module Increase
             # @!method initialize(category:, non_payment:, payment:)
             #   The message category of the card authentication attempt.
             #
-            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Category] The category of the card authentication attempt.
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Category]
+            #     The category of the card authentication attempt.
             #
-            #   @param non_payment [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment, nil] Fields specific to non-payment authentication attempts.
+            #   @param non_payment [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::NonPayment, nil]
+            #     Fields specific to non-payment authentication attempts.
             #
-            #   @param payment [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment, nil] Fields specific to payment authentication attempts.
+            #   @param payment [Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment, nil]
+            #     Fields specific to payment authentication attempts.
 
             # The category of the card authentication attempt.
             #
@@ -1100,19 +1205,20 @@ module Increase
                        nil?: true
 
               # @!method initialize(purchase_amount:, purchase_amount_cardholder_estimated:, purchase_currency:, transaction_type:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment}
-              #   for more details.
-              #
               #   Fields specific to payment authentication attempts.
               #
               #   @param purchase_amount [Integer] The purchase amount in minor units.
               #
-              #   @param purchase_amount_cardholder_estimated [Integer, nil] The purchase amount in the cardholder's currency (i.e., USD) estimated using dai
+              #   @param purchase_amount_cardholder_estimated [Integer, nil]
+              #     The purchase amount in the cardholder's currency (i.e., USD) estimated using
+              #     daily conversion rates from the card network.
               #
-              #   @param purchase_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the authenticati
+              #   @param purchase_currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+              #     authentication attempt's purchase currency.
               #
-              #   @param transaction_type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType, nil] The type of transaction being authenticated.
+              #   @param transaction_type [Symbol, Increase::Models::CardPayment::Element::CardAuthentication::MessageCategory::Payment::TransactionType, nil]
+              #     The type of transaction being authenticated.
 
               # The type of transaction being authenticated.
               #
@@ -1475,9 +1581,6 @@ module Increase
           required :verification, -> { Increase::CardPayment::Element::CardAuthorization::Verification }
 
           # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, expires_at:, healthcare:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, pending_transaction_id:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, scheme_fees:, terminal_id:, type:, verification:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardAuthorization} for more details.
-          #
           #   A Card Authorization object. This field will be present in the JSON response if
           #   and only if `category` is equal to `card_authorization`. Card Authorizations are
           #   temporary holds placed on a customer's funds with the intent to later clear a
@@ -1485,27 +1588,48 @@ module Increase
           #
           #   @param id [String] The Card Authorization identifier.
           #
-          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Actioner] Whether this authorization was approved by Increase, the card network through st
+          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Actioner]
+          #     Whether this authorization was approved by Increase, the card network through
+          #     stand-in processing, or the user through a real-time decision.
           #
-          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
+          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts]
+          #     Additional amounts associated with the card authorization, such as ATM
+          #     surcharges fees. These are usually a subset of the `amount` field and are used
+          #     to provide more detailed information about the transaction.
           #
-          #   @param amount [Integer] The pending amount in the minor unit of the transaction's currency. For dollars,
+          #   @param amount [Integer]
+          #     The pending amount in the minor unit of the transaction's currency. For dollars,
+          #     for example, this is cents.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's currency.
           #
-          #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
+          #   @param digital_wallet_token_id [String, nil]
+          #     If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          #     purchase), the identifier of the token that was used.
           #
-          #   @param direction [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Direction] The direction describes the direction the funds will move, either from the cardh
+          #   @param direction [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Direction]
+          #     The direction describes the direction the funds will move, either from the
+          #     cardholder to the merchant or from the merchant to the cardholder.
           #
-          #   @param expires_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization w
+          #   @param expires_at [Time]
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization
+          #     will expire and the pending transaction will be released.
           #
-          #   @param healthcare [Increase::Models::CardPayment::Element::CardAuthorization::Healthcare, nil] The healthcare-related fields for this authorization. Only present for specific
+          #   @param healthcare [Increase::Models::CardPayment::Element::CardAuthorization::Healthcare, nil]
+          #     The healthcare-related fields for this authorization. Only present for specific
+          #     programs.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_city [String, nil] The city the merchant resides in.
           #
@@ -1513,35 +1637,58 @@ module Increase
           #
           #   @param merchant_descriptor [String] The merchant descriptor of the merchant the card is transacting with.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #     ZIP code, where the first 5 and last 4 are separated by a dash.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network_details [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails] Fields specific to the `network`.
+          #   @param network_details [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails]
+          #     Fields specific to the `network`.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardAuthorization::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardAuthorization::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param network_risk_score [Integer, nil] The risk score generated by the card network. For Visa this is the Visa Advanced
+          #   @param network_risk_score [Integer, nil]
+          #     The risk score generated by the card network. For Visa this is the Visa Advanced
+          #     Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          #     score is from 0 to 999, where 999 is the riskiest.
           #
-          #   @param pending_transaction_id [String, nil] The identifier of the Pending Transaction associated with this Transaction.
+          #   @param pending_transaction_id [String, nil]
+          #     The identifier of the Pending Transaction associated with this Transaction.
           #
-          #   @param physical_card_id [String, nil] If the authorization was made in-person with a physical card, the Physical Card
+          #   @param physical_card_id [String, nil]
+          #     If the authorization was made in-person with a physical card, the Physical Card
+          #     that was used.
           #
-          #   @param presentment_amount [Integer] The pending amount in the minor unit of the transaction's presentment currency.
+          #   @param presentment_amount [Integer]
+          #     The pending amount in the minor unit of the transaction's presentment currency.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's presentment currency.
           #
-          #   @param processing_category [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::ProcessingCategory] The processing category describes the intent behind the authorization, such as w
+          #   @param processing_category [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::ProcessingCategory]
+          #     The processing category describes the intent behind the authorization, such as
+          #     whether it was used for bill payments or an automatic fuel dispenser.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this transac
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     transaction.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardAuthorization::SchemeFee>] The scheme fees associated with this card authorization.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardAuthorization::SchemeFee>]
+          #     The scheme fees associated with this card authorization.
           #
-          #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
+          #   @param terminal_id [String, nil]
+          #     The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          #     is transacting with.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_authorization`.
           #
-          #   @param verification [Increase::Models::CardPayment::Element::CardAuthorization::Verification] Fields related to verification of cardholder-provided values.
+          #   @param verification [Increase::Models::CardPayment::Element::CardAuthorization::Verification]
+          #     Fields related to verification of cardholder-provided values.
 
           # Whether this authorization was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -1652,33 +1799,39 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts}
-            #   for more details.
-            #
             #   Additional amounts associated with the card authorization, such as ATM
             #   surcharges fees. These are usually a subset of the `amount` field and are used
             #   to provide more detailed information about the transaction.
             #
-            #   @param clinic [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #   @param clinic [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic, nil]
+            #     The part of this transaction amount that was for clinic-related services.
             #
-            #   @param dental [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #   @param dental [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental, nil]
+            #     The part of this transaction amount that was for dental-related services.
             #
-            #   @param original [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original, nil] The original pre-authorized amount.
+            #   @param original [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original, nil]
+            #     The original pre-authorized amount.
             #
-            #   @param prescription [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #   @param prescription [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription, nil]
+            #     The part of this transaction amount that was for healthcare prescriptions.
             #
-            #   @param surcharge [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #   @param surcharge [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge, nil]
+            #     The surcharge amount charged for this transaction by the merchant.
             #
-            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative, nil]
+            #     The total amount of a series of incremental authorizations, optionally provided.
             #
-            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare, nil]
+            #     The total amount of healthcare-related additional amounts.
             #
-            #   @param transit [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #   @param transit [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit, nil]
+            #     The part of this transaction amount that was for transit-related services.
             #
-            #   @param unknown [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #   @param unknown [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown, nil]
+            #     An unknown additional amount.
             #
-            #   @param vision [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+            #   @param vision [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision, nil]
+            #     The part of this transaction amount that was for vision-related services.
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
@@ -1698,15 +1851,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#dental
@@ -1727,15 +1881,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Dental}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#original
@@ -1756,15 +1911,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Original}
-              #   for more details.
-              #
               #   The original pre-authorized amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#prescription
@@ -1785,15 +1941,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Prescription}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#surcharge
@@ -1814,15 +1971,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Surcharge}
-              #   for more details.
-              #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#total_cumulative
@@ -1843,15 +2001,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalCumulative}
-              #   for more details.
-              #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#total_healthcare
@@ -1872,15 +2031,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::TotalHealthcare}
-              #   for more details.
-              #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#transit
@@ -1901,15 +2061,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Transit}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#unknown
@@ -1930,15 +2091,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Unknown}
-              #   for more details.
-              #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts#vision
@@ -1959,15 +2121,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Vision}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
           end
 
@@ -2015,14 +2178,14 @@ module Increase
                      enum: -> { Increase::CardPayment::Element::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility }
 
             # @!method initialize(merchant_ninety_percent_eligibility:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardAuthorization::Healthcare} for more
-            #   details.
-            #
             #   The healthcare-related fields for this authorization. Only present for specific
             #   programs.
             #
-            #   @param merchant_ninety_percent_eligibility [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility] The merchant's eligibility under the Internal Revenue Service's 90% Rule for Fle
+            #   @param merchant_ninety_percent_eligibility [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Healthcare::MerchantNinetyPercentEligibility]
+            #     The merchant's eligibility under the Internal Revenue Service's 90% Rule for
+            #     Flexible Spending Account (FSA) and Health Savings Account (HSA) eligible
+            #     products. The eligibility is determined based on the list of merchants
+            #     maintained by the Special Interest Group for IIAS Standards (SIGIS).
 
             # The merchant's eligibility under the Internal Revenue Service's 90% Rule for
             # Flexible Spending Account (FSA) and Health Savings Account (HSA) eligible
@@ -2074,11 +2237,14 @@ module Increase
             # @!method initialize(category:, pulse:, visa:)
             #   Fields specific to the `network`.
             #
-            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Category] The payment network used to process this card authorization.
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Category]
+            #     The payment network used to process this card authorization.
             #
-            #   @param pulse [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Pulse, nil]
+            #     Fields specific to the `pulse` network.
             #
-            #   @param visa [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
+            #   @param visa [Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa, nil]
+            #     Fields specific to the `visa` network.
 
             # The payment network used to process this card authorization.
             #
@@ -2153,19 +2319,27 @@ module Increase
                        nil?: true
 
               # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa}
-              #   for more details.
-              #
               #   Fields specific to the `visa` network.
               #
-              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::ElectronicCommerceIndicator, nil] For electronic commerce transactions, this identifies the level of security used
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #     For electronic commerce transactions, this identifies the level of security used
+              #     in obtaining the customer's payment credential. For mail or telephone order
+              #     transactions, identifies the type of mail or telephone order.
               #
-              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #     The method used to enter the cardholder's primary account number and card
+              #     expiration date.
               #
-              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::StandInProcessingReason, nil]
+              #     Only present when `actioner: network`. Describes why a card authorization was
+              #     approved or declined by Visa through stand-in processing.
               #
-              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
+              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::NetworkDetails::Visa::TerminalEntryCapability, nil]
+              #     The capability of the terminal being used to read the card. Shows whether a
+              #     terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              #     reads. This reflects the highest capability of the terminal — for example, a
+              #     terminal that supports both chip and magnetic stripe will be identified as
+              #     chip-capable.
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -2354,19 +2528,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardAuthorization::NetworkIdentifiers}
-            #   for more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -2455,21 +2634,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardAuthorization::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -2626,17 +2810,18 @@ module Increase
                      nil?: true
 
             # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardAuthorization::Verification} for
-            #   more details.
-            #
             #   Fields related to verification of cardholder-provided values.
             #
-            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
+            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode]
+            #     Fields related to verification of the Card Verification Code, a 3-digit code on
+            #     the back of the card.
             #
-            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress]
+            #     Cardholder address provided in the authorization request and the address on file
+            #     we verified it against.
             #
-            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderName, nil]
+            #     Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardAuthorization::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -2651,7 +2836,8 @@ module Increase
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
               #   the back of the card.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::Result] The result of verifying the Card Verification Code.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardVerificationCode::Result]
+              #     The result of verifying the Card Verification Code.
 
               # The result of verifying the Card Verification Code.
               #
@@ -2708,10 +2894,6 @@ module Increase
                        enum: -> { Increase::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress}
-              #   for more details.
-              #
               #   Cardholder address provided in the authorization request and the address on file
               #   we verified it against.
               #
@@ -2719,11 +2901,15 @@ module Increase
               #
               #   @param actual_postal_code [String, nil] The postal code of the address on file for the cardholder.
               #
-              #   @param provided_line1 [String, nil] The cardholder address line 1 provided for verification in the authorization req
+              #   @param provided_line1 [String, nil]
+              #     The cardholder address line 1 provided for verification in the authorization
+              #     request.
               #
-              #   @param provided_postal_code [String, nil] The postal code provided for verification in the authorization request.
+              #   @param provided_postal_code [String, nil]
+              #     The postal code provided for verification in the authorization request.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result] The address verification result returned to the card network.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardAuthorization::Verification::CardholderAddress::Result]
+              #     The address verification result returned to the card network.
 
               # The address verification result returned to the card network.
               #
@@ -2777,11 +2963,14 @@ module Increase
               # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
               #   Cardholder name provided in the authorization request.
               #
-              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #   @param provided_first_name [String, nil]
+              #     The first name provided for verification in the authorization request.
               #
-              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #   @param provided_last_name [String, nil]
+              #     The last name provided for verification in the authorization request.
               #
-              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
+              #   @param provided_middle_name [String, nil]
+              #     The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -2828,10 +3017,6 @@ module Increase
           required :type, enum: -> { Increase::CardPayment::Element::CardAuthorizationExpiration::Type }
 
           # @!method initialize(id:, card_authorization_id:, currency:, expired_amount:, network:, type:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardAuthorizationExpiration} for more
-          #   details.
-          #
           #   A Card Authorization Expiration object. This field will be present in the JSON
           #   response if and only if `category` is equal to `card_authorization_expiration`.
           #   Card Authorization Expirations are cancellations of authorizations that were
@@ -2841,13 +3026,20 @@ module Increase
           #
           #   @param card_authorization_id [String] The identifier for the Card Authorization this reverses.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's c
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
+          #     currency.
           #
-          #   @param expired_amount [Integer] The amount of this authorization expiration in the minor unit of the transaction
+          #   @param expired_amount [Integer]
+          #     The amount of this authorization expiration in the minor unit of the
+          #     transaction's currency. For dollars, for example, this is cents.
           #
-          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Network] The card network used to process this card authorization.
+          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Network]
+          #     The card network used to process this card authorization.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardAuthorizationExpiration::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_authorization_expiration`.
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
           # currency.
@@ -3044,9 +3236,6 @@ module Increase
           required :verification, -> { Increase::CardPayment::Element::CardBalanceInquiry::Verification }
 
           # @!method initialize(id:, additional_amounts:, balance:, card_payment_id:, currency:, digital_wallet_token_id:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, real_time_decision_id:, scheme_fees:, terminal_id:, type:, verification:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardBalanceInquiry} for more details.
-          #
           #   A Card Balance Inquiry object. This field will be present in the JSON response
           #   if and only if `category` is equal to `card_balance_inquiry`. Card Balance
           #   Inquiries are transactions that allow merchants to check the available balance
@@ -3055,19 +3244,32 @@ module Increase
           #
           #   @param id [String] The Card Balance Inquiry identifier.
           #
-          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
+          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts]
+          #     Additional amounts associated with the card authorization, such as ATM
+          #     surcharges fees. These are usually a subset of the `amount` field and are used
+          #     to provide more detailed information about the transaction.
           #
-          #   @param balance [Integer] The balance amount in the minor unit of the account's currency. For dollars, for
+          #   @param balance [Integer]
+          #     The balance amount in the minor unit of the account's currency. For dollars, for
+          #     example, this is cents.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the account's cu
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the account's
+          #     currency.
           #
-          #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
+          #   @param digital_wallet_token_id [String, nil]
+          #     If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          #     purchase), the identifier of the token that was used.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_city [String, nil] The city the merchant resides in.
           #
@@ -3075,27 +3277,44 @@ module Increase
           #
           #   @param merchant_descriptor [String] The merchant descriptor of the merchant the card is transacting with.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #     ZIP code, where the first 5 and last 4 are separated by a dash.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network_details [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails] Fields specific to the `network`.
+          #   @param network_details [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails]
+          #     Fields specific to the `network`.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param network_risk_score [Integer, nil] The risk score generated by the card network. For Visa this is the Visa Advanced
+          #   @param network_risk_score [Integer, nil]
+          #     The risk score generated by the card network. For Visa this is the Visa Advanced
+          #     Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          #     score is from 0 to 999, where 999 is the riskiest.
           #
-          #   @param physical_card_id [String, nil] If the authorization was made in-person with a physical card, the Physical Card
+          #   @param physical_card_id [String, nil]
+          #     If the authorization was made in-person with a physical card, the Physical Card
+          #     that was used.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this transac
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     transaction.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardBalanceInquiry::SchemeFee>] The scheme fees associated with this card balance inquiry.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardBalanceInquiry::SchemeFee>]
+          #     The scheme fees associated with this card balance inquiry.
           #
-          #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
+          #   @param terminal_id [String, nil]
+          #     The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          #     is transacting with.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_balance_inquiry`.
           #
-          #   @param verification [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification] Fields related to verification of cardholder-provided values.
+          #   @param verification [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification]
+          #     Fields related to verification of cardholder-provided values.
 
           # @see Increase::Models::CardPayment::Element::CardBalanceInquiry#additional_amounts
           class AdditionalAmounts < Increase::Internal::Type::BaseModel
@@ -3186,33 +3405,39 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts}
-            #   for more details.
-            #
             #   Additional amounts associated with the card authorization, such as ATM
             #   surcharges fees. These are usually a subset of the `amount` field and are used
             #   to provide more detailed information about the transaction.
             #
-            #   @param clinic [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #   @param clinic [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Clinic, nil]
+            #     The part of this transaction amount that was for clinic-related services.
             #
-            #   @param dental [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #   @param dental [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Dental, nil]
+            #     The part of this transaction amount that was for dental-related services.
             #
-            #   @param original [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Original, nil] The original pre-authorized amount.
+            #   @param original [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Original, nil]
+            #     The original pre-authorized amount.
             #
-            #   @param prescription [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #   @param prescription [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Prescription, nil]
+            #     The part of this transaction amount that was for healthcare prescriptions.
             #
-            #   @param surcharge [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #   @param surcharge [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Surcharge, nil]
+            #     The surcharge amount charged for this transaction by the merchant.
             #
-            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::TotalCumulative, nil]
+            #     The total amount of a series of incremental authorizations, optionally provided.
             #
-            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare, nil]
+            #     The total amount of healthcare-related additional amounts.
             #
-            #   @param transit [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #   @param transit [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Transit, nil]
+            #     The part of this transaction amount that was for transit-related services.
             #
-            #   @param unknown [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #   @param unknown [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Unknown, nil]
+            #     An unknown additional amount.
             #
-            #   @param vision [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+            #   @param vision [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Vision, nil]
+            #     The part of this transaction amount that was for vision-related services.
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
@@ -3232,15 +3457,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Clinic}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#dental
@@ -3261,15 +3487,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Dental}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#original
@@ -3290,15 +3517,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Original}
-              #   for more details.
-              #
               #   The original pre-authorized amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#prescription
@@ -3319,15 +3547,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Prescription}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#surcharge
@@ -3348,15 +3577,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Surcharge}
-              #   for more details.
-              #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#total_cumulative
@@ -3377,15 +3607,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::TotalCumulative}
-              #   for more details.
-              #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#total_healthcare
@@ -3406,15 +3637,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::TotalHealthcare}
-              #   for more details.
-              #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#transit
@@ -3435,15 +3667,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Transit}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#unknown
@@ -3464,15 +3697,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Unknown}
-              #   for more details.
-              #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts#vision
@@ -3493,15 +3727,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Vision}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
           end
 
@@ -3547,11 +3782,14 @@ module Increase
             # @!method initialize(category:, pulse:, visa:)
             #   Fields specific to the `network`.
             #
-            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Category] The payment network used to process this card authorization.
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Category]
+            #     The payment network used to process this card authorization.
             #
-            #   @param pulse [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Pulse, nil]
+            #     Fields specific to the `pulse` network.
             #
-            #   @param visa [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
+            #   @param visa [Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa, nil]
+            #     Fields specific to the `visa` network.
 
             # The payment network used to process this card authorization.
             #
@@ -3626,19 +3864,27 @@ module Increase
                        nil?: true
 
               # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa}
-              #   for more details.
-              #
               #   Fields specific to the `visa` network.
               #
-              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator, nil] For electronic commerce transactions, this identifies the level of security used
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #     For electronic commerce transactions, this identifies the level of security used
+              #     in obtaining the customer's payment credential. For mail or telephone order
+              #     transactions, identifies the type of mail or telephone order.
               #
-              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #     The method used to enter the cardholder's primary account number and card
+              #     expiration date.
               #
-              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::StandInProcessingReason, nil]
+              #     Only present when `actioner: network`. Describes why a card authorization was
+              #     approved or declined by Visa through stand-in processing.
               #
-              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
+              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkDetails::Visa::TerminalEntryCapability, nil]
+              #     The capability of the terminal being used to read the card. Shows whether a
+              #     terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              #     reads. This reflects the highest capability of the terminal — for example, a
+              #     terminal that supports both chip and magnetic stripe will be identified as
+              #     chip-capable.
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -3827,19 +4073,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::NetworkIdentifiers}
-            #   for more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           class SchemeFee < Increase::Internal::Type::BaseModel
@@ -3884,21 +4135,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -4055,17 +4311,18 @@ module Increase
                      nil?: true
 
             # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification} for
-            #   more details.
-            #
             #   Fields related to verification of cardholder-provided values.
             #
-            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
+            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardVerificationCode]
+            #     Fields related to verification of the Card Verification Code, a 3-digit code on
+            #     the back of the card.
             #
-            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress]
+            #     Cardholder address provided in the authorization request and the address on file
+            #     we verified it against.
             #
-            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderName, nil]
+            #     Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -4080,7 +4337,8 @@ module Increase
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
               #   the back of the card.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardVerificationCode::Result] The result of verifying the Card Verification Code.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardVerificationCode::Result]
+              #     The result of verifying the Card Verification Code.
 
               # The result of verifying the Card Verification Code.
               #
@@ -4137,10 +4395,6 @@ module Increase
                        enum: -> { Increase::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress}
-              #   for more details.
-              #
               #   Cardholder address provided in the authorization request and the address on file
               #   we verified it against.
               #
@@ -4148,11 +4402,15 @@ module Increase
               #
               #   @param actual_postal_code [String, nil] The postal code of the address on file for the cardholder.
               #
-              #   @param provided_line1 [String, nil] The cardholder address line 1 provided for verification in the authorization req
+              #   @param provided_line1 [String, nil]
+              #     The cardholder address line 1 provided for verification in the authorization
+              #     request.
               #
-              #   @param provided_postal_code [String, nil] The postal code provided for verification in the authorization request.
+              #   @param provided_postal_code [String, nil]
+              #     The postal code provided for verification in the authorization request.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress::Result] The address verification result returned to the card network.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardBalanceInquiry::Verification::CardholderAddress::Result]
+              #     The address verification result returned to the card network.
 
               # The address verification result returned to the card network.
               #
@@ -4206,11 +4464,14 @@ module Increase
               # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
               #   Cardholder name provided in the authorization request.
               #
-              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #   @param provided_first_name [String, nil]
+              #     The first name provided for verification in the authorization request.
               #
-              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #   @param provided_last_name [String, nil]
+              #     The last name provided for verification in the authorization request.
               #
-              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
+              #   @param provided_middle_name [String, nil]
+              #     The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -4421,35 +4682,52 @@ module Increase
           required :verification, -> { Increase::CardPayment::Element::CardDecline::Verification }
 
           # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, declined_transaction_id:, digital_wallet_token_id:, direction:, incremented_card_authorization_id:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, real_time_decision_reason:, reason:, scheme_fees:, terminal_id:, verification:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardDecline} for more details.
-          #
           #   A Card Decline object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_decline`.
           #
           #   @param id [String] The Card Decline identifier.
           #
-          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardDecline::Actioner] Whether this authorization was approved by Increase, the card network through st
+          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardDecline::Actioner]
+          #     Whether this authorization was approved by Increase, the card network through
+          #     stand-in processing, or the user through a real-time decision.
           #
-          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
+          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts]
+          #     Additional amounts associated with the card authorization, such as ATM
+          #     surcharges fees. These are usually a subset of the `amount` field and are used
+          #     to provide more detailed information about the transaction.
           #
-          #   @param amount [Integer] The declined amount in the minor unit of the destination account currency. For d
+          #   @param amount [Integer]
+          #     The declined amount in the minor unit of the destination account currency. For
+          #     dollars, for example, this is cents.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardDecline::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardDecline::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
+          #     account currency.
           #
-          #   @param declined_transaction_id [String] The identifier of the declined transaction created for this Card Decline.
+          #   @param declined_transaction_id [String]
+          #     The identifier of the declined transaction created for this Card Decline.
           #
-          #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
+          #   @param digital_wallet_token_id [String, nil]
+          #     If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          #     purchase), the identifier of the token that was used.
           #
-          #   @param direction [Symbol, Increase::Models::CardPayment::Element::CardDecline::Direction] The direction describes the direction the funds will move, either from the cardh
+          #   @param direction [Symbol, Increase::Models::CardPayment::Element::CardDecline::Direction]
+          #     The direction describes the direction the funds will move, either from the
+          #     cardholder to the merchant or from the merchant to the cardholder.
           #
-          #   @param incremented_card_authorization_id [String, nil] The identifier of the card authorization this request attempted to incrementally
+          #   @param incremented_card_authorization_id [String, nil]
+          #     The identifier of the card authorization this request attempted to incrementally
+          #     authorize.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_city [String, nil] The city the merchant resides in.
           #
@@ -4457,35 +4735,58 @@ module Increase
           #
           #   @param merchant_descriptor [String] The merchant descriptor of the merchant the card is transacting with.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #     ZIP code, where the first 5 and last 4 are separated by a dash.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network_details [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails] Fields specific to the `network`.
+          #   @param network_details [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails]
+          #     Fields specific to the `network`.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardDecline::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardDecline::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param network_risk_score [Integer, nil] The risk score generated by the card network. For Visa this is the Visa Advanced
+          #   @param network_risk_score [Integer, nil]
+          #     The risk score generated by the card network. For Visa this is the Visa Advanced
+          #     Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          #     score is from 0 to 999, where 999 is the riskiest.
           #
-          #   @param physical_card_id [String, nil] If the authorization was made in-person with a physical card, the Physical Card
+          #   @param physical_card_id [String, nil]
+          #     If the authorization was made in-person with a physical card, the Physical Card
+          #     that was used.
           #
-          #   @param presentment_amount [Integer] The declined amount in the minor unit of the transaction's presentment currency.
+          #   @param presentment_amount [Integer]
+          #     The declined amount in the minor unit of the transaction's presentment currency.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's presentment currency.
           #
-          #   @param processing_category [Symbol, Increase::Models::CardPayment::Element::CardDecline::ProcessingCategory] The processing category describes the intent behind the authorization, such as w
+          #   @param processing_category [Symbol, Increase::Models::CardPayment::Element::CardDecline::ProcessingCategory]
+          #     The processing category describes the intent behind the authorization, such as
+          #     whether it was used for bill payments or an automatic fuel dispenser.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this transac
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     transaction.
           #
-          #   @param real_time_decision_reason [Symbol, Increase::Models::CardPayment::Element::CardDecline::RealTimeDecisionReason, nil] This is present if a specific decline reason was given in the real-time decision
+          #   @param real_time_decision_reason [Symbol, Increase::Models::CardPayment::Element::CardDecline::RealTimeDecisionReason, nil]
+          #     This is present if a specific decline reason was given in the real-time
+          #     decision.
           #
-          #   @param reason [Symbol, Increase::Models::CardPayment::Element::CardDecline::Reason] Why the transaction was declined.
+          #   @param reason [Symbol, Increase::Models::CardPayment::Element::CardDecline::Reason]
+          #     Why the transaction was declined.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardDecline::SchemeFee>] The scheme fees associated with this card decline.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardDecline::SchemeFee>]
+          #     The scheme fees associated with this card decline.
           #
-          #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
+          #   @param terminal_id [String, nil]
+          #     The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          #     is transacting with.
           #
-          #   @param verification [Increase::Models::CardPayment::Element::CardDecline::Verification] Fields related to verification of cardholder-provided values.
+          #   @param verification [Increase::Models::CardPayment::Element::CardDecline::Verification]
+          #     Fields related to verification of cardholder-provided values.
 
           # Whether this authorization was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -4590,33 +4891,39 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts} for
-            #   more details.
-            #
             #   Additional amounts associated with the card authorization, such as ATM
             #   surcharges fees. These are usually a subset of the `amount` field and are used
             #   to provide more detailed information about the transaction.
             #
-            #   @param clinic [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #   @param clinic [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic, nil]
+            #     The part of this transaction amount that was for clinic-related services.
             #
-            #   @param dental [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #   @param dental [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Dental, nil]
+            #     The part of this transaction amount that was for dental-related services.
             #
-            #   @param original [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Original, nil] The original pre-authorized amount.
+            #   @param original [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Original, nil]
+            #     The original pre-authorized amount.
             #
-            #   @param prescription [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #   @param prescription [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription, nil]
+            #     The part of this transaction amount that was for healthcare prescriptions.
             #
-            #   @param surcharge [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #   @param surcharge [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge, nil]
+            #     The surcharge amount charged for this transaction by the merchant.
             #
-            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative, nil]
+            #     The total amount of a series of incremental authorizations, optionally provided.
             #
-            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare, nil]
+            #     The total amount of healthcare-related additional amounts.
             #
-            #   @param transit [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #   @param transit [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Transit, nil]
+            #     The part of this transaction amount that was for transit-related services.
             #
-            #   @param unknown [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #   @param unknown [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown, nil]
+            #     An unknown additional amount.
             #
-            #   @param vision [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+            #   @param vision [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Vision, nil]
+            #     The part of this transaction amount that was for vision-related services.
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
@@ -4636,15 +4943,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#dental
@@ -4665,15 +4973,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Dental}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#original
@@ -4694,15 +5003,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Original}
-              #   for more details.
-              #
               #   The original pre-authorized amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#prescription
@@ -4723,15 +5033,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Prescription}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#surcharge
@@ -4752,15 +5063,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Surcharge}
-              #   for more details.
-              #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#total_cumulative
@@ -4781,15 +5093,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::TotalCumulative}
-              #   for more details.
-              #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#total_healthcare
@@ -4810,15 +5123,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::TotalHealthcare}
-              #   for more details.
-              #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#transit
@@ -4839,15 +5153,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Transit}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#unknown
@@ -4868,15 +5183,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Unknown}
-              #   for more details.
-              #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts#vision
@@ -4897,15 +5213,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Vision}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
           end
 
@@ -4971,11 +5288,14 @@ module Increase
             # @!method initialize(category:, pulse:, visa:)
             #   Fields specific to the `network`.
             #
-            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Category] The payment network used to process this card authorization.
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Category]
+            #     The payment network used to process this card authorization.
             #
-            #   @param pulse [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Pulse, nil]
+            #     Fields specific to the `pulse` network.
             #
-            #   @param visa [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
+            #   @param visa [Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa, nil]
+            #     Fields specific to the `visa` network.
 
             # The payment network used to process this card authorization.
             #
@@ -5050,19 +5370,27 @@ module Increase
                        nil?: true
 
               # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa} for
-              #   more details.
-              #
               #   Fields specific to the `visa` network.
               #
-              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator, nil] For electronic commerce transactions, this identifies the level of security used
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #     For electronic commerce transactions, this identifies the level of security used
+              #     in obtaining the customer's payment credential. For mail or telephone order
+              #     transactions, identifies the type of mail or telephone order.
               #
-              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #     The method used to enter the cardholder's primary account number and card
+              #     expiration date.
               #
-              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::StandInProcessingReason, nil]
+              #     Only present when `actioner: network`. Describes why a card authorization was
+              #     approved or declined by Visa through stand-in processing.
               #
-              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
+              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardDecline::NetworkDetails::Visa::TerminalEntryCapability, nil]
+              #     The capability of the terminal being used to read the card. Shows whether a
+              #     terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              #     reads. This reflects the highest capability of the terminal — for example, a
+              #     terminal that supports both chip and magnetic stripe will be identified as
+              #     chip-capable.
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -5251,19 +5579,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardDecline::NetworkIdentifiers} for
-            #   more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -5454,21 +5787,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardDecline::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardDecline::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardDecline::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardDecline::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardDecline::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -5612,17 +5950,18 @@ module Increase
                      nil?: true
 
             # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardDecline::Verification} for more
-            #   details.
-            #
             #   Fields related to verification of cardholder-provided values.
             #
-            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
+            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode]
+            #     Fields related to verification of the Card Verification Code, a 3-digit code on
+            #     the back of the card.
             #
-            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress]
+            #     Cardholder address provided in the authorization request and the address on file
+            #     we verified it against.
             #
-            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderName, nil]
+            #     Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardDecline::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -5637,7 +5976,8 @@ module Increase
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
               #   the back of the card.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode::Result] The result of verifying the Card Verification Code.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardVerificationCode::Result]
+              #     The result of verifying the Card Verification Code.
 
               # The result of verifying the Card Verification Code.
               #
@@ -5694,10 +6034,6 @@ module Increase
                        enum: -> { Increase::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress}
-              #   for more details.
-              #
               #   Cardholder address provided in the authorization request and the address on file
               #   we verified it against.
               #
@@ -5705,11 +6041,15 @@ module Increase
               #
               #   @param actual_postal_code [String, nil] The postal code of the address on file for the cardholder.
               #
-              #   @param provided_line1 [String, nil] The cardholder address line 1 provided for verification in the authorization req
+              #   @param provided_line1 [String, nil]
+              #     The cardholder address line 1 provided for verification in the authorization
+              #     request.
               #
-              #   @param provided_postal_code [String, nil] The postal code provided for verification in the authorization request.
+              #   @param provided_postal_code [String, nil]
+              #     The postal code provided for verification in the authorization request.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result] The address verification result returned to the card network.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardDecline::Verification::CardholderAddress::Result]
+              #     The address verification result returned to the card network.
 
               # The address verification result returned to the card network.
               #
@@ -5763,11 +6103,14 @@ module Increase
               # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
               #   Cardholder name provided in the authorization request.
               #
-              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #   @param provided_first_name [String, nil]
+              #     The first name provided for verification in the authorization request.
               #
-              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #   @param provided_last_name [String, nil]
+              #     The last name provided for verification in the authorization request.
               #
-              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
+              #   @param provided_middle_name [String, nil]
+              #     The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -5963,9 +6306,6 @@ module Increase
           required :verification, -> { Increase::CardPayment::Element::CardFinancial::Verification }
 
           # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, digital_wallet_token_id:, direction:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, scheme_fees:, terminal_id:, transaction_id:, type:, verification:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardFinancial} for more details.
-          #
           #   A Card Financial object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_financial`. Card Financials are card
           #   transactions that have cleared and settled. Unlike a Card Settlement, which
@@ -5974,23 +6314,40 @@ module Increase
           #
           #   @param id [String] The Card Financial identifier.
           #
-          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Actioner] Whether this financial was approved by Increase, the card network through stand-
+          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Actioner]
+          #     Whether this financial was approved by Increase, the card network through
+          #     stand-in processing, or the user through a real-time decision.
           #
-          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
+          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts]
+          #     Additional amounts associated with the card authorization, such as ATM
+          #     surcharges fees. These are usually a subset of the `amount` field and are used
+          #     to provide more detailed information about the transaction.
           #
-          #   @param amount [Integer] The pending amount in the minor unit of the transaction's currency. For dollars,
+          #   @param amount [Integer]
+          #     The pending amount in the minor unit of the transaction's currency. For dollars,
+          #     for example, this is cents.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's currency.
           #
-          #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
+          #   @param digital_wallet_token_id [String, nil]
+          #     If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          #     purchase), the identifier of the token that was used.
           #
-          #   @param direction [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Direction] The direction describes the direction the funds will move, either from the cardh
+          #   @param direction [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Direction]
+          #     The direction describes the direction the funds will move, either from the
+          #     cardholder to the merchant or from the merchant to the cardholder.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_city [String, nil] The city the merchant resides in.
           #
@@ -5998,35 +6355,57 @@ module Increase
           #
           #   @param merchant_descriptor [String] The merchant descriptor of the merchant the card is transacting with.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #     ZIP code, where the first 5 and last 4 are separated by a dash.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network_details [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails] Fields specific to the `network`.
+          #   @param network_details [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails]
+          #     Fields specific to the `network`.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardFinancial::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardFinancial::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param network_risk_score [Integer, nil] The risk score generated by the card network. For Visa this is the Visa Advanced
+          #   @param network_risk_score [Integer, nil]
+          #     The risk score generated by the card network. For Visa this is the Visa Advanced
+          #     Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          #     score is from 0 to 999, where 999 is the riskiest.
           #
-          #   @param physical_card_id [String, nil] If the authorization was made in-person with a physical card, the Physical Card
+          #   @param physical_card_id [String, nil]
+          #     If the authorization was made in-person with a physical card, the Physical Card
+          #     that was used.
           #
-          #   @param presentment_amount [Integer] The pending amount in the minor unit of the transaction's presentment currency.
+          #   @param presentment_amount [Integer]
+          #     The pending amount in the minor unit of the transaction's presentment currency.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's presentment currency.
           #
-          #   @param processing_category [Symbol, Increase::Models::CardPayment::Element::CardFinancial::ProcessingCategory] The processing category describes the intent behind the financial, such as wheth
+          #   @param processing_category [Symbol, Increase::Models::CardPayment::Element::CardFinancial::ProcessingCategory]
+          #     The processing category describes the intent behind the financial, such as
+          #     whether it was used for bill payments or an automatic fuel dispenser.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this transac
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     transaction.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardFinancial::SchemeFee>] The scheme fees associated with this card financial.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardFinancial::SchemeFee>]
+          #     The scheme fees associated with this card financial.
           #
-          #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
+          #   @param terminal_id [String, nil]
+          #     The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          #     is transacting with.
           #
           #   @param transaction_id [String] The identifier of the Transaction associated with this Transaction.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_financial`.
           #
-          #   @param verification [Increase::Models::CardPayment::Element::CardFinancial::Verification] Fields related to verification of cardholder-provided values.
+          #   @param verification [Increase::Models::CardPayment::Element::CardFinancial::Verification]
+          #     Fields related to verification of cardholder-provided values.
 
           # Whether this financial was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -6131,33 +6510,39 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts} for
-            #   more details.
-            #
             #   Additional amounts associated with the card authorization, such as ATM
             #   surcharges fees. These are usually a subset of the `amount` field and are used
             #   to provide more detailed information about the transaction.
             #
-            #   @param clinic [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #   @param clinic [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic, nil]
+            #     The part of this transaction amount that was for clinic-related services.
             #
-            #   @param dental [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #   @param dental [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental, nil]
+            #     The part of this transaction amount that was for dental-related services.
             #
-            #   @param original [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Original, nil] The original pre-authorized amount.
+            #   @param original [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Original, nil]
+            #     The original pre-authorized amount.
             #
-            #   @param prescription [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #   @param prescription [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription, nil]
+            #     The part of this transaction amount that was for healthcare prescriptions.
             #
-            #   @param surcharge [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #   @param surcharge [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge, nil]
+            #     The surcharge amount charged for this transaction by the merchant.
             #
-            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative, nil]
+            #     The total amount of a series of incremental authorizations, optionally provided.
             #
-            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare, nil]
+            #     The total amount of healthcare-related additional amounts.
             #
-            #   @param transit [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #   @param transit [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit, nil]
+            #     The part of this transaction amount that was for transit-related services.
             #
-            #   @param unknown [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #   @param unknown [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown, nil]
+            #     An unknown additional amount.
             #
-            #   @param vision [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+            #   @param vision [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision, nil]
+            #     The part of this transaction amount that was for vision-related services.
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
@@ -6177,15 +6562,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#dental
@@ -6206,15 +6592,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Dental}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#original
@@ -6235,15 +6622,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Original}
-              #   for more details.
-              #
               #   The original pre-authorized amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#prescription
@@ -6264,15 +6652,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Prescription}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#surcharge
@@ -6293,15 +6682,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Surcharge}
-              #   for more details.
-              #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#total_cumulative
@@ -6322,15 +6712,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalCumulative}
-              #   for more details.
-              #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#total_healthcare
@@ -6351,15 +6742,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::TotalHealthcare}
-              #   for more details.
-              #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#transit
@@ -6380,15 +6772,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Transit}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#unknown
@@ -6409,15 +6802,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Unknown}
-              #   for more details.
-              #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts#vision
@@ -6438,15 +6832,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Vision}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
           end
 
@@ -6512,11 +6907,14 @@ module Increase
             # @!method initialize(category:, pulse:, visa:)
             #   Fields specific to the `network`.
             #
-            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Category] The payment network used to process this card authorization.
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Category]
+            #     The payment network used to process this card authorization.
             #
-            #   @param pulse [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Pulse, nil]
+            #     Fields specific to the `pulse` network.
             #
-            #   @param visa [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
+            #   @param visa [Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa, nil]
+            #     Fields specific to the `visa` network.
 
             # The payment network used to process this card authorization.
             #
@@ -6591,19 +6989,27 @@ module Increase
                        nil?: true
 
               # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa}
-              #   for more details.
-              #
               #   Fields specific to the `visa` network.
               #
-              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator, nil] For electronic commerce transactions, this identifies the level of security used
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #     For electronic commerce transactions, this identifies the level of security used
+              #     in obtaining the customer's payment credential. For mail or telephone order
+              #     transactions, identifies the type of mail or telephone order.
               #
-              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #     The method used to enter the cardholder's primary account number and card
+              #     expiration date.
               #
-              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::StandInProcessingReason, nil]
+              #     Only present when `actioner: network`. Describes why a card authorization was
+              #     approved or declined by Visa through stand-in processing.
               #
-              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
+              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardFinancial::NetworkDetails::Visa::TerminalEntryCapability, nil]
+              #     The capability of the terminal being used to read the card. Shows whether a
+              #     terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              #     reads. This reflects the highest capability of the terminal — for example, a
+              #     terminal that supports both chip and magnetic stripe will be identified as
+              #     chip-capable.
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -6792,19 +7198,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardFinancial::NetworkIdentifiers} for
-            #   more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           # The processing category describes the intent behind the financial, such as
@@ -6893,21 +7304,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardFinancial::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFinancial::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFinancial::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardFinancial::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardFinancial::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -7064,17 +7480,18 @@ module Increase
                      nil?: true
 
             # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardFinancial::Verification} for more
-            #   details.
-            #
             #   Fields related to verification of cardholder-provided values.
             #
-            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
+            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardVerificationCode]
+            #     Fields related to verification of the Card Verification Code, a 3-digit code on
+            #     the back of the card.
             #
-            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderAddress]
+            #     Cardholder address provided in the authorization request and the address on file
+            #     we verified it against.
             #
-            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderName, nil]
+            #     Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardFinancial::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -7089,7 +7506,8 @@ module Increase
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
               #   the back of the card.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result] The result of verifying the Card Verification Code.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Verification::CardVerificationCode::Result]
+              #     The result of verifying the Card Verification Code.
 
               # The result of verifying the Card Verification Code.
               #
@@ -7146,10 +7564,6 @@ module Increase
                        enum: -> { Increase::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderAddress}
-              #   for more details.
-              #
               #   Cardholder address provided in the authorization request and the address on file
               #   we verified it against.
               #
@@ -7157,11 +7571,15 @@ module Increase
               #
               #   @param actual_postal_code [String, nil] The postal code of the address on file for the cardholder.
               #
-              #   @param provided_line1 [String, nil] The cardholder address line 1 provided for verification in the authorization req
+              #   @param provided_line1 [String, nil]
+              #     The cardholder address line 1 provided for verification in the authorization
+              #     request.
               #
-              #   @param provided_postal_code [String, nil] The postal code provided for verification in the authorization request.
+              #   @param provided_postal_code [String, nil]
+              #     The postal code provided for verification in the authorization request.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result] The address verification result returned to the card network.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardFinancial::Verification::CardholderAddress::Result]
+              #     The address verification result returned to the card network.
 
               # The address verification result returned to the card network.
               #
@@ -7215,11 +7633,14 @@ module Increase
               # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
               #   Cardholder name provided in the authorization request.
               #
-              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #   @param provided_first_name [String, nil]
+              #     The first name provided for verification in the authorization request.
               #
-              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #   @param provided_last_name [String, nil]
+              #     The last name provided for verification in the authorization request.
               #
-              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
+              #   @param provided_middle_name [String, nil]
+              #     The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -7287,9 +7708,6 @@ module Increase
           required :updated_authorization_amount, Integer
 
           # @!method initialize(id:, card_authorization_id:, currency:, network:, network_identifiers:, pending_transaction_id:, scheme_fees:, type:, updated_authorization_amount:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardFuelConfirmation} for more details.
-          #
           #   A Card Fuel Confirmation object. This field will be present in the JSON response
           #   if and only if `category` is equal to `card_fuel_confirmation`. Card Fuel
           #   Confirmations update the amount of a Card Authorization after a fuel pump
@@ -7299,19 +7717,30 @@ module Increase
           #
           #   @param card_authorization_id [String] The identifier for the Card Authorization this updates.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the increment's
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the increment's
+          #     currency.
           #
-          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Network] The card network used to process this card authorization.
+          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Network]
+          #     The card network used to process this card authorization.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardFuelConfirmation::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardFuelConfirmation::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param pending_transaction_id [String, nil] The identifier of the Pending Transaction associated with this Card Fuel Confirm
+          #   @param pending_transaction_id [String, nil]
+          #     The identifier of the Pending Transaction associated with this Card Fuel
+          #     Confirmation.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardFuelConfirmation::SchemeFee>] The scheme fees associated with this card fuel confirmation.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardFuelConfirmation::SchemeFee>]
+          #     The scheme fees associated with this card fuel confirmation.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_fuel_confirmation`.
           #
-          #   @param updated_authorization_amount [Integer] The updated authorization amount after this fuel confirmation, in the minor unit
+          #   @param updated_authorization_amount [Integer]
+          #     The updated authorization amount after this fuel confirmation, in the minor unit
+          #     of the transaction's currency. For dollars, for example, this is cents.
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the increment's
           # currency.
@@ -7375,19 +7804,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardFuelConfirmation::NetworkIdentifiers}
-            #   for more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           class SchemeFee < Increase::Internal::Type::BaseModel
@@ -7432,21 +7866,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardFuelConfirmation::SchemeFee} for
-            #   more details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -7688,44 +8127,66 @@ module Increase
           required :updated_authorization_amount, Integer
 
           # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_authorization_id:, currency:, network:, network_identifiers:, network_risk_score:, pending_transaction_id:, presentment_amount:, presentment_currency:, real_time_decision_id:, scheme_fees:, type:, updated_authorization_amount:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardIncrement} for more details.
-          #
           #   A Card Increment object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_increment`. Card Increments increase the
           #   pending amount of an authorized transaction.
           #
           #   @param id [String] The Card Increment identifier.
           #
-          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Actioner] Whether this authorization was approved by Increase, the card network through st
+          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Actioner]
+          #     Whether this authorization was approved by Increase, the card network through
+          #     stand-in processing, or the user through a real-time decision.
           #
-          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
+          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts]
+          #     Additional amounts associated with the card authorization, such as ATM
+          #     surcharges fees. These are usually a subset of the `amount` field and are used
+          #     to provide more detailed information about the transaction.
           #
-          #   @param amount [Integer] The amount of this increment in the minor unit of the transaction's currency. Fo
+          #   @param amount [Integer]
+          #     The amount of this increment in the minor unit of the transaction's currency.
+          #     For dollars, for example, this is cents.
           #
           #   @param card_authorization_id [String] The identifier for the Card Authorization this increments.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the increment's
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the increment's
+          #     currency.
           #
-          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Network] The card network used to process this card authorization.
+          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Network]
+          #     The card network used to process this card authorization.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardIncrement::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardIncrement::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param network_risk_score [Integer, nil] The risk score generated by the card network. For Visa this is the Visa Advanced
+          #   @param network_risk_score [Integer, nil]
+          #     The risk score generated by the card network. For Visa this is the Visa Advanced
+          #     Authorization risk score, from 0 to 99, where 99 is the riskiest.
           #
-          #   @param pending_transaction_id [String, nil] The identifier of the Pending Transaction associated with this Card Increment.
+          #   @param pending_transaction_id [String, nil]
+          #     The identifier of the Pending Transaction associated with this Card Increment.
           #
-          #   @param presentment_amount [Integer] The amount of this increment in the minor unit of the transaction's presentment
+          #   @param presentment_amount [Integer]
+          #     The amount of this increment in the minor unit of the transaction's presentment
+          #     currency.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's presentment currency.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this increme
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     incremental authorization.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardIncrement::SchemeFee>] The scheme fees associated with this card increment.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardIncrement::SchemeFee>]
+          #     The scheme fees associated with this card increment.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardIncrement::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_increment`.
           #
-          #   @param updated_authorization_amount [Integer] The updated authorization amount after this increment, in the minor unit of the
+          #   @param updated_authorization_amount [Integer]
+          #     The updated authorization amount after this increment, in the minor unit of the
+          #     transaction's currency. For dollars, for example, this is cents.
 
           # Whether this authorization was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -7830,33 +8291,39 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts} for
-            #   more details.
-            #
             #   Additional amounts associated with the card authorization, such as ATM
             #   surcharges fees. These are usually a subset of the `amount` field and are used
             #   to provide more detailed information about the transaction.
             #
-            #   @param clinic [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #   @param clinic [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic, nil]
+            #     The part of this transaction amount that was for clinic-related services.
             #
-            #   @param dental [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #   @param dental [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental, nil]
+            #     The part of this transaction amount that was for dental-related services.
             #
-            #   @param original [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Original, nil] The original pre-authorized amount.
+            #   @param original [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Original, nil]
+            #     The original pre-authorized amount.
             #
-            #   @param prescription [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #   @param prescription [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription, nil]
+            #     The part of this transaction amount that was for healthcare prescriptions.
             #
-            #   @param surcharge [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #   @param surcharge [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge, nil]
+            #     The surcharge amount charged for this transaction by the merchant.
             #
-            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative, nil]
+            #     The total amount of a series of incremental authorizations, optionally provided.
             #
-            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare, nil]
+            #     The total amount of healthcare-related additional amounts.
             #
-            #   @param transit [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #   @param transit [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit, nil]
+            #     The part of this transaction amount that was for transit-related services.
             #
-            #   @param unknown [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #   @param unknown [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown, nil]
+            #     An unknown additional amount.
             #
-            #   @param vision [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+            #   @param vision [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision, nil]
+            #     The part of this transaction amount that was for vision-related services.
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
@@ -7876,15 +8343,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#dental
@@ -7905,15 +8373,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Dental}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#original
@@ -7934,15 +8403,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Original}
-              #   for more details.
-              #
               #   The original pre-authorized amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#prescription
@@ -7963,15 +8433,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Prescription}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#surcharge
@@ -7992,15 +8463,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Surcharge}
-              #   for more details.
-              #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#total_cumulative
@@ -8021,15 +8493,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalCumulative}
-              #   for more details.
-              #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#total_healthcare
@@ -8050,15 +8523,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::TotalHealthcare}
-              #   for more details.
-              #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#transit
@@ -8079,15 +8553,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Transit}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#unknown
@@ -8108,15 +8583,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Unknown}
-              #   for more details.
-              #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts#vision
@@ -8137,15 +8613,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Vision}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
           end
 
@@ -8211,19 +8688,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardIncrement::NetworkIdentifiers} for
-            #   more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           class SchemeFee < Increase::Internal::Type::BaseModel
@@ -8268,21 +8750,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardIncrement::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardIncrement::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardIncrement::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardIncrement::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardIncrement::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -8548,9 +9035,6 @@ module Increase
           required :type, enum: -> { Increase::CardPayment::Element::CardRefund::Type }
 
           # @!method initialize(id:, amount:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network_identifiers:, presentment_amount:, presentment_currency:, purchase_details:, scheme_fees:, transaction_id:, type:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardRefund} for more details.
-          #
           #   A Card Refund object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_refund`. Card Refunds move money back to
           #   the cardholder. While they are usually connected to a Card Settlement, an
@@ -8559,17 +9043,26 @@ module Increase
           #
           #   @param id [String] The Card Refund identifier.
           #
-          #   @param amount [Integer] The amount in the minor unit of the transaction's settlement currency. For dolla
+          #   @param amount [Integer]
+          #     The amount in the minor unit of the transaction's settlement currency. For
+          #     dollars, for example, this is cents.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param cashback [Increase::Models::CardPayment::Element::CardRefund::Cashback, nil] Cashback debited for this transaction, if eligible. Cashback is paid out in aggr
+          #   @param cashback [Increase::Models::CardPayment::Element::CardRefund::Cashback, nil]
+          #     Cashback debited for this transaction, if eligible. Cashback is paid out in
+          #     aggregate, monthly.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's settlement currency.
           #
-          #   @param interchange [Increase::Models::CardPayment::Element::CardRefund::Interchange, nil] Interchange assessed as a part of this transaction.
+          #   @param interchange [Increase::Models::CardPayment::Element::CardRefund::Interchange, nil]
+          #     Interchange assessed as a part of this transaction.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
           #   @param merchant_category_code [String] The 4-digit MCC describing the merchant's business.
           #
@@ -8579,23 +9072,33 @@ module Increase
           #
           #   @param merchant_name [String] The name of the merchant.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is always a 5-digit ZIP code.
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is always a 5-digit ZIP code.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardRefund::NetworkIdentifiers] Network-specific identifiers for this refund.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardRefund::NetworkIdentifiers]
+          #     Network-specific identifiers for this refund.
           #
-          #   @param presentment_amount [Integer] The amount in the minor unit of the transaction's presentment currency.
+          #   @param presentment_amount [Integer]
+          #     The amount in the minor unit of the transaction's presentment currency.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's presentment currency.
           #
-          #   @param purchase_details [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails, nil] Additional details about the card purchase, such as tax and industry-specific fi
+          #   @param purchase_details [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails, nil]
+          #     Additional details about the card purchase, such as tax and industry-specific
+          #     fields.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardRefund::SchemeFee>] The scheme fees associated with this card refund.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardRefund::SchemeFee>]
+          #     The scheme fees associated with this card refund.
           #
           #   @param transaction_id [String] The identifier of the Transaction associated with this Transaction.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardRefund::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardRefund::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_refund`.
 
           # @see Increase::Models::CardPayment::Element::CardRefund#cashback
           class Cashback < Increase::Internal::Type::BaseModel
@@ -8614,15 +9117,16 @@ module Increase
             required :currency, enum: -> { Increase::CardPayment::Element::CardRefund::Cashback::Currency }
 
             # @!method initialize(amount:, currency:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardRefund::Cashback} for more details.
-            #
             #   Cashback debited for this transaction, if eligible. Cashback is paid out in
             #   aggregate, monthly.
             #
-            #   @param amount [String] The cashback amount given as a string containing a decimal number. The amount is
+            #   @param amount [String]
+            #     The cashback amount given as a string containing a decimal number. The amount is
+            #     a positive number if it will be credited to you (e.g., settlements) and a
+            #     negative number if it will be debited (e.g., refunds).
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::Cashback::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::Cashback::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
@@ -8677,17 +9181,19 @@ module Increase
             required :currency, enum: -> { Increase::CardPayment::Element::CardRefund::Interchange::Currency }
 
             # @!method initialize(amount:, code:, currency:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardRefund::Interchange} for more
-            #   details.
-            #
             #   Interchange assessed as a part of this transaction.
             #
-            #   @param amount [String] The interchange amount given as a string containing a decimal number in major un
+            #   @param amount [String]
+            #     The interchange amount given as a string containing a decimal number in major
+            #     units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+            #     credited to Increase (e.g., settlements) and a negative number if it is debited
+            #     (e.g., refunds).
             #
             #   @param code [String, nil] The card network specific interchange code.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::Interchange::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::Interchange::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
+            #     reimbursement.
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.
@@ -8734,19 +9240,21 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(acquirer_business_id:, acquirer_reference_number:, authorization_identification_response:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardRefund::NetworkIdentifiers} for
-            #   more details.
-            #
             #   Network-specific identifiers for this refund.
             #
-            #   @param acquirer_business_id [String] A network assigned business ID that identifies the acquirer that processed this
+            #   @param acquirer_business_id [String]
+            #     A network assigned business ID that identifies the acquirer that processed this
+            #     transaction.
             #
             #   @param acquirer_reference_number [String] A globally unique identifier for this settlement.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           # @see Increase::Models::CardPayment::Element::CardRefund#purchase_details
@@ -8828,32 +9336,38 @@ module Increase
                      nil?: true
 
             # @!method initialize(car_rental:, customer_reference_identifier:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails} for more
-            #   details.
-            #
             #   Additional details about the card purchase, such as tax and industry-specific
             #   fields.
             #
-            #   @param car_rental [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental, nil] Fields specific to car rentals.
+            #   @param car_rental [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental, nil]
+            #     Fields specific to car rentals.
             #
-            #   @param customer_reference_identifier [String, nil] An identifier from the merchant for the customer or consumer.
+            #   @param customer_reference_identifier [String, nil]
+            #     An identifier from the merchant for the customer or consumer.
             #
             #   @param local_tax_amount [Integer, nil] The state or provincial tax amount in minor units.
             #
-            #   @param local_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax as
+            #   @param local_tax_currency [String, nil]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax
+            #     assessed.
             #
-            #   @param lodging [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging, nil] Fields specific to lodging.
+            #   @param lodging [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging, nil]
+            #     Fields specific to lodging.
             #
             #   @param national_tax_amount [Integer, nil] The national tax amount in minor units.
             #
-            #   @param national_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax as
+            #   @param national_tax_currency [String, nil]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax
+            #     assessed.
             #
-            #   @param purchase_identifier [String, nil] An identifier from the merchant for the purchase to the issuer and cardholder.
+            #   @param purchase_identifier [String, nil]
+            #     An identifier from the merchant for the purchase to the issuer and cardholder.
             #
-            #   @param purchase_identifier_format [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat, nil] The format of the purchase identifier.
+            #   @param purchase_identifier_format [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat, nil]
+            #     The format of the purchase identifier.
             #
-            #   @param travel [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel, nil] Fields specific to travel.
+            #   @param travel [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel, nil]
+            #     Fields specific to travel.
 
             # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails#car_rental
             class CarRental < Increase::Internal::Type::BaseModel
@@ -8970,43 +9484,56 @@ module Increase
               required :weekly_rental_rate_currency, String, nil?: true
 
               # @!method initialize(car_class_code:, checkout_date:, daily_rental_rate_amount:, daily_rental_rate_currency:, days_rented:, extra_charges:, fuel_charges_amount:, fuel_charges_currency:, insurance_charges_amount:, insurance_charges_currency:, no_show_indicator:, one_way_drop_off_charges_amount:, one_way_drop_off_charges_currency:, renter_name:, weekly_rental_rate_amount:, weekly_rental_rate_currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental}
-              #   for more details.
-              #
               #   Fields specific to car rentals.
               #
               #   @param car_class_code [String, nil] Code indicating the vehicle's class.
               #
-              #   @param checkout_date [Date, nil] Date the customer picked up the car or, in the case of a no-show or pre-pay tran
+              #   @param checkout_date [Date, nil]
+              #     Date the customer picked up the car or, in the case of a no-show or pre-pay
+              #     transaction, the scheduled pick up date.
               #
               #   @param daily_rental_rate_amount [Integer, nil] Daily rate being charged for the vehicle.
               #
-              #   @param daily_rental_rate_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily rental
+              #   @param daily_rental_rate_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily rental
+              #     rate.
               #
               #   @param days_rented [Integer, nil] Number of days the vehicle was rented.
               #
-              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::ExtraCharges, nil] Additional charges (gas, late fee, etc.) being billed.
+              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::ExtraCharges, nil]
+              #     Additional charges (gas, late fee, etc.) being billed.
               #
               #   @param fuel_charges_amount [Integer, nil] Fuel charges for the vehicle.
               #
-              #   @param fuel_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel charges
+              #   @param fuel_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel charges
+              #     assessed.
               #
               #   @param insurance_charges_amount [Integer, nil] Any insurance being charged for the vehicle.
               #
-              #   @param insurance_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the insurance ch
+              #   @param insurance_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the insurance
+              #     charges assessed.
               #
-              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::NoShowIndicator, nil] An indicator that the cardholder is being billed for a reserved vehicle that was
+              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::CarRental::NoShowIndicator, nil]
+              #     An indicator that the cardholder is being billed for a reserved vehicle that was
+              #     not actually rented (that is, a "no-show" charge).
               #
-              #   @param one_way_drop_off_charges_amount [Integer, nil] Charges for returning the vehicle at a different location than where it was pick
+              #   @param one_way_drop_off_charges_amount [Integer, nil]
+              #     Charges for returning the vehicle at a different location than where it was
+              #     picked up.
               #
-              #   @param one_way_drop_off_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the one-way drop
+              #   @param one_way_drop_off_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the one-way
+              #     drop-off charges assessed.
               #
               #   @param renter_name [String, nil] Name of the person renting the vehicle.
               #
               #   @param weekly_rental_rate_amount [Integer, nil] Weekly rate being charged for the vehicle.
               #
-              #   @param weekly_rental_rate_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the weekly renta
+              #   @param weekly_rental_rate_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the weekly
+              #     rental rate.
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
@@ -9168,43 +9695,54 @@ module Increase
               required :total_tax_currency, String, nil?: true
 
               # @!method initialize(check_in_date:, daily_room_rate_amount:, daily_room_rate_currency:, extra_charges:, folio_cash_advances_amount:, folio_cash_advances_currency:, food_beverage_charges_amount:, food_beverage_charges_currency:, no_show_indicator:, prepaid_expenses_amount:, prepaid_expenses_currency:, room_nights:, total_room_tax_amount:, total_room_tax_currency:, total_tax_amount:, total_tax_currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging}
-              #   for more details.
-              #
               #   Fields specific to lodging.
               #
               #   @param check_in_date [Date, nil] Date the customer checked in.
               #
               #   @param daily_room_rate_amount [Integer, nil] Daily rate being charged for the room.
               #
-              #   @param daily_room_rate_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily room r
+              #   @param daily_room_rate_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily room
+              #     rate.
               #
-              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::ExtraCharges, nil] Additional charges (phone, late check-out, etc.) being billed.
+              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::ExtraCharges, nil]
+              #     Additional charges (phone, late check-out, etc.) being billed.
               #
               #   @param folio_cash_advances_amount [Integer, nil] Folio cash advances for the room.
               #
-              #   @param folio_cash_advances_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the folio cash a
+              #   @param folio_cash_advances_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the folio cash
+              #     advances.
               #
               #   @param food_beverage_charges_amount [Integer, nil] Food and beverage charges for the room.
               #
-              #   @param food_beverage_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the food and bev
+              #   @param food_beverage_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the food and
+              #     beverage charges.
               #
-              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::NoShowIndicator, nil] Indicator that the cardholder is being billed for a reserved room that was not a
+              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Lodging::NoShowIndicator, nil]
+              #     Indicator that the cardholder is being billed for a reserved room that was not
+              #     actually used.
               #
               #   @param prepaid_expenses_amount [Integer, nil] Prepaid expenses being charged for the room.
               #
-              #   @param prepaid_expenses_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the prepaid expe
+              #   @param prepaid_expenses_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the prepaid
+              #     expenses.
               #
               #   @param room_nights [Integer, nil] Number of nights the room was rented.
               #
               #   @param total_room_tax_amount [Integer, nil] Total room tax being charged.
               #
-              #   @param total_room_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total room t
+              #   @param total_room_tax_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total room
+              #     tax.
               #
               #   @param total_tax_amount [Integer, nil] Total tax being charged for the room.
               #
-              #   @param total_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total tax as
+              #   @param total_tax_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total tax
+              #     assessed.
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
@@ -9375,11 +9913,14 @@ module Increase
               # @!method initialize(ancillary:, computerized_reservation_system:, credit_reason_indicator:, departure_date:, origination_city_airport_code:, passenger_name:, restricted_ticket_indicator:, ticket_change_indicator:, ticket_number:, travel_agency_code:, travel_agency_name:, trip_legs:)
               #   Fields specific to travel.
               #
-              #   @param ancillary [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary, nil] Ancillary purchases in addition to the airfare.
+              #   @param ancillary [Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary, nil]
+              #     Ancillary purchases in addition to the airfare.
               #
-              #   @param computerized_reservation_system [String, nil] Indicates the computerized reservation system used to book the ticket.
+              #   @param computerized_reservation_system [String, nil]
+              #     Indicates the computerized reservation system used to book the ticket.
               #
-              #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::CreditReasonIndicator, nil] Indicates the reason for a credit to the cardholder.
+              #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::CreditReasonIndicator, nil]
+              #     Indicates the reason for a credit to the cardholder.
               #
               #   @param departure_date [Date, nil] Date of departure.
               #
@@ -9387,17 +9928,22 @@ module Increase
               #
               #   @param passenger_name [String, nil] Name of the passenger.
               #
-              #   @param restricted_ticket_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::RestrictedTicketIndicator, nil] Indicates whether this ticket is non-refundable.
+              #   @param restricted_ticket_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::RestrictedTicketIndicator, nil]
+              #     Indicates whether this ticket is non-refundable.
               #
-              #   @param ticket_change_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TicketChangeIndicator, nil] Indicates why a ticket was changed.
+              #   @param ticket_change_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TicketChangeIndicator, nil]
+              #     Indicates why a ticket was changed.
               #
               #   @param ticket_number [String, nil] Ticket number.
               #
-              #   @param travel_agency_code [String, nil] Code for the travel agency if the ticket was issued by a travel agency.
+              #   @param travel_agency_code [String, nil]
+              #     Code for the travel agency if the ticket was issued by a travel agency.
               #
-              #   @param travel_agency_name [String, nil] Name of the travel agency if the ticket was issued by a travel agency.
+              #   @param travel_agency_name [String, nil]
+              #     Name of the travel agency if the ticket was issued by a travel agency.
               #
-              #   @param trip_legs [Array<Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg>, nil] Fields specific to each leg of the journey.
+              #   @param trip_legs [Array<Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg>, nil]
+              #     Fields specific to each leg of the journey.
 
               # @see Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel#ancillary
               class Ancillary < Increase::Internal::Type::BaseModel
@@ -9439,19 +9985,21 @@ module Increase
                 required :ticket_document_number, String, nil?: true
 
                 # @!method initialize(connected_ticket_document_number:, credit_reason_indicator:, passenger_name_or_description:, services:, ticket_document_number:)
-                #   Some parameter documentations has been truncated, see
-                #   {Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary}
-                #   for more details.
-                #
                 #   Ancillary purchases in addition to the airfare.
                 #
-                #   @param connected_ticket_document_number [String, nil] If this purchase has a connection or relationship to another purchase, such as a
+                #   @param connected_ticket_document_number [String, nil]
+                #     If this purchase has a connection or relationship to another purchase, such as a
+                #     baggage fee for a passenger transport ticket, this field should contain the
+                #     ticket document number for the other purchase.
                 #
-                #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil] Indicates the reason for a credit to the cardholder.
+                #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil]
+                #     Indicates the reason for a credit to the cardholder.
                 #
-                #   @param passenger_name_or_description [String, nil] Name of the passenger or description of the ancillary purchase.
+                #   @param passenger_name_or_description [String, nil]
+                #     Name of the passenger or description of the ancillary purchase.
                 #
-                #   @param services [Array<Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service>] Additional travel charges, such as baggage fees.
+                #   @param services [Array<Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service>]
+                #     Additional travel charges, such as baggage fees.
                 #
                 #   @param ticket_document_number [String, nil] Ticket document number.
 
@@ -9497,7 +10045,8 @@ module Increase
                   required :sub_category, String, nil?: true
 
                   # @!method initialize(category:, sub_category:)
-                  #   @param category [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service::Category, nil] Category of the ancillary service.
+                  #   @param category [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::Ancillary::Service::Category, nil]
+                  #     Category of the ancillary service.
                   #
                   #   @param sub_category [String, nil] Sub-category of the ancillary service, free-form.
 
@@ -9702,7 +10251,8 @@ module Increase
                 #
                 #   @param service_class [String, nil] Service class (e.g., first class, business class, etc.).
                 #
-                #   @param stop_over_code [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg::StopOverCode, nil] Indicates whether a stopover is allowed on this ticket.
+                #   @param stop_over_code [Symbol, Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::Travel::TripLeg::StopOverCode, nil]
+                #     Indicates whether a stopover is allowed on this ticket.
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
@@ -9768,21 +10318,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardRefund::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardRefund::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardRefund::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardRefund::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -10062,9 +10617,6 @@ module Increase
           required :updated_authorization_presentment_amount, Integer
 
           # @!method initialize(id:, card_authorization_id:, currency:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_currency:, reversal_amount:, reversal_presentment_amount:, reversal_reason:, scheme_fees:, terminal_id:, type:, updated_authorization_amount:, updated_authorization_presentment_amount:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardReversal} for more details.
-          #
           #   A Card Reversal object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_reversal`. Card Reversals cancel parts of
           #   or the entirety of an existing Card Authorization.
@@ -10073,11 +10625,17 @@ module Increase
           #
           #   @param card_authorization_id [String] The identifier for the Card Authorization this reverses.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardReversal::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's c
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardReversal::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
+          #     currency.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_city [String, nil] The city the merchant resides in.
           #
@@ -10085,33 +10643,54 @@ module Increase
           #
           #   @param merchant_descriptor [String] The merchant descriptor of the merchant the card is transacting with.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #     ZIP code, where the first 5 and last 4 are separated by a dash.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardReversal::Network] The card network used to process this card authorization.
+          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardReversal::Network]
+          #     The card network used to process this card authorization.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardReversal::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardReversal::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param pending_transaction_id [String, nil] The identifier of the Pending Transaction associated with this Card Reversal.
+          #   @param pending_transaction_id [String, nil]
+          #     The identifier of the Pending Transaction associated with this Card Reversal.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's p
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
+          #     presentment currency.
           #
-          #   @param reversal_amount [Integer] The amount of this reversal in the minor unit of the transaction's currency. For
+          #   @param reversal_amount [Integer]
+          #     The amount of this reversal in the minor unit of the transaction's currency. For
+          #     dollars, for example, this is cents.
           #
-          #   @param reversal_presentment_amount [Integer] The amount of this reversal in the minor unit of the transaction's presentment c
+          #   @param reversal_presentment_amount [Integer]
+          #     The amount of this reversal in the minor unit of the transaction's presentment
+          #     currency. For dollars, for example, this is cents.
           #
-          #   @param reversal_reason [Symbol, Increase::Models::CardPayment::Element::CardReversal::ReversalReason, nil] Why this reversal was initiated.
+          #   @param reversal_reason [Symbol, Increase::Models::CardPayment::Element::CardReversal::ReversalReason, nil]
+          #     Why this reversal was initiated.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardReversal::SchemeFee>] The scheme fees associated with this card reversal.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardReversal::SchemeFee>]
+          #     The scheme fees associated with this card reversal.
           #
-          #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
+          #   @param terminal_id [String, nil]
+          #     The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          #     is transacting with.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardReversal::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardReversal::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_reversal`.
           #
-          #   @param updated_authorization_amount [Integer] The amount left pending on the Card Authorization in the minor unit of the trans
+          #   @param updated_authorization_amount [Integer]
+          #     The amount left pending on the Card Authorization in the minor unit of the
+          #     transaction's currency. For dollars, for example, this is cents.
           #
-          #   @param updated_authorization_presentment_amount [Integer] The amount left pending on the Card Authorization in the minor unit of the trans
+          #   @param updated_authorization_presentment_amount [Integer]
+          #     The amount left pending on the Card Authorization in the minor unit of the
+          #     transaction's presentment currency. For dollars, for example, this is cents.
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the reversal's
           # currency.
@@ -10175,19 +10754,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardReversal::NetworkIdentifiers} for
-            #   more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           # Why this reversal was initiated.
@@ -10254,21 +10838,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardReversal::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardReversal::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardReversal::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardReversal::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardReversal::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -10563,9 +11152,6 @@ module Increase
           required :type, enum: -> { Increase::CardPayment::Element::CardSettlement::Type }
 
           # @!method initialize(id:, amount:, card_authorization:, card_payment_id:, cashback:, currency:, interchange:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_name:, merchant_postal_code:, merchant_state:, network:, network_identifiers:, pending_transaction_id:, presentment_amount:, presentment_currency:, purchase_details:, scheme_fees:, surcharge:, transaction_id:, type:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardSettlement} for more details.
-          #
           #   A Card Settlement object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_settlement`. Card Settlements are card
           #   transactions that have cleared and settled. While a settlement is usually
@@ -10574,19 +11160,30 @@ module Increase
           #
           #   @param id [String] The Card Settlement identifier.
           #
-          #   @param amount [Integer] The amount in the minor unit of the transaction's settlement currency. For dolla
+          #   @param amount [Integer]
+          #     The amount in the minor unit of the transaction's settlement currency. For
+          #     dollars, for example, this is cents.
           #
-          #   @param card_authorization [String, nil] The Card Authorization that was created prior to this Card Settlement, if one ex
+          #   @param card_authorization [String, nil]
+          #     The Card Authorization that was created prior to this Card Settlement, if one
+          #     exists.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param cashback [Increase::Models::CardPayment::Element::CardSettlement::Cashback, nil] Cashback earned on this transaction, if eligible. Cashback is paid out in aggreg
+          #   @param cashback [Increase::Models::CardPayment::Element::CardSettlement::Cashback, nil]
+          #     Cashback earned on this transaction, if eligible. Cashback is paid out in
+          #     aggregate, monthly.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's settlement currency.
           #
-          #   @param interchange [Increase::Models::CardPayment::Element::CardSettlement::Interchange, nil] Interchange assessed as a part of this transaction.
+          #   @param interchange [Increase::Models::CardPayment::Element::CardSettlement::Interchange, nil]
+          #     Interchange assessed as a part of this transaction.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
           #   @param merchant_category_code [String] The 4-digit MCC describing the merchant's business.
           #
@@ -10596,29 +11193,44 @@ module Increase
           #
           #   @param merchant_name [String] The name of the merchant.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is always a 5-digit ZIP code.
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is always a 5-digit ZIP code.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Network] The card network on which this transaction was processed.
+          #   @param network [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Network]
+          #     The card network on which this transaction was processed.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardSettlement::NetworkIdentifiers] Network-specific identifiers for this refund.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardSettlement::NetworkIdentifiers]
+          #     Network-specific identifiers for this refund.
           #
-          #   @param pending_transaction_id [String, nil] The identifier of the Pending Transaction associated with this Transaction.
+          #   @param pending_transaction_id [String, nil]
+          #     The identifier of the Pending Transaction associated with this Transaction.
           #
-          #   @param presentment_amount [Integer] The amount in the minor unit of the transaction's presentment currency.
+          #   @param presentment_amount [Integer]
+          #     The amount in the minor unit of the transaction's presentment currency.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's presentment currency.
           #
-          #   @param purchase_details [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails, nil] Additional details about the card purchase, such as tax and industry-specific fi
+          #   @param purchase_details [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails, nil]
+          #     Additional details about the card purchase, such as tax and industry-specific
+          #     fields.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardSettlement::SchemeFee>] The scheme fees associated with this card settlement.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardSettlement::SchemeFee>]
+          #     The scheme fees associated with this card settlement.
           #
-          #   @param surcharge [Increase::Models::CardPayment::Element::CardSettlement::Surcharge, nil] Surcharge amount details, if applicable. The amount is positive if the surcharge
+          #   @param surcharge [Increase::Models::CardPayment::Element::CardSettlement::Surcharge, nil]
+          #     Surcharge amount details, if applicable. The amount is positive if the surcharge
+          #     is added to the overall transaction amount (surcharge), and negative if the
+          #     surcharge is deducted from the overall transaction amount (discount).
           #
           #   @param transaction_id [String] The identifier of the Transaction associated with this Transaction.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `card_settlement`.
 
           # @see Increase::Models::CardPayment::Element::CardSettlement#cashback
           class Cashback < Increase::Internal::Type::BaseModel
@@ -10637,16 +11249,16 @@ module Increase
             required :currency, enum: -> { Increase::CardPayment::Element::CardSettlement::Cashback::Currency }
 
             # @!method initialize(amount:, currency:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardSettlement::Cashback} for more
-            #   details.
-            #
             #   Cashback earned on this transaction, if eligible. Cashback is paid out in
             #   aggregate, monthly.
             #
-            #   @param amount [String] The cashback amount given as a string containing a decimal number. The amount is
+            #   @param amount [String]
+            #     The cashback amount given as a string containing a decimal number. The amount is
+            #     a positive number if it will be credited to you (e.g., settlements) and a
+            #     negative number if it will be debited (e.g., refunds).
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Cashback::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Cashback::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the cashback.
             #
@@ -10701,17 +11313,19 @@ module Increase
             required :currency, enum: -> { Increase::CardPayment::Element::CardSettlement::Interchange::Currency }
 
             # @!method initialize(amount:, code:, currency:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardSettlement::Interchange} for more
-            #   details.
-            #
             #   Interchange assessed as a part of this transaction.
             #
-            #   @param amount [String] The interchange amount given as a string containing a decimal number in major un
+            #   @param amount [String]
+            #     The interchange amount given as a string containing a decimal number in major
+            #     units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+            #     credited to Increase (e.g., settlements) and a negative number if it is debited
+            #     (e.g., refunds).
             #
             #   @param code [String, nil] The card network specific interchange code.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Interchange::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::Interchange::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
+            #     reimbursement.
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.
@@ -10774,19 +11388,21 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(acquirer_business_id:, acquirer_reference_number:, authorization_identification_response:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardSettlement::NetworkIdentifiers} for
-            #   more details.
-            #
             #   Network-specific identifiers for this refund.
             #
-            #   @param acquirer_business_id [String] A network assigned business ID that identifies the acquirer that processed this
+            #   @param acquirer_business_id [String]
+            #     A network assigned business ID that identifies the acquirer that processed this
+            #     transaction.
             #
             #   @param acquirer_reference_number [String] A globally unique identifier for this settlement.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           # @see Increase::Models::CardPayment::Element::CardSettlement#purchase_details
@@ -10864,32 +11480,38 @@ module Increase
                      nil?: true
 
             # @!method initialize(car_rental:, customer_reference_identifier:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails} for
-            #   more details.
-            #
             #   Additional details about the card purchase, such as tax and industry-specific
             #   fields.
             #
-            #   @param car_rental [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental, nil] Fields specific to car rentals.
+            #   @param car_rental [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental, nil]
+            #     Fields specific to car rentals.
             #
-            #   @param customer_reference_identifier [String, nil] An identifier from the merchant for the customer or consumer.
+            #   @param customer_reference_identifier [String, nil]
+            #     An identifier from the merchant for the customer or consumer.
             #
             #   @param local_tax_amount [Integer, nil] The state or provincial tax amount in minor units.
             #
-            #   @param local_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax as
+            #   @param local_tax_currency [String, nil]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax
+            #     assessed.
             #
-            #   @param lodging [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging, nil] Fields specific to lodging.
+            #   @param lodging [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging, nil]
+            #     Fields specific to lodging.
             #
             #   @param national_tax_amount [Integer, nil] The national tax amount in minor units.
             #
-            #   @param national_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax as
+            #   @param national_tax_currency [String, nil]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax
+            #     assessed.
             #
-            #   @param purchase_identifier [String, nil] An identifier from the merchant for the purchase to the issuer and cardholder.
+            #   @param purchase_identifier [String, nil]
+            #     An identifier from the merchant for the purchase to the issuer and cardholder.
             #
-            #   @param purchase_identifier_format [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat, nil] The format of the purchase identifier.
+            #   @param purchase_identifier_format [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat, nil]
+            #     The format of the purchase identifier.
             #
-            #   @param travel [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel, nil] Fields specific to travel.
+            #   @param travel [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel, nil]
+            #     Fields specific to travel.
 
             # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails#car_rental
             class CarRental < Increase::Internal::Type::BaseModel
@@ -11006,43 +11628,56 @@ module Increase
               required :weekly_rental_rate_currency, String, nil?: true
 
               # @!method initialize(car_class_code:, checkout_date:, daily_rental_rate_amount:, daily_rental_rate_currency:, days_rented:, extra_charges:, fuel_charges_amount:, fuel_charges_currency:, insurance_charges_amount:, insurance_charges_currency:, no_show_indicator:, one_way_drop_off_charges_amount:, one_way_drop_off_charges_currency:, renter_name:, weekly_rental_rate_amount:, weekly_rental_rate_currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental}
-              #   for more details.
-              #
               #   Fields specific to car rentals.
               #
               #   @param car_class_code [String, nil] Code indicating the vehicle's class.
               #
-              #   @param checkout_date [Date, nil] Date the customer picked up the car or, in the case of a no-show or pre-pay tran
+              #   @param checkout_date [Date, nil]
+              #     Date the customer picked up the car or, in the case of a no-show or pre-pay
+              #     transaction, the scheduled pick up date.
               #
               #   @param daily_rental_rate_amount [Integer, nil] Daily rate being charged for the vehicle.
               #
-              #   @param daily_rental_rate_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily rental
+              #   @param daily_rental_rate_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily rental
+              #     rate.
               #
               #   @param days_rented [Integer, nil] Number of days the vehicle was rented.
               #
-              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::ExtraCharges, nil] Additional charges (gas, late fee, etc.) being billed.
+              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::ExtraCharges, nil]
+              #     Additional charges (gas, late fee, etc.) being billed.
               #
               #   @param fuel_charges_amount [Integer, nil] Fuel charges for the vehicle.
               #
-              #   @param fuel_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel charges
+              #   @param fuel_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel charges
+              #     assessed.
               #
               #   @param insurance_charges_amount [Integer, nil] Any insurance being charged for the vehicle.
               #
-              #   @param insurance_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the insurance ch
+              #   @param insurance_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the insurance
+              #     charges assessed.
               #
-              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::NoShowIndicator, nil] An indicator that the cardholder is being billed for a reserved vehicle that was
+              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::CarRental::NoShowIndicator, nil]
+              #     An indicator that the cardholder is being billed for a reserved vehicle that was
+              #     not actually rented (that is, a "no-show" charge).
               #
-              #   @param one_way_drop_off_charges_amount [Integer, nil] Charges for returning the vehicle at a different location than where it was pick
+              #   @param one_way_drop_off_charges_amount [Integer, nil]
+              #     Charges for returning the vehicle at a different location than where it was
+              #     picked up.
               #
-              #   @param one_way_drop_off_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the one-way drop
+              #   @param one_way_drop_off_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the one-way
+              #     drop-off charges assessed.
               #
               #   @param renter_name [String, nil] Name of the person renting the vehicle.
               #
               #   @param weekly_rental_rate_amount [Integer, nil] Weekly rate being charged for the vehicle.
               #
-              #   @param weekly_rental_rate_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the weekly renta
+              #   @param weekly_rental_rate_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the weekly
+              #     rental rate.
 
               # Additional charges (gas, late fee, etc.) being billed.
               #
@@ -11204,43 +11839,54 @@ module Increase
               required :total_tax_currency, String, nil?: true
 
               # @!method initialize(check_in_date:, daily_room_rate_amount:, daily_room_rate_currency:, extra_charges:, folio_cash_advances_amount:, folio_cash_advances_currency:, food_beverage_charges_amount:, food_beverage_charges_currency:, no_show_indicator:, prepaid_expenses_amount:, prepaid_expenses_currency:, room_nights:, total_room_tax_amount:, total_room_tax_currency:, total_tax_amount:, total_tax_currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging}
-              #   for more details.
-              #
               #   Fields specific to lodging.
               #
               #   @param check_in_date [Date, nil] Date the customer checked in.
               #
               #   @param daily_room_rate_amount [Integer, nil] Daily rate being charged for the room.
               #
-              #   @param daily_room_rate_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily room r
+              #   @param daily_room_rate_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the daily room
+              #     rate.
               #
-              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::ExtraCharges, nil] Additional charges (phone, late check-out, etc.) being billed.
+              #   @param extra_charges [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::ExtraCharges, nil]
+              #     Additional charges (phone, late check-out, etc.) being billed.
               #
               #   @param folio_cash_advances_amount [Integer, nil] Folio cash advances for the room.
               #
-              #   @param folio_cash_advances_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the folio cash a
+              #   @param folio_cash_advances_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the folio cash
+              #     advances.
               #
               #   @param food_beverage_charges_amount [Integer, nil] Food and beverage charges for the room.
               #
-              #   @param food_beverage_charges_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the food and bev
+              #   @param food_beverage_charges_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the food and
+              #     beverage charges.
               #
-              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::NoShowIndicator, nil] Indicator that the cardholder is being billed for a reserved room that was not a
+              #   @param no_show_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Lodging::NoShowIndicator, nil]
+              #     Indicator that the cardholder is being billed for a reserved room that was not
+              #     actually used.
               #
               #   @param prepaid_expenses_amount [Integer, nil] Prepaid expenses being charged for the room.
               #
-              #   @param prepaid_expenses_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the prepaid expe
+              #   @param prepaid_expenses_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the prepaid
+              #     expenses.
               #
               #   @param room_nights [Integer, nil] Number of nights the room was rented.
               #
               #   @param total_room_tax_amount [Integer, nil] Total room tax being charged.
               #
-              #   @param total_room_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total room t
+              #   @param total_room_tax_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total room
+              #     tax.
               #
               #   @param total_tax_amount [Integer, nil] Total tax being charged for the room.
               #
-              #   @param total_tax_currency [String, nil] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total tax as
+              #   @param total_tax_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the total tax
+              #     assessed.
 
               # Additional charges (phone, late check-out, etc.) being billed.
               #
@@ -11413,11 +12059,14 @@ module Increase
               # @!method initialize(ancillary:, computerized_reservation_system:, credit_reason_indicator:, departure_date:, origination_city_airport_code:, passenger_name:, restricted_ticket_indicator:, ticket_change_indicator:, ticket_number:, travel_agency_code:, travel_agency_name:, trip_legs:)
               #   Fields specific to travel.
               #
-              #   @param ancillary [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary, nil] Ancillary purchases in addition to the airfare.
+              #   @param ancillary [Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary, nil]
+              #     Ancillary purchases in addition to the airfare.
               #
-              #   @param computerized_reservation_system [String, nil] Indicates the computerized reservation system used to book the ticket.
+              #   @param computerized_reservation_system [String, nil]
+              #     Indicates the computerized reservation system used to book the ticket.
               #
-              #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::CreditReasonIndicator, nil] Indicates the reason for a credit to the cardholder.
+              #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::CreditReasonIndicator, nil]
+              #     Indicates the reason for a credit to the cardholder.
               #
               #   @param departure_date [Date, nil] Date of departure.
               #
@@ -11425,17 +12074,22 @@ module Increase
               #
               #   @param passenger_name [String, nil] Name of the passenger.
               #
-              #   @param restricted_ticket_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::RestrictedTicketIndicator, nil] Indicates whether this ticket is non-refundable.
+              #   @param restricted_ticket_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::RestrictedTicketIndicator, nil]
+              #     Indicates whether this ticket is non-refundable.
               #
-              #   @param ticket_change_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TicketChangeIndicator, nil] Indicates why a ticket was changed.
+              #   @param ticket_change_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TicketChangeIndicator, nil]
+              #     Indicates why a ticket was changed.
               #
               #   @param ticket_number [String, nil] Ticket number.
               #
-              #   @param travel_agency_code [String, nil] Code for the travel agency if the ticket was issued by a travel agency.
+              #   @param travel_agency_code [String, nil]
+              #     Code for the travel agency if the ticket was issued by a travel agency.
               #
-              #   @param travel_agency_name [String, nil] Name of the travel agency if the ticket was issued by a travel agency.
+              #   @param travel_agency_name [String, nil]
+              #     Name of the travel agency if the ticket was issued by a travel agency.
               #
-              #   @param trip_legs [Array<Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg>, nil] Fields specific to each leg of the journey.
+              #   @param trip_legs [Array<Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg>, nil]
+              #     Fields specific to each leg of the journey.
 
               # @see Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel#ancillary
               class Ancillary < Increase::Internal::Type::BaseModel
@@ -11477,19 +12131,21 @@ module Increase
                 required :ticket_document_number, String, nil?: true
 
                 # @!method initialize(connected_ticket_document_number:, credit_reason_indicator:, passenger_name_or_description:, services:, ticket_document_number:)
-                #   Some parameter documentations has been truncated, see
-                #   {Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary}
-                #   for more details.
-                #
                 #   Ancillary purchases in addition to the airfare.
                 #
-                #   @param connected_ticket_document_number [String, nil] If this purchase has a connection or relationship to another purchase, such as a
+                #   @param connected_ticket_document_number [String, nil]
+                #     If this purchase has a connection or relationship to another purchase, such as a
+                #     baggage fee for a passenger transport ticket, this field should contain the
+                #     ticket document number for the other purchase.
                 #
-                #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil] Indicates the reason for a credit to the cardholder.
+                #   @param credit_reason_indicator [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::CreditReasonIndicator, nil]
+                #     Indicates the reason for a credit to the cardholder.
                 #
-                #   @param passenger_name_or_description [String, nil] Name of the passenger or description of the ancillary purchase.
+                #   @param passenger_name_or_description [String, nil]
+                #     Name of the passenger or description of the ancillary purchase.
                 #
-                #   @param services [Array<Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>] Additional travel charges, such as baggage fees.
+                #   @param services [Array<Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service>]
+                #     Additional travel charges, such as baggage fees.
                 #
                 #   @param ticket_document_number [String, nil] Ticket document number.
 
@@ -11535,7 +12191,8 @@ module Increase
                   required :sub_category, String, nil?: true
 
                   # @!method initialize(category:, sub_category:)
-                  #   @param category [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service::Category, nil] Category of the ancillary service.
+                  #   @param category [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::Ancillary::Service::Category, nil]
+                  #     Category of the ancillary service.
                   #
                   #   @param sub_category [String, nil] Sub-category of the ancillary service, free-form.
 
@@ -11740,7 +12397,8 @@ module Increase
                 #
                 #   @param service_class [String, nil] Service class (e.g., first class, business class, etc.).
                 #
-                #   @param stop_over_code [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg::StopOverCode, nil] Indicates whether a stopover is allowed on this ticket.
+                #   @param stop_over_code [Symbol, Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::Travel::TripLeg::StopOverCode, nil]
+                #     Indicates whether a stopover is allowed on this ticket.
 
                 # Indicates whether a stopover is allowed on this ticket.
                 #
@@ -11806,21 +12464,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardSettlement::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardSettlement::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardSettlement::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardSettlement::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -11953,17 +12616,15 @@ module Increase
             required :presentment_amount, Integer
 
             # @!method initialize(amount:, presentment_amount:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardSettlement::Surcharge} for more
-            #   details.
-            #
             #   Surcharge amount details, if applicable. The amount is positive if the surcharge
             #   is added to the overall transaction amount (surcharge), and negative if the
             #   surcharge is deducted from the overall transaction amount (discount).
             #
             #   @param amount [Integer] The surcharge amount in the minor unit of the transaction's settlement currency.
             #
-            #   @param presentment_amount [Integer] The surcharge amount in the minor unit of the transaction's presentment currency
+            #   @param presentment_amount [Integer]
+            #     The surcharge amount in the minor unit of the transaction's presentment
+            #     currency.
           end
 
           # A constant representing the object's type. For this resource it will always be
@@ -12130,9 +12791,6 @@ module Increase
           required :verification, -> { Increase::CardPayment::Element::CardValidation::Verification }
 
           # @!method initialize(id:, actioner:, additional_amounts:, card_payment_id:, currency:, digital_wallet_token_id:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, real_time_decision_id:, scheme_fees:, terminal_id:, type:, verification:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardPayment::Element::CardValidation} for more details.
-          #
           #   An Inbound Card Validation object. This field will be present in the JSON
           #   response if and only if `category` is equal to `card_validation`. Inbound Card
           #   Validations are requests from a merchant to verify that a card number and
@@ -12140,19 +12798,32 @@ module Increase
           #
           #   @param id [String] The Card Validation identifier.
           #
-          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardValidation::Actioner] Whether this authorization was approved by Increase, the card network through st
+          #   @param actioner [Symbol, Increase::Models::CardPayment::Element::CardValidation::Actioner]
+          #     Whether this authorization was approved by Increase, the card network through
+          #     stand-in processing, or the user through a real-time decision.
           #
-          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
+          #   @param additional_amounts [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts]
+          #     Additional amounts associated with the card authorization, such as ATM
+          #     surcharges fees. These are usually a subset of the `amount` field and are used
+          #     to provide more detailed information about the transaction.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardValidation::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardValidation::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's currency.
           #
-          #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
+          #   @param digital_wallet_token_id [String, nil]
+          #     If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          #     purchase), the identifier of the token that was used.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_city [String, nil] The city the merchant resides in.
           #
@@ -12160,27 +12831,44 @@ module Increase
           #
           #   @param merchant_descriptor [String] The merchant descriptor of the merchant the card is transacting with.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #     ZIP code, where the first 5 and last 4 are separated by a dash.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network_details [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails] Fields specific to the `network`.
+          #   @param network_details [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails]
+          #     Fields specific to the `network`.
           #
-          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardValidation::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::CardPayment::Element::CardValidation::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param network_risk_score [Integer, nil] The risk score generated by the card network. For Visa this is the Visa Advanced
+          #   @param network_risk_score [Integer, nil]
+          #     The risk score generated by the card network. For Visa this is the Visa Advanced
+          #     Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          #     score is from 0 to 999, where 999 is the riskiest.
           #
-          #   @param physical_card_id [String, nil] If the authorization was made in-person with a physical card, the Physical Card
+          #   @param physical_card_id [String, nil]
+          #     If the authorization was made in-person with a physical card, the Physical Card
+          #     that was used.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this transac
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     transaction.
           #
-          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardValidation::SchemeFee>] The scheme fees associated with this card validation.
+          #   @param scheme_fees [Array<Increase::Models::CardPayment::Element::CardValidation::SchemeFee>]
+          #     The scheme fees associated with this card validation.
           #
-          #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
+          #   @param terminal_id [String, nil]
+          #     The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          #     is transacting with.
           #
-          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardValidation::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::CardPayment::Element::CardValidation::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `inbound_card_validation`.
           #
-          #   @param verification [Increase::Models::CardPayment::Element::CardValidation::Verification] Fields related to verification of cardholder-provided values.
+          #   @param verification [Increase::Models::CardPayment::Element::CardValidation::Verification]
+          #     Fields related to verification of cardholder-provided values.
 
           # Whether this authorization was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -12289,33 +12977,39 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts} for
-            #   more details.
-            #
             #   Additional amounts associated with the card authorization, such as ATM
             #   surcharges fees. These are usually a subset of the `amount` field and are used
             #   to provide more detailed information about the transaction.
             #
-            #   @param clinic [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #   @param clinic [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic, nil]
+            #     The part of this transaction amount that was for clinic-related services.
             #
-            #   @param dental [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #   @param dental [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Dental, nil]
+            #     The part of this transaction amount that was for dental-related services.
             #
-            #   @param original [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Original, nil] The original pre-authorized amount.
+            #   @param original [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Original, nil]
+            #     The original pre-authorized amount.
             #
-            #   @param prescription [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #   @param prescription [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription, nil]
+            #     The part of this transaction amount that was for healthcare prescriptions.
             #
-            #   @param surcharge [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #   @param surcharge [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge, nil]
+            #     The surcharge amount charged for this transaction by the merchant.
             #
-            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #   @param total_cumulative [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative, nil]
+            #     The total amount of a series of incremental authorizations, optionally provided.
             #
-            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #   @param total_healthcare [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare, nil]
+            #     The total amount of healthcare-related additional amounts.
             #
-            #   @param transit [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #   @param transit [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Transit, nil]
+            #     The part of this transaction amount that was for transit-related services.
             #
-            #   @param unknown [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #   @param unknown [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown, nil]
+            #     An unknown additional amount.
             #
-            #   @param vision [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+            #   @param vision [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Vision, nil]
+            #     The part of this transaction amount that was for vision-related services.
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
@@ -12335,15 +13029,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#dental
@@ -12364,15 +13059,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Dental}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#original
@@ -12393,15 +13089,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Original}
-              #   for more details.
-              #
               #   The original pre-authorized amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#prescription
@@ -12422,15 +13119,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Prescription}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#surcharge
@@ -12451,15 +13149,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Surcharge}
-              #   for more details.
-              #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#total_cumulative
@@ -12480,15 +13179,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::TotalCumulative}
-              #   for more details.
-              #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#total_healthcare
@@ -12509,15 +13209,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::TotalHealthcare}
-              #   for more details.
-              #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#transit
@@ -12538,15 +13239,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Transit}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#unknown
@@ -12567,15 +13269,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Unknown}
-              #   for more details.
-              #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts#vision
@@ -12596,15 +13299,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Vision}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
           end
 
@@ -12653,11 +13357,14 @@ module Increase
             # @!method initialize(category:, pulse:, visa:)
             #   Fields specific to the `network`.
             #
-            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Category] The payment network used to process this card authorization.
+            #   @param category [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Category]
+            #     The payment network used to process this card authorization.
             #
-            #   @param pulse [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Pulse, nil]
+            #     Fields specific to the `pulse` network.
             #
-            #   @param visa [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
+            #   @param visa [Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa, nil]
+            #     Fields specific to the `visa` network.
 
             # The payment network used to process this card authorization.
             #
@@ -12732,19 +13439,27 @@ module Increase
                        nil?: true
 
               # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa}
-              #   for more details.
-              #
               #   Fields specific to the `visa` network.
               #
-              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::ElectronicCommerceIndicator, nil] For electronic commerce transactions, this identifies the level of security used
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #     For electronic commerce transactions, this identifies the level of security used
+              #     in obtaining the customer's payment credential. For mail or telephone order
+              #     transactions, identifies the type of mail or telephone order.
               #
-              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #     The method used to enter the cardholder's primary account number and card
+              #     expiration date.
               #
-              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::StandInProcessingReason, nil]
+              #     Only present when `actioner: network`. Describes why a card authorization was
+              #     approved or declined by Visa through stand-in processing.
               #
-              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
+              #   @param terminal_entry_capability [Symbol, Increase::Models::CardPayment::Element::CardValidation::NetworkDetails::Visa::TerminalEntryCapability, nil]
+              #     The capability of the terminal being used to read the card. Shows whether a
+              #     terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              #     reads. This reflects the highest capability of the terminal — for example, a
+              #     terminal that supports both chip and magnetic stripe will be identified as
+              #     chip-capable.
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -12933,19 +13648,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardValidation::NetworkIdentifiers} for
-            #   more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           class SchemeFee < Increase::Internal::Type::BaseModel
@@ -12990,21 +13710,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardValidation::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardValidation::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::CardPayment::Element::CardValidation::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardValidation::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::CardPayment::Element::CardValidation::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -13161,17 +13886,18 @@ module Increase
                      nil?: true
 
             # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardPayment::Element::CardValidation::Verification} for more
-            #   details.
-            #
             #   Fields related to verification of cardholder-provided values.
             #
-            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
+            #   @param card_verification_code [Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode]
+            #     Fields related to verification of the Card Verification Code, a 3-digit code on
+            #     the back of the card.
             #
-            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #   @param cardholder_address [Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress]
+            #     Cardholder address provided in the authorization request and the address on file
+            #     we verified it against.
             #
-            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
+            #   @param cardholder_name [Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderName, nil]
+            #     Cardholder name provided in the authorization request.
 
             # @see Increase::Models::CardPayment::Element::CardValidation::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -13186,7 +13912,8 @@ module Increase
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
               #   the back of the card.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode::Result] The result of verifying the Card Verification Code.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardVerificationCode::Result]
+              #     The result of verifying the Card Verification Code.
 
               # The result of verifying the Card Verification Code.
               #
@@ -13243,10 +13970,6 @@ module Increase
                        enum: -> { Increase::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress}
-              #   for more details.
-              #
               #   Cardholder address provided in the authorization request and the address on file
               #   we verified it against.
               #
@@ -13254,11 +13977,15 @@ module Increase
               #
               #   @param actual_postal_code [String, nil] The postal code of the address on file for the cardholder.
               #
-              #   @param provided_line1 [String, nil] The cardholder address line 1 provided for verification in the authorization req
+              #   @param provided_line1 [String, nil]
+              #     The cardholder address line 1 provided for verification in the authorization
+              #     request.
               #
-              #   @param provided_postal_code [String, nil] The postal code provided for verification in the authorization request.
+              #   @param provided_postal_code [String, nil]
+              #     The postal code provided for verification in the authorization request.
               #
-              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result] The address verification result returned to the card network.
+              #   @param result [Symbol, Increase::Models::CardPayment::Element::CardValidation::Verification::CardholderAddress::Result]
+              #     The address verification result returned to the card network.
 
               # The address verification result returned to the card network.
               #
@@ -13312,11 +14039,14 @@ module Increase
               # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
               #   Cardholder name provided in the authorization request.
               #
-              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #   @param provided_first_name [String, nil]
+              #     The first name provided for verification in the authorization request.
               #
-              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #   @param provided_last_name [String, nil]
+              #     The last name provided for verification in the authorization request.
               #
-              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
+              #   @param provided_middle_name [String, nil]
+              #     The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -13381,24 +14111,35 @@ module Increase
         required :settled_amount, Integer
 
         # @!method initialize(authorized_amount:, fuel_confirmed_amount:, incremented_amount:, refund_authorized_amount:, refunded_amount:, reversed_amount:, settled_amount:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPayment::State} for more details.
-        #
         #   The summarized state of this card payment.
         #
-        #   @param authorized_amount [Integer] The total authorized amount in the minor unit of the transaction's currency. For
+        #   @param authorized_amount [Integer]
+        #     The total authorized amount in the minor unit of the transaction's currency. For
+        #     dollars, for example, this is cents.
         #
-        #   @param fuel_confirmed_amount [Integer] The total amount from fuel confirmations in the minor unit of the transaction's
+        #   @param fuel_confirmed_amount [Integer]
+        #     The total amount from fuel confirmations in the minor unit of the transaction's
+        #     currency. For dollars, for example, this is cents.
         #
-        #   @param incremented_amount [Integer] The total incrementally updated authorized amount in the minor unit of the trans
+        #   @param incremented_amount [Integer]
+        #     The total incrementally updated authorized amount in the minor unit of the
+        #     transaction's currency. For dollars, for example, this is cents.
         #
-        #   @param refund_authorized_amount [Integer] The total refund authorized amount in the minor unit of the transaction's curren
+        #   @param refund_authorized_amount [Integer]
+        #     The total refund authorized amount in the minor unit of the transaction's
+        #     currency. For dollars, for example, this is cents.
         #
-        #   @param refunded_amount [Integer] The total refunded amount in the minor unit of the transaction's currency. For d
+        #   @param refunded_amount [Integer]
+        #     The total refunded amount in the minor unit of the transaction's currency. For
+        #     dollars, for example, this is cents.
         #
-        #   @param reversed_amount [Integer] The total reversed amount in the minor unit of the transaction's currency. For d
+        #   @param reversed_amount [Integer]
+        #     The total reversed amount in the minor unit of the transaction's currency. For
+        #     dollars, for example, this is cents.
         #
-        #   @param settled_amount [Integer] The total settled amount in the minor unit of the transaction's currency. For do
+        #   @param settled_amount [Integer]
+        #     The total settled amount in the minor unit of the transaction's currency. For
+        #     dollars, for example, this is cents.
       end
 
       # A constant representing the object's type. For this resource it will always be

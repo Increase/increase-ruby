@@ -156,22 +156,23 @@ module Increase
           #
           # @param value [Object]
           #
-          # @param state [Hash{Symbol=>Object}] The `strictness` is one of `true`, `false`. This informs the coercion strategy
-          # when we have to decide between multiple possible conversion targets:
+          # @param state [Hash{Symbol=>Object}]
+          #   The `strictness` is one of `true`, `false`. This informs the coercion strategy
+          #   when we have to decide between multiple possible conversion targets:
           #
-          # - `true`: the conversion must be exact, with minimum coercion.
-          # - `false`: the conversion can be approximate, with some coercion.
+          #   - `true`: the conversion must be exact, with minimum coercion.
+          #   - `false`: the conversion can be approximate, with some coercion.
           #
-          # The `exactness` is `Hash` with keys being one of `yes`, `no`, or `maybe`. For
-          # any given conversion attempt, the exactness will be updated based on how closely
-          # the value recursively matches the target type:
+          #   The `exactness` is `Hash` with keys being one of `yes`, `no`, or `maybe`. For
+          #   any given conversion attempt, the exactness will be updated based on how closely
+          #   the value recursively matches the target type:
           #
-          # - `yes`: the value can be converted to the target type with minimum coercion.
-          # - `maybe`: the value can be converted to the target type with some reasonable
-          #   coercion.
-          # - `no`: the value cannot be converted to the target type.
+          #   - `yes`: the value can be converted to the target type with minimum coercion.
+          #   - `maybe`: the value can be converted to the target type with some reasonable
+          #     coercion.
+          #   - `no`: the value cannot be converted to the target type.
           #
-          # See implementation below for more details.
+          #   See implementation below for more details.
           #
           #   @option state [Boolean] :translate_names
           #

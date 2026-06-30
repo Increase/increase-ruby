@@ -4,10 +4,6 @@ module Increase
   module Resources
     class Simulations
       class AccountRevenuePayments
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::AccountRevenuePaymentCreateParams} for more
-        # details.
-        #
         # Simulates an account revenue payment to your account. In production, this
         # happens automatically on the first of each month.
         #
@@ -17,11 +13,17 @@ module Increase
         #
         # @param amount [Integer] The account revenue amount in cents. Must be positive.
         #
-        # @param accrued_on_account_id [String] The identifier of the Account the account revenue accrued on. Defaults to `accou
+        # @param accrued_on_account_id [String]
+        #   The identifier of the Account the account revenue accrued on. Defaults to
+        #   `account_id`.
         #
-        # @param period_end [Time] The end of the account revenue period. If not provided, defaults to the current
+        # @param period_end [Time]
+        #   The end of the account revenue period. If not provided, defaults to the current
+        #   time.
         #
-        # @param period_start [Time] The start of the account revenue period. If not provided, defaults to the curren
+        # @param period_start [Time]
+        #   The start of the account revenue period. If not provided, defaults to the
+        #   current time.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

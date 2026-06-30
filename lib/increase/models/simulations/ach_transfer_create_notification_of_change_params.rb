@@ -41,13 +41,12 @@ module Increase
         optional :corrected_routing_number, String
 
         # @!method initialize(ach_transfer_id:, corrected_account_funding: nil, corrected_account_number: nil, corrected_individual_id: nil, corrected_routing_number: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams} for
-        #   more details.
+        #   @param ach_transfer_id [String]
+        #     The identifier of the ACH Transfer you wish to create a notification of change
+        #     for.
         #
-        #   @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to create a notification of change f
-        #
-        #   @param corrected_account_funding [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding] The corrected account funding type.
+        #   @param corrected_account_funding [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding]
+        #     The corrected account funding type.
         #
         #   @param corrected_account_number [String] The corrected account number.
         #

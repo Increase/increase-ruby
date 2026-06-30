@@ -23,9 +23,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::AccountStatementListParams} for more details.
-      #
       # List Account Statements
       #
       # @overload list(account_id: nil, cursor: nil, limit: nil, statement_period_start: nil, request_options: {})
@@ -34,7 +31,9 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param statement_period_start [Increase::Models::AccountStatementListParams::StatementPeriodStart]
       #

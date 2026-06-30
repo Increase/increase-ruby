@@ -29,17 +29,21 @@ module Increase
         required :type, enum: -> { Increase::Models::Simulations::CardAuthorizationCreateResponse::Type }
 
         # @!method initialize(declined_transaction:, pending_transaction:, type:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::CardAuthorizationCreateResponse} for more
-        #   details.
-        #
         #   The results of a Card Authorization simulation.
         #
-        #   @param declined_transaction [Increase::Models::DeclinedTransaction, nil] If the authorization attempt fails, this will contain the resulting [Declined Tr
+        #   @param declined_transaction [Increase::Models::DeclinedTransaction, nil]
+        #     If the authorization attempt fails, this will contain the resulting
+        #     [Declined Transaction](#declined-transactions) object. The Declined
+        #     Transaction's `source` will be of `category: card_decline`.
         #
-        #   @param pending_transaction [Increase::Models::PendingTransaction, nil] If the authorization attempt succeeds, this will contain the resulting Pending T
+        #   @param pending_transaction [Increase::Models::PendingTransaction, nil]
+        #     If the authorization attempt succeeds, this will contain the resulting Pending
+        #     Transaction object. The Pending Transaction's `source` will be of
+        #     `category: card_authorization`.
         #
-        #   @param type [Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type] A constant representing the object's type. For this resource it will always be `
+        #   @param type [Symbol, Increase::Models::Simulations::CardAuthorizationCreateResponse::Type]
+        #     A constant representing the object's type. For this resource it will always be
+        #     `inbound_card_authorization_simulation_result`.
 
         # A constant representing the object's type. For this resource it will always be
         # `inbound_card_authorization_simulation_result`.

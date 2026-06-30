@@ -22,7 +22,8 @@ module Increase
       # @!method initialize(check_transfer_id:, reason: nil, request_options: {})
       #   @param check_transfer_id [String] The identifier of the Check Transfer.
       #
-      #   @param reason [Symbol, Increase::Models::CheckTransferStopPaymentParams::Reason] The reason why this transfer should be stopped.
+      #   @param reason [Symbol, Increase::Models::CheckTransferStopPaymentParams::Reason]
+      #     The reason why this transfer should be stopped.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
