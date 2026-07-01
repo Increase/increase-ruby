@@ -3,20 +3,21 @@
 module Increase
   module Resources
     class PhysicalCards
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::PhysicalCardCreateParams} for more details.
-      #
       # Create a Physical Card
       #
       # @overload create(card_id:, cardholder:, shipment:, physical_card_profile_id: nil, request_options: {})
       #
       # @param card_id [String] The underlying card representing this physical card.
       #
-      # @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder] Details about the cardholder, as it will appear on the physical card.
+      # @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder]
+      #   Details about the cardholder, as it will appear on the physical card.
       #
-      # @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment] The details used to ship this physical card.
+      # @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment]
+      #   The details used to ship this physical card.
       #
-      # @param physical_card_profile_id [String] The physical card profile to use for this physical card. The latest default phys
+      # @param physical_card_profile_id [String]
+      #   The physical card profile to use for this physical card. The latest default
+      #   physical card profile will be used if not provided.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -60,7 +61,8 @@ module Increase
       #
       # @param physical_card_id [String] The Physical Card identifier.
       #
-      # @param status [Symbol, Increase::Models::PhysicalCardUpdateParams::Status] The status to update the Physical Card to.
+      # @param status [Symbol, Increase::Models::PhysicalCardUpdateParams::Status]
+      #   The status to update the Physical Card to.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -78,9 +80,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::PhysicalCardListParams} for more details.
-      #
       # List Physical Cards
       #
       # @overload list(card_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
@@ -91,9 +90,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -137,6 +137,8 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           status: Increase::EntityListParams::Status::OrHash,
+          validation_status:
+            Increase::EntityListParams::ValidationStatus::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Internal::Page[Increase::Entity])
       end
@@ -153,6 +155,7 @@ module Increase
         # objects.
         limit: nil,
         status: nil,
+        validation_status: nil,
         request_options: {}
       )
       end

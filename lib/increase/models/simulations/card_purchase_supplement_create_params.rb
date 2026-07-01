@@ -29,15 +29,15 @@ module Increase
                  -> { Increase::Internal::Type::ArrayOf[Increase::Simulations::CardPurchaseSupplementCreateParams::LineItem] }
 
         # @!method initialize(transaction_id:, invoice: nil, line_items: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::CardPurchaseSupplementCreateParams} for more
-        #   details.
+        #   @param transaction_id [String]
+        #     The identifier of the Transaction to create a Card Purchase Supplement for. The
+        #     Transaction must have a source of type `card_settlement`.
         #
-        #   @param transaction_id [String] The identifier of the Transaction to create a Card Purchase Supplement for. The
+        #   @param invoice [Increase::Models::Simulations::CardPurchaseSupplementCreateParams::Invoice]
+        #     Invoice-level information about the payment.
         #
-        #   @param invoice [Increase::Models::Simulations::CardPurchaseSupplementCreateParams::Invoice] Invoice-level information about the payment.
-        #
-        #   @param line_items [Array<Increase::Models::Simulations::CardPurchaseSupplementCreateParams::LineItem>] Line item information, such as individual products purchased.
+        #   @param line_items [Array<Increase::Models::Simulations::CardPurchaseSupplementCreateParams::LineItem>]
+        #     Line item information, such as individual products purchased.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

@@ -4,9 +4,6 @@ module Increase
   module Resources
     class Simulations
       class CheckDeposits
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::CheckDepositAdjustmentParams} for more details.
-        #
         # Simulates the creation of a
         # [Check Deposit Adjustment](#check-deposit-adjustments) on a
         # [Check Deposit](#check-deposits). This Check Deposit must first have a `status`
@@ -16,9 +13,15 @@ module Increase
         #
         # @param check_deposit_id [String] The identifier of the Check Deposit you wish to adjust.
         #
-        # @param amount [Integer] The adjustment amount in the minor unit of the Check Deposit's currency (e.g., c
+        # @param amount [Integer]
+        #   The adjustment amount in the minor unit of the Check Deposit's currency (e.g.,
+        #   cents). A negative amount means that the funds are being clawed back by the
+        #   other bank and is a debit to your account. Defaults to the negative of the Check
+        #   Deposit amount.
         #
-        # @param reason [Symbol, Increase::Models::Simulations::CheckDepositAdjustmentParams::Reason] The reason for the adjustment. Defaults to `non_conforming_item`, which is often
+        # @param reason [Symbol, Increase::Models::Simulations::CheckDepositAdjustmentParams::Reason]
+        #   The reason for the adjustment. Defaults to `non_conforming_item`, which is often
+        #   used for a low quality image that the recipient wasn't able to handle.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -79,9 +82,6 @@ module Increase
           )
         end
 
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::CheckDepositSubmitParams} for more details.
-        #
         # Simulates the submission of a [Check Deposit](#check-deposits) to the Federal
         # Reserve. This Check Deposit must first have a `status` of `pending`.
         #
@@ -89,7 +89,9 @@ module Increase
         #
         # @param check_deposit_id [String] The identifier of the Check Deposit you wish to submit.
         #
-        # @param scan [Increase::Models::Simulations::CheckDepositSubmitParams::Scan] If set, the simulation will use these values for the check's scanned MICR data.
+        # @param scan [Increase::Models::Simulations::CheckDepositSubmitParams::Scan]
+        #   If set, the simulation will use these values for the check's scanned MICR data.
+        #   If not set, the simulation will use random values.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

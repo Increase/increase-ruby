@@ -83,20 +83,24 @@ module Increase
       optional :cardholder_street_address, String
 
       # @!method initialize(account_id:, card_token_id:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_postal_code:, merchant_state:, cardholder_first_name: nil, cardholder_last_name: nil, cardholder_middle_name: nil, cardholder_postal_code: nil, cardholder_street_address: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardValidationCreateParams} for more details.
-      #
       #   @param account_id [String] The identifier of the Account from which to send the validation.
       #
-      #   @param card_token_id [String] The Increase identifier for the Card Token that represents the card number you'r
+      #   @param card_token_id [String]
+      #     The Increase identifier for the Card Token that represents the card number
+      #     you're validating.
       #
-      #   @param merchant_category_code [String] A four-digit code (MCC) identifying the type of business or service provided by
+      #   @param merchant_category_code [String]
+      #     A four-digit code (MCC) identifying the type of business or service provided by
+      #     the merchant.
       #
       #   @param merchant_city_name [String] The city where the merchant (typically your business) is located.
       #
-      #   @param merchant_name [String] The merchant name that will appear in the cardholder’s statement descriptor. Typ
+      #   @param merchant_name [String]
+      #     The merchant name that will appear in the cardholder’s statement descriptor.
+      #     Typically your business name.
       #
-      #   @param merchant_postal_code [String] The postal code for the merchant’s (typically your business’s) location.
+      #   @param merchant_postal_code [String]
+      #     The postal code for the merchant’s (typically your business’s) location.
       #
       #   @param merchant_state [String] The U.S. state where the merchant (typically your business) is located.
       #

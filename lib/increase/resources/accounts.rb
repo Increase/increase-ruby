@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class Accounts
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::AccountCreateParams} for more details.
-      #
       # Create an Account
       #
       # @overload create(name:, entity_id: nil, funding: nil, informational_entity_id: nil, loan: nil, program_id: nil, request_options: {})
@@ -14,13 +11,19 @@ module Increase
       #
       # @param entity_id [String] The identifier for the Entity that will own the Account.
       #
-      # @param funding [Symbol, Increase::Models::AccountCreateParams::Funding] Whether the Account is funded by a loan or by deposits.
+      # @param funding [Symbol, Increase::Models::AccountCreateParams::Funding]
+      #   Whether the Account is funded by a loan or by deposits.
       #
-      # @param informational_entity_id [String] The identifier of an Entity that, while not owning the Account, is associated wi
+      # @param informational_entity_id [String]
+      #   The identifier of an Entity that, while not owning the Account, is associated
+      #   with its activity. This is generally the beneficiary of the funds.
       #
       # @param loan [Increase::Models::AccountCreateParams::Loan] The loan details for the account.
       #
-      # @param program_id [String] The identifier for the Program that this Account falls under. Required if your G
+      # @param program_id [String]
+      #   The identifier for the Program that this Account falls under. Required if your
+      #   Group operates more than one Program. List your [Programs](#programs) to find
+      #   their identifiers.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -84,9 +87,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::AccountListParams} for more details.
-      #
       # List Accounts
       #
       # @overload list(created_at: nil, cursor: nil, entity_id: nil, idempotency_key: nil, informational_entity_id: nil, limit: nil, program_id: nil, status: nil, request_options: {})
@@ -97,11 +97,18 @@ module Increase
       #
       # @param entity_id [String] Filter Accounts for those belonging to the specified Entity.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param informational_entity_id [String] Filter Accounts for those belonging to the specified Entity as informational.
+      # @param informational_entity_id [String]
+      #   Filter Accounts for those belonging to the specified Entity as informational.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param program_id [String] Filter Accounts for those in a specific Program.
       #

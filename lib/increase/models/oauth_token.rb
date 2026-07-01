@@ -31,20 +31,21 @@ module Increase
       required :type, enum: -> { Increase::OAuthToken::Type }
 
       # @!method initialize(access_token:, group_id:, token_type:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::OAuthToken} for more details.
-      #
       #   A token that is returned to your application when a user completes the OAuth
       #   flow and may be used to authenticate requests. Learn more about OAuth
       #   [here](/documentation/oauth).
       #
-      #   @param access_token [String] You may use this token in place of an API key to make OAuth requests on a user's
+      #   @param access_token [String]
+      #     You may use this token in place of an API key to make OAuth requests on a user's
+      #     behalf.
       #
       #   @param group_id [String] The Group's identifier. A Group is the top-level organization in Increase.
       #
       #   @param token_type [Symbol, Increase::Models::OAuthToken::TokenType] The type of OAuth token.
       #
-      #   @param type [Symbol, Increase::Models::OAuthToken::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::OAuthToken::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `oauth_token`.
 
       # The type of OAuth token.
       #

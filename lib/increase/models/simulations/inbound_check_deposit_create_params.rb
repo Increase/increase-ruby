@@ -36,17 +36,17 @@ module Increase
                  enum: -> { Increase::Simulations::InboundCheckDepositCreateParams::PayeeNameAnalysis }
 
         # @!method initialize(account_number_id:, amount:, check_number:, payee_name_analysis: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::InboundCheckDepositCreateParams} for more
-        #   details.
-        #
-        #   @param account_number_id [String] The identifier of the Account Number the Inbound Check Deposit will be against.
+        #   @param account_number_id [String]
+        #     The identifier of the Account Number the Inbound Check Deposit will be against.
         #
         #   @param amount [Integer] The check amount in cents.
         #
         #   @param check_number [String] The check number on the check to be deposited.
         #
-        #   @param payee_name_analysis [Symbol, Increase::Models::Simulations::InboundCheckDepositCreateParams::PayeeNameAnalysis] Simulate the outcome of [payee name checking](https://increase.com/documentation
+        #   @param payee_name_analysis [Symbol, Increase::Models::Simulations::InboundCheckDepositCreateParams::PayeeNameAnalysis]
+        #     Simulate the outcome of
+        #     [payee name checking](https://increase.com/documentation/positive-pay#payee-name-mismatches).
+        #     Defaults to `not_evaluated`.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

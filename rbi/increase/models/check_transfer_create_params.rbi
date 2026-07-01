@@ -288,6 +288,16 @@ module Increase
         sig { returns(String) }
         attr_accessor :memo
 
+        # The payer of the check. This will be printed on the top-left portion of the
+        # check. This should be an array of up to 4 elements, each of which represents a
+        # line of the payer.
+        sig do
+          returns(
+            T::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
+          )
+        end
+        attr_accessor :payer
+
         # The name that will be printed on the check in the 'To:' field.
         sig { returns(String) }
         attr_accessor :recipient_name
@@ -316,30 +326,6 @@ module Increase
 
         sig { params(note: String).void }
         attr_writer :note
-
-        # The payer of the check. This will be printed on the top-left portion of the
-        # check and defaults to the return address if unspecified. This should be an array
-        # of up to 4 elements, each of which represents a line of the payer.
-        sig do
-          returns(
-            T.nilable(
-              T::Array[
-                Increase::CheckTransferCreateParams::PhysicalCheck::Payer
-              ]
-            )
-          )
-        end
-        attr_reader :payer
-
-        sig do
-          params(
-            payer:
-              T::Array[
-                Increase::CheckTransferCreateParams::PhysicalCheck::Payer::OrHash
-              ]
-          ).void
-        end
-        attr_writer :payer
 
         # The return address to be printed on the check. If omitted this will default to
         # an Increase-owned address that will mark checks as delivery failed and shred
@@ -408,14 +394,14 @@ module Increase
             mailing_address:
               Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress::OrHash,
             memo: String,
-            recipient_name: String,
-            attachment_file_id: String,
-            check_voucher_image_file_id: String,
-            note: String,
             payer:
               T::Array[
                 Increase::CheckTransferCreateParams::PhysicalCheck::Payer::OrHash
               ],
+            recipient_name: String,
+            attachment_file_id: String,
+            check_voucher_image_file_id: String,
+            note: String,
             return_address:
               Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress::OrHash,
             shipping_method:
@@ -429,6 +415,10 @@ module Increase
           mailing_address:,
           # The descriptor that will be printed on the memo field on the check.
           memo:,
+          # The payer of the check. This will be printed on the top-left portion of the
+          # check. This should be an array of up to 4 elements, each of which represents a
+          # line of the payer.
+          payer:,
           # The name that will be printed on the check in the 'To:' field.
           recipient_name:,
           # The ID of a File to be attached to the check. This must have
@@ -441,10 +431,6 @@ module Increase
           check_voucher_image_file_id: nil,
           # The descriptor that will be printed on the letter included with the check.
           note: nil,
-          # The payer of the check. This will be printed on the top-left portion of the
-          # check and defaults to the return address if unspecified. This should be an array
-          # of up to 4 elements, each of which represents a line of the payer.
-          payer: nil,
           # The return address to be printed on the check. If omitted this will default to
           # an Increase-owned address that will mark checks as delivery failed and shred
           # them.
@@ -465,14 +451,14 @@ module Increase
               mailing_address:
                 Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
               memo: String,
-              recipient_name: String,
-              attachment_file_id: String,
-              check_voucher_image_file_id: String,
-              note: String,
               payer:
                 T::Array[
                   Increase::CheckTransferCreateParams::PhysicalCheck::Payer
                 ],
+              recipient_name: String,
+              attachment_file_id: String,
+              check_voucher_image_file_id: String,
+              note: String,
               return_address:
                 Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
               shipping_method:

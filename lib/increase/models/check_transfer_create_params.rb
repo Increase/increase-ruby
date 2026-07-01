@@ -79,28 +79,44 @@ module Increase
       optional :valid_until_date, Date
 
       # @!method initialize(account_id:, amount:, fulfillment_method:, source_account_number_id:, balance_check: nil, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, valid_until_date: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CheckTransferCreateParams} for more details.
-      #
       #   @param account_id [String] The identifier for the account that will send the transfer.
       #
       #   @param amount [Integer] The transfer amount in USD cents.
       #
-      #   @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
+      #   @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod]
+      #     Whether Increase will print and mail the check or if you will do it yourself.
       #
-      #   @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
+      #   @param source_account_number_id [String]
+      #     The identifier of the Account Number from which to send the transfer and print
+      #     on the check.
       #
-      #   @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck] How the account's available balance should be checked. If omitted, the default b
+      #   @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck]
+      #     How the account's available balance should be checked. If omitted, the default
+      #     behavior is `balance_check: full`.
       #
-      #   @param check_number [String] The check number Increase should use for the check. This should not contain lead
+      #   @param check_number [String]
+      #     The check number Increase should use for the check. This should not contain
+      #     leading zeroes and must be unique across the `source_account_number`. If this is
+      #     omitted, Increase will generate a check number for you.
       #
-      #   @param physical_check [Increase::Models::CheckTransferCreateParams::PhysicalCheck] Details relating to the physical check that Increase will print and mail. This i
+      #   @param physical_check [Increase::Models::CheckTransferCreateParams::PhysicalCheck]
+      #     Details relating to the physical check that Increase will print and mail. This
+      #     is required if `fulfillment_method` is equal to `physical_check`. It must not be
+      #     included if any other `fulfillment_method` is provided.
       #
-      #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      #   @param require_approval [Boolean]
+      #     Whether the transfer requires explicit approval via the dashboard or API.
       #
-      #   @param third_party [Increase::Models::CheckTransferCreateParams::ThirdParty] Details relating to the custom fulfillment you will perform. This is required if
+      #   @param third_party [Increase::Models::CheckTransferCreateParams::ThirdParty]
+      #     Details relating to the custom fulfillment you will perform. This is required if
+      #     `fulfillment_method` is equal to `third_party`. It must not be included if any
+      #     other `fulfillment_method` is provided.
       #
-      #   @param valid_until_date [Date] If provided, the check will be valid on or before this date. After this date, th
+      #   @param valid_until_date [Date]
+      #     If provided, the check will be valid on or before this date. After this date,
+      #     the check transfer will be automatically stopped and deposits will not be
+      #     accepted. For checks printed by Increase, this date is included on the check as
+      #     its expiry.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -146,6 +162,15 @@ module Increase
         #   @return [String]
         required :memo, String
 
+        # @!attribute payer
+        #   The payer of the check. This will be printed on the top-left portion of the
+        #   check. This should be an array of up to 4 elements, each of which represents a
+        #   line of the payer.
+        #
+        #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>]
+        required :payer,
+                 -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payer] }
+
         # @!attribute recipient_name
         #   The name that will be printed on the check in the 'To:' field.
         #
@@ -174,15 +199,6 @@ module Increase
         #   @return [String, nil]
         optional :note, String
 
-        # @!attribute payer
-        #   The payer of the check. This will be printed on the top-left portion of the
-        #   check and defaults to the return address if unspecified. This should be an array
-        #   of up to 4 elements, each of which represents a line of the payer.
-        #
-        #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>, nil]
-        optional :payer,
-                 -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payer] }
-
         # @!attribute return_address
         #   The return address to be printed on the check. If omitted this will default to
         #   an Increase-owned address that will mark checks as delivery failed and shred
@@ -206,33 +222,48 @@ module Increase
         #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature, nil]
         optional :signature, -> { Increase::CheckTransferCreateParams::PhysicalCheck::Signature }
 
-        # @!method initialize(mailing_address:, memo:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, payer: nil, return_address: nil, shipping_method: nil, signature: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck} for more details.
-        #
+        # @!method initialize(mailing_address:, memo:, payer:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, return_address: nil, shipping_method: nil, signature: nil)
         #   Details relating to the physical check that Increase will print and mail. This
         #   is required if `fulfillment_method` is equal to `physical_check`. It must not be
         #   included if any other `fulfillment_method` is provided.
         #
-        #   @param mailing_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress] Details for where Increase will mail the check.
+        #   @param mailing_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress]
+        #     Details for where Increase will mail the check.
         #
         #   @param memo [String] The descriptor that will be printed on the memo field on the check.
         #
+        #   @param payer [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>]
+        #     The payer of the check. This will be printed on the top-left portion of the
+        #     check. This should be an array of up to 4 elements, each of which represents a
+        #     line of the payer.
+        #
         #   @param recipient_name [String] The name that will be printed on the check in the 'To:' field.
         #
-        #   @param attachment_file_id [String] The ID of a File to be attached to the check. This must have `purpose: check_att
+        #   @param attachment_file_id [String]
+        #     The ID of a File to be attached to the check. This must have
+        #     `purpose: check_attachment`. For details on pricing and restrictions, see
+        #     https://increase.com/documentation/originating-checks#printing-checks .
         #
-        #   @param check_voucher_image_file_id [String] The ID of a File to be used as the check voucher image. This must have `purpose:
+        #   @param check_voucher_image_file_id [String]
+        #     The ID of a File to be used as the check voucher image. This must have
+        #     `purpose: check_voucher_image`. For details on pricing and restrictions, see
+        #     https://increase.com/documentation/originating-checks#printing-checks .
         #
         #   @param note [String] The descriptor that will be printed on the letter included with the check.
         #
-        #   @param payer [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>] The payer of the check. This will be printed on the top-left portion of the chec
+        #   @param return_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress]
+        #     The return address to be printed on the check. If omitted this will default to
+        #     an Increase-owned address that will mark checks as delivery failed and shred
+        #     them.
         #
-        #   @param return_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress] The return address to be printed on the check. If omitted this will default to a
+        #   @param shipping_method [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod]
+        #     How to ship the check. For details on pricing, timing, and restrictions, see
+        #     https://increase.com/documentation/originating-checks#printing-checks .
         #
-        #   @param shipping_method [Symbol, Increase::Models::CheckTransferCreateParams::PhysicalCheck::ShippingMethod] How to ship the check. For details on pricing, timing, and restrictions, see htt
-        #
-        #   @param signature [Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature] The signature that will appear on the check. If not provided, the check will be
+        #   @param signature [Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature]
+        #     The signature that will appear on the check. If not provided, the check will be
+        #     printed with 'No Signature Required'. At most one of `text` and `image_file_id`
+        #     may be provided.
 
         # @see Increase::Models::CheckTransferCreateParams::PhysicalCheck#mailing_address
         class MailingAddress < Increase::Internal::Type::BaseModel
@@ -282,10 +313,6 @@ module Increase
           optional :phone, String
 
           # @!method initialize(city:, line1:, postal_code:, state:, line2: nil, name: nil, phone: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress} for
-          #   more details.
-          #
           #   Details for where Increase will mail the check.
           #
           #   @param city [String] The city component of the check's destination address.
@@ -298,9 +325,14 @@ module Increase
           #
           #   @param line2 [String] The second line of the address component of the check's destination address.
           #
-          #   @param name [String] The name component of the check's destination address. Defaults to the provided
+          #   @param name [String]
+          #     The name component of the check's destination address. Defaults to the provided
+          #     `recipient_name` parameter if `name` is not provided.
           #
-          #   @param phone [String] The phone number to associate with the check's destination address. The phone nu
+          #   @param phone [String]
+          #     The phone number to associate with the check's destination address. The phone
+          #     number is only used when `shipping_method` is `fedex_overnight` and will be
+          #     supplied to FedEx to be used in case of delivery issues.
         end
 
         class Payer < Increase::Internal::Type::BaseModel
@@ -361,10 +393,6 @@ module Increase
           optional :phone, String
 
           # @!method initialize(city:, line1:, name:, postal_code:, state:, line2: nil, phone: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress} for
-          #   more details.
-          #
           #   The return address to be printed on the check. If omitted this will default to
           #   an Increase-owned address that will mark checks as delivery failed and shred
           #   them.
@@ -381,7 +409,10 @@ module Increase
           #
           #   @param line2 [String] The second line of the return address.
           #
-          #   @param phone [String] The phone number to associate with the shipper. The phone number is only used wh
+          #   @param phone [String]
+          #     The phone number to associate with the shipper. The phone number is only used
+          #     when `shipping_method` is `fedex_overnight` and will be supplied to FedEx to be
+          #     used in case of delivery issues.
         end
 
         # How to ship the check. For details on pricing, timing, and restrictions, see
@@ -417,15 +448,13 @@ module Increase
           optional :text, String
 
           # @!method initialize(image_file_id: nil, text: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature} for more
-          #   details.
-          #
           #   The signature that will appear on the check. If not provided, the check will be
           #   printed with 'No Signature Required'. At most one of `text` and `image_file_id`
           #   may be provided.
           #
-          #   @param image_file_id [String] The ID of a File containing a PNG of the signature. This must have `purpose: che
+          #   @param image_file_id [String]
+          #     The ID of a File containing a PNG of the signature. This must have
+          #     `purpose: check_signature` and be a 1320x120 pixel PNG.
           #
           #   @param text [String] The text that will appear as the signature on the check in cursive font.
         end
@@ -441,14 +470,14 @@ module Increase
         optional :recipient_name, String
 
         # @!method initialize(recipient_name: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CheckTransferCreateParams::ThirdParty} for more details.
-        #
         #   Details relating to the custom fulfillment you will perform. This is required if
         #   `fulfillment_method` is equal to `third_party`. It must not be included if any
         #   other `fulfillment_method` is provided.
         #
-        #   @param recipient_name [String] The pay-to name you will print on the check. If provided, this is used for [Posi
+        #   @param recipient_name [String]
+        #     The pay-to name you will print on the check. If provided, this is used for
+        #     [Positive Pay](/documentation/positive-pay). If this is omitted, Increase will
+        #     be unable to validate the payer name when the check is deposited.
       end
     end
   end

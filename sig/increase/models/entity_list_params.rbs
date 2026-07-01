@@ -6,7 +6,8 @@ module Increase
         cursor: String,
         idempotency_key: String,
         limit: Integer,
-        status: Increase::EntityListParams::Status
+        status: Increase::EntityListParams::Status,
+        validation_status: Increase::EntityListParams::ValidationStatus
       }
       & Increase::Internal::Type::request_parameters
 
@@ -38,12 +39,19 @@ module Increase
         Increase::EntityListParams::Status
       ) -> Increase::EntityListParams::Status
 
+      attr_reader validation_status: Increase::EntityListParams::ValidationStatus?
+
+      def validation_status=: (
+        Increase::EntityListParams::ValidationStatus
+      ) -> Increase::EntityListParams::ValidationStatus
+
       def initialize: (
         ?created_at: Increase::EntityListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
         ?limit: Integer,
         ?status: Increase::EntityListParams::Status,
+        ?validation_status: Increase::EntityListParams::ValidationStatus,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -53,6 +61,7 @@ module Increase
         idempotency_key: String,
         limit: Integer,
         status: Increase::EntityListParams::Status,
+        validation_status: Increase::EntityListParams::ValidationStatus,
         request_options: Increase::RequestOptions
       }
 
@@ -124,6 +133,44 @@ module Increase
           DISABLED: :disabled
 
           def self?.values: -> ::Array[Increase::Models::EntityListParams::Status::in_]
+        end
+      end
+
+      type validation_status =
+        {
+          in_: ::Array[Increase::Models::EntityListParams::ValidationStatus::in_]
+        }
+
+      class ValidationStatus < Increase::Internal::Type::BaseModel
+        attr_reader in_: ::Array[Increase::Models::EntityListParams::ValidationStatus::in_]?
+
+        def in_=: (
+          ::Array[Increase::Models::EntityListParams::ValidationStatus::in_]
+        ) -> ::Array[Increase::Models::EntityListParams::ValidationStatus::in_]
+
+        def initialize: (
+          ?in_: ::Array[Increase::Models::EntityListParams::ValidationStatus::in_]
+        ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::EntityListParams::ValidationStatus::in_]
+        }
+
+        type in_ = :pending | :valid | :invalid
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # The submitted data is being validated.
+          PENDING: :pending
+
+          # The submitted data is valid.
+          VALID: :valid
+
+          # Additional information is required to validate the data.
+          INVALID: :invalid
+
+          def self?.values: -> ::Array[Increase::Models::EntityListParams::ValidationStatus::in_]
         end
       end
     end

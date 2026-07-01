@@ -33,12 +33,12 @@ module Increase
       optional :recipient_name, String
 
       # @!method initialize(account_id:, lockbox_address_id:, description: nil, recipient_name: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::LockboxRecipientCreateParams} for more details.
+      #   @param account_id [String]
+      #     The Account that checks sent to this Lockbox Recipient should be deposited into.
       #
-      #   @param account_id [String] The Account that checks sent to this Lockbox Recipient should be deposited into.
-      #
-      #   @param lockbox_address_id [String] The Lockbox Address where this Lockbox Recipient may receive mail. The Lockbox A
+      #   @param lockbox_address_id [String]
+      #     The Lockbox Address where this Lockbox Recipient may receive mail. The Lockbox
+      #     Address must have a `status` of `active`.
       #
       #   @param description [String] The description you choose for the Lockbox Recipient.
       #

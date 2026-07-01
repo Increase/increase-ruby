@@ -138,9 +138,6 @@ module Increase
       required :type, enum: -> { Increase::ACHPrenotification::Type }
 
       # @!method initialize(id:, account_id:, account_number:, addendum:, company_descriptive_date:, company_discretionary_data:, company_entry_description:, company_name:, created_at:, credit_debit_indicator:, effective_date:, idempotency_key:, individual_id:, individual_name:, notifications_of_change:, prenotification_return:, routing_number:, standard_entry_class_code:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::ACHPrenotification} for more details.
-      #
       #   ACH Prenotifications are one way you can verify account and routing numbers by
       #   Automated Clearing House (ACH).
       #
@@ -160,29 +157,47 @@ module Increase
       #
       #   @param company_name [String, nil] The name by which you know the company.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the prenotification was created.
       #
-      #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotification::CreditDebitIndicator, nil] If the notification is for a future credit or debit.
+      #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotification::CreditDebitIndicator, nil]
+      #     If the notification is for a future credit or debit.
       #
-      #   @param effective_date [Time, nil] The effective date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
+      #   @param effective_date [Time, nil]
+      #     The effective date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param individual_id [String, nil] Your identifier for the recipient.
       #
-      #   @param individual_name [String, nil] The name of the recipient. This value is informational and not verified by the r
+      #   @param individual_name [String, nil]
+      #     The name of the recipient. This value is informational and not verified by the
+      #     recipient's bank.
       #
-      #   @param notifications_of_change [Array<Increase::Models::ACHPrenotification::NotificationsOfChange>] If the receiving bank notifies that future transfers should use different detail
+      #   @param notifications_of_change [Array<Increase::Models::ACHPrenotification::NotificationsOfChange>]
+      #     If the receiving bank notifies that future transfers should use different
+      #     details, this will contain those details.
       #
-      #   @param prenotification_return [Increase::Models::ACHPrenotification::PrenotificationReturn, nil] If your prenotification is returned, this will contain details of the return.
+      #   @param prenotification_return [Increase::Models::ACHPrenotification::PrenotificationReturn, nil]
+      #     If your prenotification is returned, this will contain details of the return.
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
       #
-      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotification::StandardEntryClassCode, nil] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
+      #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotification::StandardEntryClassCode, nil]
+      #     The
+      #     [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      #     to use for the ACH Prenotification.
       #
-      #   @param status [Symbol, Increase::Models::ACHPrenotification::Status] The lifecycle status of the ACH Prenotification.
+      #   @param status [Symbol, Increase::Models::ACHPrenotification::Status]
+      #     The lifecycle status of the ACH Prenotification.
       #
-      #   @param type [Symbol, Increase::Models::ACHPrenotification::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::ACHPrenotification::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `ach_prenotification`.
 
       # If the notification is for a future credit or debit.
       #
@@ -243,20 +258,26 @@ module Increase
         required :created_at, Time
 
         # @!method initialize(change_code:, corrected_account_funding:, corrected_account_number:, corrected_individual_id:, corrected_routing_number:, created_at:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::ACHPrenotification::NotificationsOfChange} for more details.
+        #   @param change_code [Symbol, Increase::Models::ACHPrenotification::NotificationsOfChange::ChangeCode]
+        #     The required type of change that is being signaled by the receiving financial
+        #     institution.
         #
-        #   @param change_code [Symbol, Increase::Models::ACHPrenotification::NotificationsOfChange::ChangeCode] The required type of change that is being signaled by the receiving financial in
+        #   @param corrected_account_funding [Symbol, Increase::Models::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding, nil]
+        #     The corrected account funding type that should be used in future ACHs to this
+        #     account. This is derived from the corrected transaction code.
         #
-        #   @param corrected_account_funding [Symbol, Increase::Models::ACHPrenotification::NotificationsOfChange::CorrectedAccountFunding, nil] The corrected account funding type that should be used in future ACHs to this ac
+        #   @param corrected_account_number [String, nil]
+        #     The corrected account number that should be used in future ACHs to this account.
         #
-        #   @param corrected_account_number [String, nil] The corrected account number that should be used in future ACHs to this account.
+        #   @param corrected_individual_id [String, nil]
+        #     The corrected individual identifier that should be used in future ACHs.
         #
-        #   @param corrected_individual_id [String, nil] The corrected individual identifier that should be used in future ACHs.
+        #   @param corrected_routing_number [String, nil]
+        #     The corrected routing number that should be used in future ACHs to this account.
         #
-        #   @param corrected_routing_number [String, nil] The corrected routing number that should be used in future ACHs to this account.
-        #
-        #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param created_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the notification occurred.
 
         # The required type of change that is being signaled by the receiving financial
         # institution.
@@ -373,14 +394,14 @@ module Increase
                  enum: -> { Increase::ACHPrenotification::PrenotificationReturn::ReturnReasonCode }
 
         # @!method initialize(created_at:, return_reason_code:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::ACHPrenotification::PrenotificationReturn} for more details.
-        #
         #   If your prenotification is returned, this will contain details of the return.
         #
-        #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param created_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the Prenotification was returned.
         #
-        #   @param return_reason_code [Symbol, Increase::Models::ACHPrenotification::PrenotificationReturn::ReturnReasonCode] Why the Prenotification was returned.
+        #   @param return_reason_code [Symbol, Increase::Models::ACHPrenotification::PrenotificationReturn::ReturnReasonCode]
+        #     Why the Prenotification was returned.
 
         # Why the Prenotification was returned.
         #

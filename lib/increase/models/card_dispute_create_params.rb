@@ -52,20 +52,30 @@ module Increase
       optional :visa, -> { Increase::CardDisputeCreateParams::Visa }
 
       # @!method initialize(disputed_transaction_id:, network:, amount: nil, attachment_files: nil, explanation: nil, visa: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardDisputeCreateParams} for more details.
+      #   @param disputed_transaction_id [String]
+      #     The Transaction you wish to dispute. This Transaction must have a `source_type`
+      #     of `card_settlement`.
       #
-      #   @param disputed_transaction_id [String] The Transaction you wish to dispute. This Transaction must have a `source_type`
+      #   @param network [Symbol, Increase::Models::CardDisputeCreateParams::Network]
+      #     The network of the disputed transaction. Details specific to the network are
+      #     required under the sub-object with the same identifier as the network.
       #
-      #   @param network [Symbol, Increase::Models::CardDisputeCreateParams::Network] The network of the disputed transaction. Details specific to the network are req
+      #   @param amount [Integer]
+      #     The monetary amount of the part of the transaction that is being disputed. This
+      #     is optional and will default to the full amount of the transaction if not
+      #     provided. If provided, the amount must be less than or equal to the amount of
+      #     the transaction.
       #
-      #   @param amount [Integer] The monetary amount of the part of the transaction that is being disputed. This
+      #   @param attachment_files [Array<Increase::Models::CardDisputeCreateParams::AttachmentFile>]
+      #     The files to be attached to the initial dispute submission.
       #
-      #   @param attachment_files [Array<Increase::Models::CardDisputeCreateParams::AttachmentFile>] The files to be attached to the initial dispute submission.
+      #   @param explanation [String]
+      #     The free-form explanation provided to Increase to provide more context for the
+      #     user submission. This field is not sent directly to the card networks.
       #
-      #   @param explanation [String] The free-form explanation provided to Increase to provide more context for the u
-      #
-      #   @param visa [Increase::Models::CardDisputeCreateParams::Visa] The Visa-specific parameters for the dispute. Required if and only if `network`
+      #   @param visa [Increase::Models::CardDisputeCreateParams::Visa]
+      #     The Visa-specific parameters for the dispute. Required if and only if `network`
+      #     is `visa`.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -90,10 +100,9 @@ module Increase
         required :file_id, String
 
         # @!method initialize(file_id:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardDisputeCreateParams::AttachmentFile} for more details.
-        #
-        #   @param file_id [String] The ID of the file to be attached. The file must have a `purpose` of `card_dispu
+        #   @param file_id [String]
+        #     The ID of the file to be attached. The file must have a `purpose` of
+        #     `card_dispute_attachment`.
       end
 
       class Visa < Increase::Internal::Type::BaseModel
@@ -250,52 +259,83 @@ module Increase
         optional :processing_error, -> { Increase::CardDisputeCreateParams::Visa::ProcessingError }
 
         # @!method initialize(category:, authorization: nil, consumer_canceled_merchandise: nil, consumer_canceled_recurring_transaction: nil, consumer_canceled_services: nil, consumer_counterfeit_merchandise: nil, consumer_credit_not_processed: nil, consumer_damaged_or_defective_merchandise: nil, consumer_merchandise_misrepresentation: nil, consumer_merchandise_not_as_described: nil, consumer_merchandise_not_received: nil, consumer_non_receipt_of_cash: nil, consumer_original_credit_transaction_not_accepted: nil, consumer_quality_merchandise: nil, consumer_quality_services: nil, consumer_services_misrepresentation: nil, consumer_services_not_as_described: nil, consumer_services_not_received: nil, fraud: nil, processing_error: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardDisputeCreateParams::Visa} for more details.
-        #
         #   The Visa-specific parameters for the dispute. Required if and only if `network`
         #   is `visa`.
         #
         #   @param category [Symbol, Increase::Models::CardDisputeCreateParams::Visa::Category] Category.
         #
-        #   @param authorization [Increase::Models::CardDisputeCreateParams::Visa::Authorization] Authorization. Required if and only if `category` is `authorization`.
+        #   @param authorization [Increase::Models::CardDisputeCreateParams::Visa::Authorization]
+        #     Authorization. Required if and only if `category` is `authorization`.
         #
-        #   @param consumer_canceled_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise] Canceled merchandise. Required if and only if `category` is `consumer_canceled_m
+        #   @param consumer_canceled_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise]
+        #     Canceled merchandise. Required if and only if `category` is
+        #     `consumer_canceled_merchandise`.
         #
-        #   @param consumer_canceled_recurring_transaction [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction] Canceled recurring transaction. Required if and only if `category` is
-        #   `consumer\_
+        #   @param consumer_canceled_recurring_transaction [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction]
+        #     Canceled recurring transaction. Required if and only if `category` is
+        #     `consumer_canceled_recurring_transaction`.
         #
-        #   @param consumer_canceled_services [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices] Canceled services. Required if and only if `category` is `consumer_canceled_serv
+        #   @param consumer_canceled_services [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices]
+        #     Canceled services. Required if and only if `category` is
+        #     `consumer_canceled_services`.
         #
-        #   @param consumer_counterfeit_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise] Counterfeit merchandise. Required if and only if `category` is `consumer_counter
+        #   @param consumer_counterfeit_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCounterfeitMerchandise]
+        #     Counterfeit merchandise. Required if and only if `category` is
+        #     `consumer_counterfeit_merchandise`.
         #
-        #   @param consumer_credit_not_processed [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed] Credit not processed. Required if and only if `category` is `consumer_credit_not
+        #   @param consumer_credit_not_processed [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCreditNotProcessed]
+        #     Credit not processed. Required if and only if `category` is
+        #     `consumer_credit_not_processed`.
         #
-        #   @param consumer_damaged_or_defective_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise] Damaged or defective merchandise. Required if and only if `category` is `consume
+        #   @param consumer_damaged_or_defective_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise]
+        #     Damaged or defective merchandise. Required if and only if `category` is
+        #     `consumer_damaged_or_defective_merchandise`.
         #
-        #   @param consumer_merchandise_misrepresentation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation] Merchandise misrepresentation. Required if and only if `category` is `consumer_m
+        #   @param consumer_merchandise_misrepresentation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation]
+        #     Merchandise misrepresentation. Required if and only if `category` is
+        #     `consumer_merchandise_misrepresentation`.
         #
-        #   @param consumer_merchandise_not_as_described [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed] Merchandise not as described. Required if and only if `category` is `consumer_me
+        #   @param consumer_merchandise_not_as_described [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed]
+        #     Merchandise not as described. Required if and only if `category` is
+        #     `consumer_merchandise_not_as_described`.
         #
-        #   @param consumer_merchandise_not_received [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived] Merchandise not received. Required if and only if `category` is `consumer_mercha
+        #   @param consumer_merchandise_not_received [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived]
+        #     Merchandise not received. Required if and only if `category` is
+        #     `consumer_merchandise_not_received`.
         #
-        #   @param consumer_non_receipt_of_cash [Increase::Models::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash] Non-receipt of cash. Required if and only if `category` is `consumer_non_receipt
+        #   @param consumer_non_receipt_of_cash [Increase::Models::CardDisputeCreateParams::Visa::ConsumerNonReceiptOfCash]
+        #     Non-receipt of cash. Required if and only if `category` is
+        #     `consumer_non_receipt_of_cash`.
         #
-        #   @param consumer_original_credit_transaction_not_accepted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted] Original Credit Transaction (OCT) not accepted. Required if and only if `categor
+        #   @param consumer_original_credit_transaction_not_accepted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted]
+        #     Original Credit Transaction (OCT) not accepted. Required if and only if
+        #     `category` is `consumer_original_credit_transaction_not_accepted`.
         #
-        #   @param consumer_quality_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise] Merchandise quality issue. Required if and only if `category` is `consumer_quali
+        #   @param consumer_quality_merchandise [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise]
+        #     Merchandise quality issue. Required if and only if `category` is
+        #     `consumer_quality_merchandise`.
         #
-        #   @param consumer_quality_services [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices] Services quality issue. Required if and only if `category` is `consumer*quality*
+        #   @param consumer_quality_services [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices]
+        #     Services quality issue. Required if and only if `category` is
+        #     `consumer_quality_services`.
         #
-        #   @param consumer_services_misrepresentation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation] Services misrepresentation. Required if and only if `category` is `consumer_serv
+        #   @param consumer_services_misrepresentation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation]
+        #     Services misrepresentation. Required if and only if `category` is
+        #     `consumer_services_misrepresentation`.
         #
-        #   @param consumer_services_not_as_described [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed] Services not as described. Required if and only if `category` is `consumer_servi
+        #   @param consumer_services_not_as_described [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed]
+        #     Services not as described. Required if and only if `category` is
+        #     `consumer_services_not_as_described`.
         #
-        #   @param consumer_services_not_received [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived] Services not received. Required if and only if `category` is `consumer*services*
+        #   @param consumer_services_not_received [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived]
+        #     Services not received. Required if and only if `category` is
+        #     `consumer_services_not_received`.
         #
-        #   @param fraud [Increase::Models::CardDisputeCreateParams::Visa::Fraud] Fraud. Required if and only if `category` is `fraud`.
+        #   @param fraud [Increase::Models::CardDisputeCreateParams::Visa::Fraud]
+        #     Fraud. Required if and only if `category` is `fraud`.
         #
-        #   @param processing_error [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError] Processing error. Required if and only if `category` is `processing_error`.
+        #   @param processing_error [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError]
+        #     Processing error. Required if and only if `category` is `processing_error`.
 
         # Category.
         #
@@ -376,7 +416,8 @@ module Increase
           # @!method initialize(account_status:)
           #   Authorization. Required if and only if `category` is `authorization`.
           #
-          #   @param account_status [Symbol, Increase::Models::CardDisputeCreateParams::Visa::Authorization::AccountStatus] Account status.
+          #   @param account_status [Symbol, Increase::Models::CardDisputeCreateParams::Visa::Authorization::AccountStatus]
+          #     Account status.
 
           # Account status.
           #
@@ -455,28 +496,31 @@ module Increase
           optional :returned, -> { Increase::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned }
 
           # @!method initialize(merchant_resolution_attempted:, purchase_explanation:, received_or_expected_at:, return_outcome:, cardholder_cancellation: nil, not_returned: nil, return_attempted: nil, returned: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise}
-          #   for more details.
-          #
           #   Canceled merchandise. Required if and only if `category` is
           #   `consumer_canceled_merchandise`.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param purchase_explanation [String] Purchase explanation.
           #
           #   @param received_or_expected_at [Date] Received or expected at.
           #
-          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnOutcome] Return outcome.
+          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnOutcome]
+          #     Return outcome.
           #
-          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation] Cardholder cancellation.
+          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation]
+          #     Cardholder cancellation.
           #
-          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
+          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::NotReturned]
+          #     Not returned. Required if and only if `return_outcome` is `not_returned`.
           #
-          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
+          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted]
+          #     Return attempted. Required if and only if `return_outcome` is
+          #     `return_attempted`.
           #
-          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned] Returned. Required if and only if `return_outcome` is `returned`.
+          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned]
+          #     Returned. Required if and only if `return_outcome` is `returned`.
 
           # Merchant resolution attempted.
           #
@@ -546,9 +590,11 @@ module Increase
             #
             #   @param canceled_at [Date] Canceled at.
             #
-            #   @param canceled_prior_to_ship_date [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::CanceledPriorToShipDate] Canceled prior to ship date.
+            #   @param canceled_prior_to_ship_date [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::CanceledPriorToShipDate]
+            #     Canceled prior to ship date.
             #
-            #   @param cancellation_policy_provided [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::CancellationPolicyProvided] Cancellation policy provided.
+            #   @param cancellation_policy_provided [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::CardholderCancellation::CancellationPolicyProvided]
+            #     Cancellation policy provided.
             #
             #   @param reason [String] Reason.
 
@@ -624,7 +670,8 @@ module Increase
             #
             #   @param attempt_explanation [String] Attempt explanation.
             #
-            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted::AttemptReason] Attempt reason.
+            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::ReturnAttempted::AttemptReason]
+            #     Attempt reason.
             #
             #   @param attempted_at [Date] Attempted at.
             #
@@ -692,7 +739,8 @@ module Increase
             # @!method initialize(return_method:, returned_at:, merchant_received_return_at: nil, other_explanation: nil, tracking_number: nil)
             #   Returned. Required if and only if `return_outcome` is `returned`.
             #
-            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned::ReturnMethod] Return method.
+            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledMerchandise::Returned::ReturnMethod]
+            #     Return method.
             #
             #   @param returned_at [Date] Returned at.
             #
@@ -764,9 +812,11 @@ module Increase
           #   Canceled recurring transaction. Required if and only if `category` is
           #   `consumer_canceled_recurring_transaction`.
           #
-          #   @param cancellation_target [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::CancellationTarget] Cancellation target.
+          #   @param cancellation_target [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::CancellationTarget]
+          #     Cancellation target.
           #
-          #   @param merchant_contact_methods [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::MerchantContactMethods] Merchant contact methods.
+          #   @param merchant_contact_methods [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledRecurringTransaction::MerchantContactMethods]
+          #     Merchant contact methods.
           #
           #   @param transaction_or_account_canceled_at [Date] Transaction or account canceled at.
           #
@@ -900,28 +950,32 @@ module Increase
           optional :timeshare, -> { Increase::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare }
 
           # @!method initialize(cardholder_cancellation:, contracted_at:, merchant_resolution_attempted:, purchase_explanation:, service_type:, guaranteed_reservation: nil, other: nil, timeshare: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices} for
-          #   more details.
-          #
           #   Canceled services. Required if and only if `category` is
           #   `consumer_canceled_services`.
           #
-          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation] Cardholder cancellation.
+          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation]
+          #     Cardholder cancellation.
           #
           #   @param contracted_at [Date] Contracted at.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param purchase_explanation [String] Purchase explanation.
           #
-          #   @param service_type [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::ServiceType] Service type.
+          #   @param service_type [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::ServiceType]
+          #     Service type.
           #
-          #   @param guaranteed_reservation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation] Guaranteed reservation explanation. Required if and only if `service_type` is `g
+          #   @param guaranteed_reservation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation]
+          #     Guaranteed reservation explanation. Required if and only if `service_type` is
+          #     `guaranteed_reservation`.
           #
-          #   @param other [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other] Other service type explanation. Required if and only if `service_type` is `other
+          #   @param other [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Other]
+          #     Other service type explanation. Required if and only if `service_type` is
+          #     `other`.
           #
-          #   @param timeshare [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare] Timeshare explanation. Required if and only if `service_type` is `timeshare`.
+          #   @param timeshare [Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::Timeshare]
+          #     Timeshare explanation. Required if and only if `service_type` is `timeshare`.
 
           # @see Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices#cardholder_cancellation
           class CardholderCancellation < Increase::Internal::Type::BaseModel
@@ -949,7 +1003,8 @@ module Increase
             #
             #   @param canceled_at [Date] Canceled at.
             #
-            #   @param cancellation_policy_provided [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation::CancellationPolicyProvided] Cancellation policy provided.
+            #   @param cancellation_policy_provided [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::CardholderCancellation::CancellationPolicyProvided]
+            #     Cancellation policy provided.
             #
             #   @param reason [String] Reason.
 
@@ -1018,7 +1073,8 @@ module Increase
             #   Guaranteed reservation explanation. Required if and only if `service_type` is
             #   `guaranteed_reservation`.
             #
-            #   @param explanation [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::Explanation] Explanation.
+            #   @param explanation [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerCanceledServices::GuaranteedReservation::Explanation]
+            #     Explanation.
 
             # Explanation.
             #
@@ -1168,26 +1224,28 @@ module Increase
                    -> { Increase::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned }
 
           # @!method initialize(merchant_resolution_attempted:, order_and_issue_explanation:, received_at:, return_outcome:, not_returned: nil, return_attempted: nil, returned: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise}
-          #   for more details.
-          #
           #   Damaged or defective merchandise. Required if and only if `category` is
           #   `consumer_damaged_or_defective_merchandise`.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param order_and_issue_explanation [String] Order and issue explanation.
           #
           #   @param received_at [Date] Received at.
           #
-          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnOutcome] Return outcome.
+          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnOutcome]
+          #     Return outcome.
           #
-          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
+          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::NotReturned]
+          #     Not returned. Required if and only if `return_outcome` is `not_returned`.
           #
-          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
+          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted]
+          #     Return attempted. Required if and only if `return_outcome` is
+          #     `return_attempted`.
           #
-          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned] Returned. Required if and only if `return_outcome` is `returned`.
+          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned]
+          #     Returned. Required if and only if `return_outcome` is `returned`.
 
           # Merchant resolution attempted.
           #
@@ -1263,7 +1321,8 @@ module Increase
             #
             #   @param attempt_explanation [String] Attempt explanation.
             #
-            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::AttemptReason] Attempt reason.
+            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::ReturnAttempted::AttemptReason]
+            #     Attempt reason.
             #
             #   @param attempted_at [Date] Attempted at.
             #
@@ -1331,7 +1390,8 @@ module Increase
             # @!method initialize(return_method:, returned_at:, merchant_received_return_at: nil, other_explanation: nil, tracking_number: nil)
             #   Returned. Required if and only if `return_outcome` is `returned`.
             #
-            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned::ReturnMethod] Return method.
+            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerDamagedOrDefectiveMerchandise::Returned::ReturnMethod]
+            #     Return method.
             #
             #   @param returned_at [Date] Returned at.
             #
@@ -1428,14 +1488,11 @@ module Increase
                    -> { Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned }
 
           # @!method initialize(merchant_resolution_attempted:, misrepresentation_explanation:, purchase_explanation:, received_at:, return_outcome:, not_returned: nil, return_attempted: nil, returned: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation}
-          #   for more details.
-          #
           #   Merchandise misrepresentation. Required if and only if `category` is
           #   `consumer_merchandise_misrepresentation`.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param misrepresentation_explanation [String] Misrepresentation explanation.
           #
@@ -1443,13 +1500,18 @@ module Increase
           #
           #   @param received_at [Date] Received at.
           #
-          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnOutcome] Return outcome.
+          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnOutcome]
+          #     Return outcome.
           #
-          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
+          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::NotReturned]
+          #     Not returned. Required if and only if `return_outcome` is `not_returned`.
           #
-          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
+          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted]
+          #     Return attempted. Required if and only if `return_outcome` is
+          #     `return_attempted`.
           #
-          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned] Returned. Required if and only if `return_outcome` is `returned`.
+          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned]
+          #     Returned. Required if and only if `return_outcome` is `returned`.
 
           # Merchant resolution attempted.
           #
@@ -1525,7 +1587,8 @@ module Increase
             #
             #   @param attempt_explanation [String] Attempt explanation.
             #
-            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted::AttemptReason] Attempt reason.
+            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::ReturnAttempted::AttemptReason]
+            #     Attempt reason.
             #
             #   @param attempted_at [Date] Attempted at.
             #
@@ -1593,7 +1656,8 @@ module Increase
             # @!method initialize(return_method:, returned_at:, merchant_received_return_at: nil, other_explanation: nil, tracking_number: nil)
             #   Returned. Required if and only if `return_outcome` is `returned`.
             #
-            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned::ReturnMethod] Return method.
+            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseMisrepresentation::Returned::ReturnMethod]
+            #     Return method.
             #
             #   @param returned_at [Date] Returned at.
             #
@@ -1671,22 +1735,23 @@ module Increase
                    -> { Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned }
 
           # @!method initialize(merchant_resolution_attempted:, received_at:, return_outcome:, return_attempted: nil, returned: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed}
-          #   for more details.
-          #
           #   Merchandise not as described. Required if and only if `category` is
           #   `consumer_merchandise_not_as_described`.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param received_at [Date] Received at.
           #
-          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnOutcome] Return outcome.
+          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnOutcome]
+          #     Return outcome.
           #
-          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
+          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted]
+          #     Return attempted. Required if and only if `return_outcome` is
+          #     `return_attempted`.
           #
-          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned] Returned. Required if and only if `return_outcome` is `returned`.
+          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned]
+          #     Returned. Required if and only if `return_outcome` is `returned`.
 
           # Merchant resolution attempted.
           #
@@ -1753,7 +1818,8 @@ module Increase
             #
             #   @param attempt_explanation [String] Attempt explanation.
             #
-            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted::AttemptReason] Attempt reason.
+            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::ReturnAttempted::AttemptReason]
+            #     Attempt reason.
             #
             #   @param attempted_at [Date] Attempted at.
             #
@@ -1821,7 +1887,8 @@ module Increase
             # @!method initialize(return_method:, returned_at:, merchant_received_return_at: nil, other_explanation: nil, tracking_number: nil)
             #   Returned. Required if and only if `return_outcome` is `returned`.
             #
-            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned::ReturnMethod] Return method.
+            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotAsDescribed::Returned::ReturnMethod]
+            #     Return method.
             #
             #   @param returned_at [Date] Returned at.
             #
@@ -1935,32 +2002,40 @@ module Increase
                    -> { Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation }
 
           # @!method initialize(cancellation_outcome:, delivery_issue:, last_expected_receipt_at:, merchant_resolution_attempted:, purchase_info_and_explanation:, cardholder_cancellation_prior_to_expected_receipt: nil, delayed: nil, delivered_to_wrong_location: nil, merchant_cancellation: nil, no_cancellation: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived}
-          #   for more details.
-          #
           #   Merchandise not received. Required if and only if `category` is
           #   `consumer_merchandise_not_received`.
           #
-          #   @param cancellation_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CancellationOutcome] Cancellation outcome.
+          #   @param cancellation_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CancellationOutcome]
+          #     Cancellation outcome.
           #
-          #   @param delivery_issue [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveryIssue] Delivery issue.
+          #   @param delivery_issue [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveryIssue]
+          #     Delivery issue.
           #
           #   @param last_expected_receipt_at [Date] Last expected receipt at.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param purchase_info_and_explanation [String] Purchase information and explanation.
           #
-          #   @param cardholder_cancellation_prior_to_expected_receipt [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt] Cardholder cancellation prior to expected receipt. Required if and only if `canc
+          #   @param cardholder_cancellation_prior_to_expected_receipt [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::CardholderCancellationPriorToExpectedReceipt]
+          #     Cardholder cancellation prior to expected receipt. Required if and only if
+          #     `cancellation_outcome` is `cardholder_cancellation_prior_to_expected_receipt`.
           #
-          #   @param delayed [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed] Delayed. Required if and only if `delivery_issue` is `delayed`.
+          #   @param delayed [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed]
+          #     Delayed. Required if and only if `delivery_issue` is `delayed`.
           #
-          #   @param delivered_to_wrong_location [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation] Delivered to wrong location. Required if and only if `delivery_issue` is `delive
+          #   @param delivered_to_wrong_location [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::DeliveredToWrongLocation]
+          #     Delivered to wrong location. Required if and only if `delivery_issue` is
+          #     `delivered_to_wrong_location`.
           #
-          #   @param merchant_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation] Merchant cancellation. Required if and only if `cancellation_outcome` is `mercha
+          #   @param merchant_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::MerchantCancellation]
+          #     Merchant cancellation. Required if and only if `cancellation_outcome` is
+          #     `merchant_cancellation`.
           #
-          #   @param no_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation] No cancellation. Required if and only if `cancellation_outcome` is `no_cancellat
+          #   @param no_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::NoCancellation]
+          #     No cancellation. Required if and only if `cancellation_outcome` is
+          #     `no_cancellation`.
 
           # Cancellation outcome.
           #
@@ -2074,21 +2149,22 @@ module Increase
                      -> { Increase::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned }
 
             # @!method initialize(explanation:, return_outcome:, not_returned: nil, return_attempted: nil, returned: nil)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed}
-            #   for more details.
-            #
             #   Delayed. Required if and only if `delivery_issue` is `delayed`.
             #
             #   @param explanation [String] Explanation.
             #
-            #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnOutcome] Return outcome.
+            #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnOutcome]
+            #     Return outcome.
             #
-            #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
+            #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::NotReturned]
+            #     Not returned. Required if and only if `return_outcome` is `not_returned`.
             #
-            #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
+            #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::ReturnAttempted]
+            #     Return attempted. Required if and only if `return_outcome` is
+            #     `return_attempted`.
             #
-            #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned] Returned. Required if and only if `return_outcome` is `returned`.
+            #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerMerchandiseNotReceived::Delayed::Returned]
+            #     Returned. Required if and only if `return_outcome` is `returned`.
 
             # Return outcome.
             #
@@ -2219,7 +2295,8 @@ module Increase
           #
           #   @param explanation [String] Explanation.
           #
-          #   @param reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted::Reason] Reason.
+          #   @param reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerOriginalCreditTransactionNotAccepted::Reason]
+          #     Reason.
 
           # Reason.
           #
@@ -2301,30 +2378,33 @@ module Increase
           optional :returned, -> { Increase::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned }
 
           # @!method initialize(expected_at:, merchant_resolution_attempted:, purchase_info_and_quality_issue:, received_at:, return_outcome:, not_returned: nil, ongoing_negotiations: nil, return_attempted: nil, returned: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise}
-          #   for more details.
-          #
           #   Merchandise quality issue. Required if and only if `category` is
           #   `consumer_quality_merchandise`.
           #
           #   @param expected_at [Date] Expected at.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param purchase_info_and_quality_issue [String] Purchase information and quality issue.
           #
           #   @param received_at [Date] Received at.
           #
-          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnOutcome] Return outcome.
+          #   @param return_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnOutcome]
+          #     Return outcome.
           #
-          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned] Not returned. Required if and only if `return_outcome` is `not_returned`.
+          #   @param not_returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::NotReturned]
+          #     Not returned. Required if and only if `return_outcome` is `not_returned`.
           #
-          #   @param ongoing_negotiations [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations] Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
+          #   @param ongoing_negotiations [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations]
+          #     Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
           #
-          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted] Return attempted. Required if and only if `return_outcome` is `return_attempted`
+          #   @param return_attempted [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted]
+          #     Return attempted. Required if and only if `return_outcome` is
+          #     `return_attempted`.
           #
-          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned] Returned. Required if and only if `return_outcome` is `returned`.
+          #   @param returned [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned]
+          #     Returned. Required if and only if `return_outcome` is `returned`.
 
           # Merchant resolution attempted.
           #
@@ -2389,13 +2469,11 @@ module Increase
             required :started_at, Date
 
             # @!method initialize(explanation:, issuer_first_notified_at:, started_at:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::OngoingNegotiations}
-            #   for more details.
-            #
             #   Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
             #
-            #   @param explanation [String] Explanation of the previous ongoing negotiations between the cardholder and merc
+            #   @param explanation [String]
+            #     Explanation of the previous ongoing negotiations between the cardholder and
+            #     merchant.
             #
             #   @param issuer_first_notified_at [Date] Date the cardholder first notified the issuer of the dispute.
             #
@@ -2435,7 +2513,8 @@ module Increase
             #
             #   @param attempt_explanation [String] Attempt explanation.
             #
-            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted::AttemptReason] Attempt reason.
+            #   @param attempt_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::ReturnAttempted::AttemptReason]
+            #     Attempt reason.
             #
             #   @param attempted_at [Date] Attempted at.
             #
@@ -2503,7 +2582,8 @@ module Increase
             # @!method initialize(return_method:, returned_at:, merchant_received_return_at: nil, other_explanation: nil, tracking_number: nil)
             #   Returned. Required if and only if `return_outcome` is `returned`.
             #
-            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned::ReturnMethod] Return method.
+            #   @param return_method [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityMerchandise::Returned::ReturnMethod]
+            #     Return method.
             #
             #   @param returned_at [Date] Returned at.
             #
@@ -2595,26 +2675,29 @@ module Increase
                    enum: -> { Increase::CardDisputeCreateParams::Visa::ConsumerQualityServices::RestaurantFoodRelated }
 
           # @!method initialize(cardholder_cancellation:, non_fiat_currency_or_non_fungible_token_related_and_not_matching_description:, purchase_info_and_quality_issue:, services_received_at:, cardholder_paid_to_have_work_redone: nil, ongoing_negotiations: nil, restaurant_food_related: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices} for
-          #   more details.
-          #
           #   Services quality issue. Required if and only if `category` is
           #   `consumer_quality_services`.
           #
-          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation] Cardholder cancellation.
+          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation]
+          #     Cardholder cancellation.
           #
-          #   @param non_fiat_currency_or_non_fungible_token_related_and_not_matching_description [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::NonFiatCurrencyOrNonFungibleTokenRelatedAndNotMatchingDescription] Non-fiat currency or non-fungible token related and not matching description.
+          #   @param non_fiat_currency_or_non_fungible_token_related_and_not_matching_description [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::NonFiatCurrencyOrNonFungibleTokenRelatedAndNotMatchingDescription]
+          #     Non-fiat currency or non-fungible token related and not matching description.
           #
           #   @param purchase_info_and_quality_issue [String] Purchase information and quality issue.
           #
           #   @param services_received_at [Date] Services received at.
           #
-          #   @param cardholder_paid_to_have_work_redone [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderPaidToHaveWorkRedone] Cardholder paid to have work redone.
+          #   @param cardholder_paid_to_have_work_redone [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderPaidToHaveWorkRedone]
+          #     Cardholder paid to have work redone.
           #
-          #   @param ongoing_negotiations [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations] Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
+          #   @param ongoing_negotiations [Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations]
+          #     Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
           #
-          #   @param restaurant_food_related [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::RestaurantFoodRelated] Whether the dispute is related to the quality of food from an eating place or re
+          #   @param restaurant_food_related [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::RestaurantFoodRelated]
+          #     Whether the dispute is related to the quality of food from an eating place or
+          #     restaurant. Must be provided when Merchant Category Code (MCC) is 5812, 5813
+          #     or 5814.
 
           # @see Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices#cardholder_cancellation
           class CardholderCancellation < Increase::Internal::Type::BaseModel
@@ -2640,7 +2723,8 @@ module Increase
             # @!method initialize(accepted_by_merchant:, canceled_at:, reason:)
             #   Cardholder cancellation.
             #
-            #   @param accepted_by_merchant [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation::AcceptedByMerchant] Accepted by merchant.
+            #   @param accepted_by_merchant [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::CardholderCancellation::AcceptedByMerchant]
+            #     Accepted by merchant.
             #
             #   @param canceled_at [Date] Canceled at.
             #
@@ -2717,13 +2801,11 @@ module Increase
             required :started_at, Date
 
             # @!method initialize(explanation:, issuer_first_notified_at:, started_at:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerQualityServices::OngoingNegotiations}
-            #   for more details.
-            #
             #   Ongoing negotiations. Exclude if there is no evidence of ongoing negotiations.
             #
-            #   @param explanation [String] Explanation of the previous ongoing negotiations between the cardholder and merc
+            #   @param explanation [String]
+            #     Explanation of the previous ongoing negotiations between the cardholder and
+            #     merchant.
             #
             #   @param issuer_first_notified_at [Date] Date the cardholder first notified the issuer of the dispute.
             #
@@ -2787,9 +2869,11 @@ module Increase
           #   Services misrepresentation. Required if and only if `category` is
           #   `consumer_services_misrepresentation`.
           #
-          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation] Cardholder cancellation.
+          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation]
+          #     Cardholder cancellation.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param misrepresentation_explanation [String] Misrepresentation explanation.
           #
@@ -2821,7 +2905,8 @@ module Increase
             # @!method initialize(accepted_by_merchant:, canceled_at:, reason:)
             #   Cardholder cancellation.
             #
-            #   @param accepted_by_merchant [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation::AcceptedByMerchant] Accepted by merchant.
+            #   @param accepted_by_merchant [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesMisrepresentation::CardholderCancellation::AcceptedByMerchant]
+            #     Accepted by merchant.
             #
             #   @param canceled_at [Date] Canceled at.
             #
@@ -2893,11 +2978,13 @@ module Increase
           #   Services not as described. Required if and only if `category` is
           #   `consumer_services_not_as_described`.
           #
-          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation] Cardholder cancellation.
+          #   @param cardholder_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation]
+          #     Cardholder cancellation.
           #
           #   @param explanation [String] Explanation of what was ordered and was not as described.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param received_at [Date] Received at.
 
@@ -2925,7 +3012,8 @@ module Increase
             # @!method initialize(accepted_by_merchant:, canceled_at:, reason:)
             #   Cardholder cancellation.
             #
-            #   @param accepted_by_merchant [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation::AcceptedByMerchant] Accepted by merchant.
+            #   @param accepted_by_merchant [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotAsDescribed::CardholderCancellation::AcceptedByMerchant]
+            #     Accepted by merchant.
             #
             #   @param canceled_at [Date] Canceled at.
             #
@@ -3018,26 +3106,30 @@ module Increase
                    -> { Increase::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation }
 
           # @!method initialize(cancellation_outcome:, last_expected_receipt_at:, merchant_resolution_attempted:, purchase_info_and_explanation:, cardholder_cancellation_prior_to_expected_receipt: nil, merchant_cancellation: nil, no_cancellation: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived}
-          #   for more details.
-          #
           #   Services not received. Required if and only if `category` is
           #   `consumer_services_not_received`.
           #
-          #   @param cancellation_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CancellationOutcome] Cancellation outcome.
+          #   @param cancellation_outcome [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CancellationOutcome]
+          #     Cancellation outcome.
           #
           #   @param last_expected_receipt_at [Date] Last expected receipt at.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
           #   @param purchase_info_and_explanation [String] Purchase information and explanation.
           #
-          #   @param cardholder_cancellation_prior_to_expected_receipt [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt] Cardholder cancellation prior to expected receipt. Required if and only if `canc
+          #   @param cardholder_cancellation_prior_to_expected_receipt [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::CardholderCancellationPriorToExpectedReceipt]
+          #     Cardholder cancellation prior to expected receipt. Required if and only if
+          #     `cancellation_outcome` is `cardholder_cancellation_prior_to_expected_receipt`.
           #
-          #   @param merchant_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation] Merchant cancellation. Required if and only if `cancellation_outcome` is `mercha
+          #   @param merchant_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::MerchantCancellation]
+          #     Merchant cancellation. Required if and only if `cancellation_outcome` is
+          #     `merchant_cancellation`.
           #
-          #   @param no_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation] No cancellation. Required if and only if `cancellation_outcome` is `no_cancellat
+          #   @param no_cancellation [Increase::Models::CardDisputeCreateParams::Visa::ConsumerServicesNotReceived::NoCancellation]
+          #     No cancellation. Required if and only if `cancellation_outcome` is
+          #     `no_cancellation`.
 
           # Cancellation outcome.
           #
@@ -3216,21 +3308,24 @@ module Increase
                    -> { Increase::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans }
 
           # @!method initialize(error_reason:, merchant_resolution_attempted:, duplicate_transaction: nil, incorrect_amount: nil, paid_by_other_means: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::CardDisputeCreateParams::Visa::ProcessingError} for more
-          #   details.
-          #
           #   Processing error. Required if and only if `category` is `processing_error`.
           #
-          #   @param error_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::ErrorReason] Error reason.
+          #   @param error_reason [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::ErrorReason]
+          #     Error reason.
           #
-          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::MerchantResolutionAttempted] Merchant resolution attempted.
+          #   @param merchant_resolution_attempted [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::MerchantResolutionAttempted]
+          #     Merchant resolution attempted.
           #
-          #   @param duplicate_transaction [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction] Duplicate transaction. Required if and only if `error_reason` is `duplicate_tran
+          #   @param duplicate_transaction [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::DuplicateTransaction]
+          #     Duplicate transaction. Required if and only if `error_reason` is
+          #     `duplicate_transaction`.
           #
-          #   @param incorrect_amount [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount] Incorrect amount. Required if and only if `error_reason` is `incorrect_amount`.
+          #   @param incorrect_amount [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::IncorrectAmount]
+          #     Incorrect amount. Required if and only if `error_reason` is `incorrect_amount`.
           #
-          #   @param paid_by_other_means [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans] Paid by other means. Required if and only if `error_reason` is `paid_by_other_me
+          #   @param paid_by_other_means [Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans]
+          #     Paid by other means. Required if and only if `error_reason` is
+          #     `paid_by_other_means`.
 
           # Error reason.
           #
@@ -3315,7 +3410,8 @@ module Increase
             #   Paid by other means. Required if and only if `error_reason` is
             #   `paid_by_other_means`.
             #
-            #   @param other_form_of_payment_evidence [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans::OtherFormOfPaymentEvidence] Other form of payment evidence.
+            #   @param other_form_of_payment_evidence [Symbol, Increase::Models::CardDisputeCreateParams::Visa::ProcessingError::PaidByOtherMeans::OtherFormOfPaymentEvidence]
+            #     Other form of payment evidence.
             #
             #   @param other_transaction_id [String] Other transaction ID.
 

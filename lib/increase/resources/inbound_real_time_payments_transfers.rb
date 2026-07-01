@@ -7,7 +7,8 @@ module Increase
       #
       # @overload retrieve(inbound_real_time_payments_transfer_id, request_options: {})
       #
-      # @param inbound_real_time_payments_transfer_id [String] The identifier of the Inbound Real-Time Payments Transfer to get details for.
+      # @param inbound_real_time_payments_transfer_id [String]
+      #   The identifier of the Inbound Real-Time Payments Transfer to get details for.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -23,22 +24,25 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::InboundRealTimePaymentsTransferListParams} for more details.
-      #
       # List Inbound Real-Time Payments Transfers
       #
       # @overload list(account_id: nil, account_number_id: nil, created_at: nil, cursor: nil, limit: nil, request_options: {})
       #
-      # @param account_id [String] Filter Inbound Real-Time Payments Transfers to those belonging to the specified
+      # @param account_id [String]
+      #   Filter Inbound Real-Time Payments Transfers to those belonging to the specified
+      #   Account.
       #
-      # @param account_number_id [String] Filter Inbound Real-Time Payments Transfers to ones belonging to the specified A
+      # @param account_number_id [String]
+      #   Filter Inbound Real-Time Payments Transfers to ones belonging to the specified
+      #   Account Number.
       #
       # @param created_at [Increase::Models::InboundRealTimePaymentsTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -23,20 +23,21 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardPurchaseSupplementListParams} for more details.
-      #
       # List Card Purchase Supplements
       #
       # @overload list(card_payment_id: nil, created_at: nil, cursor: nil, limit: nil, request_options: {})
       #
-      # @param card_payment_id [String] Filter Card Purchase Supplements to ones belonging to the specified Card Payment
+      # @param card_payment_id [String]
+      #   Filter Card Purchase Supplements to ones belonging to the specified Card
+      #   Payment.
       #
       # @param created_at [Increase::Models::CardPurchaseSupplementListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

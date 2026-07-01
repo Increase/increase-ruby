@@ -11,9 +11,11 @@ module Increase
         #
         # @overload complete(real_time_payments_transfer_id, rejection: nil, request_options: {})
         #
-        # @param real_time_payments_transfer_id [String] The identifier of the Real-Time Payments Transfer you wish to complete.
+        # @param real_time_payments_transfer_id [String]
+        #   The identifier of the Real-Time Payments Transfer you wish to complete.
         #
-        # @param rejection [Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection] If set, the simulation will reject the transfer.
+        # @param rejection [Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection]
+        #   If set, the simulation will reject the transfer.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

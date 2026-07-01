@@ -39,21 +39,25 @@ module Increase
       required :type, enum: -> { Increase::EntitySupplementalDocument::Type }
 
       # @!method initialize(created_at:, entity_id:, file_id:, idempotency_key:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EntitySupplementalDocument} for more details.
-      #
       #   Supplemental Documents are uploaded files connected to an Entity during
       #   onboarding. Not all programs require supplemental documents.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Supplem
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
+      #     Supplemental Document was created.
       #
       #   @param entity_id [String] The Entity the supplemental document is attached to.
       #
       #   @param file_id [String] The File containing the document.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param type [Symbol, Increase::Models::EntitySupplementalDocument::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::EntitySupplementalDocument::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `entity_supplemental_document`.
 
       # A constant representing the object's type. For this resource it will always be
       # `entity_supplemental_document`.

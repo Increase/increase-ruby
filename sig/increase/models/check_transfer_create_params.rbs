@@ -117,11 +117,11 @@ module Increase
         {
           mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
+          payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           recipient_name: String,
           attachment_file_id: String,
           check_voucher_image_file_id: String,
           note: String,
-          payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransferCreateParams::PhysicalCheck::Signature
@@ -131,6 +131,8 @@ module Increase
         attr_accessor mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress
 
         attr_accessor memo: String
+
+        attr_accessor payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
 
         attr_accessor recipient_name: String
 
@@ -145,12 +147,6 @@ module Increase
         attr_reader note: String?
 
         def note=: (String) -> String
-
-        attr_reader payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]?
-
-        def payer=: (
-          ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
-        ) -> ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
 
         attr_reader return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress?
 
@@ -173,11 +169,11 @@ module Increase
         def initialize: (
           mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
+          payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           recipient_name: String,
           ?attachment_file_id: String,
           ?check_voucher_image_file_id: String,
           ?note: String,
-          ?payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           ?return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           ?shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           ?signature: Increase::CheckTransferCreateParams::PhysicalCheck::Signature
@@ -186,11 +182,11 @@ module Increase
         def to_hash: -> {
           mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
+          payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           recipient_name: String,
           attachment_file_id: String,
           check_voucher_image_file_id: String,
           note: String,
-          payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransferCreateParams::PhysicalCheck::Signature

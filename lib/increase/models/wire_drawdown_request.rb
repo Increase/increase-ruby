@@ -136,9 +136,6 @@ module Increase
       required :unstructured_remittance_information, String
 
       # @!method initialize(id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, end_to_end_identification:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::WireDrawdownRequest} for more details.
-      #
       #   Wire drawdown requests enable you to request that someone else send you a wire.
       #   Because there is nuance to making sure your counterparty's bank processes these
       #   correctly, we ask that you reach out to
@@ -148,17 +145,23 @@ module Increase
       #
       #   @param id [String] The Wire drawdown request identifier.
       #
-      #   @param account_number_id [String] The Account Number to which the debtor—the recipient of this request—is being re
+      #   @param account_number_id [String]
+      #     The Account Number to which the debtor—the recipient of this request—is being
+      #     requested to send funds.
       #
       #   @param amount [Integer] The amount being requested in cents.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the wire drawdown request was created.
       #
       #   @param creditor_address [Increase::Models::WireDrawdownRequest::CreditorAddress] The creditor's address.
       #
       #   @param creditor_name [String] The creditor's name.
       #
-      #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
+      #   @param currency [String]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
+      #     requested. Will always be "USD".
       #
       #   @param debtor_account_number [String] The debtor's account number.
       #
@@ -170,21 +173,37 @@ module Increase
       #
       #   @param debtor_routing_number [String] The debtor's routing number.
       #
-      #   @param end_to_end_identification [String, nil] A free-form reference string set by the sender, to be mirrored back in the subse
+      #   @param end_to_end_identification [String, nil]
+      #     A free-form reference string set by the sender, to be mirrored back in the
+      #     subsequent wire transfer.
       #
-      #   @param fulfillment_inbound_wire_transfer_id [String, nil] If the recipient fulfills the drawdown request by sending funds, then this will
+      #   @param fulfillment_inbound_wire_transfer_id [String, nil]
+      #     If the recipient fulfills the drawdown request by sending funds, then this will
+      #     be the identifier of the corresponding Transaction.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param status [Symbol, Increase::Models::WireDrawdownRequest::Status] The lifecycle status of the drawdown request.
+      #   @param status [Symbol, Increase::Models::WireDrawdownRequest::Status]
+      #     The lifecycle status of the drawdown request.
       #
-      #   @param submission [Increase::Models::WireDrawdownRequest::Submission, nil] After the drawdown request is submitted to Fedwire, this will contain supplement
+      #   @param submission [Increase::Models::WireDrawdownRequest::Submission, nil]
+      #     After the drawdown request is submitted to Fedwire, this will contain
+      #     supplemental details.
       #
-      #   @param type [Symbol, Increase::Models::WireDrawdownRequest::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::WireDrawdownRequest::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `wire_drawdown_request`.
       #
-      #   @param unique_end_to_end_transaction_reference [String, nil] The unique end-to-end transaction reference ([UETR](https://www.swift.com/paymen
+      #   @param unique_end_to_end_transaction_reference [String, nil]
+      #     The unique end-to-end transaction reference
+      #     ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #     of the drawdown request.
       #
-      #   @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the drawdown request.
+      #   @param unstructured_remittance_information [String]
+      #     Remittance information the debtor will see as part of the drawdown request.
 
       # @see Increase::Models::WireDrawdownRequest#creditor_address
       class CreditorAddress < Increase::Internal::Type::BaseModel
@@ -227,14 +246,14 @@ module Increase
         required :state, String, nil?: true
 
         # @!method initialize(city:, country:, line1:, line2:, postal_code:, state:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireDrawdownRequest::CreditorAddress} for more details.
-        #
         #   The creditor's address.
         #
         #   @param city [String] The city, district, town, or village of the address.
         #
-        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #   @param country [String]
+        #     The two-letter
+        #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #     the country of the address.
         #
         #   @param line1 [String] The first line of the address.
         #
@@ -286,14 +305,14 @@ module Increase
         required :state, String, nil?: true
 
         # @!method initialize(city:, country:, line1:, line2:, postal_code:, state:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireDrawdownRequest::DebtorAddress} for more details.
-        #
         #   The debtor's address.
         #
         #   @param city [String] The city, district, town, or village of the address.
         #
-        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #   @param country [String]
+        #     The two-letter
+        #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #     the country of the address.
         #
         #   @param line1 [String] The first line of the address.
         #
@@ -336,13 +355,12 @@ module Increase
         required :input_message_accountability_data, String
 
         # @!method initialize(input_message_accountability_data:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::WireDrawdownRequest::Submission} for more details.
-        #
         #   After the drawdown request is submitted to Fedwire, this will contain
         #   supplemental details.
         #
-        #   @param input_message_accountability_data [String] The input message accountability data (IMAD) uniquely identifying the submission
+        #   @param input_message_accountability_data [String]
+        #     The input message accountability data (IMAD) uniquely identifying the submission
+        #     with Fedwire.
       end
 
       # A constant representing the object's type. For this resource it will always be

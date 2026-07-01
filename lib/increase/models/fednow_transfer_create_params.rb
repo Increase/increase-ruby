@@ -75,28 +75,31 @@ module Increase
       optional :routing_number, String
 
       # @!method initialize(amount:, creditor_name:, debtor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, creditor_address: nil, debtor_address: nil, external_account_id: nil, require_approval: nil, routing_number: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::FednowTransferCreateParams} for more details.
-      #
       #   @param amount [Integer] The amount, in minor units, to send to the creditor.
       #
       #   @param creditor_name [String] The creditor's name.
       #
       #   @param debtor_name [String] The debtor's name.
       #
-      #   @param source_account_number_id [String] The Account Number to include in the transfer as the debtor's account number.
+      #   @param source_account_number_id [String]
+      #     The Account Number to include in the transfer as the debtor's account number.
       #
-      #   @param unstructured_remittance_information [String] Unstructured remittance information to include in the transfer.
+      #   @param unstructured_remittance_information [String]
+      #     Unstructured remittance information to include in the transfer.
       #
       #   @param account_number [String] The creditor's account number.
       #
-      #   @param creditor_address [Increase::Models::FednowTransferCreateParams::CreditorAddress] The creditor's address.
+      #   @param creditor_address [Increase::Models::FednowTransferCreateParams::CreditorAddress]
+      #     The creditor's address.
       #
       #   @param debtor_address [Increase::Models::FednowTransferCreateParams::DebtorAddress] The debtor's address.
       #
-      #   @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      #   @param external_account_id [String]
+      #     The ID of an External Account to initiate a transfer to. If this parameter is
+      #     provided, `account_number` and `routing_number` must be absent.
       #
-      #   @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      #   @param require_approval [Boolean]
+      #     Whether the transfer requires explicit approval via the dashboard or API.
       #
       #   @param routing_number [String] The creditor's bank account routing number.
       #

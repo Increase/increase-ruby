@@ -15,7 +15,8 @@ module Increase
         required :entity_onboarding_session_id, String
 
         # @!method initialize(entity_onboarding_session_id:, request_options: {})
-        #   @param entity_onboarding_session_id [String] The identifier of the Entity Onboarding Session you wish to submit.
+        #   @param entity_onboarding_session_id [String]
+        #     The identifier of the Entity Onboarding Session you wish to submit.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

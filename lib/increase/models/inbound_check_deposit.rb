@@ -139,51 +139,76 @@ module Increase
       required :type, enum: -> { Increase::InboundCheckDeposit::Type }
 
       # @!method initialize(id:, accepted_at:, account_id:, account_number_id:, adjustments:, amount:, back_image_file_id:, bank_of_first_deposit_routing_number:, check_number:, check_transfer_id:, created_at:, currency:, declined_at:, declined_transaction_id:, deposit_return:, front_image_file_id:, payee_name_analysis:, status:, transaction_id:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundCheckDeposit} for more details.
-      #
       #   Inbound Check Deposits are records of third-parties attempting to deposit checks
       #   against your account.
       #
       #   @param id [String] The deposit's identifier.
       #
-      #   @param accepted_at [Time, nil] If the Inbound Check Deposit was accepted, the [ISO 8601](https://en.wikipedia.o
+      #   @param accepted_at [Time, nil]
+      #     If the Inbound Check Deposit was accepted, the
+      #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which this
+      #     took place.
       #
       #   @param account_id [String] The Account the check is being deposited against.
       #
       #   @param account_number_id [String, nil] The Account Number the check is being deposited against.
       #
-      #   @param adjustments [Array<Increase::Models::InboundCheckDeposit::Adjustment>] If the deposit or the return was adjusted by the sending institution, this will
+      #   @param adjustments [Array<Increase::Models::InboundCheckDeposit::Adjustment>]
+      #     If the deposit or the return was adjusted by the sending institution, this will
+      #     contain details of the adjustments.
       #
       #   @param amount [Integer] The deposited amount in USD cents.
       #
       #   @param back_image_file_id [String, nil] The ID for the File containing the image of the back of the check.
       #
-      #   @param bank_of_first_deposit_routing_number [String, nil] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the ban
+      #   @param bank_of_first_deposit_routing_number [String, nil]
+      #     The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
+      #     bank depositing this check. In some rare cases, this is not transmitted via
+      #     Check21 and the value will be null.
       #
       #   @param check_number [String, nil] The check number printed on the check being deposited.
       #
-      #   @param check_transfer_id [String, nil] If this deposit is for an existing Check Transfer, the identifier of that Check
+      #   @param check_transfer_id [String, nil]
+      #     If this deposit is for an existing Check Transfer, the identifier of that Check
+      #     Transfer.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the deposit was attempted.
       #
-      #   @param currency [Symbol, Increase::Models::InboundCheckDeposit::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the deposit.
+      #   @param currency [Symbol, Increase::Models::InboundCheckDeposit::Currency]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the deposit.
       #
-      #   @param declined_at [Time, nil] If the Inbound Check Deposit was declined, the [ISO 8601](https://en.wikipedia.o
+      #   @param declined_at [Time, nil]
+      #     If the Inbound Check Deposit was declined, the
+      #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which this
+      #     took place.
       #
-      #   @param declined_transaction_id [String, nil] If the deposit attempt has been rejected, the identifier of the Declined Transac
+      #   @param declined_transaction_id [String, nil]
+      #     If the deposit attempt has been rejected, the identifier of the Declined
+      #     Transaction object created as a result of the failed deposit.
       #
-      #   @param deposit_return [Increase::Models::InboundCheckDeposit::DepositReturn, nil] If you requested a return of this deposit, this will contain details of the retu
+      #   @param deposit_return [Increase::Models::InboundCheckDeposit::DepositReturn, nil]
+      #     If you requested a return of this deposit, this will contain details of the
+      #     return.
       #
-      #   @param front_image_file_id [String, nil] The ID for the File containing the image of the front of the check.
+      #   @param front_image_file_id [String, nil]
+      #     The ID for the File containing the image of the front of the check.
       #
-      #   @param payee_name_analysis [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis] Whether the details on the check match the recipient name of the check transfer.
+      #   @param payee_name_analysis [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis]
+      #     Whether the details on the check match the recipient name of the check transfer.
+      #     This is an optional feature, contact sales to enable.
       #
-      #   @param status [Symbol, Increase::Models::InboundCheckDeposit::Status] The status of the Inbound Check Deposit.
+      #   @param status [Symbol, Increase::Models::InboundCheckDeposit::Status]
+      #     The status of the Inbound Check Deposit.
       #
-      #   @param transaction_id [String, nil] If the deposit attempt has been accepted, the identifier of the Transaction obje
+      #   @param transaction_id [String, nil]
+      #     If the deposit attempt has been accepted, the identifier of the Transaction
+      #     object created as a result of the successful deposit.
       #
-      #   @param type [Symbol, Increase::Models::InboundCheckDeposit::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::InboundCheckDeposit::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `inbound_check_deposit`.
 
       class Adjustment < Increase::Internal::Type::BaseModel
         # @!attribute adjusted_at
@@ -215,7 +240,8 @@ module Increase
         #
         #   @param amount [Integer] The amount of the adjustment.
         #
-        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason] The reason for the adjustment.
+        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason]
+        #     The reason for the adjustment.
         #
         #   @param transaction_id [String] The id of the transaction for the adjustment.
 
@@ -273,7 +299,8 @@ module Increase
         #   If you requested a return of this deposit, this will contain details of the
         #   return.
         #
-        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::DepositReturn::Reason] The reason the deposit was returned.
+        #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::DepositReturn::Reason]
+        #     The reason the deposit was returned.
         #
         #   @param returned_at [Time] The time at which the deposit was returned.
         #

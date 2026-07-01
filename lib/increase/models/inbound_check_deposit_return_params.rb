@@ -22,7 +22,8 @@ module Increase
       # @!method initialize(inbound_check_deposit_id:, reason:, request_options: {})
       #   @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to return.
       #
-      #   @param reason [Symbol, Increase::Models::InboundCheckDepositReturnParams::Reason] The reason to return the Inbound Check Deposit.
+      #   @param reason [Symbol, Increase::Models::InboundCheckDepositReturnParams::Reason]
+      #     The reason to return the Inbound Check Deposit.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

@@ -15,10 +15,9 @@ module Increase
       required :entity_id, String
 
       # @!method initialize(entity_id:, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EntityArchiveParams} for more details.
-      #
-      #   @param entity_id [String] The identifier of the Entity to archive. Any accounts associated with an entity
+      #   @param entity_id [String]
+      #     The identifier of the Entity to archive. Any accounts associated with an entity
+      #     must be closed before the entity can be archived.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

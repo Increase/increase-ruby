@@ -4,10 +4,6 @@ module Increase
   module Resources
     class Simulations
       class CardAuthentications
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::CardAuthenticationCreateParams} for more
-        # details.
-        #
         # Simulates a Card Authentication attempt on a [Card](#cards). The attempt always
         # results in a [Card Payment](#card_payments) being created, either with a status
         # that allows further action or a terminal failed status.
@@ -16,13 +12,19 @@ module Increase
         #
         # @param card_id [String] The identifier of the Card to be authorized.
         #
-        # @param category [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::Category] The category of the card authentication attempt.
+        # @param category [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::Category]
+        #   The category of the card authentication attempt.
         #
-        # @param device_channel [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::DeviceChannel] The device channel of the card authentication attempt.
+        # @param device_channel [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::DeviceChannel]
+        #   The device channel of the card authentication attempt.
         #
-        # @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+        # @param merchant_acceptor_id [String]
+        #   The merchant identifier (commonly abbreviated as MID) of the merchant the card
+        #   is transacting with.
         #
-        # @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+        # @param merchant_category_code [String]
+        #   The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+        #   card is transacting with.
         #
         # @param merchant_country [String] The country the merchant resides in.
         #

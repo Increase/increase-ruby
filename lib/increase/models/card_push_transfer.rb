@@ -239,62 +239,101 @@ module Increase
       required :type, enum: -> { Increase::CardPushTransfer::Type }
 
       # @!method initialize(id:, acceptance:, account_id:, approval:, business_application_identifier:, cancellation:, card_token_id:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_legal_business_name:, merchant_name:, merchant_name_prefix:, merchant_postal_code:, merchant_state:, merchant_street_address:, presentment_amount:, recipient_address_city:, recipient_address_line1:, recipient_address_postal_code:, recipient_address_state:, recipient_name:, route:, sender_address_city:, sender_address_line1:, sender_address_postal_code:, sender_address_state:, sender_name:, source_account_number_id:, status:, submission:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardPushTransfer} for more details.
-      #
       #   Card Push Transfers send funds to a recipient's payment card in real-time.
       #
       #   @param id [String] The Card Push Transfer's identifier.
       #
-      #   @param acceptance [Increase::Models::CardPushTransfer::Acceptance, nil] If the transfer is accepted by the recipient bank, this will contain supplementa
+      #   @param acceptance [Increase::Models::CardPushTransfer::Acceptance, nil]
+      #     If the transfer is accepted by the recipient bank, this will contain
+      #     supplemental details.
       #
       #   @param account_id [String] The Account from which the transfer was sent.
       #
-      #   @param approval [Increase::Models::CardPushTransfer::Approval, nil] If your account requires approvals for transfers and the transfer was approved,
+      #   @param approval [Increase::Models::CardPushTransfer::Approval, nil]
+      #     If your account requires approvals for transfers and the transfer was approved,
+      #     this will contain details of the approval.
       #
-      #   @param business_application_identifier [Symbol, Increase::Models::CardPushTransfer::BusinessApplicationIdentifier] The Business Application Identifier describes the type of transaction being perf
+      #   @param business_application_identifier [Symbol, Increase::Models::CardPushTransfer::BusinessApplicationIdentifier]
+      #     The Business Application Identifier describes the type of transaction being
+      #     performed. Your program must be approved for the specified Business Application
+      #     Identifier in order to use it.
       #
-      #   @param cancellation [Increase::Models::CardPushTransfer::Cancellation, nil] If your account requires approvals for transfers and the transfer was not approv
+      #   @param cancellation [Increase::Models::CardPushTransfer::Cancellation, nil]
+      #     If your account requires approvals for transfers and the transfer was not
+      #     approved, this will contain details of the cancellation.
       #
       #   @param card_token_id [String] The ID of the Card Token that was used to validate the card.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the transfer was created.
       #
-      #   @param created_by [Increase::Models::CardPushTransfer::CreatedBy, nil] What object created the transfer, either via the API or the dashboard.
+      #   @param created_by [Increase::Models::CardPushTransfer::CreatedBy, nil]
+      #     What object created the transfer, either via the API or the dashboard.
       #
-      #   @param decline [Increase::Models::CardPushTransfer::Decline, nil] If the transfer is rejected by the card network or the destination financial ins
+      #   @param decline [Increase::Models::CardPushTransfer::Decline, nil]
+      #     If the transfer is rejected by the card network or the destination financial
+      #     institution, this will contain supplemental details.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param merchant_category_code [String] The merchant category code (MCC) of the merchant (generally your business) sendi
+      #   @param merchant_category_code [String]
+      #     The merchant category code (MCC) of the merchant (generally your business)
+      #     sending the transfer. This is a four-digit code that describes the type of
+      #     business or service provided by the merchant. Your program must be approved for
+      #     the specified MCC in order to use it.
       #
-      #   @param merchant_city_name [String] The city name of the merchant (generally your business) sending the transfer.
+      #   @param merchant_city_name [String]
+      #     The city name of the merchant (generally your business) sending the transfer.
       #
-      #   @param merchant_legal_business_name [String, nil] The legal business name of the merchant (generally your business) sending the tr
+      #   @param merchant_legal_business_name [String, nil]
+      #     The legal business name of the merchant (generally your business) sending the
+      #     transfer.
       #
-      #   @param merchant_name [String] The merchant name shows up as the statement descriptor for the transfer. This is
+      #   @param merchant_name [String]
+      #     The merchant name shows up as the statement descriptor for the transfer. This is
+      #     typically the name of your business or organization.
       #
-      #   @param merchant_name_prefix [String] For certain Business Application Identifiers, the statement descriptor is `merch
+      #   @param merchant_name_prefix [String]
+      #     For certain Business Application Identifiers, the statement descriptor is
+      #     `merchant_name_prefix*sender_name`, where the `merchant_name_prefix` is a one to
+      #     four character prefix that identifies the merchant.
       #
-      #   @param merchant_postal_code [String] The postal code of the merchant (generally your business) sending the transfer.
+      #   @param merchant_postal_code [String]
+      #     The postal code of the merchant (generally your business) sending the transfer.
       #
       #   @param merchant_state [String] The state of the merchant (generally your business) sending the transfer.
       #
-      #   @param merchant_street_address [String, nil] The street address of the merchant (generally your business) sending the transfe
+      #   @param merchant_street_address [String, nil]
+      #     The street address of the merchant (generally your business) sending the
+      #     transfer.
       #
-      #   @param presentment_amount [Increase::Models::CardPushTransfer::PresentmentAmount] The amount that was transferred. The receiving bank will have converted this to
+      #   @param presentment_amount [Increase::Models::CardPushTransfer::PresentmentAmount]
+      #     The amount that was transferred. The receiving bank will have converted this to
+      #     the cardholder's currency. The amount that is applied to your Increase account
+      #     matches the currency of your account.
       #
-      #   @param recipient_address_city [String, nil] The city of the recipient. Required if the card is issued in Canada.
+      #   @param recipient_address_city [String, nil]
+      #     The city of the recipient. Required if the card is issued in Canada.
       #
-      #   @param recipient_address_line1 [String, nil] The first line of the recipient's address. Required if the card is issued in Can
+      #   @param recipient_address_line1 [String, nil]
+      #     The first line of the recipient's address. Required if the card is issued in
+      #     Canada.
       #
-      #   @param recipient_address_postal_code [String, nil] The postal code of the recipient. Required if the card is issued in Canada.
+      #   @param recipient_address_postal_code [String, nil]
+      #     The postal code of the recipient. Required if the card is issued in Canada.
       #
-      #   @param recipient_address_state [String, nil] The state or province of the recipient. Required if the card is issued in Canada
+      #   @param recipient_address_state [String, nil]
+      #     The state or province of the recipient. Required if the card is issued in
+      #     Canada.
       #
       #   @param recipient_name [String] The name of the funds recipient.
       #
-      #   @param route [Symbol, Increase::Models::CardPushTransfer::Route] The card network route used for the transfer.
+      #   @param route [Symbol, Increase::Models::CardPushTransfer::Route]
+      #     The card network route used for the transfer.
       #
       #   @param sender_address_city [String] The city of the sender.
       #
@@ -306,13 +345,18 @@ module Increase
       #
       #   @param sender_name [String] The name of the funds originator.
       #
-      #   @param source_account_number_id [String] The Account Number the recipient will see as having sent the transfer.
+      #   @param source_account_number_id [String]
+      #     The Account Number the recipient will see as having sent the transfer.
       #
       #   @param status [Symbol, Increase::Models::CardPushTransfer::Status] The lifecycle status of the transfer.
       #
-      #   @param submission [Increase::Models::CardPushTransfer::Submission, nil] After the transfer is submitted to the card network, this will contain supplemen
+      #   @param submission [Increase::Models::CardPushTransfer::Submission, nil]
+      #     After the transfer is submitted to the card network, this will contain
+      #     supplemental details.
       #
-      #   @param type [Symbol, Increase::Models::CardPushTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardPushTransfer::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card_push_transfer`.
 
       # @see Increase::Models::CardPushTransfer#acceptance
       class Acceptance < Increase::Internal::Type::BaseModel
@@ -350,19 +394,21 @@ module Increase
         required :settlement_amount, Integer
 
         # @!method initialize(accepted_at:, authorization_identification_response:, card_verification_value2_result:, network_transaction_identifier:, settlement_amount:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPushTransfer::Acceptance} for more details.
-        #
         #   If the transfer is accepted by the recipient bank, this will contain
         #   supplemental details.
         #
-        #   @param accepted_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param accepted_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer was accepted by the issuing bank.
         #
-        #   @param authorization_identification_response [String] The authorization identification response from the issuing bank.
+        #   @param authorization_identification_response [String]
+        #     The authorization identification response from the issuing bank.
         #
-        #   @param card_verification_value2_result [Symbol, Increase::Models::CardPushTransfer::Acceptance::CardVerificationValue2Result, nil] The result of the Card Verification Value 2 match.
+        #   @param card_verification_value2_result [Symbol, Increase::Models::CardPushTransfer::Acceptance::CardVerificationValue2Result, nil]
+        #     The result of the Card Verification Value 2 match.
         #
-        #   @param network_transaction_identifier [String, nil] A unique identifier for the transaction on the card network.
+        #   @param network_transaction_identifier [String, nil]
+        #     A unique identifier for the transaction on the card network.
         #
         #   @param settlement_amount [Integer] The transfer amount in USD cents.
 
@@ -400,15 +446,16 @@ module Increase
         required :approved_by, String, nil?: true
 
         # @!method initialize(approved_at:, approved_by:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPushTransfer::Approval} for more details.
-        #
         #   If your account requires approvals for transfers and the transfer was approved,
         #   this will contain details of the approval.
         #
-        #   @param approved_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param approved_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer was approved.
         #
-        #   @param approved_by [String, nil] If the Transfer was approved by a user in the dashboard, the email address of th
+        #   @param approved_by [String, nil]
+        #     If the Transfer was approved by a user in the dashboard, the email address of
+        #     that user.
       end
 
       # The Business Application Identifier describes the type of transaction being
@@ -482,15 +529,16 @@ module Increase
         required :canceled_by, String, nil?: true
 
         # @!method initialize(canceled_at:, canceled_by:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPushTransfer::Cancellation} for more details.
-        #
         #   If your account requires approvals for transfers and the transfer was not
         #   approved, this will contain details of the cancellation.
         #
-        #   @param canceled_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param canceled_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the Transfer was canceled.
         #
-        #   @param canceled_by [String, nil] If the Transfer was canceled by a user in the dashboard, the email address of th
+        #   @param canceled_by [String, nil]
+        #     If the Transfer was canceled by a user in the dashboard, the email address of
+        #     that user.
       end
 
       # @see Increase::Models::CardPushTransfer#created_by
@@ -526,13 +574,17 @@ module Increase
         # @!method initialize(category:, api_key: nil, oauth_application: nil, user: nil)
         #   What object created the transfer, either via the API or the dashboard.
         #
-        #   @param category [Symbol, Increase::Models::CardPushTransfer::CreatedBy::Category] The type of object that created this transfer.
+        #   @param category [Symbol, Increase::Models::CardPushTransfer::CreatedBy::Category]
+        #     The type of object that created this transfer.
         #
-        #   @param api_key [Increase::Models::CardPushTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
+        #   @param api_key [Increase::Models::CardPushTransfer::CreatedBy::APIKey, nil]
+        #     If present, details about the API key that created the transfer.
         #
-        #   @param oauth_application [Increase::Models::CardPushTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
+        #   @param oauth_application [Increase::Models::CardPushTransfer::CreatedBy::OAuthApplication, nil]
+        #     If present, details about the OAuth Application that created the transfer.
         #
-        #   @param user [Increase::Models::CardPushTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
+        #   @param user [Increase::Models::CardPushTransfer::CreatedBy::User, nil]
+        #     If present, details about the User that created the transfer.
 
         # The type of object that created this transfer.
         #
@@ -618,17 +670,18 @@ module Increase
         required :reason, enum: -> { Increase::CardPushTransfer::Decline::Reason }
 
         # @!method initialize(declined_at:, network_transaction_identifier:, reason:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPushTransfer::Decline} for more details.
-        #
         #   If the transfer is rejected by the card network or the destination financial
         #   institution, this will contain supplemental details.
         #
-        #   @param declined_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param declined_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer declined.
         #
-        #   @param network_transaction_identifier [String, nil] A unique identifier for the transaction on the card network.
+        #   @param network_transaction_identifier [String, nil]
+        #     A unique identifier for the transaction on the card network.
         #
-        #   @param reason [Symbol, Increase::Models::CardPushTransfer::Decline::Reason] The reason why the transfer was declined.
+        #   @param reason [Symbol, Increase::Models::CardPushTransfer::Decline::Reason]
+        #     The reason why the transfer was declined.
 
         # The reason why the transfer was declined.
         #
@@ -847,16 +900,16 @@ module Increase
         required :value, String
 
         # @!method initialize(currency:, value:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPushTransfer::PresentmentAmount} for more details.
-        #
         #   The amount that was transferred. The receiving bank will have converted this to
         #   the cardholder's currency. The amount that is applied to your Increase account
         #   matches the currency of your account.
         #
-        #   @param currency [Symbol, Increase::Models::CardPushTransfer::PresentmentAmount::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
+        #   @param currency [Symbol, Increase::Models::CardPushTransfer::PresentmentAmount::Currency]
+        #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
         #
-        #   @param value [String] The amount value represented as a string containing a decimal number in major un
+        #   @param value [String]
+        #     The amount value represented as a string containing a decimal number in major
+        #     units (so e.g., "12.34" for $12.34).
 
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code.
         #
@@ -1432,19 +1485,22 @@ module Increase
         required :trace_number, String
 
         # @!method initialize(retrieval_reference_number:, sender_reference:, submitted_at:, trace_number:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardPushTransfer::Submission} for more details.
-        #
         #   After the transfer is submitted to the card network, this will contain
         #   supplemental details.
         #
-        #   @param retrieval_reference_number [String] A 12-digit retrieval reference number that identifies the transfer. Usually a co
+        #   @param retrieval_reference_number [String]
+        #     A 12-digit retrieval reference number that identifies the transfer. Usually a
+        #     combination of a timestamp and the trace number.
         #
         #   @param sender_reference [String] A unique reference for the transfer.
         #
-        #   @param submitted_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param submitted_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer was submitted to the card network.
         #
-        #   @param trace_number [String] A 6-digit trace number that identifies the transfer within a small window of tim
+        #   @param trace_number [String]
+        #     A 6-digit trace number that identifies the transfer within a small window of
+        #     time.
       end
 
       # A constant representing the object's type. For this resource it will always be

@@ -21,12 +21,11 @@ module Increase
       optional :physical_card_id, String
 
       # @!method initialize(card_id:, physical_card_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardCreateDetailsIframeParams} for more details.
-      #
       #   @param card_id [String] The identifier of the Card to create an iframe for.
       #
-      #   @param physical_card_id [String] The identifier of the Physical Card to create an iframe for. This will inform th
+      #   @param physical_card_id [String]
+      #     The identifier of the Physical Card to create an iframe for. This will inform
+      #     the appearance of the card rendered in the iframe.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

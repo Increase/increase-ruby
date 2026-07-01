@@ -76,9 +76,6 @@ module Increase
       required :type, enum: -> { Increase::AccountNumber::Type }
 
       # @!method initialize(id:, account_id:, account_number:, created_at:, idempotency_key:, inbound_ach:, inbound_checks:, name:, routing_number:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::AccountNumber} for more details.
-      #
       #   Each account can have multiple account and routing numbers. We recommend that
       #   you use a set per vendor. This is similar to how you use different passwords for
       #   different websites. Account numbers can also be used to seamlessly reconcile
@@ -91,21 +88,32 @@ module Increase
       #
       #   @param account_number [String] The account number.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #     Number was created.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param inbound_ach [Increase::Models::AccountNumber::InboundACH] Properties related to how this Account Number handles inbound ACH transfers.
+      #   @param inbound_ach [Increase::Models::AccountNumber::InboundACH]
+      #     Properties related to how this Account Number handles inbound ACH transfers.
       #
-      #   @param inbound_checks [Increase::Models::AccountNumber::InboundChecks] Properties related to how this Account Number should handle inbound check withdr
+      #   @param inbound_checks [Increase::Models::AccountNumber::InboundChecks]
+      #     Properties related to how this Account Number should handle inbound check
+      #     withdrawals.
       #
       #   @param name [String] The name you choose for the Account Number.
       #
       #   @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN).
       #
-      #   @param status [Symbol, Increase::Models::AccountNumber::Status] This indicates if payments can be made to the Account Number.
+      #   @param status [Symbol, Increase::Models::AccountNumber::Status]
+      #     This indicates if payments can be made to the Account Number.
       #
-      #   @param type [Symbol, Increase::Models::AccountNumber::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::AccountNumber::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `account_number`.
 
       # @see Increase::Models::AccountNumber#inbound_ach
       class InboundACH < Increase::Internal::Type::BaseModel
@@ -117,12 +125,11 @@ module Increase
         required :debit_status, enum: -> { Increase::AccountNumber::InboundACH::DebitStatus }
 
         # @!method initialize(debit_status:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::AccountNumber::InboundACH} for more details.
-        #
         #   Properties related to how this Account Number handles inbound ACH transfers.
         #
-        #   @param debit_status [Symbol, Increase::Models::AccountNumber::InboundACH::DebitStatus] Whether ACH debits are allowed against this Account Number. Note that they will
+        #   @param debit_status [Symbol, Increase::Models::AccountNumber::InboundACH::DebitStatus]
+        #     Whether ACH debits are allowed against this Account Number. Note that they will
+        #     still be declined if this is `allowed` if the Account Number is not active.
 
         # Whether ACH debits are allowed against this Account Number. Note that they will
         # still be declined if this is `allowed` if the Account Number is not active.
@@ -154,7 +161,8 @@ module Increase
         #   Properties related to how this Account Number should handle inbound check
         #   withdrawals.
         #
-        #   @param status [Symbol, Increase::Models::AccountNumber::InboundChecks::Status] How Increase should process checks with this account number printed on them.
+        #   @param status [Symbol, Increase::Models::AccountNumber::InboundChecks::Status]
+        #     How Increase should process checks with this account number printed on them.
 
         # How Increase should process checks with this account number printed on them.
         #

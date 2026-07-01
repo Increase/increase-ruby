@@ -31,14 +31,17 @@ module Increase
         optional :reason, enum: -> { Increase::Simulations::CheckDepositAdjustmentParams::Reason }
 
         # @!method initialize(check_deposit_id:, amount: nil, reason: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::CheckDepositAdjustmentParams} for more details.
-        #
         #   @param check_deposit_id [String] The identifier of the Check Deposit you wish to adjust.
         #
-        #   @param amount [Integer] The adjustment amount in the minor unit of the Check Deposit's currency (e.g., c
+        #   @param amount [Integer]
+        #     The adjustment amount in the minor unit of the Check Deposit's currency (e.g.,
+        #     cents). A negative amount means that the funds are being clawed back by the
+        #     other bank and is a debit to your account. Defaults to the negative of the Check
+        #     Deposit amount.
         #
-        #   @param reason [Symbol, Increase::Models::Simulations::CheckDepositAdjustmentParams::Reason] The reason for the adjustment. Defaults to `non_conforming_item`, which is often
+        #   @param reason [Symbol, Increase::Models::Simulations::CheckDepositAdjustmentParams::Reason]
+        #     The reason for the adjustment. Defaults to `non_conforming_item`, which is often
+        #     used for a low quality image that the recipient wasn't able to handle.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
