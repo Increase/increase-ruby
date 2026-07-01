@@ -36,16 +36,19 @@ module Increase
         optional :lockbox_recipient_id, String
 
         # @!method initialize(amount:, contents_file_id: nil, lockbox_address_id: nil, lockbox_recipient_id: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::InboundMailItemCreateParams} for more details.
-        #
         #   @param amount [Integer] The amount of the check to be simulated, in cents.
         #
-        #   @param contents_file_id [String] The file containing the PDF contents. If not present, a default check image file
+        #   @param contents_file_id [String]
+        #     The file containing the PDF contents. If not present, a default check image file
+        #     will be used.
         #
-        #   @param lockbox_address_id [String] The identifier of the Lockbox Address to simulate inbound mail to. Exactly one l
+        #   @param lockbox_address_id [String]
+        #     The identifier of the Lockbox Address to simulate inbound mail to. Exactly one
+        #     lockbox identifier parameter must be provided.
         #
-        #   @param lockbox_recipient_id [String] The identifier of the Lockbox Recipient to simulate inbound mail to. Exactly one
+        #   @param lockbox_recipient_id [String]
+        #     The identifier of the Lockbox Recipient to simulate inbound mail to. Exactly one
+        #     lockbox identifier parameter must be provided.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class CheckDeposits
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CheckDepositCreateParams} for more details.
-      #
       # Create a Check Deposit
       #
       # @overload create(account_id:, amount:, back_image_file_id:, front_image_file_id:, description: nil, request_options: {})
@@ -18,7 +15,8 @@ module Increase
       #
       # @param front_image_file_id [String] The File containing the check's front image.
       #
-      # @param description [String] The description you choose to give the Check Deposit, for display purposes only.
+      # @param description [String]
+      #   The description you choose to give the Check Deposit, for display purposes only.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -56,9 +54,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CheckDepositListParams} for more details.
-      #
       # List Check Deposits
       #
       # @overload list(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
@@ -69,9 +64,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

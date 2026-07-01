@@ -146,15 +146,14 @@ module Increase
       required :type, enum: -> { Increase::CardValidation::Type }
 
       # @!method initialize(id:, acceptance:, account_id:, card_token_id:, cardholder_first_name:, cardholder_last_name:, cardholder_middle_name:, cardholder_postal_code:, cardholder_street_address:, created_at:, created_by:, decline:, idempotency_key:, merchant_category_code:, merchant_city_name:, merchant_name:, merchant_postal_code:, merchant_state:, route:, status:, submission:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardValidation} for more details.
-      #
       #   Card Validations are used to validate a card and its cardholder before sending
       #   funds to or pulling funds from a card.
       #
       #   @param id [String] The Card Validation's identifier.
       #
-      #   @param acceptance [Increase::Models::CardValidation::Acceptance, nil] If the validation is accepted by the recipient bank, this will contain supplemen
+      #   @param acceptance [Increase::Models::CardValidation::Acceptance, nil]
+      #     If the validation is accepted by the recipient bank, this will contain
+      #     supplemental details.
       #
       #   @param account_id [String] The identifier of the Account from which to send the validation.
       #
@@ -170,31 +169,49 @@ module Increase
       #
       #   @param cardholder_street_address [String, nil] The cardholder's street address.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the validation was created.
       #
-      #   @param created_by [Increase::Models::CardValidation::CreatedBy, nil] What object created the validation, either via the API or the dashboard.
+      #   @param created_by [Increase::Models::CardValidation::CreatedBy, nil]
+      #     What object created the validation, either via the API or the dashboard.
       #
-      #   @param decline [Increase::Models::CardValidation::Decline, nil] If the validation is rejected by the card network or the destination financial i
+      #   @param decline [Increase::Models::CardValidation::Decline, nil]
+      #     If the validation is rejected by the card network or the destination financial
+      #     institution, this will contain supplemental details.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param merchant_category_code [String] A four-digit code (MCC) identifying the type of business or service provided by
+      #   @param merchant_category_code [String]
+      #     A four-digit code (MCC) identifying the type of business or service provided by
+      #     the merchant.
       #
       #   @param merchant_city_name [String] The city where the merchant (typically your business) is located.
       #
-      #   @param merchant_name [String] The merchant name that will appear in the cardholder’s statement descriptor. Typ
+      #   @param merchant_name [String]
+      #     The merchant name that will appear in the cardholder’s statement descriptor.
+      #     Typically your business name.
       #
-      #   @param merchant_postal_code [String] The postal code for the merchant’s (typically your business’s) location.
+      #   @param merchant_postal_code [String]
+      #     The postal code for the merchant’s (typically your business’s) location.
       #
       #   @param merchant_state [String] The U.S. state where the merchant (typically your business) is located.
       #
-      #   @param route [Symbol, Increase::Models::CardValidation::Route] The card network route used for the validation.
+      #   @param route [Symbol, Increase::Models::CardValidation::Route]
+      #     The card network route used for the validation.
       #
       #   @param status [Symbol, Increase::Models::CardValidation::Status] The lifecycle status of the validation.
       #
-      #   @param submission [Increase::Models::CardValidation::Submission, nil] After the validation is submitted to the card network, this will contain supplem
+      #   @param submission [Increase::Models::CardValidation::Submission, nil]
+      #     After the validation is submitted to the card network, this will contain
+      #     supplemental details.
       #
-      #   @param type [Symbol, Increase::Models::CardValidation::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardValidation::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card_validation`.
 
       # @see Increase::Models::CardValidation#acceptance
       class Acceptance < Increase::Internal::Type::BaseModel
@@ -274,31 +291,39 @@ module Increase
         required :network_transaction_identifier, String, nil?: true
 
         # @!method initialize(accepted_at:, authorization_identification_response:, card_verification_value2_result:, cardholder_first_name_result:, cardholder_full_name_result:, cardholder_last_name_result:, cardholder_middle_name_result:, cardholder_postal_code_result:, cardholder_street_address_result:, network_transaction_identifier:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardValidation::Acceptance} for more details.
-        #
         #   If the validation is accepted by the recipient bank, this will contain
         #   supplemental details.
         #
-        #   @param accepted_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param accepted_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the validation was accepted by the issuing bank.
         #
-        #   @param authorization_identification_response [String] The authorization identification response from the issuing bank.
+        #   @param authorization_identification_response [String]
+        #     The authorization identification response from the issuing bank.
         #
-        #   @param card_verification_value2_result [Symbol, Increase::Models::CardValidation::Acceptance::CardVerificationValue2Result, nil] The result of the Card Verification Value 2 match.
+        #   @param card_verification_value2_result [Symbol, Increase::Models::CardValidation::Acceptance::CardVerificationValue2Result, nil]
+        #     The result of the Card Verification Value 2 match.
         #
-        #   @param cardholder_first_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderFirstNameResult, nil] The result of the cardholder first name match.
+        #   @param cardholder_first_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderFirstNameResult, nil]
+        #     The result of the cardholder first name match.
         #
-        #   @param cardholder_full_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderFullNameResult, nil] The result of the cardholder full name match.
+        #   @param cardholder_full_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderFullNameResult, nil]
+        #     The result of the cardholder full name match.
         #
-        #   @param cardholder_last_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderLastNameResult, nil] The result of the cardholder last name match.
+        #   @param cardholder_last_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderLastNameResult, nil]
+        #     The result of the cardholder last name match.
         #
-        #   @param cardholder_middle_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderMiddleNameResult, nil] The result of the cardholder middle name match.
+        #   @param cardholder_middle_name_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderMiddleNameResult, nil]
+        #     The result of the cardholder middle name match.
         #
-        #   @param cardholder_postal_code_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderPostalCodeResult, nil] The result of the cardholder postal code match.
+        #   @param cardholder_postal_code_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderPostalCodeResult, nil]
+        #     The result of the cardholder postal code match.
         #
-        #   @param cardholder_street_address_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderStreetAddressResult, nil] The result of the cardholder street address match.
+        #   @param cardholder_street_address_result [Symbol, Increase::Models::CardValidation::Acceptance::CardholderStreetAddressResult, nil]
+        #     The result of the cardholder street address match.
         #
-        #   @param network_transaction_identifier [String, nil] A unique identifier for the transaction on the card network.
+        #   @param network_transaction_identifier [String, nil]
+        #     A unique identifier for the transaction on the card network.
 
         # The result of the Card Verification Value 2 match.
         #
@@ -454,13 +479,17 @@ module Increase
         # @!method initialize(category:, api_key: nil, oauth_application: nil, user: nil)
         #   What object created the validation, either via the API or the dashboard.
         #
-        #   @param category [Symbol, Increase::Models::CardValidation::CreatedBy::Category] The type of object that created this transfer.
+        #   @param category [Symbol, Increase::Models::CardValidation::CreatedBy::Category]
+        #     The type of object that created this transfer.
         #
-        #   @param api_key [Increase::Models::CardValidation::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
+        #   @param api_key [Increase::Models::CardValidation::CreatedBy::APIKey, nil]
+        #     If present, details about the API key that created the transfer.
         #
-        #   @param oauth_application [Increase::Models::CardValidation::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
+        #   @param oauth_application [Increase::Models::CardValidation::CreatedBy::OAuthApplication, nil]
+        #     If present, details about the OAuth Application that created the transfer.
         #
-        #   @param user [Increase::Models::CardValidation::CreatedBy::User, nil] If present, details about the User that created the transfer.
+        #   @param user [Increase::Models::CardValidation::CreatedBy::User, nil]
+        #     If present, details about the User that created the transfer.
 
         # The type of object that created this transfer.
         #
@@ -546,17 +575,18 @@ module Increase
         required :reason, enum: -> { Increase::CardValidation::Decline::Reason }
 
         # @!method initialize(declined_at:, network_transaction_identifier:, reason:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardValidation::Decline} for more details.
-        #
         #   If the validation is rejected by the card network or the destination financial
         #   institution, this will contain supplemental details.
         #
-        #   @param declined_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param declined_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the validation was declined.
         #
-        #   @param network_transaction_identifier [String, nil] A unique identifier for the transaction on the card network.
+        #   @param network_transaction_identifier [String, nil]
+        #     A unique identifier for the transaction on the card network.
         #
-        #   @param reason [Symbol, Increase::Models::CardValidation::Decline::Reason] The reason why the validation was declined.
+        #   @param reason [Symbol, Increase::Models::CardValidation::Decline::Reason]
+        #     The reason why the validation was declined.
 
         # The reason why the validation was declined.
         #
@@ -827,17 +857,20 @@ module Increase
         required :trace_number, String
 
         # @!method initialize(retrieval_reference_number:, submitted_at:, trace_number:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::CardValidation::Submission} for more details.
-        #
         #   After the validation is submitted to the card network, this will contain
         #   supplemental details.
         #
-        #   @param retrieval_reference_number [String] A 12-digit retrieval reference number that identifies the validation. Usually a
+        #   @param retrieval_reference_number [String]
+        #     A 12-digit retrieval reference number that identifies the validation. Usually a
+        #     combination of a timestamp and the trace number.
         #
-        #   @param submitted_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param submitted_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the validation was submitted to the card network.
         #
-        #   @param trace_number [String] A 6-digit trace number that identifies the validation within a short time window
+        #   @param trace_number [String]
+        #     A 6-digit trace number that identifies the validation within a short time
+        #     window.
       end
 
       # A constant representing the object's type. For this resource it will always be

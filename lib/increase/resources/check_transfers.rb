@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class CheckTransfers
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CheckTransferCreateParams} for more details.
-      #
       # Create a Check Transfer
       #
       # @overload create(account_id:, amount:, fulfillment_method:, source_account_number_id:, balance_check: nil, check_number: nil, physical_check: nil, require_approval: nil, third_party: nil, valid_until_date: nil, request_options: {})
@@ -14,21 +11,40 @@ module Increase
       #
       # @param amount [Integer] The transfer amount in USD cents.
       #
-      # @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod] Whether Increase will print and mail the check or if you will do it yourself.
+      # @param fulfillment_method [Symbol, Increase::Models::CheckTransferCreateParams::FulfillmentMethod]
+      #   Whether Increase will print and mail the check or if you will do it yourself.
       #
-      # @param source_account_number_id [String] The identifier of the Account Number from which to send the transfer and print o
+      # @param source_account_number_id [String]
+      #   The identifier of the Account Number from which to send the transfer and print
+      #   on the check.
       #
-      # @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck] How the account's available balance should be checked. If omitted, the default b
+      # @param balance_check [Symbol, Increase::Models::CheckTransferCreateParams::BalanceCheck]
+      #   How the account's available balance should be checked. If omitted, the default
+      #   behavior is `balance_check: full`.
       #
-      # @param check_number [String] The check number Increase should use for the check. This should not contain lead
+      # @param check_number [String]
+      #   The check number Increase should use for the check. This should not contain
+      #   leading zeroes and must be unique across the `source_account_number`. If this is
+      #   omitted, Increase will generate a check number for you.
       #
-      # @param physical_check [Increase::Models::CheckTransferCreateParams::PhysicalCheck] Details relating to the physical check that Increase will print and mail. This i
+      # @param physical_check [Increase::Models::CheckTransferCreateParams::PhysicalCheck]
+      #   Details relating to the physical check that Increase will print and mail. This
+      #   is required if `fulfillment_method` is equal to `physical_check`. It must not be
+      #   included if any other `fulfillment_method` is provided.
       #
-      # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      # @param require_approval [Boolean]
+      #   Whether the transfer requires explicit approval via the dashboard or API.
       #
-      # @param third_party [Increase::Models::CheckTransferCreateParams::ThirdParty] Details relating to the custom fulfillment you will perform. This is required if
+      # @param third_party [Increase::Models::CheckTransferCreateParams::ThirdParty]
+      #   Details relating to the custom fulfillment you will perform. This is required if
+      #   `fulfillment_method` is equal to `third_party`. It must not be included if any
+      #   other `fulfillment_method` is provided.
       #
-      # @param valid_until_date [Date] If provided, the check will be valid on or before this date. After this date, th
+      # @param valid_until_date [Date]
+      #   If provided, the check will be valid on or before this date. After this date,
+      #   the check transfer will be automatically stopped and deposits will not be
+      #   accepted. For checks printed by Increase, this date is included on the check as
+      #   its expiry.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -66,9 +82,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CheckTransferListParams} for more details.
-      #
       # List Check Transfers
       #
       # @overload list(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -79,9 +92,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::CheckTransferListParams::Status]
       #
@@ -150,7 +169,8 @@ module Increase
       #
       # @param check_transfer_id [String] The identifier of the Check Transfer.
       #
-      # @param reason [Symbol, Increase::Models::CheckTransferStopPaymentParams::Reason] The reason why this transfer should be stopped.
+      # @param reason [Symbol, Increase::Models::CheckTransferStopPaymentParams::Reason]
+      #   The reason why this transfer should be stopped.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

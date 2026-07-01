@@ -89,34 +89,48 @@ module Increase
       optional :voided_check, -> { Increase::ExportCreateParams::VoidedCheck }
 
       # @!method initialize(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, bookkeeping_account_balance_csv: nil, daily_account_balance_csv: nil, entity_csv: nil, fee_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::ExportCreateParams} for more details.
-      #
       #   @param category [Symbol, Increase::Models::ExportCreateParams::Category] The type of Export to create.
       #
-      #   @param account_statement_bai2 [Increase::Models::ExportCreateParams::AccountStatementBai2] Options for the created export. Required if `category` is equal to `account_stat
+      #   @param account_statement_bai2 [Increase::Models::ExportCreateParams::AccountStatementBai2]
+      #     Options for the created export. Required if `category` is equal to
+      #     `account_statement_bai2`.
       #
-      #   @param account_statement_ofx [Increase::Models::ExportCreateParams::AccountStatementOfx] Options for the created export. Required if `category` is equal to `account_stat
+      #   @param account_statement_ofx [Increase::Models::ExportCreateParams::AccountStatementOfx]
+      #     Options for the created export. Required if `category` is equal to
+      #     `account_statement_ofx`.
       #
-      #   @param account_verification_letter [Increase::Models::ExportCreateParams::AccountVerificationLetter] Options for the created export. Required if `category` is equal to `account_veri
+      #   @param account_verification_letter [Increase::Models::ExportCreateParams::AccountVerificationLetter]
+      #     Options for the created export. Required if `category` is equal to
+      #     `account_verification_letter`.
       #
-      #   @param bookkeeping_account_balance_csv [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv] Options for the created export. Required if `category` is equal to
-      #   `bookkeeping\_
+      #   @param bookkeeping_account_balance_csv [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv]
+      #     Options for the created export. Required if `category` is equal to
+      #     `bookkeeping_account_balance_csv`.
       #
-      #   @param daily_account_balance_csv [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv] Options for the created export. Required if `category` is equal to `daily_accoun
+      #   @param daily_account_balance_csv [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv]
+      #     Options for the created export. Required if `category` is equal to
+      #     `daily_account_balance_csv`.
       #
-      #   @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv] Options for the created export. Required if `category` is equal to `entity_csv`.
+      #   @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv]
+      #     Options for the created export. Required if `category` is equal to `entity_csv`.
       #
-      #   @param fee_csv [Increase::Models::ExportCreateParams::FeeCsv] Options for the created export. Required if `category` is equal to `fee_csv`.
+      #   @param fee_csv [Increase::Models::ExportCreateParams::FeeCsv]
+      #     Options for the created export. Required if `category` is equal to `fee_csv`.
       #
-      #   @param funding_instructions [Increase::Models::ExportCreateParams::FundingInstructions] Options for the created export. Required if `category` is equal to `funding_inst
+      #   @param funding_instructions [Increase::Models::ExportCreateParams::FundingInstructions]
+      #     Options for the created export. Required if `category` is equal to
+      #     `funding_instructions`.
       #
-      #   @param transaction_csv [Increase::Models::ExportCreateParams::TransactionCsv] Options for the created export. Required if `category` is equal to
-      #   `transaction\_
+      #   @param transaction_csv [Increase::Models::ExportCreateParams::TransactionCsv]
+      #     Options for the created export. Required if `category` is equal to
+      #     `transaction_csv`.
       #
-      #   @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv] Options for the created export. Required if `category` is equal to `vendor_csv`.
+      #   @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv]
+      #     Options for the created export. Required if `category` is equal to `vendor_csv`.
       #
-      #   @param voided_check [Increase::Models::ExportCreateParams::VoidedCheck] Options for the created export. Required if `category` is equal to `voided_check
+      #   @param voided_check [Increase::Models::ExportCreateParams::VoidedCheck]
+      #     Options for the created export. Required if `category` is equal to
+      #     `voided_check`.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -189,17 +203,22 @@ module Increase
         optional :program_id, String
 
         # @!method initialize(account_id: nil, effective_date: nil, program_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::ExportCreateParams::AccountStatementBai2} for more details.
-        #
         #   Options for the created export. Required if `category` is equal to
         #   `account_statement_bai2`.
         #
-        #   @param account_id [String] The Account to create a BAI2 report for. If not provided, all open accounts will
+        #   @param account_id [String]
+        #     The Account to create a BAI2 report for. If not provided, all open accounts will
+        #     be included.
         #
-        #   @param effective_date [Date] The date to create a BAI2 report for. If not provided, the current date will be
+        #   @param effective_date [Date]
+        #     The date to create a BAI2 report for. If not provided, the current date will be
+        #     used. The timezone is UTC. If the current date is used, the report will include
+        #     intraday balances, otherwise it will include end-of-day balances for the
+        #     provided date.
         #
-        #   @param program_id [String] The Program to create a BAI2 report for. If not provided, all open accounts will
+        #   @param program_id [String]
+        #     The Program to create a BAI2 report for. If not provided, all open accounts will
+        #     be included.
       end
 
       class AccountStatementOfx < Increase::Internal::Type::BaseModel
@@ -221,7 +240,8 @@ module Increase
         #
         #   @param account_id [String] The Account to create a statement for.
         #
-        #   @param created_at [Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt] Filter transactions by their created date.
+        #   @param created_at [Increase::Models::ExportCreateParams::AccountStatementOfx::CreatedAt]
+        #     Filter transactions by their created date.
 
         # @see Increase::Models::ExportCreateParams::AccountStatementOfx#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -289,14 +309,12 @@ module Increase
         optional :on_or_before_date, Date
 
         # @!method initialize(bookkeeping_account_id: nil, on_or_after_date: nil, on_or_before_date: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv} for more
-        #   details.
-        #
         #   Options for the created export. Required if `category` is equal to
         #   `bookkeeping_account_balance_csv`.
         #
-        #   @param bookkeeping_account_id [String] Filter exported Bookkeeping Account Balances to the specified Bookkeeping Accoun
+        #   @param bookkeeping_account_id [String]
+        #     Filter exported Bookkeeping Account Balances to the specified Bookkeeping
+        #     Account.
         #
         #   @param on_or_after_date [Date] Filter exported Balances to those on or after this date.
         #
@@ -354,7 +372,8 @@ module Increase
         # @!method initialize(created_at: nil, program_id: nil)
         #   Options for the created export. Required if `category` is equal to `fee_csv`.
         #
-        #   @param created_at [Increase::Models::ExportCreateParams::FeeCsv::CreatedAt] Filter results by time range on the `created_at` attribute.
+        #   @param created_at [Increase::Models::ExportCreateParams::FeeCsv::CreatedAt]
+        #     Filter results by time range on the `created_at` attribute.
         #
         #   @param program_id [String] Filter exported Fees to the specified Program.
 
@@ -389,18 +408,23 @@ module Increase
           optional :on_or_before, Time
 
           # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::ExportCreateParams::FeeCsv::CreatedAt} for more details.
-          #
           #   Filter results by time range on the `created_at` attribute.
           #
-          #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
+          #   @param after [Time]
+          #     Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          #     timestamp.
           #
-          #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
+          #   @param before [Time]
+          #     Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          #     timestamp.
           #
-          #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
+          #   @param on_or_after [Time]
+          #     Return results on or after this
+          #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
           #
-          #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+          #   @param on_or_before [Time]
+          #     Return results on or before this
+          #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
         end
       end
 
@@ -437,7 +461,8 @@ module Increase
         #
         #   @param account_id [String] Filter exported Transactions to the specified Account.
         #
-        #   @param created_at [Increase::Models::ExportCreateParams::TransactionCsv::CreatedAt] Filter results by time range on the `created_at` attribute.
+        #   @param created_at [Increase::Models::ExportCreateParams::TransactionCsv::CreatedAt]
+        #     Filter results by time range on the `created_at` attribute.
 
         # @see Increase::Models::ExportCreateParams::TransactionCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -470,19 +495,23 @@ module Increase
           optional :on_or_before, Time
 
           # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::ExportCreateParams::TransactionCsv::CreatedAt} for more
-          #   details.
-          #
           #   Filter results by time range on the `created_at` attribute.
           #
-          #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
+          #   @param after [Time]
+          #     Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          #     timestamp.
           #
-          #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
+          #   @param before [Time]
+          #     Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+          #     timestamp.
           #
-          #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
+          #   @param on_or_after [Time]
+          #     Return results on or after this
+          #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
           #
-          #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+          #   @param on_or_before [Time]
+          #     Return results on or before this
+          #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
         end
       end
 
@@ -511,7 +540,8 @@ module Increase
         #
         #   @param account_number_id [String] The Account Number for the voided check.
         #
-        #   @param payer [Array<Increase::Models::ExportCreateParams::VoidedCheck::Payer>] The payer information to be printed on the check.
+        #   @param payer [Array<Increase::Models::ExportCreateParams::VoidedCheck::Payer>]
+        #     The payer information to be printed on the check.
 
         class Payer < Increase::Internal::Type::BaseModel
           # @!attribute line

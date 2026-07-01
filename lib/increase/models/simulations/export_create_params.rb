@@ -22,12 +22,12 @@ module Increase
         optional :form_1099_int, -> { Increase::Simulations::ExportCreateParams::Form1099Int }
 
         # @!method initialize(category:, form_1099_int: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::ExportCreateParams} for more details.
+        #   @param category [Symbol, Increase::Models::Simulations::ExportCreateParams::Category]
+        #     The type of Export to create.
         #
-        #   @param category [Symbol, Increase::Models::Simulations::ExportCreateParams::Category] The type of Export to create.
-        #
-        #   @param form_1099_int [Increase::Models::Simulations::ExportCreateParams::Form1099Int] Options for the created export. Required if `category` is equal to `form_1099_in
+        #   @param form_1099_int [Increase::Models::Simulations::ExportCreateParams::Form1099Int]
+        #     Options for the created export. Required if `category` is equal to
+        #     `form_1099_int`.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

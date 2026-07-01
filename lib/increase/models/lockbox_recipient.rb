@@ -73,31 +73,43 @@ module Increase
       required :type, enum: -> { Increase::LockboxRecipient::Type }
 
       # @!method initialize(id:, account_id:, created_at:, description:, idempotency_key:, lockbox_address_id:, mail_stop_code:, recipient_name:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::LockboxRecipient} for more details.
-      #
       #   Lockbox Recipients represent an inbox at a Lockbox Address. Checks received for
       #   a Lockbox Recipient are deposited into its associated Account.
       #
       #   @param id [String] The Lockbox Recipient identifier.
       #
-      #   @param account_id [String] The identifier for the Account that checks sent to this Lockbox Recipient will b
+      #   @param account_id [String]
+      #     The identifier for the Account that checks sent to this Lockbox Recipient will
+      #     be deposited into.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
+      #     Recipient was created.
       #
       #   @param description [String, nil] The description of the Lockbox Recipient.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param lockbox_address_id [String] The identifier for the Lockbox Address where this Lockbox Recipient may receive
+      #   @param lockbox_address_id [String]
+      #     The identifier for the Lockbox Address where this Lockbox Recipient may receive
+      #     physical mail.
       #
-      #   @param mail_stop_code [String] The mail stop code uniquely identifying this Lockbox Recipient at its Lockbox Ad
+      #   @param mail_stop_code [String]
+      #     The mail stop code uniquely identifying this Lockbox Recipient at its Lockbox
+      #     Address. It should be included in the mailing address intended for this Lockbox
+      #     Recipient.
       #
       #   @param recipient_name [String, nil] The name of the Lockbox Recipient.
       #
-      #   @param status [Symbol, Increase::Models::LockboxRecipient::Status, nil] The status of the Lockbox Recipient.
+      #   @param status [Symbol, Increase::Models::LockboxRecipient::Status, nil]
+      #     The status of the Lockbox Recipient.
       #
-      #   @param type [Symbol, Increase::Models::LockboxRecipient::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::LockboxRecipient::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `lockbox_recipient`.
 
       # The status of the Lockbox Recipient.
       #

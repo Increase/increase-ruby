@@ -40,6 +40,7 @@ module Increase
         ?idempotency_key: String,
         ?limit: Integer,
         ?status: Increase::EntityListParams::Status,
+        ?validation_status: Increase::EntityListParams::ValidationStatus,
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::Entity]
 

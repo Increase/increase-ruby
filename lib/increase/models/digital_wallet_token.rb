@@ -76,9 +76,6 @@ module Increase
       required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update] }
 
       # @!method initialize(id:, card_id:, cardholder:, created_at:, decline:, device:, dynamic_primary_account_number:, status:, token_requestor:, type:, updates:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::DigitalWalletToken} for more details.
-      #
       #   A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
       #   Google Pay app. The Digital Wallet Token can be used for purchases just like a
       #   Card.
@@ -87,21 +84,32 @@ module Increase
       #
       #   @param card_id [String] The identifier for the Card this Digital Wallet Token belongs to.
       #
-      #   @param cardholder [Increase::Models::DigitalWalletToken::Cardholder] The cardholder information given when the Digital Wallet Token was created.
+      #   @param cardholder [Increase::Models::DigitalWalletToken::Cardholder]
+      #     The cardholder information given when the Digital Wallet Token was created.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the Digital Wallet Token was created.
       #
-      #   @param decline [Increase::Models::DigitalWalletToken::Decline, nil] If the Digital Wallet Token was declined during provisioning, details about the
+      #   @param decline [Increase::Models::DigitalWalletToken::Decline, nil]
+      #     If the Digital Wallet Token was declined during provisioning, details about the
+      #     decline.
       #
-      #   @param device [Increase::Models::DigitalWalletToken::Device] The device that was used to create the Digital Wallet Token.
+      #   @param device [Increase::Models::DigitalWalletToken::Device]
+      #     The device that was used to create the Digital Wallet Token.
       #
-      #   @param dynamic_primary_account_number [Increase::Models::DigitalWalletToken::DynamicPrimaryAccountNumber, nil] The redacted Dynamic Primary Account Number.
+      #   @param dynamic_primary_account_number [Increase::Models::DigitalWalletToken::DynamicPrimaryAccountNumber, nil]
+      #     The redacted Dynamic Primary Account Number.
       #
-      #   @param status [Symbol, Increase::Models::DigitalWalletToken::Status] This indicates if payments can be made with the Digital Wallet Token.
+      #   @param status [Symbol, Increase::Models::DigitalWalletToken::Status]
+      #     This indicates if payments can be made with the Digital Wallet Token.
       #
-      #   @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor] The digital wallet app being used.
+      #   @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
+      #     The digital wallet app being used.
       #
-      #   @param type [Symbol, Increase::Models::DigitalWalletToken::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::DigitalWalletToken::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `digital_wallet_token`.
       #
       #   @param updates [Array<Increase::Models::DigitalWalletToken::Update>] Updates to the Digital Wallet Token.
 
@@ -131,7 +139,8 @@ module Increase
         #   If the Digital Wallet Token was declined during provisioning, details about the
         #   decline.
         #
-        #   @param reason [Symbol, Increase::Models::DigitalWalletToken::Decline::Reason] The reason the token provisioning was declined.
+        #   @param reason [Symbol, Increase::Models::DigitalWalletToken::Decline::Reason]
+        #     The reason the token provisioning was declined.
 
         # The reason the token provisioning was declined.
         #
@@ -334,12 +343,12 @@ module Increase
         required :timestamp, Time
 
         # @!method initialize(status:, timestamp:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::DigitalWalletToken::Update} for more details.
+        #   @param status [Symbol, Increase::Models::DigitalWalletToken::Update::Status]
+        #     The status the update changed this Digital Wallet Token to.
         #
-        #   @param status [Symbol, Increase::Models::DigitalWalletToken::Update::Status] The status the update changed this Digital Wallet Token to.
-        #
-        #   @param timestamp [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param timestamp [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the update happened.
 
         # The status the update changed this Digital Wallet Token to.
         #

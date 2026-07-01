@@ -40,16 +40,19 @@ module Increase
       optional :purpose, -> { Increase::FileListParams::Purpose }
 
       # @!method initialize(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, purpose: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::FileListParams} for more details.
-      #
       #   @param created_at [Increase::Models::FileListParams::CreatedAt]
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
-      #   @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      #   @param idempotency_key [String]
+      #     Filter records to the one with the specified `idempotency_key` you chose for
+      #     that object. This value is unique across Increase and is used to ensure that a
+      #     request is only processed once. Learn more about
+      #     [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #   @param limit [Integer]
+      #     Limit the size of the list that is returned. The default (and maximum) is 100
+      #     objects.
       #
       #   @param purpose [Increase::Models::FileListParams::Purpose]
       #
@@ -85,16 +88,21 @@ module Increase
         optional :on_or_before, Time
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::FileListParams::CreatedAt} for more details.
+        #   @param after [Time]
+        #     Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+        #     timestamp.
         #
-        #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
+        #   @param before [Time]
+        #     Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+        #     timestamp.
         #
-        #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
+        #   @param on_or_after [Time]
+        #     Return results on or after this
+        #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
         #
-        #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-        #
-        #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+        #   @param on_or_before [Time]
+        #     Return results on or before this
+        #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
       end
 
       class Purpose < Increase::Internal::Type::BaseModel
@@ -108,10 +116,9 @@ module Increase
                  api_name: :in
 
         # @!method initialize(in_: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::FileListParams::Purpose} for more details.
-        #
-        #   @param in_ [Array<Symbol, Increase::Models::FileListParams::Purpose::In>] Filter Files for those with the specified purpose or purposes. For GET requests,
+        #   @param in_ [Array<Symbol, Increase::Models::FileListParams::Purpose::In>]
+        #     Filter Files for those with the specified purpose or purposes. For GET requests,
+        #     this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
 
         module In
           extend Increase::Internal::Type::Enum

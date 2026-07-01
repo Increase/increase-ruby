@@ -29,17 +29,19 @@ module Increase
         required :type, enum: -> { Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type }
 
         # @!method initialize(decline_reason:, digital_wallet_token_id:, type:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse} for
-        #   more details.
-        #
         #   The results of a Digital Wallet Token simulation.
         #
-        #   @param decline_reason [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::DeclineReason, nil] If the simulated tokenization attempt was declined, this field contains details
+        #   @param decline_reason [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::DeclineReason, nil]
+        #     If the simulated tokenization attempt was declined, this field contains details
+        #     as to why.
         #
-        #   @param digital_wallet_token_id [String, nil] If the simulated tokenization attempt was accepted, this field contains the id o
+        #   @param digital_wallet_token_id [String, nil]
+        #     If the simulated tokenization attempt was accepted, this field contains the id
+        #     of the Digital Wallet Token that was created.
         #
-        #   @param type [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type] A constant representing the object's type. For this resource it will always be `
+        #   @param type [Symbol, Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::Type]
+        #     A constant representing the object's type. For this resource it will always be
+        #     `inbound_digital_wallet_token_request_simulation_result`.
 
         # If the simulated tokenization attempt was declined, this field contains details
         # as to why.

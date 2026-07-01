@@ -27,11 +27,9 @@ module Increase
       optional :updated_routing_number, String
 
       # @!method initialize(inbound_ach_transfer_id:, updated_account_number: nil, updated_routing_number: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundACHTransferCreateNotificationOfChangeParams} for more
-      #   details.
-      #
-      #   @param inbound_ach_transfer_id [String] The identifier of the Inbound ACH Transfer for which to create a notification of
+      #   @param inbound_ach_transfer_id [String]
+      #     The identifier of the Inbound ACH Transfer for which to create a notification of
+      #     change.
       #
       #   @param updated_account_number [String] The updated account number to send in the notification of change.
       #

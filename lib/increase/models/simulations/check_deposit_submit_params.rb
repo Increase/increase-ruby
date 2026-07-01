@@ -22,12 +22,11 @@ module Increase
         optional :scan, -> { Increase::Simulations::CheckDepositSubmitParams::Scan }
 
         # @!method initialize(check_deposit_id:, scan: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::CheckDepositSubmitParams} for more details.
-        #
         #   @param check_deposit_id [String] The identifier of the Check Deposit you wish to submit.
         #
-        #   @param scan [Increase::Models::Simulations::CheckDepositSubmitParams::Scan] If set, the simulation will use these values for the check's scanned MICR data.
+        #   @param scan [Increase::Models::Simulations::CheckDepositSubmitParams::Scan]
+        #     If set, the simulation will use these values for the check's scanned MICR data.
+        #     If not set, the simulation will use random values.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -59,10 +58,6 @@ module Increase
           optional :serial_number, String
 
           # @!method initialize(account_number:, routing_number:, auxiliary_on_us: nil, serial_number: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::Simulations::CheckDepositSubmitParams::Scan} for more
-          #   details.
-          #
           #   If set, the simulation will use these values for the check's scanned MICR data.
           #   If not set, the simulation will use random values.
           #
@@ -70,9 +65,13 @@ module Increase
           #
           #   @param routing_number [String] The routing number to be returned in the check deposit's scan data.
           #
-          #   @param auxiliary_on_us [String] The auxiliary on-us data to be returned in the check deposit's scan data. Auxili
+          #   @param auxiliary_on_us [String]
+          #     The auxiliary on-us data to be returned in the check deposit's scan data.
+          #     Auxiliary on-us is typically the check number for business checks.
           #
-          #   @param serial_number [String] The serial number to be returned in the check deposit's scan data. Serial number
+          #   @param serial_number [String]
+          #     The serial number to be returned in the check deposit's scan data. Serial number
+          #     is typically the check number for consumer checks.
         end
       end
     end

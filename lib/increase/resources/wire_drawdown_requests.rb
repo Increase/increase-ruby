@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class WireDrawdownRequests
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::WireDrawdownRequestCreateParams} for more details.
-      #
       # Create a Wire Drawdown Request
       #
       # @overload create(account_number_id:, amount:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, unstructured_remittance_information:, charge_bearer: nil, debtor_account_number: nil, debtor_external_account_id: nil, debtor_routing_number: nil, end_to_end_identification: nil, request_options: {})
@@ -14,25 +11,34 @@ module Increase
       #
       # @param amount [Integer] The amount requested from the debtor, in USD cents.
       #
-      # @param creditor_address [Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress] The creditor's address.
+      # @param creditor_address [Increase::Models::WireDrawdownRequestCreateParams::CreditorAddress]
+      #   The creditor's address.
       #
       # @param creditor_name [String] The creditor's name.
       #
-      # @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress] The debtor's address.
+      # @param debtor_address [Increase::Models::WireDrawdownRequestCreateParams::DebtorAddress]
+      #   The debtor's address.
       #
       # @param debtor_name [String] The debtor's name.
       #
-      # @param unstructured_remittance_information [String] Remittance information the debtor will see as part of the request.
+      # @param unstructured_remittance_information [String]
+      #   Remittance information the debtor will see as part of the request.
       #
-      # @param charge_bearer [Symbol, Increase::Models::WireDrawdownRequestCreateParams::ChargeBearer] Determines who bears the cost of the drawdown request. Defaults to `shared` if n
+      # @param charge_bearer [Symbol, Increase::Models::WireDrawdownRequestCreateParams::ChargeBearer]
+      #   Determines who bears the cost of the drawdown request. Defaults to `shared` if
+      #   not specified.
       #
       # @param debtor_account_number [String] The debtor's account number.
       #
-      # @param debtor_external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      # @param debtor_external_account_id [String]
+      #   The ID of an External Account to initiate a transfer to. If this parameter is
+      #   provided, `debtor_account_number` and `debtor_routing_number` must be absent.
       #
       # @param debtor_routing_number [String] The debtor's routing number.
       #
-      # @param end_to_end_identification [String] A free-form reference string set by the sender mirrored back in the subsequent w
+      # @param end_to_end_identification [String]
+      #   A free-form reference string set by the sender mirrored back in the subsequent
+      #   wire transfer.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -70,18 +76,21 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::WireDrawdownRequestListParams} for more details.
-      #
       # List Wire Drawdown Requests
       #
       # @overload list(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::WireDrawdownRequestListParams::Status]
       #

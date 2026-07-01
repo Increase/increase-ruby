@@ -3,16 +3,15 @@
 module Increase
   module Resources
     class FileLinks
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::FileLinkCreateParams} for more details.
-      #
       # Create a File Link
       #
       # @overload create(file_id:, expires_at: nil, request_options: {})
       #
       # @param file_id [String] The File to create a File Link for.
       #
-      # @param expires_at [Time] The time at which the File Link will expire. The default is 1 hour from the time
+      # @param expires_at [Time]
+      #   The time at which the File Link will expire. The default is 1 hour from the time
+      #   of the request. The maximum is 1 day from the time of the request.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

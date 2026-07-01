@@ -114,43 +114,64 @@ module Increase
       required :type, enum: -> { Increase::Account::Type }
 
       # @!method initialize(id:, account_revenue_rate:, bank:, closed_at:, created_at:, currency:, entity_id:, funding:, idempotency_key:, informational_entity_id:, interest_rate:, loan:, name:, program_id:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::Account} for more details.
-      #
       #   Accounts are your bank accounts with Increase. They store money, receive
       #   transfers, and send payments. They earn interest and have depository insurance.
       #
       #   @param id [String] The Account identifier.
       #
-      #   @param account_revenue_rate [String, nil] The account revenue rate currently being earned on the account, as a string cont
+      #   @param account_revenue_rate [String, nil]
+      #     The account revenue rate currently being earned on the account, as a string
+      #     containing a decimal number. For example, a 1% account revenue rate would be
+      #     represented as "0.01". Account revenue is a type of non-interest income accrued
+      #     on the account.
       #
       #   @param bank [Symbol, Increase::Models::Account::Bank] The bank the Account is with.
       #
-      #   @param closed_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #   @param closed_at [Time, nil]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #     was closed.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #     was created.
       #
-      #   @param currency [Symbol, Increase::Models::Account::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account curr
+      #   @param currency [Symbol, Increase::Models::Account::Currency]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Account
+      #     currency.
       #
       #   @param entity_id [String] The identifier for the Entity the Account belongs to.
       #
-      #   @param funding [Symbol, Increase::Models::Account::Funding] Whether the Account is funded by a loan or by deposits.
+      #   @param funding [Symbol, Increase::Models::Account::Funding]
+      #     Whether the Account is funded by a loan or by deposits.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param informational_entity_id [String, nil] The identifier of an Entity that, while not owning the Account, is associated wi
+      #   @param informational_entity_id [String, nil]
+      #     The identifier of an Entity that, while not owning the Account, is associated
+      #     with its activity.
       #
-      #   @param interest_rate [String] The interest rate currently being earned on the account, as a string containing
+      #   @param interest_rate [String]
+      #     The interest rate currently being earned on the account, as a string containing
+      #     a decimal number. For example, a 1% interest rate would be represented as
+      #     "0.01".
       #
-      #   @param loan [Increase::Models::Account::Loan, nil] The Account's loan-related information, if the Account is a loan account.
+      #   @param loan [Increase::Models::Account::Loan, nil]
+      #     The Account's loan-related information, if the Account is a loan account.
       #
       #   @param name [String] The name you choose for the Account.
       #
-      #   @param program_id [String] The identifier of the Program determining the compliance and commercial terms of
+      #   @param program_id [String]
+      #     The identifier of the Program determining the compliance and commercial terms of
+      #     this Account.
       #
       #   @param status [Symbol, Increase::Models::Account::Status] The status of the Account.
       #
-      #   @param type [Symbol, Increase::Models::Account::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::Account::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `account`.
 
       # The bank the Account is with.
       #
@@ -235,20 +256,20 @@ module Increase
         required :statement_payment_type, enum: -> { Increase::Account::Loan::StatementPaymentType }
 
         # @!method initialize(credit_limit:, grace_period_days:, maturity_date:, statement_day_of_month:, statement_payment_type:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Account::Loan} for more details.
-        #
         #   The Account's loan-related information, if the Account is a loan account.
         #
         #   @param credit_limit [Integer] The maximum amount of money that can be borrowed on the Account.
         #
-        #   @param grace_period_days [Integer] The number of days after the statement date that the Account can be past due bef
+        #   @param grace_period_days [Integer]
+        #     The number of days after the statement date that the Account can be past due
+        #     before being considered delinquent.
         #
         #   @param maturity_date [Date, nil] The date on which the loan matures.
         #
         #   @param statement_day_of_month [Integer] The day of the month on which the loan statement is generated.
         #
-        #   @param statement_payment_type [Symbol, Increase::Models::Account::Loan::StatementPaymentType] The type of payment for the loan.
+        #   @param statement_payment_type [Symbol, Increase::Models::Account::Loan::StatementPaymentType]
+        #     The type of payment for the loan.
 
         # The type of payment for the loan.
         #

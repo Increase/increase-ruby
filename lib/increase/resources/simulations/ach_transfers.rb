@@ -29,18 +29,17 @@ module Increase
           )
         end
 
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams} for
-        # more details.
-        #
         # Simulates receiving a Notification of Change for an
         # [ACH Transfer](#ach-transfers).
         #
         # @overload create_notification_of_change(ach_transfer_id, corrected_account_funding: nil, corrected_account_number: nil, corrected_individual_id: nil, corrected_routing_number: nil, request_options: {})
         #
-        # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to create a notification of change f
+        # @param ach_transfer_id [String]
+        #   The identifier of the ACH Transfer you wish to create a notification of change
+        #   for.
         #
-        # @param corrected_account_funding [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding] The corrected account funding type.
+        # @param corrected_account_funding [Symbol, Increase::Models::Simulations::ACHTransferCreateNotificationOfChangeParams::CorrectedAccountFunding]
+        #   The corrected account funding type.
         #
         # @param corrected_account_number [String] The corrected account number.
         #
@@ -64,9 +63,6 @@ module Increase
           )
         end
 
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::ACHTransferReturnParams} for more details.
-        #
         # Simulates the return of an [ACH Transfer](#ach-transfers) by the Federal Reserve
         # due to an error condition. This will also create a Transaction to account for
         # the returned funds. This transfer must first have a `status` of `submitted`.
@@ -75,7 +71,9 @@ module Increase
         #
         # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to return.
         #
-        # @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason] The reason why the Federal Reserve or destination bank returned this transfer. D
+        # @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
+        #   The reason why the Federal Reserve or destination bank returned this transfer.
+        #   Defaults to `no_account`.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
@@ -93,9 +91,6 @@ module Increase
           )
         end
 
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::ACHTransferSettleParams} for more details.
-        #
         # Simulates the settlement of an [ACH Transfer](#ach-transfers) by the Federal
         # Reserve. This transfer must first have a `status` of `pending_submission` or
         # `submitted`. For convenience, if the transfer is in `status`:
@@ -110,7 +105,10 @@ module Increase
         #
         # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to become settled.
         #
-        # @param inbound_funds_hold_behavior [Symbol, Increase::Models::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior] The behavior of the inbound funds hold that is created when the ACH Transfer is
+        # @param inbound_funds_hold_behavior [Symbol, Increase::Models::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior]
+        #   The behavior of the inbound funds hold that is created when the ACH Transfer is
+        #   settled. If no behavior is specified, the inbound funds hold will be released
+        #   immediately in order for the funds to be available for use.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

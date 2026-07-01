@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class FednowTransfers
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::FednowTransferCreateParams} for more details.
-      #
       # Create a FedNow Transfer
       #
       # @overload create(amount:, creditor_name:, debtor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, creditor_address: nil, debtor_address: nil, external_account_id: nil, require_approval: nil, routing_number: nil, request_options: {})
@@ -16,19 +13,25 @@ module Increase
       #
       # @param debtor_name [String] The debtor's name.
       #
-      # @param source_account_number_id [String] The Account Number to include in the transfer as the debtor's account number.
+      # @param source_account_number_id [String]
+      #   The Account Number to include in the transfer as the debtor's account number.
       #
-      # @param unstructured_remittance_information [String] Unstructured remittance information to include in the transfer.
+      # @param unstructured_remittance_information [String]
+      #   Unstructured remittance information to include in the transfer.
       #
       # @param account_number [String] The creditor's account number.
       #
-      # @param creditor_address [Increase::Models::FednowTransferCreateParams::CreditorAddress] The creditor's address.
+      # @param creditor_address [Increase::Models::FednowTransferCreateParams::CreditorAddress]
+      #   The creditor's address.
       #
       # @param debtor_address [Increase::Models::FednowTransferCreateParams::DebtorAddress] The debtor's address.
       #
-      # @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      # @param external_account_id [String]
+      #   The ID of an External Account to initiate a transfer to. If this parameter is
+      #   provided, `account_number` and `routing_number` must be absent.
       #
-      # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      # @param require_approval [Boolean]
+      #   Whether the transfer requires explicit approval via the dashboard or API.
       #
       # @param routing_number [String] The creditor's bank account routing number.
       #
@@ -68,9 +71,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::FednowTransferListParams} for more details.
-      #
       # List FedNow Transfers
       #
       # @overload list(account_id: nil, created_at: nil, cursor: nil, external_account_id: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -81,11 +81,18 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param external_account_id [String] Filter FedNow Transfers to those made to the specified External Account.
+      # @param external_account_id [String]
+      #   Filter FedNow Transfers to those made to the specified External Account.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::FednowTransferListParams::Status]
       #

@@ -168,15 +168,13 @@ module Increase
       required :wire_drawdown_request_id, String, nil?: true
 
       # @!method initialize(id:, acceptance:, account_id:, account_number_id:, amount:, created_at:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, purpose:, reversal:, status:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:, wire_drawdown_request_id:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundWireTransfer} for more details.
-      #
       #   An Inbound Wire Transfer is a wire transfer initiated outside of Increase to
       #   your account.
       #
       #   @param id [String] The inbound wire transfer's identifier.
       #
-      #   @param acceptance [Increase::Models::InboundWireTransfer::Acceptance, nil] If the transfer is accepted, this will contain details of the acceptance.
+      #   @param acceptance [Increase::Models::InboundWireTransfer::Acceptance, nil]
+      #     If the transfer is accepted, this will contain details of the acceptance.
       #
       #   @param account_id [String] The Account to which the transfer belongs.
       #
@@ -184,7 +182,9 @@ module Increase
       #
       #   @param amount [Integer] The amount in USD cents.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the inbound wire transfer was created.
       #
       #   @param creditor_address_line1 [String, nil] A free-form address field set by the sender.
       #
@@ -204,27 +204,40 @@ module Increase
       #
       #   @param description [String] An Increase-constructed description of the transfer.
       #
-      #   @param end_to_end_identification [String, nil] A free-form reference string set by the sender, to help identify the transfer.
+      #   @param end_to_end_identification [String, nil]
+      #     A free-form reference string set by the sender, to help identify the transfer.
       #
-      #   @param input_message_accountability_data [String, nil] A unique identifier available to the originating and receiving banks, commonly a
+      #   @param input_message_accountability_data [String, nil]
+      #     A unique identifier available to the originating and receiving banks, commonly
+      #     abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
+      #     service and is helpful when debugging wires with the originating bank.
       #
-      #   @param instructing_agent_routing_number [String, nil] The American Banking Association (ABA) routing number of the bank that sent the
+      #   @param instructing_agent_routing_number [String, nil]
+      #     The American Banking Association (ABA) routing number of the bank that sent the
+      #     wire.
       #
       #   @param instruction_identification [String, nil] The sending bank's identifier for the wire transfer.
       #
       #   @param purpose [String, nil] The reason for the wire transfer, as set by the sender.
       #
-      #   @param reversal [Increase::Models::InboundWireTransfer::Reversal, nil] If the transfer is reversed, this will contain details of the reversal.
+      #   @param reversal [Increase::Models::InboundWireTransfer::Reversal, nil]
+      #     If the transfer is reversed, this will contain details of the reversal.
       #
       #   @param status [Symbol, Increase::Models::InboundWireTransfer::Status] The status of the transfer.
       #
-      #   @param type [Symbol, Increase::Models::InboundWireTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::InboundWireTransfer::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `inbound_wire_transfer`.
       #
-      #   @param unique_end_to_end_transaction_reference [String, nil] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
+      #   @param unique_end_to_end_transaction_reference [String, nil]
+      #     The Unique End-to-end Transaction Reference
+      #     ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #     of the transfer.
       #
       #   @param unstructured_remittance_information [String, nil] A free-form message set by the sender.
       #
-      #   @param wire_drawdown_request_id [String, nil] The wire drawdown request the inbound wire transfer is fulfilling.
+      #   @param wire_drawdown_request_id [String, nil]
+      #     The wire drawdown request the inbound wire transfer is fulfilling.
 
       # @see Increase::Models::InboundWireTransfer#acceptance
       class Acceptance < Increase::Internal::Type::BaseModel
@@ -242,12 +255,11 @@ module Increase
         required :transaction_id, String
 
         # @!method initialize(accepted_at:, transaction_id:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::InboundWireTransfer::Acceptance} for more details.
-        #
         #   If the transfer is accepted, this will contain details of the acceptance.
         #
-        #   @param accepted_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param accepted_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer was accepted.
         #
         #   @param transaction_id [String] The identifier of the transaction for the accepted transfer.
       end
@@ -268,14 +280,14 @@ module Increase
         required :reversed_at, Time
 
         # @!method initialize(reason:, reversed_at:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::InboundWireTransfer::Reversal} for more details.
-        #
         #   If the transfer is reversed, this will contain details of the reversal.
         #
-        #   @param reason [Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason] The reason for the reversal.
+        #   @param reason [Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason]
+        #     The reason for the reversal.
         #
-        #   @param reversed_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+        #   @param reversed_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the transfer was reversed.
 
         # The reason for the reversal.
         #

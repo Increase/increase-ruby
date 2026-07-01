@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class WireTransfers
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::WireTransferCreateParams} for more details.
-      #
       # Create a Wire Transfer
       #
       # @overload create(account_id:, amount:, creditor:, remittance:, account_number: nil, debtor: nil, external_account_id: nil, inbound_wire_drawdown_request_id: nil, require_approval: nil, routing_number: nil, source_account_number_id: nil, request_options: {})
@@ -14,23 +11,36 @@ module Increase
       #
       # @param amount [Integer] The transfer amount in USD cents.
       #
-      # @param creditor [Increase::Models::WireTransferCreateParams::Creditor] The person or business that is receiving the funds from the transfer.
+      # @param creditor [Increase::Models::WireTransferCreateParams::Creditor]
+      #   The person or business that is receiving the funds from the transfer.
       #
-      # @param remittance [Increase::Models::WireTransferCreateParams::Remittance] Additional remittance information related to the wire transfer.
+      # @param remittance [Increase::Models::WireTransferCreateParams::Remittance]
+      #   Additional remittance information related to the wire transfer.
       #
       # @param account_number [String] The account number for the destination account.
       #
-      # @param debtor [Increase::Models::WireTransferCreateParams::Debtor] The person or business whose funds are being transferred. This is only necessary
+      # @param debtor [Increase::Models::WireTransferCreateParams::Debtor]
+      #   The person or business whose funds are being transferred. This is only necessary
+      #   if you're transferring from a commingled account. Otherwise, we'll use the
+      #   associated entity's details.
       #
-      # @param external_account_id [String] The ID of an External Account to initiate a transfer to. If this parameter is pr
+      # @param external_account_id [String]
+      #   The ID of an External Account to initiate a transfer to. If this parameter is
+      #   provided, `account_number` and `routing_number` must be absent.
       #
-      # @param inbound_wire_drawdown_request_id [String] The ID of an Inbound Wire Drawdown Request in response to which this transfer is
+      # @param inbound_wire_drawdown_request_id [String]
+      #   The ID of an Inbound Wire Drawdown Request in response to which this transfer is
+      #   being sent.
       #
-      # @param require_approval [Boolean] Whether the transfer requires explicit approval via the dashboard or API.
+      # @param require_approval [Boolean]
+      #   Whether the transfer requires explicit approval via the dashboard or API.
       #
-      # @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
+      # @param routing_number [String]
+      #   The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
+      #   destination account.
       #
-      # @param source_account_number_id [String] The ID of an Account Number that will be passed to the wire's recipient
+      # @param source_account_number_id [String]
+      #   The ID of an Account Number that will be passed to the wire's recipient
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -68,9 +78,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::WireTransferListParams} for more details.
-      #
       # List Wire Transfers
       #
       # @overload list(account_id: nil, created_at: nil, cursor: nil, external_account_id: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -83,9 +90,15 @@ module Increase
       #
       # @param external_account_id [String] Filter Wire Transfers to those made to the specified External Account.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::WireTransferListParams::Status]
       #

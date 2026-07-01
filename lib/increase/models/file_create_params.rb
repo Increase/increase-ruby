@@ -28,12 +28,13 @@ module Increase
       optional :description, String
 
       # @!method initialize(file:, purpose:, description: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::FileCreateParams} for more details.
+      #   @param file [Pathname, StringIO, IO, String, Increase::FilePart]
+      #     The file contents. This should follow the specifications of
+      #     [RFC 7578](https://datatracker.ietf.org/doc/html/rfc7578) which defines file
+      #     transfers for the multipart/form-data protocol.
       #
-      #   @param file [Pathname, StringIO, IO, String, Increase::FilePart] The file contents. This should follow the specifications of [RFC 7578](https://d
-      #
-      #   @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose] What the File will be used for in Increase's systems.
+      #   @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose]
+      #     What the File will be used for in Increase's systems.
       #
       #   @param description [String] The description you choose to give the File.
       #

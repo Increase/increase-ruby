@@ -159,9 +159,6 @@ module Increase
       required :voided_check, -> { Increase::Export::VoidedCheck }, nil?: true
 
       # @!method initialize(id:, account_statement_bai2:, account_statement_ofx:, account_verification_letter:, balance_csv:, bookkeeping_account_balance_csv:, category:, created_at:, daily_account_balance_csv:, dashboard_table_csv:, entity_csv:, fee_csv:, form_1099_int:, form_1099_misc:, funding_instructions:, idempotency_key:, result:, status:, transaction_csv:, type:, vendor_csv:, voided_check:)
-      #   Some parameter documentations has been truncated, see {Increase::Models::Export}
-      #   for more details.
-      #
       #   Exports are generated files. Some exports can contain a lot of data, like a CSV
       #   of your transactions. Others can be a single document, like a tax form. Since
       #   they can take a while, they are generated asynchronously. We send a webhook when
@@ -170,47 +167,86 @@ module Increase
       #
       #   @param id [String] The Export identifier.
       #
-      #   @param account_statement_bai2 [Increase::Models::Export::AccountStatementBai2, nil] Details of the account statement BAI2 export. This field will be present when th
+      #   @param account_statement_bai2 [Increase::Models::Export::AccountStatementBai2, nil]
+      #     Details of the account statement BAI2 export. This field will be present when
+      #     the `category` is equal to `account_statement_bai2`.
       #
-      #   @param account_statement_ofx [Increase::Models::Export::AccountStatementOfx, nil] Details of the account statement OFX export. This field will be present when the
+      #   @param account_statement_ofx [Increase::Models::Export::AccountStatementOfx, nil]
+      #     Details of the account statement OFX export. This field will be present when the
+      #     `category` is equal to `account_statement_ofx`.
       #
-      #   @param account_verification_letter [Increase::Models::Export::AccountVerificationLetter, nil] Details of the account verification letter export. This field will be present wh
+      #   @param account_verification_letter [Increase::Models::Export::AccountVerificationLetter, nil]
+      #     Details of the account verification letter export. This field will be present
+      #     when the `category` is equal to `account_verification_letter`.
       #
-      #   @param balance_csv [Increase::Models::Export::BalanceCsv, nil] Details of the balance CSV export. This field will be present when the `category
+      #   @param balance_csv [Increase::Models::Export::BalanceCsv, nil]
+      #     Details of the balance CSV export. This field will be present when the
+      #     `category` is equal to `balance_csv`.
       #
-      #   @param bookkeeping_account_balance_csv [Increase::Models::Export::BookkeepingAccountBalanceCsv, nil] Details of the bookkeeping account balance CSV export. This field will be presen
+      #   @param bookkeeping_account_balance_csv [Increase::Models::Export::BookkeepingAccountBalanceCsv, nil]
+      #     Details of the bookkeeping account balance CSV export. This field will be
+      #     present when the `category` is equal to `bookkeeping_account_balance_csv`.
       #
-      #   @param category [Symbol, Increase::Models::Export::Category] The category of the Export. We may add additional possible values for this enum
+      #   @param category [Symbol, Increase::Models::Export::Category]
+      #     The category of the Export. We may add additional possible values for this enum
+      #     over time; your application should be able to handle that gracefully.
       #
       #   @param created_at [Time] The time the Export was created.
       #
-      #   @param daily_account_balance_csv [Increase::Models::Export::DailyAccountBalanceCsv, nil] Details of the daily account balance CSV export. This field will be present when
+      #   @param daily_account_balance_csv [Increase::Models::Export::DailyAccountBalanceCsv, nil]
+      #     Details of the daily account balance CSV export. This field will be present when
+      #     the `category` is equal to `daily_account_balance_csv`.
       #
-      #   @param dashboard_table_csv [Increase::Models::Export::DashboardTableCsv, nil] Details of the dashboard table CSV export. This field will be present when the `
+      #   @param dashboard_table_csv [Increase::Models::Export::DashboardTableCsv, nil]
+      #     Details of the dashboard table CSV export. This field will be present when the
+      #     `category` is equal to `dashboard_table_csv`.
       #
-      #   @param entity_csv [Increase::Models::Export::EntityCsv, nil] Details of the entity CSV export. This field will be present when the `category`
+      #   @param entity_csv [Increase::Models::Export::EntityCsv, nil]
+      #     Details of the entity CSV export. This field will be present when the `category`
+      #     is equal to `entity_csv`.
       #
-      #   @param fee_csv [Increase::Models::Export::FeeCsv, nil] Details of the fee CSV export. This field will be present when the `category` is
+      #   @param fee_csv [Increase::Models::Export::FeeCsv, nil]
+      #     Details of the fee CSV export. This field will be present when the `category` is
+      #     equal to `fee_csv`.
       #
-      #   @param form_1099_int [Increase::Models::Export::Form1099Int, nil] Details of the Form 1099-INT export. This field will be present when the `catego
+      #   @param form_1099_int [Increase::Models::Export::Form1099Int, nil]
+      #     Details of the Form 1099-INT export. This field will be present when the
+      #     `category` is equal to `form_1099_int`.
       #
-      #   @param form_1099_misc [Increase::Models::Export::Form1099Misc, nil] Details of the Form 1099-MISC export. This field will be present when the `categ
+      #   @param form_1099_misc [Increase::Models::Export::Form1099Misc, nil]
+      #     Details of the Form 1099-MISC export. This field will be present when the
+      #     `category` is equal to `form_1099_misc`.
       #
-      #   @param funding_instructions [Increase::Models::Export::FundingInstructions, nil] Details of the funding instructions export. This field will be present when the
+      #   @param funding_instructions [Increase::Models::Export::FundingInstructions, nil]
+      #     Details of the funding instructions export. This field will be present when the
+      #     `category` is equal to `funding_instructions`.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param result [Increase::Models::Export::Result, nil] The result of the Export. This will be present when the Export's status transiti
+      #   @param result [Increase::Models::Export::Result, nil]
+      #     The result of the Export. This will be present when the Export's status
+      #     transitions to `complete`.
       #
       #   @param status [Symbol, Increase::Models::Export::Status] The status of the Export.
       #
-      #   @param transaction_csv [Increase::Models::Export::TransactionCsv, nil] Details of the transaction CSV export. This field will be present when the `cate
+      #   @param transaction_csv [Increase::Models::Export::TransactionCsv, nil]
+      #     Details of the transaction CSV export. This field will be present when the
+      #     `category` is equal to `transaction_csv`.
       #
-      #   @param type [Symbol, Increase::Models::Export::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::Export::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `export`.
       #
-      #   @param vendor_csv [Increase::Models::Export::VendorCsv, nil] Details of the vendor CSV export. This field will be present when the `category`
+      #   @param vendor_csv [Increase::Models::Export::VendorCsv, nil]
+      #     Details of the vendor CSV export. This field will be present when the `category`
+      #     is equal to `vendor_csv`.
       #
-      #   @param voided_check [Increase::Models::Export::VoidedCheck, nil] Details of the voided check export. This field will be present when the `categor
+      #   @param voided_check [Increase::Models::Export::VoidedCheck, nil]
+      #     Details of the voided check export. This field will be present when the
+      #     `category` is equal to `voided_check`.
 
       # @see Increase::Models::Export#account_statement_bai2
       class AccountStatementBai2 < Increase::Internal::Type::BaseModel
@@ -263,7 +299,8 @@ module Increase
         #
         #   @param account_id [String] The Account to create a statement for.
         #
-        #   @param created_at [Increase::Models::Export::AccountStatementOfx::CreatedAt, nil] Filter transactions by their created date.
+        #   @param created_at [Increase::Models::Export::AccountStatementOfx::CreatedAt, nil]
+        #     Filter transactions by their created date.
 
         # @see Increase::Models::Export::AccountStatementOfx#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -331,7 +368,8 @@ module Increase
         #
         #   @param account_id [String, nil] Filter results by Account.
         #
-        #   @param created_at [Increase::Models::Export::BalanceCsv::CreatedAt, nil] Filter balances by their created date.
+        #   @param created_at [Increase::Models::Export::BalanceCsv::CreatedAt, nil]
+        #     Filter balances by their created date.
 
         # @see Increase::Models::Export::BalanceCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -498,13 +536,12 @@ module Increase
         required :created_at, -> { Increase::Export::FeeCsv::CreatedAt }, nil?: true
 
         # @!method initialize(created_at:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Export::FeeCsv} for more details.
-        #
         #   Details of the fee CSV export. This field will be present when the `category` is
         #   equal to `fee_csv`.
         #
-        #   @param created_at [Increase::Models::Export::FeeCsv::CreatedAt, nil] Filter fees by their created date. The time range must not include any fees that
+        #   @param created_at [Increase::Models::Export::FeeCsv::CreatedAt, nil]
+        #     Filter fees by their created date. The time range must not include any fees that
+        #     are part of an open fee statement.
 
         # @see Increase::Models::Export::FeeCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -685,7 +722,8 @@ module Increase
         #
         #   @param account_id [String, nil] Filter results by Account.
         #
-        #   @param created_at [Increase::Models::Export::TransactionCsv::CreatedAt, nil] Filter transactions by their created date.
+        #   @param created_at [Increase::Models::Export::TransactionCsv::CreatedAt, nil]
+        #     Filter transactions by their created date.
 
         # @see Increase::Models::Export::TransactionCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -750,7 +788,8 @@ module Increase
         #
         #   @param account_number_id [String] The Account Number for the voided check.
         #
-        #   @param payer [Array<Increase::Models::Export::VoidedCheck::Payer>] The payer information printed on the check.
+        #   @param payer [Array<Increase::Models::Export::VoidedCheck::Payer>]
+        #     The payer information printed on the check.
 
         class Payer < Increase::Internal::Type::BaseModel
           # @!attribute line

@@ -68,9 +68,6 @@ module Increase
       required :type, enum: -> { Increase::InboundMailItem::Type }
 
       # @!method initialize(id:, checks:, created_at:, file_id:, lockbox_address_id:, lockbox_recipient_id:, recipient_name:, rejection_reason:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundMailItem} for more details.
-      #
       #   Inbound Mail Items represent pieces of physical mail delivered to a Lockbox
       #   Address. Increase automatically deposits checks mailed to a Lockbox Recipient
       #   into the recipient's Account. Checks that are not matched to a Lockbox Recipient
@@ -80,21 +77,28 @@ module Increase
       #
       #   @param checks [Array<Increase::Models::InboundMailItem::Check>] The checks in the mail item.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Inbound
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Inbound
+      #     Mail Item was created.
       #
       #   @param file_id [String] The identifier for the File containing the scanned contents of the mail item.
       #
       #   @param lockbox_address_id [String] The identifier for the Lockbox Address that received this mail item.
       #
-      #   @param lockbox_recipient_id [String, nil] The identifier for the Lockbox Recipient that received this mail item. For mail
+      #   @param lockbox_recipient_id [String, nil]
+      #     The identifier for the Lockbox Recipient that received this mail item. For mail
+      #     items that could not be routed to a Lockbox Recipient, this will be null.
       #
       #   @param recipient_name [String, nil] The recipient name as written on the mail item.
       #
-      #   @param rejection_reason [Symbol, Increase::Models::InboundMailItem::RejectionReason, nil] If the mail item has been rejected, why it was rejected.
+      #   @param rejection_reason [Symbol, Increase::Models::InboundMailItem::RejectionReason, nil]
+      #     If the mail item has been rejected, why it was rejected.
       #
       #   @param status [Symbol, Increase::Models::InboundMailItem::Status] If the mail item has been processed.
       #
-      #   @param type [Symbol, Increase::Models::InboundMailItem::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::InboundMailItem::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `inbound_mail_item`.
 
       class Check < Increase::Internal::Type::BaseModel
         # @!attribute amount
@@ -138,7 +142,8 @@ module Increase
         #
         #   @param front_file_id [String, nil] The identifier for the File containing the front of the check.
         #
-        #   @param status [Symbol, Increase::Models::InboundMailItem::Check::Status, nil] The status of the Inbound Mail Item Check.
+        #   @param status [Symbol, Increase::Models::InboundMailItem::Check::Status, nil]
+        #     The status of the Inbound Mail Item Check.
 
         # The status of the Inbound Mail Item Check.
         #
