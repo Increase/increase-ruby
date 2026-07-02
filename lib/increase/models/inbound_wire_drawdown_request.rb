@@ -140,9 +140,6 @@ module Increase
       required :unstructured_remittance_information, String, nil?: true
 
       # @!method initialize(id:, amount:, created_at:, creditor_account_number:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, creditor_routing_number:, currency:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, end_to_end_identification:, input_message_accountability_data:, instruction_identification:, recipient_account_number_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundWireDrawdownRequest} for more details.
-      #
       #   Inbound wire drawdown requests are requests from someone else to send them a
       #   wire. For more information, see our
       #   [Wire Drawdown Requests documentation](/documentation/wire-drawdown-requests).
@@ -151,7 +148,9 @@ module Increase
       #
       #   @param amount [Integer] The amount being requested in cents.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the inbound wire drawdown request was created.
       #
       #   @param creditor_account_number [String] The creditor's account number.
       #
@@ -165,7 +164,9 @@ module Increase
       #
       #   @param creditor_routing_number [String] The creditor's routing number.
       #
-      #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
+      #   @param currency [String]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the amount being
+      #     requested. Will always be "USD".
       #
       #   @param debtor_address_line1 [String, nil] A free-form address field set by the sender.
       #
@@ -175,17 +176,29 @@ module Increase
       #
       #   @param debtor_name [String, nil] A name set by the sender.
       #
-      #   @param end_to_end_identification [String, nil] A free-form reference string set by the sender, to help identify the drawdown re
+      #   @param end_to_end_identification [String, nil]
+      #     A free-form reference string set by the sender, to help identify the drawdown
+      #     request.
       #
-      #   @param input_message_accountability_data [String, nil] A unique identifier available to the originating and receiving banks, commonly a
+      #   @param input_message_accountability_data [String, nil]
+      #     A unique identifier available to the originating and receiving banks, commonly
+      #     abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
+      #     service and is helpful when debugging wires with the originating bank.
       #
       #   @param instruction_identification [String, nil] The sending bank's identifier for the drawdown request.
       #
-      #   @param recipient_account_number_id [String] The Account Number from which the recipient of this request is being requested t
+      #   @param recipient_account_number_id [String]
+      #     The Account Number from which the recipient of this request is being requested
+      #     to send funds.
       #
-      #   @param type [Symbol, Increase::Models::InboundWireDrawdownRequest::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::InboundWireDrawdownRequest::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `inbound_wire_drawdown_request`.
       #
-      #   @param unique_end_to_end_transaction_reference [String, nil] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
+      #   @param unique_end_to_end_transaction_reference [String, nil]
+      #     The Unique End-to-end Transaction Reference
+      #     ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #     of the drawdown request.
       #
       #   @param unstructured_remittance_information [String, nil] A free-form message set by the sender.
 

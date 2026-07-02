@@ -74,9 +74,6 @@ module Increase
       required :type, enum: -> { Increase::EntityOnboardingSession::Type }
 
       # @!method initialize(id:, created_at:, entity_id:, expires_at:, idempotency_key:, program_id:, redirect_url:, session_url:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EntityOnboardingSession} for more details.
-      #
       #   Entity Onboarding Sessions let your customers onboard themselves by completing
       #   Increase-hosted forms. Create a session and redirect your customer to the
       #   returned URL. When they're done, they'll be redirected back to your site. This
@@ -84,23 +81,40 @@ module Increase
       #
       #   @param id [String] The Entity Onboarding Session's identifier.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the Entity Onboarding Session was created.
       #
-      #   @param entity_id [String, nil] The identifier of the Entity associated with this session, if one has been creat
+      #   @param entity_id [String, nil]
+      #     The identifier of the Entity associated with this session, if one has been
+      #     created or was provided when creating the session.
       #
-      #   @param expires_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param expires_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the Entity Onboarding Session will expire.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param program_id [String] The identifier of the Program the Entity will be onboarded to.
       #
-      #   @param redirect_url [String] The URL to redirect to after the onboarding session is complete. Increase will i
+      #   @param redirect_url [String]
+      #     The URL to redirect to after the onboarding session is complete. Increase will
+      #     include the query parameters `entity_onboarding_session_id` and `entity_id` when
+      #     redirecting.
       #
-      #   @param session_url [String, nil] The URL containing the onboarding form. You should share this link with your cus
+      #   @param session_url [String, nil]
+      #     The URL containing the onboarding form. You should share this link with your
+      #     customer. Only present when the session is active.
       #
-      #   @param status [Symbol, Increase::Models::EntityOnboardingSession::Status] The status of the onboarding session.
+      #   @param status [Symbol, Increase::Models::EntityOnboardingSession::Status]
+      #     The status of the onboarding session.
       #
-      #   @param type [Symbol, Increase::Models::EntityOnboardingSession::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::EntityOnboardingSession::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `entity_onboarding_session`.
 
       # The status of the onboarding session.
       #

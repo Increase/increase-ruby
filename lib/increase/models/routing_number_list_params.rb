@@ -27,14 +27,13 @@ module Increase
       optional :limit, Integer
 
       # @!method initialize(routing_number:, cursor: nil, limit: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::RoutingNumberListParams} for more details.
-      #
       #   @param routing_number [String] Filter financial institutions by routing number.
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
-      #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #   @param limit [Integer]
+      #     Limit the size of the list that is returned. The default (and maximum) is 100
+      #     objects.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end

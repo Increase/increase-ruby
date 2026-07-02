@@ -3,38 +3,52 @@
 module Increase
   module Resources
     class Exports
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::ExportCreateParams} for more details.
-      #
       # Create an Export
       #
       # @overload create(category:, account_statement_bai2: nil, account_statement_ofx: nil, account_verification_letter: nil, bookkeeping_account_balance_csv: nil, daily_account_balance_csv: nil, entity_csv: nil, fee_csv: nil, funding_instructions: nil, transaction_csv: nil, vendor_csv: nil, voided_check: nil, request_options: {})
       #
       # @param category [Symbol, Increase::Models::ExportCreateParams::Category] The type of Export to create.
       #
-      # @param account_statement_bai2 [Increase::Models::ExportCreateParams::AccountStatementBai2] Options for the created export. Required if `category` is equal to `account_stat
+      # @param account_statement_bai2 [Increase::Models::ExportCreateParams::AccountStatementBai2]
+      #   Options for the created export. Required if `category` is equal to
+      #   `account_statement_bai2`.
       #
-      # @param account_statement_ofx [Increase::Models::ExportCreateParams::AccountStatementOfx] Options for the created export. Required if `category` is equal to `account_stat
+      # @param account_statement_ofx [Increase::Models::ExportCreateParams::AccountStatementOfx]
+      #   Options for the created export. Required if `category` is equal to
+      #   `account_statement_ofx`.
       #
-      # @param account_verification_letter [Increase::Models::ExportCreateParams::AccountVerificationLetter] Options for the created export. Required if `category` is equal to `account_veri
+      # @param account_verification_letter [Increase::Models::ExportCreateParams::AccountVerificationLetter]
+      #   Options for the created export. Required if `category` is equal to
+      #   `account_verification_letter`.
       #
-      # @param bookkeeping_account_balance_csv [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv] Options for the created export. Required if `category` is equal to
-      # `bookkeeping\_
+      # @param bookkeeping_account_balance_csv [Increase::Models::ExportCreateParams::BookkeepingAccountBalanceCsv]
+      #   Options for the created export. Required if `category` is equal to
+      #   `bookkeeping_account_balance_csv`.
       #
-      # @param daily_account_balance_csv [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv] Options for the created export. Required if `category` is equal to `daily_accoun
+      # @param daily_account_balance_csv [Increase::Models::ExportCreateParams::DailyAccountBalanceCsv]
+      #   Options for the created export. Required if `category` is equal to
+      #   `daily_account_balance_csv`.
       #
-      # @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv] Options for the created export. Required if `category` is equal to `entity_csv`.
+      # @param entity_csv [Increase::Models::ExportCreateParams::EntityCsv]
+      #   Options for the created export. Required if `category` is equal to `entity_csv`.
       #
-      # @param fee_csv [Increase::Models::ExportCreateParams::FeeCsv] Options for the created export. Required if `category` is equal to `fee_csv`.
+      # @param fee_csv [Increase::Models::ExportCreateParams::FeeCsv]
+      #   Options for the created export. Required if `category` is equal to `fee_csv`.
       #
-      # @param funding_instructions [Increase::Models::ExportCreateParams::FundingInstructions] Options for the created export. Required if `category` is equal to `funding_inst
+      # @param funding_instructions [Increase::Models::ExportCreateParams::FundingInstructions]
+      #   Options for the created export. Required if `category` is equal to
+      #   `funding_instructions`.
       #
-      # @param transaction_csv [Increase::Models::ExportCreateParams::TransactionCsv] Options for the created export. Required if `category` is equal to
-      # `transaction\_
+      # @param transaction_csv [Increase::Models::ExportCreateParams::TransactionCsv]
+      #   Options for the created export. Required if `category` is equal to
+      #   `transaction_csv`.
       #
-      # @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv] Options for the created export. Required if `category` is equal to `vendor_csv`.
+      # @param vendor_csv [Increase::Models::ExportCreateParams::VendorCsv]
+      #   Options for the created export. Required if `category` is equal to `vendor_csv`.
       #
-      # @param voided_check [Increase::Models::ExportCreateParams::VoidedCheck] Options for the created export. Required if `category` is equal to `voided_check
+      # @param voided_check [Increase::Models::ExportCreateParams::VoidedCheck]
+      #   Options for the created export. Required if `category` is equal to
+      #   `voided_check`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -72,14 +86,12 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::ExportListParams} for more details.
-      #
       # List Exports
       #
       # @overload list(category: nil, created_at: nil, cursor: nil, form_1099_int: nil, form_1099_misc: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
-      # @param category [Symbol, Increase::Models::ExportListParams::Category] Filter Exports for those with the specified category.
+      # @param category [Symbol, Increase::Models::ExportListParams::Category]
+      #   Filter Exports for those with the specified category.
       #
       # @param created_at [Increase::Models::ExportListParams::CreatedAt]
       #
@@ -89,9 +101,15 @@ module Increase
       #
       # @param form_1099_misc [Increase::Models::ExportListParams::Form1099Misc]
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::ExportListParams::Status]
       #

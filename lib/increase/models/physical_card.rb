@@ -63,9 +63,6 @@ module Increase
       required :type, enum: -> { Increase::PhysicalCard::Type }
 
       # @!method initialize(id:, card_id:, cardholder:, created_at:, idempotency_key:, physical_card_profile_id:, shipment:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::PhysicalCard} for more details.
-      #
       #   Custom physical Visa cards that are shipped to your customers. The artwork is
       #   configurable by a connected [Card Profile](/documentation/api#card-profiles).
       #   The same Card can be used for multiple Physical Cards. Printing cards incurs a
@@ -76,11 +73,17 @@ module Increase
       #
       #   @param card_id [String] The identifier for the Card this Physical Card represents.
       #
-      #   @param cardholder [Increase::Models::PhysicalCard::Cardholder] Details about the cardholder, as it appears on the printed card.
+      #   @param cardholder [Increase::Models::PhysicalCard::Cardholder]
+      #     Details about the cardholder, as it appears on the printed card.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the Physical Card was created.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param physical_card_profile_id [String, nil] The Physical Card Profile used for this Physical Card.
       #
@@ -88,7 +91,9 @@ module Increase
       #
       #   @param status [Symbol, Increase::Models::PhysicalCard::Status] The status of the Physical Card.
       #
-      #   @param type [Symbol, Increase::Models::PhysicalCard::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::PhysicalCard::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `physical_card`.
 
       # @see Increase::Models::PhysicalCard#cardholder
       class Cardholder < Increase::Internal::Type::BaseModel
@@ -149,20 +154,24 @@ module Increase
         required :tracking, -> { Increase::PhysicalCard::Shipment::Tracking }, nil?: true
 
         # @!method initialize(address:, method_:, schedule:, status:, tracking:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::PhysicalCard::Shipment} for more details.
-        #
         #   The details used to ship this physical card.
         #
-        #   @param address [Increase::Models::PhysicalCard::Shipment::Address] The location to where the card's packing label is addressed.
+        #   @param address [Increase::Models::PhysicalCard::Shipment::Address]
+        #     The location to where the card's packing label is addressed.
         #
         #   @param method_ [Symbol, Increase::Models::PhysicalCard::Shipment::Method] The shipping method.
         #
-        #   @param schedule [Symbol, Increase::Models::PhysicalCard::Shipment::Schedule] When this physical card should be produced by the card printer. The default time
+        #   @param schedule [Symbol, Increase::Models::PhysicalCard::Shipment::Schedule]
+        #     When this physical card should be produced by the card printer. The default
+        #     timeline is the day after the card printer receives the order, except for
+        #     `FEDEX_PRIORITY_OVERNIGHT` cards, which default to `SAME_DAY`. To use faster
+        #     production methods, please reach out to
+        #     [support@increase.com](mailto:support@increase.com).
         #
         #   @param status [Symbol, Increase::Models::PhysicalCard::Shipment::Status] The status of this shipment.
         #
-        #   @param tracking [Increase::Models::PhysicalCard::Shipment::Tracking, nil] Tracking details for the shipment.
+        #   @param tracking [Increase::Models::PhysicalCard::Shipment::Tracking, nil]
+        #     Tracking details for the shipment.
 
         # @see Increase::Models::PhysicalCard::Shipment#address
         class Address < Increase::Internal::Type::BaseModel
@@ -346,9 +355,6 @@ module Increase
                    -> { Increase::Internal::Type::ArrayOf[Increase::PhysicalCard::Shipment::Tracking::Update] }
 
           # @!method initialize(number:, return_number:, return_reason:, shipped_at:, updates:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::PhysicalCard::Shipment::Tracking} for more details.
-          #
           #   Tracking details for the shipment.
           #
           #   @param number [String, nil] The tracking number. Not available for USPS shipments.
@@ -357,9 +363,13 @@ module Increase
           #
           #   @param return_reason [String, nil] For returned shipments, this describes why the package was returned.
           #
-          #   @param shipped_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+          #   @param shipped_at [Time]
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          #     the fulfillment provider marked the card as ready for pick-up by the shipment
+          #     carrier.
           #
-          #   @param updates [Array<Increase::Models::PhysicalCard::Shipment::Tracking::Update>] Tracking updates relating to the physical card's delivery.
+          #   @param updates [Array<Increase::Models::PhysicalCard::Shipment::Tracking::Update>]
+          #     Tracking updates relating to the physical card's delivery.
 
           class Update < Increase::Internal::Type::BaseModel
             # @!attribute carrier_estimated_delivery_at
@@ -401,16 +411,18 @@ module Increase
             required :state, String, nil?: true
 
             # @!method initialize(carrier_estimated_delivery_at:, category:, city:, created_at:, postal_code:, state:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::PhysicalCard::Shipment::Tracking::Update} for more details.
+            #   @param carrier_estimated_delivery_at [Time, nil]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+            #     carrier expects the card to be delivered.
             #
-            #   @param carrier_estimated_delivery_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the ca
-            #
-            #   @param category [Symbol, Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category] The type of tracking event.
+            #   @param category [Symbol, Increase::Models::PhysicalCard::Shipment::Tracking::Update::Category]
+            #     The type of tracking event.
             #
             #   @param city [String, nil] The city where the event took place.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+            #     the tracking event took place.
             #
             #   @param postal_code [String, nil] The postal code where the event took place.
             #

@@ -52,9 +52,6 @@ module Increase
       required :type, enum: -> { Increase::LockboxAddress::Type }
 
       # @!method initialize(id:, address:, created_at:, description:, idempotency_key:, status:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::LockboxAddress} for more details.
-      #
       #   Lockbox Addresses are physical locations that can receive mail containing paper
       #   checks. A Lockbox Address is not itself linked to an Account; Lockbox Recipients
       #   determine where checks received at the address are deposited. Lockbox Addresses
@@ -64,17 +61,26 @@ module Increase
       #
       #   @param id [String] The Lockbox Address identifier.
       #
-      #   @param address [Increase::Models::LockboxAddress::Address, nil] The mailing address for the Lockbox Address. It will be present after Increase g
+      #   @param address [Increase::Models::LockboxAddress::Address, nil]
+      #     The mailing address for the Lockbox Address. It will be present after Increase
+      #     generates it.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Lockbox
+      #     Address was created.
       #
       #   @param description [String, nil] The description you choose for the Lockbox Address.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param status [Symbol, Increase::Models::LockboxAddress::Status] The status of the Lockbox Address.
       #
-      #   @param type [Symbol, Increase::Models::LockboxAddress::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::LockboxAddress::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `lockbox_address`.
 
       # @see Increase::Models::LockboxAddress#address
       class Address < Increase::Internal::Type::BaseModel
@@ -110,9 +116,6 @@ module Increase
         required :state, String
 
         # @!method initialize(city:, line1:, line2:, postal_code:, state:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::LockboxAddress::Address} for more details.
-        #
         #   The mailing address for the Lockbox Address. It will be present after Increase
         #   generates it.
         #
@@ -124,7 +127,9 @@ module Increase
         #
         #   @param postal_code [String] The postal code of the address.
         #
-        #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+        #   @param state [String]
+        #     The two-letter United States Postal Service (USPS) abbreviation for the state of
+        #     the address.
       end
 
       # The status of the Lockbox Address.

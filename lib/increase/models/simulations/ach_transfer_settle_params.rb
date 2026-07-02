@@ -24,12 +24,12 @@ module Increase
                  enum: -> { Increase::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior }
 
         # @!method initialize(ach_transfer_id:, inbound_funds_hold_behavior: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::ACHTransferSettleParams} for more details.
-        #
         #   @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to become settled.
         #
-        #   @param inbound_funds_hold_behavior [Symbol, Increase::Models::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior] The behavior of the inbound funds hold that is created when the ACH Transfer is
+        #   @param inbound_funds_hold_behavior [Symbol, Increase::Models::Simulations::ACHTransferSettleParams::InboundFundsHoldBehavior]
+        #     The behavior of the inbound funds hold that is created when the ACH Transfer is
+        #     settled. If no behavior is specified, the inbound funds hold will be released
+        #     immediately in order for the funds to be available for use.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

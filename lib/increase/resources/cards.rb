@@ -3,24 +3,29 @@
 module Increase
   module Resources
     class Cards
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardCreateParams} for more details.
-      #
       # Create a Card
       #
       # @overload create(account_id:, authorization_controls: nil, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
       #
       # @param account_id [String] The Account the card should belong to.
       #
-      # @param authorization_controls [Increase::Models::CardCreateParams::AuthorizationControls] Controls that restrict how this card can be used.
+      # @param authorization_controls [Increase::Models::CardCreateParams::AuthorizationControls]
+      #   Controls that restrict how this card can be used.
       #
       # @param billing_address [Increase::Models::CardCreateParams::BillingAddress] The card's billing address.
       #
       # @param description [String] The description you choose to give the card.
       #
-      # @param digital_wallet [Increase::Models::CardCreateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
+      # @param digital_wallet [Increase::Models::CardCreateParams::DigitalWallet]
+      #   The contact information used in the two-factor steps for digital wallet card
+      #   creation. To add the card to a digital wallet, you may supply an email or phone
+      #   number with this request. Otherwise, subscribe and then action a Real Time
+      #   Decision with the category `digital_wallet_token_requested` or
+      #   `digital_wallet_authentication_requested`.
       #
-      # @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
+      # @param entity_id [String]
+      #   The Entity the card belongs to. You only need to supply this in rare situations
+      #   when the card is not for the Account holder.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -52,24 +57,28 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardUpdateParams} for more details.
-      #
       # Update a Card
       #
       # @overload update(card_id, authorization_controls: nil, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, status: nil, request_options: {})
       #
       # @param card_id [String] The card identifier.
       #
-      # @param authorization_controls [Increase::Models::CardUpdateParams::AuthorizationControls] Controls that restrict how this card can be used.
+      # @param authorization_controls [Increase::Models::CardUpdateParams::AuthorizationControls]
+      #   Controls that restrict how this card can be used.
       #
-      # @param billing_address [Increase::Models::CardUpdateParams::BillingAddress] The card's updated billing address.
+      # @param billing_address [Increase::Models::CardUpdateParams::BillingAddress]
+      #   The card's updated billing address.
       #
       # @param description [String] The description you choose to give the card.
       #
-      # @param digital_wallet [Increase::Models::CardUpdateParams::DigitalWallet] The contact information used in the two-factor steps for digital wallet card cre
+      # @param digital_wallet [Increase::Models::CardUpdateParams::DigitalWallet]
+      #   The contact information used in the two-factor steps for digital wallet card
+      #   creation. At least one field must be present to complete the digital wallet
+      #   steps.
       #
-      # @param entity_id [String] The Entity the card belongs to. You only need to supply this in rare situations
+      # @param entity_id [String]
+      #   The Entity the card belongs to. You only need to supply this in rare situations
+      #   when the card is not for the Account holder.
       #
       # @param status [Symbol, Increase::Models::CardUpdateParams::Status] The status to update the Card with.
       #
@@ -89,9 +98,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardListParams} for more details.
-      #
       # List Cards
       #
       # @overload list(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -102,9 +108,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::CardListParams::Status]
       #
@@ -126,9 +138,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::CardCreateDetailsIframeParams} for more details.
-      #
       # Create an iframe URL for a Card to display the card details. More details about
       # styling and usage can be found in the
       # [documentation](/documentation/embedded-card-component).
@@ -137,7 +146,9 @@ module Increase
       #
       # @param card_id [String] The identifier of the Card to create an iframe for.
       #
-      # @param physical_card_id [String] The identifier of the Physical Card to create an iframe for. This will inform th
+      # @param physical_card_id [String]
+      #   The identifier of the Physical Card to create an iframe for. This will inform
+      #   the appearance of the card rendered in the iframe.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

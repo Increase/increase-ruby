@@ -23,9 +23,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::DigitalWalletTokenListParams} for more details.
-      #
       # List Digital Wallet Tokens
       #
       # @overload list(card_id: nil, created_at: nil, cursor: nil, limit: nil, request_options: {})
@@ -36,7 +33,9 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

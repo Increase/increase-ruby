@@ -21,9 +21,11 @@ module Increase
         optional :rejection, -> { Increase::Simulations::RealTimePaymentsTransferCompleteParams::Rejection }
 
         # @!method initialize(real_time_payments_transfer_id:, rejection: nil, request_options: {})
-        #   @param real_time_payments_transfer_id [String] The identifier of the Real-Time Payments Transfer you wish to complete.
+        #   @param real_time_payments_transfer_id [String]
+        #     The identifier of the Real-Time Payments Transfer you wish to complete.
         #
-        #   @param rejection [Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection] If set, the simulation will reject the transfer.
+        #   @param rejection [Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection]
+        #     If set, the simulation will reject the transfer.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -38,7 +40,8 @@ module Increase
           # @!method initialize(reject_reason_code:)
           #   If set, the simulation will reject the transfer.
           #
-          #   @param reject_reason_code [Symbol, Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::RejectReasonCode] The reason code that the simulated rejection will have.
+          #   @param reject_reason_code [Symbol, Increase::Models::Simulations::RealTimePaymentsTransferCompleteParams::Rejection::RejectReasonCode]
+          #     The reason code that the simulated rejection will have.
 
           # The reason code that the simulated rejection will have.
           #

@@ -23,14 +23,12 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::EventListParams} for more details.
-      #
       # List Events
       #
       # @overload list(associated_object_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, order_by: nil, request_options: {})
       #
-      # @param associated_object_id [String] Filter Events to those belonging to the object with the provided identifier.
+      # @param associated_object_id [String]
+      #   Filter Events to those belonging to the object with the provided identifier.
       #
       # @param category [Increase::Models::EventListParams::Category]
       #
@@ -38,7 +36,9 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param order_by [Increase::Models::EventListParams::OrderBy]
       #
@@ -64,10 +64,11 @@ module Increase
       #
       # @param headers [Hash{String=>String}] The raw HTTP headers that came with the payload
       #
-      # @param key [String, nil] The webhook signing key, as the raw secret string. It is Base64-encoded before
-      # being passed to StandardWebhooks, so to sign a synthetic payload in tests,
-      # construct the signer the same way:
-      # StandardWebhooks::Webhook.new(Base64.strict_encode64(key))
+      # @param key [String, nil]
+      #   The webhook signing key, as the raw secret string. It is Base64-encoded before
+      #   being passed to StandardWebhooks, so to sign a synthetic payload in tests,
+      #   construct the signer the same way:
+      #   StandardWebhooks::Webhook.new(Base64.strict_encode64(key))
       #
       # @return [Increase::Models::UnwrapWebhookEvent]
       def unwrap(payload, headers:, key: @client.webhook_secret)

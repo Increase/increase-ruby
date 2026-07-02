@@ -46,17 +46,20 @@ module Increase
         optional :primary_account_number_length, Integer
 
         # @!method initialize(capabilities: nil, expiration: nil, last4: nil, outcome: nil, prefix: nil, primary_account_number_length: nil, request_options: {})
-        #   @param capabilities [Array<Increase::Models::Simulations::CardTokenCreateParams::Capability>] The capabilities of the outbound card token.
+        #   @param capabilities [Array<Increase::Models::Simulations::CardTokenCreateParams::Capability>]
+        #     The capabilities of the outbound card token.
         #
         #   @param expiration [Date] The expiration date of the card.
         #
         #   @param last4 [String] The last 4 digits of the card number.
         #
-        #   @param outcome [Increase::Models::Simulations::CardTokenCreateParams::Outcome] The outcome to simulate for card push transfers using this token.
+        #   @param outcome [Increase::Models::Simulations::CardTokenCreateParams::Outcome]
+        #     The outcome to simulate for card push transfers using this token.
         #
         #   @param prefix [String] The prefix of the card number, usually the first 8 digits.
         #
-        #   @param primary_account_number_length [Integer] The total length of the card number, including prefix and last4.
+        #   @param primary_account_number_length [Integer]
+        #     The total length of the card number, including prefix and last4.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -82,11 +85,14 @@ module Increase
           required :route, enum: -> { Increase::Simulations::CardTokenCreateParams::Capability::Route }
 
           # @!method initialize(cross_border_push_transfers:, domestic_push_transfers:, route:)
-          #   @param cross_border_push_transfers [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::CrossBorderPushTransfers] The cross-border push transfers capability.
+          #   @param cross_border_push_transfers [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::CrossBorderPushTransfers]
+          #     The cross-border push transfers capability.
           #
-          #   @param domestic_push_transfers [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::DomesticPushTransfers] The domestic push transfers capability.
+          #   @param domestic_push_transfers [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::DomesticPushTransfers]
+          #     The domestic push transfers capability.
           #
-          #   @param route [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::Route] The route of the capability.
+          #   @param route [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Capability::Route]
+          #     The route of the capability.
 
           # The cross-border push transfers capability.
           #
@@ -156,9 +162,11 @@ module Increase
           # @!method initialize(result:, decline: nil)
           #   The outcome to simulate for card push transfers using this token.
           #
-          #   @param result [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Outcome::Result] Whether card push transfers or validations will be approved or declined.
+          #   @param result [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Outcome::Result]
+          #     Whether card push transfers or validations will be approved or declined.
           #
-          #   @param decline [Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline] If the result is declined, the details of the decline.
+          #   @param decline [Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline]
+          #     If the result is declined, the details of the decline.
 
           # Whether card push transfers or validations will be approved or declined.
           #
@@ -187,7 +195,8 @@ module Increase
             # @!method initialize(reason: nil)
             #   If the result is declined, the details of the decline.
             #
-            #   @param reason [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::Reason] The reason for the decline.
+            #   @param reason [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::Reason]
+            #     The reason for the decline.
 
             # The reason for the decline.
             #

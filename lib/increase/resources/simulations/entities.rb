@@ -4,9 +4,6 @@ module Increase
   module Resources
     class Simulations
       class Entities
-        # Some parameter documentations has been truncated, see
-        # {Increase::Models::Simulations::EntityUpdateValidationParams} for more details.
-        #
         # Simulate updates to an
         # [Entity's validation](/documentation/api/entities#entity-object.validation). In
         # production, Know Your Customer validations
@@ -18,7 +15,9 @@ module Increase
         #
         # @param entity_id [String] The identifier of the Entity whose validation status to update.
         #
-        # @param issues [Array<Increase::Models::Simulations::EntityUpdateValidationParams::Issue>] The validation issues to attach. If no issues are provided, the validation statu
+        # @param issues [Array<Increase::Models::Simulations::EntityUpdateValidationParams::Issue>]
+        #   The validation issues to attach. If no issues are provided, the validation
+        #   status will be set to `valid`.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

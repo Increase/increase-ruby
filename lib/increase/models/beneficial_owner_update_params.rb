@@ -52,20 +52,28 @@ module Increase
                -> { Increase::Internal::Type::ArrayOf[enum: Increase::BeneficialOwnerUpdateParams::Prong] }
 
       # @!method initialize(entity_beneficial_owner_id:, address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil, prongs: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::BeneficialOwnerUpdateParams} for more details.
-      #
       #   @param entity_beneficial_owner_id [String] The identifier of the Beneficial Owner to update.
       #
-      #   @param address [Increase::Models::BeneficialOwnerUpdateParams::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
+      #   @param address [Increase::Models::BeneficialOwnerUpdateParams::Address]
+      #     The individual's physical address. Mail receiving locations like PO Boxes and
+      #     PMB's are disallowed.
       #
-      #   @param confirmed_no_us_tax_id [Boolean] The identification method for an individual can only be a passport, driver's lic
+      #   @param confirmed_no_us_tax_id [Boolean]
+      #     The identification method for an individual can only be a passport, driver's
+      #     license, or other document if you've confirmed the individual does not have a US
+      #     tax id (either a Social Security Number or Individual Taxpayer Identification
+      #     Number).
       #
-      #   @param identification [Increase::Models::BeneficialOwnerUpdateParams::Identification] A means of verifying the person's identity.
+      #   @param identification [Increase::Models::BeneficialOwnerUpdateParams::Identification]
+      #     A means of verifying the person's identity.
       #
       #   @param name [String] The individual's legal name.
       #
-      #   @param prongs [Array<Symbol, Increase::Models::BeneficialOwnerUpdateParams::Prong>] Why this person is considered a beneficial owner of the entity. At least one opt
+      #   @param prongs [Array<Symbol, Increase::Models::BeneficialOwnerUpdateParams::Prong>]
+      #     Why this person is considered a beneficial owner of the entity. At least one
+      #     option is required, if a person is both a control person and owner, submit an
+      #     array containing both. Providing this replaces the beneficial owner's current
+      #     prongs.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -108,9 +116,6 @@ module Increase
         optional :zip, String
 
         # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::BeneficialOwnerUpdateParams::Address} for more details.
-        #
         #   The individual's physical address. Mail receiving locations like PO Boxes and
         #   PMB's are disallowed.
         #
@@ -122,7 +127,9 @@ module Increase
         #
         #   @param line2 [String] The second line of the address. This might be the floor or room number.
         #
-        #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the US state
+        #   @param state [String]
+        #     The two-letter United States Postal Service (USPS) abbreviation for the US
+        #     state, province, or region of the address. Required in certain countries.
         #
         #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
       end
@@ -168,21 +175,29 @@ module Increase
         optional :passport, -> { Increase::BeneficialOwnerUpdateParams::Identification::Passport }
 
         # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::BeneficialOwnerUpdateParams::Identification} for more
-        #   details.
-        #
         #   A means of verifying the person's identity.
         #
-        #   @param method_ [Symbol, Increase::Models::BeneficialOwnerUpdateParams::Identification::Method] A method that can be used to verify the individual's identity.
+        #   @param method_ [Symbol, Increase::Models::BeneficialOwnerUpdateParams::Identification::Method]
+        #     A method that can be used to verify the individual's identity.
         #
-        #   @param number [String] An identification number that can be used to verify the individual's identity, s
+        #   @param number [String]
+        #     An identification number that can be used to verify the individual's identity,
+        #     such as a social security number. For Social Security Numbers and Individual
+        #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
+        #     separators. When testing in sandbox, use one of our
+        #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
         #
-        #   @param drivers_license [Increase::Models::BeneficialOwnerUpdateParams::Identification::DriversLicense] Information about the United States driver's license used for identification. Re
+        #   @param drivers_license [Increase::Models::BeneficialOwnerUpdateParams::Identification::DriversLicense]
+        #     Information about the United States driver's license used for identification.
+        #     Required if `method` is equal to `drivers_license`.
         #
-        #   @param other [Increase::Models::BeneficialOwnerUpdateParams::Identification::Other] Information about the identification document provided. Required if `method` is
+        #   @param other [Increase::Models::BeneficialOwnerUpdateParams::Identification::Other]
+        #     Information about the identification document provided. Required if `method` is
+        #     equal to `other`.
         #
-        #   @param passport [Increase::Models::BeneficialOwnerUpdateParams::Identification::Passport] Information about the passport used for identification. Required if `method` is
+        #   @param passport [Increase::Models::BeneficialOwnerUpdateParams::Identification::Passport]
+        #     Information about the passport used for identification. Required if `method` is
+        #     equal to `passport`.
 
         # A method that can be used to verify the individual's identity.
         #
@@ -283,20 +298,20 @@ module Increase
           optional :expiration_date, Date
 
           # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::BeneficialOwnerUpdateParams::Identification::Other} for more
-          #   details.
-          #
           #   Information about the identification document provided. Required if `method` is
           #   equal to `other`.
           #
-          #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+          #   @param country [String]
+          #     The two-character ISO 3166-1 code representing the country that issued the
+          #     document (e.g., `US`).
           #
           #   @param description [String] A description of the document submitted.
           #
           #   @param file_id [String] The identifier of the File containing the front of the document.
           #
-          #   @param back_file_id [String] The identifier of the File containing the back of the document. Not every docume
+          #   @param back_file_id [String]
+          #     The identifier of the File containing the back of the document. Not every
+          #     document has a reverse side.
           #
           #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
         end
@@ -323,14 +338,12 @@ module Increase
           required :file_id, String
 
           # @!method initialize(country:, expiration_date:, file_id:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::BeneficialOwnerUpdateParams::Identification::Passport} for
-          #   more details.
-          #
           #   Information about the passport used for identification. Required if `method` is
           #   equal to `passport`.
           #
-          #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+          #   @param country [String]
+          #     The two-character ISO 3166-1 code representing the country that issued the
+          #     document (e.g., `US`).
           #
           #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
           #

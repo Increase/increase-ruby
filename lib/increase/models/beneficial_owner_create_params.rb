@@ -36,14 +36,17 @@ module Increase
       optional :company_title, String
 
       # @!method initialize(entity_id:, individual:, prongs:, company_title: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::BeneficialOwnerCreateParams} for more details.
+      #   @param entity_id [String]
+      #     The identifier of the Entity to associate with the new Beneficial Owner. Only
+      #     `corporation` entities have beneficial owners.
       #
-      #   @param entity_id [String] The identifier of the Entity to associate with the new Beneficial Owner. Only `c
+      #   @param individual [Increase::Models::BeneficialOwnerCreateParams::Individual]
+      #     Personal details for the beneficial owner.
       #
-      #   @param individual [Increase::Models::BeneficialOwnerCreateParams::Individual] Personal details for the beneficial owner.
-      #
-      #   @param prongs [Array<Symbol, Increase::Models::BeneficialOwnerCreateParams::Prong>] Why this person is considered a beneficial owner of the entity. At least one opt
+      #   @param prongs [Array<Symbol, Increase::Models::BeneficialOwnerCreateParams::Prong>]
+      #     Why this person is considered a beneficial owner of the entity. At least one
+      #     option is required, if a person is both a control person and owner, submit an
+      #     array containing both.
       #
       #   @param company_title [String] This person's role or title within the entity.
       #
@@ -85,20 +88,24 @@ module Increase
         optional :confirmed_no_us_tax_id, Increase::Internal::Type::Boolean
 
         # @!method initialize(address:, date_of_birth:, identification:, name:, confirmed_no_us_tax_id: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::BeneficialOwnerCreateParams::Individual} for more details.
-        #
         #   Personal details for the beneficial owner.
         #
-        #   @param address [Increase::Models::BeneficialOwnerCreateParams::Individual::Address] The individual's physical address. Mail receiving locations like PO Boxes and PM
+        #   @param address [Increase::Models::BeneficialOwnerCreateParams::Individual::Address]
+        #     The individual's physical address. Mail receiving locations like PO Boxes and
+        #     PMB's are disallowed.
         #
         #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
         #
-        #   @param identification [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification] A means of verifying the person's identity.
+        #   @param identification [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification]
+        #     A means of verifying the person's identity.
         #
         #   @param name [String] The person's legal name.
         #
-        #   @param confirmed_no_us_tax_id [Boolean] The identification method for an individual can only be a passport, driver's lic
+        #   @param confirmed_no_us_tax_id [Boolean]
+        #     The identification method for an individual can only be a passport, driver's
+        #     license, or other document if you've confirmed the individual does not have a US
+        #     tax id (either a Social Security Number or Individual Taxpayer Identification
+        #     Number).
 
         # @see Increase::Models::BeneficialOwnerCreateParams::Individual#address
         class Address < Increase::Internal::Type::BaseModel
@@ -140,10 +147,6 @@ module Increase
           optional :zip, String
 
           # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::BeneficialOwnerCreateParams::Individual::Address} for more
-          #   details.
-          #
           #   The individual's physical address. Mail receiving locations like PO Boxes and
           #   PMB's are disallowed.
           #
@@ -155,7 +158,9 @@ module Increase
           #
           #   @param line2 [String] The second line of the address. This might be the floor or room number.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the US state
+          #   @param state [String]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the US
+          #     state, province, or region of the address. Required in certain countries.
           #
           #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
         end
@@ -203,21 +208,29 @@ module Increase
           optional :passport, -> { Increase::BeneficialOwnerCreateParams::Individual::Identification::Passport }
 
           # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::BeneficialOwnerCreateParams::Individual::Identification} for
-          #   more details.
-          #
           #   A means of verifying the person's identity.
           #
-          #   @param method_ [Symbol, Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Method] A method that can be used to verify the individual's identity.
+          #   @param method_ [Symbol, Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Method]
+          #     A method that can be used to verify the individual's identity.
           #
-          #   @param number [String] An identification number that can be used to verify the individual's identity, s
+          #   @param number [String]
+          #     An identification number that can be used to verify the individual's identity,
+          #     such as a social security number. For Social Security Numbers and Individual
+          #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
+          #     separators. When testing in sandbox, use one of our
+          #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           #
-          #   @param drivers_license [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::DriversLicense] Information about the United States driver's license used for identification. Re
+          #   @param drivers_license [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::DriversLicense]
+          #     Information about the United States driver's license used for identification.
+          #     Required if `method` is equal to `drivers_license`.
           #
-          #   @param other [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Other] Information about the identification document provided. Required if `method` is
+          #   @param other [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Other]
+          #     Information about the identification document provided. Required if `method` is
+          #     equal to `other`.
           #
-          #   @param passport [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Passport] Information about the passport used for identification. Required if `method` is
+          #   @param passport [Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Passport]
+          #     Information about the passport used for identification. Required if `method` is
+          #     equal to `passport`.
 
           # A method that can be used to verify the individual's identity.
           #
@@ -318,20 +331,20 @@ module Increase
             optional :expiration_date, Date
 
             # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Other}
-            #   for more details.
-            #
             #   Information about the identification document provided. Required if `method` is
             #   equal to `other`.
             #
-            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+            #   @param country [String]
+            #     The two-character ISO 3166-1 code representing the country that issued the
+            #     document (e.g., `US`).
             #
             #   @param description [String] A description of the document submitted.
             #
             #   @param file_id [String] The identifier of the File containing the front of the document.
             #
-            #   @param back_file_id [String] The identifier of the File containing the back of the document. Not every docume
+            #   @param back_file_id [String]
+            #     The identifier of the File containing the back of the document. Not every
+            #     document has a reverse side.
             #
             #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
           end
@@ -358,14 +371,12 @@ module Increase
             required :file_id, String
 
             # @!method initialize(country:, expiration_date:, file_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Passport}
-            #   for more details.
-            #
             #   Information about the passport used for identification. Required if `method` is
             #   equal to `passport`.
             #
-            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+            #   @param country [String]
+            #     The two-character ISO 3166-1 code representing the country that issued the
+            #     document (e.g., `US`).
             #
             #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
             #

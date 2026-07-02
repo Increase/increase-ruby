@@ -22,7 +22,8 @@ module Increase
       # @!method initialize(inbound_wire_transfer_id:, reason:, request_options: {})
       #   @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer to reverse.
       #
-      #   @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason] Reason for the reversal.
+      #   @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason]
+      #     Reason for the reversal.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

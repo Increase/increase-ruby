@@ -86,7 +86,8 @@ module Increase
       #
       #   @param issuer_name [String] A user-facing description for whoever is issuing the card.
       #
-      #   @param text_color [Increase::Models::DigitalCardProfileCloneParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      #   @param text_color [Increase::Models::DigitalCardProfileCloneParams::TextColor]
+      #     The Card's text color, specified as an RGB triple. The default is white.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

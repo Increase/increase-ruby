@@ -22,12 +22,13 @@ module Increase
       required :reason, enum: -> { Increase::InboundACHTransferTransferReturnParams::Reason }
 
       # @!method initialize(inbound_ach_transfer_id:, reason:, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::InboundACHTransferTransferReturnParams} for more details.
+      #   @param inbound_ach_transfer_id [String]
+      #     The identifier of the Inbound ACH Transfer to return to the originating
+      #     financial institution.
       #
-      #   @param inbound_ach_transfer_id [String] The identifier of the Inbound ACH Transfer to return to the originating financia
-      #
-      #   @param reason [Symbol, Increase::Models::InboundACHTransferTransferReturnParams::Reason] The reason why this transfer will be returned. The most usual return codes are `
+      #   @param reason [Symbol, Increase::Models::InboundACHTransferTransferReturnParams::Reason]
+      #     The reason why this transfer will be returned. The most usual return codes are
+      #     `payment_stopped` for debits and `credit_entry_refused_by_receiver` for credits.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

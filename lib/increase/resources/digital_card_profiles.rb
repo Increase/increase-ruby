@@ -23,7 +23,8 @@ module Increase
       #
       # @param contact_website [String] A website the user can visit to view and receive support for their card.
       #
-      # @param text_color [Increase::Models::DigitalCardProfileCreateParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      # @param text_color [Increase::Models::DigitalCardProfileCreateParams::TextColor]
+      #   The Card's text color, specified as an RGB triple. The default is white.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -61,18 +62,21 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::DigitalCardProfileListParams} for more details.
-      #
       # List Card Profiles
       #
       # @overload list(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::DigitalCardProfileListParams::Status]
       #
@@ -136,7 +140,8 @@ module Increase
       #
       # @param issuer_name [String] A user-facing description for whoever is issuing the card.
       #
-      # @param text_color [Increase::Models::DigitalCardProfileCloneParams::TextColor] The Card's text color, specified as an RGB triple. The default is white.
+      # @param text_color [Increase::Models::DigitalCardProfileCloneParams::TextColor]
+      #   The Card's text color, specified as an RGB triple. The default is white.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

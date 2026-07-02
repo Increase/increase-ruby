@@ -147,9 +147,6 @@ module Increase
       required :unstructured_remittance_information, String
 
       # @!method initialize(id:, account_id:, account_number:, amount:, bank_identification_code:, created_at:, created_by:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, idempotency_key:, instructed_amount:, instructed_currency:, pending_transaction_id:, routing_number:, source_account_number_id:, status:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::SwiftTransfer} for more details.
-      #
       #   Swift Transfers send funds internationally.
       #
       #   @param id [String] The Swift transfer's identifier.
@@ -162,9 +159,12 @@ module Increase
       #
       #   @param bank_identification_code [String] The bank identification code (BIC) of the creditor.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the transfer was created.
       #
-      #   @param created_by [Increase::Models::SwiftTransfer::CreatedBy] What object created the transfer, either via the API or the dashboard.
+      #   @param created_by [Increase::Models::SwiftTransfer::CreatedBy]
+      #     What object created the transfer, either via the API or the dashboard.
       #
       #   @param creditor_address [Increase::Models::SwiftTransfer::CreditorAddress] The creditor's address.
       #
@@ -174,27 +174,45 @@ module Increase
       #
       #   @param debtor_name [String] The debtor's name.
       #
-      #   @param idempotency_key [String, nil] The idempotency key you chose for this object. This value is unique across Incre
+      #   @param idempotency_key [String, nil]
+      #     The idempotency key you chose for this object. This value is unique across
+      #     Increase and is used to ensure that a request is only processed once. Learn more
+      #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param instructed_amount [Integer] The amount that was instructed to be transferred in minor units of the `instruct
+      #   @param instructed_amount [Integer]
+      #     The amount that was instructed to be transferred in minor units of the
+      #     `instructed_currency`.
       #
-      #   @param instructed_currency [Symbol, Increase::Models::SwiftTransfer::InstructedCurrency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the inst
+      #   @param instructed_currency [Symbol, Increase::Models::SwiftTransfer::InstructedCurrency]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the
+      #     instructed amount.
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer.
       #
-      #   @param routing_number [String, nil] The creditor's bank account routing or transit number. Required in certain count
+      #   @param routing_number [String, nil]
+      #     The creditor's bank account routing or transit number. Required in certain
+      #     countries.
       #
-      #   @param source_account_number_id [String] The Account Number included in the transfer as the debtor's account number.
+      #   @param source_account_number_id [String]
+      #     The Account Number included in the transfer as the debtor's account number.
       #
       #   @param status [Symbol, Increase::Models::SwiftTransfer::Status] The lifecycle status of the transfer.
       #
-      #   @param transaction_id [String, nil] The ID for the transaction funding the transfer. This will be populated after th
+      #   @param transaction_id [String, nil]
+      #     The ID for the transaction funding the transfer. This will be populated after
+      #     the transfer is initiated.
       #
-      #   @param type [Symbol, Increase::Models::SwiftTransfer::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::SwiftTransfer::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `swift_transfer`.
       #
-      #   @param unique_end_to_end_transaction_reference [String] The Unique End-to-end Transaction Reference ([UETR](https://www.swift.com/paymen
+      #   @param unique_end_to_end_transaction_reference [String]
+      #     The Unique End-to-end Transaction Reference
+      #     ([UETR](https://www.swift.com/payments/what-unique-end-end-transaction-reference-uetr))
+      #     for the transfer.
       #
-      #   @param unstructured_remittance_information [String] The unstructured remittance information that was included with the transfer.
+      #   @param unstructured_remittance_information [String]
+      #     The unstructured remittance information that was included with the transfer.
 
       # @see Increase::Models::SwiftTransfer#created_by
       class CreatedBy < Increase::Internal::Type::BaseModel
@@ -225,13 +243,17 @@ module Increase
         # @!method initialize(category:, api_key: nil, oauth_application: nil, user: nil)
         #   What object created the transfer, either via the API or the dashboard.
         #
-        #   @param category [Symbol, Increase::Models::SwiftTransfer::CreatedBy::Category] The type of object that created this transfer.
+        #   @param category [Symbol, Increase::Models::SwiftTransfer::CreatedBy::Category]
+        #     The type of object that created this transfer.
         #
-        #   @param api_key [Increase::Models::SwiftTransfer::CreatedBy::APIKey, nil] If present, details about the API key that created the transfer.
+        #   @param api_key [Increase::Models::SwiftTransfer::CreatedBy::APIKey, nil]
+        #     If present, details about the API key that created the transfer.
         #
-        #   @param oauth_application [Increase::Models::SwiftTransfer::CreatedBy::OAuthApplication, nil] If present, details about the OAuth Application that created the transfer.
+        #   @param oauth_application [Increase::Models::SwiftTransfer::CreatedBy::OAuthApplication, nil]
+        #     If present, details about the OAuth Application that created the transfer.
         #
-        #   @param user [Increase::Models::SwiftTransfer::CreatedBy::User, nil] If present, details about the User that created the transfer.
+        #   @param user [Increase::Models::SwiftTransfer::CreatedBy::User, nil]
+        #     If present, details about the User that created the transfer.
 
         # The type of object that created this transfer.
         #
@@ -336,14 +358,14 @@ module Increase
         required :state, String, nil?: true
 
         # @!method initialize(city:, country:, line1:, line2:, postal_code:, state:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::SwiftTransfer::CreditorAddress} for more details.
-        #
         #   The creditor's address.
         #
         #   @param city [String, nil] The city, district, town, or village of the address.
         #
-        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #   @param country [String]
+        #     The two-letter
+        #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #     the country of the address.
         #
         #   @param line1 [String] The first line of the address.
         #
@@ -395,14 +417,14 @@ module Increase
         required :state, String, nil?: true
 
         # @!method initialize(city:, country:, line1:, line2:, postal_code:, state:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::SwiftTransfer::DebtorAddress} for more details.
-        #
         #   The debtor's address.
         #
         #   @param city [String, nil] The city, district, town, or village of the address.
         #
-        #   @param country [String] The two-letter [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alp
+        #   @param country [String]
+        #     The two-letter
+        #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+        #     the country of the address.
         #
         #   @param line1 [String] The first line of the address.
         #

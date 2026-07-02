@@ -23,18 +23,19 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::OAuthConnectionListParams} for more details.
-      #
       # List OAuth Connections
       #
       # @overload list(cursor: nil, limit: nil, oauth_application_id: nil, status: nil, request_options: {})
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
-      # @param oauth_application_id [String] Filter results to only include OAuth Connections for a specific OAuth Applicatio
+      # @param oauth_application_id [String]
+      #   Filter results to only include OAuth Connections for a specific OAuth
+      #   Application.
       #
       # @param status [Increase::Models::OAuthConnectionListParams::Status]
       #

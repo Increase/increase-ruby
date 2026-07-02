@@ -69,9 +69,6 @@ module Increase
       required :type, enum: -> { Increase::AccountStatement::Type }
 
       # @!method initialize(id:, account_id:, created_at:, ending_balance:, file_id:, loan:, starting_balance:, statement_period_end:, statement_period_start:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::AccountStatement} for more details.
-      #
       #   Account Statements are generated monthly for every active Account. You can
       #   access the statement's data via the API or retrieve a PDF with its details via
       #   its associated File.
@@ -80,7 +77,9 @@ module Increase
       #
       #   @param account_id [String] The identifier for the Account this Account Statement belongs to.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Account
+      #     Statement was created.
       #
       #   @param ending_balance [Integer] The Account's balance at the end of its statement period.
       #
@@ -90,11 +89,17 @@ module Increase
       #
       #   @param starting_balance [Integer] The Account's balance at the start of its statement period.
       #
-      #   @param statement_period_end [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the end
+      #   @param statement_period_end [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the end
+      #     of the period the Account Statement covers.
       #
-      #   @param statement_period_start [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the sta
+      #   @param statement_period_start [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the
+      #     start of the period the Account Statement covers.
       #
-      #   @param type [Symbol, Increase::Models::AccountStatement::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::AccountStatement::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `account_statement`.
 
       # @see Increase::Models::AccountStatement#loan
       class Loan < Increase::Internal::Type::BaseModel
@@ -118,12 +123,11 @@ module Increase
         required :past_due_balance, Integer
 
         # @!method initialize(due_at:, due_balance:, past_due_balance:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::AccountStatement::Loan} for more details.
-        #
         #   The loan balances.
         #
-        #   @param due_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan pa
+        #   @param due_at [Time, nil]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
+        #     payment is due.
         #
         #   @param due_balance [Integer] The total amount due on the loan.
         #

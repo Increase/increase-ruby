@@ -3,16 +3,16 @@
 module Increase
   module Resources
     class LockboxRecipients
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::LockboxRecipientCreateParams} for more details.
-      #
       # Create a Lockbox Recipient
       #
       # @overload create(account_id:, lockbox_address_id:, description: nil, recipient_name: nil, request_options: {})
       #
-      # @param account_id [String] The Account that checks sent to this Lockbox Recipient should be deposited into.
+      # @param account_id [String]
+      #   The Account that checks sent to this Lockbox Recipient should be deposited into.
       #
-      # @param lockbox_address_id [String] The Lockbox Address where this Lockbox Recipient may receive mail. The Lockbox A
+      # @param lockbox_address_id [String]
+      #   The Lockbox Address where this Lockbox Recipient may receive mail. The Lockbox
+      #   Address must have a `status` of `active`.
       #
       # @param description [String] The description you choose for the Lockbox Recipient.
       #
@@ -64,7 +64,8 @@ module Increase
       #
       # @param recipient_name [String] The name of the Lockbox Recipient.
       #
-      # @param status [Symbol, Increase::Models::LockboxRecipientUpdateParams::Status] The status of the Lockbox Recipient.
+      # @param status [Symbol, Increase::Models::LockboxRecipientUpdateParams::Status]
+      #   The status of the Lockbox Recipient.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -82,9 +83,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::LockboxRecipientListParams} for more details.
-      #
       # List Lockbox Recipients
       #
       # @overload list(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, lockbox_address_id: nil, request_options: {})
@@ -95,11 +93,18 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
-      # @param lockbox_address_id [String] Filter Lockbox Recipients to those associated with the provided Lockbox Address.
+      # @param lockbox_address_id [String]
+      #   Filter Lockbox Recipients to those associated with the provided Lockbox Address.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

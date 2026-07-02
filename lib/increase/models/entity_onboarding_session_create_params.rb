@@ -30,14 +30,17 @@ module Increase
       optional :entity_id, String
 
       # @!method initialize(program_id:, redirect_url:, entity_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EntityOnboardingSessionCreateParams} for more details.
-      #
       #   @param program_id [String] The identifier of the Program the Entity will be onboarded to.
       #
-      #   @param redirect_url [String] The URL to redirect the customer to after they complete the onboarding form. The
+      #   @param redirect_url [String]
+      #     The URL to redirect the customer to after they complete the onboarding form. The
+      #     redirect will include `entity_onboarding_session_id` and `entity_id` query
+      #     parameters.
       #
-      #   @param entity_id [String] The identifier of an existing Entity to associate with the onboarding session. I
+      #   @param entity_id [String]
+      #     The identifier of an existing Entity to associate with the onboarding session.
+      #     If provided, the onboarding form will display any outstanding tasks required to
+      #     complete the Entity's onboarding.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
