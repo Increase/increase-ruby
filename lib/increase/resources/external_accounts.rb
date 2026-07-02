@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class ExternalAccounts
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::ExternalAccountCreateParams} for more details.
-      #
       # Create an External Account
       #
       # @overload create(account_number:, description:, routing_number:, account_holder: nil, funding: nil, request_options: {})
@@ -14,11 +11,15 @@ module Increase
       #
       # @param description [String] The name you choose for the Account.
       #
-      # @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
+      # @param routing_number [String]
+      #   The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
+      #   destination account.
       #
-      # @param account_holder [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder] The type of entity that owns the External Account.
+      # @param account_holder [Symbol, Increase::Models::ExternalAccountCreateParams::AccountHolder]
+      #   The type of entity that owns the External Account.
       #
-      # @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding] The type of the destination account. Defaults to `checking`.
+      # @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding]
+      #   The type of the destination account. Defaults to `checking`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -62,13 +63,16 @@ module Increase
       #
       # @param external_account_id [String] The external account identifier.
       #
-      # @param account_holder [Symbol, Increase::Models::ExternalAccountUpdateParams::AccountHolder] The type of entity that owns the External Account.
+      # @param account_holder [Symbol, Increase::Models::ExternalAccountUpdateParams::AccountHolder]
+      #   The type of entity that owns the External Account.
       #
       # @param description [String] The description you choose to give the external account.
       #
-      # @param funding [Symbol, Increase::Models::ExternalAccountUpdateParams::Funding] The funding type of the External Account.
+      # @param funding [Symbol, Increase::Models::ExternalAccountUpdateParams::Funding]
+      #   The funding type of the External Account.
       #
-      # @param status [Symbol, Increase::Models::ExternalAccountUpdateParams::Status] The status of the External Account.
+      # @param status [Symbol, Increase::Models::ExternalAccountUpdateParams::Status]
+      #   The status of the External Account.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -86,18 +90,21 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::ExternalAccountListParams} for more details.
-      #
       # List External Accounts
       #
       # @overload list(cursor: nil, idempotency_key: nil, limit: nil, routing_number: nil, status: nil, request_options: {})
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param routing_number [String] Filter External Accounts to those with the specified Routing Number.
       #

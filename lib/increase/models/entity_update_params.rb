@@ -73,26 +73,41 @@ module Increase
       optional :trust, -> { Increase::EntityUpdateParams::Trust }
 
       # @!method initialize(entity_id:, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EntityUpdateParams} for more details.
-      #
       #   @param entity_id [String] The entity identifier.
       #
-      #   @param corporation [Increase::Models::EntityUpdateParams::Corporation] Details of the corporation entity to update. If you specify this parameter and t
+      #   @param corporation [Increase::Models::EntityUpdateParams::Corporation]
+      #     Details of the corporation entity to update. If you specify this parameter and
+      #     the entity is not a corporation, the request will fail.
       #
-      #   @param details_confirmed_at [Time] When your user last confirmed the Entity's details. Depending on your program, y
+      #   @param details_confirmed_at [Time]
+      #     When your user last confirmed the Entity's details. Depending on your program,
+      #     you may be required to affirmatively confirm details with your users on an
+      #     annual basis.
       #
-      #   @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority] Details of the government authority entity to update. If you specify this parame
+      #   @param government_authority [Increase::Models::EntityUpdateParams::GovernmentAuthority]
+      #     Details of the government authority entity to update. If you specify this
+      #     parameter and the entity is not a government authority, the request will fail.
       #
-      #   @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson] Details of the natural person entity to update. If you specify this parameter an
+      #   @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson]
+      #     Details of the natural person entity to update. If you specify this parameter
+      #     and the entity is not a natural person, the request will fail.
       #
-      #   @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating] An assessment of the entity’s potential risk of involvement in financial crimes,
+      #   @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating]
+      #     An assessment of the entity’s potential risk of involvement in financial crimes,
+      #     such as money laundering.
       #
-      #   @param terms_agreements [Array<Increase::Models::EntityUpdateParams::TermsAgreement>] New terms that the Entity agreed to. Not all programs are required to submit thi
+      #   @param terms_agreements [Array<Increase::Models::EntityUpdateParams::TermsAgreement>]
+      #     New terms that the Entity agreed to. Not all programs are required to submit
+      #     this data. This will not archive previously submitted terms.
       #
-      #   @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification] If you are using a third-party service for identity verification, you can use th
+      #   @param third_party_verification [Increase::Models::EntityUpdateParams::ThirdPartyVerification]
+      #     If you are using a third-party service for identity verification, you can use
+      #     this field to associate this Entity with the identifier that represents them in
+      #     that service.
       #
-      #   @param trust [Increase::Models::EntityUpdateParams::Trust] Details of the trust entity to update. If you specify this parameter and the ent
+      #   @param trust [Increase::Models::EntityUpdateParams::Trust]
+      #     Details of the trust entity to update. If you specify this parameter and the
+      #     entity is not a trust, the request will fail.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -148,25 +163,36 @@ module Increase
         optional :website, String
 
         # @!method initialize(address: nil, email: nil, incorporation_state: nil, industry_code: nil, legal_identifier: nil, name: nil, website: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EntityUpdateParams::Corporation} for more details.
-        #
         #   Details of the corporation entity to update. If you specify this parameter and
         #   the entity is not a corporation, the request will fail.
         #
-        #   @param address [Increase::Models::EntityUpdateParams::Corporation::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   @param address [Increase::Models::EntityUpdateParams::Corporation::Address]
+        #     The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #     are disallowed.
         #
-        #   @param email [String] An email address for the business. Not every program requires an email for submi
+        #   @param email [String]
+        #     An email address for the business. Not every program requires an email for
+        #     submitted Entities.
         #
-        #   @param incorporation_state [String] The two-letter United States Postal Service (USPS) abbreviation for the corporat
+        #   @param incorporation_state [String]
+        #     The two-letter United States Postal Service (USPS) abbreviation for the
+        #     corporation's state of incorporation.
         #
-        #   @param industry_code [String] The North American Industry Classification System (NAICS) code for the corporati
+        #   @param industry_code [String]
+        #     The North American Industry Classification System (NAICS) code for the
+        #     corporation's primary line of business. This is a number, like `5132` for
+        #     `Software Publishers`. A full list of classification codes is available
+        #     [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
         #
-        #   @param legal_identifier [Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier] The legal identifier of the corporation. This is usually the Employer Identifica
+        #   @param legal_identifier [Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier]
+        #     The legal identifier of the corporation. This is usually the Employer
+        #     Identification Number (EIN).
         #
         #   @param name [String] The legal name of the corporation.
         #
-        #   @param website [String] A website for the business. Not every program requires a website for submitted E
+        #   @param website [String]
+        #     A website for the business. Not every program requires a website for submitted
+        #     Entities.
 
         # @see Increase::Models::EntityUpdateParams::Corporation#address
         class Address < Increase::Internal::Type::BaseModel
@@ -208,9 +234,6 @@ module Increase
           optional :zip, String
 
           # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityUpdateParams::Corporation::Address} for more details.
-          #
           #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           #   are disallowed.
           #
@@ -222,7 +245,9 @@ module Increase
           #
           #   @param line2 [String] The second line of the address. This might be the floor or room number.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the US state
+          #   @param state [String]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the US
+          #     state, province, or region of the address. Required in certain countries.
           #
           #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
         end
@@ -243,16 +268,15 @@ module Increase
           optional :category, enum: -> { Increase::EntityUpdateParams::Corporation::LegalIdentifier::Category }
 
           # @!method initialize(value:, category: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier} for more
-          #   details.
-          #
           #   The legal identifier of the corporation. This is usually the Employer
           #   Identification Number (EIN).
           #
-          #   @param value [String] The legal identifier itself. For US Employer Identification Numbers, submit nine
+          #   @param value [String]
+          #     The legal identifier itself. For US Employer Identification Numbers, submit nine
+          #     digits with no dashes or other separators.
           #
-          #   @param category [Symbol, Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier::Category] The category of the legal identifier.
+          #   @param category [Symbol, Increase::Models::EntityUpdateParams::Corporation::LegalIdentifier::Category]
+          #     The category of the legal identifier.
 
           # The category of the legal identifier.
           #
@@ -287,13 +311,12 @@ module Increase
         optional :name, String
 
         # @!method initialize(address: nil, name: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EntityUpdateParams::GovernmentAuthority} for more details.
-        #
         #   Details of the government authority entity to update. If you specify this
         #   parameter and the entity is not a government authority, the request will fail.
         #
-        #   @param address [Increase::Models::EntityUpdateParams::GovernmentAuthority::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   @param address [Increase::Models::EntityUpdateParams::GovernmentAuthority::Address]
+        #     The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #     are disallowed.
         #
         #   @param name [String] The legal name of the government authority.
 
@@ -331,10 +354,6 @@ module Increase
           optional :line2, String
 
           # @!method initialize(city:, line1:, state:, zip:, line2: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityUpdateParams::GovernmentAuthority::Address} for more
-          #   details.
-          #
           #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           #   are disallowed.
           #
@@ -342,7 +361,9 @@ module Increase
           #
           #   @param line1 [String] The first line of the address. This is usually the street number and street.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   @param state [String]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #     the address.
           #
           #   @param zip [String] The ZIP code of the address.
           #
@@ -380,17 +401,21 @@ module Increase
         optional :name, String
 
         # @!method initialize(address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EntityUpdateParams::NaturalPerson} for more details.
-        #
         #   Details of the natural person entity to update. If you specify this parameter
         #   and the entity is not a natural person, the request will fail.
         #
-        #   @param address [Increase::Models::EntityUpdateParams::NaturalPerson::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   @param address [Increase::Models::EntityUpdateParams::NaturalPerson::Address]
+        #     The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #     are disallowed.
         #
-        #   @param confirmed_no_us_tax_id [Boolean] The identification method for an individual can only be a passport, driver's lic
+        #   @param confirmed_no_us_tax_id [Boolean]
+        #     The identification method for an individual can only be a passport, driver's
+        #     license, or other document if you've confirmed the individual does not have a US
+        #     tax id (either a Social Security Number or Individual Taxpayer Identification
+        #     Number).
         #
-        #   @param identification [Increase::Models::EntityUpdateParams::NaturalPerson::Identification] A means of verifying the person's identity.
+        #   @param identification [Increase::Models::EntityUpdateParams::NaturalPerson::Identification]
+        #     A means of verifying the person's identity.
         #
         #   @param name [String] The legal name of the natural person.
 
@@ -434,9 +459,6 @@ module Increase
           optional :zip, String
 
           # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityUpdateParams::NaturalPerson::Address} for more details.
-          #
           #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           #   are disallowed.
           #
@@ -448,7 +470,9 @@ module Increase
           #
           #   @param line2 [String] The second line of the address. This might be the floor or room number.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the US state
+          #   @param state [String]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the US
+          #     state, province, or region of the address. Required in certain countries.
           #
           #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
         end
@@ -496,21 +520,29 @@ module Increase
           optional :passport, -> { Increase::EntityUpdateParams::NaturalPerson::Identification::Passport }
 
           # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityUpdateParams::NaturalPerson::Identification} for more
-          #   details.
-          #
           #   A means of verifying the person's identity.
           #
-          #   @param method_ [Symbol, Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Method] A method that can be used to verify the individual's identity.
+          #   @param method_ [Symbol, Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Method]
+          #     A method that can be used to verify the individual's identity.
           #
-          #   @param number [String] An identification number that can be used to verify the individual's identity, s
+          #   @param number [String]
+          #     An identification number that can be used to verify the individual's identity,
+          #     such as a social security number. For Social Security Numbers and Individual
+          #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
+          #     separators. When testing in sandbox, use one of our
+          #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           #
-          #   @param drivers_license [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::DriversLicense] Information about the United States driver's license used for identification. Re
+          #   @param drivers_license [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::DriversLicense]
+          #     Information about the United States driver's license used for identification.
+          #     Required if `method` is equal to `drivers_license`.
           #
-          #   @param other [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Other] Information about the identification document provided. Required if `method` is
+          #   @param other [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Other]
+          #     Information about the identification document provided. Required if `method` is
+          #     equal to `other`.
           #
-          #   @param passport [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Passport] Information about the passport used for identification. Required if `method` is
+          #   @param passport [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Passport]
+          #     Information about the passport used for identification. Required if `method` is
+          #     equal to `passport`.
 
           # A method that can be used to verify the individual's identity.
           #
@@ -611,20 +643,20 @@ module Increase
             optional :expiration_date, Date
 
             # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Other} for
-            #   more details.
-            #
             #   Information about the identification document provided. Required if `method` is
             #   equal to `other`.
             #
-            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+            #   @param country [String]
+            #     The two-character ISO 3166-1 code representing the country that issued the
+            #     document (e.g., `US`).
             #
             #   @param description [String] A description of the document submitted.
             #
             #   @param file_id [String] The identifier of the File containing the front of the document.
             #
-            #   @param back_file_id [String] The identifier of the File containing the back of the document. Not every docume
+            #   @param back_file_id [String]
+            #     The identifier of the File containing the back of the document. Not every
+            #     document has a reverse side.
             #
             #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
           end
@@ -651,14 +683,12 @@ module Increase
             required :file_id, String
 
             # @!method initialize(country:, expiration_date:, file_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::EntityUpdateParams::NaturalPerson::Identification::Passport}
-            #   for more details.
-            #
             #   Information about the passport used for identification. Required if `method` is
             #   equal to `passport`.
             #
-            #   @param country [String] The two-character ISO 3166-1 code representing the country that issued the docum
+            #   @param country [String]
+            #     The two-character ISO 3166-1 code representing the country that issued the
+            #     document (e.g., `US`).
             #
             #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
             #
@@ -682,15 +712,15 @@ module Increase
         required :rating, enum: -> { Increase::EntityUpdateParams::RiskRating::Rating }
 
         # @!method initialize(rated_at:, rating:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EntityUpdateParams::RiskRating} for more details.
-        #
         #   An assessment of the entity’s potential risk of involvement in financial crimes,
         #   such as money laundering.
         #
-        #   @param rated_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk ra
+        #   @param rated_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
+        #     rating was performed.
         #
-        #   @param rating [Symbol, Increase::Models::EntityUpdateParams::RiskRating::Rating] The rating given to this entity.
+        #   @param rating [Symbol, Increase::Models::EntityUpdateParams::RiskRating::Rating]
+        #     The rating given to this entity.
 
         # The rating given to this entity.
         #
@@ -732,9 +762,6 @@ module Increase
         required :terms_url, String
 
         # @!method initialize(agreed_at:, ip_address:, terms_url:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EntityUpdateParams::TermsAgreement} for more details.
-        #
         #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
         #
         #   @param ip_address [String] The IP address the Entity accessed reviewed the terms from.
@@ -762,7 +789,8 @@ module Increase
         #
         #   @param reference [String] The reference identifier for the third party verification.
         #
-        #   @param vendor [Symbol, Increase::Models::EntityUpdateParams::ThirdPartyVerification::Vendor] The vendor that was used to perform the verification.
+        #   @param vendor [Symbol, Increase::Models::EntityUpdateParams::ThirdPartyVerification::Vendor]
+        #     The vendor that was used to perform the verification.
 
         # The vendor that was used to perform the verification.
         #
@@ -805,13 +833,12 @@ module Increase
         optional :name, String
 
         # @!method initialize(address: nil, name: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EntityUpdateParams::Trust} for more details.
-        #
         #   Details of the trust entity to update. If you specify this parameter and the
         #   entity is not a trust, the request will fail.
         #
-        #   @param address [Increase::Models::EntityUpdateParams::Trust::Address] The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #   @param address [Increase::Models::EntityUpdateParams::Trust::Address]
+        #     The entity's physical address. Mail receiving locations like PO Boxes and PMB's
+        #     are disallowed.
         #
         #   @param name [String] The legal name of the trust.
 
@@ -849,9 +876,6 @@ module Increase
           optional :line2, String
 
           # @!method initialize(city:, line1:, state:, zip:, line2: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::EntityUpdateParams::Trust::Address} for more details.
-          #
           #   The entity's physical address. Mail receiving locations like PO Boxes and PMB's
           #   are disallowed.
           #
@@ -859,7 +883,9 @@ module Increase
           #
           #   @param line1 [String] The first line of the address. This is usually the street number and street.
           #
-          #   @param state [String] The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   @param state [String]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #     the address.
           #
           #   @param zip [String] The ZIP code of the address.
           #

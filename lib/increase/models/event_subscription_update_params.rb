@@ -22,7 +22,8 @@ module Increase
       # @!method initialize(event_subscription_id:, status: nil, request_options: {})
       #   @param event_subscription_id [String] The identifier of the Event Subscription.
       #
-      #   @param status [Symbol, Increase::Models::EventSubscriptionUpdateParams::Status] The status to update the Event Subscription with.
+      #   @param status [Symbol, Increase::Models::EventSubscriptionUpdateParams::Status]
+      #     The status to update the Event Subscription with.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

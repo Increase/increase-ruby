@@ -3,14 +3,12 @@
 module Increase
   module Resources
     class PhysicalCardProfiles
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::PhysicalCardProfileCreateParams} for more details.
-      #
       # Create a Physical Card Profile
       #
       # @overload create(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, front_text: nil, request_options: {})
       #
-      # @param carrier_image_file_id [String] The identifier of the File containing the physical card's carrier image.
+      # @param carrier_image_file_id [String]
+      #   The identifier of the File containing the physical card's carrier image.
       #
       # @param contact_phone [String] A phone number the user can contact to receive support for their card.
       #
@@ -20,7 +18,9 @@ module Increase
       #
       # @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
       #
-      # @param front_text [Increase::Models::PhysicalCardProfileCreateParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      # @param front_text [Increase::Models::PhysicalCardProfileCreateParams::FrontText]
+      #   Text printed on the front of the card. Reach out to
+      #   [support@increase.com](mailto:support@increase.com) for more information.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -58,18 +58,21 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::PhysicalCardProfileListParams} for more details.
-      #
       # List Physical Card Profiles
       #
       # @overload list(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::PhysicalCardProfileListParams::Status]
       #
@@ -111,16 +114,14 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::PhysicalCardProfileCloneParams} for more details.
-      #
       # Clone a Physical Card Profile
       #
       # @overload clone_(physical_card_profile_id, carrier_image_file_id: nil, contact_phone: nil, description: nil, front_image_file_id: nil, front_text: nil, program_id: nil, request_options: {})
       #
       # @param physical_card_profile_id [String] The identifier of the Physical Card Profile to clone.
       #
-      # @param carrier_image_file_id [String] The identifier of the File containing the physical card's carrier image.
+      # @param carrier_image_file_id [String]
+      #   The identifier of the File containing the physical card's carrier image.
       #
       # @param contact_phone [String] A phone number the user can contact to receive support for their card.
       #
@@ -128,7 +129,9 @@ module Increase
       #
       # @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
       #
-      # @param front_text [Increase::Models::PhysicalCardProfileCloneParams::FrontText] Text printed on the front of the card. Reach out to [support@increase.com](mailt
+      # @param front_text [Increase::Models::PhysicalCardProfileCloneParams::FrontText]
+      #   Text printed on the front of the card. Reach out to
+      #   [support@increase.com](mailto:support@increase.com) for more information.
       #
       # @param program_id [String] The identifier of the Program to use for the cloned Physical Card Profile.
       #

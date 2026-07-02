@@ -38,21 +38,24 @@ module Increase
       required :type, enum: -> { Increase::BalanceLookup::Type }
 
       # @!method initialize(account_id:, available_balance:, current_balance:, loan:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::BalanceLookup} for more details.
-      #
       #   Represents a request to lookup the balance of an Account at a given point in
       #   time.
       #
       #   @param account_id [String] The identifier for the account for which the balance was queried.
       #
-      #   @param available_balance [Integer] The Account's available balance, representing the current balance less any open
+      #   @param available_balance [Integer]
+      #     The Account's available balance, representing the current balance less any open
+      #     Pending Transactions on the Account.
       #
-      #   @param current_balance [Integer] The Account's current balance, representing the sum of all posted Transactions o
+      #   @param current_balance [Integer]
+      #     The Account's current balance, representing the sum of all posted Transactions
+      #     on the Account.
       #
       #   @param loan [Increase::Models::BalanceLookup::Loan, nil] The loan balances for the Account.
       #
-      #   @param type [Symbol, Increase::Models::BalanceLookup::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::BalanceLookup::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `balance_lookup`.
 
       # @see Increase::Models::BalanceLookup#loan
       class Loan < Increase::Internal::Type::BaseModel
@@ -82,18 +85,18 @@ module Increase
         required :receivables, -> { Increase::BalanceLookup::Loan::Receivables }, nil?: true
 
         # @!method initialize(due_at:, due_balance:, past_due_balance:, receivables:)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::BalanceLookup::Loan} for more details.
-        #
         #   The loan balances for the Account.
         #
-        #   @param due_at [Time, nil] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan pa
+        #   @param due_at [Time, nil]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
+        #     payment is due.
         #
         #   @param due_balance [Integer] The total amount due on the loan.
         #
         #   @param past_due_balance [Integer] The amount past due on the loan.
         #
-        #   @param receivables [Increase::Models::BalanceLookup::Loan::Receivables, nil] The receivables balances for the loan.
+        #   @param receivables [Increase::Models::BalanceLookup::Loan::Receivables, nil]
+        #     The receivables balances for the loan.
 
         # @see Increase::Models::BalanceLookup::Loan#receivables
         class Receivables < Increase::Internal::Type::BaseModel

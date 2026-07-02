@@ -58,22 +58,31 @@ module Increase
       optional :digital_wallet_token, -> { Increase::RealTimeDecisionActionParams::DigitalWalletToken }
 
       # @!method initialize(real_time_decision_id:, card_authentication: nil, card_authentication_challenge: nil, card_authorization: nil, card_balance_inquiry: nil, digital_wallet_authentication: nil, digital_wallet_token: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::RealTimeDecisionActionParams} for more details.
-      #
       #   @param real_time_decision_id [String] The identifier of the Real-Time Decision.
       #
-      #   @param card_authentication [Increase::Models::RealTimeDecisionActionParams::CardAuthentication] If the Real-Time Decision relates to a 3DS card authentication attempt, this obj
+      #   @param card_authentication [Increase::Models::RealTimeDecisionActionParams::CardAuthentication]
+      #     If the Real-Time Decision relates to a 3DS card authentication attempt, this
+      #     object contains your response to the authentication.
       #
-      #   @param card_authentication_challenge [Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge] If the Real-Time Decision relates to 3DS card authentication challenge delivery,
+      #   @param card_authentication_challenge [Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge]
+      #     If the Real-Time Decision relates to 3DS card authentication challenge delivery,
+      #     this object contains your response.
       #
-      #   @param card_authorization [Increase::Models::RealTimeDecisionActionParams::CardAuthorization] If the Real-Time Decision relates to a card authorization attempt, this object c
+      #   @param card_authorization [Increase::Models::RealTimeDecisionActionParams::CardAuthorization]
+      #     If the Real-Time Decision relates to a card authorization attempt, this object
+      #     contains your response to the authorization.
       #
-      #   @param card_balance_inquiry [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry] If the Real-Time Decision relates to a card balance inquiry attempt, this object
+      #   @param card_balance_inquiry [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry]
+      #     If the Real-Time Decision relates to a card balance inquiry attempt, this object
+      #     contains your response to the inquiry.
       #
-      #   @param digital_wallet_authentication [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication] If the Real-Time Decision relates to a digital wallet authentication attempt, th
+      #   @param digital_wallet_authentication [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication]
+      #     If the Real-Time Decision relates to a digital wallet authentication attempt,
+      #     this object contains your response to the authentication.
       #
-      #   @param digital_wallet_token [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken] If the Real-Time Decision relates to a digital wallet token provisioning attempt
+      #   @param digital_wallet_token [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken]
+      #     If the Real-Time Decision relates to a digital wallet token provisioning
+      #     attempt, this object contains your response to the attempt.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -88,7 +97,8 @@ module Increase
         #   If the Real-Time Decision relates to a 3DS card authentication attempt, this
         #   object contains your response to the authentication.
         #
-        #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthentication::Decision] Whether the card authentication attempt should be approved or declined.
+        #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthentication::Decision]
+        #     Whether the card authentication attempt should be approved or declined.
 
         # Whether the card authentication attempt should be approved or declined.
         #
@@ -126,16 +136,16 @@ module Increase
         optional :success, -> { Increase::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success }
 
         # @!method initialize(result:, success: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge}
-        #   for more details.
-        #
         #   If the Real-Time Decision relates to 3DS card authentication challenge delivery,
         #   this object contains your response.
         #
-        #   @param result [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result] Whether the card authentication challenge was successfully delivered to the card
+        #   @param result [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Result]
+        #     Whether the card authentication challenge was successfully delivered to the
+        #     cardholder.
         #
-        #   @param success [Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success] If your application was able to deliver the one-time code, this contains metadat
+        #   @param success [Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success]
+        #     If your application was able to deliver the one-time code, this contains
+        #     metadata about the delivery.
 
         # Whether the card authentication challenge was successfully delivered to the
         # cardholder.
@@ -170,16 +180,14 @@ module Increase
           optional :phone, String
 
           # @!method initialize(email: nil, phone: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::RealTimeDecisionActionParams::CardAuthenticationChallenge::Success}
-          #   for more details.
-          #
           #   If your application was able to deliver the one-time code, this contains
           #   metadata about the delivery.
           #
           #   @param email [String] The email address that was used to deliver the one-time code to the cardholder.
           #
-          #   @param phone [String] The phone number that was used to deliver the one-time code to the cardholder vi
+          #   @param phone [String]
+          #     The phone number that was used to deliver the one-time code to the cardholder
+          #     via SMS.
         end
       end
 
@@ -207,18 +215,21 @@ module Increase
         optional :decline, -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Decline }
 
         # @!method initialize(decision:, approval: nil, decline: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization} for more
-        #   details.
-        #
         #   If the Real-Time Decision relates to a card authorization attempt, this object
         #   contains your response to the authorization.
         #
-        #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decision] Whether the card authorization should be approved or declined.
+        #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decision]
+        #     Whether the card authorization should be approved or declined.
         #
-        #   @param approval [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval] If your application approves the authorization, this contains metadata about you
+        #   @param approval [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval]
+        #     If your application approves the authorization, this contains metadata about
+        #     your decision to approve. Your response here is advisory to the acquiring bank.
+        #     The bank may choose to reverse the authorization if you approve the transaction
+        #     but indicate the address does not match.
         #
-        #   @param decline [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline] If your application declines the authorization, this contains details about the
+        #   @param decline [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline]
+        #     If your application declines the authorization, this contains details about the
+        #     decline.
 
         # Whether the card authorization should be approved or declined.
         #
@@ -260,18 +271,24 @@ module Increase
           optional :partial_amount, Integer
 
           # @!method initialize(cardholder_address_verification_result: nil, partial_amount: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval}
-          #   for more details.
-          #
           #   If your application approves the authorization, this contains metadata about
           #   your decision to approve. Your response here is advisory to the acquiring bank.
           #   The bank may choose to reverse the authorization if you approve the transaction
           #   but indicate the address does not match.
           #
-          #   @param cardholder_address_verification_result [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult] Your decisions on whether or not each provided address component is a match. You
+          #   @param cardholder_address_verification_result [Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult]
+          #     Your decisions on whether or not each provided address component is a match.
+          #     Your response here is evaluated against the customer's provided `postal_code`
+          #     and `line1`, and an appropriate network response is generated. For more
+          #     information, see our
+          #     [Address Verification System Codes and Overrides](https://increase.com/documentation/address-verification-system-codes-and-overrides)
+          #     guide.
           #
-          #   @param partial_amount [Integer] If the transaction supports partial approvals (`partial_approval_capability: sup
+          #   @param partial_amount [Integer]
+          #     If the transaction supports partial approvals
+          #     (`partial_approval_capability: supported`) the `partial_amount` can be provided
+          #     in the transaction's settlement currency to approve a lower amount than was
+          #     requested.
 
           # @see Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval#cardholder_address_verification_result
           class CardholderAddressVerificationResult < Increase::Internal::Type::BaseModel
@@ -297,9 +314,11 @@ module Increase
             #   [Address Verification System Codes and Overrides](https://increase.com/documentation/address-verification-system-codes-and-overrides)
             #   guide.
             #
-            #   @param line1 [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1] Your decision on the address line of the provided address.
+            #   @param line1 [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::Line1]
+            #     Your decision on the address line of the provided address.
             #
-            #   @param postal_code [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode] Your decision on the postal code of the provided address.
+            #   @param postal_code [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Approval::CardholderAddressVerificationResult::PostalCode]
+            #     Your decision on the postal code of the provided address.
 
             # Your decision on the address line of the provided address.
             #
@@ -345,14 +364,12 @@ module Increase
           required :reason, enum: -> { Increase::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason }
 
           # @!method initialize(reason:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline} for
-          #   more details.
-          #
           #   If your application declines the authorization, this contains details about the
           #   decline.
           #
-          #   @param reason [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason] The reason the card authorization was declined. This translates to a specific de
+          #   @param reason [Symbol, Increase::Models::RealTimeDecisionActionParams::CardAuthorization::Decline::Reason]
+          #     The reason the card authorization was declined. This translates to a specific
+          #     decline code that is sent to the card network.
 
           # The reason the card authorization was declined. This translates to a specific
           # decline code that is sent to the card network.
@@ -400,16 +417,15 @@ module Increase
         optional :approval, -> { Increase::RealTimeDecisionActionParams::CardBalanceInquiry::Approval }
 
         # @!method initialize(decision:, approval: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry} for more
-        #   details.
-        #
         #   If the Real-Time Decision relates to a card balance inquiry attempt, this object
         #   contains your response to the inquiry.
         #
-        #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Decision] Whether the card balance inquiry should be approved or declined.
+        #   @param decision [Symbol, Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Decision]
+        #     Whether the card balance inquiry should be approved or declined.
         #
-        #   @param approval [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Approval] If your application approves the balance inquiry, this contains metadata about y
+        #   @param approval [Increase::Models::RealTimeDecisionActionParams::CardBalanceInquiry::Approval]
+        #     If your application approves the balance inquiry, this contains metadata about
+        #     your decision to approve.
 
         # Whether the card balance inquiry should be approved or declined.
         #
@@ -458,16 +474,15 @@ module Increase
         optional :success, -> { Increase::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success }
 
         # @!method initialize(result:, success: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication}
-        #   for more details.
-        #
         #   If the Real-Time Decision relates to a digital wallet authentication attempt,
         #   this object contains your response to the authentication.
         #
-        #   @param result [Symbol, Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result] Whether your application was able to deliver the one-time passcode.
+        #   @param result [Symbol, Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Result]
+        #     Whether your application was able to deliver the one-time passcode.
         #
-        #   @param success [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success] If your application was able to deliver the one-time passcode, this contains met
+        #   @param success [Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success]
+        #     If your application was able to deliver the one-time passcode, this contains
+        #     metadata about the delivery. Exactly one of `phone` or `email` must be provided.
 
         # Whether your application was able to deliver the one-time passcode.
         #
@@ -501,16 +516,14 @@ module Increase
           optional :phone, String
 
           # @!method initialize(email: nil, phone: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::RealTimeDecisionActionParams::DigitalWalletAuthentication::Success}
-          #   for more details.
-          #
           #   If your application was able to deliver the one-time passcode, this contains
           #   metadata about the delivery. Exactly one of `phone` or `email` must be provided.
           #
           #   @param email [String] The email address that was used to verify the cardholder via one-time passcode.
           #
-          #   @param phone [String] The phone number that was used to verify the cardholder via one-time passcode ov
+          #   @param phone [String]
+          #     The phone number that was used to verify the cardholder via one-time passcode
+          #     over SMS.
         end
       end
 
@@ -530,16 +543,16 @@ module Increase
         optional :decline, -> { Increase::RealTimeDecisionActionParams::DigitalWalletToken::Decline }
 
         # @!method initialize(approval: nil, decline: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken} for more
-        #   details.
-        #
         #   If the Real-Time Decision relates to a digital wallet token provisioning
         #   attempt, this object contains your response to the attempt.
         #
-        #   @param approval [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Approval] If your application approves the provisioning attempt, this contains metadata ab
+        #   @param approval [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Approval]
+        #     If your application approves the provisioning attempt, this contains metadata
+        #     about the digital wallet token that will be generated.
         #
-        #   @param decline [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Decline] If your application declines the provisioning attempt, this contains details abo
+        #   @param decline [Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Decline]
+        #     If your application declines the provisioning attempt, this contains details
+        #     about the decline.
 
         # @see Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken#approval
         class Approval < Increase::Internal::Type::BaseModel
@@ -558,16 +571,16 @@ module Increase
           optional :phone, String
 
           # @!method initialize(email: nil, phone: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Approval}
-          #   for more details.
-          #
           #   If your application approves the provisioning attempt, this contains metadata
           #   about the digital wallet token that will be generated.
           #
-          #   @param email [String] An email address that can be used to verify the cardholder via one-time passcode
+          #   @param email [String]
+          #     An email address that can be used to verify the cardholder via one-time
+          #     passcode.
           #
-          #   @param phone [String] A phone number that can be used to verify the cardholder via one-time passcode o
+          #   @param phone [String]
+          #     A phone number that can be used to verify the cardholder via one-time passcode
+          #     over SMS.
         end
 
         # @see Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken#decline
@@ -580,14 +593,12 @@ module Increase
           optional :reason, String
 
           # @!method initialize(reason: nil)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::RealTimeDecisionActionParams::DigitalWalletToken::Decline}
-          #   for more details.
-          #
           #   If your application declines the provisioning attempt, this contains details
           #   about the decline.
           #
-          #   @param reason [String] Why the tokenization attempt was declined. This is for logging purposes only and
+          #   @param reason [String]
+          #     Why the tokenization attempt was declined. This is for logging purposes only and
+          #     is not displayed to the end-user.
         end
       end
     end

@@ -24,16 +24,15 @@ module Increase
       required :type, enum: -> { Increase::CardIframeURL::Type }
 
       # @!method initialize(expires_at:, iframe_url:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardIframeURL} for more details.
-      #
       #   An object containing the iframe URL for a Card.
       #
       #   @param expires_at [Time] The time the iframe URL will expire.
       #
       #   @param iframe_url [String] The iframe URL for the Card. Treat this as an opaque URL.
       #
-      #   @param type [Symbol, Increase::Models::CardIframeURL::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardIframeURL::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card_iframe_url`.
 
       # A constant representing the object's type. For this resource it will always be
       # `card_iframe_url`.

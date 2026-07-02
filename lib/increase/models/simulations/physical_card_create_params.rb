@@ -46,14 +46,14 @@ module Increase
         optional :state, String
 
         # @!method initialize(physical_card_id:, category:, carrier_estimated_delivery_at: nil, city: nil, postal_code: nil, state: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::PhysicalCardCreateParams} for more details.
-        #
         #   @param physical_card_id [String] The Physical Card you would like to action.
         #
-        #   @param category [Symbol, Increase::Models::Simulations::PhysicalCardCreateParams::Category] The type of tracking event.
+        #   @param category [Symbol, Increase::Models::Simulations::PhysicalCardCreateParams::Category]
+        #     The type of tracking event.
         #
-        #   @param carrier_estimated_delivery_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the ca
+        #   @param carrier_estimated_delivery_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+        #     carrier expects the card to be delivered.
         #
         #   @param city [String] The city where the event took place.
         #

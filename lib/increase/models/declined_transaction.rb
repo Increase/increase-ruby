@@ -75,9 +75,6 @@ module Increase
       required :type, enum: -> { Increase::DeclinedTransaction::Type }
 
       # @!method initialize(id:, account_id:, amount:, created_at:, currency:, description:, route_id:, route_type:, source:, type:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::DeclinedTransaction} for more details.
-      #
       #   Declined Transactions are refused additions and removals of money from your bank
       #   account. For example, Declined Transactions are caused when your Account has an
       #   insufficient balance or your Limits are triggered.
@@ -86,21 +83,38 @@ module Increase
       #
       #   @param account_id [String] The identifier for the Account the Declined Transaction belongs to.
       #
-      #   @param amount [Integer] The Declined Transaction amount in the minor unit of its currency. For dollars,
+      #   @param amount [Integer]
+      #     The Declined Transaction amount in the minor unit of its currency. For dollars,
+      #     for example, this is cents.
       #
-      #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Transac
+      #   @param created_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the
+      #     Transaction occurred.
       #
-      #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Declined Tra
+      #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Currency]
+      #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Declined
+      #     Transaction's currency. This will match the currency on the Declined
+      #     Transaction's Account.
       #
       #   @param description [String] This is the description the vendor provides.
       #
-      #   @param route_id [String, nil] The identifier for the route this Declined Transaction came through. Routes are
+      #   @param route_id [String, nil]
+      #     The identifier for the route this Declined Transaction came through. Routes are
+      #     things like cards and ACH details.
       #
-      #   @param route_type [Symbol, Increase::Models::DeclinedTransaction::RouteType, nil] The type of the route this Declined Transaction came through.
+      #   @param route_type [Symbol, Increase::Models::DeclinedTransaction::RouteType, nil]
+      #     The type of the route this Declined Transaction came through.
       #
-      #   @param source [Increase::Models::DeclinedTransaction::Source] This is an object giving more details on the network-level event that caused the
+      #   @param source [Increase::Models::DeclinedTransaction::Source]
+      #     This is an object giving more details on the network-level event that caused the
+      #     Declined Transaction. For example, for a card transaction this lists the
+      #     merchant's industry and location. Note that for backwards compatibility reasons,
+      #     additional undocumented keys may appear in this object. These should be treated
+      #     as deprecated and will be removed in the future.
       #
-      #   @param type [Symbol, Increase::Models::DeclinedTransaction::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::DeclinedTransaction::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `declined_transaction`.
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the Declined
       # Transaction's currency. This will match the currency on the Declined
@@ -210,32 +224,49 @@ module Increase
         optional :wire_decline, -> { Increase::DeclinedTransaction::Source::WireDecline }, nil?: true
 
         # @!method initialize(category:, ach_decline: nil, card_decline: nil, check_decline: nil, check_deposit_rejection: nil, inbound_fednow_transfer_decline: nil, inbound_real_time_payments_transfer_decline: nil, other: nil, wire_decline: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::DeclinedTransaction::Source} for more details.
-        #
         #   This is an object giving more details on the network-level event that caused the
         #   Declined Transaction. For example, for a card transaction this lists the
         #   merchant's industry and location. Note that for backwards compatibility reasons,
         #   additional undocumented keys may appear in this object. These should be treated
         #   as deprecated and will be removed in the future.
         #
-        #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::Category] The type of the resource. We may add additional possible values for this enum ov
+        #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::Category]
+        #     The type of the resource. We may add additional possible values for this enum
+        #     over time; your application should be able to handle such additions gracefully.
         #
-        #   @param ach_decline [Increase::Models::DeclinedTransaction::Source::ACHDecline, nil] An ACH Decline object. This field will be present in the JSON response if and on
+        #   @param ach_decline [Increase::Models::DeclinedTransaction::Source::ACHDecline, nil]
+        #     An ACH Decline object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `ach_decline`.
         #
-        #   @param card_decline [Increase::Models::DeclinedTransaction::Source::CardDecline, nil] A Card Decline object. This field will be present in the JSON response if and on
+        #   @param card_decline [Increase::Models::DeclinedTransaction::Source::CardDecline, nil]
+        #     A Card Decline object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `card_decline`.
         #
-        #   @param check_decline [Increase::Models::DeclinedTransaction::Source::CheckDecline, nil] A Check Decline object. This field will be present in the JSON response if and o
+        #   @param check_decline [Increase::Models::DeclinedTransaction::Source::CheckDecline, nil]
+        #     A Check Decline object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `check_decline`.
         #
-        #   @param check_deposit_rejection [Increase::Models::DeclinedTransaction::Source::CheckDepositRejection, nil] A Check Deposit Rejection object. This field will be present in the JSON respons
+        #   @param check_deposit_rejection [Increase::Models::DeclinedTransaction::Source::CheckDepositRejection, nil]
+        #     A Check Deposit Rejection object. This field will be present in the JSON
+        #     response if and only if `category` is equal to `check_deposit_rejection`.
         #
-        #   @param inbound_fednow_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline, nil] An Inbound FedNow Transfer Decline object. This field will be present in the JSO
+        #   @param inbound_fednow_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline, nil]
+        #     An Inbound FedNow Transfer Decline object. This field will be present in the
+        #     JSON response if and only if `category` is equal to
+        #     `inbound_fednow_transfer_decline`.
         #
-        #   @param inbound_real_time_payments_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline, nil] An Inbound Real-Time Payments Transfer Decline object. This field will be presen
+        #   @param inbound_real_time_payments_transfer_decline [Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline, nil]
+        #     An Inbound Real-Time Payments Transfer Decline object. This field will be
+        #     present in the JSON response if and only if `category` is equal to
+        #     `inbound_real_time_payments_transfer_decline`.
         #
-        #   @param other [Increase::Models::DeclinedTransaction::Source::Other, nil] If the category of this Transaction source is equal to `other`, this field will
+        #   @param other [Increase::Models::DeclinedTransaction::Source::Other, nil]
+        #     If the category of this Transaction source is equal to `other`, this field will
+        #     contain an empty object, otherwise it will contain null.
         #
-        #   @param wire_decline [Increase::Models::DeclinedTransaction::Source::WireDecline, nil] A Wire Decline object. This field will be present in the JSON response if and on
+        #   @param wire_decline [Increase::Models::DeclinedTransaction::Source::WireDecline, nil]
+        #     A Wire Decline object. This field will be present in the JSON response if and
+        #     only if `category` is equal to `wire_decline`.
 
         # The type of the resource. We may add additional possible values for this enum
         # over time; your application should be able to handle such additions gracefully.
@@ -348,9 +379,6 @@ module Increase
           required :type, enum: -> { Increase::DeclinedTransaction::Source::ACHDecline::Type }
 
           # @!method initialize(id:, amount:, inbound_ach_transfer_id:, originator_company_descriptive_date:, originator_company_discretionary_data:, originator_company_id:, originator_company_name:, reason:, receiver_id_number:, receiver_name:, trace_number:, type:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::DeclinedTransaction::Source::ACHDecline} for more details.
-          #
           #   An ACH Decline object. This field will be present in the JSON response if and
           #   only if `category` is equal to `ach_decline`.
           #
@@ -358,17 +386,20 @@ module Increase
           #
           #   @param amount [Integer] The declined amount in USD cents.
           #
-          #   @param inbound_ach_transfer_id [String] The identifier of the Inbound ACH Transfer object associated with this decline.
+          #   @param inbound_ach_transfer_id [String]
+          #     The identifier of the Inbound ACH Transfer object associated with this decline.
           #
           #   @param originator_company_descriptive_date [String, nil] The descriptive date of the transfer.
           #
-          #   @param originator_company_discretionary_data [String, nil] The additional information included with the transfer.
+          #   @param originator_company_discretionary_data [String, nil]
+          #     The additional information included with the transfer.
           #
           #   @param originator_company_id [String] The identifier of the company that initiated the transfer.
           #
           #   @param originator_company_name [String] The name of the company that initiated the transfer.
           #
-          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Reason] Why the ACH transfer was declined.
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Reason]
+          #     Why the ACH transfer was declined.
           #
           #   @param receiver_id_number [String, nil] The id of the receiver of the transfer.
           #
@@ -376,7 +407,9 @@ module Increase
           #
           #   @param trace_number [String] The trace number of the transfer.
           #
-          #   @param type [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type] A constant representing the object's type. For this resource it will always be `
+          #   @param type [Symbol, Increase::Models::DeclinedTransaction::Source::ACHDecline::Type]
+          #     A constant representing the object's type. For this resource it will always be
+          #     `ach_decline`.
 
           # Why the ACH transfer was declined.
           #
@@ -662,35 +695,52 @@ module Increase
           required :verification, -> { Increase::DeclinedTransaction::Source::CardDecline::Verification }
 
           # @!method initialize(id:, actioner:, additional_amounts:, amount:, card_payment_id:, currency:, declined_transaction_id:, digital_wallet_token_id:, direction:, incremented_card_authorization_id:, merchant_acceptor_id:, merchant_category_code:, merchant_city:, merchant_country:, merchant_descriptor:, merchant_postal_code:, merchant_state:, network_details:, network_identifiers:, network_risk_score:, physical_card_id:, presentment_amount:, presentment_currency:, processing_category:, real_time_decision_id:, real_time_decision_reason:, reason:, scheme_fees:, terminal_id:, verification:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::DeclinedTransaction::Source::CardDecline} for more details.
-          #
           #   A Card Decline object. This field will be present in the JSON response if and
           #   only if `category` is equal to `card_decline`.
           #
           #   @param id [String] The Card Decline identifier.
           #
-          #   @param actioner [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Actioner] Whether this authorization was approved by Increase, the card network through st
+          #   @param actioner [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Actioner]
+          #     Whether this authorization was approved by Increase, the card network through
+          #     stand-in processing, or the user through a real-time decision.
           #
-          #   @param additional_amounts [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts] Additional amounts associated with the card authorization, such as ATM surcharge
+          #   @param additional_amounts [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts]
+          #     Additional amounts associated with the card authorization, such as ATM
+          #     surcharges fees. These are usually a subset of the `amount` field and are used
+          #     to provide more detailed information about the transaction.
           #
-          #   @param amount [Integer] The declined amount in the minor unit of the destination account currency. For d
+          #   @param amount [Integer]
+          #     The declined amount in the minor unit of the destination account currency. For
+          #     dollars, for example, this is cents.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
-          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
+          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the destination
+          #     account currency.
           #
-          #   @param declined_transaction_id [String] The identifier of the declined transaction created for this Card Decline.
+          #   @param declined_transaction_id [String]
+          #     The identifier of the declined transaction created for this Card Decline.
           #
-          #   @param digital_wallet_token_id [String, nil] If the authorization was made via a Digital Wallet Token (such as an Apple Pay p
+          #   @param digital_wallet_token_id [String, nil]
+          #     If the authorization was made via a Digital Wallet Token (such as an Apple Pay
+          #     purchase), the identifier of the token that was used.
           #
-          #   @param direction [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Direction] The direction describes the direction the funds will move, either from the cardh
+          #   @param direction [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Direction]
+          #     The direction describes the direction the funds will move, either from the
+          #     cardholder to the merchant or from the merchant to the cardholder.
           #
-          #   @param incremented_card_authorization_id [String, nil] The identifier of the card authorization this request attempted to incrementally
+          #   @param incremented_card_authorization_id [String, nil]
+          #     The identifier of the card authorization this request attempted to incrementally
+          #     authorize.
           #
-          #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+          #   @param merchant_acceptor_id [String]
+          #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+          #     is transacting with.
           #
-          #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+          #   @param merchant_category_code [String]
+          #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+          #     card is transacting with.
           #
           #   @param merchant_city [String, nil] The city the merchant resides in.
           #
@@ -698,35 +748,58 @@ module Increase
           #
           #   @param merchant_descriptor [String] The merchant descriptor of the merchant the card is transacting with.
           #
-          #   @param merchant_postal_code [String, nil] The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #   @param merchant_postal_code [String, nil]
+          #     The merchant's postal code. For US merchants this is either a 5-digit or 9-digit
+          #     ZIP code, where the first 5 and last 4 are separated by a dash.
           #
           #   @param merchant_state [String, nil] The state the merchant resides in.
           #
-          #   @param network_details [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails] Fields specific to the `network`.
+          #   @param network_details [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails]
+          #     Fields specific to the `network`.
           #
-          #   @param network_identifiers [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkIdentifiers] Network-specific identifiers for a specific request or transaction.
+          #   @param network_identifiers [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkIdentifiers]
+          #     Network-specific identifiers for a specific request or transaction.
           #
-          #   @param network_risk_score [Integer, nil] The risk score generated by the card network. For Visa this is the Visa Advanced
+          #   @param network_risk_score [Integer, nil]
+          #     The risk score generated by the card network. For Visa this is the Visa Advanced
+          #     Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
+          #     score is from 0 to 999, where 999 is the riskiest.
           #
-          #   @param physical_card_id [String, nil] If the authorization was made in-person with a physical card, the Physical Card
+          #   @param physical_card_id [String, nil]
+          #     If the authorization was made in-person with a physical card, the Physical Card
+          #     that was used.
           #
-          #   @param presentment_amount [Integer] The declined amount in the minor unit of the transaction's presentment currency.
+          #   @param presentment_amount [Integer]
+          #     The declined amount in the minor unit of the transaction's presentment currency.
           #
-          #   @param presentment_currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transaction'
+          #   @param presentment_currency [String]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the
+          #     transaction's presentment currency.
           #
-          #   @param processing_category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::ProcessingCategory] The processing category describes the intent behind the authorization, such as w
+          #   @param processing_category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::ProcessingCategory]
+          #     The processing category describes the intent behind the authorization, such as
+          #     whether it was used for bill payments or an automatic fuel dispenser.
           #
-          #   @param real_time_decision_id [String, nil] The identifier of the Real-Time Decision sent to approve or decline this transac
+          #   @param real_time_decision_id [String, nil]
+          #     The identifier of the Real-Time Decision sent to approve or decline this
+          #     transaction.
           #
-          #   @param real_time_decision_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason, nil] This is present if a specific decline reason was given in the real-time decision
+          #   @param real_time_decision_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason, nil]
+          #     This is present if a specific decline reason was given in the real-time
+          #     decision.
           #
-          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Reason] Why the transaction was declined.
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Reason]
+          #     Why the transaction was declined.
           #
-          #   @param scheme_fees [Array<Increase::Models::DeclinedTransaction::Source::CardDecline::SchemeFee>] The scheme fees associated with this card decline.
+          #   @param scheme_fees [Array<Increase::Models::DeclinedTransaction::Source::CardDecline::SchemeFee>]
+          #     The scheme fees associated with this card decline.
           #
-          #   @param terminal_id [String, nil] The terminal identifier (commonly abbreviated as TID) of the terminal the card i
+          #   @param terminal_id [String, nil]
+          #     The terminal identifier (commonly abbreviated as TID) of the terminal the card
+          #     is transacting with.
           #
-          #   @param verification [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification] Fields related to verification of cardholder-provided values.
+          #   @param verification [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification]
+          #     Fields related to verification of cardholder-provided values.
 
           # Whether this authorization was approved by Increase, the card network through
           # stand-in processing, or the user through a real-time decision.
@@ -837,33 +910,39 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts}
-            #   for more details.
-            #
             #   Additional amounts associated with the card authorization, such as ATM
             #   surcharges fees. These are usually a subset of the `amount` field and are used
             #   to provide more detailed information about the transaction.
             #
-            #   @param clinic [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic, nil] The part of this transaction amount that was for clinic-related services.
+            #   @param clinic [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic, nil]
+            #     The part of this transaction amount that was for clinic-related services.
             #
-            #   @param dental [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Dental, nil] The part of this transaction amount that was for dental-related services.
+            #   @param dental [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Dental, nil]
+            #     The part of this transaction amount that was for dental-related services.
             #
-            #   @param original [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Original, nil] The original pre-authorized amount.
+            #   @param original [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Original, nil]
+            #     The original pre-authorized amount.
             #
-            #   @param prescription [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Prescription, nil] The part of this transaction amount that was for healthcare prescriptions.
+            #   @param prescription [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Prescription, nil]
+            #     The part of this transaction amount that was for healthcare prescriptions.
             #
-            #   @param surcharge [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Surcharge, nil] The surcharge amount charged for this transaction by the merchant.
+            #   @param surcharge [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Surcharge, nil]
+            #     The surcharge amount charged for this transaction by the merchant.
             #
-            #   @param total_cumulative [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalCumulative, nil] The total amount of a series of incremental authorizations, optionally provided.
+            #   @param total_cumulative [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalCumulative, nil]
+            #     The total amount of a series of incremental authorizations, optionally provided.
             #
-            #   @param total_healthcare [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalHealthcare, nil] The total amount of healthcare-related additional amounts.
+            #   @param total_healthcare [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalHealthcare, nil]
+            #     The total amount of healthcare-related additional amounts.
             #
-            #   @param transit [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Transit, nil] The part of this transaction amount that was for transit-related services.
+            #   @param transit [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Transit, nil]
+            #     The part of this transaction amount that was for transit-related services.
             #
-            #   @param unknown [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Unknown, nil] An unknown additional amount.
+            #   @param unknown [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Unknown, nil]
+            #     An unknown additional amount.
             #
-            #   @param vision [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Vision, nil] The part of this transaction amount that was for vision-related services.
+            #   @param vision [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Vision, nil]
+            #     The part of this transaction amount that was for vision-related services.
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#clinic
             class Clinic < Increase::Internal::Type::BaseModel
@@ -883,15 +962,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for clinic-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#dental
@@ -912,15 +992,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Dental}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for dental-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#original
@@ -941,15 +1022,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Original}
-              #   for more details.
-              #
               #   The original pre-authorized amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#prescription
@@ -970,15 +1052,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Prescription}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for healthcare prescriptions.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#surcharge
@@ -999,15 +1082,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Surcharge}
-              #   for more details.
-              #
               #   The surcharge amount charged for this transaction by the merchant.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#total_cumulative
@@ -1028,15 +1112,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalCumulative}
-              #   for more details.
-              #
               #   The total amount of a series of incremental authorizations, optionally provided.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#total_healthcare
@@ -1057,15 +1142,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::TotalHealthcare}
-              #   for more details.
-              #
               #   The total amount of healthcare-related additional amounts.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#transit
@@ -1086,15 +1172,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Transit}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for transit-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#unknown
@@ -1115,15 +1202,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Unknown}
-              #   for more details.
-              #
               #   An unknown additional amount.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts#vision
@@ -1144,15 +1232,16 @@ module Increase
               required :currency, String
 
               # @!method initialize(amount:, currency:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Vision}
-              #   for more details.
-              #
               #   The part of this transaction amount that was for vision-related services.
               #
-              #   @param amount [Integer] The amount in minor units of the `currency` field. The amount is positive if it
+              #   @param amount [Integer]
+              #     The amount in minor units of the `currency` field. The amount is positive if it
+              #     is added to the amount (such as an ATM surcharge fee) and negative if it is
+              #     subtracted from the amount (such as a discount).
               #
-              #   @param currency [String] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional a
+              #   @param currency [String]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the additional
+              #     amount's currency.
             end
           end
 
@@ -1215,11 +1304,14 @@ module Increase
             # @!method initialize(category:, pulse:, visa:)
             #   Fields specific to the `network`.
             #
-            #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category] The payment network used to process this card authorization.
+            #   @param category [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Category]
+            #     The payment network used to process this card authorization.
             #
-            #   @param pulse [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse, nil] Fields specific to the `pulse` network.
+            #   @param pulse [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Pulse, nil]
+            #     Fields specific to the `pulse` network.
             #
-            #   @param visa [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa, nil] Fields specific to the `visa` network.
+            #   @param visa [Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa, nil]
+            #     Fields specific to the `visa` network.
 
             # The payment network used to process this card authorization.
             #
@@ -1294,19 +1386,27 @@ module Increase
                        nil?: true
 
               # @!method initialize(electronic_commerce_indicator:, point_of_service_entry_mode:, stand_in_processing_reason:, terminal_entry_capability:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa}
-              #   for more details.
-              #
               #   Fields specific to the `visa` network.
               #
-              #   @param electronic_commerce_indicator [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator, nil] For electronic commerce transactions, this identifies the level of security used
+              #   @param electronic_commerce_indicator [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::ElectronicCommerceIndicator, nil]
+              #     For electronic commerce transactions, this identifies the level of security used
+              #     in obtaining the customer's payment credential. For mail or telephone order
+              #     transactions, identifies the type of mail or telephone order.
               #
-              #   @param point_of_service_entry_mode [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode, nil] The method used to enter the cardholder's primary account number and card expira
+              #   @param point_of_service_entry_mode [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::PointOfServiceEntryMode, nil]
+              #     The method used to enter the cardholder's primary account number and card
+              #     expiration date.
               #
-              #   @param stand_in_processing_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason, nil] Only present when `actioner: network`. Describes why a card authorization was ap
+              #   @param stand_in_processing_reason [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::StandInProcessingReason, nil]
+              #     Only present when `actioner: network`. Describes why a card authorization was
+              #     approved or declined by Visa through stand-in processing.
               #
-              #   @param terminal_entry_capability [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::TerminalEntryCapability, nil] The capability of the terminal being used to read the card. Shows whether a term
+              #   @param terminal_entry_capability [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkDetails::Visa::TerminalEntryCapability, nil]
+              #     The capability of the terminal being used to read the card. Shows whether a
+              #     terminal can e.g., accept chip cards or if it only supports magnetic stripe
+              #     reads. This reflects the highest capability of the terminal — for example, a
+              #     terminal that supports both chip and magnetic stripe will be identified as
+              #     chip-capable.
 
               # For electronic commerce transactions, this identifies the level of security used
               # in obtaining the customer's payment credential. For mail or telephone order
@@ -1495,19 +1595,24 @@ module Increase
             required :transaction_id, String, nil?: true
 
             # @!method initialize(authorization_identification_response:, retrieval_reference_number:, trace_number:, transaction_id:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::DeclinedTransaction::Source::CardDecline::NetworkIdentifiers}
-            #   for more details.
-            #
             #   Network-specific identifiers for a specific request or transaction.
             #
-            #   @param authorization_identification_response [String, nil] The randomly generated 6-character Authorization Identification Response code se
+            #   @param authorization_identification_response [String, nil]
+            #     The randomly generated 6-character Authorization Identification Response code
+            #     sent back to the acquirer in an approved response.
             #
-            #   @param retrieval_reference_number [String, nil] A life-cycle identifier used across e.g., an authorization and a reversal. Expec
+            #   @param retrieval_reference_number [String, nil]
+            #     A life-cycle identifier used across e.g., an authorization and a reversal.
+            #     Expected to be unique per acquirer within a window of time. For some card
+            #     networks the retrieval reference number includes the trace counter.
             #
-            #   @param trace_number [String, nil] A counter used to verify an individual authorization. Expected to be unique per
+            #   @param trace_number [String, nil]
+            #     A counter used to verify an individual authorization. Expected to be unique per
+            #     acquirer within a window of time.
             #
-            #   @param transaction_id [String, nil] A globally unique transaction identifier provided by the card network, used acro
+            #   @param transaction_id [String, nil]
+            #     A globally unique transaction identifier provided by the card network, used
+            #     across multiple life-cycle requests.
           end
 
           # The processing category describes the intent behind the authorization, such as
@@ -1698,21 +1803,26 @@ module Increase
             required :variable_rate, String, nil?: true
 
             # @!method initialize(amount:, created_at:, currency:, fee_type:, fixed_component:, variable_rate:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::DeclinedTransaction::Source::CardDecline::SchemeFee} for more
-            #   details.
-            #
             #   @param amount [String] The fee amount given as a string containing a decimal number.
             #
-            #   @param created_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #   @param created_at [Time]
+            #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the fee was
+            #     created.
             #
-            #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::SchemeFee::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee reimburs
+            #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::SchemeFee::Currency]
+            #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
+            #     reimbursement.
             #
-            #   @param fee_type [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::SchemeFee::FeeType] The type of fee being assessed.
+            #   @param fee_type [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::SchemeFee::FeeType]
+            #     The type of fee being assessed.
             #
-            #   @param fixed_component [String, nil] The fixed component of the fee, if applicable, given in major units of the fee a
+            #   @param fixed_component [String, nil]
+            #     The fixed component of the fee, if applicable, given in major units of the fee
+            #     amount.
             #
-            #   @param variable_rate [String, nil] The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #   @param variable_rate [String, nil]
+            #     The variable rate component of the fee, if applicable, given as a decimal (e.g.,
+            #     0.015 for 1.5%).
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fee
             # reimbursement.
@@ -1856,17 +1966,18 @@ module Increase
                      nil?: true
 
             # @!method initialize(card_verification_code:, cardholder_address:, cardholder_name:)
-            #   Some parameter documentations has been truncated, see
-            #   {Increase::Models::DeclinedTransaction::Source::CardDecline::Verification} for
-            #   more details.
-            #
             #   Fields related to verification of cardholder-provided values.
             #
-            #   @param card_verification_code [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode] Fields related to verification of the Card Verification Code, a 3-digit code on
+            #   @param card_verification_code [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode]
+            #     Fields related to verification of the Card Verification Code, a 3-digit code on
+            #     the back of the card.
             #
-            #   @param cardholder_address [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress] Cardholder address provided in the authorization request and the address on file
+            #   @param cardholder_address [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress]
+            #     Cardholder address provided in the authorization request and the address on file
+            #     we verified it against.
             #
-            #   @param cardholder_name [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderName, nil] Cardholder name provided in the authorization request.
+            #   @param cardholder_name [Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderName, nil]
+            #     Cardholder name provided in the authorization request.
 
             # @see Increase::Models::DeclinedTransaction::Source::CardDecline::Verification#card_verification_code
             class CardVerificationCode < Increase::Internal::Type::BaseModel
@@ -1881,7 +1992,8 @@ module Increase
               #   Fields related to verification of the Card Verification Code, a 3-digit code on
               #   the back of the card.
               #
-              #   @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::Result] The result of verifying the Card Verification Code.
+              #   @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardVerificationCode::Result]
+              #     The result of verifying the Card Verification Code.
 
               # The result of verifying the Card Verification Code.
               #
@@ -1938,10 +2050,6 @@ module Increase
                        enum: -> { Increase::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result }
 
               # @!method initialize(actual_line1:, actual_postal_code:, provided_line1:, provided_postal_code:, result:)
-              #   Some parameter documentations has been truncated, see
-              #   {Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress}
-              #   for more details.
-              #
               #   Cardholder address provided in the authorization request and the address on file
               #   we verified it against.
               #
@@ -1949,11 +2057,15 @@ module Increase
               #
               #   @param actual_postal_code [String, nil] The postal code of the address on file for the cardholder.
               #
-              #   @param provided_line1 [String, nil] The cardholder address line 1 provided for verification in the authorization req
+              #   @param provided_line1 [String, nil]
+              #     The cardholder address line 1 provided for verification in the authorization
+              #     request.
               #
-              #   @param provided_postal_code [String, nil] The postal code provided for verification in the authorization request.
+              #   @param provided_postal_code [String, nil]
+              #     The postal code provided for verification in the authorization request.
               #
-              #   @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result] The address verification result returned to the card network.
+              #   @param result [Symbol, Increase::Models::DeclinedTransaction::Source::CardDecline::Verification::CardholderAddress::Result]
+              #     The address verification result returned to the card network.
 
               # The address verification result returned to the card network.
               #
@@ -2007,11 +2119,14 @@ module Increase
               # @!method initialize(provided_first_name:, provided_last_name:, provided_middle_name:)
               #   Cardholder name provided in the authorization request.
               #
-              #   @param provided_first_name [String, nil] The first name provided for verification in the authorization request.
+              #   @param provided_first_name [String, nil]
+              #     The first name provided for verification in the authorization request.
               #
-              #   @param provided_last_name [String, nil] The last name provided for verification in the authorization request.
+              #   @param provided_last_name [String, nil]
+              #     The last name provided for verification in the authorization request.
               #
-              #   @param provided_middle_name [String, nil] The middle name provided for verification in the authorization request.
+              #   @param provided_middle_name [String, nil]
+              #     The middle name provided for verification in the authorization request.
             end
           end
         end
@@ -2065,25 +2180,32 @@ module Increase
           required :reason, enum: -> { Increase::DeclinedTransaction::Source::CheckDecline::Reason }
 
           # @!method initialize(amount:, auxiliary_on_us:, back_image_file_id:, check_transfer_id:, front_image_file_id:, inbound_check_deposit_id:, reason:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::DeclinedTransaction::Source::CheckDecline} for more details.
-          #
           #   A Check Decline object. This field will be present in the JSON response if and
           #   only if `category` is equal to `check_decline`.
           #
           #   @param amount [Integer] The declined amount in USD cents.
           #
-          #   @param auxiliary_on_us [String, nil] A computer-readable number printed on the MICR line of business checks, usually
+          #   @param auxiliary_on_us [String, nil]
+          #     A computer-readable number printed on the MICR line of business checks, usually
+          #     the check number. This is useful for positive pay checks, but can be unreliably
+          #     transmitted by the bank of first deposit.
           #
-          #   @param back_image_file_id [String, nil] The identifier of the API File object containing an image of the back of the dec
+          #   @param back_image_file_id [String, nil]
+          #     The identifier of the API File object containing an image of the back of the
+          #     declined check.
           #
-          #   @param check_transfer_id [String, nil] The identifier of the Check Transfer object associated with this decline.
+          #   @param check_transfer_id [String, nil]
+          #     The identifier of the Check Transfer object associated with this decline.
           #
-          #   @param front_image_file_id [String, nil] The identifier of the API File object containing an image of the front of the de
+          #   @param front_image_file_id [String, nil]
+          #     The identifier of the API File object containing an image of the front of the
+          #     declined check.
           #
-          #   @param inbound_check_deposit_id [String, nil] The identifier of the Inbound Check Deposit object associated with this decline.
+          #   @param inbound_check_deposit_id [String, nil]
+          #     The identifier of the Inbound Check Deposit object associated with this decline.
           #
-          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason] Why the check was declined.
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason]
+          #     Why the check was declined.
 
           # Why the check was declined.
           #
@@ -2192,24 +2314,27 @@ module Increase
           required :rejected_at, Time
 
           # @!method initialize(amount:, check_deposit_id:, currency:, declined_transaction_id:, reason:, rejected_at:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::DeclinedTransaction::Source::CheckDepositRejection} for more
-          #   details.
-          #
           #   A Check Deposit Rejection object. This field will be present in the JSON
           #   response if and only if `category` is equal to `check_deposit_rejection`.
           #
-          #   @param amount [Integer] The rejected amount in the minor unit of check's currency. For dollars, for exam
+          #   @param amount [Integer]
+          #     The rejected amount in the minor unit of check's currency. For dollars, for
+          #     example, this is cents.
           #
           #   @param check_deposit_id [String] The identifier of the Check Deposit that was rejected.
           #
-          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's curr
+          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
+          #     currency.
           #
           #   @param declined_transaction_id [String] The identifier of the associated declined transaction.
           #
-          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Reason] Why the check deposit was rejected.
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDepositRejection::Reason]
+          #     Why the check deposit was rejected.
           #
-          #   @param rejected_at [Time] The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which th
+          #   @param rejected_at [Time]
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          #     the check deposit was rejected.
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the check's
           # currency.
@@ -2291,7 +2416,8 @@ module Increase
           #   JSON response if and only if `category` is equal to
           #   `inbound_fednow_transfer_decline`.
           #
-          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason] Why the transfer was declined.
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason]
+          #     Why the transfer was declined.
           #
           #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this declined transaction.
 
@@ -2392,19 +2518,21 @@ module Increase
           required :unstructured_remittance_information, String, nil?: true
 
           # @!method initialize(amount:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, reason:, transaction_identification:, transfer_id:, unstructured_remittance_information:)
-          #   Some parameter documentations has been truncated, see
-          #   {Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline}
-          #   for more details.
-          #
           #   An Inbound Real-Time Payments Transfer Decline object. This field will be
           #   present in the JSON response if and only if `category` is equal to
           #   `inbound_real_time_payments_transfer_decline`.
           #
-          #   @param amount [Integer] The declined amount in the minor unit of the destination account currency. For d
+          #   @param amount [Integer]
+          #     The declined amount in the minor unit of the destination account currency. For
+          #     dollars, for example, this is cents.
           #
-          #   @param creditor_name [String] The name the sender of the transfer specified as the recipient of the transfer.
+          #   @param creditor_name [String]
+          #     The name the sender of the transfer specified as the recipient of the transfer.
           #
-          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Currency] The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined tran
+          #   @param currency [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
+          #     transfer's currency. This will always be "USD" for a Real-Time Payments
+          #     transfer.
           #
           #   @param debtor_account_number [String] The account number of the account that sent the transfer.
           #
@@ -2412,13 +2540,17 @@ module Increase
           #
           #   @param debtor_routing_number [String] The routing number of the account that sent the transfer.
           #
-          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason] Why the transfer was declined.
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::InboundRealTimePaymentsTransferDecline::Reason]
+          #     Why the transfer was declined.
           #
-          #   @param transaction_identification [String] The Real-Time Payments network identification of the declined transfer.
+          #   @param transaction_identification [String]
+          #     The Real-Time Payments network identification of the declined transfer.
           #
-          #   @param transfer_id [String] The identifier of the Real-Time Payments Transfer that led to this Transaction.
+          #   @param transfer_id [String]
+          #     The identifier of the Real-Time Payments Transfer that led to this Transaction.
           #
-          #   @param unstructured_remittance_information [String, nil] Additional information included with the transfer.
+          #   @param unstructured_remittance_information [String, nil]
+          #     Additional information included with the transfer.
 
           # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code of the declined
           # transfer's currency. This will always be "USD" for a Real-Time Payments
@@ -2491,7 +2623,8 @@ module Increase
           #
           #   @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer that was declined.
           #
-          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::WireDecline::Reason] Why the wire transfer was declined.
+          #   @param reason [Symbol, Increase::Models::DeclinedTransaction::Source::WireDecline::Reason]
+          #     Why the wire transfer was declined.
 
           # Why the wire transfer was declined.
           #

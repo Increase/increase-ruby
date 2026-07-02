@@ -50,6 +50,17 @@ module Increase
       sig { params(status: Increase::EntityListParams::Status::OrHash).void }
       attr_writer :status
 
+      sig { returns(T.nilable(Increase::EntityListParams::ValidationStatus)) }
+      attr_reader :validation_status
+
+      sig do
+        params(
+          validation_status:
+            Increase::EntityListParams::ValidationStatus::OrHash
+        ).void
+      end
+      attr_writer :validation_status
+
       sig do
         params(
           created_at: Increase::EntityListParams::CreatedAt::OrHash,
@@ -57,6 +68,8 @@ module Increase
           idempotency_key: String,
           limit: Integer,
           status: Increase::EntityListParams::Status::OrHash,
+          validation_status:
+            Increase::EntityListParams::ValidationStatus::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -73,6 +86,7 @@ module Increase
         # objects.
         limit: nil,
         status: nil,
+        validation_status: nil,
         request_options: {}
       )
       end
@@ -85,6 +99,7 @@ module Increase
             idempotency_key: String,
             limit: Integer,
             status: Increase::EntityListParams::Status,
+            validation_status: Increase::EntityListParams::ValidationStatus,
             request_options: Increase::RequestOptions
           }
         )
@@ -245,6 +260,110 @@ module Increase
           sig do
             override.returns(
               T::Array[Increase::EntityListParams::Status::In::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
+      class ValidationStatus < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityListParams::ValidationStatus,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Filter Entities for those with the specified validation status. For GET
+        # requests, this should be encoded as a comma-delimited string, such as
+        # `?in=one,two,three`.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Increase::EntityListParams::ValidationStatus::In::OrSymbol
+              ]
+            )
+          )
+        end
+        attr_reader :in_
+
+        sig do
+          params(
+            in_:
+              T::Array[
+                Increase::EntityListParams::ValidationStatus::In::OrSymbol
+              ]
+          ).void
+        end
+        attr_writer :in_
+
+        sig do
+          params(
+            in_:
+              T::Array[
+                Increase::EntityListParams::ValidationStatus::In::OrSymbol
+              ]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Filter Entities for those with the specified validation status. For GET
+          # requests, this should be encoded as a comma-delimited string, such as
+          # `?in=one,two,three`.
+          in_: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              in_:
+                T::Array[
+                  Increase::EntityListParams::ValidationStatus::In::OrSymbol
+                ]
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::EntityListParams::ValidationStatus::In)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The submitted data is being validated.
+          PENDING =
+            T.let(
+              :pending,
+              Increase::EntityListParams::ValidationStatus::In::TaggedSymbol
+            )
+
+          # The submitted data is valid.
+          VALID =
+            T.let(
+              :valid,
+              Increase::EntityListParams::ValidationStatus::In::TaggedSymbol
+            )
+
+          # Additional information is required to validate the data.
+          INVALID =
+            T.let(
+              :invalid,
+              Increase::EntityListParams::ValidationStatus::In::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::EntityListParams::ValidationStatus::In::TaggedSymbol
+              ]
             )
           end
           def self.values

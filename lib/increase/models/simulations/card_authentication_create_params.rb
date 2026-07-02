@@ -60,19 +60,21 @@ module Increase
         optional :purchase_amount, Integer
 
         # @!method initialize(card_id:, category: nil, device_channel: nil, merchant_acceptor_id: nil, merchant_category_code: nil, merchant_country: nil, merchant_name: nil, purchase_amount: nil, request_options: {})
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::Simulations::CardAuthenticationCreateParams} for more
-        #   details.
-        #
         #   @param card_id [String] The identifier of the Card to be authorized.
         #
-        #   @param category [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::Category] The category of the card authentication attempt.
+        #   @param category [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::Category]
+        #     The category of the card authentication attempt.
         #
-        #   @param device_channel [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::DeviceChannel] The device channel of the card authentication attempt.
+        #   @param device_channel [Symbol, Increase::Models::Simulations::CardAuthenticationCreateParams::DeviceChannel]
+        #     The device channel of the card authentication attempt.
         #
-        #   @param merchant_acceptor_id [String] The merchant identifier (commonly abbreviated as MID) of the merchant the card i
+        #   @param merchant_acceptor_id [String]
+        #     The merchant identifier (commonly abbreviated as MID) of the merchant the card
+        #     is transacting with.
         #
-        #   @param merchant_category_code [String] The Merchant Category Code (commonly abbreviated as MCC) of the merchant the car
+        #   @param merchant_category_code [String]
+        #     The Merchant Category Code (commonly abbreviated as MCC) of the merchant the
+        #     card is transacting with.
         #
         #   @param merchant_country [String] The country the merchant resides in.
         #

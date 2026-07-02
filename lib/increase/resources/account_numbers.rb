@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class AccountNumbers
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::AccountNumberCreateParams} for more details.
-      #
       # Create an Account Number
       #
       # @overload create(account_id:, name:, inbound_ach: nil, inbound_checks: nil, request_options: {})
@@ -14,9 +11,12 @@ module Increase
       #
       # @param name [String] The name you choose for the Account Number.
       #
-      # @param inbound_ach [Increase::Models::AccountNumberCreateParams::InboundACH] Options related to how this Account Number should handle inbound ACH transfers.
+      # @param inbound_ach [Increase::Models::AccountNumberCreateParams::InboundACH]
+      #   Options related to how this Account Number should handle inbound ACH transfers.
       #
-      # @param inbound_checks [Increase::Models::AccountNumberCreateParams::InboundChecks] Options related to how this Account Number should handle inbound check withdrawa
+      # @param inbound_checks [Increase::Models::AccountNumberCreateParams::InboundChecks]
+      #   Options related to how this Account Number should handle inbound check
+      #   withdrawals.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -54,22 +54,23 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::AccountNumberUpdateParams} for more details.
-      #
       # Update an Account Number
       #
       # @overload update(account_number_id, inbound_ach: nil, inbound_checks: nil, name: nil, status: nil, request_options: {})
       #
       # @param account_number_id [String] The identifier of the Account Number.
       #
-      # @param inbound_ach [Increase::Models::AccountNumberUpdateParams::InboundACH] Options related to how this Account Number handles inbound ACH transfers.
+      # @param inbound_ach [Increase::Models::AccountNumberUpdateParams::InboundACH]
+      #   Options related to how this Account Number handles inbound ACH transfers.
       #
-      # @param inbound_checks [Increase::Models::AccountNumberUpdateParams::InboundChecks] Options related to how this Account Number should handle inbound check withdrawa
+      # @param inbound_checks [Increase::Models::AccountNumberUpdateParams::InboundChecks]
+      #   Options related to how this Account Number should handle inbound check
+      #   withdrawals.
       #
       # @param name [String] The name you choose for the Account Number.
       #
-      # @param status [Symbol, Increase::Models::AccountNumberUpdateParams::Status] This indicates if transfers can be made to the Account Number.
+      # @param status [Symbol, Increase::Models::AccountNumberUpdateParams::Status]
+      #   This indicates if transfers can be made to the Account Number.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -87,9 +88,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::AccountNumberListParams} for more details.
-      #
       # List Account Numbers
       #
       # @overload list(account_id: nil, ach_debit_status: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
@@ -102,9 +100,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::AccountNumberListParams::Status]
       #

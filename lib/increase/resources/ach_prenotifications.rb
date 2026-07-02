@@ -3,9 +3,6 @@
 module Increase
   module Resources
     class ACHPrenotifications
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::ACHPrenotificationCreateParams} for more details.
-      #
       # Create an ACH Prenotification
       #
       # @overload create(account_id:, account_number:, routing_number:, addendum: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, credit_debit_indicator: nil, effective_date: nil, individual_id: nil, individual_name: nil, standard_entry_class_code: nil, request_options: {})
@@ -14,7 +11,9 @@ module Increase
       #
       # @param account_number [String] The account number for the destination account.
       #
-      # @param routing_number [String] The American Bankers' Association (ABA) Routing Transit Number (RTN) for the des
+      # @param routing_number [String]
+      #   The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
+      #   destination account.
       #
       # @param addendum [String] Additional information that will be sent to the recipient.
       #
@@ -26,15 +25,23 @@ module Increase
       #
       # @param company_name [String] The name by which the recipient knows you.
       #
-      # @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator] Whether the Prenotification is for a future debit or credit.
+      # @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator]
+      #   Whether the Prenotification is for a future debit or credit.
       #
-      # @param effective_date [Date] The ACH Prenotification effective date in [ISO 8601](https://en.wikipedia.org/wi
+      # @param effective_date [Date]
+      #   The ACH Prenotification effective date in
+      #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
       #
       # @param individual_id [String] Your identifier for the recipient.
       #
-      # @param individual_name [String] The name of therecipient. This value is informational and not verified by the re
+      # @param individual_name [String]
+      #   The name of therecipient. This value is informational and not verified by the
+      #   recipient's bank.
       #
-      # @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode] The [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-co
+      # @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode]
+      #   The
+      #   [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
+      #   to use for the ACH Prenotification.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -72,9 +79,6 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::ACHPrenotificationListParams} for more details.
-      #
       # List ACH Prenotifications
       #
       # @overload list(created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
@@ -83,9 +87,15 @@ module Increase
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param idempotency_key [String] Filter records to the one with the specified `idempotency_key` you chose for tha
+      # @param idempotency_key [String]
+      #   Filter records to the one with the specified `idempotency_key` you chose for
+      #   that object. This value is unique across Increase and is used to ensure that a
+      #   request is only processed once. Learn more about
+      #   [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

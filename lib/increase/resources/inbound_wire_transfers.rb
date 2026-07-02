@@ -23,26 +23,28 @@ module Increase
         )
       end
 
-      # Some parameter documentations has been truncated, see
-      # {Increase::Models::InboundWireTransferListParams} for more details.
-      #
       # List Inbound Wire Transfers
       #
       # @overload list(account_id: nil, account_number_id: nil, created_at: nil, cursor: nil, limit: nil, status: nil, wire_drawdown_request_id: nil, request_options: {})
       #
       # @param account_id [String] Filter Inbound Wire Transfers to ones belonging to the specified Account.
       #
-      # @param account_number_id [String] Filter Inbound Wire Transfers to ones belonging to the specified Account Number.
+      # @param account_number_id [String]
+      #   Filter Inbound Wire Transfers to ones belonging to the specified Account Number.
       #
       # @param created_at [Increase::Models::InboundWireTransferListParams::CreatedAt]
       #
       # @param cursor [String] Return the page of entries after this one.
       #
-      # @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      # @param limit [Integer]
+      #   Limit the size of the list that is returned. The default (and maximum) is 100
+      #   objects.
       #
       # @param status [Increase::Models::InboundWireTransferListParams::Status]
       #
-      # @param wire_drawdown_request_id [String] Filter Inbound Wire Transfers to ones belonging to the specified Wire Drawdown R
+      # @param wire_drawdown_request_id [String]
+      #   Filter Inbound Wire Transfers to ones belonging to the specified Wire Drawdown
+      #   Request.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -68,7 +70,8 @@ module Increase
       #
       # @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer to reverse.
       #
-      # @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason] Reason for the reversal.
+      # @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason]
+      #   Reason for the reversal.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -42,10 +42,8 @@ module Increase
       optional :order_by, -> { Increase::EventListParams::OrderBy }
 
       # @!method initialize(associated_object_id: nil, category: nil, created_at: nil, cursor: nil, limit: nil, order_by: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::EventListParams} for more details.
-      #
-      #   @param associated_object_id [String] Filter Events to those belonging to the object with the provided identifier.
+      #   @param associated_object_id [String]
+      #     Filter Events to those belonging to the object with the provided identifier.
       #
       #   @param category [Increase::Models::EventListParams::Category]
       #
@@ -53,7 +51,9 @@ module Increase
       #
       #   @param cursor [String] Return the page of entries after this one.
       #
-      #   @param limit [Integer] Limit the size of the list that is returned. The default (and maximum) is 100 ob
+      #   @param limit [Integer]
+      #     Limit the size of the list that is returned. The default (and maximum) is 100
+      #     objects.
       #
       #   @param order_by [Increase::Models::EventListParams::OrderBy]
       #
@@ -71,10 +71,10 @@ module Increase
                  api_name: :in
 
         # @!method initialize(in_: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EventListParams::Category} for more details.
-        #
-        #   @param in_ [Array<Symbol, Increase::Models::EventListParams::Category::In>] Filter Events for those with the specified category or categories. For GET reque
+        #   @param in_ [Array<Symbol, Increase::Models::EventListParams::Category::In>]
+        #     Filter Events for those with the specified category or categories. For GET
+        #     requests, this should be encoded as a comma-delimited string, such as
+        #     `?in=one,two,three`.
 
         module In
           extend Increase::Internal::Type::Enum
@@ -455,16 +455,21 @@ module Increase
         optional :on_or_before, Time
 
         # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::EventListParams::CreatedAt} for more details.
+        #   @param after [Time]
+        #     Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+        #     timestamp.
         #
-        #   @param after [Time] Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) tim
+        #   @param before [Time]
+        #     Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
+        #     timestamp.
         #
-        #   @param before [Time] Return results before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) ti
+        #   @param on_or_after [Time]
+        #     Return results on or after this
+        #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
         #
-        #   @param on_or_after [Time] Return results on or after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_860
-        #
-        #   @param on_or_before [Time] Return results on or before this [ISO 8601](https://en.wikipedia.org/wiki/ISO_86
+        #   @param on_or_before [Time]
+        #     Return results on or before this
+        #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) timestamp.
       end
 
       class OrderBy < Increase::Internal::Type::BaseModel
@@ -481,7 +486,8 @@ module Increase
         optional :field, enum: -> { Increase::EventListParams::OrderBy::Field }
 
         # @!method initialize(direction: nil, field: nil)
-        #   @param direction [Symbol, Increase::Models::EventListParams::OrderBy::Direction] The direction to order in.
+        #   @param direction [Symbol, Increase::Models::EventListParams::OrderBy::Direction]
+        #     The direction to order in.
         #
         #   @param field [Symbol, Increase::Models::EventListParams::OrderBy::Field] The field to order by.
 

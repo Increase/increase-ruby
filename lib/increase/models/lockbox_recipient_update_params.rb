@@ -38,7 +38,8 @@ module Increase
       #
       #   @param recipient_name [String] The name of the Lockbox Recipient.
       #
-      #   @param status [Symbol, Increase::Models::LockboxRecipientUpdateParams::Status] The status of the Lockbox Recipient.
+      #   @param status [Symbol, Increase::Models::LockboxRecipientUpdateParams::Status]
+      #     The status of the Lockbox Recipient.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

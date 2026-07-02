@@ -298,6 +298,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
+          return_address_name: String?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
@@ -320,6 +321,8 @@ module Increase
 
         attr_accessor return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?
 
+        attr_accessor return_address_name: String?
+
         attr_accessor shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method
 
         attr_accessor signature: Increase::CheckTransfer::PhysicalCheck::Signature
@@ -335,6 +338,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
+          return_address_name: String?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
@@ -349,6 +353,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
+          return_address_name: String?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
           tracking_updates: ::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]

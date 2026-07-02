@@ -813,6 +813,10 @@ module Increase
         end
         attr_writer :return_address
 
+        # A custom name printed above the Increase-managed return address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :return_address_name
+
         # The shipping method for the check.
         sig do
           returns(
@@ -857,6 +861,7 @@ module Increase
               T.nilable(
                 Increase::CheckTransfer::PhysicalCheck::ReturnAddress::OrHash
               ),
+            return_address_name: T.nilable(String),
             shipping_method:
               Increase::CheckTransfer::PhysicalCheck::ShippingMethod::OrSymbol,
             signature:
@@ -885,6 +890,8 @@ module Increase
           recipient_name:,
           # The return address to be printed on the check.
           return_address:,
+          # A custom name printed above the Increase-managed return address.
+          return_address_name:,
           # The shipping method for the check.
           shipping_method:,
           # The signature that will appear on the check.
@@ -909,6 +916,7 @@ module Increase
                 T.nilable(
                   Increase::CheckTransfer::PhysicalCheck::ReturnAddress
                 ),
+              return_address_name: T.nilable(String),
               shipping_method:
                 Increase::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol,
               signature: Increase::CheckTransfer::PhysicalCheck::Signature,

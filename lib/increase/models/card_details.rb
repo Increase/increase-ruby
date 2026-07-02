@@ -50,9 +50,6 @@ module Increase
       required :verification_code, String
 
       # @!method initialize(card_id:, expiration_month:, expiration_year:, pin:, primary_account_number:, type:, verification_code:)
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::CardDetails} for more details.
-      #
       #   An object containing the sensitive details (card number, CVC, PIN, etc) for a
       #   Card. These details are not included in the Card object. If you'd prefer to
       #   never access these details directly, you can use the
@@ -69,9 +66,14 @@ module Increase
       #
       #   @param primary_account_number [String] The card number.
       #
-      #   @param type [Symbol, Increase::Models::CardDetails::Type] A constant representing the object's type. For this resource it will always be `
+      #   @param type [Symbol, Increase::Models::CardDetails::Type]
+      #     A constant representing the object's type. For this resource it will always be
+      #     `card_details`.
       #
-      #   @param verification_code [String] The three-digit verification code for the card. It's also known as the Card Veri
+      #   @param verification_code [String]
+      #     The three-digit verification code for the card. It's also known as the Card
+      #     Verification Code (CVC), the Card Verification Value (CVV), or the Card
+      #     Identification (CID).
 
       # A constant representing the object's type. For this resource it will always be
       # `card_details`.

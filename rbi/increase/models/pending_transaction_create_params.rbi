@@ -19,8 +19,8 @@ module Increase
       attr_accessor :account_id
 
       # The amount to hold in the minor unit of the account's currency. For dollars, for
-      # example, this is cents. This should be a negative amount - to hold $1.00 from
-      # the account, you would pass -100.
+      # example, this is cents. This should be a negative amount: To hold $1.00 from the
+      # account, pass -100 as `amount`.
       sig { returns(Integer) }
       attr_accessor :amount
 
@@ -43,8 +43,8 @@ module Increase
         # The Account to place the hold on.
         account_id:,
         # The amount to hold in the minor unit of the account's currency. For dollars, for
-        # example, this is cents. This should be a negative amount - to hold $1.00 from
-        # the account, you would pass -100.
+        # example, this is cents. This should be a negative amount: To hold $1.00 from the
+        # account, pass -100 as `amount`.
         amount:,
         # The description you choose to give the hold.
         description: nil,

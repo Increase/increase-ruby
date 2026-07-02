@@ -47,20 +47,23 @@ module Increase
       optional :program_id, String
 
       # @!method initialize(name:, entity_id: nil, funding: nil, informational_entity_id: nil, loan: nil, program_id: nil, request_options: {})
-      #   Some parameter documentations has been truncated, see
-      #   {Increase::Models::AccountCreateParams} for more details.
-      #
       #   @param name [String] The name you choose for the Account.
       #
       #   @param entity_id [String] The identifier for the Entity that will own the Account.
       #
-      #   @param funding [Symbol, Increase::Models::AccountCreateParams::Funding] Whether the Account is funded by a loan or by deposits.
+      #   @param funding [Symbol, Increase::Models::AccountCreateParams::Funding]
+      #     Whether the Account is funded by a loan or by deposits.
       #
-      #   @param informational_entity_id [String] The identifier of an Entity that, while not owning the Account, is associated wi
+      #   @param informational_entity_id [String]
+      #     The identifier of an Entity that, while not owning the Account, is associated
+      #     with its activity. This is generally the beneficiary of the funds.
       #
       #   @param loan [Increase::Models::AccountCreateParams::Loan] The loan details for the account.
       #
-      #   @param program_id [String] The identifier for the Program that this Account falls under. Required if your G
+      #   @param program_id [String]
+      #     The identifier for the Program that this Account falls under. Required if your
+      #     Group operates more than one Program. List your [Programs](#programs) to find
+      #     their identifiers.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -111,18 +114,18 @@ module Increase
         optional :maturity_date, Date
 
         # @!method initialize(credit_limit:, grace_period_days:, statement_day_of_month:, statement_payment_type:, maturity_date: nil)
-        #   Some parameter documentations has been truncated, see
-        #   {Increase::Models::AccountCreateParams::Loan} for more details.
-        #
         #   The loan details for the account.
         #
         #   @param credit_limit [Integer] The maximum amount of money that can be drawn from the Account.
         #
-        #   @param grace_period_days [Integer] The number of days after the statement date that the Account can be past due bef
+        #   @param grace_period_days [Integer]
+        #     The number of days after the statement date that the Account can be past due
+        #     before being considered delinquent.
         #
         #   @param statement_day_of_month [Integer] The day of the month on which the loan statement is generated.
         #
-        #   @param statement_payment_type [Symbol, Increase::Models::AccountCreateParams::Loan::StatementPaymentType] The type of statement payment for the account.
+        #   @param statement_payment_type [Symbol, Increase::Models::AccountCreateParams::Loan::StatementPaymentType]
+        #     The type of statement payment for the account.
         #
         #   @param maturity_date [Date] The date on which the loan matures.
 

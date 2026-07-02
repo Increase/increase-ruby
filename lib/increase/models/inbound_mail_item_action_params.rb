@@ -22,7 +22,8 @@ module Increase
       # @!method initialize(inbound_mail_item_id:, checks:, request_options: {})
       #   @param inbound_mail_item_id [String] The identifier of the Inbound Mail Item to action.
       #
-      #   @param checks [Array<Increase::Models::InboundMailItemActionParams::Check>] The actions to perform on the Inbound Mail Item.
+      #   @param checks [Array<Increase::Models::InboundMailItemActionParams::Check>]
+      #     The actions to perform on the Inbound Mail Item.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -40,7 +41,8 @@ module Increase
         optional :account_id, String
 
         # @!method initialize(action:, account_id: nil)
-        #   @param action [Symbol, Increase::Models::InboundMailItemActionParams::Check::Action] The action to perform on the Inbound Mail Item.
+        #   @param action [Symbol, Increase::Models::InboundMailItemActionParams::Check::Action]
+        #     The action to perform on the Inbound Mail Item.
         #
         #   @param account_id [String] The identifier of the Account to deposit the check into.
 
