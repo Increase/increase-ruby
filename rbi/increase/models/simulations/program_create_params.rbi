@@ -118,9 +118,9 @@ module Increase
             )
 
           # Twin City Bank
-          TWIN_CITY_BANK =
+          INCREASE_BANK =
             T.let(
-              :twin_city_bank,
+              :increase_bank,
               Increase::Simulations::ProgramCreateParams::Bank::TaggedSymbol
             )
 
