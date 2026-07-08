@@ -262,6 +262,14 @@ module Increase
           # Occurs whenever an Inbound Mail Item is updated.
           INBOUND_MAIL_ITEM_UPDATED = :"inbound_mail_item.updated"
 
+          # Occurs whenever an Inbound Real-Time Payments Request for Payment is created.
+          INBOUND_REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_CREATED =
+            :"inbound_real_time_payments_request_for_payment.created"
+
+          # Occurs whenever an Inbound Real-Time Payments Request for Payment is updated.
+          INBOUND_REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_UPDATED =
+            :"inbound_real_time_payments_request_for_payment.updated"
+
           # Occurs whenever an Inbound Real-Time Payments Transfer is created.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CREATED = :"inbound_real_time_payments_transfer.created"
 
