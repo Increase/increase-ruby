@@ -10,17 +10,18 @@ module Increase
         # production. The amount settled can be different from the amount originally
         # authorized, for example, when adding a tip to a restaurant bill.
         #
-        # @overload create(card_id:, pending_transaction_id:, amount: nil, request_options: {})
+        # @overload create(card_id:, amount: nil, pending_transaction_id: nil, request_options: {})
         #
         # @param card_id [String] The identifier of the Card to create a settlement on.
         #
-        # @param pending_transaction_id [String]
-        #   The identifier of the Pending Transaction for the Card Authorization you wish to
-        #   settle.
-        #
         # @param amount [Integer]
         #   The amount to be settled. This defaults to the amount of the Pending Transaction
-        #   being settled.
+        #   being settled, or a random amount if `pending_transaction_id` is not provided.
+        #
+        # @param pending_transaction_id [String]
+        #   The identifier of the Pending Transaction for the Card Authorization you wish to
+        #   settle. If not provided, the settlement will be force posted without a Card
+        #   Authorization.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

@@ -13,6 +13,7 @@ module Increase
         instructed_currency: Increase::Models::SwiftTransferCreateParams::instructed_currency,
         source_account_number_id: String,
         unstructured_remittance_information: String,
+        ?intermediary_bank_identification_code: String,
         ?require_approval: bool,
         ?routing_number: String,
         ?request_options: Increase::request_opts

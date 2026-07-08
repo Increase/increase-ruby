@@ -563,7 +563,8 @@ module Increase
         required :signature, -> { Increase::CheckTransfer::PhysicalCheck::Signature }
 
         # @!attribute tracking_updates
-        #   Tracking updates relating to the physical check's delivery.
+        #   Tracking updates relating to the physical check's delivery. Sorted by
+        #   `created_at` in ascending order.
         #
         #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>]
         required :tracking_updates,
@@ -602,7 +603,8 @@ module Increase
         #     The signature that will appear on the check.
         #
         #   @param tracking_updates [Array<Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate>]
-        #     Tracking updates relating to the physical check's delivery.
+        #     Tracking updates relating to the physical check's delivery. Sorted by
+        #     `created_at` in ascending order.
 
         # @see Increase::Models::CheckTransfer::PhysicalCheck#mailing_address
         class MailingAddress < Increase::Internal::Type::BaseModel
