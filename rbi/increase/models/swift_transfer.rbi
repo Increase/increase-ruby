@@ -88,6 +88,11 @@ module Increase
       sig { returns(Increase::SwiftTransfer::InstructedCurrency::TaggedSymbol) }
       attr_accessor :instructed_currency
 
+      # The bank identification code (BIC) of the intermediary bank, if the transfer is
+      # routed through one.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :intermediary_bank_identification_code
+
       # The ID for the pending transaction representing the transfer.
       sig { returns(T.nilable(String)) }
       attr_accessor :pending_transaction_id
@@ -143,6 +148,7 @@ module Increase
           instructed_amount: Integer,
           instructed_currency:
             Increase::SwiftTransfer::InstructedCurrency::OrSymbol,
+          intermediary_bank_identification_code: T.nilable(String),
           pending_transaction_id: T.nilable(String),
           routing_number: T.nilable(String),
           source_account_number_id: String,
@@ -187,6 +193,9 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the
         # instructed amount.
         instructed_currency:,
+        # The bank identification code (BIC) of the intermediary bank, if the transfer is
+        # routed through one.
+        intermediary_bank_identification_code:,
         # The ID for the pending transaction representing the transfer.
         pending_transaction_id:,
         # The creditor's bank account routing or transit number. Required in certain
@@ -229,6 +238,7 @@ module Increase
             instructed_amount: Integer,
             instructed_currency:
               Increase::SwiftTransfer::InstructedCurrency::TaggedSymbol,
+            intermediary_bank_identification_code: T.nilable(String),
             pending_transaction_id: T.nilable(String),
             routing_number: T.nilable(String),
             source_account_number_id: String,

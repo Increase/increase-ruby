@@ -76,6 +76,13 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
+      # @!attribute intermediary_bank_identification_code
+      #   The bank identification code (BIC) of the intermediary bank, if the transfer
+      #   should be routed through one.
+      #
+      #   @return [String, nil]
+      optional :intermediary_bank_identification_code, String
+
       # @!attribute require_approval
       #   Whether the transfer requires explicit approval via the dashboard or API.
       #
@@ -89,7 +96,7 @@ module Increase
       #   @return [String, nil]
       optional :routing_number, String
 
-      # @!method initialize(account_id:, account_number:, bank_identification_code:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, instructed_amount:, instructed_currency:, source_account_number_id:, unstructured_remittance_information:, require_approval: nil, routing_number: nil, request_options: {})
+      # @!method initialize(account_id:, account_number:, bank_identification_code:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, instructed_amount:, instructed_currency:, source_account_number_id:, unstructured_remittance_information:, intermediary_bank_identification_code: nil, require_approval: nil, routing_number: nil, request_options: {})
       #   @param account_id [String] The identifier for the account that will send the transfer.
       #
       #   @param account_number [String] The creditor's account number.
@@ -120,6 +127,10 @@ module Increase
       #
       #   @param unstructured_remittance_information [String]
       #     Unstructured remittance information to include in the transfer.
+      #
+      #   @param intermediary_bank_identification_code [String]
+      #     The bank identification code (BIC) of the intermediary bank, if the transfer
+      #     should be routed through one.
       #
       #   @param require_approval [Boolean]
       #     Whether the transfer requires explicit approval via the dashboard or API.
