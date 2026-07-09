@@ -58,9 +58,6 @@ module Increase
           # Grasshopper Bank
           GRASSHOPPER_BANK = :grasshopper_bank
 
-          # Twin City Bank
-          TWIN_CITY_BANK = :twin_city_bank
-
           # @!method self.values
           #   @return [Array<Symbol>]
         end

@@ -4,8 +4,8 @@ module Increase
       class CardSettlements
         def create: (
           card_id: String,
-          pending_transaction_id: String,
           ?amount: Integer,
+          ?pending_transaction_id: String,
           ?request_options: Increase::request_opts
         ) -> Increase::Transaction
 

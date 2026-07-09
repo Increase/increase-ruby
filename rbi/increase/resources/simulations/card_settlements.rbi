@@ -12,20 +12,21 @@ module Increase
         sig do
           params(
             card_id: String,
-            pending_transaction_id: String,
             amount: Integer,
+            pending_transaction_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::Transaction)
         end
         def create(
           # The identifier of the Card to create a settlement on.
           card_id:,
-          # The identifier of the Pending Transaction for the Card Authorization you wish to
-          # settle.
-          pending_transaction_id:,
           # The amount to be settled. This defaults to the amount of the Pending Transaction
-          # being settled.
+          # being settled, or a random amount if `pending_transaction_id` is not provided.
           amount: nil,
+          # The identifier of the Pending Transaction for the Card Authorization you wish to
+          # settle. If not provided, the settlement will be force posted without a Card
+          # Authorization.
+          pending_transaction_id: nil,
           request_options: {}
         )
         end
