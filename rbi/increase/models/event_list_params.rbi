@@ -580,6 +580,20 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever an Inbound Real-Time Payments Request for Payment is created.
+          INBOUND_REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_CREATED =
+            T.let(
+              :"inbound_real_time_payments_request_for_payment.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever an Inbound Real-Time Payments Request for Payment is updated.
+          INBOUND_REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_UPDATED =
+            T.let(
+              :"inbound_real_time_payments_request_for_payment.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever an Inbound Real-Time Payments Transfer is created.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CREATED =
             T.let(

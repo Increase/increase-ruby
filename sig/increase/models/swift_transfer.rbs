@@ -16,6 +16,7 @@ module Increase
         idempotency_key: String?,
         instructed_amount: Integer,
         instructed_currency: Increase::Models::SwiftTransfer::instructed_currency,
+        intermediary_bank_identification_code: String?,
         pending_transaction_id: String?,
         routing_number: String?,
         source_account_number_id: String,
@@ -55,6 +56,8 @@ module Increase
 
       attr_accessor instructed_currency: Increase::Models::SwiftTransfer::instructed_currency
 
+      attr_accessor intermediary_bank_identification_code: String?
+
       attr_accessor pending_transaction_id: String?
 
       attr_accessor routing_number: String?
@@ -86,6 +89,7 @@ module Increase
         idempotency_key: String?,
         instructed_amount: Integer,
         instructed_currency: Increase::Models::SwiftTransfer::instructed_currency,
+        intermediary_bank_identification_code: String?,
         pending_transaction_id: String?,
         routing_number: String?,
         source_account_number_id: String,
@@ -111,6 +115,7 @@ module Increase
         idempotency_key: String?,
         instructed_amount: Integer,
         instructed_currency: Increase::Models::SwiftTransfer::instructed_currency,
+        intermediary_bank_identification_code: String?,
         pending_transaction_id: String?,
         routing_number: String?,
         source_account_number_id: String,

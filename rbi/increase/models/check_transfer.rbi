@@ -836,7 +836,8 @@ module Increase
         end
         attr_writer :signature
 
-        # Tracking updates relating to the physical check's delivery.
+        # Tracking updates relating to the physical check's delivery. Sorted by
+        # `created_at` in ascending order.
         sig do
           returns(
             T::Array[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate]
@@ -896,7 +897,8 @@ module Increase
           shipping_method:,
           # The signature that will appear on the check.
           signature:,
-          # Tracking updates relating to the physical check's delivery.
+          # Tracking updates relating to the physical check's delivery. Sorted by
+          # `created_at` in ascending order.
           tracking_updates:
         )
         end
