@@ -14,6 +14,14 @@ module Increase
         #   @return [String]
         required :ach_transfer_id, String
 
+        # @!attribute addenda_information
+        #   Free-form information the returning bank includes in the return addenda. For a
+        #   `file_record_edit_criteria` (R17) return, set this to `QUESTIONABLE` to simulate
+        #   a return the bank believes was initiated under questionable circumstances.
+        #
+        #   @return [String, nil]
+        optional :addenda_information, String
+
         # @!attribute reason
         #   The reason why the Federal Reserve or destination bank returned this transfer.
         #   Defaults to `no_account`.
@@ -21,8 +29,13 @@ module Increase
         #   @return [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason, nil]
         optional :reason, enum: -> { Increase::Simulations::ACHTransferReturnParams::Reason }
 
-        # @!method initialize(ach_transfer_id:, reason: nil, request_options: {})
+        # @!method initialize(ach_transfer_id:, addenda_information: nil, reason: nil, request_options: {})
         #   @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to return.
+        #
+        #   @param addenda_information [String]
+        #     Free-form information the returning bank includes in the return addenda. For a
+        #     `file_record_edit_criteria` (R17) return, set this to `QUESTIONABLE` to simulate
+        #     a return the bank believes was initiated under questionable circumstances.
         #
         #   @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
         #     The reason why the Federal Reserve or destination bank returned this transfer.
@@ -85,7 +98,7 @@ module Increase
           # Code R13. The routing number is invalid.
           INVALID_ACH_ROUTING_NUMBER = :invalid_ach_routing_number
 
-          # Code R17. The receiving bank is unable to process a field in the transfer.
+          # Code R17. This return code has multiple meanings. The receiving bank was either unable to process a field in the transfer, or believes the transfer was initiated under questionable circumstances (such as fraud), or identified an improperly-initiated reversing entry.
           FILE_RECORD_EDIT_CRITERIA = :file_record_edit_criteria
 
           # Code R45. A rare return reason. The individual name field was invalid.

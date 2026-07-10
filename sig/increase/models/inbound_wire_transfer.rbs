@@ -12,10 +12,12 @@ module Increase
         :creditor_address_line2 => String?,
         :creditor_address_line3 => String?,
         creditor_name: String?,
+        debtor_account_number: String?,
         :debtor_address_line1 => String?,
         :debtor_address_line2 => String?,
         :debtor_address_line3 => String?,
         debtor_name: String?,
+        debtor_routing_number: String?,
         description: String,
         end_to_end_identification: String?,
         input_message_accountability_data: String?,
@@ -51,6 +53,8 @@ module Increase
 
       attr_accessor creditor_name: String?
 
+      attr_accessor debtor_account_number: String?
+
       attr_accessor debtor_address_line1: String?
 
       attr_accessor debtor_address_line2: String?
@@ -58,6 +62,8 @@ module Increase
       attr_accessor debtor_address_line3: String?
 
       attr_accessor debtor_name: String?
+
+      attr_accessor debtor_routing_number: String?
 
       attr_accessor description: String
 
@@ -94,10 +100,12 @@ module Increase
         creditor_address_line2: String?,
         creditor_address_line3: String?,
         creditor_name: String?,
+        debtor_account_number: String?,
         debtor_address_line1: String?,
         debtor_address_line2: String?,
         debtor_address_line3: String?,
         debtor_name: String?,
+        debtor_routing_number: String?,
         description: String,
         end_to_end_identification: String?,
         input_message_accountability_data: String?,
@@ -123,10 +131,12 @@ module Increase
         :creditor_address_line2 => String?,
         :creditor_address_line3 => String?,
         creditor_name: String?,
+        debtor_account_number: String?,
         :debtor_address_line1 => String?,
         :debtor_address_line2 => String?,
         :debtor_address_line3 => String?,
         debtor_name: String?,
+        debtor_routing_number: String?,
         description: String,
         end_to_end_identification: String?,
         input_message_accountability_data: String?,

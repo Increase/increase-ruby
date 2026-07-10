@@ -58,6 +58,7 @@ module Increase
         sig do
           params(
             ach_transfer_id: String,
+            addenda_information: String,
             reason:
               Increase::Simulations::ACHTransferReturnParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
@@ -66,6 +67,10 @@ module Increase
         def return_(
           # The identifier of the ACH Transfer you wish to return.
           ach_transfer_id,
+          # Free-form information the returning bank includes in the return addenda. For a
+          # `file_record_edit_criteria` (R17) return, set this to `QUESTIONABLE` to simulate
+          # a return the bank believes was initiated under questionable circumstances.
+          addenda_information: nil,
           # The reason why the Federal Reserve or destination bank returned this transfer.
           # Defaults to `no_account`.
           reason: nil,

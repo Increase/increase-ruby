@@ -67,9 +67,14 @@ module Increase
         # due to an error condition. This will also create a Transaction to account for
         # the returned funds. This transfer must first have a `status` of `submitted`.
         #
-        # @overload return_(ach_transfer_id, reason: nil, request_options: {})
+        # @overload return_(ach_transfer_id, addenda_information: nil, reason: nil, request_options: {})
         #
         # @param ach_transfer_id [String] The identifier of the ACH Transfer you wish to return.
+        #
+        # @param addenda_information [String]
+        #   Free-form information the returning bank includes in the return addenda. For a
+        #   `file_record_edit_criteria` (R17) return, set this to `QUESTIONABLE` to simulate
+        #   a return the bank believes was initiated under questionable circumstances.
         #
         # @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
         #   The reason why the Federal Reserve or destination bank returned this transfer.

@@ -14,30 +14,32 @@ module Increase
         #   @return [String]
         required :card_id, String
 
-        # @!attribute pending_transaction_id
-        #   The identifier of the Pending Transaction for the Card Authorization you wish to
-        #   settle.
-        #
-        #   @return [String]
-        required :pending_transaction_id, String
-
         # @!attribute amount
         #   The amount to be settled. This defaults to the amount of the Pending Transaction
-        #   being settled.
+        #   being settled, or a random amount if `pending_transaction_id` is not provided.
         #
         #   @return [Integer, nil]
         optional :amount, Integer
 
-        # @!method initialize(card_id:, pending_transaction_id:, amount: nil, request_options: {})
-        #   @param card_id [String] The identifier of the Card to create a settlement on.
+        # @!attribute pending_transaction_id
+        #   The identifier of the Pending Transaction for the Card Authorization you wish to
+        #   settle. If not provided, the settlement will be force posted without a Card
+        #   Authorization.
         #
-        #   @param pending_transaction_id [String]
-        #     The identifier of the Pending Transaction for the Card Authorization you wish to
-        #     settle.
+        #   @return [String, nil]
+        optional :pending_transaction_id, String
+
+        # @!method initialize(card_id:, amount: nil, pending_transaction_id: nil, request_options: {})
+        #   @param card_id [String] The identifier of the Card to create a settlement on.
         #
         #   @param amount [Integer]
         #     The amount to be settled. This defaults to the amount of the Pending Transaction
-        #     being settled.
+        #     being settled, or a random amount if `pending_transaction_id` is not provided.
+        #
+        #   @param pending_transaction_id [String]
+        #     The identifier of the Pending Transaction for the Card Authorization you wish to
+        #     settle. If not provided, the settlement will be force posted without a Card
+        #     Authorization.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
       end

@@ -2,7 +2,7 @@ module Increase
   module Models
     module Simulations
       type card_settlement_create_params =
-        { card_id: String, pending_transaction_id: String, amount: Integer }
+        { card_id: String, amount: Integer, pending_transaction_id: String }
         & Increase::Internal::Type::request_parameters
 
       class CardSettlementCreateParams < Increase::Internal::Type::BaseModel
@@ -11,23 +11,25 @@ module Increase
 
         attr_accessor card_id: String
 
-        attr_accessor pending_transaction_id: String
-
         attr_reader amount: Integer?
 
         def amount=: (Integer) -> Integer
 
+        attr_reader pending_transaction_id: String?
+
+        def pending_transaction_id=: (String) -> String
+
         def initialize: (
           card_id: String,
-          pending_transaction_id: String,
           ?amount: Integer,
+          ?pending_transaction_id: String,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
           card_id: String,
-          pending_transaction_id: String,
           amount: Integer,
+          pending_transaction_id: String,
           request_options: Increase::RequestOptions
         }
       end

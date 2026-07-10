@@ -57,6 +57,10 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :creditor_name
 
+      # The account number of the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :debtor_account_number
+
       # A free-form address field set by the sender.
       sig { returns(T.nilable(String)) }
       attr_accessor :debtor_address_line1
@@ -72,6 +76,10 @@ module Increase
       # A name set by the sender.
       sig { returns(T.nilable(String)) }
       attr_accessor :debtor_name
+
+      # The American Banking Association (ABA) routing number of the sender.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :debtor_routing_number
 
       # An Increase-constructed description of the transfer.
       sig { returns(String) }
@@ -149,10 +157,12 @@ module Increase
           creditor_address_line2: T.nilable(String),
           creditor_address_line3: T.nilable(String),
           creditor_name: T.nilable(String),
+          debtor_account_number: T.nilable(String),
           debtor_address_line1: T.nilable(String),
           debtor_address_line2: T.nilable(String),
           debtor_address_line3: T.nilable(String),
           debtor_name: T.nilable(String),
+          debtor_routing_number: T.nilable(String),
           description: String,
           end_to_end_identification: T.nilable(String),
           input_message_accountability_data: T.nilable(String),
@@ -189,6 +199,8 @@ module Increase
         creditor_address_line3:,
         # A name set by the sender.
         creditor_name:,
+        # The account number of the sender.
+        debtor_account_number:,
         # A free-form address field set by the sender.
         debtor_address_line1:,
         # A free-form address field set by the sender.
@@ -197,6 +209,8 @@ module Increase
         debtor_address_line3:,
         # A name set by the sender.
         debtor_name:,
+        # The American Banking Association (ABA) routing number of the sender.
+        debtor_routing_number:,
         # An Increase-constructed description of the transfer.
         description:,
         # A free-form reference string set by the sender, to help identify the transfer.
@@ -243,10 +257,12 @@ module Increase
             creditor_address_line2: T.nilable(String),
             creditor_address_line3: T.nilable(String),
             creditor_name: T.nilable(String),
+            debtor_account_number: T.nilable(String),
             debtor_address_line1: T.nilable(String),
             debtor_address_line2: T.nilable(String),
             debtor_address_line3: T.nilable(String),
             debtor_name: T.nilable(String),
+            debtor_routing_number: T.nilable(String),
             description: String,
             end_to_end_identification: T.nilable(String),
             input_message_accountability_data: T.nilable(String),

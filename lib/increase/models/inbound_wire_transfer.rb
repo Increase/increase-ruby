@@ -65,6 +65,12 @@ module Increase
       #   @return [String, nil]
       required :creditor_name, String, nil?: true
 
+      # @!attribute debtor_account_number
+      #   The account number of the sender.
+      #
+      #   @return [String, nil]
+      required :debtor_account_number, String, nil?: true
+
       # @!attribute debtor_address_line1
       #   A free-form address field set by the sender.
       #
@@ -88,6 +94,12 @@ module Increase
       #
       #   @return [String, nil]
       required :debtor_name, String, nil?: true
+
+      # @!attribute debtor_routing_number
+      #   The American Banking Association (ABA) routing number of the sender.
+      #
+      #   @return [String, nil]
+      required :debtor_routing_number, String, nil?: true
 
       # @!attribute description
       #   An Increase-constructed description of the transfer.
@@ -167,7 +179,7 @@ module Increase
       #   @return [String, nil]
       required :wire_drawdown_request_id, String, nil?: true
 
-      # @!method initialize(id:, acceptance:, account_id:, account_number_id:, amount:, created_at:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, purpose:, reversal:, status:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:, wire_drawdown_request_id:)
+      # @!method initialize(id:, acceptance:, account_id:, account_number_id:, amount:, created_at:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_account_number:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, debtor_routing_number:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, purpose:, reversal:, status:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:, wire_drawdown_request_id:)
       #   An Inbound Wire Transfer is a wire transfer initiated outside of Increase to
       #   your account.
       #
@@ -194,6 +206,8 @@ module Increase
       #
       #   @param creditor_name [String, nil] A name set by the sender.
       #
+      #   @param debtor_account_number [String, nil] The account number of the sender.
+      #
       #   @param debtor_address_line1 [String, nil] A free-form address field set by the sender.
       #
       #   @param debtor_address_line2 [String, nil] A free-form address field set by the sender.
@@ -201,6 +215,9 @@ module Increase
       #   @param debtor_address_line3 [String, nil] A free-form address field set by the sender.
       #
       #   @param debtor_name [String, nil] A name set by the sender.
+      #
+      #   @param debtor_routing_number [String, nil]
+      #     The American Banking Association (ABA) routing number of the sender.
       #
       #   @param description [String] An Increase-constructed description of the transfer.
       #

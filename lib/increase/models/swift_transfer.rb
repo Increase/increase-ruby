@@ -93,6 +93,13 @@ module Increase
       #   @return [Symbol, Increase::Models::SwiftTransfer::InstructedCurrency]
       required :instructed_currency, enum: -> { Increase::SwiftTransfer::InstructedCurrency }
 
+      # @!attribute intermediary_bank_identification_code
+      #   The bank identification code (BIC) of the intermediary bank, if the transfer is
+      #   routed through one.
+      #
+      #   @return [String, nil]
+      required :intermediary_bank_identification_code, String, nil?: true
+
       # @!attribute pending_transaction_id
       #   The ID for the pending transaction representing the transfer.
       #
@@ -146,7 +153,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number:, amount:, bank_identification_code:, created_at:, created_by:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, idempotency_key:, instructed_amount:, instructed_currency:, pending_transaction_id:, routing_number:, source_account_number_id:, status:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number:, amount:, bank_identification_code:, created_at:, created_by:, creditor_address:, creditor_name:, debtor_address:, debtor_name:, idempotency_key:, instructed_amount:, instructed_currency:, intermediary_bank_identification_code:, pending_transaction_id:, routing_number:, source_account_number_id:, status:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   Swift Transfers send funds internationally.
       #
       #   @param id [String] The Swift transfer's identifier.
@@ -186,6 +193,10 @@ module Increase
       #   @param instructed_currency [Symbol, Increase::Models::SwiftTransfer::InstructedCurrency]
       #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code of the
       #     instructed amount.
+      #
+      #   @param intermediary_bank_identification_code [String, nil]
+      #     The bank identification code (BIC) of the intermediary bank, if the transfer is
+      #     routed through one.
       #
       #   @param pending_transaction_id [String, nil] The ID for the pending transaction representing the transfer.
       #

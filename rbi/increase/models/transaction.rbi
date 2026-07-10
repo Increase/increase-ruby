@@ -1970,6 +1970,15 @@ module Increase
               )
             end
 
+          # Additional free-form information included by the receiving bank in the return's
+          # addenda record. This is raw, uninterpreted text whose presence and format are
+          # not guaranteed. For a `file_record_edit_criteria` (R17) return the receiving
+          # bank may set this to `QUESTIONABLE` (optionally followed by more text) to
+          # indicate it believes the transfer was initiated under questionable
+          # circumstances.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :addenda_information
+
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           # the transfer was created.
           sig { returns(Time) }
@@ -2013,6 +2022,7 @@ module Increase
           # created.
           sig do
             params(
+              addenda_information: T.nilable(String),
               created_at: Time,
               raw_return_reason_code: String,
               return_reason_code:
@@ -2023,6 +2033,13 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
+            # Additional free-form information included by the receiving bank in the return's
+            # addenda record. This is raw, uninterpreted text whose presence and format are
+            # not guaranteed. For a `file_record_edit_criteria` (R17) return the receiving
+            # bank may set this to `QUESTIONABLE` (optionally followed by more text) to
+            # indicate it believes the transfer was initiated under questionable
+            # circumstances.
+            addenda_information:,
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
             # the transfer was created.
             created_at:,
@@ -2047,6 +2064,7 @@ module Increase
           sig do
             override.returns(
               {
+                addenda_information: T.nilable(String),
                 created_at: Time,
                 raw_return_reason_code: String,
                 return_reason_code:
@@ -2186,7 +2204,7 @@ module Increase
                 Increase::Transaction::Source::ACHTransferReturn::ReturnReasonCode::TaggedSymbol
               )
 
-            # Code R17. The receiving bank is unable to process a field in the transfer.
+            # Code R17. This return code has multiple meanings. The receiving bank was either unable to process a field in the transfer, or believes the transfer was initiated under questionable circumstances (such as fraud), or identified an improperly-initiated reversing entry.
             FILE_RECORD_EDIT_CRITERIA =
               T.let(
                 :file_record_edit_criteria,

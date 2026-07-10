@@ -1103,6 +1103,17 @@ module Increase
 
       # @see Increase::Models::ACHTransfer#return_
       class Return < Increase::Internal::Type::BaseModel
+        # @!attribute addenda_information
+        #   Additional free-form information included by the receiving bank in the return's
+        #   addenda record. This is raw, uninterpreted text whose presence and format are
+        #   not guaranteed. For a `file_record_edit_criteria` (R17) return the receiving
+        #   bank may set this to `QUESTIONABLE` (optionally followed by more text) to
+        #   indicate it believes the transfer was initiated under questionable
+        #   circumstances.
+        #
+        #   @return [String, nil]
+        required :addenda_information, String, nil?: true
+
         # @!attribute created_at
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         #   the transfer was created.
@@ -1145,8 +1156,16 @@ module Increase
         #   @return [String]
         required :transfer_id, String
 
-        # @!method initialize(created_at:, raw_return_reason_code:, return_reason_code:, trace_number:, transaction_id:, transfer_id:)
+        # @!method initialize(addenda_information:, created_at:, raw_return_reason_code:, return_reason_code:, trace_number:, transaction_id:, transfer_id:)
         #   If your transfer is returned, this will contain details of the return.
+        #
+        #   @param addenda_information [String, nil]
+        #     Additional free-form information included by the receiving bank in the return's
+        #     addenda record. This is raw, uninterpreted text whose presence and format are
+        #     not guaranteed. For a `file_record_edit_criteria` (R17) return the receiving
+        #     bank may set this to `QUESTIONABLE` (optionally followed by more text) to
+        #     indicate it believes the transfer was initiated under questionable
+        #     circumstances.
         #
         #   @param created_at [Time]
         #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -1227,7 +1246,7 @@ module Increase
           # Code R13. The routing number is invalid.
           INVALID_ACH_ROUTING_NUMBER = :invalid_ach_routing_number
 
-          # Code R17. The receiving bank is unable to process a field in the transfer.
+          # Code R17. This return code has multiple meanings. The receiving bank was either unable to process a field in the transfer, or believes the transfer was initiated under questionable circumstances (such as fraud), or identified an improperly-initiated reversing entry.
           FILE_RECORD_EDIT_CRITERIA = :file_record_edit_criteria
 
           # Code R45. A rare return reason. The individual name field was invalid.
