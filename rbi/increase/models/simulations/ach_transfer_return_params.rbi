@@ -19,6 +19,15 @@ module Increase
         sig { returns(String) }
         attr_accessor :ach_transfer_id
 
+        # Free-form information the returning bank includes in the return addenda. For a
+        # `file_record_edit_criteria` (R17) return, set this to `QUESTIONABLE` to simulate
+        # a return the bank believes was initiated under questionable circumstances.
+        sig { returns(T.nilable(String)) }
+        attr_reader :addenda_information
+
+        sig { params(addenda_information: String).void }
+        attr_writer :addenda_information
+
         # The reason why the Federal Reserve or destination bank returned this transfer.
         # Defaults to `no_account`.
         sig do
@@ -41,6 +50,7 @@ module Increase
         sig do
           params(
             ach_transfer_id: String,
+            addenda_information: String,
             reason:
               Increase::Simulations::ACHTransferReturnParams::Reason::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
@@ -49,6 +59,10 @@ module Increase
         def self.new(
           # The identifier of the ACH Transfer you wish to return.
           ach_transfer_id:,
+          # Free-form information the returning bank includes in the return addenda. For a
+          # `file_record_edit_criteria` (R17) return, set this to `QUESTIONABLE` to simulate
+          # a return the bank believes was initiated under questionable circumstances.
+          addenda_information: nil,
           # The reason why the Federal Reserve or destination bank returned this transfer.
           # Defaults to `no_account`.
           reason: nil,
@@ -60,6 +74,7 @@ module Increase
           override.returns(
             {
               ach_transfer_id: String,
+              addenda_information: String,
               reason:
                 Increase::Simulations::ACHTransferReturnParams::Reason::OrSymbol,
               request_options: Increase::RequestOptions
@@ -195,7 +210,7 @@ module Increase
               Increase::Simulations::ACHTransferReturnParams::Reason::TaggedSymbol
             )
 
-          # Code R17. The receiving bank is unable to process a field in the transfer.
+          # Code R17. This return code has multiple meanings. The receiving bank was either unable to process a field in the transfer, or believes the transfer was initiated under questionable circumstances (such as fraud), or identified an improperly-initiated reversing entry.
           FILE_RECORD_EDIT_CRITERIA =
             T.let(
               :file_record_edit_criteria,

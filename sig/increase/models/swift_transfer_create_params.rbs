@@ -13,6 +13,7 @@ module Increase
         instructed_currency: Increase::Models::SwiftTransferCreateParams::instructed_currency,
         source_account_number_id: String,
         unstructured_remittance_information: String,
+        intermediary_bank_identification_code: String,
         require_approval: bool,
         routing_number: String
       }
@@ -44,6 +45,10 @@ module Increase
 
       attr_accessor unstructured_remittance_information: String
 
+      attr_reader intermediary_bank_identification_code: String?
+
+      def intermediary_bank_identification_code=: (String) -> String
+
       attr_reader require_approval: bool?
 
       def require_approval=: (bool) -> bool
@@ -64,6 +69,7 @@ module Increase
         instructed_currency: Increase::Models::SwiftTransferCreateParams::instructed_currency,
         source_account_number_id: String,
         unstructured_remittance_information: String,
+        ?intermediary_bank_identification_code: String,
         ?require_approval: bool,
         ?routing_number: String,
         ?request_options: Increase::request_opts
@@ -81,6 +87,7 @@ module Increase
         instructed_currency: Increase::Models::SwiftTransferCreateParams::instructed_currency,
         source_account_number_id: String,
         unstructured_remittance_information: String,
+        intermediary_bank_identification_code: String,
         require_approval: bool,
         routing_number: String,
         request_options: Increase::RequestOptions

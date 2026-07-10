@@ -18,6 +18,7 @@ module Increase
 
         def return_: (
           String ach_transfer_id,
+          ?addenda_information: String,
           ?reason: Increase::Models::Simulations::ACHTransferReturnParams::reason,
           ?request_options: Increase::request_opts
         ) -> Increase::ACHTransfer

@@ -459,7 +459,7 @@ module Increase
           # Code R13. The routing number is invalid.
           INVALID_ACH_ROUTING_NUMBER = :invalid_ach_routing_number
 
-          # Code R17. The receiving bank is unable to process a field in the transfer.
+          # Code R17. This return code has multiple meanings. The receiving bank was either unable to process a field in the transfer, or believes the transfer was initiated under questionable circumstances (such as fraud), or identified an improperly-initiated reversing entry.
           FILE_RECORD_EDIT_CRITERIA = :file_record_edit_criteria
 
           # Code R45. A rare return reason. The individual name field was invalid.

@@ -20,6 +20,7 @@ module Increase
             Increase::SwiftTransferCreateParams::InstructedCurrency::OrSymbol,
           source_account_number_id: String,
           unstructured_remittance_information: String,
+          intermediary_bank_identification_code: String,
           require_approval: T::Boolean,
           routing_number: String,
           request_options: Increase::RequestOptions::OrHash
@@ -51,6 +52,9 @@ module Increase
         source_account_number_id:,
         # Unstructured remittance information to include in the transfer.
         unstructured_remittance_information:,
+        # The bank identification code (BIC) of the intermediary bank, if the transfer
+        # should be routed through one.
+        intermediary_bank_identification_code: nil,
         # Whether the transfer requires explicit approval via the dashboard or API.
         require_approval: nil,
         # The creditor's bank account routing or transit number. Required in certain
