@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.342.0](https://github.com/Increase/increase-ruby/compare/v1.341.0...v1.342.0) (2026-07-13)
+
+
+### Features
+
+* **api:** api update ([#495](https://github.com/Increase/increase-ruby/issues/495)) ([d2ecf25](https://github.com/Increase/increase-ruby/commit/d2ecf2523ee25d6751e88932a673921aaa2128f9))
+
+
+### Bug Fixes
+
+* **api:** make address country optional, defaulting to US ([c591896](https://github.com/Increase/increase-ruby/commit/c591896200ab1ae5fc82ecb5af2f37cef19de457))
+
 ## [1.341.0](https://github.com/Increase/increase-ruby/compare/v1.340.0...v1.341.0) (2026-07-02)
 
 
