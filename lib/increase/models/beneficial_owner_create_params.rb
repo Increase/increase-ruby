@@ -115,18 +115,17 @@ module Increase
           #   @return [String]
           required :city, String
 
+          # @!attribute country
+          #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #
+          #   @return [String]
+          required :country, String
+
           # @!attribute line1
           #   The first line of the address. This is usually the street number and street.
           #
           #   @return [String]
           required :line1, String
-
-          # @!attribute country
-          #   The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-          #   to `US`.
-          #
-          #   @return [String, nil]
-          optional :country, String
 
           # @!attribute line2
           #   The second line of the address. This might be the floor or room number.
@@ -147,17 +146,15 @@ module Increase
           #   @return [String, nil]
           optional :zip, String
 
-          # @!method initialize(city:, line1:, country: nil, line2: nil, state: nil, zip: nil)
+          # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
           #   The individual's physical address. Mail receiving locations like PO Boxes and
           #   PMB's are disallowed.
           #
           #   @param city [String] The city, district, town, or village of the address.
           #
-          #   @param line1 [String] The first line of the address. This is usually the street number and street.
+          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
-          #   @param country [String]
-          #     The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-          #     to `US`.
+          #   @param line1 [String] The first line of the address. This is usually the street number and street.
           #
           #   @param line2 [String] The second line of the address. This might be the floor or room number.
           #
