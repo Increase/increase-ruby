@@ -269,6 +269,8 @@ module Increase
 
   class File = Increase::Models::File
 
+  class FileContentsParams = Increase::Models::FileContentsParams
+
   class FileCreateParams = Increase::Models::FileCreateParams
 
   class FileLink = Increase::Models::FileLink

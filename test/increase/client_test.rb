@@ -156,61 +156,6 @@ class IncreaseTest < Minitest::Test
     assert_equal(1.3, Thread.current.thread_variable_get(:mock_sleep).last)
   end
 
-  def test_retry_count_header
-    stub_request(:post, "http://localhost/accounts").to_return_json(
-      status: 500,
-      body: {"type" => "internal_server_error"}
-    )
-
-    increase = Increase::Client.new(base_url: "http://localhost", api_key: "My API Key")
-
-    assert_raises(Increase::Errors::InternalServerError) do
-      increase.accounts.create(name: "New Account!")
-    end
-
-    3.times do
-      assert_requested(:any, /./, headers: {"x-stainless-retry-count" => _1})
-    end
-  end
-
-  def test_omit_retry_count_header
-    stub_request(:post, "http://localhost/accounts").to_return_json(
-      status: 500,
-      body: {"type" => "internal_server_error"}
-    )
-
-    increase = Increase::Client.new(base_url: "http://localhost", api_key: "My API Key")
-
-    assert_raises(Increase::Errors::InternalServerError) do
-      increase.accounts.create(
-        name: "New Account!",
-        request_options: {extra_headers: {"x-stainless-retry-count" => nil}}
-      )
-    end
-
-    assert_requested(:any, /./, times: 3) do
-      refute_includes(_1.headers.keys.map(&:downcase), "x-stainless-retry-count")
-    end
-  end
-
-  def test_overwrite_retry_count_header
-    stub_request(:post, "http://localhost/accounts").to_return_json(
-      status: 500,
-      body: {"type" => "internal_server_error"}
-    )
-
-    increase = Increase::Client.new(base_url: "http://localhost", api_key: "My API Key")
-
-    assert_raises(Increase::Errors::InternalServerError) do
-      increase.accounts.create(
-        name: "New Account!",
-        request_options: {extra_headers: {"x-stainless-retry-count" => "42"}}
-      )
-    end
-
-    assert_requested(:any, /./, headers: {"x-stainless-retry-count" => "42"}, times: 3)
-  end
-
   def test_client_redirect_307
     stub_request(:post, "http://localhost/accounts").to_return_json(
       status: 307,
@@ -339,7 +284,7 @@ class IncreaseTest < Minitest::Test
       refute_empty(header)
     end
 
-    assert_equal(*headers)
+    assert_equal(1, headers.uniq.length)
   end
 
   def test_request_option_idempotency_key_on_writes

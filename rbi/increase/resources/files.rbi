@@ -69,6 +69,27 @@ module Increase
       )
       end
 
+      # Download the contents of a File. Responds with a 307 redirect whose `Location`
+      # header points at a short-lived, pre-signed URL. Our
+      # [SDKs](/documentation/software-development-kits) follow the redirect and return
+      # the File's contents; if you call the API directly, follow the redirect to
+      # download it. The pre-signed URL serves the File with a `Content-Type` matching
+      # its `mime` and a `Content-Disposition` header set to its `filename`. It expires
+      # in 10 minutes. To share a File with someone who doesn't have access to your API
+      # key, create a File Link.
+      sig do
+        params(
+          file_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(StringIO)
+      end
+      def contents(
+        # The identifier of the File.
+        file_id,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)

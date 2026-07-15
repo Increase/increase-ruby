@@ -75,4 +75,12 @@ class Increase::Test::Resources::FilesTest < Increase::Test::ResourceTest
       }
     end
   end
+
+  def test_contents
+    response = @increase.files.contents("file_makxrc67oh9l6sg7w9yc")
+
+    assert_pattern do
+      response => StringIO
+    end
+  end
 end

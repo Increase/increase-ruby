@@ -94,6 +94,34 @@ module Increase
         )
       end
 
+      # Download the contents of a File. Responds with a 307 redirect whose `Location`
+      # header points at a short-lived, pre-signed URL. Our
+      # [SDKs](/documentation/software-development-kits) follow the redirect and return
+      # the File's contents; if you call the API directly, follow the redirect to
+      # download it. The pre-signed URL serves the File with a `Content-Type` matching
+      # its `mime` and a `Content-Disposition` header set to its `filename`. It expires
+      # in 10 minutes. To share a File with someone who doesn't have access to your API
+      # key, create a File Link.
+      #
+      # @overload contents(file_id, request_options: {})
+      #
+      # @param file_id [String] The identifier of the File.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [StringIO]
+      #
+      # @see Increase::Models::FileContentsParams
+      def contents(file_id, params = {})
+        @client.request(
+          method: :get,
+          path: ["files/%1$s/contents", file_id],
+          headers: {"accept" => "application/octet-stream"},
+          model: StringIO,
+          options: params[:request_options]
+        )
+      end
+
       # @api private
       #
       # @param client [Increase::Client]

@@ -12,18 +12,6 @@ module Increase
         # from whatwg fetch spec
         MAX_REDIRECTS = 20
 
-        # rubocop:disable Style/MutableConstant
-        PLATFORM_HEADERS =
-          {
-            "x-stainless-arch" => Increase::Internal::Util.arch,
-            "x-stainless-lang" => "ruby",
-            "x-stainless-os" => Increase::Internal::Util.os,
-            "x-stainless-package-version" => Increase::VERSION,
-            "x-stainless-runtime" => ::RUBY_ENGINE,
-            "x-stainless-runtime-version" => ::RUBY_ENGINE_VERSION
-          }
-        # rubocop:enable Style/MutableConstant
-
         class << self
           # @api private
           #
@@ -198,7 +186,6 @@ module Increase
         )
           @requester = Increase::Internal::Transport::PooledNetRequester.new
           @headers = Increase::Internal::Util.normalized_headers(
-            self.class::PLATFORM_HEADERS,
             {
               "accept" => "application/json",
               "content-type" => "application/json",
@@ -287,14 +274,7 @@ module Increase
             headers[@idempotency_header] = opts.fetch(:idempotency_key) { generate_idempotency_key }
           end
 
-          unless headers.key?("x-stainless-retry-count")
-            headers["x-stainless-retry-count"] = "0"
-          end
-
           timeout = opts.fetch(:timeout, @timeout).to_f.clamp(0..)
-          unless headers.key?("x-stainless-timeout") || timeout.zero?
-            headers["x-stainless-timeout"] = timeout.to_s
-          end
 
           headers.reject! { |_, v| v.to_s.empty? }
 
@@ -369,17 +349,11 @@ module Increase
         #
         # @param retry_count [Integer]
         #
-        # @param send_retry_header [Boolean]
-        #
         # @raise [Increase::Errors::APIError]
         # @return [Array(Integer, Net::HTTPResponse, Enumerable<String>)]
-        def send_request(request, redirect_count:, retry_count:, send_retry_header:)
-          url, headers, max_retries, timeout = request.fetch_values(:url, :headers, :max_retries, :timeout)
+        def send_request(request, redirect_count:, retry_count:)
+          url, max_retries, timeout = request.fetch_values(:url, :max_retries, :timeout)
           input = {**request.except(:timeout), deadline: Increase::Internal::Util.monotonic_secs + timeout}
-
-          if send_retry_header
-            headers["x-stainless-retry-count"] = retry_count.to_s
-          end
 
           begin
             status, response, stream = @requester.execute(input)
@@ -403,8 +377,7 @@ module Increase
             send_request(
               request,
               redirect_count: redirect_count + 1,
-              retry_count: retry_count,
-              send_retry_header: send_retry_header
+              retry_count: retry_count
             )
           in Increase::Errors::APIConnectionError if retry_count >= max_retries
             raise status
@@ -432,8 +405,7 @@ module Increase
             send_request(
               request,
               redirect_count: redirect_count,
-              retry_count: retry_count + 1,
-              send_retry_header: send_retry_header
+              retry_count: retry_count + 1
             )
           end
         end
@@ -486,13 +458,10 @@ module Increase
           request = build_request(req.except(:options), opts)
           url = request.fetch(:url)
 
-          # Don't send the current retry count in the headers if the caller modified the header defaults.
-          send_retry_header = request.fetch(:headers)["x-stainless-retry-count"] == "0"
           status, response, stream = send_request(
             request,
             redirect_count: 0,
-            retry_count: 0,
-            send_retry_header: send_retry_header
+            retry_count: 0
           )
 
           headers = Increase::Internal::Util.normalized_headers(response.each_header.to_h)
