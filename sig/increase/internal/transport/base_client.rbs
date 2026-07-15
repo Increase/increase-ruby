@@ -34,8 +34,6 @@ module Increase
 
         MAX_REDIRECTS: 20
 
-        PLATFORM_HEADERS: ::Hash[String, String]
-
         def self.validate!: (
           Increase::Internal::Transport::BaseClient::request_components req
         ) -> void
@@ -104,8 +102,7 @@ module Increase
         def send_request: (
           Increase::Internal::Transport::BaseClient::request_input request,
           redirect_count: Integer,
-          retry_count: Integer,
-          send_retry_header: bool
+          retry_count: Integer
         ) -> [Integer, top, Enumerable[String]]
 
         def request: (

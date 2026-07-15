@@ -70,8 +70,6 @@ module Increase
         # from whatwg fetch spec
         MAX_REDIRECTS = 20
 
-        PLATFORM_HEADERS = T::Hash[String, String]
-
         class << self
           # @api private
           sig do
@@ -213,16 +211,10 @@ module Increase
           params(
             request: Increase::Internal::Transport::BaseClient::RequestInput,
             redirect_count: Integer,
-            retry_count: Integer,
-            send_retry_header: T::Boolean
+            retry_count: Integer
           ).returns([Integer, Net::HTTPResponse, T::Enumerable[String]])
         end
-        def send_request(
-          request,
-          redirect_count:,
-          retry_count:,
-          send_retry_header:
-        )
+        def send_request(request, redirect_count:, retry_count:)
         end
 
         # Execute the request specified by `req`. This is the method that all resource

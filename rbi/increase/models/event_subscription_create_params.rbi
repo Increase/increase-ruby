@@ -834,6 +834,20 @@ module Increase
               Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
+          # Occurs whenever a Physical Check Book is created.
+          PHYSICAL_CHECK_BOOK_CREATED =
+            T.let(
+              :"physical_check_book.created",
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
+          # Occurs whenever a Physical Check Book is updated.
+          PHYSICAL_CHECK_BOOK_UPDATED =
+            T.let(
+              :"physical_check_book.updated",
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
           # Occurs whenever a Program is created.
           PROGRAM_CREATED =
             T.let(
