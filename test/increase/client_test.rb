@@ -284,7 +284,7 @@ class IncreaseTest < Minitest::Test
       refute_empty(header)
     end
 
-    assert_equal(*headers)
+    assert_equal(1, headers.uniq.length)
   end
 
   def test_request_option_idempotency_key_on_writes
