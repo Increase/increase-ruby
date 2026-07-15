@@ -159,8 +159,8 @@ module Increase
         type address =
           {
             city: String,
-            :line1 => String,
             country: String,
+            :line1 => String,
             :line2 => String,
             state: String,
             zip: String
@@ -169,11 +169,9 @@ module Increase
         class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
+          attr_accessor country: String
+
           attr_accessor line1: String
-
-          attr_reader country: String?
-
-          def country=: (String) -> String
 
           attr_reader line2: String?
 
@@ -189,8 +187,8 @@ module Increase
 
           def initialize: (
             city: String,
+            country: String,
             line1: String,
-            ?country: String,
             ?line2: String,
             ?state: String,
             ?zip: String
@@ -198,8 +196,8 @@ module Increase
 
           def to_hash: -> {
             city: String,
-            :line1 => String,
             country: String,
+            :line1 => String,
             :line2 => String,
             state: String,
             zip: String
@@ -360,8 +358,8 @@ module Increase
         type address =
           {
             city: String,
-            :line1 => String,
             country: String,
+            :line1 => String,
             :line2 => String,
             state: String,
             zip: String
@@ -370,11 +368,9 @@ module Increase
         class Address < Increase::Internal::Type::BaseModel
           attr_accessor city: String
 
+          attr_accessor country: String
+
           attr_accessor line1: String
-
-          attr_reader country: String?
-
-          def country=: (String) -> String
 
           attr_reader line2: String?
 
@@ -390,8 +386,8 @@ module Increase
 
           def initialize: (
             city: String,
+            country: String,
             line1: String,
-            ?country: String,
             ?line2: String,
             ?state: String,
             ?zip: String
@@ -399,8 +395,8 @@ module Increase
 
           def to_hash: -> {
             city: String,
-            :line1 => String,
             country: String,
+            :line1 => String,
             :line2 => String,
             state: String,
             zip: String

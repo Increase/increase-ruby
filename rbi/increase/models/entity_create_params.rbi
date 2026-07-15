@@ -477,17 +477,13 @@ module Increase
           sig { returns(String) }
           attr_accessor :city
 
+          # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          sig { returns(String) }
+          attr_accessor :country
+
           # The first line of the address. This is usually the street number and street.
           sig { returns(String) }
           attr_accessor :line1
-
-          # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-          # to `US`.
-          sig { returns(T.nilable(String)) }
-          attr_reader :country
-
-          sig { params(country: String).void }
-          attr_writer :country
 
           # The second line of the address. This might be the floor or room number.
           sig { returns(T.nilable(String)) }
@@ -516,8 +512,8 @@ module Increase
           sig do
             params(
               city: String,
-              line1: String,
               country: String,
+              line1: String,
               line2: String,
               state: String,
               zip: String
@@ -526,11 +522,10 @@ module Increase
           def self.new(
             # The city, district, town, or village of the address.
             city:,
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            country:,
             # The first line of the address. This is usually the street number and street.
             line1:,
-            # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-            # to `US`.
-            country: nil,
             # The second line of the address. This might be the floor or room number.
             line2: nil,
             # The two-letter United States Postal Service (USPS) abbreviation for the US
@@ -545,8 +540,8 @@ module Increase
             override.returns(
               {
                 city: String,
-                line1: String,
                 country: String,
+                line1: String,
                 line2: String,
                 state: String,
                 zip: String
@@ -759,17 +754,13 @@ module Increase
               sig { returns(String) }
               attr_accessor :city
 
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              sig { returns(String) }
+              attr_accessor :country
+
               # The first line of the address. This is usually the street number and street.
               sig { returns(String) }
               attr_accessor :line1
-
-              # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-              # to `US`.
-              sig { returns(T.nilable(String)) }
-              attr_reader :country
-
-              sig { params(country: String).void }
-              attr_writer :country
 
               # The second line of the address. This might be the floor or room number.
               sig { returns(T.nilable(String)) }
@@ -798,8 +789,8 @@ module Increase
               sig do
                 params(
                   city: String,
-                  line1: String,
                   country: String,
+                  line1: String,
                   line2: String,
                   state: String,
                   zip: String
@@ -808,11 +799,10 @@ module Increase
               def self.new(
                 # The city, district, town, or village of the address.
                 city:,
+                # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+                country:,
                 # The first line of the address. This is usually the street number and street.
                 line1:,
-                # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-                # to `US`.
-                country: nil,
                 # The second line of the address. This might be the floor or room number.
                 line2: nil,
                 # The two-letter United States Postal Service (USPS) abbreviation for the US
@@ -827,8 +817,8 @@ module Increase
                 override.returns(
                   {
                     city: String,
-                    line1: String,
                     country: String,
+                    line1: String,
                     line2: String,
                     state: String,
                     zip: String
@@ -1854,17 +1844,13 @@ module Increase
             sig { returns(String) }
             attr_accessor :city
 
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            sig { returns(String) }
+            attr_accessor :country
+
             # The first line of the address. This is usually the street number and street.
             sig { returns(String) }
             attr_accessor :line1
-
-            # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-            # to `US`.
-            sig { returns(T.nilable(String)) }
-            attr_reader :country
-
-            sig { params(country: String).void }
-            attr_writer :country
 
             # The second line of the address. This might be the floor or room number.
             sig { returns(T.nilable(String)) }
@@ -1893,8 +1879,8 @@ module Increase
             sig do
               params(
                 city: String,
-                line1: String,
                 country: String,
+                line1: String,
                 line2: String,
                 state: String,
                 zip: String
@@ -1903,11 +1889,10 @@ module Increase
             def self.new(
               # The city, district, town, or village of the address.
               city:,
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              country:,
               # The first line of the address. This is usually the street number and street.
               line1:,
-              # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-              # to `US`.
-              country: nil,
               # The second line of the address. This might be the floor or room number.
               line2: nil,
               # The two-letter United States Postal Service (USPS) abbreviation for the US
@@ -1922,8 +1907,8 @@ module Increase
               override.returns(
                 {
                   city: String,
-                  line1: String,
                   country: String,
+                  line1: String,
                   line2: String,
                   state: String,
                   zip: String
@@ -2440,17 +2425,13 @@ module Increase
           sig { returns(String) }
           attr_accessor :city
 
+          # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          sig { returns(String) }
+          attr_accessor :country
+
           # The first line of the address. This is usually the street number and street.
           sig { returns(String) }
           attr_accessor :line1
-
-          # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-          # to `US`.
-          sig { returns(T.nilable(String)) }
-          attr_reader :country
-
-          sig { params(country: String).void }
-          attr_writer :country
 
           # The second line of the address. This might be the floor or room number.
           sig { returns(T.nilable(String)) }
@@ -2479,8 +2460,8 @@ module Increase
           sig do
             params(
               city: String,
-              line1: String,
               country: String,
+              line1: String,
               line2: String,
               state: String,
               zip: String
@@ -2489,11 +2470,10 @@ module Increase
           def self.new(
             # The city, district, town, or village of the address.
             city:,
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            country:,
             # The first line of the address. This is usually the street number and street.
             line1:,
-            # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-            # to `US`.
-            country: nil,
             # The second line of the address. This might be the floor or room number.
             line2: nil,
             # The two-letter United States Postal Service (USPS) abbreviation for the US
@@ -2508,8 +2488,8 @@ module Increase
             override.returns(
               {
                 city: String,
-                line1: String,
                 country: String,
+                line1: String,
                 line2: String,
                 state: String,
                 zip: String
@@ -3638,17 +3618,13 @@ module Increase
               sig { returns(String) }
               attr_accessor :city
 
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              sig { returns(String) }
+              attr_accessor :country
+
               # The first line of the address. This is usually the street number and street.
               sig { returns(String) }
               attr_accessor :line1
-
-              # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-              # to `US`.
-              sig { returns(T.nilable(String)) }
-              attr_reader :country
-
-              sig { params(country: String).void }
-              attr_writer :country
 
               # The second line of the address. This might be the floor or room number.
               sig { returns(T.nilable(String)) }
@@ -3677,8 +3653,8 @@ module Increase
               sig do
                 params(
                   city: String,
-                  line1: String,
                   country: String,
+                  line1: String,
                   line2: String,
                   state: String,
                   zip: String
@@ -3687,11 +3663,10 @@ module Increase
               def self.new(
                 # The city, district, town, or village of the address.
                 city:,
+                # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+                country:,
                 # The first line of the address. This is usually the street number and street.
                 line1:,
-                # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-                # to `US`.
-                country: nil,
                 # The second line of the address. This might be the floor or room number.
                 line2: nil,
                 # The two-letter United States Postal Service (USPS) abbreviation for the US
@@ -3706,8 +3681,8 @@ module Increase
                 override.returns(
                   {
                     city: String,
-                    line1: String,
                     country: String,
+                    line1: String,
                     line2: String,
                     state: String,
                     zip: String
@@ -4223,17 +4198,13 @@ module Increase
             sig { returns(String) }
             attr_accessor :city
 
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            sig { returns(String) }
+            attr_accessor :country
+
             # The first line of the address. This is usually the street number and street.
             sig { returns(String) }
             attr_accessor :line1
-
-            # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-            # to `US`.
-            sig { returns(T.nilable(String)) }
-            attr_reader :country
-
-            sig { params(country: String).void }
-            attr_writer :country
 
             # The second line of the address. This might be the floor or room number.
             sig { returns(T.nilable(String)) }
@@ -4262,8 +4233,8 @@ module Increase
             sig do
               params(
                 city: String,
-                line1: String,
                 country: String,
+                line1: String,
                 line2: String,
                 state: String,
                 zip: String
@@ -4272,11 +4243,10 @@ module Increase
             def self.new(
               # The city, district, town, or village of the address.
               city:,
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              country:,
               # The first line of the address. This is usually the street number and street.
               line1:,
-              # The two-letter ISO 3166-1 alpha-2 code for the country of the address. Defaults
-              # to `US`.
-              country: nil,
               # The second line of the address. This might be the floor or room number.
               line2: nil,
               # The two-letter United States Postal Service (USPS) abbreviation for the US
@@ -4291,8 +4261,8 @@ module Increase
               override.returns(
                 {
                   city: String,
-                  line1: String,
                   country: String,
+                  line1: String,
                   line2: String,
                   state: String,
                   zip: String
