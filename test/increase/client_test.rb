@@ -284,6 +284,10 @@ class IncreaseTest < Minitest::Test
       refute_empty(header)
     end
 
+    # When platform headers are omitted,
+    # retried requests are byte-identical and WebMock dedupes them,
+    # so the block above runs once.
+    # Assert that every idempotency key we did observe is the same one.
     assert_equal(1, headers.uniq.length)
   end
 

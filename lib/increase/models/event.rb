@@ -355,11 +355,11 @@ module Increase
         # Occurs whenever a Physical Check is updated.
         PHYSICAL_CHECK_UPDATED = :"physical_check.updated"
 
-        # Occurs whenever a Physical Check Book is created.
-        PHYSICAL_CHECK_BOOK_CREATED = :"physical_check_book.created"
+        # Occurs whenever a Checkbook is created.
+        CHECKBOOK_CREATED = :"checkbook.created"
 
-        # Occurs whenever a Physical Check Book is updated.
-        PHYSICAL_CHECK_BOOK_UPDATED = :"physical_check_book.updated"
+        # Occurs whenever a Checkbook is updated.
+        CHECKBOOK_UPDATED = :"checkbook.updated"
 
         # Occurs whenever a Program is created.
         PROGRAM_CREATED = :"program.created"
