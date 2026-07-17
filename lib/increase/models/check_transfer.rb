@@ -786,6 +786,13 @@ module Increase
         end
 
         class TrackingUpdate < Increase::Internal::Type::BaseModel
+          # @!attribute carrier_estimated_delivery_at
+          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+          #   carrier expects the check to be delivered.
+          #
+          #   @return [Time, nil]
+          required :carrier_estimated_delivery_at, Time, nil?: true
+
           # @!attribute category
           #   The type of tracking event.
           #
@@ -811,7 +818,11 @@ module Increase
           #   @return [String]
           required :postal_code, String
 
-          # @!method initialize(category:, country:, created_at:, postal_code:)
+          # @!method initialize(carrier_estimated_delivery_at:, category:, country:, created_at:, postal_code:)
+          #   @param carrier_estimated_delivery_at [Time, nil]
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+          #     carrier expects the check to be delivered.
+          #
           #   @param category [Symbol, Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::Category]
           #     The type of tracking event.
           #

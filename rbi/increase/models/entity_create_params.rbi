@@ -4093,8 +4093,8 @@ module Increase
               )
             end
 
-          # The individual's physical address. Mail receiving locations like PO Boxes and
-          # PMB's are disallowed.
+          # The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+          # are disallowed.
           sig { returns(Increase::EntityCreateParams::Trust::Grantor::Address) }
           attr_reader :address
 
@@ -4106,7 +4106,7 @@ module Increase
           end
           attr_writer :address
 
-          # The person's date of birth in YYYY-MM-DD format.
+          # The grantor's date of birth in YYYY-MM-DD format.
           sig { returns(Date) }
           attr_accessor :date_of_birth
 
@@ -4126,7 +4126,7 @@ module Increase
           end
           attr_writer :identification
 
-          # The person's legal name.
+          # The grantor's legal name.
           sig { returns(String) }
           attr_accessor :name
 
@@ -4153,14 +4153,14 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The individual's physical address. Mail receiving locations like PO Boxes and
-            # PMB's are disallowed.
+            # The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+            # are disallowed.
             address:,
-            # The person's date of birth in YYYY-MM-DD format.
+            # The grantor's date of birth in YYYY-MM-DD format.
             date_of_birth:,
             # A means of verifying the person's identity.
             identification:,
-            # The person's legal name.
+            # The grantor's legal name.
             name:,
             # The identification method for an individual can only be a passport, driver's
             # license, or other document if you've confirmed the individual does not have a US
@@ -4228,8 +4228,8 @@ module Increase
             sig { params(zip: String).void }
             attr_writer :zip
 
-            # The individual's physical address. Mail receiving locations like PO Boxes and
-            # PMB's are disallowed.
+            # The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+            # are disallowed.
             sig do
               params(
                 city: String,

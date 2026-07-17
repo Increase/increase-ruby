@@ -491,6 +491,7 @@ module Increase
 
         type tracking_update =
           {
+            carrier_estimated_delivery_at: Time?,
             category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
             country: String,
             created_at: Time,
@@ -498,6 +499,8 @@ module Increase
           }
 
         class TrackingUpdate < Increase::Internal::Type::BaseModel
+          attr_accessor carrier_estimated_delivery_at: Time?
+
           attr_accessor category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category
 
           attr_accessor country: String
@@ -507,6 +510,7 @@ module Increase
           attr_accessor postal_code: String
 
           def initialize: (
+            carrier_estimated_delivery_at: Time?,
             category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
             country: String,
             created_at: Time,
@@ -514,6 +518,7 @@ module Increase
           ) -> void
 
           def to_hash: -> {
+            carrier_estimated_delivery_at: Time?,
             category: Increase::Models::CheckTransfer::PhysicalCheck::TrackingUpdate::category,
             country: String,
             created_at: Time,
