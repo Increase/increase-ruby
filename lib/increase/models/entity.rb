@@ -1426,25 +1426,25 @@ module Increase
         # @see Increase::Models::Entity::Trust#grantor
         class Grantor < Increase::Internal::Type::BaseModel
           # @!attribute address
-          #   The person's address.
+          #   The grantor's address.
           #
-          #   @return [Increase::Models::Entity::Trust::Grantor::Address]
-          required :address, -> { Increase::Entity::Trust::Grantor::Address }
+          #   @return [Increase::Models::Entity::Trust::Grantor::Address, nil]
+          required :address, -> { Increase::Entity::Trust::Grantor::Address }, nil?: true
 
           # @!attribute date_of_birth
-          #   The person's date of birth in YYYY-MM-DD format.
+          #   The grantor's date of birth in YYYY-MM-DD format.
           #
-          #   @return [Date]
-          required :date_of_birth, Date
+          #   @return [Date, nil]
+          required :date_of_birth, Date, nil?: true
 
           # @!attribute identification
-          #   A means of verifying the person's identity.
+          #   A means of verifying the grantor's identity.
           #
           #   @return [Increase::Models::Entity::Trust::Grantor::Identification, nil]
           required :identification, -> { Increase::Entity::Trust::Grantor::Identification }, nil?: true
 
           # @!attribute name
-          #   The person's legal name.
+          #   The grantor's legal name.
           #
           #   @return [String]
           required :name, String
@@ -1452,14 +1452,14 @@ module Increase
           # @!method initialize(address:, date_of_birth:, identification:, name:)
           #   The grantor of the trust. Will be present if the `category` is `revocable`.
           #
-          #   @param address [Increase::Models::Entity::Trust::Grantor::Address] The person's address.
+          #   @param address [Increase::Models::Entity::Trust::Grantor::Address, nil] The grantor's address.
           #
-          #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
+          #   @param date_of_birth [Date, nil] The grantor's date of birth in YYYY-MM-DD format.
           #
           #   @param identification [Increase::Models::Entity::Trust::Grantor::Identification, nil]
-          #     A means of verifying the person's identity.
+          #     A means of verifying the grantor's identity.
           #
-          #   @param name [String] The person's legal name.
+          #   @param name [String] The grantor's legal name.
 
           # @see Increase::Models::Entity::Trust::Grantor#address
           class Address < Increase::Internal::Type::BaseModel
@@ -1501,7 +1501,7 @@ module Increase
             required :zip, String, nil?: true
 
             # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
-            #   The person's address.
+            #   The grantor's address.
             #
             #   @param city [String, nil] The city, district, town, or village of the address.
             #
@@ -1521,7 +1521,7 @@ module Increase
           # @see Increase::Models::Entity::Trust::Grantor#identification
           class Identification < Increase::Internal::Type::BaseModel
             # @!attribute method_
-            #   A method that can be used to verify the individual's identity.
+            #   A method that can be used to verify the grantor's identity.
             #
             #   @return [Symbol, Increase::Models::Entity::Trust::Grantor::Identification::Method]
             required :method_,
@@ -1530,22 +1530,22 @@ module Increase
 
             # @!attribute number_last4
             #   The last 4 digits of the identification number that can be used to verify the
-            #   individual's identity.
+            #   grantor's identity.
             #
             #   @return [String]
             required :number_last4, String
 
             # @!method initialize(method_:, number_last4:)
-            #   A means of verifying the person's identity.
+            #   A means of verifying the grantor's identity.
             #
             #   @param method_ [Symbol, Increase::Models::Entity::Trust::Grantor::Identification::Method]
-            #     A method that can be used to verify the individual's identity.
+            #     A method that can be used to verify the grantor's identity.
             #
             #   @param number_last4 [String]
             #     The last 4 digits of the identification number that can be used to verify the
-            #     individual's identity.
+            #     grantor's identity.
 
-            # A method that can be used to verify the individual's identity.
+            # A method that can be used to verify the grantor's identity.
             #
             # @see Increase::Models::Entity::Trust::Grantor::Identification#method_
             module Method

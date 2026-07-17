@@ -1076,31 +1076,31 @@ module Increase
 
         type grantor =
           {
-            address: Increase::Entity::Trust::Grantor::Address,
-            date_of_birth: Date,
+            address: Increase::Entity::Trust::Grantor::Address?,
+            date_of_birth: Date?,
             identification: Increase::Entity::Trust::Grantor::Identification?,
             name: String
           }
 
         class Grantor < Increase::Internal::Type::BaseModel
-          attr_accessor address: Increase::Entity::Trust::Grantor::Address
+          attr_accessor address: Increase::Entity::Trust::Grantor::Address?
 
-          attr_accessor date_of_birth: Date
+          attr_accessor date_of_birth: Date?
 
           attr_accessor identification: Increase::Entity::Trust::Grantor::Identification?
 
           attr_accessor name: String
 
           def initialize: (
-            address: Increase::Entity::Trust::Grantor::Address,
-            date_of_birth: Date,
+            address: Increase::Entity::Trust::Grantor::Address?,
+            date_of_birth: Date?,
             identification: Increase::Entity::Trust::Grantor::Identification?,
             name: String
           ) -> void
 
           def to_hash: -> {
-            address: Increase::Entity::Trust::Grantor::Address,
-            date_of_birth: Date,
+            address: Increase::Entity::Trust::Grantor::Address?,
+            date_of_birth: Date?,
             identification: Increase::Entity::Trust::Grantor::Identification?,
             name: String
           }

@@ -1215,6 +1215,11 @@ module Increase
               )
             end
 
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+          # carrier expects the check to be delivered.
+          sig { returns(T.nilable(Time)) }
+          attr_accessor :carrier_estimated_delivery_at
+
           # The type of tracking event.
           sig do
             returns(
@@ -1238,6 +1243,7 @@ module Increase
 
           sig do
             params(
+              carrier_estimated_delivery_at: T.nilable(Time),
               category:
                 Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::OrSymbol,
               country: String,
@@ -1246,6 +1252,9 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
+            # carrier expects the check to be delivered.
+            carrier_estimated_delivery_at:,
             # The type of tracking event.
             category:,
             # The ISO 3166-1 alpha-2 country code for the country where the event took place.
@@ -1261,6 +1270,7 @@ module Increase
           sig do
             override.returns(
               {
+                carrier_estimated_delivery_at: T.nilable(Time),
                 category:
                   Increase::CheckTransfer::PhysicalCheck::TrackingUpdate::Category::TaggedSymbol,
                 country: String,
