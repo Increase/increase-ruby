@@ -2287,14 +2287,14 @@ module Increase
         # @see Increase::Models::EntityCreateParams::Trust#grantor
         class Grantor < Increase::Internal::Type::BaseModel
           # @!attribute address
-          #   The individual's physical address. Mail receiving locations like PO Boxes and
-          #   PMB's are disallowed.
+          #   The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+          #   are disallowed.
           #
           #   @return [Increase::Models::EntityCreateParams::Trust::Grantor::Address]
           required :address, -> { Increase::EntityCreateParams::Trust::Grantor::Address }
 
           # @!attribute date_of_birth
-          #   The person's date of birth in YYYY-MM-DD format.
+          #   The grantor's date of birth in YYYY-MM-DD format.
           #
           #   @return [Date]
           required :date_of_birth, Date
@@ -2306,7 +2306,7 @@ module Increase
           required :identification, -> { Increase::EntityCreateParams::Trust::Grantor::Identification }
 
           # @!attribute name
-          #   The person's legal name.
+          #   The grantor's legal name.
           #
           #   @return [String]
           required :name, String
@@ -2324,15 +2324,15 @@ module Increase
           #   The grantor of the trust. Required if `category` is equal to `revocable`.
           #
           #   @param address [Increase::Models::EntityCreateParams::Trust::Grantor::Address]
-          #     The individual's physical address. Mail receiving locations like PO Boxes and
-          #     PMB's are disallowed.
+          #     The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+          #     are disallowed.
           #
-          #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
+          #   @param date_of_birth [Date] The grantor's date of birth in YYYY-MM-DD format.
           #
           #   @param identification [Increase::Models::EntityCreateParams::Trust::Grantor::Identification]
           #     A means of verifying the person's identity.
           #
-          #   @param name [String] The person's legal name.
+          #   @param name [String] The grantor's legal name.
           #
           #   @param confirmed_no_us_tax_id [Boolean]
           #     The identification method for an individual can only be a passport, driver's
@@ -2380,8 +2380,8 @@ module Increase
             optional :zip, String
 
             # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
-            #   The individual's physical address. Mail receiving locations like PO Boxes and
-            #   PMB's are disallowed.
+            #   The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+            #   are disallowed.
             #
             #   @param city [String] The city, district, town, or village of the address.
             #

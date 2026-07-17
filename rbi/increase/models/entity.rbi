@@ -2367,22 +2367,23 @@ module Increase
               )
             end
 
-          # The person's address.
-          sig { returns(Increase::Entity::Trust::Grantor::Address) }
+          # The grantor's address.
+          sig { returns(T.nilable(Increase::Entity::Trust::Grantor::Address)) }
           attr_reader :address
 
           sig do
             params(
-              address: Increase::Entity::Trust::Grantor::Address::OrHash
+              address:
+                T.nilable(Increase::Entity::Trust::Grantor::Address::OrHash)
             ).void
           end
           attr_writer :address
 
-          # The person's date of birth in YYYY-MM-DD format.
-          sig { returns(Date) }
+          # The grantor's date of birth in YYYY-MM-DD format.
+          sig { returns(T.nilable(Date)) }
           attr_accessor :date_of_birth
 
-          # A means of verifying the person's identity.
+          # A means of verifying the grantor's identity.
           sig do
             returns(T.nilable(Increase::Entity::Trust::Grantor::Identification))
           end
@@ -2398,15 +2399,16 @@ module Increase
           end
           attr_writer :identification
 
-          # The person's legal name.
+          # The grantor's legal name.
           sig { returns(String) }
           attr_accessor :name
 
           # The grantor of the trust. Will be present if the `category` is `revocable`.
           sig do
             params(
-              address: Increase::Entity::Trust::Grantor::Address::OrHash,
-              date_of_birth: Date,
+              address:
+                T.nilable(Increase::Entity::Trust::Grantor::Address::OrHash),
+              date_of_birth: T.nilable(Date),
               identification:
                 T.nilable(
                   Increase::Entity::Trust::Grantor::Identification::OrHash
@@ -2415,13 +2417,13 @@ module Increase
             ).returns(T.attached_class)
           end
           def self.new(
-            # The person's address.
+            # The grantor's address.
             address:,
-            # The person's date of birth in YYYY-MM-DD format.
+            # The grantor's date of birth in YYYY-MM-DD format.
             date_of_birth:,
-            # A means of verifying the person's identity.
+            # A means of verifying the grantor's identity.
             identification:,
-            # The person's legal name.
+            # The grantor's legal name.
             name:
           )
           end
@@ -2429,8 +2431,8 @@ module Increase
           sig do
             override.returns(
               {
-                address: Increase::Entity::Trust::Grantor::Address,
-                date_of_birth: Date,
+                address: T.nilable(Increase::Entity::Trust::Grantor::Address),
+                date_of_birth: T.nilable(Date),
                 identification:
                   T.nilable(Increase::Entity::Trust::Grantor::Identification),
                 name: String
@@ -2474,7 +2476,7 @@ module Increase
             sig { returns(T.nilable(String)) }
             attr_accessor :zip
 
-            # The person's address.
+            # The grantor's address.
             sig do
               params(
                 city: T.nilable(String),
@@ -2527,7 +2529,7 @@ module Increase
                 )
               end
 
-            # A method that can be used to verify the individual's identity.
+            # A method that can be used to verify the grantor's identity.
             sig do
               returns(
                 Increase::Entity::Trust::Grantor::Identification::Method::TaggedSymbol
@@ -2536,11 +2538,11 @@ module Increase
             attr_accessor :method_
 
             # The last 4 digits of the identification number that can be used to verify the
-            # individual's identity.
+            # grantor's identity.
             sig { returns(String) }
             attr_accessor :number_last4
 
-            # A means of verifying the person's identity.
+            # A means of verifying the grantor's identity.
             sig do
               params(
                 method_:
@@ -2549,10 +2551,10 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
-              # A method that can be used to verify the individual's identity.
+              # A method that can be used to verify the grantor's identity.
               method_:,
               # The last 4 digits of the identification number that can be used to verify the
-              # individual's identity.
+              # grantor's identity.
               number_last4:
             )
             end
@@ -2569,7 +2571,7 @@ module Increase
             def to_hash
             end
 
-            # A method that can be used to verify the individual's identity.
+            # A method that can be used to verify the grantor's identity.
             module Method
               extend Increase::Internal::Type::Enum
 
