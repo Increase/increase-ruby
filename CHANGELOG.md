@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.346.1](https://github.com/Increase/increase-ruby/compare/v1.346.0...v1.346.1) (2026-07-20)
+
+
+### Bug Fixes
+
+* **docs:** expand check transfer shipping method descriptions ([38b5bb5](https://github.com/Increase/increase-ruby/commit/38b5bb5257557d80a1aca5cf623a0cc41ddc5904))
+
 ## [1.346.0](https://github.com/Increase/increase-ruby/compare/v1.345.0...v1.346.0) (2026-07-17)
 
 
