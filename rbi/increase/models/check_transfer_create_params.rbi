@@ -718,14 +718,14 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # USPS First Class
+          # Ship the checks via USPS First Class, which supports a maximum of 1000 pages (checks and attachments combined).
           USPS_FIRST_CLASS =
             T.let(
               :usps_first_class,
               Increase::CheckTransferCreateParams::PhysicalCheck::ShippingMethod::TaggedSymbol
             )
 
-          # FedEx Overnight
+          # Ship the checks via FedEx Overnight, which supports a maximum of 50 pages (checks and attachments combined).
           FEDEX_OVERNIGHT =
             T.let(
               :fedex_overnight,
