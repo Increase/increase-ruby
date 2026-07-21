@@ -22,6 +22,7 @@ class Increase::Test::Resources::RoutingNumbersTest < Increase::Test::ResourceTe
         ach_transfers: Increase::Models::RoutingNumberListResponse::ACHTransfers,
         fednow_transfers: Increase::Models::RoutingNumberListResponse::FednowTransfers,
         name: String,
+        real_time_payments_request_for_payment: Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment,
         real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers,
         routing_number: String,
         type: Increase::Models::RoutingNumberListResponse::Type,
