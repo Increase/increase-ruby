@@ -5,6 +5,7 @@ module Increase
         ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers,
         fednow_transfers: Increase::Models::RoutingNumberListResponse::fednow_transfers,
         name: String,
+        real_time_payments_request_for_payment: Increase::Models::RoutingNumberListResponse::real_time_payments_request_for_payment,
         real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers,
         routing_number: String,
         type: Increase::Models::RoutingNumberListResponse::type_,
@@ -18,6 +19,8 @@ module Increase
 
       attr_accessor name: String
 
+      attr_accessor real_time_payments_request_for_payment: Increase::Models::RoutingNumberListResponse::real_time_payments_request_for_payment
+
       attr_accessor real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers
 
       attr_accessor routing_number: String
@@ -30,6 +33,7 @@ module Increase
         ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers,
         fednow_transfers: Increase::Models::RoutingNumberListResponse::fednow_transfers,
         name: String,
+        real_time_payments_request_for_payment: Increase::Models::RoutingNumberListResponse::real_time_payments_request_for_payment,
         real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers,
         routing_number: String,
         type: Increase::Models::RoutingNumberListResponse::type_,
@@ -40,6 +44,7 @@ module Increase
         ach_transfers: Increase::Models::RoutingNumberListResponse::ach_transfers,
         fednow_transfers: Increase::Models::RoutingNumberListResponse::fednow_transfers,
         name: String,
+        real_time_payments_request_for_payment: Increase::Models::RoutingNumberListResponse::real_time_payments_request_for_payment,
         real_time_payments_transfers: Increase::Models::RoutingNumberListResponse::real_time_payments_transfers,
         routing_number: String,
         type: Increase::Models::RoutingNumberListResponse::type_,
@@ -72,6 +77,20 @@ module Increase
         NOT_SUPPORTED: :not_supported
 
         def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::fednow_transfers]
+      end
+
+      type real_time_payments_request_for_payment = :supported | :not_supported
+
+      module RealTimePaymentsRequestForPayment
+        extend Increase::Internal::Type::Enum
+
+        # The routing number can receive this transfer type.
+        SUPPORTED: :supported
+
+        # The routing number cannot receive this transfer type.
+        NOT_SUPPORTED: :not_supported
+
+        def self?.values: -> ::Array[Increase::Models::RoutingNumberListResponse::real_time_payments_request_for_payment]
       end
 
       type real_time_payments_transfers = :supported | :not_supported
