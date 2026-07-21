@@ -8,6 +8,7 @@ module Increase
         account_number_id: String?,
         adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment],
         amount: Integer,
+        automatically_resolves_at: Time,
         back_image_file_id: String?,
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
@@ -36,6 +37,8 @@ module Increase
       attr_accessor adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment]
 
       attr_accessor amount: Integer
+
+      attr_accessor automatically_resolves_at: Time
 
       attr_accessor back_image_file_id: String?
 
@@ -72,6 +75,7 @@ module Increase
         account_number_id: String?,
         adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment],
         amount: Integer,
+        automatically_resolves_at: Time,
         back_image_file_id: String?,
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
@@ -95,6 +99,7 @@ module Increase
         account_number_id: String?,
         adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment],
         amount: Integer,
+        automatically_resolves_at: Time,
         back_image_file_id: String?,
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
