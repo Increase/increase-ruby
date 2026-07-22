@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.347.0](https://github.com/Increase/increase-ruby/compare/v1.346.1...v1.347.0) (2026-07-22)
+
+
+### Features
+
+* **api:** add interest rate plan events and new fields ([51bf81c](https://github.com/Increase/increase-ruby/commit/51bf81cb7358ff79b45e1f9254d497302012ca77))
+
 ## [1.346.1](https://github.com/Increase/increase-ruby/compare/v1.346.0...v1.346.1) (2026-07-20)
 
 
