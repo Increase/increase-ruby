@@ -20,8 +20,7 @@ module Increase
         #   Deposit amount.
         #
         # @param reason [Symbol, Increase::Models::Simulations::CheckDepositAdjustmentParams::Reason]
-        #   The reason for the adjustment. Defaults to `non_conforming_item`, which is often
-        #   used for a low quality image that the recipient wasn't able to handle.
+        #   The reason for the adjustment.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

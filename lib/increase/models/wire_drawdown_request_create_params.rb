@@ -146,7 +146,7 @@ module Increase
         optional :line2, String
 
         # @!attribute postal_code
-        #   The ZIP code of the address.
+        #   The postal code of the address.
         #
         #   @return [String, nil]
         optional :postal_code, String
@@ -171,7 +171,7 @@ module Increase
         #
         #   @param line2 [String] The second line of the address. This might be the floor or room number.
         #
-        #   @param postal_code [String] The ZIP code of the address.
+        #   @param postal_code [String] The postal code of the address.
         #
         #   @param state [String] The address state.
       end
@@ -204,7 +204,7 @@ module Increase
         optional :line2, String
 
         # @!attribute postal_code
-        #   The ZIP code of the address.
+        #   The postal code of the address.
         #
         #   @return [String, nil]
         optional :postal_code, String
@@ -229,7 +229,7 @@ module Increase
         #
         #   @param line2 [String] The second line of the address. This might be the floor or room number.
         #
-        #   @param postal_code [String] The ZIP code of the address.
+        #   @param postal_code [String] The postal code of the address.
         #
         #   @param state [String] The address state.
       end

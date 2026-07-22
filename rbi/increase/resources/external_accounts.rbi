@@ -25,7 +25,7 @@ module Increase
         routing_number:,
         # The type of entity that owns the External Account.
         account_holder: nil,
-        # The type of the destination account. Defaults to `checking`.
+        # The type of the destination account.
         funding: nil,
         request_options: {}
       )

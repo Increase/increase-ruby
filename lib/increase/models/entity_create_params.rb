@@ -729,8 +729,7 @@ module Increase
           required :value, String
 
           # @!attribute category
-          #   The category of the legal identifier. If not provided, the default is
-          #   `us_employer_identification_number`.
+          #   The category of the legal identifier.
           #
           #   @return [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category, nil]
           optional :category, enum: -> { Increase::EntityCreateParams::Corporation::LegalIdentifier::Category }
@@ -747,11 +746,9 @@ module Increase
           #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           #
           #   @param category [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category]
-          #     The category of the legal identifier. If not provided, the default is
-          #     `us_employer_identification_number`.
+          #     The category of the legal identifier.
 
-          # The category of the legal identifier. If not provided, the default is
-          # `us_employer_identification_number`.
+          # The category of the legal identifier.
           #
           # @see Increase::Models::EntityCreateParams::Corporation::LegalIdentifier#category
           module Category

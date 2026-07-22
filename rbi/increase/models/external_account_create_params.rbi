@@ -45,7 +45,7 @@ module Increase
       end
       attr_writer :account_holder
 
-      # The type of the destination account. Defaults to `checking`.
+      # The type of the destination account.
       sig do
         returns(
           T.nilable(Increase::ExternalAccountCreateParams::Funding::OrSymbol)
@@ -81,7 +81,7 @@ module Increase
         routing_number:,
         # The type of entity that owns the External Account.
         account_holder: nil,
-        # The type of the destination account. Defaults to `checking`.
+        # The type of the destination account.
         funding: nil,
         request_options: {}
       )
@@ -145,7 +145,7 @@ module Increase
         end
       end
 
-      # The type of the destination account. Defaults to `checking`.
+      # The type of the destination account.
       module Funding
         extend Increase::Internal::Type::Enum
 

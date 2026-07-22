@@ -31,6 +31,14 @@ module Increase
       sig { returns(String) }
       attr_accessor :name
 
+      # This routing number's support for Real-Time Payments Requests for Payment.
+      sig do
+        returns(
+          Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment::TaggedSymbol
+        )
+      end
+      attr_accessor :real_time_payments_request_for_payment
+
       # This routing number's support for Real-Time Payments Transfers.
       sig do
         returns(
@@ -66,6 +74,8 @@ module Increase
           fednow_transfers:
             Increase::Models::RoutingNumberListResponse::FednowTransfers::OrSymbol,
           name: String,
+          real_time_payments_request_for_payment:
+            Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment::OrSymbol,
           real_time_payments_transfers:
             Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers::OrSymbol,
           routing_number: String,
@@ -81,6 +91,8 @@ module Increase
         fednow_transfers:,
         # The name of the financial institution belonging to a routing number.
         name:,
+        # This routing number's support for Real-Time Payments Requests for Payment.
+        real_time_payments_request_for_payment:,
         # This routing number's support for Real-Time Payments Transfers.
         real_time_payments_transfers:,
         # The nine digit routing number identifier.
@@ -101,6 +113,8 @@ module Increase
             fednow_transfers:
               Increase::Models::RoutingNumberListResponse::FednowTransfers::TaggedSymbol,
             name: String,
+            real_time_payments_request_for_payment:
+              Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment::TaggedSymbol,
             real_time_payments_transfers:
               Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers::TaggedSymbol,
             routing_number: String,
@@ -183,6 +197,44 @@ module Increase
           override.returns(
             T::Array[
               Increase::Models::RoutingNumberListResponse::FednowTransfers::TaggedSymbol
+            ]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # This routing number's support for Real-Time Payments Requests for Payment.
+      module RealTimePaymentsRequestForPayment
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # The routing number can receive this transfer type.
+        SUPPORTED =
+          T.let(
+            :supported,
+            Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment::TaggedSymbol
+          )
+
+        # The routing number cannot receive this transfer type.
+        NOT_SUPPORTED =
+          T.let(
+            :not_supported,
+            Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment::TaggedSymbol
             ]
           )
         end

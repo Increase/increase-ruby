@@ -19,7 +19,7 @@ module Increase
       #   The type of entity that owns the External Account.
       #
       # @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding]
-      #   The type of the destination account. Defaults to `checking`.
+      #   The type of the destination account.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

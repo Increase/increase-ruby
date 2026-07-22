@@ -29,7 +29,6 @@ module Increase
         attr_writer :addenda_information
 
         # The reason why the Federal Reserve or destination bank returned this transfer.
-        # Defaults to `no_account`.
         sig do
           returns(
             T.nilable(
@@ -64,7 +63,6 @@ module Increase
           # a return the bank believes was initiated under questionable circumstances.
           addenda_information: nil,
           # The reason why the Federal Reserve or destination bank returned this transfer.
-          # Defaults to `no_account`.
           reason: nil,
           request_options: {}
         )
@@ -85,7 +83,6 @@ module Increase
         end
 
         # The reason why the Federal Reserve or destination bank returned this transfer.
-        # Defaults to `no_account`.
         module Reason
           extend Increase::Internal::Type::Enum
 

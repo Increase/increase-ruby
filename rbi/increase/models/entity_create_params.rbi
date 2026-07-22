@@ -1273,8 +1273,7 @@ module Increase
           sig { returns(String) }
           attr_accessor :value
 
-          # The category of the legal identifier. If not provided, the default is
-          # `us_employer_identification_number`.
+          # The category of the legal identifier.
           sig do
             returns(
               T.nilable(
@@ -1308,8 +1307,7 @@ module Increase
             # our
             # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
             value:,
-            # The category of the legal identifier. If not provided, the default is
-            # `us_employer_identification_number`.
+            # The category of the legal identifier.
             category: nil
           )
           end
@@ -1326,8 +1324,7 @@ module Increase
           def to_hash
           end
 
-          # The category of the legal identifier. If not provided, the default is
-          # `us_employer_identification_number`.
+          # The category of the legal identifier.
           module Category
             extend Increase::Internal::Type::Enum
 

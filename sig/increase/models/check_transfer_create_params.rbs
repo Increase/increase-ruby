@@ -318,10 +318,10 @@ module Increase
         module ShippingMethod
           extend Increase::Internal::Type::Enum
 
-          # Ship the checks via USPS First Class, which supports a maximum of 1000 pages (checks and attachments combined).
+          # USPS First Class
           USPS_FIRST_CLASS: :usps_first_class
 
-          # Ship the checks via FedEx Overnight, which supports a maximum of 50 pages (checks and attachments combined).
+          # FedEx Overnight
           FEDEX_OVERNIGHT: :fedex_overnight
 
           def self?.values: -> ::Array[Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method]
