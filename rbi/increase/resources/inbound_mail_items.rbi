@@ -34,6 +34,8 @@ module Increase
         cursor: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         # Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
         lockbox_address_id: nil,

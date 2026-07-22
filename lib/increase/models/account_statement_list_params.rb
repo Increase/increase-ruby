@@ -23,6 +23,8 @@ module Increase
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
+      #   Defaults to `100`.
+      #
       #   @return [Integer, nil]
       optional :limit, Integer
 
@@ -39,6 +41,8 @@ module Increase
       #   @param limit [Integer]
       #     Limit the size of the list that is returned. The default (and maximum) is 100
       #     objects.
+      #
+      #     Defaults to `100`.
       #
       #   @param statement_period_start [Increase::Models::AccountStatementListParams::StatementPeriodStart]
       #

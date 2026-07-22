@@ -654,6 +654,20 @@ module Increase
               Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
+          # Occurs whenever an Interest Rate Plan is created.
+          INTEREST_RATE_PLAN_CREATED =
+            T.let(
+              :"interest_rate_plan.created",
+              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
+          # Occurs whenever an Interest Rate Plan is updated.
+          INTEREST_RATE_PLAN_UPDATED =
+            T.let(
+              :"interest_rate_plan.updated",
+              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
           # Occurs whenever an IntraFi Account Enrollment is created.
           INTRAFI_ACCOUNT_ENROLLMENT_CREATED =
             T.let(

@@ -46,7 +46,8 @@ module Increase
           request_options: Increase::RequestOptions
         }
 
-        type bank = :core_bank | :first_internet_bank | :grasshopper_bank
+        type bank =
+          :core_bank | :first_internet_bank | :grasshopper_bank | :increase_bank
 
         module Bank
           extend Increase::Internal::Type::Enum
@@ -59,6 +60,9 @@ module Increase
 
           # Grasshopper Bank
           GRASSHOPPER_BANK: :grasshopper_bank
+
+          # Increase Bank
+          INCREASE_BANK: :increase_bank
 
           def self?.values: -> ::Array[Increase::Models::Simulations::ProgramCreateParams::bank]
         end

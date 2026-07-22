@@ -39,6 +39,8 @@ module Increase
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
+      #   Defaults to `100`.
+      #
       # @param route_id [String] Filter Declined Transactions to those belonging to the specified route.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]

@@ -35,6 +35,12 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
+      # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      # the Inbound Check Deposit will be automatically resolved if it has not been
+      # actioned by then.
+      sig { returns(Time) }
+      attr_accessor :automatically_resolves_at
+
       # The ID for the File containing the image of the back of the check.
       sig { returns(T.nilable(String)) }
       attr_accessor :back_image_file_id
@@ -123,6 +129,7 @@ module Increase
           adjustments:
             T::Array[Increase::InboundCheckDeposit::Adjustment::OrHash],
           amount: Integer,
+          automatically_resolves_at: Time,
           back_image_file_id: T.nilable(String),
           bank_of_first_deposit_routing_number: T.nilable(String),
           check_number: T.nilable(String),
@@ -157,6 +164,10 @@ module Increase
         adjustments:,
         # The deposited amount in USD cents.
         amount:,
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the Inbound Check Deposit will be automatically resolved if it has not been
+        # actioned by then.
+        automatically_resolves_at:,
         # The ID for the File containing the image of the back of the check.
         back_image_file_id:,
         # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
@@ -208,6 +219,7 @@ module Increase
             account_number_id: T.nilable(String),
             adjustments: T::Array[Increase::InboundCheckDeposit::Adjustment],
             amount: Integer,
+            automatically_resolves_at: Time,
             back_image_file_id: T.nilable(String),
             bank_of_first_deposit_routing_number: T.nilable(String),
             check_number: T.nilable(String),

@@ -189,6 +189,8 @@ module Increase
             # @!attribute reason
             #   The reason for the decline.
             #
+            #   Defaults to `do_not_honor`.
+            #
             #   @return [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::Reason, nil]
             optional :reason, enum: -> { Increase::Simulations::CardTokenCreateParams::Outcome::Decline::Reason }
 
@@ -197,8 +199,12 @@ module Increase
             #
             #   @param reason [Symbol, Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline::Reason]
             #     The reason for the decline.
+            #
+            #     Defaults to `do_not_honor`.
 
             # The reason for the decline.
+            #
+            # Defaults to `do_not_honor`.
             #
             # @see Increase::Models::Simulations::CardTokenCreateParams::Outcome::Decline#reason
             module Reason

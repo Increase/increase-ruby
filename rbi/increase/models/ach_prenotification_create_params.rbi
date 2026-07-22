@@ -63,6 +63,8 @@ module Increase
       attr_writer :company_name
 
       # Whether the Prenotification is for a future debit or credit.
+      #
+      # Defaults to `debit`.
       sig do
         returns(
           T.nilable(
@@ -106,6 +108,8 @@ module Increase
       # The
       # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       # to use for the ACH Prenotification.
+      #
+      # Defaults to `corporate_credit_or_debit`.
       sig do
         returns(
           T.nilable(
@@ -162,6 +166,8 @@ module Increase
         # The name by which the recipient knows you.
         company_name: nil,
         # Whether the Prenotification is for a future debit or credit.
+        #
+        # Defaults to `debit`.
         credit_debit_indicator: nil,
         # The ACH Prenotification effective date in
         # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -174,6 +180,8 @@ module Increase
         # The
         # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
         # to use for the ACH Prenotification.
+        #
+        # Defaults to `corporate_credit_or_debit`.
         standard_entry_class_code: nil,
         request_options: {}
       )
@@ -205,6 +213,8 @@ module Increase
       end
 
       # Whether the Prenotification is for a future debit or credit.
+      #
+      # Defaults to `debit`.
       module CreditDebitIndicator
         extend Increase::Internal::Type::Enum
 
@@ -245,6 +255,8 @@ module Increase
       # The
       # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       # to use for the ACH Prenotification.
+      #
+      # Defaults to `corporate_credit_or_debit`.
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 

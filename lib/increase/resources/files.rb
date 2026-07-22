@@ -17,6 +17,8 @@ module Increase
       # @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose]
       #   What the File will be used for in Increase's systems.
       #
+      #   Defaults to `other`.
+      #
       # @param description [String] The description you choose to give the File.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
@@ -73,6 +75,8 @@ module Increase
       # @param limit [Integer]
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
+      #
+      #   Defaults to `100`.
       #
       # @param purpose [Increase::Models::FileListParams::Purpose]
       #

@@ -232,7 +232,7 @@ module Increase
         DIGITAL_WALLET_APP_ICON =
           T.let(:digital_wallet_app_icon, Increase::File::Purpose::TaggedSymbol)
 
-        # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with no other color but black.
+        # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with a density of 600 dots per inch (DPI) and no other color but black.
         PHYSICAL_CARD_FRONT =
           T.let(:physical_card_front, Increase::File::Purpose::TaggedSymbol)
 
@@ -240,7 +240,7 @@ module Increase
         PHYSICAL_CARD_BACK =
           T.let(:physical_card_back, Increase::File::Purpose::TaggedSymbol)
 
-        # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with no other color but black.
+        # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with a density of 300 dots per inch (DPI) and no other color but black.
         PHYSICAL_CARD_CARRIER =
           T.let(:physical_card_carrier, Increase::File::Purpose::TaggedSymbol)
 

@@ -142,10 +142,10 @@ module Increase
           # @!attribute unstructured
           #   Unstructured address lines.
           #
-          #   @return [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured]
-          required :unstructured, -> { Increase::WireTransferCreateParams::Creditor::Address::Unstructured }
+          #   @return [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured, nil]
+          optional :unstructured, -> { Increase::WireTransferCreateParams::Creditor::Address::Unstructured }
 
-          # @!method initialize(unstructured:)
+          # @!method initialize(unstructured: nil)
           #   The person or business's address.
           #
           #   @param unstructured [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured]
@@ -315,10 +315,10 @@ module Increase
           # @!attribute unstructured
           #   Unstructured address lines.
           #
-          #   @return [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured]
-          required :unstructured, -> { Increase::WireTransferCreateParams::Debtor::Address::Unstructured }
+          #   @return [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured, nil]
+          optional :unstructured, -> { Increase::WireTransferCreateParams::Debtor::Address::Unstructured }
 
-          # @!method initialize(unstructured:)
+          # @!method initialize(unstructured: nil)
           #   The person or business's address.
           #
           #   @param unstructured [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured]

@@ -119,10 +119,14 @@ module Increase
           }
 
         class Address < Increase::Internal::Type::BaseModel
-          attr_accessor unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+          attr_reader unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured?
+
+          def unstructured=: (
+            Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+          ) -> Increase::WireTransferCreateParams::Creditor::Address::Unstructured
 
           def initialize: (
-            unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+            ?unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
           ) -> void
 
           def to_hash: -> {
@@ -271,10 +275,14 @@ module Increase
           }
 
         class Address < Increase::Internal::Type::BaseModel
-          attr_accessor unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+          attr_reader unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured?
+
+          def unstructured=: (
+            Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+          ) -> Increase::WireTransferCreateParams::Debtor::Address::Unstructured
 
           def initialize: (
-            unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+            ?unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
           ) -> void
 
           def to_hash: -> {
