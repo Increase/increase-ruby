@@ -20,6 +20,8 @@ module Increase
         # transfers for the multipart/form-data protocol.
         file:,
         # What the File will be used for in Increase's systems.
+        #
+        # Defaults to `other`.
         purpose:,
         # The description you choose to give the File.
         description: nil,
@@ -63,6 +65,8 @@ module Increase
         idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         purpose: nil,
         request_options: {}

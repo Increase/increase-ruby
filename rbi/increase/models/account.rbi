@@ -200,6 +200,10 @@ module Increase
         GRASSHOPPER_BANK =
           T.let(:grasshopper_bank, Increase::Account::Bank::TaggedSymbol)
 
+        # Twin City Bank
+        INCREASE_BANK =
+          T.let(:increase_bank, Increase::Account::Bank::TaggedSymbol)
+
         sig do
           override.returns(T::Array[Increase::Account::Bank::TaggedSymbol])
         end

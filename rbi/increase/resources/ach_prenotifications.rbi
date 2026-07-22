@@ -43,6 +43,8 @@ module Increase
         # The name by which the recipient knows you.
         company_name: nil,
         # Whether the Prenotification is for a future debit or credit.
+        #
+        # Defaults to `debit`.
         credit_debit_indicator: nil,
         # The ACH Prenotification effective date in
         # [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -55,6 +57,8 @@ module Increase
         # The
         # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
         # to use for the ACH Prenotification.
+        #
+        # Defaults to `corporate_credit_or_debit`.
         standard_entry_class_code: nil,
         request_options: {}
       )
@@ -95,6 +99,8 @@ module Increase
         idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         request_options: {}
       )

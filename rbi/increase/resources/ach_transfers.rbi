@@ -79,6 +79,8 @@ module Increase
         # provided, `account_number`, `routing_number`, and `funding` must be absent.
         external_account_id: nil,
         # The type of the receiver's bank account.
+        #
+        # Defaults to `checking`.
         funding: nil,
         # Your internal identifier for the transfer recipient. This value is informational
         # and not verified by the recipient's bank. Most callers can leave this unset.
@@ -149,6 +151,8 @@ module Increase
         idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         status: nil,
         request_options: {}

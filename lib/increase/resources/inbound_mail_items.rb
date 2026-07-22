@@ -35,6 +35,8 @@ module Increase
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
+      #   Defaults to `100`.
+      #
       # @param lockbox_address_id [String] Filter Inbound Mail Items to ones sent to the provided Lockbox Address.
       #
       # @param lockbox_recipient_id [String]

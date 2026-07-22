@@ -38,6 +38,8 @@ module Increase
 
       # Limit the size of the list that is returned. The default (and maximum) is 100
       # objects.
+      #
+      # Defaults to `100`.
       sig { returns(T.nilable(Integer)) }
       attr_reader :limit
 
@@ -84,6 +86,8 @@ module Increase
         idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         status: nil,
         validation_status: nil,

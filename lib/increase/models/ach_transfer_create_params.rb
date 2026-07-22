@@ -100,6 +100,8 @@ module Increase
       # @!attribute funding
       #   The type of the receiver's bank account.
       #
+      #   Defaults to `checking`.
+      #
       #   @return [Symbol, Increase::Models::ACHTransferCreateParams::Funding, nil]
       optional :funding, enum: -> { Increase::ACHTransferCreateParams::Funding }
 
@@ -213,6 +215,8 @@ module Increase
       #
       #   @param funding [Symbol, Increase::Models::ACHTransferCreateParams::Funding]
       #     The type of the receiver's bank account.
+      #
+      #     Defaults to `checking`.
       #
       #   @param individual_id [String]
       #     Your internal identifier for the transfer recipient. This value is informational
@@ -395,6 +399,8 @@ module Increase
       end
 
       # The type of the receiver's bank account.
+      #
+      # Defaults to `checking`.
       module Funding
         extend Increase::Internal::Type::Enum
 

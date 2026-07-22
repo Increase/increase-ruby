@@ -216,7 +216,7 @@ module Increase
         sig { params(line2: String).void }
         attr_writer :line2
 
-        # The ZIP code of the address.
+        # The postal code of the address.
         sig { returns(T.nilable(String)) }
         attr_reader :postal_code
 
@@ -252,7 +252,7 @@ module Increase
           line1:,
           # The second line of the address. This might be the floor or room number.
           line2: nil,
-          # The ZIP code of the address.
+          # The postal code of the address.
           postal_code: nil,
           # The address state.
           state: nil
@@ -305,7 +305,7 @@ module Increase
         sig { params(line2: String).void }
         attr_writer :line2
 
-        # The ZIP code of the address.
+        # The postal code of the address.
         sig { returns(T.nilable(String)) }
         attr_reader :postal_code
 
@@ -341,7 +341,7 @@ module Increase
           line1:,
           # The second line of the address. This might be the floor or room number.
           line2: nil,
-          # The ZIP code of the address.
+          # The postal code of the address.
           postal_code: nil,
           # The address state.
           state: nil

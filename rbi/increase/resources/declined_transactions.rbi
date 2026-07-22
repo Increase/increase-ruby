@@ -39,6 +39,8 @@ module Increase
         cursor: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         # Filter Declined Transactions to those belonging to the specified route.
         route_id: nil,

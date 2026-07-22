@@ -17,6 +17,8 @@ module Increase
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
+      #   Defaults to `100`.
+      #
       #   @return [Integer, nil]
       optional :limit, Integer
 
@@ -38,6 +40,8 @@ module Increase
       #   @param limit [Integer]
       #     Limit the size of the list that is returned. The default (and maximum) is 100
       #     objects.
+      #
+      #     Defaults to `100`.
       #
       #   @param oauth_application_id [String]
       #     Filter results to only include OAuth Connections for a specific OAuth

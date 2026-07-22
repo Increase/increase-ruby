@@ -19,7 +19,9 @@ module Increase
       #   The type of entity that owns the External Account.
       #
       # @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding]
-      #   The type of the destination account. Defaults to `checking`.
+      #   The type of the destination account.
+      #
+      #   Defaults to `checking`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -105,6 +107,8 @@ module Increase
       # @param limit [Integer]
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
+      #
+      #   Defaults to `100`.
       #
       # @param routing_number [String] Filter External Accounts to those with the specified Routing Number.
       #

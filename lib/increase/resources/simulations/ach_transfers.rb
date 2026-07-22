@@ -78,6 +78,7 @@ module Increase
         #
         # @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
         #   The reason why the Federal Reserve or destination bank returned this transfer.
+        #
         #   Defaults to `no_account`.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]

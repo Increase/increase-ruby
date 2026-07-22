@@ -89,6 +89,8 @@ module Increase
         idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         # Filter Lockbox Recipients to those associated with the provided Lockbox Address.
         lockbox_address_id: nil,

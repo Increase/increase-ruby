@@ -41,6 +41,8 @@ module Increase
 
       # Limit the size of the list that is returned. The default (and maximum) is 100
       # objects.
+      #
+      # Defaults to `100`.
       sig { returns(T.nilable(Integer)) }
       attr_reader :limit
 
@@ -73,6 +75,8 @@ module Increase
         cursor: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         order_by: nil,
         request_options: {}
@@ -629,6 +633,20 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever an Interest Rate Plan is created.
+          INTEREST_RATE_PLAN_CREATED =
+            T.let(
+              :"interest_rate_plan.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever an Interest Rate Plan is updated.
+          INTEREST_RATE_PLAN_UPDATED =
+            T.let(
+              :"interest_rate_plan.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever an IntraFi Account Enrollment is created.
           INTRAFI_ACCOUNT_ENROLLMENT_CREATED =
             T.let(
@@ -1066,6 +1084,8 @@ module Increase
           end
 
         # The direction to order in.
+        #
+        # Defaults to `ascending`.
         sig do
           returns(
             T.nilable(Increase::EventListParams::OrderBy::Direction::OrSymbol)
@@ -1103,6 +1123,8 @@ module Increase
         end
         def self.new(
           # The direction to order in.
+          #
+          # Defaults to `ascending`.
           direction: nil,
           # The field to order by.
           field: nil
@@ -1122,6 +1144,8 @@ module Increase
         end
 
         # The direction to order in.
+        #
+        # Defaults to `ascending`.
         module Direction
           extend Increase::Internal::Type::Enum
 

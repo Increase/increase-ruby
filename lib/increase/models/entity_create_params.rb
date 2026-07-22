@@ -284,6 +284,8 @@ module Increase
           # @!attribute country
           #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
+          #   Defaults to `US`.
+          #
           #   @return [String]
           required :country, String
 
@@ -318,7 +320,10 @@ module Increase
           #
           #   @param city [String] The city, district, town, or village of the address.
           #
-          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #   @param country [String]
+          #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #
+          #     Defaults to `US`.
           #
           #   @param line1 [String] The first line of the address. This is usually the street number and street.
           #
@@ -432,6 +437,8 @@ module Increase
               # @!attribute country
               #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
               #
+              #   Defaults to `US`.
+              #
               #   @return [String]
               required :country, String
 
@@ -466,7 +473,10 @@ module Increase
               #
               #   @param city [String] The city, district, town, or village of the address.
               #
-              #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #   @param country [String]
+              #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #
+              #     Defaults to `US`.
               #
               #   @param line1 [String] The first line of the address. This is usually the street number and street.
               #
@@ -483,6 +493,8 @@ module Increase
             class Identification < Increase::Internal::Type::BaseModel
               # @!attribute method_
               #   A method that can be used to verify the individual's identity.
+              #
+              #   Defaults to `social_security_number`.
               #
               #   @return [Symbol, Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Method]
               required :method_,
@@ -531,6 +543,8 @@ module Increase
               #   @param method_ [Symbol, Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Method]
               #     A method that can be used to verify the individual's identity.
               #
+              #     Defaults to `social_security_number`.
+              #
               #   @param number [String]
               #     An identification number that can be used to verify the individual's identity,
               #     such as a social security number. For Social Security Numbers and Individual
@@ -551,6 +565,8 @@ module Increase
               #     equal to `passport`.
 
               # A method that can be used to verify the individual's identity.
+              #
+              # Defaults to `social_security_number`.
               #
               # @see Increase::Models::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification#method_
               module Method
@@ -729,8 +745,9 @@ module Increase
           required :value, String
 
           # @!attribute category
-          #   The category of the legal identifier. If not provided, the default is
-          #   `us_employer_identification_number`.
+          #   The category of the legal identifier.
+          #
+          #   Defaults to `us_employer_identification_number`.
           #
           #   @return [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category, nil]
           optional :category, enum: -> { Increase::EntityCreateParams::Corporation::LegalIdentifier::Category }
@@ -747,11 +764,13 @@ module Increase
           #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
           #
           #   @param category [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category]
-          #     The category of the legal identifier. If not provided, the default is
-          #     `us_employer_identification_number`.
+          #     The category of the legal identifier.
+          #
+          #     Defaults to `us_employer_identification_number`.
 
-          # The category of the legal identifier. If not provided, the default is
-          # `us_employer_identification_number`.
+          # The category of the legal identifier.
+          #
+          # Defaults to `us_employer_identification_number`.
           #
           # @see Increase::Models::EntityCreateParams::Corporation::LegalIdentifier#category
           module Category
@@ -1021,6 +1040,8 @@ module Increase
             # @!attribute country
             #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             #
+            #   Defaults to `US`.
+            #
             #   @return [String]
             required :country, String
 
@@ -1055,7 +1076,10 @@ module Increase
             #
             #   @param city [String] The city, district, town, or village of the address.
             #
-            #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #   @param country [String]
+            #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #     Defaults to `US`.
             #
             #   @param line1 [String] The first line of the address. This is usually the street number and street.
             #
@@ -1072,6 +1096,8 @@ module Increase
           class Identification < Increase::Internal::Type::BaseModel
             # @!attribute method_
             #   A method that can be used to verify the individual's identity.
+            #
+            #   Defaults to `social_security_number`.
             #
             #   @return [Symbol, Increase::Models::EntityCreateParams::Joint::Individual::Identification::Method]
             required :method_,
@@ -1116,6 +1142,8 @@ module Increase
             #   @param method_ [Symbol, Increase::Models::EntityCreateParams::Joint::Individual::Identification::Method]
             #     A method that can be used to verify the individual's identity.
             #
+            #     Defaults to `social_security_number`.
+            #
             #   @param number [String]
             #     An identification number that can be used to verify the individual's identity,
             #     such as a social security number. For Social Security Numbers and Individual
@@ -1136,6 +1164,8 @@ module Increase
             #     equal to `passport`.
 
             # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
             #
             # @see Increase::Models::EntityCreateParams::Joint::Individual::Identification#method_
             module Method
@@ -1358,6 +1388,8 @@ module Increase
           # @!attribute country
           #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
+          #   Defaults to `US`.
+          #
           #   @return [String]
           required :country, String
 
@@ -1392,7 +1424,10 @@ module Increase
           #
           #   @param city [String] The city, district, town, or village of the address.
           #
-          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #   @param country [String]
+          #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #
+          #     Defaults to `US`.
           #
           #   @param line1 [String] The first line of the address. This is usually the street number and street.
           #
@@ -1409,6 +1444,8 @@ module Increase
         class Identification < Increase::Internal::Type::BaseModel
           # @!attribute method_
           #   A method that can be used to verify the individual's identity.
+          #
+          #   Defaults to `social_security_number`.
           #
           #   @return [Symbol, Increase::Models::EntityCreateParams::NaturalPerson::Identification::Method]
           required :method_,
@@ -1453,6 +1490,8 @@ module Increase
           #   @param method_ [Symbol, Increase::Models::EntityCreateParams::NaturalPerson::Identification::Method]
           #     A method that can be used to verify the individual's identity.
           #
+          #     Defaults to `social_security_number`.
+          #
           #   @param number [String]
           #     An identification number that can be used to verify the individual's identity,
           #     such as a social security number. For Social Security Numbers and Individual
@@ -1473,6 +1512,8 @@ module Increase
           #     equal to `passport`.
 
           # A method that can be used to verify the individual's identity.
+          #
+          # Defaults to `social_security_number`.
           #
           # @see Increase::Models::EntityCreateParams::NaturalPerson::Identification#method_
           module Method
@@ -2013,6 +2054,8 @@ module Increase
               # @!attribute country
               #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
               #
+              #   Defaults to `US`.
+              #
               #   @return [String]
               required :country, String
 
@@ -2047,7 +2090,10 @@ module Increase
               #
               #   @param city [String] The city, district, town, or village of the address.
               #
-              #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #   @param country [String]
+              #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #
+              #     Defaults to `US`.
               #
               #   @param line1 [String] The first line of the address. This is usually the street number and street.
               #
@@ -2064,6 +2110,8 @@ module Increase
             class Identification < Increase::Internal::Type::BaseModel
               # @!attribute method_
               #   A method that can be used to verify the individual's identity.
+              #
+              #   Defaults to `social_security_number`.
               #
               #   @return [Symbol, Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Method]
               required :method_,
@@ -2111,6 +2159,8 @@ module Increase
               #   @param method_ [Symbol, Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification::Method]
               #     A method that can be used to verify the individual's identity.
               #
+              #     Defaults to `social_security_number`.
+              #
               #   @param number [String]
               #     An identification number that can be used to verify the individual's identity,
               #     such as a social security number. For Social Security Numbers and Individual
@@ -2131,6 +2181,8 @@ module Increase
               #     equal to `passport`.
 
               # A method that can be used to verify the individual's identity.
+              #
+              # Defaults to `social_security_number`.
               #
               # @see Increase::Models::EntityCreateParams::Trust::Trustee::Individual::Identification#method_
               module Method
@@ -2351,6 +2403,8 @@ module Increase
             # @!attribute country
             #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
             #
+            #   Defaults to `US`.
+            #
             #   @return [String]
             required :country, String
 
@@ -2385,7 +2439,10 @@ module Increase
             #
             #   @param city [String] The city, district, town, or village of the address.
             #
-            #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #   @param country [String]
+            #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #     Defaults to `US`.
             #
             #   @param line1 [String] The first line of the address. This is usually the street number and street.
             #
@@ -2402,6 +2459,8 @@ module Increase
           class Identification < Increase::Internal::Type::BaseModel
             # @!attribute method_
             #   A method that can be used to verify the individual's identity.
+            #
+            #   Defaults to `social_security_number`.
             #
             #   @return [Symbol, Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Method]
             required :method_,
@@ -2446,6 +2505,8 @@ module Increase
             #   @param method_ [Symbol, Increase::Models::EntityCreateParams::Trust::Grantor::Identification::Method]
             #     A method that can be used to verify the individual's identity.
             #
+            #     Defaults to `social_security_number`.
+            #
             #   @param number [String]
             #     An identification number that can be used to verify the individual's identity,
             #     such as a social security number. For Social Security Numbers and Individual
@@ -2466,6 +2527,8 @@ module Increase
             #     equal to `passport`.
 
             # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
             #
             # @see Increase::Models::EntityCreateParams::Trust::Grantor::Identification#method_
             module Method

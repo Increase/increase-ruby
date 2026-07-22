@@ -234,7 +234,7 @@ module Increase
         required :line2, String, nil?: true
 
         # @!attribute postal_code
-        #   The ZIP code of the address.
+        #   The postal code of the address.
         #
         #   @return [String, nil]
         required :postal_code, String, nil?: true
@@ -259,7 +259,7 @@ module Increase
         #
         #   @param line2 [String, nil] The second line of the address.
         #
-        #   @param postal_code [String, nil] The ZIP code of the address.
+        #   @param postal_code [String, nil] The postal code of the address.
         #
         #   @param state [String, nil] The address state.
       end
@@ -293,7 +293,7 @@ module Increase
         required :line2, String, nil?: true
 
         # @!attribute postal_code
-        #   The ZIP code of the address.
+        #   The postal code of the address.
         #
         #   @return [String, nil]
         required :postal_code, String, nil?: true
@@ -318,7 +318,7 @@ module Increase
         #
         #   @param line2 [String, nil] The second line of the address.
         #
-        #   @param postal_code [String, nil] The ZIP code of the address.
+        #   @param postal_code [String, nil] The postal code of the address.
         #
         #   @param state [String, nil] The address state.
       end

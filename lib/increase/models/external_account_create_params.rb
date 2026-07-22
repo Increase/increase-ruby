@@ -33,7 +33,9 @@ module Increase
       optional :account_holder, enum: -> { Increase::ExternalAccountCreateParams::AccountHolder }
 
       # @!attribute funding
-      #   The type of the destination account. Defaults to `checking`.
+      #   The type of the destination account.
+      #
+      #   Defaults to `checking`.
       #
       #   @return [Symbol, Increase::Models::ExternalAccountCreateParams::Funding, nil]
       optional :funding, enum: -> { Increase::ExternalAccountCreateParams::Funding }
@@ -51,7 +53,9 @@ module Increase
       #     The type of entity that owns the External Account.
       #
       #   @param funding [Symbol, Increase::Models::ExternalAccountCreateParams::Funding]
-      #     The type of the destination account. Defaults to `checking`.
+      #     The type of the destination account.
+      #
+      #     Defaults to `checking`.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -72,7 +76,9 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
-      # The type of the destination account. Defaults to `checking`.
+      # The type of the destination account.
+      #
+      # Defaults to `checking`.
       module Funding
         extend Increase::Internal::Type::Enum
 
