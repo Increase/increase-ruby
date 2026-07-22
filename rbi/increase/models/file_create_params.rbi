@@ -18,6 +18,8 @@ module Increase
       attr_accessor :file
 
       # What the File will be used for in Increase's systems.
+      #
+      # Defaults to `other`.
       sig { returns(Increase::FileCreateParams::Purpose::OrSymbol) }
       attr_accessor :purpose
 
@@ -42,6 +44,8 @@ module Increase
         # transfers for the multipart/form-data protocol.
         file:,
         # What the File will be used for in Increase's systems.
+        #
+        # Defaults to `other`.
         purpose:,
         # The description you choose to give the File.
         description: nil,
@@ -63,6 +67,8 @@ module Increase
       end
 
       # What the File will be used for in Increase's systems.
+      #
+      # Defaults to `other`.
       module Purpose
         extend Increase::Internal::Type::Enum
 
@@ -161,14 +167,14 @@ module Increase
             Increase::FileCreateParams::Purpose::TaggedSymbol
           )
 
-        # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with no other color but black.
+        # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with a density of 600 dots per inch (DPI) and no other color but black.
         PHYSICAL_CARD_FRONT =
           T.let(
             :physical_card_front,
             Increase::FileCreateParams::Purpose::TaggedSymbol
           )
 
-        # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with no other color but black.
+        # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with a density of 300 dots per inch (DPI) and no other color but black.
         PHYSICAL_CARD_CARRIER =
           T.let(
             :physical_card_carrier,

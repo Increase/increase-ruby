@@ -18,6 +18,8 @@ module Increase
       # @!attribute purpose
       #   What the File will be used for in Increase's systems.
       #
+      #   Defaults to `other`.
+      #
       #   @return [Symbol, Increase::Models::FileCreateParams::Purpose]
       required :purpose, enum: -> { Increase::FileCreateParams::Purpose }
 
@@ -36,11 +38,15 @@ module Increase
       #   @param purpose [Symbol, Increase::Models::FileCreateParams::Purpose]
       #     What the File will be used for in Increase's systems.
       #
+      #     Defaults to `other`.
+      #
       #   @param description [String] The description you choose to give the File.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       # What the File will be used for in Increase's systems.
+      #
+      # Defaults to `other`.
       module Purpose
         extend Increase::Internal::Type::Enum
 
@@ -86,10 +92,10 @@ module Increase
         # An icon for you app to be rendered inside digital wallet apps. This must be a 100x100 pixel PNG.
         DIGITAL_WALLET_APP_ICON = :digital_wallet_app_icon
 
-        # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with no other color but black.
+        # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with a density of 600 dots per inch (DPI) and no other color but black.
         PHYSICAL_CARD_FRONT = :physical_card_front
 
-        # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with no other color but black.
+        # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with a density of 300 dots per inch (DPI) and no other color but black.
         PHYSICAL_CARD_CARRIER = :physical_card_carrier
 
         # A document requested by Increase.

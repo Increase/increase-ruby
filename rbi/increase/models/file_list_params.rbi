@@ -38,6 +38,8 @@ module Increase
 
       # Limit the size of the list that is returned. The default (and maximum) is 100
       # objects.
+      #
+      # Defaults to `100`.
       sig { returns(T.nilable(Integer)) }
       attr_reader :limit
 
@@ -71,6 +73,8 @@ module Increase
         idempotency_key: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
+        #
+        # Defaults to `100`.
         limit: nil,
         purpose: nil,
         request_options: {}
@@ -357,7 +361,7 @@ module Increase
               Increase::FileListParams::Purpose::In::TaggedSymbol
             )
 
-          # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with no other color but black.
+          # A card image to be printed on the front of a physical card. This must be a 2100x1344 pixel PNG with a density of 600 dots per inch (DPI) and no other color but black.
           PHYSICAL_CARD_FRONT =
             T.let(
               :physical_card_front,
@@ -371,7 +375,7 @@ module Increase
               Increase::FileListParams::Purpose::In::TaggedSymbol
             )
 
-          # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with no other color but black.
+          # An image representing the entirety of the carrier used for a physical card. This must be a 2550x3300 pixel PNG with a density of 300 dots per inch (DPI) and no other color but black.
           PHYSICAL_CARD_CARRIER =
             T.let(
               :physical_card_carrier,

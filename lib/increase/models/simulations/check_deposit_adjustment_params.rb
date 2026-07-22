@@ -24,8 +24,9 @@ module Increase
         optional :amount, Integer
 
         # @!attribute reason
-        #   The reason for the adjustment. Defaults to `non_conforming_item`, which is often
-        #   used for a low quality image that the recipient wasn't able to handle.
+        #   The reason for the adjustment.
+        #
+        #   Defaults to `non_conforming_item`.
         #
         #   @return [Symbol, Increase::Models::Simulations::CheckDepositAdjustmentParams::Reason, nil]
         optional :reason, enum: -> { Increase::Simulations::CheckDepositAdjustmentParams::Reason }
@@ -40,13 +41,15 @@ module Increase
         #     Deposit amount.
         #
         #   @param reason [Symbol, Increase::Models::Simulations::CheckDepositAdjustmentParams::Reason]
-        #     The reason for the adjustment. Defaults to `non_conforming_item`, which is often
-        #     used for a low quality image that the recipient wasn't able to handle.
+        #     The reason for the adjustment.
+        #
+        #     Defaults to `non_conforming_item`.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
-        # The reason for the adjustment. Defaults to `non_conforming_item`, which is often
-        # used for a low quality image that the recipient wasn't able to handle.
+        # The reason for the adjustment.
+        #
+        # Defaults to `non_conforming_item`.
         module Reason
           extend Increase::Internal::Type::Enum
 

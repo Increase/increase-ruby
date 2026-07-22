@@ -24,6 +24,7 @@ module Increase
 
         # @!attribute reason
         #   The reason why the Federal Reserve or destination bank returned this transfer.
+        #
         #   Defaults to `no_account`.
         #
         #   @return [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason, nil]
@@ -39,11 +40,13 @@ module Increase
         #
         #   @param reason [Symbol, Increase::Models::Simulations::ACHTransferReturnParams::Reason]
         #     The reason why the Federal Reserve or destination bank returned this transfer.
+        #
         #     Defaults to `no_account`.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
         # The reason why the Federal Reserve or destination bank returned this transfer.
+        #
         # Defaults to `no_account`.
         module Reason
           extend Increase::Internal::Type::Enum

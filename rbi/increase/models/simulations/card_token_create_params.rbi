@@ -433,6 +433,8 @@ module Increase
               end
 
             # The reason for the decline.
+            #
+            # Defaults to `do_not_honor`.
             sig do
               returns(
                 T.nilable(
@@ -459,6 +461,8 @@ module Increase
             end
             def self.new(
               # The reason for the decline.
+              #
+              # Defaults to `do_not_honor`.
               reason: nil
             )
             end
@@ -475,6 +479,8 @@ module Increase
             end
 
             # The reason for the decline.
+            #
+            # Defaults to `do_not_honor`.
             module Reason
               extend Increase::Internal::Type::Enum
 

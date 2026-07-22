@@ -116,6 +116,8 @@ module Increase
       attr_writer :external_account_id
 
       # The type of the receiver's bank account.
+      #
+      # Defaults to `checking`.
       sig do
         returns(T.nilable(Increase::ACHTransferCreateParams::Funding::OrSymbol))
       end
@@ -292,6 +294,8 @@ module Increase
         # provided, `account_number`, `routing_number`, and `funding` must be absent.
         external_account_id: nil,
         # The type of the receiver's bank account.
+        #
+        # Defaults to `checking`.
         funding: nil,
         # Your internal identifier for the transfer recipient. This value is informational
         # and not verified by the recipient's bank. Most callers can leave this unset.
@@ -704,6 +708,8 @@ module Increase
       end
 
       # The type of the receiver's bank account.
+      #
+      # Defaults to `checking`.
       module Funding
         extend Increase::Internal::Type::Enum
 

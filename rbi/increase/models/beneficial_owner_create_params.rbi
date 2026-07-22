@@ -206,6 +206,8 @@ module Increase
           attr_accessor :city
 
           # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #
+          # Defaults to `US`.
           sig { returns(String) }
           attr_accessor :country
 
@@ -251,6 +253,8 @@ module Increase
             # The city, district, town, or village of the address.
             city:,
             # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            # Defaults to `US`.
             country:,
             # The first line of the address. This is usually the street number and street.
             line1:,
@@ -290,6 +294,8 @@ module Increase
             end
 
           # A method that can be used to verify the individual's identity.
+          #
+          # Defaults to `social_security_number`.
           sig do
             returns(
               Increase::BeneficialOwnerCreateParams::Individual::Identification::Method::OrSymbol
@@ -378,6 +384,8 @@ module Increase
           end
           def self.new(
             # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
             method_:,
             # An identification number that can be used to verify the individual's identity,
             # such as a social security number. For Social Security Numbers and Individual
@@ -416,6 +424,8 @@ module Increase
           end
 
           # A method that can be used to verify the individual's identity.
+          #
+          # Defaults to `social_security_number`.
           module Method
             extend Increase::Internal::Type::Enum
 

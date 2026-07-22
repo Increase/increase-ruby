@@ -265,7 +265,7 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :line2
 
-        # The ZIP code of the address.
+        # The postal code of the address.
         sig { returns(T.nilable(String)) }
         attr_accessor :postal_code
 
@@ -295,7 +295,7 @@ module Increase
           line1:,
           # The second line of the address.
           line2:,
-          # The ZIP code of the address.
+          # The postal code of the address.
           postal_code:,
           # The address state.
           state:
@@ -345,7 +345,7 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :line2
 
-        # The ZIP code of the address.
+        # The postal code of the address.
         sig { returns(T.nilable(String)) }
         attr_accessor :postal_code
 
@@ -375,7 +375,7 @@ module Increase
           line1:,
           # The second line of the address.
           line2:,
-          # The ZIP code of the address.
+          # The postal code of the address.
           postal_code:,
           # The address state.
           state:

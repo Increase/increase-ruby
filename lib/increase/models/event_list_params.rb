@@ -33,6 +33,8 @@ module Increase
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
+      #   Defaults to `100`.
+      #
       #   @return [Integer, nil]
       optional :limit, Integer
 
@@ -54,6 +56,8 @@ module Increase
       #   @param limit [Integer]
       #     Limit the size of the list that is returned. The default (and maximum) is 100
       #     objects.
+      #
+      #     Defaults to `100`.
       #
       #   @param order_by [Increase::Models::EventListParams::OrderBy]
       #
@@ -285,6 +289,12 @@ module Increase
           # Occurs whenever an Inbound Wire Transfer is updated.
           INBOUND_WIRE_TRANSFER_UPDATED = :"inbound_wire_transfer.updated"
 
+          # Occurs whenever an Interest Rate Plan is created.
+          INTEREST_RATE_PLAN_CREATED = :"interest_rate_plan.created"
+
+          # Occurs whenever an Interest Rate Plan is updated.
+          INTEREST_RATE_PLAN_UPDATED = :"interest_rate_plan.updated"
+
           # Occurs whenever an IntraFi Account Enrollment is created.
           INTRAFI_ACCOUNT_ENROLLMENT_CREATED = :"intrafi_account_enrollment.created"
 
@@ -490,6 +500,8 @@ module Increase
         # @!attribute direction
         #   The direction to order in.
         #
+        #   Defaults to `ascending`.
+        #
         #   @return [Symbol, Increase::Models::EventListParams::OrderBy::Direction, nil]
         optional :direction, enum: -> { Increase::EventListParams::OrderBy::Direction }
 
@@ -503,9 +515,13 @@ module Increase
         #   @param direction [Symbol, Increase::Models::EventListParams::OrderBy::Direction]
         #     The direction to order in.
         #
+        #     Defaults to `ascending`.
+        #
         #   @param field [Symbol, Increase::Models::EventListParams::OrderBy::Field] The field to order by.
 
         # The direction to order in.
+        #
+        # Defaults to `ascending`.
         #
         # @see Increase::Models::EventListParams::OrderBy#direction
         module Direction

@@ -28,6 +28,8 @@ module Increase
       # @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator]
       #   Whether the Prenotification is for a future debit or credit.
       #
+      #   Defaults to `debit`.
+      #
       # @param effective_date [Date]
       #   The ACH Prenotification effective date in
       #   [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -42,6 +44,8 @@ module Increase
       #   The
       #   [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       #   to use for the ACH Prenotification.
+      #
+      #   Defaults to `corporate_credit_or_debit`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -96,6 +100,8 @@ module Increase
       # @param limit [Integer]
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
+      #
+      #   Defaults to `100`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

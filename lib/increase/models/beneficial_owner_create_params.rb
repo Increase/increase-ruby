@@ -118,6 +118,8 @@ module Increase
           # @!attribute country
           #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
           #
+          #   Defaults to `US`.
+          #
           #   @return [String]
           required :country, String
 
@@ -152,7 +154,10 @@ module Increase
           #
           #   @param city [String] The city, district, town, or village of the address.
           #
-          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #   @param country [String]
+          #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #
+          #     Defaults to `US`.
           #
           #   @param line1 [String] The first line of the address. This is usually the street number and street.
           #
@@ -169,6 +174,8 @@ module Increase
         class Identification < Increase::Internal::Type::BaseModel
           # @!attribute method_
           #   A method that can be used to verify the individual's identity.
+          #
+          #   Defaults to `social_security_number`.
           #
           #   @return [Symbol, Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Method]
           required :method_,
@@ -213,6 +220,8 @@ module Increase
           #   @param method_ [Symbol, Increase::Models::BeneficialOwnerCreateParams::Individual::Identification::Method]
           #     A method that can be used to verify the individual's identity.
           #
+          #     Defaults to `social_security_number`.
+          #
           #   @param number [String]
           #     An identification number that can be used to verify the individual's identity,
           #     such as a social security number. For Social Security Numbers and Individual
@@ -233,6 +242,8 @@ module Increase
           #     equal to `passport`.
 
           # A method that can be used to verify the individual's identity.
+          #
+          # Defaults to `social_security_number`.
           #
           # @see Increase::Models::BeneficialOwnerCreateParams::Individual::Identification#method_
           module Method

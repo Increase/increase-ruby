@@ -65,6 +65,8 @@ module Increase
       # @param funding [Symbol, Increase::Models::ACHTransferCreateParams::Funding]
       #   The type of the receiver's bank account.
       #
+      #   Defaults to `checking`.
+      #
       # @param individual_id [String]
       #   Your internal identifier for the transfer recipient. This value is informational
       #   and not verified by the recipient's bank. Most callers can leave this unset.
@@ -152,6 +154,8 @@ module Increase
       # @param limit [Integer]
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
+      #
+      #   Defaults to `100`.
       #
       # @param status [Increase::Models::ACHTransferListParams::Status]
       #

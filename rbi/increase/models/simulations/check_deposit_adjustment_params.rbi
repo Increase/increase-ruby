@@ -29,8 +29,9 @@ module Increase
         sig { params(amount: Integer).void }
         attr_writer :amount
 
-        # The reason for the adjustment. Defaults to `non_conforming_item`, which is often
-        # used for a low quality image that the recipient wasn't able to handle.
+        # The reason for the adjustment.
+        #
+        # Defaults to `non_conforming_item`.
         sig do
           returns(
             T.nilable(
@@ -65,8 +66,9 @@ module Increase
           # other bank and is a debit to your account. Defaults to the negative of the Check
           # Deposit amount.
           amount: nil,
-          # The reason for the adjustment. Defaults to `non_conforming_item`, which is often
-          # used for a low quality image that the recipient wasn't able to handle.
+          # The reason for the adjustment.
+          #
+          # Defaults to `non_conforming_item`.
           reason: nil,
           request_options: {}
         )
@@ -86,8 +88,9 @@ module Increase
         def to_hash
         end
 
-        # The reason for the adjustment. Defaults to `non_conforming_item`, which is often
-        # used for a low quality image that the recipient wasn't able to handle.
+        # The reason for the adjustment.
+        #
+        # Defaults to `non_conforming_item`.
         module Reason
           extend Increase::Internal::Type::Enum
 

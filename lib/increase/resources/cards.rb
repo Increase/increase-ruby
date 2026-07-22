@@ -118,6 +118,8 @@ module Increase
       #   Limit the size of the list that is returned. The default (and maximum) is 100
       #   objects.
       #
+      #   Defaults to `100`.
+      #
       # @param status [Increase::Models::CardListParams::Status]
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]

@@ -120,6 +120,9 @@ module Increase
         # Grasshopper Bank
         GRASSHOPPER_BANK = :grasshopper_bank
 
+        # Increase Bank
+        INCREASE_BANK = :increase_bank
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end

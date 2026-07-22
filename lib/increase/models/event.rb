@@ -277,6 +277,12 @@ module Increase
         # Occurs whenever an Inbound Wire Transfer is updated.
         INBOUND_WIRE_TRANSFER_UPDATED = :"inbound_wire_transfer.updated"
 
+        # Occurs whenever an Interest Rate Plan is created.
+        INTEREST_RATE_PLAN_CREATED = :"interest_rate_plan.created"
+
+        # Occurs whenever an Interest Rate Plan is updated.
+        INTEREST_RATE_PLAN_UPDATED = :"interest_rate_plan.updated"
+
         # Occurs whenever an IntraFi Account Enrollment is created.
         INTRAFI_ACCOUNT_ENROLLMENT_CREATED = :"intrafi_account_enrollment.created"
 

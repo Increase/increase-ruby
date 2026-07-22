@@ -59,6 +59,8 @@ module Increase
       # @!attribute credit_debit_indicator
       #   Whether the Prenotification is for a future debit or credit.
       #
+      #   Defaults to `debit`.
+      #
       #   @return [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator, nil]
       optional :credit_debit_indicator,
                enum: -> { Increase::ACHPrenotificationCreateParams::CreditDebitIndicator }
@@ -88,6 +90,8 @@ module Increase
       #   [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       #   to use for the ACH Prenotification.
       #
+      #   Defaults to `corporate_credit_or_debit`.
+      #
       #   @return [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode, nil]
       optional :standard_entry_class_code,
                enum: -> { Increase::ACHPrenotificationCreateParams::StandardEntryClassCode }
@@ -114,6 +118,8 @@ module Increase
       #   @param credit_debit_indicator [Symbol, Increase::Models::ACHPrenotificationCreateParams::CreditDebitIndicator]
       #     Whether the Prenotification is for a future debit or credit.
       #
+      #     Defaults to `debit`.
+      #
       #   @param effective_date [Date]
       #     The ACH Prenotification effective date in
       #     [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format.
@@ -129,9 +135,13 @@ module Increase
       #     [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       #     to use for the ACH Prenotification.
       #
+      #     Defaults to `corporate_credit_or_debit`.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
       # Whether the Prenotification is for a future debit or credit.
+      #
+      # Defaults to `debit`.
       module CreditDebitIndicator
         extend Increase::Internal::Type::Enum
 
@@ -148,6 +158,8 @@ module Increase
       # The
       # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       # to use for the ACH Prenotification.
+      #
+      # Defaults to `corporate_credit_or_debit`.
       module StandardEntryClassCode
         extend Increase::Internal::Type::Enum
 
