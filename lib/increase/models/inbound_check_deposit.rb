@@ -43,6 +43,14 @@ module Increase
       #   @return [Integer]
       required :amount, Integer
 
+      # @!attribute automatically_resolves_at
+      #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #   the Inbound Check Deposit will be automatically resolved if it has not been
+      #   actioned by then.
+      #
+      #   @return [Time]
+      required :automatically_resolves_at, Time
+
       # @!attribute back_image_file_id
       #   The ID for the File containing the image of the back of the check.
       #
@@ -138,7 +146,7 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundCheckDeposit::Type]
       required :type, enum: -> { Increase::InboundCheckDeposit::Type }
 
-      # @!method initialize(id:, accepted_at:, account_id:, account_number_id:, adjustments:, amount:, back_image_file_id:, bank_of_first_deposit_routing_number:, check_number:, check_transfer_id:, created_at:, currency:, declined_at:, declined_transaction_id:, deposit_return:, front_image_file_id:, payee_name_analysis:, status:, transaction_id:, type:)
+      # @!method initialize(id:, accepted_at:, account_id:, account_number_id:, adjustments:, amount:, automatically_resolves_at:, back_image_file_id:, bank_of_first_deposit_routing_number:, check_number:, check_transfer_id:, created_at:, currency:, declined_at:, declined_transaction_id:, deposit_return:, front_image_file_id:, payee_name_analysis:, status:, transaction_id:, type:)
       #   Inbound Check Deposits are records of third-parties attempting to deposit checks
       #   against your account.
       #
@@ -158,6 +166,11 @@ module Increase
       #     contain details of the adjustments.
       #
       #   @param amount [Integer] The deposited amount in USD cents.
+      #
+      #   @param automatically_resolves_at [Time]
+      #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+      #     the Inbound Check Deposit will be automatically resolved if it has not been
+      #     actioned by then.
       #
       #   @param back_image_file_id [String, nil] The ID for the File containing the image of the back of the check.
       #

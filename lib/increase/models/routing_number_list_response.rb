@@ -22,6 +22,13 @@ module Increase
       #   @return [String]
       required :name, String
 
+      # @!attribute real_time_payments_request_for_payment
+      #   This routing number's support for Real-Time Payments Requests for Payment.
+      #
+      #   @return [Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment]
+      required :real_time_payments_request_for_payment,
+               enum: -> { Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment }
+
       # @!attribute real_time_payments_transfers
       #   This routing number's support for Real-Time Payments Transfers.
       #
@@ -48,7 +55,7 @@ module Increase
       #   @return [Symbol, Increase::Models::RoutingNumberListResponse::WireTransfers]
       required :wire_transfers, enum: -> { Increase::Models::RoutingNumberListResponse::WireTransfers }
 
-      # @!method initialize(ach_transfers:, fednow_transfers:, name:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:)
+      # @!method initialize(ach_transfers:, fednow_transfers:, name:, real_time_payments_request_for_payment:, real_time_payments_transfers:, routing_number:, type:, wire_transfers:)
       #   Routing numbers are used to identify your bank in a financial transaction.
       #
       #   @param ach_transfers [Symbol, Increase::Models::RoutingNumberListResponse::ACHTransfers]
@@ -58,6 +65,9 @@ module Increase
       #     This routing number's support for FedNow Transfers.
       #
       #   @param name [String] The name of the financial institution belonging to a routing number.
+      #
+      #   @param real_time_payments_request_for_payment [Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsRequestForPayment]
+      #     This routing number's support for Real-Time Payments Requests for Payment.
       #
       #   @param real_time_payments_transfers [Symbol, Increase::Models::RoutingNumberListResponse::RealTimePaymentsTransfers]
       #     This routing number's support for Real-Time Payments Transfers.
@@ -91,6 +101,22 @@ module Increase
       #
       # @see Increase::Models::RoutingNumberListResponse#fednow_transfers
       module FednowTransfers
+        extend Increase::Internal::Type::Enum
+
+        # The routing number can receive this transfer type.
+        SUPPORTED = :supported
+
+        # The routing number cannot receive this transfer type.
+        NOT_SUPPORTED = :not_supported
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # This routing number's support for Real-Time Payments Requests for Payment.
+      #
+      # @see Increase::Models::RoutingNumberListResponse#real_time_payments_request_for_payment
+      module RealTimePaymentsRequestForPayment
         extend Increase::Internal::Type::Enum
 
         # The routing number can receive this transfer type.

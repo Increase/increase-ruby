@@ -8,7 +8,9 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute carrier_image_file_id
-      #   The identifier of the File containing the physical card's carrier image.
+      #   The identifier of the File containing the physical card's carrier image. This
+      #   must have `purpose: physical_card_carrier` and be a 2550x3300 pixel PNG with a
+      #   density of 300 dots per inch (DPI).
       #
       #   @return [String]
       required :carrier_image_file_id, String
@@ -26,7 +28,9 @@ module Increase
       required :description, String
 
       # @!attribute front_image_file_id
-      #   The identifier of the File containing the physical card's front image.
+      #   The identifier of the File containing the physical card's front image. This must
+      #   have `purpose: physical_card_front` and be a 2100x1344 pixel PNG with a density
+      #   of 600 dots per inch (DPI).
       #
       #   @return [String]
       required :front_image_file_id, String
@@ -46,13 +50,18 @@ module Increase
 
       # @!method initialize(carrier_image_file_id:, contact_phone:, description:, front_image_file_id:, program_id:, front_text: nil, request_options: {})
       #   @param carrier_image_file_id [String]
-      #     The identifier of the File containing the physical card's carrier image.
+      #     The identifier of the File containing the physical card's carrier image. This
+      #     must have `purpose: physical_card_carrier` and be a 2550x3300 pixel PNG with a
+      #     density of 300 dots per inch (DPI).
       #
       #   @param contact_phone [String] A phone number the user can contact to receive support for their card.
       #
       #   @param description [String] A description you can use to identify the Card Profile.
       #
-      #   @param front_image_file_id [String] The identifier of the File containing the physical card's front image.
+      #   @param front_image_file_id [String]
+      #     The identifier of the File containing the physical card's front image. This must
+      #     have `purpose: physical_card_front` and be a 2100x1344 pixel PNG with a density
+      #     of 600 dots per inch (DPI).
       #
       #   @param program_id [String] The identifier for the Program that this Physical Card Profile falls under.
       #

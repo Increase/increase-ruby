@@ -234,7 +234,9 @@ module Increase
           # Unstructured address lines.
           sig do
             returns(
-              Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+              T.nilable(
+                Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+              )
             )
           end
           attr_reader :unstructured
@@ -256,7 +258,7 @@ module Increase
           end
           def self.new(
             # Unstructured address lines.
-            unstructured:
+            unstructured: nil
           )
           end
 
@@ -598,7 +600,9 @@ module Increase
           # Unstructured address lines.
           sig do
             returns(
-              Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+              T.nilable(
+                Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+              )
             )
           end
           attr_reader :unstructured
@@ -620,7 +624,7 @@ module Increase
           end
           def self.new(
             # Unstructured address lines.
-            unstructured:
+            unstructured: nil
           )
           end
 

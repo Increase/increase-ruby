@@ -17,13 +17,17 @@ module Increase
         ).returns(Increase::PhysicalCardProfile)
       end
       def create(
-        # The identifier of the File containing the physical card's carrier image.
+        # The identifier of the File containing the physical card's carrier image. This
+        # must have `purpose: physical_card_carrier` and be a 2550x3300 pixel PNG with a
+        # density of 300 dots per inch (DPI).
         carrier_image_file_id:,
         # A phone number the user can contact to receive support for their card.
         contact_phone:,
         # A description you can use to identify the Card Profile.
         description:,
-        # The identifier of the File containing the physical card's front image.
+        # The identifier of the File containing the physical card's front image. This must
+        # have `purpose: physical_card_front` and be a 2100x1344 pixel PNG with a density
+        # of 600 dots per inch (DPI).
         front_image_file_id:,
         # The identifier for the Program that this Physical Card Profile falls under.
         program_id:,
