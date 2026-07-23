@@ -7,6 +7,7 @@ module Increase
         authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
         bin: String,
+        cardholder_name: Increase::Card::CardholderName?,
         created_at: Time,
         description: String?,
         digital_wallet: Increase::Card::DigitalWallet?,
@@ -29,6 +30,8 @@ module Increase
       attr_accessor billing_address: Increase::Card::BillingAddress
 
       attr_accessor bin: String
+
+      attr_accessor cardholder_name: Increase::Card::CardholderName?
 
       attr_accessor created_at: Time
 
@@ -56,6 +59,7 @@ module Increase
         authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
         bin: String,
+        cardholder_name: Increase::Card::CardholderName?,
         created_at: Time,
         description: String?,
         digital_wallet: Increase::Card::DigitalWallet?,
@@ -74,6 +78,7 @@ module Increase
         authorization_controls: Increase::Card::AuthorizationControls?,
         billing_address: Increase::Card::BillingAddress,
         bin: String,
+        cardholder_name: Increase::Card::CardholderName?,
         created_at: Time,
         description: String?,
         digital_wallet: Increase::Card::DigitalWallet?,
@@ -451,6 +456,20 @@ module Increase
           postal_code: String?,
           state: String?
         }
+      end
+
+      type cardholder_name = { first: String, last: String, middle: String? }
+
+      class CardholderName < Increase::Internal::Type::BaseModel
+        attr_accessor first: String
+
+        attr_accessor last: String
+
+        attr_accessor middle: String?
+
+        def initialize: (first: String, last: String, middle: String?) -> void
+
+        def to_hash: -> { first: String, last: String, middle: String? }
       end
 
       type digital_wallet =

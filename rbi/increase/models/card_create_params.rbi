@@ -40,6 +40,18 @@ module Increase
       end
       attr_writer :billing_address
 
+      # The name of the cardholder. Used to respond to Account Name Inquiry requests
+      # from acquirers in Card Validations.
+      sig { returns(T.nilable(Increase::CardCreateParams::CardholderName)) }
+      attr_reader :cardholder_name
+
+      sig do
+        params(
+          cardholder_name: Increase::CardCreateParams::CardholderName::OrHash
+        ).void
+      end
+      attr_writer :cardholder_name
+
       # The description you choose to give the card.
       sig { returns(T.nilable(String)) }
       attr_reader :description
@@ -76,6 +88,7 @@ module Increase
           authorization_controls:
             Increase::CardCreateParams::AuthorizationControls::OrHash,
           billing_address: Increase::CardCreateParams::BillingAddress::OrHash,
+          cardholder_name: Increase::CardCreateParams::CardholderName::OrHash,
           description: String,
           digital_wallet: Increase::CardCreateParams::DigitalWallet::OrHash,
           entity_id: String,
@@ -89,6 +102,9 @@ module Increase
         authorization_controls: nil,
         # The card's billing address.
         billing_address: nil,
+        # The name of the cardholder. Used to respond to Account Name Inquiry requests
+        # from acquirers in Card Validations.
+        cardholder_name: nil,
         # The description you choose to give the card.
         description: nil,
         # The contact information used in the two-factor steps for digital wallet card
@@ -111,6 +127,7 @@ module Increase
             authorization_controls:
               Increase::CardCreateParams::AuthorizationControls,
             billing_address: Increase::CardCreateParams::BillingAddress,
+            cardholder_name: Increase::CardCreateParams::CardholderName,
             description: String,
             digital_wallet: Increase::CardCreateParams::DigitalWallet,
             entity_id: String,
@@ -1253,6 +1270,54 @@ module Increase
               line2: String
             }
           )
+        end
+        def to_hash
+        end
+      end
+
+      class CardholderName < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::CardCreateParams::CardholderName,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The cardholder's first name.
+        sig { returns(String) }
+        attr_accessor :first
+
+        # The cardholder's last name.
+        sig { returns(String) }
+        attr_accessor :last
+
+        # The cardholder's middle name.
+        sig { returns(T.nilable(String)) }
+        attr_reader :middle
+
+        sig { params(middle: String).void }
+        attr_writer :middle
+
+        # The name of the cardholder. Used to respond to Account Name Inquiry requests
+        # from acquirers in Card Validations.
+        sig do
+          params(first: String, last: String, middle: String).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The cardholder's first name.
+          first:,
+          # The cardholder's last name.
+          last:,
+          # The cardholder's middle name.
+          middle: nil
+        )
+        end
+
+        sig do
+          override.returns({ first: String, last: String, middle: String })
         end
         def to_hash
         end

@@ -34,6 +34,13 @@ module Increase
       #   @return [String]
       required :bin, String
 
+      # @!attribute cardholder_name
+      #   The name of the cardholder. Used to respond to Account Name Inquiry requests
+      #   from acquirers in Card Validations.
+      #
+      #   @return [Increase::Models::Card::CardholderName, nil]
+      required :cardholder_name, -> { Increase::Card::CardholderName }, nil?: true
+
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       #   the Card was created.
@@ -100,7 +107,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Card::Type]
       required :type, enum: -> { Increase::Card::Type }
 
-      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
+      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, cardholder_name:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
       #   Cards may operate on credit, debit, or prepaid BINs. They’ll immediately work
       #   for online purchases after you create them. All cards work on a good funds
       #   model, and maintain a maximum limit of 100% of the Account’s available balance
@@ -117,6 +124,10 @@ module Increase
       #   @param billing_address [Increase::Models::Card::BillingAddress] The Card's billing address.
       #
       #   @param bin [String] The Bank Identification Number (BIN) of the Card.
+      #
+      #   @param cardholder_name [Increase::Models::Card::CardholderName, nil]
+      #     The name of the cardholder. Used to respond to Account Name Inquiry requests
+      #     from acquirers in Card Validations.
       #
       #   @param created_at [Time]
       #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -611,6 +622,37 @@ module Increase
         #   @param postal_code [String, nil] The postal code of the billing address.
         #
         #   @param state [String, nil] The US state of the billing address.
+      end
+
+      # @see Increase::Models::Card#cardholder_name
+      class CardholderName < Increase::Internal::Type::BaseModel
+        # @!attribute first
+        #   The cardholder's first name.
+        #
+        #   @return [String]
+        required :first, String
+
+        # @!attribute last
+        #   The cardholder's last name.
+        #
+        #   @return [String]
+        required :last, String
+
+        # @!attribute middle
+        #   The cardholder's middle name.
+        #
+        #   @return [String, nil]
+        required :middle, String, nil?: true
+
+        # @!method initialize(first:, last:, middle:)
+        #   The name of the cardholder. Used to respond to Account Name Inquiry requests
+        #   from acquirers in Card Validations.
+        #
+        #   @param first [String] The cardholder's first name.
+        #
+        #   @param last [String] The cardholder's last name.
+        #
+        #   @param middle [String, nil] The cardholder's middle name.
       end
 
       # @see Increase::Models::Card#digital_wallet
