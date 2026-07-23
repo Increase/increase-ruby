@@ -25,6 +25,13 @@ module Increase
       #   @return [Increase::Models::CardCreateParams::BillingAddress, nil]
       optional :billing_address, -> { Increase::CardCreateParams::BillingAddress }
 
+      # @!attribute cardholder_name
+      #   The name of the cardholder. Used to respond to Account Name Inquiry requests
+      #   from acquirers in Card Validations.
+      #
+      #   @return [Increase::Models::CardCreateParams::CardholderName, nil]
+      optional :cardholder_name, -> { Increase::CardCreateParams::CardholderName }
+
       # @!attribute description
       #   The description you choose to give the card.
       #
@@ -48,13 +55,17 @@ module Increase
       #   @return [String, nil]
       optional :entity_id, String
 
-      # @!method initialize(account_id:, authorization_controls: nil, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
+      # @!method initialize(account_id:, authorization_controls: nil, billing_address: nil, cardholder_name: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
       #   @param account_id [String] The Account the card should belong to.
       #
       #   @param authorization_controls [Increase::Models::CardCreateParams::AuthorizationControls]
       #     Controls that restrict how this card can be used.
       #
       #   @param billing_address [Increase::Models::CardCreateParams::BillingAddress] The card's billing address.
+      #
+      #   @param cardholder_name [Increase::Models::CardCreateParams::CardholderName]
+      #     The name of the cardholder. Used to respond to Account Name Inquiry requests
+      #     from acquirers in Card Validations.
       #
       #   @param description [String] The description you choose to give the card.
       #
@@ -517,6 +528,36 @@ module Increase
         #   @param state [String] The US state of the billing address.
         #
         #   @param line2 [String] The second line of the billing address.
+      end
+
+      class CardholderName < Increase::Internal::Type::BaseModel
+        # @!attribute first
+        #   The cardholder's first name.
+        #
+        #   @return [String]
+        required :first, String
+
+        # @!attribute last
+        #   The cardholder's last name.
+        #
+        #   @return [String]
+        required :last, String
+
+        # @!attribute middle
+        #   The cardholder's middle name.
+        #
+        #   @return [String, nil]
+        optional :middle, String
+
+        # @!method initialize(first:, last:, middle: nil)
+        #   The name of the cardholder. Used to respond to Account Name Inquiry requests
+        #   from acquirers in Card Validations.
+        #
+        #   @param first [String] The cardholder's first name.
+        #
+        #   @param last [String] The cardholder's last name.
+        #
+        #   @param middle [String] The cardholder's middle name.
       end
 
       class DigitalWallet < Increase::Internal::Type::BaseModel

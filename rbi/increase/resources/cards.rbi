@@ -10,6 +10,7 @@ module Increase
           authorization_controls:
             Increase::CardCreateParams::AuthorizationControls::OrHash,
           billing_address: Increase::CardCreateParams::BillingAddress::OrHash,
+          cardholder_name: Increase::CardCreateParams::CardholderName::OrHash,
           description: String,
           digital_wallet: Increase::CardCreateParams::DigitalWallet::OrHash,
           entity_id: String,
@@ -23,6 +24,9 @@ module Increase
         authorization_controls: nil,
         # The card's billing address.
         billing_address: nil,
+        # The name of the cardholder. Used to respond to Account Name Inquiry requests
+        # from acquirers in Card Validations.
+        cardholder_name: nil,
         # The description you choose to give the card.
         description: nil,
         # The contact information used in the two-factor steps for digital wallet card
