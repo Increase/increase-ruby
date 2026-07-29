@@ -5,6 +5,7 @@ module Increase
         account_id: String,
         authorization_controls: Increase::CardCreateParams::AuthorizationControls,
         billing_address: Increase::CardCreateParams::BillingAddress,
+        cardholder_name: Increase::CardCreateParams::CardholderName,
         description: String,
         digital_wallet: Increase::CardCreateParams::DigitalWallet,
         entity_id: String
@@ -29,6 +30,12 @@ module Increase
         Increase::CardCreateParams::BillingAddress
       ) -> Increase::CardCreateParams::BillingAddress
 
+      attr_reader cardholder_name: Increase::CardCreateParams::CardholderName?
+
+      def cardholder_name=: (
+        Increase::CardCreateParams::CardholderName
+      ) -> Increase::CardCreateParams::CardholderName
+
       attr_reader description: String?
 
       def description=: (String) -> String
@@ -47,6 +54,7 @@ module Increase
         account_id: String,
         ?authorization_controls: Increase::CardCreateParams::AuthorizationControls,
         ?billing_address: Increase::CardCreateParams::BillingAddress,
+        ?cardholder_name: Increase::CardCreateParams::CardholderName,
         ?description: String,
         ?digital_wallet: Increase::CardCreateParams::DigitalWallet,
         ?entity_id: String,
@@ -57,6 +65,7 @@ module Increase
         account_id: String,
         authorization_controls: Increase::CardCreateParams::AuthorizationControls,
         billing_address: Increase::CardCreateParams::BillingAddress,
+        cardholder_name: Increase::CardCreateParams::CardholderName,
         description: String,
         digital_wallet: Increase::CardCreateParams::DigitalWallet,
         entity_id: String,
@@ -486,6 +495,22 @@ module Increase
           state: String,
           :line2 => String
         }
+      end
+
+      type cardholder_name = { first: String, last: String, middle: String }
+
+      class CardholderName < Increase::Internal::Type::BaseModel
+        attr_accessor first: String
+
+        attr_accessor last: String
+
+        attr_reader middle: String?
+
+        def middle=: (String) -> String
+
+        def initialize: (first: String, last: String, ?middle: String) -> void
+
+        def to_hash: -> { first: String, last: String, middle: String }
       end
 
       type digital_wallet =
