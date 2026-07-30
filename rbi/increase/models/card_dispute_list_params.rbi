@@ -284,7 +284,7 @@ module Increase
               Increase::CardDisputeListParams::Status::In::TaggedSymbol
             )
 
-          # The Card Dispute has been reviewed and rejected, please review the explanation for more details.
+          # The Card Dispute was rejected before it was submitted to the network, either by Increase or because the user withdrew it. Please review the explanation for more details.
           REJECTED =
             T.let(
               :rejected,
