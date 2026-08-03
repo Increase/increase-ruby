@@ -727,6 +727,7 @@ module Increase
           network_details: Increase::RealTimeDecision::CardAuthorization::NetworkDetails,
           network_identifiers: Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
           network_risk_score: Integer?,
+          original_card_payment_id: String?,
           partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability,
           physical_card_id: String?,
           presentment_amount: Integer,
@@ -779,6 +780,8 @@ module Increase
 
         attr_accessor network_risk_score: Integer?
 
+        attr_accessor original_card_payment_id: String?
+
         attr_accessor partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability
 
         attr_accessor physical_card_id: String?
@@ -821,6 +824,7 @@ module Increase
           network_details: Increase::RealTimeDecision::CardAuthorization::NetworkDetails,
           network_identifiers: Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
           network_risk_score: Integer?,
+          original_card_payment_id: String?,
           partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability,
           physical_card_id: String?,
           presentment_amount: Integer,
@@ -854,6 +858,7 @@ module Increase
           network_details: Increase::RealTimeDecision::CardAuthorization::NetworkDetails,
           network_identifiers: Increase::RealTimeDecision::CardAuthorization::NetworkIdentifiers,
           network_risk_score: Integer?,
+          original_card_payment_id: String?,
           partial_approval_capability: Increase::Models::RealTimeDecision::CardAuthorization::partial_approval_capability,
           physical_card_id: String?,
           presentment_amount: Integer,

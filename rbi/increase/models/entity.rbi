@@ -2015,7 +2015,7 @@ module Increase
         attr_accessor :agreed_at
 
         # The IP address the Entity accessed reviewed the terms from.
-        sig { returns(String) }
+        sig { returns(T.nilable(String)) }
         attr_accessor :ip_address
 
         # The URL of the terms agreement. This link will be provided by your bank partner.
@@ -2025,7 +2025,7 @@ module Increase
         sig do
           params(
             agreed_at: Time,
-            ip_address: String,
+            ip_address: T.nilable(String),
             terms_url: String
           ).returns(T.attached_class)
         end
@@ -2041,7 +2041,11 @@ module Increase
 
         sig do
           override.returns(
-            { agreed_at: Time, ip_address: String, terms_url: String }
+            {
+              agreed_at: Time,
+              ip_address: T.nilable(String),
+              terms_url: String
+            }
           )
         end
         def to_hash

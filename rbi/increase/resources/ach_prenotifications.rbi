@@ -51,7 +51,7 @@ module Increase
         effective_date: nil,
         # Your identifier for the recipient.
         individual_id: nil,
-        # The name of therecipient. This value is informational and not verified by the
+        # The name of the recipient. This value is informational and not verified by the
         # recipient's bank.
         individual_name: nil,
         # The
