@@ -97,7 +97,7 @@ module Increase
       sig { params(individual_id: String).void }
       attr_writer :individual_id
 
-      # The name of therecipient. This value is informational and not verified by the
+      # The name of the recipient. This value is informational and not verified by the
       # recipient's bank.
       sig { returns(T.nilable(String)) }
       attr_reader :individual_name
@@ -174,7 +174,7 @@ module Increase
         effective_date: nil,
         # Your identifier for the recipient.
         individual_id: nil,
-        # The name of therecipient. This value is informational and not verified by the
+        # The name of the recipient. This value is informational and not verified by the
         # recipient's bank.
         individual_name: nil,
         # The

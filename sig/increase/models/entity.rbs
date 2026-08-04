@@ -900,24 +900,24 @@ module Increase
       end
 
       type terms_agreement =
-        { agreed_at: Time, ip_address: String, terms_url: String }
+        { agreed_at: Time, ip_address: String?, terms_url: String }
 
       class TermsAgreement < Increase::Internal::Type::BaseModel
         attr_accessor agreed_at: Time
 
-        attr_accessor ip_address: String
+        attr_accessor ip_address: String?
 
         attr_accessor terms_url: String
 
         def initialize: (
           agreed_at: Time,
-          ip_address: String,
+          ip_address: String?,
           terms_url: String
         ) -> void
 
         def to_hash: -> {
           agreed_at: Time,
-          ip_address: String,
+          ip_address: String?,
           terms_url: String
         }
       end
