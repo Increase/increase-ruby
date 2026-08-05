@@ -201,24 +201,6 @@ module Increase
       end
       attr_writer :standard_entry_class_code
 
-      # The timing of the transaction.
-      sig do
-        returns(
-          T.nilable(
-            Increase::ACHTransferCreateParams::TransactionTiming::OrSymbol
-          )
-        )
-      end
-      attr_reader :transaction_timing
-
-      sig do
-        params(
-          transaction_timing:
-            Increase::ACHTransferCreateParams::TransactionTiming::OrSymbol
-        ).void
-      end
-      attr_writer :transaction_timing
-
       sig do
         params(
           account_id: String,
@@ -242,8 +224,6 @@ module Increase
           routing_number: String,
           standard_entry_class_code:
             Increase::ACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-          transaction_timing:
-            Increase::ACHTransferCreateParams::TransactionTiming::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -318,8 +298,6 @@ module Increase
         # to use for the transfer. If not provided, the default is
         # `corporate_credit_or_debit`.
         standard_entry_class_code: nil,
-        # The timing of the transaction.
-        transaction_timing: nil,
         request_options: {}
       )
       end
@@ -348,8 +326,6 @@ module Increase
             routing_number: String,
             standard_entry_class_code:
               Increase::ACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-            transaction_timing:
-              Increase::ACHTransferCreateParams::TransactionTiming::OrSymbol,
             request_options: Increase::RequestOptions
           }
         )
@@ -907,41 +883,6 @@ module Increase
           override.returns(
             T::Array[
               Increase::ACHTransferCreateParams::StandardEntryClassCode::TaggedSymbol
-            ]
-          )
-        end
-        def self.values
-        end
-      end
-
-      # The timing of the transaction.
-      module TransactionTiming
-        extend Increase::Internal::Type::Enum
-
-        TaggedSymbol =
-          T.type_alias do
-            T.all(Symbol, Increase::ACHTransferCreateParams::TransactionTiming)
-          end
-        OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-        # A Transaction will be created immediately.
-        SYNCHRONOUS =
-          T.let(
-            :synchronous,
-            Increase::ACHTransferCreateParams::TransactionTiming::TaggedSymbol
-          )
-
-        # A Transaction will be created when the funds settle at the Federal Reserve.
-        ASYNCHRONOUS =
-          T.let(
-            :asynchronous,
-            Increase::ACHTransferCreateParams::TransactionTiming::TaggedSymbol
-          )
-
-        sig do
-          override.returns(
-            T::Array[
-              Increase::ACHTransferCreateParams::TransactionTiming::TaggedSymbol
             ]
           )
         end
