@@ -791,6 +791,10 @@ module Increase
         sig { returns(T::Array[Increase::CheckTransfer::PhysicalCheck::Payer]) }
         attr_accessor :payer
 
+        # The identifier of the Physical Check Batch that this check is a part of.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :physical_check_batch_id
+
         # The name that will be printed on the check.
         sig { returns(String) }
         attr_accessor :recipient_name
@@ -857,6 +861,7 @@ module Increase
             note: T.nilable(String),
             payer:
               T::Array[Increase::CheckTransfer::PhysicalCheck::Payer::OrHash],
+            physical_check_batch_id: T.nilable(String),
             recipient_name: String,
             return_address:
               T.nilable(
@@ -887,6 +892,8 @@ module Increase
           # The payer of the check. This will be printed on the top-left portion of the
           # check and defaults to the return address if unspecified.
           payer:,
+          # The identifier of the Physical Check Batch that this check is a part of.
+          physical_check_batch_id:,
           # The name that will be printed on the check.
           recipient_name:,
           # The return address to be printed on the check.
@@ -913,6 +920,7 @@ module Increase
               memo: T.nilable(String),
               note: T.nilable(String),
               payer: T::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
+              physical_check_batch_id: T.nilable(String),
               recipient_name: String,
               return_address:
                 T.nilable(
@@ -1368,6 +1376,13 @@ module Increase
         # The transfer has been canceled.
         CANCELED =
           T.let(:canceled, Increase::CheckTransfer::Status::TaggedSymbol)
+
+        # The transfer is waiting for its Physical Check Batch to be completed.
+        PENDING_BATCH_COMPLETING =
+          T.let(
+            :pending_batch_completing,
+            Increase::CheckTransfer::Status::TaggedSymbol
+          )
 
         # The transfer is pending submission.
         PENDING_SUBMISSION =

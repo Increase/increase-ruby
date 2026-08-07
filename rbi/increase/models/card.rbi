@@ -39,6 +39,18 @@ module Increase
       sig { returns(String) }
       attr_accessor :bin
 
+      # The name of the cardholder. Used to respond to Account Name Inquiry requests
+      # from acquirers in Card Validations.
+      sig { returns(T.nilable(Increase::Card::CardholderName)) }
+      attr_reader :cardholder_name
+
+      sig do
+        params(
+          cardholder_name: T.nilable(Increase::Card::CardholderName::OrHash)
+        ).void
+      end
+      attr_writer :cardholder_name
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       # the Card was created.
       sig { returns(Time) }
@@ -105,6 +117,7 @@ module Increase
             T.nilable(Increase::Card::AuthorizationControls::OrHash),
           billing_address: Increase::Card::BillingAddress::OrHash,
           bin: String,
+          cardholder_name: T.nilable(Increase::Card::CardholderName::OrHash),
           created_at: Time,
           description: T.nilable(String),
           digital_wallet: T.nilable(Increase::Card::DigitalWallet::OrHash),
@@ -128,6 +141,9 @@ module Increase
         billing_address:,
         # The Bank Identification Number (BIN) of the Card.
         bin:,
+        # The name of the cardholder. Used to respond to Account Name Inquiry requests
+        # from acquirers in Card Validations.
+        cardholder_name:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Card was created.
         created_at:,
@@ -166,6 +182,7 @@ module Increase
               T.nilable(Increase::Card::AuthorizationControls),
             billing_address: Increase::Card::BillingAddress,
             bin: String,
+            cardholder_name: T.nilable(Increase::Card::CardholderName),
             created_at: Time,
             description: T.nilable(String),
             digital_wallet: T.nilable(Increase::Card::DigitalWallet),
@@ -1267,6 +1284,52 @@ module Increase
               postal_code: T.nilable(String),
               state: T.nilable(String)
             }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class CardholderName < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Card::CardholderName, Increase::Internal::AnyHash)
+          end
+
+        # The cardholder's first name.
+        sig { returns(String) }
+        attr_accessor :first
+
+        # The cardholder's last name.
+        sig { returns(String) }
+        attr_accessor :last
+
+        # The cardholder's middle name.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :middle
+
+        # The name of the cardholder. Used to respond to Account Name Inquiry requests
+        # from acquirers in Card Validations.
+        sig do
+          params(
+            first: String,
+            last: String,
+            middle: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The cardholder's first name.
+          first:,
+          # The cardholder's last name.
+          last:,
+          # The cardholder's middle name.
+          middle:
+        )
+        end
+
+        sig do
+          override.returns(
+            { first: String, last: String, middle: T.nilable(String) }
           )
         end
         def to_hash
