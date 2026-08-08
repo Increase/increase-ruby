@@ -360,6 +360,12 @@ module Increase
           # Occurs whenever a Lockbox is updated.
           LOCKBOX_UPDATED = :"lockbox.updated"
 
+          # Occurs whenever a Lockbox Address is created.
+          LOCKBOX_ADDRESS_CREATED = :"lockbox_address.created"
+
+          # Occurs whenever a Lockbox Address is updated.
+          LOCKBOX_ADDRESS_UPDATED = :"lockbox_address.updated"
+
           # Occurs whenever an OAuth Connection is created.
           OAUTH_CONNECTION_CREATED = :"oauth_connection.created"
 

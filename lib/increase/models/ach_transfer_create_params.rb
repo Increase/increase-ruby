@@ -151,13 +151,7 @@ module Increase
       optional :standard_entry_class_code,
                enum: -> { Increase::ACHTransferCreateParams::StandardEntryClassCode }
 
-      # @!attribute transaction_timing
-      #   The timing of the transaction.
-      #
-      #   @return [Symbol, Increase::Models::ACHTransferCreateParams::TransactionTiming, nil]
-      optional :transaction_timing, enum: -> { Increase::ACHTransferCreateParams::TransactionTiming }
-
-      # @!method initialize(account_id:, amount:, statement_descriptor:, account_number: nil, addenda: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, destination_account_holder: nil, external_account_id: nil, funding: nil, individual_id: nil, individual_name: nil, preferred_effective_date: nil, require_approval: nil, routing_number: nil, standard_entry_class_code: nil, transaction_timing: nil, request_options: {})
+      # @!method initialize(account_id:, amount:, statement_descriptor:, account_number: nil, addenda: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, destination_account_holder: nil, external_account_id: nil, funding: nil, individual_id: nil, individual_name: nil, preferred_effective_date: nil, require_approval: nil, routing_number: nil, standard_entry_class_code: nil, request_options: {})
       #   @param account_id [String] The Increase identifier for the account that will send the transfer.
       #
       #   @param amount [Integer]
@@ -244,9 +238,6 @@ module Increase
       #     [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       #     to use for the transfer. If not provided, the default is
       #     `corporate_credit_or_debit`.
-      #
-      #   @param transaction_timing [Symbol, Increase::Models::ACHTransferCreateParams::TransactionTiming]
-      #     The timing of the transaction.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -483,20 +474,6 @@ module Increase
 
         # Internet Initiated (WEB) is used for consumer payments initiated or authorized via the Internet. Debits can only be initiated by non-consumers to debit a consumer’s account. Credits can only be used for consumer to consumer transactions.
         INTERNET_INITIATED = :internet_initiated
-
-        # @!method self.values
-        #   @return [Array<Symbol>]
-      end
-
-      # The timing of the transaction.
-      module TransactionTiming
-        extend Increase::Internal::Type::Enum
-
-        # A Transaction will be created immediately.
-        SYNCHRONOUS = :synchronous
-
-        # A Transaction will be created when the funds settle at the Federal Reserve.
-        ASYNCHRONOUS = :asynchronous
 
         # @!method self.values
         #   @return [Array<Symbol>]
