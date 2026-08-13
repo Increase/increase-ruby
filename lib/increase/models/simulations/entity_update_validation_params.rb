@@ -54,6 +54,9 @@ module Increase
             # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
             ENTITY_ADDRESS = :entity_address
 
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            ENTITY_IDENTITY = :entity_identity
+
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_IDENTITY = :beneficial_owner_identity
 

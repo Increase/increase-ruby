@@ -55,6 +55,7 @@ module Increase
             accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
             decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
             receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+            reject: Increase::Simulations::CardDisputeActionParams::Visa::Reject,
             represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent,
             request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
             time_out_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
@@ -89,6 +90,12 @@ module Increase
           def receive_merchant_prearbitration=: (
             Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration
           ) -> Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration
+
+          attr_reader reject: Increase::Simulations::CardDisputeActionParams::Visa::Reject?
+
+          def reject=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::Reject
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::Reject
 
           attr_reader represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent?
 
@@ -132,6 +139,7 @@ module Increase
             ?accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
             ?decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
             ?receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+            ?reject: Increase::Simulations::CardDisputeActionParams::Visa::Reject,
             ?represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent,
             ?request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
             ?time_out_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
@@ -146,6 +154,7 @@ module Increase
             accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
             decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
             receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+            reject: Increase::Simulations::CardDisputeActionParams::Visa::Reject,
             represent: Increase::Simulations::CardDisputeActionParams::Visa::Represent,
             request_further_information: Increase::Simulations::CardDisputeActionParams::Visa::RequestFurtherInformation,
             time_out_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::TimeOutChargeback,
@@ -159,6 +168,7 @@ module Increase
             | :accept_user_submission
             | :decline_user_prearbitration
             | :receive_merchant_prearbitration
+            | :reject
             | :represent
             | :request_further_information
             | :time_out_chargeback
@@ -180,6 +190,9 @@ module Increase
 
             # Simulate the merchant issuing pre-arbitration. This will move the dispute to a `user_submission_required` state.
             RECEIVE_MERCHANT_PREARBITRATION: :receive_merchant_prearbitration
+
+            # Simulate the dispute being rejected before it is submitted to the network. This will move the dispute to a `rejected` state.
+            REJECT: :reject
 
             # Simulate the merchant re-presenting the dispute. This will move the dispute to a `user_submission_required` state.
             REPRESENT: :represent
@@ -232,6 +245,16 @@ module Increase
             def initialize: -> void
 
             def to_hash: -> {  }
+          end
+
+          type reject = { explanation: String }
+
+          class Reject < Increase::Internal::Type::BaseModel
+            attr_accessor explanation: String
+
+            def initialize: (explanation: String) -> void
+
+            def to_hash: -> { explanation: String }
           end
 
           type represent = {  }

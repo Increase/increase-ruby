@@ -296,6 +296,7 @@ module Increase
           memo: String?,
           note: String?,
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
+          physical_check_batch_id: String?,
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           return_address_name: String?,
@@ -317,6 +318,8 @@ module Increase
 
         attr_accessor payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer]
 
+        attr_accessor physical_check_batch_id: String?
+
         attr_accessor recipient_name: String
 
         attr_accessor return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?
@@ -336,6 +339,7 @@ module Increase
           memo: String?,
           note: String?,
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
+          physical_check_batch_id: String?,
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           return_address_name: String?,
@@ -351,6 +355,7 @@ module Increase
           memo: String?,
           note: String?,
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
+          physical_check_batch_id: String?,
           recipient_name: String,
           return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
           return_address_name: String?,
@@ -562,6 +567,7 @@ module Increase
       type status =
         :pending_approval
         | :canceled
+        | :pending_batch_completing
         | :pending_submission
         | :pending_reviewing
         | :requires_attention
@@ -580,6 +586,9 @@ module Increase
 
         # The transfer has been canceled.
         CANCELED: :canceled
+
+        # The transfer is waiting for its Physical Check Batch to be completed.
+        PENDING_BATCH_COMPLETING: :pending_batch_completing
 
         # The transfer is pending submission.
         PENDING_SUBMISSION: :pending_submission

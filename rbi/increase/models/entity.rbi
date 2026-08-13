@@ -2015,7 +2015,7 @@ module Increase
         attr_accessor :agreed_at
 
         # The IP address the Entity accessed reviewed the terms from.
-        sig { returns(String) }
+        sig { returns(T.nilable(String)) }
         attr_accessor :ip_address
 
         # The URL of the terms agreement. This link will be provided by your bank partner.
@@ -2025,7 +2025,7 @@ module Increase
         sig do
           params(
             agreed_at: Time,
-            ip_address: String,
+            ip_address: T.nilable(String),
             terms_url: String
           ).returns(T.attached_class)
         end
@@ -2041,7 +2041,11 @@ module Increase
 
         sig do
           override.returns(
-            { agreed_at: Time, ip_address: String, terms_url: String }
+            {
+              agreed_at: Time,
+              ip_address: T.nilable(String),
+              terms_url: String
+            }
           )
         end
         def to_hash
@@ -3137,6 +3141,24 @@ module Increase
           end
           attr_writer :entity_address
 
+          # Details when the issue is with the entity's identity verification.
+          sig do
+            returns(
+              T.nilable(Increase::Entity::Validation::Issue::EntityIdentity)
+            )
+          end
+          attr_reader :entity_identity
+
+          sig do
+            params(
+              entity_identity:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::EntityIdentity::OrHash
+                )
+            ).void
+          end
+          attr_writer :entity_identity
+
           # Details when the issue is with the entity's tax ID.
           sig do
             returns(
@@ -3172,6 +3194,10 @@ module Increase
                 T.nilable(
                   Increase::Entity::Validation::Issue::EntityAddress::OrHash
                 ),
+              entity_identity:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::EntityIdentity::OrHash
+                ),
               entity_tax_identifier:
                 T.nilable(
                   Increase::Entity::Validation::Issue::EntityTaxIdentifier::OrHash
@@ -3188,6 +3214,8 @@ module Increase
             category:,
             # Details when the issue is with the entity's address.
             entity_address:,
+            # Details when the issue is with the entity's identity verification.
+            entity_identity:,
             # Details when the issue is with the entity's tax ID.
             entity_tax_identifier:
           )
@@ -3208,6 +3236,10 @@ module Increase
                   Increase::Entity::Validation::Issue::Category::TaggedSymbol,
                 entity_address:
                   T.nilable(Increase::Entity::Validation::Issue::EntityAddress),
+                entity_identity:
+                  T.nilable(
+                    Increase::Entity::Validation::Issue::EntityIdentity
+                  ),
                 entity_tax_identifier:
                   T.nilable(
                     Increase::Entity::Validation::Issue::EntityTaxIdentifier
@@ -3352,6 +3384,13 @@ module Increase
                 Increase::Entity::Validation::Issue::Category::TaggedSymbol
               )
 
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            ENTITY_IDENTITY =
+              T.let(
+                :entity_identity,
+                Increase::Entity::Validation::Issue::Category::TaggedSymbol
+              )
+
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_IDENTITY =
               T.let(
@@ -3447,6 +3486,25 @@ module Increase
               end
               def self.values
               end
+            end
+          end
+
+          class EntityIdentity < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Validation::Issue::EntityIdentity,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # Details when the issue is with the entity's identity verification.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
             end
           end
 
