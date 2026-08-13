@@ -664,6 +664,20 @@ module Increase
             Increase::UnwrapWebhookEvent::Category::TaggedSymbol
           )
 
+        # Occurs whenever a Lockbox Address is created.
+        LOCKBOX_ADDRESS_CREATED =
+          T.let(
+            :"lockbox_address.created",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a Lockbox Address is updated.
+        LOCKBOX_ADDRESS_UPDATED =
+          T.let(
+            :"lockbox_address.updated",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
         # Occurs whenever an OAuth Connection is created.
         OAUTH_CONNECTION_CREATED =
           T.let(

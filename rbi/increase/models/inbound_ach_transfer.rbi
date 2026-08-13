@@ -830,7 +830,7 @@ module Increase
         attr_accessor :originating_depository_financial_institution_branch_country
 
         # An identifier for the originating bank. One of an International Bank Account
-        # Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+        # Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
         # domestic identifier like a US Routing Number.
         sig { returns(String) }
         attr_accessor :originating_depository_financial_institution_id
@@ -924,7 +924,7 @@ module Increase
         attr_accessor :receiving_depository_financial_institution_country
 
         # An identifier for the receiving bank. One of an International Bank Account
-        # Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+        # Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
         # domestic identifier like a US Routing Number.
         sig { returns(String) }
         attr_accessor :receiving_depository_financial_institution_id
@@ -1015,7 +1015,7 @@ module Increase
           # country code of the originating branch country.
           originating_depository_financial_institution_branch_country:,
           # An identifier for the originating bank. One of an International Bank Account
-          # Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+          # Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
           # domestic identifier like a US Routing Number.
           originating_depository_financial_institution_id:,
           # An instruction of how to interpret the
@@ -1065,7 +1065,7 @@ module Increase
           # country code of the receiving bank country.
           receiving_depository_financial_institution_country:,
           # An identifier for the receiving bank. One of an International Bank Account
-          # Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+          # Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
           # domestic identifier like a US Routing Number.
           receiving_depository_financial_institution_id:,
           # An instruction of how to interpret the
@@ -1400,7 +1400,7 @@ module Increase
               Increase::InboundACHTransfer::InternationalAddenda::OriginatingDepositoryFinancialInstitutionIDQualifier::TaggedSymbol
             )
 
-          # The SWIFT Bank Identifier Code (BIC) of the bank.
+          # The Swift Bank Identifier Code (BIC) of the bank.
           BIC_CODE =
             T.let(
               :bic_code,
@@ -1446,7 +1446,7 @@ module Increase
               Increase::InboundACHTransfer::InternationalAddenda::ReceivingDepositoryFinancialInstitutionIDQualifier::TaggedSymbol
             )
 
-          # The SWIFT Bank Identifier Code (BIC) of the bank.
+          # The Swift Bank Identifier Code (BIC) of the bank.
           BIC_CODE =
             T.let(
               :bic_code,
