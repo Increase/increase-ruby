@@ -644,7 +644,7 @@ module Increase
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER: :national_clearing_system_number
 
-          # The SWIFT Bank Identifier Code (BIC) of the bank.
+          # The Swift Bank Identifier Code (BIC) of the bank.
           BIC_CODE: :bic_code
 
           # An International Bank Account Number.
@@ -662,7 +662,7 @@ module Increase
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER: :national_clearing_system_number
 
-          # The SWIFT Bank Identifier Code (BIC) of the bank.
+          # The Swift Bank Identifier Code (BIC) of the bank.
           BIC_CODE: :bic_code
 
           # An International Bank Account Number.

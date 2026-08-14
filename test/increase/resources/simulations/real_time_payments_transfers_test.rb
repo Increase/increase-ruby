@@ -29,6 +29,7 @@ class Increase::Test::Resources::Simulations::RealTimePaymentsTransfersTest < In
         debtor_name: String | nil,
         external_account_id: String | nil,
         idempotency_key: String | nil,
+        inbound_real_time_payments_request_for_payment_id: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
         routing_number: String,
