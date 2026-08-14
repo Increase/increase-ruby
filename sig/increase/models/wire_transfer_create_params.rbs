@@ -115,48 +115,71 @@ module Increase
 
         type address =
           {
-            unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+            structured: Increase::WireTransferCreateParams::Creditor::Address::Structured
           }
 
         class Address < Increase::Internal::Type::BaseModel
-          attr_reader unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured?
+          attr_reader structured: Increase::WireTransferCreateParams::Creditor::Address::Structured?
 
-          def unstructured=: (
-            Increase::WireTransferCreateParams::Creditor::Address::Unstructured
-          ) -> Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+          def structured=: (
+            Increase::WireTransferCreateParams::Creditor::Address::Structured
+          ) -> Increase::WireTransferCreateParams::Creditor::Address::Structured
 
           def initialize: (
-            ?unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+            ?structured: Increase::WireTransferCreateParams::Creditor::Address::Structured
           ) -> void
 
           def to_hash: -> {
-            unstructured: Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+            structured: Increase::WireTransferCreateParams::Creditor::Address::Structured
           }
 
-          type unstructured =
-            { :line1 => String, :line2 => String, :line3 => String }
+          type structured =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
 
-          class Unstructured < Increase::Internal::Type::BaseModel
-            attr_accessor line1: String
+          class Structured < Increase::Internal::Type::BaseModel
+            attr_accessor city: String
+
+            attr_accessor country: String
+
+            attr_reader line1: String?
+
+            def line1=: (String) -> String
 
             attr_reader line2: String?
 
             def line2=: (String) -> String
 
-            attr_reader line3: String?
+            attr_reader postal_code: String?
 
-            def line3=: (String) -> String
+            def postal_code=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
 
             def initialize: (
-              line1: String,
+              city: String,
+              country: String,
+              ?line1: String,
               ?line2: String,
-              ?line3: String
+              ?postal_code: String,
+              ?state: String
             ) -> void
 
             def to_hash: -> {
+              city: String,
+              country: String,
               :line1 => String,
               :line2 => String,
-              :line3 => String
+              postal_code: String,
+              state: String
             }
           end
         end
@@ -271,48 +294,71 @@ module Increase
 
         type address =
           {
-            unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+            structured: Increase::WireTransferCreateParams::Debtor::Address::Structured
           }
 
         class Address < Increase::Internal::Type::BaseModel
-          attr_reader unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured?
+          attr_reader structured: Increase::WireTransferCreateParams::Debtor::Address::Structured?
 
-          def unstructured=: (
-            Increase::WireTransferCreateParams::Debtor::Address::Unstructured
-          ) -> Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+          def structured=: (
+            Increase::WireTransferCreateParams::Debtor::Address::Structured
+          ) -> Increase::WireTransferCreateParams::Debtor::Address::Structured
 
           def initialize: (
-            ?unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+            ?structured: Increase::WireTransferCreateParams::Debtor::Address::Structured
           ) -> void
 
           def to_hash: -> {
-            unstructured: Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+            structured: Increase::WireTransferCreateParams::Debtor::Address::Structured
           }
 
-          type unstructured =
-            { :line1 => String, :line2 => String, :line3 => String }
+          type structured =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              postal_code: String,
+              state: String
+            }
 
-          class Unstructured < Increase::Internal::Type::BaseModel
-            attr_accessor line1: String
+          class Structured < Increase::Internal::Type::BaseModel
+            attr_accessor city: String
+
+            attr_accessor country: String
+
+            attr_reader line1: String?
+
+            def line1=: (String) -> String
 
             attr_reader line2: String?
 
             def line2=: (String) -> String
 
-            attr_reader line3: String?
+            attr_reader postal_code: String?
 
-            def line3=: (String) -> String
+            def postal_code=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
 
             def initialize: (
-              line1: String,
+              city: String,
+              country: String,
+              ?line1: String,
               ?line2: String,
-              ?line3: String
+              ?postal_code: String,
+              ?state: String
             ) -> void
 
             def to_hash: -> {
+              city: String,
+              country: String,
               :line1 => String,
               :line2 => String,
-              :line3 => String
+              postal_code: String,
+              state: String
             }
           end
         end
