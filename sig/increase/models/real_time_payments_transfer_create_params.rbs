@@ -9,6 +9,7 @@ module Increase
         account_number: String,
         debtor_name: String,
         external_account_id: String,
+        inbound_real_time_payments_request_for_payment_id: String,
         require_approval: bool,
         routing_number: String,
         ultimate_creditor_name: String,
@@ -40,6 +41,10 @@ module Increase
 
       def external_account_id=: (String) -> String
 
+      attr_reader inbound_real_time_payments_request_for_payment_id: String?
+
+      def inbound_real_time_payments_request_for_payment_id=: (String) -> String
+
       attr_reader require_approval: bool?
 
       def require_approval=: (bool) -> bool
@@ -64,6 +69,7 @@ module Increase
         ?account_number: String,
         ?debtor_name: String,
         ?external_account_id: String,
+        ?inbound_real_time_payments_request_for_payment_id: String,
         ?require_approval: bool,
         ?routing_number: String,
         ?ultimate_creditor_name: String,
@@ -79,6 +85,7 @@ module Increase
         account_number: String,
         debtor_name: String,
         external_account_id: String,
+        inbound_real_time_payments_request_for_payment_id: String,
         require_approval: bool,
         routing_number: String,
         ultimate_creditor_name: String,

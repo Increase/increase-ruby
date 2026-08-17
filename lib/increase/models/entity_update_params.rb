@@ -848,13 +848,27 @@ module Increase
         #   @return [Increase::Models::EntityUpdateParams::Trust::Address, nil]
         optional :address, -> { Increase::EntityUpdateParams::Trust::Address }
 
+        # @!attribute grantor
+        #   The grantor of the trust. If you specify this parameter, the trust's existing
+        #   grantor will be archived and replaced with the grantor you provide.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::Trust::Grantor, nil]
+        optional :grantor, -> { Increase::EntityUpdateParams::Trust::Grantor }
+
         # @!attribute name
         #   The legal name of the trust.
         #
         #   @return [String, nil]
         optional :name, String
 
-        # @!method initialize(address: nil, name: nil)
+        # @!attribute trustees
+        #   The trustees of the trust. If you specify this parameter, the trust's existing
+        #   trustees will be archived and replaced with the trustees you provide.
+        #
+        #   @return [Array<Increase::Models::EntityUpdateParams::Trust::Trustee>, nil]
+        optional :trustees, -> { Increase::Internal::Type::ArrayOf[Increase::EntityUpdateParams::Trust::Trustee] }
+
+        # @!method initialize(address: nil, grantor: nil, name: nil, trustees: nil)
         #   Details of the trust entity to update. If you specify this parameter and the
         #   entity is not a trust, the request will fail.
         #
@@ -862,7 +876,15 @@ module Increase
         #     The entity's physical address. Mail receiving locations like PO Boxes and PMB's
         #     are disallowed.
         #
+        #   @param grantor [Increase::Models::EntityUpdateParams::Trust::Grantor]
+        #     The grantor of the trust. If you specify this parameter, the trust's existing
+        #     grantor will be archived and replaced with the grantor you provide.
+        #
         #   @param name [String] The legal name of the trust.
+        #
+        #   @param trustees [Array<Increase::Models::EntityUpdateParams::Trust::Trustee>]
+        #     The trustees of the trust. If you specify this parameter, the trust's existing
+        #     trustees will be archived and replaced with the trustees you provide.
 
         # @see Increase::Models::EntityUpdateParams::Trust#address
         class Address < Increase::Internal::Type::BaseModel
@@ -912,6 +934,737 @@ module Increase
           #   @param zip [String] The ZIP code of the address.
           #
           #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        end
+
+        # @see Increase::Models::EntityUpdateParams::Trust#grantor
+        class Grantor < Increase::Internal::Type::BaseModel
+          # @!attribute address
+          #   The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+          #   are disallowed.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::Trust::Grantor::Address]
+          required :address, -> { Increase::EntityUpdateParams::Trust::Grantor::Address }
+
+          # @!attribute date_of_birth
+          #   The grantor's date of birth in YYYY-MM-DD format.
+          #
+          #   @return [Date]
+          required :date_of_birth, Date
+
+          # @!attribute identification
+          #   A means of verifying the person's identity.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification]
+          required :identification, -> { Increase::EntityUpdateParams::Trust::Grantor::Identification }
+
+          # @!attribute name
+          #   The grantor's legal name.
+          #
+          #   @return [String]
+          required :name, String
+
+          # @!attribute confirmed_no_us_tax_id
+          #   The identification method for an individual can only be a passport, driver's
+          #   license, or other document if you've confirmed the individual does not have a US
+          #   tax id (either a Social Security Number or Individual Taxpayer Identification
+          #   Number).
+          #
+          #   @return [Boolean, nil]
+          optional :confirmed_no_us_tax_id, Increase::Internal::Type::Boolean
+
+          # @!method initialize(address:, date_of_birth:, identification:, name:, confirmed_no_us_tax_id: nil)
+          #   The grantor of the trust. If you specify this parameter, the trust's existing
+          #   grantor will be archived and replaced with the grantor you provide.
+          #
+          #   @param address [Increase::Models::EntityUpdateParams::Trust::Grantor::Address]
+          #     The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+          #     are disallowed.
+          #
+          #   @param date_of_birth [Date] The grantor's date of birth in YYYY-MM-DD format.
+          #
+          #   @param identification [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification]
+          #     A means of verifying the person's identity.
+          #
+          #   @param name [String] The grantor's legal name.
+          #
+          #   @param confirmed_no_us_tax_id [Boolean]
+          #     The identification method for an individual can only be a passport, driver's
+          #     license, or other document if you've confirmed the individual does not have a US
+          #     tax id (either a Social Security Number or Individual Taxpayer Identification
+          #     Number).
+
+          # @see Increase::Models::EntityUpdateParams::Trust::Grantor#address
+          class Address < Increase::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city, district, town, or village of the address.
+            #
+            #   @return [String]
+            required :city, String
+
+            # @!attribute country
+            #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #   Defaults to `US`.
+            #
+            #   @return [String]
+            required :country, String
+
+            # @!attribute line1
+            #   The first line of the address. This is usually the street number and street.
+            #
+            #   @return [String]
+            required :line1, String
+
+            # @!attribute line2
+            #   The second line of the address. This might be the floor or room number.
+            #
+            #   @return [String, nil]
+            optional :line2, String
+
+            # @!attribute state
+            #   The two-letter United States Postal Service (USPS) abbreviation for the US
+            #   state, province, or region of the address. Required in certain countries.
+            #
+            #   @return [String, nil]
+            optional :state, String
+
+            # @!attribute zip
+            #   The ZIP or postal code of the address. Required in certain countries.
+            #
+            #   @return [String, nil]
+            optional :zip, String
+
+            # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
+            #   The grantor's physical address. Mail receiving locations like PO Boxes and PMB's
+            #   are disallowed.
+            #
+            #   @param city [String] The city, district, town, or village of the address.
+            #
+            #   @param country [String]
+            #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #     Defaults to `US`.
+            #
+            #   @param line1 [String] The first line of the address. This is usually the street number and street.
+            #
+            #   @param line2 [String] The second line of the address. This might be the floor or room number.
+            #
+            #   @param state [String]
+            #     The two-letter United States Postal Service (USPS) abbreviation for the US
+            #     state, province, or region of the address. Required in certain countries.
+            #
+            #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
+          end
+
+          # @see Increase::Models::EntityUpdateParams::Trust::Grantor#identification
+          class Identification < Increase::Internal::Type::BaseModel
+            # @!attribute method_
+            #   A method that can be used to verify the individual's identity.
+            #
+            #   Defaults to `social_security_number`.
+            #
+            #   @return [Symbol, Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::Method]
+            required :method_,
+                     enum: -> { Increase::EntityUpdateParams::Trust::Grantor::Identification::Method },
+                     api_name: :method
+
+            # @!attribute number
+            #   An identification number that can be used to verify the individual's identity,
+            #   such as a social security number. For Social Security Numbers and Individual
+            #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            #   separators. When testing in sandbox, use one of our
+            #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #
+            #   @return [String]
+            required :number, String
+
+            # @!attribute drivers_license
+            #   Information about the United States driver's license used for identification.
+            #   Required if `method` is equal to `drivers_license`.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense, nil]
+            optional :drivers_license,
+                     -> { Increase::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense }
+
+            # @!attribute other
+            #   Information about the identification document provided. Required if `method` is
+            #   equal to `other`.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::Other, nil]
+            optional :other, -> { Increase::EntityUpdateParams::Trust::Grantor::Identification::Other }
+
+            # @!attribute passport
+            #   Information about the passport used for identification. Required if `method` is
+            #   equal to `passport`.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::Passport, nil]
+            optional :passport, -> { Increase::EntityUpdateParams::Trust::Grantor::Identification::Passport }
+
+            # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
+            #   A means of verifying the person's identity.
+            #
+            #   @param method_ [Symbol, Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::Method]
+            #     A method that can be used to verify the individual's identity.
+            #
+            #     Defaults to `social_security_number`.
+            #
+            #   @param number [String]
+            #     An identification number that can be used to verify the individual's identity,
+            #     such as a social security number. For Social Security Numbers and Individual
+            #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            #     separators. When testing in sandbox, use one of our
+            #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #
+            #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense]
+            #     Information about the United States driver's license used for identification.
+            #     Required if `method` is equal to `drivers_license`.
+            #
+            #   @param other [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::Other]
+            #     Information about the identification document provided. Required if `method` is
+            #     equal to `other`.
+            #
+            #   @param passport [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::Passport]
+            #     Information about the passport used for identification. Required if `method` is
+            #     equal to `passport`.
+
+            # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
+            #
+            # @see Increase::Models::EntityUpdateParams::Trust::Grantor::Identification#method_
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER = :social_security_number
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
+
+              # A passport number.
+              PASSPORT = :passport
+
+              # A driver's license number.
+              DRIVERS_LICENSE = :drivers_license
+
+              # Another identifying document.
+              OTHER = :other
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::EntityUpdateParams::Trust::Grantor::Identification#drivers_license
+            class DriversLicense < Increase::Internal::Type::BaseModel
+              # @!attribute expiration_date
+              #   The driver's license's expiration date in YYYY-MM-DD format.
+              #
+              #   @return [Date]
+              required :expiration_date, Date
+
+              # @!attribute file_id
+              #   The identifier of the File containing the front of the driver's license.
+              #
+              #   @return [String]
+              required :file_id, String
+
+              # @!attribute state
+              #   The state that issued the provided driver's license.
+              #
+              #   @return [String]
+              required :state, String
+
+              # @!attribute back_file_id
+              #   The identifier of the File containing the back of the driver's license.
+              #
+              #   @return [String, nil]
+              optional :back_file_id, String
+
+              # @!method initialize(expiration_date:, file_id:, state:, back_file_id: nil)
+              #   Information about the United States driver's license used for identification.
+              #   Required if `method` is equal to `drivers_license`.
+              #
+              #   @param expiration_date [Date] The driver's license's expiration date in YYYY-MM-DD format.
+              #
+              #   @param file_id [String] The identifier of the File containing the front of the driver's license.
+              #
+              #   @param state [String] The state that issued the provided driver's license.
+              #
+              #   @param back_file_id [String] The identifier of the File containing the back of the driver's license.
+            end
+
+            # @see Increase::Models::EntityUpdateParams::Trust::Grantor::Identification#other
+            class Other < Increase::Internal::Type::BaseModel
+              # @!attribute country
+              #   The two-character ISO 3166-1 code representing the country that issued the
+              #   document (e.g., `US`).
+              #
+              #   @return [String]
+              required :country, String
+
+              # @!attribute description
+              #   A description of the document submitted.
+              #
+              #   @return [String]
+              required :description, String
+
+              # @!attribute file_id
+              #   The identifier of the File containing the front of the document.
+              #
+              #   @return [String]
+              required :file_id, String
+
+              # @!attribute back_file_id
+              #   The identifier of the File containing the back of the document. Not every
+              #   document has a reverse side.
+              #
+              #   @return [String, nil]
+              optional :back_file_id, String
+
+              # @!attribute expiration_date
+              #   The document's expiration date in YYYY-MM-DD format.
+              #
+              #   @return [Date, nil]
+              optional :expiration_date, Date
+
+              # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
+              #   Information about the identification document provided. Required if `method` is
+              #   equal to `other`.
+              #
+              #   @param country [String]
+              #     The two-character ISO 3166-1 code representing the country that issued the
+              #     document (e.g., `US`).
+              #
+              #   @param description [String] A description of the document submitted.
+              #
+              #   @param file_id [String] The identifier of the File containing the front of the document.
+              #
+              #   @param back_file_id [String]
+              #     The identifier of the File containing the back of the document. Not every
+              #     document has a reverse side.
+              #
+              #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
+            end
+
+            # @see Increase::Models::EntityUpdateParams::Trust::Grantor::Identification#passport
+            class Passport < Increase::Internal::Type::BaseModel
+              # @!attribute country
+              #   The two-character ISO 3166-1 code representing the country that issued the
+              #   document (e.g., `US`).
+              #
+              #   @return [String]
+              required :country, String
+
+              # @!attribute expiration_date
+              #   The passport's expiration date in YYYY-MM-DD format.
+              #
+              #   @return [Date]
+              required :expiration_date, Date
+
+              # @!attribute file_id
+              #   The identifier of the File containing the passport.
+              #
+              #   @return [String]
+              required :file_id, String
+
+              # @!method initialize(country:, expiration_date:, file_id:)
+              #   Information about the passport used for identification. Required if `method` is
+              #   equal to `passport`.
+              #
+              #   @param country [String]
+              #     The two-character ISO 3166-1 code representing the country that issued the
+              #     document (e.g., `US`).
+              #
+              #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
+              #
+              #   @param file_id [String] The identifier of the File containing the passport.
+            end
+          end
+        end
+
+        class Trustee < Increase::Internal::Type::BaseModel
+          # @!attribute structure
+          #   The structure of the trustee.
+          #
+          #   @return [Symbol, Increase::Models::EntityUpdateParams::Trust::Trustee::Structure]
+          required :structure, enum: -> { Increase::EntityUpdateParams::Trust::Trustee::Structure }
+
+          # @!attribute individual
+          #   Details of the individual trustee. Within the trustee object, this is required
+          #   if `structure` is equal to `individual`.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual, nil]
+          optional :individual, -> { Increase::EntityUpdateParams::Trust::Trustee::Individual }
+
+          # @!method initialize(structure:, individual: nil)
+          #   @param structure [Symbol, Increase::Models::EntityUpdateParams::Trust::Trustee::Structure]
+          #     The structure of the trustee.
+          #
+          #   @param individual [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual]
+          #     Details of the individual trustee. Within the trustee object, this is required
+          #     if `structure` is equal to `individual`.
+
+          # The structure of the trustee.
+          #
+          # @see Increase::Models::EntityUpdateParams::Trust::Trustee#structure
+          module Structure
+            extend Increase::Internal::Type::Enum
+
+            # The trustee is an individual.
+            INDIVIDUAL = :individual
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
+
+          # @see Increase::Models::EntityUpdateParams::Trust::Trustee#individual
+          class Individual < Increase::Internal::Type::BaseModel
+            # @!attribute address
+            #   The individual's physical address. Mail receiving locations like PO Boxes and
+            #   PMB's are disallowed.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Address]
+            required :address, -> { Increase::EntityUpdateParams::Trust::Trustee::Individual::Address }
+
+            # @!attribute date_of_birth
+            #   The person's date of birth in YYYY-MM-DD format.
+            #
+            #   @return [Date]
+            required :date_of_birth, Date
+
+            # @!attribute identification
+            #   A means of verifying the person's identity.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification]
+            required :identification, -> { Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification }
+
+            # @!attribute name
+            #   The person's legal name.
+            #
+            #   @return [String]
+            required :name, String
+
+            # @!attribute confirmed_no_us_tax_id
+            #   The identification method for an individual can only be a passport, driver's
+            #   license, or other document if you've confirmed the individual does not have a US
+            #   tax id (either a Social Security Number or Individual Taxpayer Identification
+            #   Number).
+            #
+            #   @return [Boolean, nil]
+            optional :confirmed_no_us_tax_id, Increase::Internal::Type::Boolean
+
+            # @!method initialize(address:, date_of_birth:, identification:, name:, confirmed_no_us_tax_id: nil)
+            #   Details of the individual trustee. Within the trustee object, this is required
+            #   if `structure` is equal to `individual`.
+            #
+            #   @param address [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Address]
+            #     The individual's physical address. Mail receiving locations like PO Boxes and
+            #     PMB's are disallowed.
+            #
+            #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
+            #
+            #   @param identification [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification]
+            #     A means of verifying the person's identity.
+            #
+            #   @param name [String] The person's legal name.
+            #
+            #   @param confirmed_no_us_tax_id [Boolean]
+            #     The identification method for an individual can only be a passport, driver's
+            #     license, or other document if you've confirmed the individual does not have a US
+            #     tax id (either a Social Security Number or Individual Taxpayer Identification
+            #     Number).
+
+            # @see Increase::Models::EntityUpdateParams::Trust::Trustee::Individual#address
+            class Address < Increase::Internal::Type::BaseModel
+              # @!attribute city
+              #   The city, district, town, or village of the address.
+              #
+              #   @return [String]
+              required :city, String
+
+              # @!attribute country
+              #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #
+              #   Defaults to `US`.
+              #
+              #   @return [String]
+              required :country, String
+
+              # @!attribute line1
+              #   The first line of the address. This is usually the street number and street.
+              #
+              #   @return [String]
+              required :line1, String
+
+              # @!attribute line2
+              #   The second line of the address. This might be the floor or room number.
+              #
+              #   @return [String, nil]
+              optional :line2, String
+
+              # @!attribute state
+              #   The two-letter United States Postal Service (USPS) abbreviation for the US
+              #   state, province, or region of the address. Required in certain countries.
+              #
+              #   @return [String, nil]
+              optional :state, String
+
+              # @!attribute zip
+              #   The ZIP or postal code of the address. Required in certain countries.
+              #
+              #   @return [String, nil]
+              optional :zip, String
+
+              # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
+              #   The individual's physical address. Mail receiving locations like PO Boxes and
+              #   PMB's are disallowed.
+              #
+              #   @param city [String] The city, district, town, or village of the address.
+              #
+              #   @param country [String]
+              #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #
+              #     Defaults to `US`.
+              #
+              #   @param line1 [String] The first line of the address. This is usually the street number and street.
+              #
+              #   @param line2 [String] The second line of the address. This might be the floor or room number.
+              #
+              #   @param state [String]
+              #     The two-letter United States Postal Service (USPS) abbreviation for the US
+              #     state, province, or region of the address. Required in certain countries.
+              #
+              #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
+            end
+
+            # @see Increase::Models::EntityUpdateParams::Trust::Trustee::Individual#identification
+            class Identification < Increase::Internal::Type::BaseModel
+              # @!attribute method_
+              #   A method that can be used to verify the individual's identity.
+              #
+              #   Defaults to `social_security_number`.
+              #
+              #   @return [Symbol, Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::Method]
+              required :method_,
+                       enum: -> {
+                         Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Method
+                       },
+                       api_name: :method
+
+              # @!attribute number
+              #   An identification number that can be used to verify the individual's identity,
+              #   such as a social security number. For Social Security Numbers and Individual
+              #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              #   separators. When testing in sandbox, use one of our
+              #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #
+              #   @return [String]
+              required :number, String
+
+              # @!attribute drivers_license
+              #   Information about the United States driver's license used for identification.
+              #   Required if `method` is equal to `drivers_license`.
+              #
+              #   @return [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense, nil]
+              optional :drivers_license,
+                       -> { Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense }
+
+              # @!attribute other
+              #   Information about the identification document provided. Required if `method` is
+              #   equal to `other`.
+              #
+              #   @return [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other, nil]
+              optional :other, -> { Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other }
+
+              # @!attribute passport
+              #   Information about the passport used for identification. Required if `method` is
+              #   equal to `passport`.
+              #
+              #   @return [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport, nil]
+              optional :passport,
+                       -> { Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport }
+
+              # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
+              #   A means of verifying the person's identity.
+              #
+              #   @param method_ [Symbol, Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::Method]
+              #     A method that can be used to verify the individual's identity.
+              #
+              #     Defaults to `social_security_number`.
+              #
+              #   @param number [String]
+              #     An identification number that can be used to verify the individual's identity,
+              #     such as a social security number. For Social Security Numbers and Individual
+              #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              #     separators. When testing in sandbox, use one of our
+              #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #
+              #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense]
+              #     Information about the United States driver's license used for identification.
+              #     Required if `method` is equal to `drivers_license`.
+              #
+              #   @param other [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other]
+              #     Information about the identification document provided. Required if `method` is
+              #     equal to `other`.
+              #
+              #   @param passport [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport]
+              #     Information about the passport used for identification. Required if `method` is
+              #     equal to `passport`.
+
+              # A method that can be used to verify the individual's identity.
+              #
+              # Defaults to `social_security_number`.
+              #
+              # @see Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification#method_
+              module Method
+                extend Increase::Internal::Type::Enum
+
+                # A social security number.
+                SOCIAL_SECURITY_NUMBER = :social_security_number
+
+                # An individual taxpayer identification number (ITIN).
+                INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
+
+                # A passport number.
+                PASSPORT = :passport
+
+                # A driver's license number.
+                DRIVERS_LICENSE = :drivers_license
+
+                # Another identifying document.
+                OTHER = :other
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # @see Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification#drivers_license
+              class DriversLicense < Increase::Internal::Type::BaseModel
+                # @!attribute expiration_date
+                #   The driver's license's expiration date in YYYY-MM-DD format.
+                #
+                #   @return [Date]
+                required :expiration_date, Date
+
+                # @!attribute file_id
+                #   The identifier of the File containing the front of the driver's license.
+                #
+                #   @return [String]
+                required :file_id, String
+
+                # @!attribute state
+                #   The state that issued the provided driver's license.
+                #
+                #   @return [String]
+                required :state, String
+
+                # @!attribute back_file_id
+                #   The identifier of the File containing the back of the driver's license.
+                #
+                #   @return [String, nil]
+                optional :back_file_id, String
+
+                # @!method initialize(expiration_date:, file_id:, state:, back_file_id: nil)
+                #   Information about the United States driver's license used for identification.
+                #   Required if `method` is equal to `drivers_license`.
+                #
+                #   @param expiration_date [Date] The driver's license's expiration date in YYYY-MM-DD format.
+                #
+                #   @param file_id [String] The identifier of the File containing the front of the driver's license.
+                #
+                #   @param state [String] The state that issued the provided driver's license.
+                #
+                #   @param back_file_id [String] The identifier of the File containing the back of the driver's license.
+              end
+
+              # @see Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification#other
+              class Other < Increase::Internal::Type::BaseModel
+                # @!attribute country
+                #   The two-character ISO 3166-1 code representing the country that issued the
+                #   document (e.g., `US`).
+                #
+                #   @return [String]
+                required :country, String
+
+                # @!attribute description
+                #   A description of the document submitted.
+                #
+                #   @return [String]
+                required :description, String
+
+                # @!attribute file_id
+                #   The identifier of the File containing the front of the document.
+                #
+                #   @return [String]
+                required :file_id, String
+
+                # @!attribute back_file_id
+                #   The identifier of the File containing the back of the document. Not every
+                #   document has a reverse side.
+                #
+                #   @return [String, nil]
+                optional :back_file_id, String
+
+                # @!attribute expiration_date
+                #   The document's expiration date in YYYY-MM-DD format.
+                #
+                #   @return [Date, nil]
+                optional :expiration_date, Date
+
+                # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
+                #   Information about the identification document provided. Required if `method` is
+                #   equal to `other`.
+                #
+                #   @param country [String]
+                #     The two-character ISO 3166-1 code representing the country that issued the
+                #     document (e.g., `US`).
+                #
+                #   @param description [String] A description of the document submitted.
+                #
+                #   @param file_id [String] The identifier of the File containing the front of the document.
+                #
+                #   @param back_file_id [String]
+                #     The identifier of the File containing the back of the document. Not every
+                #     document has a reverse side.
+                #
+                #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
+              end
+
+              # @see Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification#passport
+              class Passport < Increase::Internal::Type::BaseModel
+                # @!attribute country
+                #   The two-character ISO 3166-1 code representing the country that issued the
+                #   document (e.g., `US`).
+                #
+                #   @return [String]
+                required :country, String
+
+                # @!attribute expiration_date
+                #   The passport's expiration date in YYYY-MM-DD format.
+                #
+                #   @return [Date]
+                required :expiration_date, Date
+
+                # @!attribute file_id
+                #   The identifier of the File containing the passport.
+                #
+                #   @return [String]
+                required :file_id, String
+
+                # @!method initialize(country:, expiration_date:, file_id:)
+                #   Information about the passport used for identification. Required if `method` is
+                #   equal to `passport`.
+                #
+                #   @param country [String]
+                #     The two-character ISO 3166-1 code representing the country that issued the
+                #     document (e.g., `US`).
+                #
+                #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
+                #
+                #   @param file_id [String] The identifier of the File containing the passport.
+              end
+            end
+          end
         end
       end
     end

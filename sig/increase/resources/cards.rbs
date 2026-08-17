@@ -5,6 +5,7 @@ module Increase
         account_id: String,
         ?authorization_controls: Increase::CardCreateParams::AuthorizationControls,
         ?billing_address: Increase::CardCreateParams::BillingAddress,
+        ?cardholder_name: Increase::CardCreateParams::CardholderName,
         ?description: String,
         ?digital_wallet: Increase::CardCreateParams::DigitalWallet,
         ?entity_id: String,

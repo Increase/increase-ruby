@@ -92,6 +92,13 @@ module Increase
           optional :receive_merchant_prearbitration,
                    -> { Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration }
 
+          # @!attribute reject
+          #   The parameters for rejecting the dispute. Required if and only if `action` is
+          #   `reject`.
+          #
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::Reject, nil]
+          optional :reject, -> { Increase::Simulations::CardDisputeActionParams::Visa::Reject }
+
           # @!attribute represent
           #   The parameters for re-presenting the dispute. Required if and only if `action`
           #   is `represent`.
@@ -139,7 +146,7 @@ module Increase
           optional :time_out_user_prearbitration,
                    -> { Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration }
 
-          # @!method initialize(action:, accept_chargeback: nil, accept_user_submission: nil, decline_user_prearbitration: nil, receive_merchant_prearbitration: nil, represent: nil, request_further_information: nil, time_out_chargeback: nil, time_out_merchant_prearbitration: nil, time_out_representment: nil, time_out_user_prearbitration: nil)
+          # @!method initialize(action:, accept_chargeback: nil, accept_user_submission: nil, decline_user_prearbitration: nil, receive_merchant_prearbitration: nil, reject: nil, represent: nil, request_further_information: nil, time_out_chargeback: nil, time_out_merchant_prearbitration: nil, time_out_representment: nil, time_out_user_prearbitration: nil)
           #   The Visa-specific parameters for the taking action on the dispute. Required if
           #   and only if `network` is `visa`.
           #
@@ -162,6 +169,10 @@ module Increase
           #   @param receive_merchant_prearbitration [Increase::Models::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration]
           #     The parameters for receiving the prearbitration. Required if and only if
           #     `action` is `receive_merchant_prearbitration`.
+          #
+          #   @param reject [Increase::Models::Simulations::CardDisputeActionParams::Visa::Reject]
+          #     The parameters for rejecting the dispute. Required if and only if `action` is
+          #     `reject`.
           #
           #   @param represent [Increase::Models::Simulations::CardDisputeActionParams::Visa::Represent]
           #     The parameters for re-presenting the dispute. Required if and only if `action`
@@ -205,6 +216,9 @@ module Increase
 
             # Simulate the merchant issuing pre-arbitration. This will move the dispute to a `user_submission_required` state.
             RECEIVE_MERCHANT_PREARBITRATION = :receive_merchant_prearbitration
+
+            # Simulate the dispute being rejected before it is submitted to the network. This will move the dispute to a `rejected` state.
+            REJECT = :reject
 
             # Simulate the merchant re-presenting the dispute. This will move the dispute to a `user_submission_required` state.
             REPRESENT = :represent
@@ -254,6 +268,21 @@ module Increase
             # @!method initialize
             #   The parameters for receiving the prearbitration. Required if and only if
             #   `action` is `receive_merchant_prearbitration`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#reject
+          class Reject < Increase::Internal::Type::BaseModel
+            # @!attribute explanation
+            #   The explanation for rejecting the dispute.
+            #
+            #   @return [String]
+            required :explanation, String
+
+            # @!method initialize(explanation:)
+            #   The parameters for rejecting the dispute. Required if and only if `action` is
+            #   `reject`.
+            #
+            #   @param explanation [String] The explanation for rejecting the dispute.
           end
 
           # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#represent

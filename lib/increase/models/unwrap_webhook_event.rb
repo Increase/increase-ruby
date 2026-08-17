@@ -303,6 +303,9 @@ module Increase
         # Occurs whenever a Loan Distribution is created.
         LOAN_DISTRIBUTION_CREATED = :"loan_distribution.created"
 
+        # Occurs whenever a Loan Obligation is created.
+        LOAN_OBLIGATION_CREATED = :"loan_obligation.created"
+
         # Occurs whenever a Loan Offer is created.
         LOAN_OFFER_CREATED = :"loan_offer.created"
 
@@ -317,6 +320,12 @@ module Increase
 
         # Occurs whenever a Lockbox is updated.
         LOCKBOX_UPDATED = :"lockbox.updated"
+
+        # Occurs whenever a Lockbox Address is created.
+        LOCKBOX_ADDRESS_CREATED = :"lockbox_address.created"
+
+        # Occurs whenever a Lockbox Address is updated.
+        LOCKBOX_ADDRESS_UPDATED = :"lockbox_address.updated"
 
         # Occurs whenever an OAuth Connection is created.
         OAUTH_CONNECTION_CREATED = :"oauth_connection.created"

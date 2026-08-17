@@ -79,7 +79,7 @@ module Increase
       optional :individual_id, String
 
       # @!attribute individual_name
-      #   The name of therecipient. This value is informational and not verified by the
+      #   The name of the recipient. This value is informational and not verified by the
       #   recipient's bank.
       #
       #   @return [String, nil]
@@ -127,7 +127,7 @@ module Increase
       #   @param individual_id [String] Your identifier for the recipient.
       #
       #   @param individual_name [String]
-      #     The name of therecipient. This value is informational and not verified by the
+      #     The name of the recipient. This value is informational and not verified by the
       #     recipient's bank.
       #
       #   @param standard_entry_class_code [Symbol, Increase::Models::ACHPrenotificationCreateParams::StandardEntryClassCode]

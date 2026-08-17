@@ -20,7 +20,6 @@ module Increase
         ?require_approval: bool,
         ?routing_number: String,
         ?standard_entry_class_code: Increase::Models::ACHTransferCreateParams::standard_entry_class_code,
-        ?transaction_timing: Increase::Models::ACHTransferCreateParams::transaction_timing,
         ?request_options: Increase::request_opts
       ) -> Increase::ACHTransfer
 

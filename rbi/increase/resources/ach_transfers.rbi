@@ -27,8 +27,6 @@ module Increase
           routing_number: String,
           standard_entry_class_code:
             Increase::ACHTransferCreateParams::StandardEntryClassCode::OrSymbol,
-          transaction_timing:
-            Increase::ACHTransferCreateParams::TransactionTiming::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::ACHTransfer)
       end
@@ -103,8 +101,6 @@ module Increase
         # to use for the transfer. If not provided, the default is
         # `corporate_credit_or_debit`.
         standard_entry_class_code: nil,
-        # The timing of the transaction.
-        transaction_timing: nil,
         request_options: {}
       )
       end

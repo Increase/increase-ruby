@@ -19,8 +19,7 @@ module Increase
         preferred_effective_date: Increase::ACHTransferCreateParams::PreferredEffectiveDate,
         require_approval: bool,
         routing_number: String,
-        standard_entry_class_code: Increase::Models::ACHTransferCreateParams::standard_entry_class_code,
-        transaction_timing: Increase::Models::ACHTransferCreateParams::transaction_timing
+        standard_entry_class_code: Increase::Models::ACHTransferCreateParams::standard_entry_class_code
       }
       & Increase::Internal::Type::request_parameters
 
@@ -104,12 +103,6 @@ module Increase
         Increase::Models::ACHTransferCreateParams::standard_entry_class_code
       ) -> Increase::Models::ACHTransferCreateParams::standard_entry_class_code
 
-      attr_reader transaction_timing: Increase::Models::ACHTransferCreateParams::transaction_timing?
-
-      def transaction_timing=: (
-        Increase::Models::ACHTransferCreateParams::transaction_timing
-      ) -> Increase::Models::ACHTransferCreateParams::transaction_timing
-
       def initialize: (
         account_id: String,
         amount: Integer,
@@ -129,7 +122,6 @@ module Increase
         ?require_approval: bool,
         ?routing_number: String,
         ?standard_entry_class_code: Increase::Models::ACHTransferCreateParams::standard_entry_class_code,
-        ?transaction_timing: Increase::Models::ACHTransferCreateParams::transaction_timing,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -152,7 +144,6 @@ module Increase
         require_approval: bool,
         routing_number: String,
         standard_entry_class_code: Increase::Models::ACHTransferCreateParams::standard_entry_class_code,
-        transaction_timing: Increase::Models::ACHTransferCreateParams::transaction_timing,
         request_options: Increase::RequestOptions
       }
 
@@ -365,20 +356,6 @@ module Increase
         INTERNET_INITIATED: :internet_initiated
 
         def self?.values: -> ::Array[Increase::Models::ACHTransferCreateParams::standard_entry_class_code]
-      end
-
-      type transaction_timing = :synchronous | :asynchronous
-
-      module TransactionTiming
-        extend Increase::Internal::Type::Enum
-
-        # A Transaction will be created immediately.
-        SYNCHRONOUS: :synchronous
-
-        # A Transaction will be created when the funds settle at the Federal Reserve.
-        ASYNCHRONOUS: :asynchronous
-
-        def self?.values: -> ::Array[Increase::Models::ACHTransferCreateParams::transaction_timing]
       end
     end
   end
