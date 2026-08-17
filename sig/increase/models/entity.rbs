@@ -900,24 +900,24 @@ module Increase
       end
 
       type terms_agreement =
-        { agreed_at: Time, ip_address: String, terms_url: String }
+        { agreed_at: Time, ip_address: String?, terms_url: String }
 
       class TermsAgreement < Increase::Internal::Type::BaseModel
         attr_accessor agreed_at: Time
 
-        attr_accessor ip_address: String
+        attr_accessor ip_address: String?
 
         attr_accessor terms_url: String
 
         def initialize: (
           agreed_at: Time,
-          ip_address: String,
+          ip_address: String?,
           terms_url: String
         ) -> void
 
         def to_hash: -> {
           agreed_at: Time,
-          ip_address: String,
+          ip_address: String?,
           terms_url: String
         }
       end
@@ -1393,6 +1393,7 @@ module Increase
             beneficial_owner_identity: Increase::Entity::Validation::Issue::BeneficialOwnerIdentity?,
             category: Increase::Models::Entity::Validation::Issue::category,
             entity_address: Increase::Entity::Validation::Issue::EntityAddress?,
+            entity_identity: Increase::Entity::Validation::Issue::EntityIdentity?,
             entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
           }
 
@@ -1405,6 +1406,8 @@ module Increase
 
           attr_accessor entity_address: Increase::Entity::Validation::Issue::EntityAddress?
 
+          attr_accessor entity_identity: Increase::Entity::Validation::Issue::EntityIdentity?
+
           attr_accessor entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
 
           def initialize: (
@@ -1412,6 +1415,7 @@ module Increase
             beneficial_owner_identity: Increase::Entity::Validation::Issue::BeneficialOwnerIdentity?,
             category: Increase::Models::Entity::Validation::Issue::category,
             entity_address: Increase::Entity::Validation::Issue::EntityAddress?,
+            entity_identity: Increase::Entity::Validation::Issue::EntityIdentity?,
             entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
           ) -> void
 
@@ -1420,6 +1424,7 @@ module Increase
             beneficial_owner_identity: Increase::Entity::Validation::Issue::BeneficialOwnerIdentity?,
             category: Increase::Models::Entity::Validation::Issue::category,
             entity_address: Increase::Entity::Validation::Issue::EntityAddress?,
+            entity_identity: Increase::Entity::Validation::Issue::EntityIdentity?,
             entity_tax_identifier: Increase::Entity::Validation::Issue::EntityTaxIdentifier?
           }
 
@@ -1469,6 +1474,7 @@ module Increase
           type category =
             :entity_tax_identifier
             | :entity_address
+            | :entity_identity
             | :beneficial_owner_identity
             | :beneficial_owner_address
 
@@ -1480,6 +1486,9 @@ module Increase
 
             # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
             ENTITY_ADDRESS: :entity_address
+
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            ENTITY_IDENTITY: :entity_identity
 
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_IDENTITY: :beneficial_owner_identity
@@ -1516,6 +1525,14 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::Entity::Validation::Issue::EntityAddress::reason]
             end
+          end
+
+          type entity_identity = {  }
+
+          class EntityIdentity < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
           end
 
           type entity_tax_identifier = {  }

@@ -527,7 +527,7 @@ module Increase
 
         # @!attribute originating_depository_financial_institution_id
         #   An identifier for the originating bank. One of an International Bank Account
-        #   Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+        #   Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
         #   domestic identifier like a US Routing Number.
         #
         #   @return [String]
@@ -658,7 +658,7 @@ module Increase
 
         # @!attribute receiving_depository_financial_institution_id
         #   An identifier for the receiving bank. One of an International Bank Account
-        #   Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+        #   Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
         #   domestic identifier like a US Routing Number.
         #
         #   @return [String]
@@ -720,7 +720,7 @@ module Increase
         #
         #   @param originating_depository_financial_institution_id [String]
         #     An identifier for the originating bank. One of an International Bank Account
-        #     Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+        #     Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
         #     domestic identifier like a US Routing Number.
         #
         #   @param originating_depository_financial_institution_id_qualifier [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::OriginatingDepositoryFinancialInstitutionIDQualifier]
@@ -780,7 +780,7 @@ module Increase
         #
         #   @param receiving_depository_financial_institution_id [String]
         #     An identifier for the receiving bank. One of an International Bank Account
-        #     Number (IBAN) bank identifier, SWIFT Bank Identification Code (BIC), or a
+        #     Number (IBAN) bank identifier, Swift Bank Identification Code (BIC), or a
         #     domestic identifier like a US Routing Number.
         #
         #   @param receiving_depository_financial_institution_id_qualifier [Symbol, Increase::Models::InboundACHTransfer::InternationalAddenda::ReceivingDepositoryFinancialInstitutionIDQualifier]
@@ -909,7 +909,7 @@ module Increase
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER = :national_clearing_system_number
 
-          # The SWIFT Bank Identifier Code (BIC) of the bank.
+          # The Swift Bank Identifier Code (BIC) of the bank.
           BIC_CODE = :bic_code
 
           # An International Bank Account Number.
@@ -929,7 +929,7 @@ module Increase
           # A domestic clearing system number. In the US, for example, this is the American Banking Association (ABA) routing number.
           NATIONAL_CLEARING_SYSTEM_NUMBER = :national_clearing_system_number
 
-          # The SWIFT Bank Identifier Code (BIC) of the bank.
+          # The Swift Bank Identifier Code (BIC) of the bank.
           BIC_CODE = :bic_code
 
           # An International Bank Account Number.

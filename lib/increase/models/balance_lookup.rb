@@ -72,6 +72,42 @@ module Increase
         #   @return [Integer]
         required :due_balance, Integer
 
+        # @!attribute due_fees
+        #   The fees on the loan that are due and unpaid.
+        #
+        #   @return [Integer, nil]
+        required :due_fees, Integer, nil?: true
+
+        # @!attribute due_interest
+        #   The interest on the loan that is due and unpaid.
+        #
+        #   @return [Integer, nil]
+        required :due_interest, Integer, nil?: true
+
+        # @!attribute due_principal
+        #   The principal on the loan that is due and unpaid.
+        #
+        #   @return [Integer, nil]
+        required :due_principal, Integer, nil?: true
+
+        # @!attribute not_due_fees
+        #   The fees on the loan that are not yet due.
+        #
+        #   @return [Integer, nil]
+        required :not_due_fees, Integer, nil?: true
+
+        # @!attribute not_due_interest
+        #   The interest on the loan that is not yet due.
+        #
+        #   @return [Integer, nil]
+        required :not_due_interest, Integer, nil?: true
+
+        # @!attribute not_due_principal
+        #   The principal on the loan that is not yet due.
+        #
+        #   @return [Integer, nil]
+        required :not_due_principal, Integer, nil?: true
+
         # @!attribute past_due_balance
         #   The amount past due on the loan.
         #
@@ -84,7 +120,7 @@ module Increase
         #   @return [Increase::Models::BalanceLookup::Loan::Receivables, nil]
         required :receivables, -> { Increase::BalanceLookup::Loan::Receivables }, nil?: true
 
-        # @!method initialize(due_at:, due_balance:, past_due_balance:, receivables:)
+        # @!method initialize(due_at:, due_balance:, due_fees:, due_interest:, due_principal:, not_due_fees:, not_due_interest:, not_due_principal:, past_due_balance:, receivables:)
         #   The loan balances for the Account.
         #
         #   @param due_at [Time, nil]
@@ -92,6 +128,18 @@ module Increase
         #     payment is due.
         #
         #   @param due_balance [Integer] The total amount due on the loan.
+        #
+        #   @param due_fees [Integer, nil] The fees on the loan that are due and unpaid.
+        #
+        #   @param due_interest [Integer, nil] The interest on the loan that is due and unpaid.
+        #
+        #   @param due_principal [Integer, nil] The principal on the loan that is due and unpaid.
+        #
+        #   @param not_due_fees [Integer, nil] The fees on the loan that are not yet due.
+        #
+        #   @param not_due_interest [Integer, nil] The interest on the loan that is not yet due.
+        #
+        #   @param not_due_principal [Integer, nil] The principal on the loan that is not yet due.
         #
         #   @param past_due_balance [Integer] The amount past due on the loan.
         #

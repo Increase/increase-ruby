@@ -687,7 +687,12 @@ module Increase
       end
 
       type trust =
-        { address: Increase::EntityUpdateParams::Trust::Address, name: String }
+        {
+          address: Increase::EntityUpdateParams::Trust::Address,
+          grantor: Increase::EntityUpdateParams::Trust::Grantor,
+          name: String,
+          trustees: ::Array[Increase::EntityUpdateParams::Trust::Trustee]
+        }
 
       class Trust < Increase::Internal::Type::BaseModel
         attr_reader address: Increase::EntityUpdateParams::Trust::Address?
@@ -696,18 +701,34 @@ module Increase
           Increase::EntityUpdateParams::Trust::Address
         ) -> Increase::EntityUpdateParams::Trust::Address
 
+        attr_reader grantor: Increase::EntityUpdateParams::Trust::Grantor?
+
+        def grantor=: (
+          Increase::EntityUpdateParams::Trust::Grantor
+        ) -> Increase::EntityUpdateParams::Trust::Grantor
+
         attr_reader name: String?
 
         def name=: (String) -> String
 
+        attr_reader trustees: ::Array[Increase::EntityUpdateParams::Trust::Trustee]?
+
+        def trustees=: (
+          ::Array[Increase::EntityUpdateParams::Trust::Trustee]
+        ) -> ::Array[Increase::EntityUpdateParams::Trust::Trustee]
+
         def initialize: (
           ?address: Increase::EntityUpdateParams::Trust::Address,
-          ?name: String
+          ?grantor: Increase::EntityUpdateParams::Trust::Grantor,
+          ?name: String,
+          ?trustees: ::Array[Increase::EntityUpdateParams::Trust::Trustee]
         ) -> void
 
         def to_hash: -> {
           address: Increase::EntityUpdateParams::Trust::Address,
-          name: String
+          grantor: Increase::EntityUpdateParams::Trust::Grantor,
+          name: String,
+          trustees: ::Array[Increase::EntityUpdateParams::Trust::Trustee]
         }
 
         type address =
@@ -747,6 +768,567 @@ module Increase
             zip: String,
             :line2 => String
           }
+        end
+
+        type grantor =
+          {
+            address: Increase::EntityUpdateParams::Trust::Grantor::Address,
+            date_of_birth: Date,
+            identification: Increase::EntityUpdateParams::Trust::Grantor::Identification,
+            name: String,
+            confirmed_no_us_tax_id: bool
+          }
+
+        class Grantor < Increase::Internal::Type::BaseModel
+          attr_accessor address: Increase::EntityUpdateParams::Trust::Grantor::Address
+
+          attr_accessor date_of_birth: Date
+
+          attr_accessor identification: Increase::EntityUpdateParams::Trust::Grantor::Identification
+
+          attr_accessor name: String
+
+          attr_reader confirmed_no_us_tax_id: bool?
+
+          def confirmed_no_us_tax_id=: (bool) -> bool
+
+          def initialize: (
+            address: Increase::EntityUpdateParams::Trust::Grantor::Address,
+            date_of_birth: Date,
+            identification: Increase::EntityUpdateParams::Trust::Grantor::Identification,
+            name: String,
+            ?confirmed_no_us_tax_id: bool
+          ) -> void
+
+          def to_hash: -> {
+            address: Increase::EntityUpdateParams::Trust::Grantor::Address,
+            date_of_birth: Date,
+            identification: Increase::EntityUpdateParams::Trust::Grantor::Identification,
+            name: String,
+            confirmed_no_us_tax_id: bool
+          }
+
+          type address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              state: String,
+              zip: String
+            }
+
+          class Address < Increase::Internal::Type::BaseModel
+            attr_accessor city: String
+
+            attr_accessor country: String
+
+            attr_accessor line1: String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            attr_reader zip: String?
+
+            def zip=: (String) -> String
+
+            def initialize: (
+              city: String,
+              country: String,
+              line1: String,
+              ?line2: String,
+              ?state: String,
+              ?zip: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              state: String,
+              zip: String
+            }
+          end
+
+          type identification =
+            {
+              method_: Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::method_,
+              number: String,
+              drivers_license: Increase::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense,
+              other: Increase::EntityUpdateParams::Trust::Grantor::Identification::Other,
+              passport: Increase::EntityUpdateParams::Trust::Grantor::Identification::Passport
+            }
+
+          class Identification < Increase::Internal::Type::BaseModel
+            attr_accessor method_: Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::method_
+
+            attr_accessor number: String
+
+            attr_reader drivers_license: Increase::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense?
+
+            def drivers_license=: (
+              Increase::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense
+            ) -> Increase::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense
+
+            attr_reader other: Increase::EntityUpdateParams::Trust::Grantor::Identification::Other?
+
+            def other=: (
+              Increase::EntityUpdateParams::Trust::Grantor::Identification::Other
+            ) -> Increase::EntityUpdateParams::Trust::Grantor::Identification::Other
+
+            attr_reader passport: Increase::EntityUpdateParams::Trust::Grantor::Identification::Passport?
+
+            def passport=: (
+              Increase::EntityUpdateParams::Trust::Grantor::Identification::Passport
+            ) -> Increase::EntityUpdateParams::Trust::Grantor::Identification::Passport
+
+            def initialize: (
+              method_: Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::method_,
+              number: String,
+              ?drivers_license: Increase::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense,
+              ?other: Increase::EntityUpdateParams::Trust::Grantor::Identification::Other,
+              ?passport: Increase::EntityUpdateParams::Trust::Grantor::Identification::Passport
+            ) -> void
+
+            def to_hash: -> {
+              method_: Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::method_,
+              number: String,
+              drivers_license: Increase::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense,
+              other: Increase::EntityUpdateParams::Trust::Grantor::Identification::Other,
+              passport: Increase::EntityUpdateParams::Trust::Grantor::Identification::Passport
+            }
+
+            type method_ =
+              :social_security_number
+              | :individual_taxpayer_identification_number
+              | :passport
+              | :drivers_license
+              | :other
+
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER: :social_security_number
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER: :individual_taxpayer_identification_number
+
+              # A passport number.
+              PASSPORT: :passport
+
+              # A driver's license number.
+              DRIVERS_LICENSE: :drivers_license
+
+              # Another identifying document.
+              OTHER: :other
+
+              def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::method_]
+            end
+
+            type drivers_license =
+              {
+                expiration_date: Date,
+                file_id: String,
+                state: String,
+                back_file_id: String
+              }
+
+            class DriversLicense < Increase::Internal::Type::BaseModel
+              attr_accessor expiration_date: Date
+
+              attr_accessor file_id: String
+
+              attr_accessor state: String
+
+              attr_reader back_file_id: String?
+
+              def back_file_id=: (String) -> String
+
+              def initialize: (
+                expiration_date: Date,
+                file_id: String,
+                state: String,
+                ?back_file_id: String
+              ) -> void
+
+              def to_hash: -> {
+                expiration_date: Date,
+                file_id: String,
+                state: String,
+                back_file_id: String
+              }
+            end
+
+            type other =
+              {
+                country: String,
+                description: String,
+                file_id: String,
+                back_file_id: String,
+                expiration_date: Date
+              }
+
+            class Other < Increase::Internal::Type::BaseModel
+              attr_accessor country: String
+
+              attr_accessor description: String
+
+              attr_accessor file_id: String
+
+              attr_reader back_file_id: String?
+
+              def back_file_id=: (String) -> String
+
+              attr_reader expiration_date: Date?
+
+              def expiration_date=: (Date) -> Date
+
+              def initialize: (
+                country: String,
+                description: String,
+                file_id: String,
+                ?back_file_id: String,
+                ?expiration_date: Date
+              ) -> void
+
+              def to_hash: -> {
+                country: String,
+                description: String,
+                file_id: String,
+                back_file_id: String,
+                expiration_date: Date
+              }
+            end
+
+            type passport =
+              { country: String, expiration_date: Date, file_id: String }
+
+            class Passport < Increase::Internal::Type::BaseModel
+              attr_accessor country: String
+
+              attr_accessor expiration_date: Date
+
+              attr_accessor file_id: String
+
+              def initialize: (
+                country: String,
+                expiration_date: Date,
+                file_id: String
+              ) -> void
+
+              def to_hash: -> {
+                country: String,
+                expiration_date: Date,
+                file_id: String
+              }
+            end
+          end
+        end
+
+        type trustee =
+          {
+            structure: Increase::Models::EntityUpdateParams::Trust::Trustee::structure,
+            individual: Increase::EntityUpdateParams::Trust::Trustee::Individual
+          }
+
+        class Trustee < Increase::Internal::Type::BaseModel
+          attr_accessor structure: Increase::Models::EntityUpdateParams::Trust::Trustee::structure
+
+          attr_reader individual: Increase::EntityUpdateParams::Trust::Trustee::Individual?
+
+          def individual=: (
+            Increase::EntityUpdateParams::Trust::Trustee::Individual
+          ) -> Increase::EntityUpdateParams::Trust::Trustee::Individual
+
+          def initialize: (
+            structure: Increase::Models::EntityUpdateParams::Trust::Trustee::structure,
+            ?individual: Increase::EntityUpdateParams::Trust::Trustee::Individual
+          ) -> void
+
+          def to_hash: -> {
+            structure: Increase::Models::EntityUpdateParams::Trust::Trustee::structure,
+            individual: Increase::EntityUpdateParams::Trust::Trustee::Individual
+          }
+
+          type structure = :individual
+
+          module Structure
+            extend Increase::Internal::Type::Enum
+
+            # The trustee is an individual.
+            INDIVIDUAL: :individual
+
+            def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::Trust::Trustee::structure]
+          end
+
+          type individual =
+            {
+              address: Increase::EntityUpdateParams::Trust::Trustee::Individual::Address,
+              date_of_birth: Date,
+              identification: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification,
+              name: String,
+              confirmed_no_us_tax_id: bool
+            }
+
+          class Individual < Increase::Internal::Type::BaseModel
+            attr_accessor address: Increase::EntityUpdateParams::Trust::Trustee::Individual::Address
+
+            attr_accessor date_of_birth: Date
+
+            attr_accessor identification: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification
+
+            attr_accessor name: String
+
+            attr_reader confirmed_no_us_tax_id: bool?
+
+            def confirmed_no_us_tax_id=: (bool) -> bool
+
+            def initialize: (
+              address: Increase::EntityUpdateParams::Trust::Trustee::Individual::Address,
+              date_of_birth: Date,
+              identification: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification,
+              name: String,
+              ?confirmed_no_us_tax_id: bool
+            ) -> void
+
+            def to_hash: -> {
+              address: Increase::EntityUpdateParams::Trust::Trustee::Individual::Address,
+              date_of_birth: Date,
+              identification: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification,
+              name: String,
+              confirmed_no_us_tax_id: bool
+            }
+
+            type address =
+              {
+                city: String,
+                country: String,
+                :line1 => String,
+                :line2 => String,
+                state: String,
+                zip: String
+              }
+
+            class Address < Increase::Internal::Type::BaseModel
+              attr_accessor city: String
+
+              attr_accessor country: String
+
+              attr_accessor line1: String
+
+              attr_reader line2: String?
+
+              def line2=: (String) -> String
+
+              attr_reader state: String?
+
+              def state=: (String) -> String
+
+              attr_reader zip: String?
+
+              def zip=: (String) -> String
+
+              def initialize: (
+                city: String,
+                country: String,
+                line1: String,
+                ?line2: String,
+                ?state: String,
+                ?zip: String
+              ) -> void
+
+              def to_hash: -> {
+                city: String,
+                country: String,
+                :line1 => String,
+                :line2 => String,
+                state: String,
+                zip: String
+              }
+            end
+
+            type identification =
+              {
+                method_: Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::method_,
+                number: String,
+                drivers_license: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense,
+                other: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other,
+                passport: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport
+              }
+
+            class Identification < Increase::Internal::Type::BaseModel
+              attr_accessor method_: Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::method_
+
+              attr_accessor number: String
+
+              attr_reader drivers_license: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense?
+
+              def drivers_license=: (
+                Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense
+              ) -> Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense
+
+              attr_reader other: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other?
+
+              def other=: (
+                Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other
+              ) -> Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other
+
+              attr_reader passport: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport?
+
+              def passport=: (
+                Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport
+              ) -> Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport
+
+              def initialize: (
+                method_: Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::method_,
+                number: String,
+                ?drivers_license: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense,
+                ?other: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other,
+                ?passport: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport
+              ) -> void
+
+              def to_hash: -> {
+                method_: Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::method_,
+                number: String,
+                drivers_license: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense,
+                other: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Other,
+                passport: Increase::EntityUpdateParams::Trust::Trustee::Individual::Identification::Passport
+              }
+
+              type method_ =
+                :social_security_number
+                | :individual_taxpayer_identification_number
+                | :passport
+                | :drivers_license
+                | :other
+
+              module Method
+                extend Increase::Internal::Type::Enum
+
+                # A social security number.
+                SOCIAL_SECURITY_NUMBER: :social_security_number
+
+                # An individual taxpayer identification number (ITIN).
+                INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER: :individual_taxpayer_identification_number
+
+                # A passport number.
+                PASSPORT: :passport
+
+                # A driver's license number.
+                DRIVERS_LICENSE: :drivers_license
+
+                # Another identifying document.
+                OTHER: :other
+
+                def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::method_]
+              end
+
+              type drivers_license =
+                {
+                  expiration_date: Date,
+                  file_id: String,
+                  state: String,
+                  back_file_id: String
+                }
+
+              class DriversLicense < Increase::Internal::Type::BaseModel
+                attr_accessor expiration_date: Date
+
+                attr_accessor file_id: String
+
+                attr_accessor state: String
+
+                attr_reader back_file_id: String?
+
+                def back_file_id=: (String) -> String
+
+                def initialize: (
+                  expiration_date: Date,
+                  file_id: String,
+                  state: String,
+                  ?back_file_id: String
+                ) -> void
+
+                def to_hash: -> {
+                  expiration_date: Date,
+                  file_id: String,
+                  state: String,
+                  back_file_id: String
+                }
+              end
+
+              type other =
+                {
+                  country: String,
+                  description: String,
+                  file_id: String,
+                  back_file_id: String,
+                  expiration_date: Date
+                }
+
+              class Other < Increase::Internal::Type::BaseModel
+                attr_accessor country: String
+
+                attr_accessor description: String
+
+                attr_accessor file_id: String
+
+                attr_reader back_file_id: String?
+
+                def back_file_id=: (String) -> String
+
+                attr_reader expiration_date: Date?
+
+                def expiration_date=: (Date) -> Date
+
+                def initialize: (
+                  country: String,
+                  description: String,
+                  file_id: String,
+                  ?back_file_id: String,
+                  ?expiration_date: Date
+                ) -> void
+
+                def to_hash: -> {
+                  country: String,
+                  description: String,
+                  file_id: String,
+                  back_file_id: String,
+                  expiration_date: Date
+                }
+              end
+
+              type passport =
+                { country: String, expiration_date: Date, file_id: String }
+
+              class Passport < Increase::Internal::Type::BaseModel
+                attr_accessor country: String
+
+                attr_accessor expiration_date: Date
+
+                attr_accessor file_id: String
+
+                def initialize: (
+                  country: String,
+                  expiration_date: Date,
+                  file_id: String
+                ) -> void
+
+                def to_hash: -> {
+                  country: String,
+                  expiration_date: Date,
+                  file_id: String
+                }
+              end
+            end
+          end
         end
       end
     end

@@ -1208,8 +1208,8 @@ module Increase
         # @!attribute ip_address
         #   The IP address the Entity accessed reviewed the terms from.
         #
-        #   @return [String]
-        required :ip_address, String
+        #   @return [String, nil]
+        required :ip_address, String, nil?: true
 
         # @!attribute terms_url
         #   The URL of the terms agreement. This link will be provided by your bank partner.
@@ -1220,7 +1220,7 @@ module Increase
         # @!method initialize(agreed_at:, ip_address:, terms_url:)
         #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
         #
-        #   @param ip_address [String] The IP address the Entity accessed reviewed the terms from.
+        #   @param ip_address [String, nil] The IP address the Entity accessed reviewed the terms from.
         #
         #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
@@ -1832,6 +1832,12 @@ module Increase
           #   @return [Increase::Models::Entity::Validation::Issue::EntityAddress, nil]
           required :entity_address, -> { Increase::Entity::Validation::Issue::EntityAddress }, nil?: true
 
+          # @!attribute entity_identity
+          #   Details when the issue is with the entity's identity verification.
+          #
+          #   @return [Increase::Models::Entity::Validation::Issue::EntityIdentity, nil]
+          required :entity_identity, -> { Increase::Entity::Validation::Issue::EntityIdentity }, nil?: true
+
           # @!attribute entity_tax_identifier
           #   Details when the issue is with the entity's tax ID.
           #
@@ -1840,7 +1846,7 @@ module Increase
                    -> { Increase::Entity::Validation::Issue::EntityTaxIdentifier },
                    nil?: true
 
-          # @!method initialize(beneficial_owner_address:, beneficial_owner_identity:, category:, entity_address:, entity_tax_identifier:)
+          # @!method initialize(beneficial_owner_address:, beneficial_owner_identity:, category:, entity_address:, entity_identity:, entity_tax_identifier:)
           #   @param beneficial_owner_address [Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress, nil]
           #     Details when the issue is with a beneficial owner's address.
           #
@@ -1853,6 +1859,9 @@ module Increase
           #
           #   @param entity_address [Increase::Models::Entity::Validation::Issue::EntityAddress, nil]
           #     Details when the issue is with the entity's address.
+          #
+          #   @param entity_identity [Increase::Models::Entity::Validation::Issue::EntityIdentity, nil]
+          #     Details when the issue is with the entity's identity verification.
           #
           #   @param entity_tax_identifier [Increase::Models::Entity::Validation::Issue::EntityTaxIdentifier, nil]
           #     Details when the issue is with the entity's tax ID.
@@ -1920,6 +1929,9 @@ module Increase
             # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
             ENTITY_ADDRESS = :entity_address
 
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            ENTITY_IDENTITY = :entity_identity
+
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_IDENTITY = :beneficial_owner_identity
 
@@ -1956,6 +1968,12 @@ module Increase
               # @!method self.values
               #   @return [Array<Symbol>]
             end
+          end
+
+          # @see Increase::Models::Entity::Validation::Issue#entity_identity
+          class EntityIdentity < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   Details when the issue is with the entity's identity verification.
           end
 
           # @see Increase::Models::Entity::Validation::Issue#entity_tax_identifier
