@@ -139,46 +139,75 @@ module Increase
 
         # @see Increase::Models::WireTransferCreateParams::Creditor#address
         class Address < Increase::Internal::Type::BaseModel
-          # @!attribute unstructured
-          #   Unstructured address lines.
+          # @!attribute structured
+          #   Structured address components. City and country are required.
           #
-          #   @return [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured, nil]
-          optional :unstructured, -> { Increase::WireTransferCreateParams::Creditor::Address::Unstructured }
+          #   @return [Increase::Models::WireTransferCreateParams::Creditor::Address::Structured, nil]
+          optional :structured, -> { Increase::WireTransferCreateParams::Creditor::Address::Structured }
 
-          # @!method initialize(unstructured: nil)
+          # @!method initialize(structured: nil)
           #   The person or business's address.
           #
-          #   @param unstructured [Increase::Models::WireTransferCreateParams::Creditor::Address::Unstructured]
-          #     Unstructured address lines.
+          #   @param structured [Increase::Models::WireTransferCreateParams::Creditor::Address::Structured]
+          #     Structured address components. City and country are required.
 
-          # @see Increase::Models::WireTransferCreateParams::Creditor::Address#unstructured
-          class Unstructured < Increase::Internal::Type::BaseModel
-            # @!attribute line1
-            #   The address line 1.
+          # @see Increase::Models::WireTransferCreateParams::Creditor::Address#structured
+          class Structured < Increase::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city, district, town, or village of the address.
             #
             #   @return [String]
-            required :line1, String
+            required :city, String
+
+            # @!attribute country
+            #   The two-letter
+            #   [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+            #   the country of the address.
+            #
+            #   @return [String]
+            required :country, String
+
+            # @!attribute line1
+            #   The first line of the address.
+            #
+            #   @return [String, nil]
+            optional :line1, String
 
             # @!attribute line2
-            #   The address line 2.
+            #   The second line of the address.
             #
             #   @return [String, nil]
             optional :line2, String
 
-            # @!attribute line3
-            #   The address line 3.
+            # @!attribute postal_code
+            #   The postal code of the address.
             #
             #   @return [String, nil]
-            optional :line3, String
+            optional :postal_code, String
 
-            # @!method initialize(line1:, line2: nil, line3: nil)
-            #   Unstructured address lines.
+            # @!attribute state
+            #   The address state.
             #
-            #   @param line1 [String] The address line 1.
+            #   @return [String, nil]
+            optional :state, String
+
+            # @!method initialize(city:, country:, line1: nil, line2: nil, postal_code: nil, state: nil)
+            #   Structured address components. City and country are required.
             #
-            #   @param line2 [String] The address line 2.
+            #   @param city [String] The city, district, town, or village of the address.
             #
-            #   @param line3 [String] The address line 3.
+            #   @param country [String]
+            #     The two-letter
+            #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+            #     the country of the address.
+            #
+            #   @param line1 [String] The first line of the address.
+            #
+            #   @param line2 [String] The second line of the address.
+            #
+            #   @param postal_code [String] The postal code of the address.
+            #
+            #   @param state [String] The address state.
           end
         end
       end
@@ -312,46 +341,75 @@ module Increase
 
         # @see Increase::Models::WireTransferCreateParams::Debtor#address
         class Address < Increase::Internal::Type::BaseModel
-          # @!attribute unstructured
-          #   Unstructured address lines.
+          # @!attribute structured
+          #   Structured address components. City and country are required.
           #
-          #   @return [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured, nil]
-          optional :unstructured, -> { Increase::WireTransferCreateParams::Debtor::Address::Unstructured }
+          #   @return [Increase::Models::WireTransferCreateParams::Debtor::Address::Structured, nil]
+          optional :structured, -> { Increase::WireTransferCreateParams::Debtor::Address::Structured }
 
-          # @!method initialize(unstructured: nil)
+          # @!method initialize(structured: nil)
           #   The person or business's address.
           #
-          #   @param unstructured [Increase::Models::WireTransferCreateParams::Debtor::Address::Unstructured]
-          #     Unstructured address lines.
+          #   @param structured [Increase::Models::WireTransferCreateParams::Debtor::Address::Structured]
+          #     Structured address components. City and country are required.
 
-          # @see Increase::Models::WireTransferCreateParams::Debtor::Address#unstructured
-          class Unstructured < Increase::Internal::Type::BaseModel
-            # @!attribute line1
-            #   The address line 1.
+          # @see Increase::Models::WireTransferCreateParams::Debtor::Address#structured
+          class Structured < Increase::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city, district, town, or village of the address.
             #
             #   @return [String]
-            required :line1, String
+            required :city, String
+
+            # @!attribute country
+            #   The two-letter
+            #   [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+            #   the country of the address.
+            #
+            #   @return [String]
+            required :country, String
+
+            # @!attribute line1
+            #   The first line of the address.
+            #
+            #   @return [String, nil]
+            optional :line1, String
 
             # @!attribute line2
-            #   The address line 2.
+            #   The second line of the address.
             #
             #   @return [String, nil]
             optional :line2, String
 
-            # @!attribute line3
-            #   The address line 3.
+            # @!attribute postal_code
+            #   The postal code of the address.
             #
             #   @return [String, nil]
-            optional :line3, String
+            optional :postal_code, String
 
-            # @!method initialize(line1:, line2: nil, line3: nil)
-            #   Unstructured address lines.
+            # @!attribute state
+            #   The address state.
             #
-            #   @param line1 [String] The address line 1.
+            #   @return [String, nil]
+            optional :state, String
+
+            # @!method initialize(city:, country:, line1: nil, line2: nil, postal_code: nil, state: nil)
+            #   Structured address components. City and country are required.
             #
-            #   @param line2 [String] The address line 2.
+            #   @param city [String] The city, district, town, or village of the address.
             #
-            #   @param line3 [String] The address line 3.
+            #   @param country [String]
+            #     The two-letter
+            #     [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+            #     the country of the address.
+            #
+            #   @param line1 [String] The first line of the address.
+            #
+            #   @param line2 [String] The second line of the address.
+            #
+            #   @param postal_code [String] The postal code of the address.
+            #
+            #   @param state [String] The address state.
           end
         end
       end

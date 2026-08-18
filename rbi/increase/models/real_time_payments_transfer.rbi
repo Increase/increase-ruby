@@ -113,6 +113,11 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
 
+      # The identifier of the Inbound Real-Time Payments Request for Payment this
+      # transfer was sent in response to, if any.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :inbound_real_time_payments_request_for_payment_id
+
       # The ID for the pending transaction representing the transfer. A pending
       # transaction is created when the transfer
       # [requires approval](https://increase.com/documentation/transfer-approvals#transfer-approvals)
@@ -206,6 +211,7 @@ module Increase
           debtor_name: T.nilable(String),
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
+          inbound_real_time_payments_request_for_payment_id: T.nilable(String),
           pending_transaction_id: T.nilable(String),
           rejection:
             T.nilable(Increase::RealTimePaymentsTransfer::Rejection::OrHash),
@@ -259,6 +265,9 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
+        # The identifier of the Inbound Real-Time Payments Request for Payment this
+        # transfer was sent in response to, if any.
+        inbound_real_time_payments_request_for_payment_id:,
         # The ID for the pending transaction representing the transfer. A pending
         # transaction is created when the transfer
         # [requires approval](https://increase.com/documentation/transfer-approvals#transfer-approvals)
@@ -314,6 +323,8 @@ module Increase
             debtor_name: T.nilable(String),
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
+            inbound_real_time_payments_request_for_payment_id:
+              T.nilable(String),
             pending_transaction_id: T.nilable(String),
             rejection: T.nilable(Increase::RealTimePaymentsTransfer::Rejection),
             routing_number: String,
@@ -805,42 +816,42 @@ module Increase
             end
           OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-          # The destination account is closed. Corresponds to the Real-Time Payments reason code `AC04`.
+          # The destination account is closed. Corresponds to the Real-Time Payments reason code "AC04".
           ACCOUNT_CLOSED =
             T.let(
               :account_closed,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The destination account is currently blocked from receiving transactions. Corresponds to the Real-Time Payments reason code `AC06`.
+          # The destination account is currently blocked from receiving transactions. Corresponds to the Real-Time Payments reason code "AC06".
           ACCOUNT_BLOCKED =
             T.let(
               :account_blocked,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The destination account is ineligible to receive Real-Time Payments transfers. Corresponds to the Real-Time Payments reason code `AC14`.
+          # The destination account is ineligible to receive Real-Time Payments transfers. Corresponds to the Real-Time Payments reason code "AC14".
           INVALID_CREDITOR_ACCOUNT_TYPE =
             T.let(
               :invalid_creditor_account_type,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The destination account does not exist. Corresponds to the Real-Time Payments reason code `AC03`.
+          # The destination account does not exist. Corresponds to the Real-Time Payments reason code "AC03".
           INVALID_CREDITOR_ACCOUNT_NUMBER =
             T.let(
               :invalid_creditor_account_number,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The destination routing number is invalid. Corresponds to the Real-Time Payments reason code `RC04`.
+          # The destination routing number is invalid. Corresponds to the Real-Time Payments reason code "RC04".
           INVALID_CREDITOR_FINANCIAL_INSTITUTION_IDENTIFIER =
             T.let(
               :invalid_creditor_financial_institution_identifier,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The destination account holder is deceased. Corresponds to the Real-Time Payments reason code `MD07`.
+          # The destination account holder is deceased. Corresponds to the Real-Time Payments reason code "MD07".
           END_CUSTOMER_DECEASED =
             T.let(
               :end_customer_deceased,
@@ -854,84 +865,84 @@ module Increase
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # Real-Time Payments transfers are not allowed to the destination account. Corresponds to the Real-Time Payments reason code `AG01`.
+          # Real-Time Payments transfers are not allowed to the destination account. Corresponds to the Real-Time Payments reason code "AG01".
           TRANSACTION_FORBIDDEN =
             T.let(
               :transaction_forbidden,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # Real-Time Payments transfers are not enabled for the destination account. Corresponds to the Real-Time Payments reason code `AG03`.
+          # Real-Time Payments transfers are not enabled for the destination account. Corresponds to the Real-Time Payments reason code "AG03".
           TRANSACTION_TYPE_NOT_SUPPORTED =
             T.let(
               :transaction_type_not_supported,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The amount of the transfer is different than expected by the recipient. Corresponds to the Real-Time Payments reason code `AM09`.
+          # The amount of the transfer is different than expected by the recipient. Corresponds to the Real-Time Payments reason code "AM09".
           UNEXPECTED_AMOUNT =
             T.let(
               :unexpected_amount,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The amount is higher than the recipient is authorized to send or receive. Corresponds to the Real-Time Payments reason code `AM14`.
+          # The amount is higher than the recipient is authorized to send or receive. Corresponds to the Real-Time Payments reason code "AM14".
           AMOUNT_EXCEEDS_BANK_LIMITS =
             T.let(
               :amount_exceeds_bank_limits,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The creditor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code `BE04`.
+          # The creditor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code "BE04".
           INVALID_CREDITOR_ADDRESS =
             T.let(
               :invalid_creditor_address,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The specified creditor is unknown. Corresponds to the Real-Time Payments reason code `BE06`.
+          # The specified creditor is unknown. Corresponds to the Real-Time Payments reason code "BE06".
           UNKNOWN_END_CUSTOMER =
             T.let(
               :unknown_end_customer,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The debtor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code `BE07`.
+          # The debtor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code "BE07".
           INVALID_DEBTOR_ADDRESS =
             T.let(
               :invalid_debtor_address,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # There was a timeout processing the transfer. Corresponds to the Real-Time Payments reason code `DS24`.
+          # There was a timeout processing the transfer. Corresponds to the Real-Time Payments reason code "DS24".
           TIMEOUT =
             T.let(
               :timeout,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # Real-Time Payments transfers are not enabled for the destination account. Corresponds to the Real-Time Payments reason code `NOAT`.
+          # Real-Time Payments transfers are not enabled for the destination account. Corresponds to the Real-Time Payments reason code "NOAT".
           UNSUPPORTED_MESSAGE_FOR_RECIPIENT =
             T.let(
               :unsupported_message_for_recipient,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The destination financial institution is currently not connected to Real-Time Payments. Corresponds to the Real-Time Payments reason code `9912`.
+          # The destination financial institution is currently not connected to Real-Time Payments. Corresponds to the Real-Time Payments reason code "9912".
           RECIPIENT_CONNECTION_NOT_AVAILABLE =
             T.let(
               :recipient_connection_not_available,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # Real-Time Payments is currently unavailable. Corresponds to the Real-Time Payments reason code `9948`.
+          # Real-Time Payments is currently unavailable. Corresponds to the Real-Time Payments reason code "9948".
           REAL_TIME_PAYMENTS_SUSPENDED =
             T.let(
               :real_time_payments_suspended,
               Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
             )
 
-          # The destination financial institution is currently signed off of Real-Time Payments. Corresponds to the Real-Time Payments reason code `9910`.
+          # The destination financial institution is currently signed off of Real-Time Payments. Corresponds to the Real-Time Payments reason code "9910".
           INSTRUCTED_AGENT_SIGNED_OFF =
             T.let(
               :instructed_agent_signed_off,

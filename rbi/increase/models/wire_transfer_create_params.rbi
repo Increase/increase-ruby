@@ -231,93 +231,135 @@ module Increase
               )
             end
 
-          # Unstructured address lines.
+          # Structured address components. City and country are required.
           sig do
             returns(
               T.nilable(
-                Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+                Increase::WireTransferCreateParams::Creditor::Address::Structured
               )
             )
           end
-          attr_reader :unstructured
+          attr_reader :structured
 
           sig do
             params(
-              unstructured:
-                Increase::WireTransferCreateParams::Creditor::Address::Unstructured::OrHash
+              structured:
+                Increase::WireTransferCreateParams::Creditor::Address::Structured::OrHash
             ).void
           end
-          attr_writer :unstructured
+          attr_writer :structured
 
           # The person or business's address.
           sig do
             params(
-              unstructured:
-                Increase::WireTransferCreateParams::Creditor::Address::Unstructured::OrHash
+              structured:
+                Increase::WireTransferCreateParams::Creditor::Address::Structured::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
-            # Unstructured address lines.
-            unstructured: nil
+            # Structured address components. City and country are required.
+            structured: nil
           )
           end
 
           sig do
             override.returns(
               {
-                unstructured:
-                  Increase::WireTransferCreateParams::Creditor::Address::Unstructured
+                structured:
+                  Increase::WireTransferCreateParams::Creditor::Address::Structured
               }
             )
           end
           def to_hash
           end
 
-          class Unstructured < Increase::Internal::Type::BaseModel
+          class Structured < Increase::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Increase::WireTransferCreateParams::Creditor::Address::Unstructured,
+                  Increase::WireTransferCreateParams::Creditor::Address::Structured,
                   Increase::Internal::AnyHash
                 )
               end
 
-            # The address line 1.
+            # The city, district, town, or village of the address.
             sig { returns(String) }
-            attr_accessor :line1
+            attr_accessor :city
 
-            # The address line 2.
+            # The two-letter
+            # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+            # the country of the address.
+            sig { returns(String) }
+            attr_accessor :country
+
+            # The first line of the address.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line1
+
+            sig { params(line1: String).void }
+            attr_writer :line1
+
+            # The second line of the address.
             sig { returns(T.nilable(String)) }
             attr_reader :line2
 
             sig { params(line2: String).void }
             attr_writer :line2
 
-            # The address line 3.
+            # The postal code of the address.
             sig { returns(T.nilable(String)) }
-            attr_reader :line3
+            attr_reader :postal_code
 
-            sig { params(line3: String).void }
-            attr_writer :line3
+            sig { params(postal_code: String).void }
+            attr_writer :postal_code
 
-            # Unstructured address lines.
+            # The address state.
+            sig { returns(T.nilable(String)) }
+            attr_reader :state
+
+            sig { params(state: String).void }
+            attr_writer :state
+
+            # Structured address components. City and country are required.
             sig do
-              params(line1: String, line2: String, line3: String).returns(
-                T.attached_class
-              )
+              params(
+                city: String,
+                country: String,
+                line1: String,
+                line2: String,
+                postal_code: String,
+                state: String
+              ).returns(T.attached_class)
             end
             def self.new(
-              # The address line 1.
-              line1:,
-              # The address line 2.
+              # The city, district, town, or village of the address.
+              city:,
+              # The two-letter
+              # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+              # the country of the address.
+              country:,
+              # The first line of the address.
+              line1: nil,
+              # The second line of the address.
               line2: nil,
-              # The address line 3.
-              line3: nil
+              # The postal code of the address.
+              postal_code: nil,
+              # The address state.
+              state: nil
             )
             end
 
             sig do
-              override.returns({ line1: String, line2: String, line3: String })
+              override.returns(
+                {
+                  city: String,
+                  country: String,
+                  line1: String,
+                  line2: String,
+                  postal_code: String,
+                  state: String
+                }
+              )
             end
             def to_hash
             end
@@ -597,93 +639,135 @@ module Increase
               )
             end
 
-          # Unstructured address lines.
+          # Structured address components. City and country are required.
           sig do
             returns(
               T.nilable(
-                Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+                Increase::WireTransferCreateParams::Debtor::Address::Structured
               )
             )
           end
-          attr_reader :unstructured
+          attr_reader :structured
 
           sig do
             params(
-              unstructured:
-                Increase::WireTransferCreateParams::Debtor::Address::Unstructured::OrHash
+              structured:
+                Increase::WireTransferCreateParams::Debtor::Address::Structured::OrHash
             ).void
           end
-          attr_writer :unstructured
+          attr_writer :structured
 
           # The person or business's address.
           sig do
             params(
-              unstructured:
-                Increase::WireTransferCreateParams::Debtor::Address::Unstructured::OrHash
+              structured:
+                Increase::WireTransferCreateParams::Debtor::Address::Structured::OrHash
             ).returns(T.attached_class)
           end
           def self.new(
-            # Unstructured address lines.
-            unstructured: nil
+            # Structured address components. City and country are required.
+            structured: nil
           )
           end
 
           sig do
             override.returns(
               {
-                unstructured:
-                  Increase::WireTransferCreateParams::Debtor::Address::Unstructured
+                structured:
+                  Increase::WireTransferCreateParams::Debtor::Address::Structured
               }
             )
           end
           def to_hash
           end
 
-          class Unstructured < Increase::Internal::Type::BaseModel
+          class Structured < Increase::Internal::Type::BaseModel
             OrHash =
               T.type_alias do
                 T.any(
-                  Increase::WireTransferCreateParams::Debtor::Address::Unstructured,
+                  Increase::WireTransferCreateParams::Debtor::Address::Structured,
                   Increase::Internal::AnyHash
                 )
               end
 
-            # The address line 1.
+            # The city, district, town, or village of the address.
             sig { returns(String) }
-            attr_accessor :line1
+            attr_accessor :city
 
-            # The address line 2.
+            # The two-letter
+            # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+            # the country of the address.
+            sig { returns(String) }
+            attr_accessor :country
+
+            # The first line of the address.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line1
+
+            sig { params(line1: String).void }
+            attr_writer :line1
+
+            # The second line of the address.
             sig { returns(T.nilable(String)) }
             attr_reader :line2
 
             sig { params(line2: String).void }
             attr_writer :line2
 
-            # The address line 3.
+            # The postal code of the address.
             sig { returns(T.nilable(String)) }
-            attr_reader :line3
+            attr_reader :postal_code
 
-            sig { params(line3: String).void }
-            attr_writer :line3
+            sig { params(postal_code: String).void }
+            attr_writer :postal_code
 
-            # Unstructured address lines.
+            # The address state.
+            sig { returns(T.nilable(String)) }
+            attr_reader :state
+
+            sig { params(state: String).void }
+            attr_writer :state
+
+            # Structured address components. City and country are required.
             sig do
-              params(line1: String, line2: String, line3: String).returns(
-                T.attached_class
-              )
+              params(
+                city: String,
+                country: String,
+                line1: String,
+                line2: String,
+                postal_code: String,
+                state: String
+              ).returns(T.attached_class)
             end
             def self.new(
-              # The address line 1.
-              line1:,
-              # The address line 2.
+              # The city, district, town, or village of the address.
+              city:,
+              # The two-letter
+              # [ISO 3166-1 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) code for
+              # the country of the address.
+              country:,
+              # The first line of the address.
+              line1: nil,
+              # The second line of the address.
               line2: nil,
-              # The address line 3.
-              line3: nil
+              # The postal code of the address.
+              postal_code: nil,
+              # The address state.
+              state: nil
             )
             end
 
             sig do
-              override.returns({ line1: String, line2: String, line3: String })
+              override.returns(
+                {
+                  city: String,
+                  country: String,
+                  line1: String,
+                  line2: String,
+                  postal_code: String,
+                  state: String
+                }
+              )
             end
             def to_hash
             end

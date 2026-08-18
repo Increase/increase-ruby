@@ -1491,6 +1491,14 @@ module Increase
           sig { returns(T.nilable(Integer)) }
           attr_accessor :network_risk_score
 
+          # The ID of the Card Payment containing the original authorization or card
+          # validation this transaction references. For a merchant-initiated transaction,
+          # this is the Card Payment from when the card was first stored, which is typically
+          # where the CVV2 was verified. The reference this is derived from is supplied by
+          # the merchant or their acquirer, so it is not guaranteed to be present.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :original_card_payment_id
+
           # The identifier of the Pending Transaction associated with this Transaction.
           sig { returns(T.nilable(String)) }
           attr_accessor :pending_transaction_id
@@ -1598,6 +1606,7 @@ module Increase
               network_identifiers:
                 Increase::PendingTransaction::Source::CardAuthorization::NetworkIdentifiers::OrHash,
               network_risk_score: T.nilable(Integer),
+              original_card_payment_id: T.nilable(String),
               pending_transaction_id: T.nilable(String),
               physical_card_id: T.nilable(String),
               presentment_amount: Integer,
@@ -1671,6 +1680,12 @@ module Increase
             # Authorization risk score, from 0 to 99, where 99 is the riskiest. For Pulse the
             # score is from 0 to 999, where 999 is the riskiest.
             network_risk_score:,
+            # The ID of the Card Payment containing the original authorization or card
+            # validation this transaction references. For a merchant-initiated transaction,
+            # this is the Card Payment from when the card was first stored, which is typically
+            # where the CVV2 was verified. The reference this is derived from is supplied by
+            # the merchant or their acquirer, so it is not guaranteed to be present.
+            original_card_payment_id:,
             # The identifier of the Pending Transaction associated with this Transaction.
             pending_transaction_id:,
             # If the authorization was made in-person with a physical card, the Physical Card
@@ -1732,6 +1747,7 @@ module Increase
                 network_identifiers:
                   Increase::PendingTransaction::Source::CardAuthorization::NetworkIdentifiers,
                 network_risk_score: T.nilable(Integer),
+                original_card_payment_id: T.nilable(String),
                 pending_transaction_id: T.nilable(String),
                 physical_card_id: T.nilable(String),
                 presentment_amount: Integer,

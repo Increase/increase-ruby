@@ -130,6 +130,13 @@ module Increase
                 Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            ENTITY_IDENTITY =
+              T.let(
+                :entity_identity,
+                Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
+              )
+
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_IDENTITY =
               T.let(

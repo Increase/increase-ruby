@@ -206,6 +206,25 @@ module Increase
           end
           attr_writer :receive_merchant_prearbitration
 
+          # The parameters for rejecting the dispute. Required if and only if `action` is
+          # `reject`.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::Reject
+              )
+            )
+          end
+          attr_reader :reject
+
+          sig do
+            params(
+              reject:
+                Increase::Simulations::CardDisputeActionParams::Visa::Reject::OrHash
+            ).void
+          end
+          attr_writer :reject
+
           # The parameters for re-presenting the dispute. Required if and only if `action`
           # is `represent`.
           sig do
@@ -334,6 +353,8 @@ module Increase
                 Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration::OrHash,
               receive_merchant_prearbitration:
                 Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration::OrHash,
+              reject:
+                Increase::Simulations::CardDisputeActionParams::Visa::Reject::OrHash,
               represent:
                 Increase::Simulations::CardDisputeActionParams::Visa::Represent::OrHash,
               request_further_information:
@@ -364,6 +385,9 @@ module Increase
             # The parameters for receiving the prearbitration. Required if and only if
             # `action` is `receive_merchant_prearbitration`.
             receive_merchant_prearbitration: nil,
+            # The parameters for rejecting the dispute. Required if and only if `action` is
+            # `reject`.
+            reject: nil,
             # The parameters for re-presenting the dispute. Required if and only if `action`
             # is `represent`.
             represent: nil,
@@ -398,6 +422,8 @@ module Increase
                   Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
                 receive_merchant_prearbitration:
                   Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
+                reject:
+                  Increase::Simulations::CardDisputeActionParams::Visa::Reject,
                 represent:
                   Increase::Simulations::CardDisputeActionParams::Visa::Represent,
                 request_further_information:
@@ -455,6 +481,13 @@ module Increase
             RECEIVE_MERCHANT_PREARBITRATION =
               T.let(
                 :receive_merchant_prearbitration,
+                Increase::Simulations::CardDisputeActionParams::Visa::Action::TaggedSymbol
+              )
+
+            # Simulate the dispute being rejected before it is submitted to the network. This will move the dispute to a `rejected` state.
+            REJECT =
+              T.let(
+                :reject,
                 Increase::Simulations::CardDisputeActionParams::Visa::Action::TaggedSymbol
               )
 
@@ -587,6 +620,33 @@ module Increase
             end
 
             sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class Reject < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::Reject,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The explanation for rejecting the dispute.
+            sig { returns(String) }
+            attr_accessor :explanation
+
+            # The parameters for rejecting the dispute. Required if and only if `action` is
+            # `reject`.
+            sig { params(explanation: String).returns(T.attached_class) }
+            def self.new(
+              # The explanation for rejecting the dispute.
+              explanation:
+            )
+            end
+
+            sig { override.returns({ explanation: String }) }
             def to_hash
             end
           end
