@@ -268,7 +268,8 @@ module Increase
             )
           end
 
-        # Details for where Increase will mail the check.
+        # Details for where Increase will mail the check. When `physical_check_batch_id`
+        # is set, the address must match the Physical Check Batch.
         sig do
           returns(
             Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress
@@ -327,9 +328,16 @@ module Increase
         sig { params(note: String).void }
         attr_writer :note
 
-        # The return address to be printed on the check. If omitted this will default to
-        # an Increase-owned address that will mark checks as delivery failed and shred
-        # them.
+        # The identifier of the Physical Check Batch to mail this check as a part of.
+        sig { returns(T.nilable(String)) }
+        attr_reader :physical_check_batch_id
+
+        sig { params(physical_check_batch_id: String).void }
+        attr_writer :physical_check_batch_id
+
+        # Details for where the courier will return the check to if it is unable to be
+        # delivered. Defaults to an Increase-owned address that will mark checks as
+        # delivery failed and shred them.
         sig do
           returns(
             T.nilable(
@@ -410,6 +418,7 @@ module Increase
             attachment_file_id: String,
             check_voucher_image_file_id: String,
             note: String,
+            physical_check_batch_id: String,
             return_address:
               Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress::OrHash,
             return_address_name: String,
@@ -420,7 +429,8 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # Details for where Increase will mail the check.
+          # Details for where Increase will mail the check. When `physical_check_batch_id`
+          # is set, the address must match the Physical Check Batch.
           mailing_address:,
           # The descriptor that will be printed on the memo field on the check.
           memo:,
@@ -440,9 +450,11 @@ module Increase
           check_voucher_image_file_id: nil,
           # The descriptor that will be printed on the letter included with the check.
           note: nil,
-          # The return address to be printed on the check. If omitted this will default to
-          # an Increase-owned address that will mark checks as delivery failed and shred
-          # them.
+          # The identifier of the Physical Check Batch to mail this check as a part of.
+          physical_check_batch_id: nil,
+          # Details for where the courier will return the check to if it is unable to be
+          # delivered. Defaults to an Increase-owned address that will mark checks as
+          # delivery failed and shred them.
           return_address: nil,
           # A custom name to print above the default return address. Cannot be provided
           # together with `return_address`.
@@ -471,6 +483,7 @@ module Increase
               attachment_file_id: String,
               check_voucher_image_file_id: String,
               note: String,
+              physical_check_batch_id: String,
               return_address:
                 Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
               return_address_name: String,
@@ -533,7 +546,8 @@ module Increase
           sig { params(phone: String).void }
           attr_writer :phone
 
-          # Details for where Increase will mail the check.
+          # Details for where Increase will mail the check. When `physical_check_batch_id`
+          # is set, the address must match the Physical Check Batch.
           sig do
             params(
               city: String,
@@ -653,9 +667,9 @@ module Increase
           sig { params(phone: String).void }
           attr_writer :phone
 
-          # The return address to be printed on the check. If omitted this will default to
-          # an Increase-owned address that will mark checks as delivery failed and shred
-          # them.
+          # Details for where the courier will return the check to if it is unable to be
+          # delivered. Defaults to an Increase-owned address that will mark checks as
+          # delivery failed and shred them.
           sig do
             params(
               city: String,

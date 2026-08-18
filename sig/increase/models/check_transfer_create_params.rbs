@@ -122,6 +122,7 @@ module Increase
           attachment_file_id: String,
           check_voucher_image_file_id: String,
           note: String,
+          physical_check_batch_id: String,
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           return_address_name: String,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
@@ -148,6 +149,10 @@ module Increase
         attr_reader note: String?
 
         def note=: (String) -> String
+
+        attr_reader physical_check_batch_id: String?
+
+        def physical_check_batch_id=: (String) -> String
 
         attr_reader return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress?
 
@@ -179,6 +184,7 @@ module Increase
           ?attachment_file_id: String,
           ?check_voucher_image_file_id: String,
           ?note: String,
+          ?physical_check_batch_id: String,
           ?return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           ?return_address_name: String,
           ?shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,
@@ -193,6 +199,7 @@ module Increase
           attachment_file_id: String,
           check_voucher_image_file_id: String,
           note: String,
+          physical_check_batch_id: String,
           return_address: Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress,
           return_address_name: String,
           shipping_method: Increase::Models::CheckTransferCreateParams::PhysicalCheck::shipping_method,

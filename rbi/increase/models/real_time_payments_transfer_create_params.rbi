@@ -54,6 +54,16 @@ module Increase
       sig { params(external_account_id: String).void }
       attr_writer :external_account_id
 
+      # The ID of an Inbound Real-Time Payments Request for Payment in response to which
+      # this transfer is being sent.
+      sig { returns(T.nilable(String)) }
+      attr_reader :inbound_real_time_payments_request_for_payment_id
+
+      sig do
+        params(inbound_real_time_payments_request_for_payment_id: String).void
+      end
+      attr_writer :inbound_real_time_payments_request_for_payment_id
+
       # Whether the transfer requires explicit approval via the dashboard or API.
       sig { returns(T.nilable(T::Boolean)) }
       attr_reader :require_approval
@@ -94,6 +104,7 @@ module Increase
           account_number: String,
           debtor_name: String,
           external_account_id: String,
+          inbound_real_time_payments_request_for_payment_id: String,
           require_approval: T::Boolean,
           routing_number: String,
           ultimate_creditor_name: String,
@@ -119,6 +130,9 @@ module Increase
         # The ID of an External Account to initiate a transfer to. If this parameter is
         # provided, `account_number` and `routing_number` must be absent.
         external_account_id: nil,
+        # The ID of an Inbound Real-Time Payments Request for Payment in response to which
+        # this transfer is being sent.
+        inbound_real_time_payments_request_for_payment_id: nil,
         # Whether the transfer requires explicit approval via the dashboard or API.
         require_approval: nil,
         # The destination American Bankers' Association (ABA) Routing Transit Number
@@ -144,6 +158,7 @@ module Increase
             account_number: String,
             debtor_name: String,
             external_account_id: String,
+            inbound_real_time_payments_request_for_payment_id: String,
             require_approval: T::Boolean,
             routing_number: String,
             ultimate_creditor_name: String,

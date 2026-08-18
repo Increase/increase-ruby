@@ -40,6 +40,12 @@ module Increase
         {
           due_at: Time?,
           due_balance: Integer,
+          due_fees: Integer?,
+          due_interest: Integer?,
+          due_principal: Integer?,
+          not_due_fees: Integer?,
+          not_due_interest: Integer?,
+          not_due_principal: Integer?,
           past_due_balance: Integer,
           receivables: Increase::BalanceLookup::Loan::Receivables?
         }
@@ -49,6 +55,18 @@ module Increase
 
         attr_accessor due_balance: Integer
 
+        attr_accessor due_fees: Integer?
+
+        attr_accessor due_interest: Integer?
+
+        attr_accessor due_principal: Integer?
+
+        attr_accessor not_due_fees: Integer?
+
+        attr_accessor not_due_interest: Integer?
+
+        attr_accessor not_due_principal: Integer?
+
         attr_accessor past_due_balance: Integer
 
         attr_accessor receivables: Increase::BalanceLookup::Loan::Receivables?
@@ -56,6 +74,12 @@ module Increase
         def initialize: (
           due_at: Time?,
           due_balance: Integer,
+          due_fees: Integer?,
+          due_interest: Integer?,
+          due_principal: Integer?,
+          not_due_fees: Integer?,
+          not_due_interest: Integer?,
+          not_due_principal: Integer?,
           past_due_balance: Integer,
           receivables: Increase::BalanceLookup::Loan::Receivables?
         ) -> void
@@ -63,6 +87,12 @@ module Increase
         def to_hash: -> {
           due_at: Time?,
           due_balance: Integer,
+          due_fees: Integer?,
+          due_interest: Integer?,
+          due_principal: Integer?,
+          not_due_fees: Integer?,
+          not_due_interest: Integer?,
+          not_due_principal: Integer?,
           past_due_balance: Integer,
           receivables: Increase::BalanceLookup::Loan::Receivables?
         }

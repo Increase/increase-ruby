@@ -93,6 +93,30 @@ module Increase
         sig { returns(Integer) }
         attr_accessor :due_balance
 
+        # The fees on the loan that are due and unpaid.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :due_fees
+
+        # The interest on the loan that is due and unpaid.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :due_interest
+
+        # The principal on the loan that is due and unpaid.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :due_principal
+
+        # The fees on the loan that are not yet due.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :not_due_fees
+
+        # The interest on the loan that is not yet due.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :not_due_interest
+
+        # The principal on the loan that is not yet due.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :not_due_principal
+
         # The amount past due on the loan.
         sig { returns(Integer) }
         attr_accessor :past_due_balance
@@ -114,6 +138,12 @@ module Increase
           params(
             due_at: T.nilable(Time),
             due_balance: Integer,
+            due_fees: T.nilable(Integer),
+            due_interest: T.nilable(Integer),
+            due_principal: T.nilable(Integer),
+            not_due_fees: T.nilable(Integer),
+            not_due_interest: T.nilable(Integer),
+            not_due_principal: T.nilable(Integer),
             past_due_balance: Integer,
             receivables:
               T.nilable(Increase::BalanceLookup::Loan::Receivables::OrHash)
@@ -125,6 +155,18 @@ module Increase
           due_at:,
           # The total amount due on the loan.
           due_balance:,
+          # The fees on the loan that are due and unpaid.
+          due_fees:,
+          # The interest on the loan that is due and unpaid.
+          due_interest:,
+          # The principal on the loan that is due and unpaid.
+          due_principal:,
+          # The fees on the loan that are not yet due.
+          not_due_fees:,
+          # The interest on the loan that is not yet due.
+          not_due_interest:,
+          # The principal on the loan that is not yet due.
+          not_due_principal:,
           # The amount past due on the loan.
           past_due_balance:,
           # The receivables balances for the loan.
@@ -137,6 +179,12 @@ module Increase
             {
               due_at: T.nilable(Time),
               due_balance: Integer,
+              due_fees: T.nilable(Integer),
+              due_interest: T.nilable(Integer),
+              due_principal: T.nilable(Integer),
+              not_due_fees: T.nilable(Integer),
+              not_due_interest: T.nilable(Integer),
+              not_due_principal: T.nilable(Integer),
               past_due_balance: Integer,
               receivables: T.nilable(Increase::BalanceLookup::Loan::Receivables)
             }
