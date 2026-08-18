@@ -151,7 +151,8 @@ module Increase
 
       class PhysicalCheck < Increase::Internal::Type::BaseModel
         # @!attribute mailing_address
-        #   Details for where Increase will mail the check.
+        #   Details for where Increase will mail the check. When `physical_check_batch_id`
+        #   is set, the address must match the Physical Check Batch.
         #
         #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress]
         required :mailing_address, -> { Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress }
@@ -199,10 +200,16 @@ module Increase
         #   @return [String, nil]
         optional :note, String
 
+        # @!attribute physical_check_batch_id
+        #   The identifier of the Physical Check Batch to mail this check as a part of.
+        #
+        #   @return [String, nil]
+        optional :physical_check_batch_id, String
+
         # @!attribute return_address
-        #   The return address to be printed on the check. If omitted this will default to
-        #   an Increase-owned address that will mark checks as delivery failed and shred
-        #   them.
+        #   Details for where the courier will return the check to if it is unable to be
+        #   delivered. Defaults to an Increase-owned address that will mark checks as
+        #   delivery failed and shred them.
         #
         #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress, nil]
         optional :return_address, -> { Increase::CheckTransferCreateParams::PhysicalCheck::ReturnAddress }
@@ -229,13 +236,14 @@ module Increase
         #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature, nil]
         optional :signature, -> { Increase::CheckTransferCreateParams::PhysicalCheck::Signature }
 
-        # @!method initialize(mailing_address:, memo:, payer:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, return_address: nil, return_address_name: nil, shipping_method: nil, signature: nil)
+        # @!method initialize(mailing_address:, memo:, payer:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, physical_check_batch_id: nil, return_address: nil, return_address_name: nil, shipping_method: nil, signature: nil)
         #   Details relating to the physical check that Increase will print and mail. This
         #   is required if `fulfillment_method` is equal to `physical_check`. It must not be
         #   included if any other `fulfillment_method` is provided.
         #
         #   @param mailing_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::MailingAddress]
-        #     Details for where Increase will mail the check.
+        #     Details for where Increase will mail the check. When `physical_check_batch_id`
+        #     is set, the address must match the Physical Check Batch.
         #
         #   @param memo [String] The descriptor that will be printed on the memo field on the check.
         #
@@ -258,10 +266,13 @@ module Increase
         #
         #   @param note [String] The descriptor that will be printed on the letter included with the check.
         #
+        #   @param physical_check_batch_id [String]
+        #     The identifier of the Physical Check Batch to mail this check as a part of.
+        #
         #   @param return_address [Increase::Models::CheckTransferCreateParams::PhysicalCheck::ReturnAddress]
-        #     The return address to be printed on the check. If omitted this will default to
-        #     an Increase-owned address that will mark checks as delivery failed and shred
-        #     them.
+        #     Details for where the courier will return the check to if it is unable to be
+        #     delivered. Defaults to an Increase-owned address that will mark checks as
+        #     delivery failed and shred them.
         #
         #   @param return_address_name [String]
         #     A custom name to print above the default return address. Cannot be provided
@@ -324,7 +335,8 @@ module Increase
           optional :phone, String
 
           # @!method initialize(city:, line1:, postal_code:, state:, line2: nil, name: nil, phone: nil)
-          #   Details for where Increase will mail the check.
+          #   Details for where Increase will mail the check. When `physical_check_batch_id`
+          #   is set, the address must match the Physical Check Batch.
           #
           #   @param city [String] The city component of the check's destination address.
           #
@@ -404,9 +416,9 @@ module Increase
           optional :phone, String
 
           # @!method initialize(city:, line1:, name:, postal_code:, state:, line2: nil, phone: nil)
-          #   The return address to be printed on the check. If omitted this will default to
-          #   an Increase-owned address that will mark checks as delivery failed and shred
-          #   them.
+          #   Details for where the courier will return the check to if it is unable to be
+          #   delivered. Defaults to an Increase-owned address that will mark checks as
+          #   delivery failed and shred them.
           #
           #   @param city [String] The city of the return address.
           #

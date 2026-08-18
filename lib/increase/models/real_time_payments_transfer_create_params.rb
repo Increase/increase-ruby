@@ -52,6 +52,13 @@ module Increase
       #   @return [String, nil]
       optional :external_account_id, String
 
+      # @!attribute inbound_real_time_payments_request_for_payment_id
+      #   The ID of an Inbound Real-Time Payments Request for Payment in response to which
+      #   this transfer is being sent.
+      #
+      #   @return [String, nil]
+      optional :inbound_real_time_payments_request_for_payment_id, String
+
       # @!attribute require_approval
       #   Whether the transfer requires explicit approval via the dashboard or API.
       #
@@ -79,7 +86,7 @@ module Increase
       #   @return [String, nil]
       optional :ultimate_debtor_name, String
 
-      # @!method initialize(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, external_account_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
+      # @!method initialize(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, external_account_id: nil, inbound_real_time_payments_request_for_payment_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
       #   @param amount [Integer]
       #     The transfer amount in USD cents. For Real-Time Payments transfers, must be
       #     positive.
@@ -101,6 +108,10 @@ module Increase
       #   @param external_account_id [String]
       #     The ID of an External Account to initiate a transfer to. If this parameter is
       #     provided, `account_number` and `routing_number` must be absent.
+      #
+      #   @param inbound_real_time_payments_request_for_payment_id [String]
+      #     The ID of an Inbound Real-Time Payments Request for Payment in response to which
+      #     this transfer is being sent.
       #
       #   @param require_approval [Boolean]
       #     Whether the transfer requires explicit approval via the dashboard or API.

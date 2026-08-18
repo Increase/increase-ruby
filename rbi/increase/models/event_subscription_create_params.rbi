@@ -715,6 +715,13 @@ module Increase
               Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
+          # Occurs whenever a Loan Obligation is created.
+          LOAN_OBLIGATION_CREATED =
+            T.let(
+              :"loan_obligation.created",
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
           # Occurs whenever a Loan Offer is created.
           LOAN_OFFER_CREATED =
             T.let(
@@ -747,6 +754,20 @@ module Increase
           LOCKBOX_UPDATED =
             T.let(
               :"lockbox.updated",
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
+          # Occurs whenever a Lockbox Address is created.
+          LOCKBOX_ADDRESS_CREATED =
+            T.let(
+              :"lockbox_address.created",
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
+          # Occurs whenever a Lockbox Address is updated.
+          LOCKBOX_ADDRESS_UPDATED =
+            T.let(
+              :"lockbox_address.updated",
               Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
