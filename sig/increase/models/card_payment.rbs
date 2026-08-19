@@ -998,6 +998,7 @@ module Increase
             network_details: Increase::CardPayment::Element::CardAuthorization::NetworkDetails,
             network_identifiers: Increase::CardPayment::Element::CardAuthorization::NetworkIdentifiers,
             network_risk_score: Integer?,
+            original_card_payment_id: String?,
             pending_transaction_id: String?,
             physical_card_id: String?,
             presentment_amount: Integer,
@@ -1051,6 +1052,8 @@ module Increase
 
           attr_accessor network_risk_score: Integer?
 
+          attr_accessor original_card_payment_id: String?
+
           attr_accessor pending_transaction_id: String?
 
           attr_accessor physical_card_id: String?
@@ -1092,6 +1095,7 @@ module Increase
             network_details: Increase::CardPayment::Element::CardAuthorization::NetworkDetails,
             network_identifiers: Increase::CardPayment::Element::CardAuthorization::NetworkIdentifiers,
             network_risk_score: Integer?,
+            original_card_payment_id: String?,
             pending_transaction_id: String?,
             physical_card_id: String?,
             presentment_amount: Integer,
@@ -1125,6 +1129,7 @@ module Increase
             network_details: Increase::CardPayment::Element::CardAuthorization::NetworkDetails,
             network_identifiers: Increase::CardPayment::Element::CardAuthorization::NetworkIdentifiers,
             network_risk_score: Integer?,
+            original_card_payment_id: String?,
             pending_transaction_id: String?,
             physical_card_id: String?,
             presentment_amount: Integer,

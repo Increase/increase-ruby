@@ -5,7 +5,7 @@ module Increase
     class Cards
       # Create a Card
       #
-      # @overload create(account_id:, authorization_controls: nil, billing_address: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
+      # @overload create(account_id:, authorization_controls: nil, billing_address: nil, cardholder_name: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
       #
       # @param account_id [String] The Account the card should belong to.
       #
@@ -13,6 +13,10 @@ module Increase
       #   Controls that restrict how this card can be used.
       #
       # @param billing_address [Increase::Models::CardCreateParams::BillingAddress] The card's billing address.
+      #
+      # @param cardholder_name [Increase::Models::CardCreateParams::CardholderName]
+      #   The name of the cardholder. Used to respond to Account Name Inquiry requests
+      #   from acquirers in Card Validations.
       #
       # @param description [String] The description you choose to give the card.
       #

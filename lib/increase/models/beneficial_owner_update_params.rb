@@ -29,6 +29,12 @@ module Increase
       #   @return [Boolean, nil]
       optional :confirmed_no_us_tax_id, Increase::Internal::Type::Boolean
 
+      # @!attribute date_of_birth
+      #   The person's date of birth in YYYY-MM-DD format.
+      #
+      #   @return [Date, nil]
+      optional :date_of_birth, Date
+
       # @!attribute identification
       #   A means of verifying the person's identity.
       #
@@ -51,7 +57,7 @@ module Increase
       optional :prongs,
                -> { Increase::Internal::Type::ArrayOf[enum: Increase::BeneficialOwnerUpdateParams::Prong] }
 
-      # @!method initialize(entity_beneficial_owner_id:, address: nil, confirmed_no_us_tax_id: nil, identification: nil, name: nil, prongs: nil, request_options: {})
+      # @!method initialize(entity_beneficial_owner_id:, address: nil, confirmed_no_us_tax_id: nil, date_of_birth: nil, identification: nil, name: nil, prongs: nil, request_options: {})
       #   @param entity_beneficial_owner_id [String] The identifier of the Beneficial Owner to update.
       #
       #   @param address [Increase::Models::BeneficialOwnerUpdateParams::Address]
@@ -63,6 +69,8 @@ module Increase
       #     license, or other document if you've confirmed the individual does not have a US
       #     tax id (either a Social Security Number or Individual Taxpayer Identification
       #     Number).
+      #
+      #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
       #
       #   @param identification [Increase::Models::BeneficialOwnerUpdateParams::Identification]
       #     A means of verifying the person's identity.

@@ -532,6 +532,12 @@ module Increase
         #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
         required :payer, -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::Payer] }
 
+        # @!attribute physical_check_batch_id
+        #   The identifier of the Physical Check Batch that this check is a part of.
+        #
+        #   @return [String, nil]
+        required :physical_check_batch_id, String, nil?: true
+
         # @!attribute recipient_name
         #   The name that will be printed on the check.
         #
@@ -570,7 +576,7 @@ module Increase
         required :tracking_updates,
                  -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::TrackingUpdate] }
 
-        # @!method initialize(attachment_file_id:, check_voucher_image_file_id:, mailing_address:, memo:, note:, payer:, recipient_name:, return_address:, return_address_name:, shipping_method:, signature:, tracking_updates:)
+        # @!method initialize(attachment_file_id:, check_voucher_image_file_id:, mailing_address:, memo:, note:, payer:, physical_check_batch_id:, recipient_name:, return_address:, return_address_name:, shipping_method:, signature:, tracking_updates:)
         #   Details relating to the physical check that Increase will print and mail. Will
         #   be present if and only if `fulfillment_method` is equal to `physical_check`.
         #
@@ -588,6 +594,9 @@ module Increase
         #   @param payer [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
         #     The payer of the check. This will be printed on the top-left portion of the
         #     check and defaults to the return address if unspecified.
+        #
+        #   @param physical_check_batch_id [String, nil]
+        #     The identifier of the Physical Check Batch that this check is a part of.
         #
         #   @param recipient_name [String] The name that will be printed on the check.
         #
@@ -875,6 +884,9 @@ module Increase
 
         # The transfer has been canceled.
         CANCELED = :canceled
+
+        # The transfer is waiting for its Physical Check Batch to be completed.
+        PENDING_BATCH_COMPLETING = :pending_batch_completing
 
         # The transfer is pending submission.
         PENDING_SUBMISSION = :pending_submission
