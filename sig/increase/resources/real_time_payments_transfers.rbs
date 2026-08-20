@@ -9,6 +9,7 @@ module Increase
         ?account_number: String,
         ?debtor_name: String,
         ?external_account_id: String,
+        ?inbound_real_time_payments_request_for_payment_id: String,
         ?require_approval: bool,
         ?routing_number: String,
         ?ultimate_creditor_name: String,

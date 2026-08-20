@@ -5,6 +5,7 @@ module Increase
         entity_beneficial_owner_id: String,
         address: Increase::BeneficialOwnerUpdateParams::Address,
         confirmed_no_us_tax_id: bool,
+        date_of_birth: Date,
         identification: Increase::BeneficialOwnerUpdateParams::Identification,
         name: String,
         prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong]
@@ -27,6 +28,10 @@ module Increase
 
       def confirmed_no_us_tax_id=: (bool) -> bool
 
+      attr_reader date_of_birth: Date?
+
+      def date_of_birth=: (Date) -> Date
+
       attr_reader identification: Increase::BeneficialOwnerUpdateParams::Identification?
 
       def identification=: (
@@ -47,6 +52,7 @@ module Increase
         entity_beneficial_owner_id: String,
         ?address: Increase::BeneficialOwnerUpdateParams::Address,
         ?confirmed_no_us_tax_id: bool,
+        ?date_of_birth: Date,
         ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
         ?name: String,
         ?prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong],
@@ -57,6 +63,7 @@ module Increase
         entity_beneficial_owner_id: String,
         address: Increase::BeneficialOwnerUpdateParams::Address,
         confirmed_no_us_tax_id: bool,
+        date_of_birth: Date,
         identification: Increase::BeneficialOwnerUpdateParams::Identification,
         name: String,
         prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong],

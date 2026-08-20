@@ -372,7 +372,7 @@ module Increase
         # The Card Dispute has been won and no further action can be taken.
         WON = T.let(:won, Increase::CardDispute::Status::TaggedSymbol)
 
-        # The Card Dispute has been reviewed and rejected, please review the explanation for more details.
+        # The Card Dispute was rejected before it was submitted to the network, either by Increase or because the user withdrew it. Please review the explanation for more details.
         REJECTED = T.let(:rejected, Increase::CardDispute::Status::TaggedSymbol)
 
         sig do

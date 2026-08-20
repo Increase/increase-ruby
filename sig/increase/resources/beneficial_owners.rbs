@@ -18,6 +18,7 @@ module Increase
         String entity_beneficial_owner_id,
         ?address: Increase::BeneficialOwnerUpdateParams::Address,
         ?confirmed_no_us_tax_id: bool,
+        ?date_of_birth: Date,
         ?identification: Increase::BeneficialOwnerUpdateParams::Identification,
         ?name: String,
         ?prongs: ::Array[Increase::Models::BeneficialOwnerUpdateParams::prong],

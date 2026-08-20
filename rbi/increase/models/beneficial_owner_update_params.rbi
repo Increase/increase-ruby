@@ -40,6 +40,13 @@ module Increase
       sig { params(confirmed_no_us_tax_id: T::Boolean).void }
       attr_writer :confirmed_no_us_tax_id
 
+      # The person's date of birth in YYYY-MM-DD format.
+      sig { returns(T.nilable(Date)) }
+      attr_reader :date_of_birth
+
+      sig { params(date_of_birth: Date).void }
+      attr_writer :date_of_birth
+
       # A means of verifying the person's identity.
       sig do
         returns(
@@ -89,6 +96,7 @@ module Increase
           entity_beneficial_owner_id: String,
           address: Increase::BeneficialOwnerUpdateParams::Address::OrHash,
           confirmed_no_us_tax_id: T::Boolean,
+          date_of_birth: Date,
           identification:
             Increase::BeneficialOwnerUpdateParams::Identification::OrHash,
           name: String,
@@ -108,6 +116,8 @@ module Increase
         # tax id (either a Social Security Number or Individual Taxpayer Identification
         # Number).
         confirmed_no_us_tax_id: nil,
+        # The person's date of birth in YYYY-MM-DD format.
+        date_of_birth: nil,
         # A means of verifying the person's identity.
         identification: nil,
         # The individual's legal name.
@@ -127,6 +137,7 @@ module Increase
             entity_beneficial_owner_id: String,
             address: Increase::BeneficialOwnerUpdateParams::Address,
             confirmed_no_us_tax_id: T::Boolean,
+            date_of_birth: Date,
             identification:
               Increase::BeneficialOwnerUpdateParams::Identification,
             name: String,
