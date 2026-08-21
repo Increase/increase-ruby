@@ -850,6 +850,13 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
+          # Occurs whenever a Plaid Processor Token is created.
+          PLAID_PROCESSOR_TOKEN_CREATED =
+            T.let(
+              :"plaid_processor_token.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
           # Occurs whenever a Checkbook is created.
           CHECKBOOK_CREATED =
             T.let(
