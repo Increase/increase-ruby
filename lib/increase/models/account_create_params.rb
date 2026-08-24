@@ -92,20 +92,8 @@ module Increase
         #   The number of days after the statement date that the Account can be past due
         #   before being considered delinquent.
         #
-        #   @return [Integer]
-        required :grace_period_days, Integer
-
-        # @!attribute statement_day_of_month
-        #   The day of the month on which the loan statement is generated.
-        #
-        #   @return [Integer]
-        required :statement_day_of_month, Integer
-
-        # @!attribute statement_payment_type
-        #   The type of statement payment for the account.
-        #
-        #   @return [Symbol, Increase::Models::AccountCreateParams::Loan::StatementPaymentType]
-        required :statement_payment_type, enum: -> { Increase::AccountCreateParams::Loan::StatementPaymentType }
+        #   @return [Integer, nil]
+        optional :grace_period_days, Integer
 
         # @!attribute maturity_date
         #   The date on which the loan matures.
@@ -113,7 +101,19 @@ module Increase
         #   @return [Date, nil]
         optional :maturity_date, Date
 
-        # @!method initialize(credit_limit:, grace_period_days:, statement_day_of_month:, statement_payment_type:, maturity_date: nil)
+        # @!attribute statement_day_of_month
+        #   The day of the month on which the loan statement is generated.
+        #
+        #   @return [Integer, nil]
+        optional :statement_day_of_month, Integer
+
+        # @!attribute statement_payment_type
+        #   The type of statement payment for the account.
+        #
+        #   @return [Symbol, Increase::Models::AccountCreateParams::Loan::StatementPaymentType, nil]
+        optional :statement_payment_type, enum: -> { Increase::AccountCreateParams::Loan::StatementPaymentType }
+
+        # @!method initialize(credit_limit:, grace_period_days: nil, maturity_date: nil, statement_day_of_month: nil, statement_payment_type: nil)
         #   The loan details for the account.
         #
         #   @param credit_limit [Integer] The maximum amount of money that can be drawn from the Account.
@@ -122,12 +122,12 @@ module Increase
         #     The number of days after the statement date that the Account can be past due
         #     before being considered delinquent.
         #
+        #   @param maturity_date [Date] The date on which the loan matures.
+        #
         #   @param statement_day_of_month [Integer] The day of the month on which the loan statement is generated.
         #
         #   @param statement_payment_type [Symbol, Increase::Models::AccountCreateParams::Loan::StatementPaymentType]
         #     The type of statement payment for the account.
-        #
-        #   @param maturity_date [Date] The date on which the loan matures.
 
         # The type of statement payment for the account.
         #

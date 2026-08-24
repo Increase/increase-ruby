@@ -380,6 +380,9 @@ module Increase
           # Occurs whenever a Physical Check is updated.
           PHYSICAL_CHECK_UPDATED = :"physical_check.updated"
 
+          # Occurs whenever a Plaid Processor Token is created.
+          PLAID_PROCESSOR_TOKEN_CREATED = :"plaid_processor_token.created"
+
           # Occurs whenever a Checkbook is created.
           CHECKBOOK_CREATED = :"checkbook.created"
 

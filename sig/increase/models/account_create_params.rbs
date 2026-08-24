@@ -79,38 +79,46 @@ module Increase
         {
           credit_limit: Integer,
           grace_period_days: Integer,
+          maturity_date: Date,
           statement_day_of_month: Integer,
-          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type,
-          maturity_date: Date
+          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type
         }
 
       class Loan < Increase::Internal::Type::BaseModel
         attr_accessor credit_limit: Integer
 
-        attr_accessor grace_period_days: Integer
+        attr_reader grace_period_days: Integer?
 
-        attr_accessor statement_day_of_month: Integer
-
-        attr_accessor statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type
+        def grace_period_days=: (Integer) -> Integer
 
         attr_reader maturity_date: Date?
 
         def maturity_date=: (Date) -> Date
 
+        attr_reader statement_day_of_month: Integer?
+
+        def statement_day_of_month=: (Integer) -> Integer
+
+        attr_reader statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type?
+
+        def statement_payment_type=: (
+          Increase::Models::AccountCreateParams::Loan::statement_payment_type
+        ) -> Increase::Models::AccountCreateParams::Loan::statement_payment_type
+
         def initialize: (
           credit_limit: Integer,
-          grace_period_days: Integer,
-          statement_day_of_month: Integer,
-          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type,
-          ?maturity_date: Date
+          ?grace_period_days: Integer,
+          ?maturity_date: Date,
+          ?statement_day_of_month: Integer,
+          ?statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type
         ) -> void
 
         def to_hash: -> {
           credit_limit: Integer,
           grace_period_days: Integer,
+          maturity_date: Date,
           statement_day_of_month: Integer,
-          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type,
-          maturity_date: Date
+          statement_payment_type: Increase::Models::AccountCreateParams::Loan::statement_payment_type
         }
 
         type statement_payment_type = :balance | :interest_until_maturity
