@@ -170,6 +170,7 @@ module Increase
           | :"physical_card_profile.updated"
           | :"physical_check.created"
           | :"physical_check.updated"
+          | :"plaid_processor_token.created"
           | :"checkbook.created"
           | :"checkbook.updated"
           | :"program.created"
@@ -493,6 +494,9 @@ module Increase
 
           # Occurs whenever a Physical Check is updated.
           PHYSICAL_CHECK_UPDATED: :"physical_check.updated"
+
+          # Occurs whenever a Plaid Processor Token is created.
+          PLAID_PROCESSOR_TOKEN_CREATED: :"plaid_processor_token.created"
 
           # Occurs whenever a Checkbook is created.
           CHECKBOOK_CREATED: :"checkbook.created"

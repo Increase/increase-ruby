@@ -144,20 +144,11 @@ module Increase
 
         # The number of days after the statement date that the Account can be past due
         # before being considered delinquent.
-        sig { returns(Integer) }
-        attr_accessor :grace_period_days
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :grace_period_days
 
-        # The day of the month on which the loan statement is generated.
-        sig { returns(Integer) }
-        attr_accessor :statement_day_of_month
-
-        # The type of statement payment for the account.
-        sig do
-          returns(
-            Increase::AccountCreateParams::Loan::StatementPaymentType::OrSymbol
-          )
-        end
-        attr_accessor :statement_payment_type
+        sig { params(grace_period_days: Integer).void }
+        attr_writer :grace_period_days
 
         # The date on which the loan matures.
         sig { returns(T.nilable(Date)) }
@@ -166,15 +157,40 @@ module Increase
         sig { params(maturity_date: Date).void }
         attr_writer :maturity_date
 
+        # The day of the month on which the loan statement is generated.
+        sig { returns(T.nilable(Integer)) }
+        attr_reader :statement_day_of_month
+
+        sig { params(statement_day_of_month: Integer).void }
+        attr_writer :statement_day_of_month
+
+        # The type of statement payment for the account.
+        sig do
+          returns(
+            T.nilable(
+              Increase::AccountCreateParams::Loan::StatementPaymentType::OrSymbol
+            )
+          )
+        end
+        attr_reader :statement_payment_type
+
+        sig do
+          params(
+            statement_payment_type:
+              Increase::AccountCreateParams::Loan::StatementPaymentType::OrSymbol
+          ).void
+        end
+        attr_writer :statement_payment_type
+
         # The loan details for the account.
         sig do
           params(
             credit_limit: Integer,
             grace_period_days: Integer,
+            maturity_date: Date,
             statement_day_of_month: Integer,
             statement_payment_type:
-              Increase::AccountCreateParams::Loan::StatementPaymentType::OrSymbol,
-            maturity_date: Date
+              Increase::AccountCreateParams::Loan::StatementPaymentType::OrSymbol
           ).returns(T.attached_class)
         end
         def self.new(
@@ -182,13 +198,13 @@ module Increase
           credit_limit:,
           # The number of days after the statement date that the Account can be past due
           # before being considered delinquent.
-          grace_period_days:,
-          # The day of the month on which the loan statement is generated.
-          statement_day_of_month:,
-          # The type of statement payment for the account.
-          statement_payment_type:,
+          grace_period_days: nil,
           # The date on which the loan matures.
-          maturity_date: nil
+          maturity_date: nil,
+          # The day of the month on which the loan statement is generated.
+          statement_day_of_month: nil,
+          # The type of statement payment for the account.
+          statement_payment_type: nil
         )
         end
 
@@ -197,10 +213,10 @@ module Increase
             {
               credit_limit: Integer,
               grace_period_days: Integer,
+              maturity_date: Date,
               statement_day_of_month: Integer,
               statement_payment_type:
-                Increase::AccountCreateParams::Loan::StatementPaymentType::OrSymbol,
-              maturity_date: Date
+                Increase::AccountCreateParams::Loan::StatementPaymentType::OrSymbol
             }
           )
         end
