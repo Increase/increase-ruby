@@ -10,7 +10,8 @@ module Increase
       # @param card_id [String] The underlying card representing this physical card.
       #
       # @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder]
-      #   Details about the cardholder, as it will appear on the physical card.
+      #   Details about the cardholder, as it will appear on the physical card. The
+      #   combined first name and last name cannot exceed 25 characters.
       #
       # @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment]
       #   The details used to ship this physical card.

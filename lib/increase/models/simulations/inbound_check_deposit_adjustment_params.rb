@@ -15,7 +15,10 @@ module Increase
         required :inbound_check_deposit_id, String
 
         # @!attribute amount
-        #   The adjustment amount in cents. Defaults to the amount of the Inbound Check
+        #   The adjustment amount in cents. A positive amount means that the funds are being
+        #   returned to you by the other bank and is a credit to your account, as happens
+        #   for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+        #   happens for a `late_return`. Defaults to the amount of the Inbound Check
         #   Deposit.
         #
         #   @return [Integer, nil]
@@ -31,7 +34,10 @@ module Increase
         #   @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to adjust.
         #
         #   @param amount [Integer]
-        #     The adjustment amount in cents. Defaults to the amount of the Inbound Check
+        #     The adjustment amount in cents. A positive amount means that the funds are being
+        #     returned to you by the other bank and is a credit to your account, as happens
+        #     for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+        #     happens for a `late_return`. Defaults to the amount of the Inbound Check
         #     Deposit.
         #
         #   @param reason [Symbol, Increase::Models::Simulations::InboundCheckDepositAdjustmentParams::Reason]

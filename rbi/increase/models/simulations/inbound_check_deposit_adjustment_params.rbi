@@ -19,7 +19,10 @@ module Increase
         sig { returns(String) }
         attr_accessor :inbound_check_deposit_id
 
-        # The adjustment amount in cents. Defaults to the amount of the Inbound Check
+        # The adjustment amount in cents. A positive amount means that the funds are being
+        # returned to you by the other bank and is a credit to your account, as happens
+        # for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+        # happens for a `late_return`. Defaults to the amount of the Inbound Check
         # Deposit.
         sig { returns(T.nilable(Integer)) }
         attr_reader :amount
@@ -57,7 +60,10 @@ module Increase
         def self.new(
           # The identifier of the Inbound Check Deposit to adjust.
           inbound_check_deposit_id:,
-          # The adjustment amount in cents. Defaults to the amount of the Inbound Check
+          # The adjustment amount in cents. A positive amount means that the funds are being
+          # returned to you by the other bank and is a credit to your account, as happens
+          # for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+          # happens for a `late_return`. Defaults to the amount of the Inbound Check
           # Deposit.
           amount: nil,
           # The reason for the adjustment. Defaults to `wrong_payee_credit`.
