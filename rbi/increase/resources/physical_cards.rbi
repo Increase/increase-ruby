@@ -16,7 +16,8 @@ module Increase
       def create(
         # The underlying card representing this physical card.
         card_id:,
-        # Details about the cardholder, as it will appear on the physical card.
+        # Details about the cardholder, as it will appear on the physical card. The
+        # combined first name and last name cannot exceed 25 characters.
         cardholder:,
         # The details used to ship this physical card.
         shipment:,

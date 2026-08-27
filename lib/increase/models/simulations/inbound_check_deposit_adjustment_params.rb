@@ -15,7 +15,10 @@ module Increase
         required :inbound_check_deposit_id, String
 
         # @!attribute amount
-        #   The adjustment amount in cents. Defaults to the amount of the Inbound Check
+        #   The adjustment amount in cents. A positive amount means that the funds are being
+        #   returned to you by the other bank and is a credit to your account, as happens
+        #   for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+        #   happens for a `late_return`. Defaults to the amount of the Inbound Check
         #   Deposit.
         #
         #   @return [Integer, nil]
@@ -31,7 +34,10 @@ module Increase
         #   @param inbound_check_deposit_id [String] The identifier of the Inbound Check Deposit to adjust.
         #
         #   @param amount [Integer]
-        #     The adjustment amount in cents. Defaults to the amount of the Inbound Check
+        #     The adjustment amount in cents. A positive amount means that the funds are being
+        #     returned to you by the other bank and is a credit to your account, as happens
+        #     for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+        #     happens for a `late_return`. Defaults to the amount of the Inbound Check
         #     Deposit.
         #
         #   @param reason [Symbol, Increase::Models::Simulations::InboundCheckDepositAdjustmentParams::Reason]
@@ -48,15 +54,6 @@ module Increase
 
           # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
           WRONG_PAYEE_CREDIT = :wrong_payee_credit
-
-          # The check was deposited with a different amount than what was written on the check.
-          ADJUSTED_AMOUNT = :adjusted_amount
-
-          # The recipient was not able to process the check. This usually happens for e.g., low quality images.
-          NON_CONFORMING_ITEM = :non_conforming_item
-
-          # The check has already been deposited elsewhere and so this is a duplicate.
-          PAID = :paid
 
           # @!method self.values
           #   @return [Array<Symbol>]
