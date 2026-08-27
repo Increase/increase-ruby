@@ -91,6 +91,19 @@ module Increase
       end
       attr_writer :risk_rating
 
+      # Details of the sole proprietorship entity. Will be present if `structure` is
+      # equal to `sole_proprietorship`.
+      sig { returns(T.nilable(Increase::Entity::SoleProprietorship)) }
+      attr_reader :sole_proprietorship
+
+      sig do
+        params(
+          sole_proprietorship:
+            T.nilable(Increase::Entity::SoleProprietorship::OrHash)
+        ).void
+      end
+      attr_writer :sole_proprietorship
+
       # The status of the entity.
       sig { returns(Increase::Entity::Status::TaggedSymbol) }
       attr_accessor :status
@@ -163,6 +176,8 @@ module Increase
           joint: T.nilable(Increase::Entity::Joint::OrHash),
           natural_person: T.nilable(Increase::Entity::NaturalPerson::OrHash),
           risk_rating: T.nilable(Increase::Entity::RiskRating::OrHash),
+          sole_proprietorship:
+            T.nilable(Increase::Entity::SoleProprietorship::OrHash),
           status: Increase::Entity::Status::OrSymbol,
           structure: Increase::Entity::Structure::OrSymbol,
           supplemental_documents:
@@ -207,6 +222,9 @@ module Increase
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating:,
+        # Details of the sole proprietorship entity. Will be present if `structure` is
+        # equal to `sole_proprietorship`.
+        sole_proprietorship:,
         # The status of the entity.
         status:,
         # The entity's legal structure.
@@ -248,6 +266,8 @@ module Increase
             joint: T.nilable(Increase::Entity::Joint),
             natural_person: T.nilable(Increase::Entity::NaturalPerson),
             risk_rating: T.nilable(Increase::Entity::RiskRating),
+            sole_proprietorship:
+              T.nilable(Increase::Entity::SoleProprietorship),
             status: Increase::Entity::Status::TaggedSymbol,
             structure: Increase::Entity::Structure::TaggedSymbol,
             supplemental_documents:
@@ -1945,6 +1965,473 @@ module Increase
         end
       end
 
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::Entity::SoleProprietorship,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The sole proprietorship's address.
+        sig { returns(Increase::Entity::SoleProprietorship::Address) }
+        attr_reader :address
+
+        sig do
+          params(
+            address: Increase::Entity::SoleProprietorship::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
+        # The name under which the sole proprietorship does business.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :doing_business_as_name
+
+        # An email address for the sole proprietorship.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email
+
+        # The numeric North American Industry Classification System (NAICS) code submitted
+        # for the sole proprietorship.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :industry_code
+
+        # The individual who operates the sole proprietorship.
+        sig { returns(Increase::Entity::SoleProprietorship::SoleProprietor) }
+        attr_reader :sole_proprietor
+
+        sig do
+          params(
+            sole_proprietor:
+              Increase::Entity::SoleProprietorship::SoleProprietor::OrHash
+          ).void
+        end
+        attr_writer :sole_proprietor
+
+        # The Employer Identification Number (EIN) for the sole proprietorship.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :tax_identifier
+
+        # The sole proprietorship's website.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :website
+
+        # Details of the sole proprietorship entity. Will be present if `structure` is
+        # equal to `sole_proprietorship`.
+        sig do
+          params(
+            address: Increase::Entity::SoleProprietorship::Address::OrHash,
+            doing_business_as_name: T.nilable(String),
+            email: T.nilable(String),
+            industry_code: T.nilable(String),
+            sole_proprietor:
+              Increase::Entity::SoleProprietorship::SoleProprietor::OrHash,
+            tax_identifier: T.nilable(String),
+            website: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The sole proprietorship's address.
+          address:,
+          # The name under which the sole proprietorship does business.
+          doing_business_as_name:,
+          # An email address for the sole proprietorship.
+          email:,
+          # The numeric North American Industry Classification System (NAICS) code submitted
+          # for the sole proprietorship.
+          industry_code:,
+          # The individual who operates the sole proprietorship.
+          sole_proprietor:,
+          # The Employer Identification Number (EIN) for the sole proprietorship.
+          tax_identifier:,
+          # The sole proprietorship's website.
+          website:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address: Increase::Entity::SoleProprietorship::Address,
+              doing_business_as_name: T.nilable(String),
+              email: T.nilable(String),
+              industry_code: T.nilable(String),
+              sole_proprietor:
+                Increase::Entity::SoleProprietorship::SoleProprietor,
+              tax_identifier: T.nilable(String),
+              website: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Entity::SoleProprietorship::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The city, district, town, or village of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :city
+
+          # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          sig { returns(String) }
+          attr_accessor :country
+
+          # The first line of the address.
+          sig { returns(String) }
+          attr_accessor :line1
+
+          # The second line of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :line2
+
+          # The two-letter United States Postal Service (USPS) abbreviation for the US
+          # state, province, or region of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :state
+
+          # The ZIP or postal code of the address.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :zip
+
+          # The sole proprietorship's address.
+          sig do
+            params(
+              city: T.nilable(String),
+              country: String,
+              line1: String,
+              line2: T.nilable(String),
+              state: T.nilable(String),
+              zip: T.nilable(String)
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city, district, town, or village of the address.
+            city:,
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            country:,
+            # The first line of the address.
+            line1:,
+            # The second line of the address.
+            line2:,
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
+            state:,
+            # The ZIP or postal code of the address.
+            zip:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: T.nilable(String),
+                country: String,
+                line1: String,
+                line2: T.nilable(String),
+                state: T.nilable(String),
+                zip: T.nilable(String)
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Entity::SoleProprietorship::SoleProprietor,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The person's address.
+          sig do
+            returns(
+              Increase::Entity::SoleProprietorship::SoleProprietor::Address
+            )
+          end
+          attr_reader :address
+
+          sig do
+            params(
+              address:
+                Increase::Entity::SoleProprietorship::SoleProprietor::Address::OrHash
+            ).void
+          end
+          attr_writer :address
+
+          # The person's date of birth in YYYY-MM-DD format.
+          sig { returns(Date) }
+          attr_accessor :date_of_birth
+
+          # A means of verifying the person's identity.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Entity::SoleProprietorship::SoleProprietor::Identification
+              )
+            )
+          end
+          attr_reader :identification
+
+          sig do
+            params(
+              identification:
+                T.nilable(
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::OrHash
+                )
+            ).void
+          end
+          attr_writer :identification
+
+          # The person's legal name.
+          sig { returns(String) }
+          attr_accessor :name
+
+          # The individual who operates the sole proprietorship.
+          sig do
+            params(
+              address:
+                Increase::Entity::SoleProprietorship::SoleProprietor::Address::OrHash,
+              date_of_birth: Date,
+              identification:
+                T.nilable(
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::OrHash
+                ),
+              name: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The person's address.
+            address:,
+            # The person's date of birth in YYYY-MM-DD format.
+            date_of_birth:,
+            # A means of verifying the person's identity.
+            identification:,
+            # The person's legal name.
+            name:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                address:
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Address,
+                date_of_birth: Date,
+                identification:
+                  T.nilable(
+                    Increase::Entity::SoleProprietorship::SoleProprietor::Identification
+                  ),
+                name: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Address < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The city, district, town, or village of the address.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :city
+
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            sig { returns(String) }
+            attr_accessor :country
+
+            # The first line of the address.
+            sig { returns(String) }
+            attr_accessor :line1
+
+            # The second line of the address.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :line2
+
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :state
+
+            # The ZIP or postal code of the address.
+            sig { returns(T.nilable(String)) }
+            attr_accessor :zip
+
+            # The person's address.
+            sig do
+              params(
+                city: T.nilable(String),
+                country: String,
+                line1: String,
+                line2: T.nilable(String),
+                state: T.nilable(String),
+                zip: T.nilable(String)
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The city, district, town, or village of the address.
+              city:,
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              country:,
+              # The first line of the address.
+              line1:,
+              # The second line of the address.
+              line2:,
+              # The two-letter United States Postal Service (USPS) abbreviation for the US
+              # state, province, or region of the address.
+              state:,
+              # The ZIP or postal code of the address.
+              zip:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  city: T.nilable(String),
+                  country: String,
+                  line1: String,
+                  line2: T.nilable(String),
+                  state: T.nilable(String),
+                  zip: T.nilable(String)
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Identification < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A method that can be used to verify the individual's identity.
+            sig do
+              returns(
+                Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+              )
+            end
+            attr_accessor :method_
+
+            # The last 4 digits of the identification number that can be used to verify the
+            # individual's identity.
+            sig { returns(String) }
+            attr_accessor :number_last4
+
+            # A means of verifying the person's identity.
+            sig do
+              params(
+                method_:
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::OrSymbol,
+                number_last4: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # A method that can be used to verify the individual's identity.
+              method_:,
+              # The last 4 digits of the identification number that can be used to verify the
+              # individual's identity.
+              number_last4:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  method_:
+                    Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol,
+                  number_last4: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # A method that can be used to verify the individual's identity.
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER =
+                T.let(
+                  :social_security_number,
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
+                T.let(
+                  :individual_taxpayer_identification_number,
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # A passport number.
+              PASSPORT =
+                T.let(
+                  :passport,
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # A driver's license number.
+              DRIVERS_LICENSE =
+                T.let(
+                  :drivers_license,
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # Another identifying document.
+              OTHER =
+                T.let(
+                  :other,
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+          end
+        end
+      end
+
       # The status of the entity.
       module Status
         extend Increase::Internal::Type::Enum
@@ -1996,6 +2483,10 @@ module Increase
             :government_authority,
             Increase::Entity::Structure::TaggedSymbol
           )
+
+        # A sole proprietorship.
+        SOLE_PROPRIETORSHIP =
+          T.let(:sole_proprietorship, Increase::Entity::Structure::TaggedSymbol)
 
         sig do
           override.returns(T::Array[Increase::Entity::Structure::TaggedSymbol])

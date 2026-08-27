@@ -255,7 +255,8 @@ module Increase
         sig { returns(Time) }
         attr_accessor :adjusted_at
 
-        # The amount of the adjustment.
+        # The amount of the adjustment in USD cents. A positive amount is a credit to your
+        # account and a negative amount is a debit.
         sig { returns(Integer) }
         attr_accessor :amount
 
@@ -282,7 +283,8 @@ module Increase
         def self.new(
           # The time at which the return adjustment was received.
           adjusted_at:,
-          # The amount of the adjustment.
+          # The amount of the adjustment in USD cents. A positive amount is a credit to your
+          # account and a negative amount is a debit.
           amount:,
           # The reason for the adjustment.
           reason:,

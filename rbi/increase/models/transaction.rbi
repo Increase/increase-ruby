@@ -12808,7 +12808,8 @@ module Increase
           sig { returns(String) }
           attr_accessor :adjusted_transaction_id
 
-          # The amount of the check adjustment.
+          # The amount of the check adjustment in USD cents. A positive amount is a credit
+          # to your account and a negative amount is a debit.
           sig { returns(Integer) }
           attr_accessor :amount
 
@@ -12835,7 +12836,8 @@ module Increase
           def self.new(
             # The ID of the transaction that was adjusted.
             adjusted_transaction_id:,
-            # The amount of the check adjustment.
+            # The amount of the check adjustment in USD cents. A positive amount is a credit
+            # to your account and a negative amount is a debit.
             amount:,
             # The reason for the adjustment.
             reason:

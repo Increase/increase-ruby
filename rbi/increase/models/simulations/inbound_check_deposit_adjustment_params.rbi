@@ -19,7 +19,10 @@ module Increase
         sig { returns(String) }
         attr_accessor :inbound_check_deposit_id
 
-        # The adjustment amount in cents. Defaults to the amount of the Inbound Check
+        # The adjustment amount in cents. A positive amount means that the funds are being
+        # returned to you by the other bank and is a credit to your account, as happens
+        # for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+        # happens for a `late_return`. Defaults to the amount of the Inbound Check
         # Deposit.
         sig { returns(T.nilable(Integer)) }
         attr_reader :amount
@@ -57,7 +60,10 @@ module Increase
         def self.new(
           # The identifier of the Inbound Check Deposit to adjust.
           inbound_check_deposit_id:,
-          # The adjustment amount in cents. Defaults to the amount of the Inbound Check
+          # The adjustment amount in cents. A positive amount means that the funds are being
+          # returned to you by the other bank and is a credit to your account, as happens
+          # for a `wrong_payee_credit`. A negative amount is a debit to your account, as
+          # happens for a `late_return`. Defaults to the amount of the Inbound Check
           # Deposit.
           amount: nil,
           # The reason for the adjustment. Defaults to `wrong_payee_credit`.
@@ -104,27 +110,6 @@ module Increase
           WRONG_PAYEE_CREDIT =
             T.let(
               :wrong_payee_credit,
-              Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason::TaggedSymbol
-            )
-
-          # The check was deposited with a different amount than what was written on the check.
-          ADJUSTED_AMOUNT =
-            T.let(
-              :adjusted_amount,
-              Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason::TaggedSymbol
-            )
-
-          # The recipient was not able to process the check. This usually happens for e.g., low quality images.
-          NON_CONFORMING_ITEM =
-            T.let(
-              :non_conforming_item,
-              Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason::TaggedSymbol
-            )
-
-          # The check has already been deposited elsewhere and so this is a duplicate.
-          PAID =
-            T.let(
-              :paid,
               Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason::TaggedSymbol
             )
 

@@ -28,8 +28,10 @@ class Increase::Test::Resources::Simulations::InboundFednowTransfersTest < Incre
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundFednowTransfer::Decline | nil,
+        end_to_end_identification: String | nil,
         status: Increase::InboundFednowTransfer::Status,
         transaction_id: String | nil,
+        transaction_identification: String | nil,
         type: Increase::InboundFednowTransfer::Type,
         unique_end_to_end_transaction_reference: String | nil,
         unstructured_remittance_information: String | nil

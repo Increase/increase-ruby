@@ -14,7 +14,8 @@ module Increase
       required :card_id, String
 
       # @!attribute cardholder
-      #   Details about the cardholder, as it will appear on the physical card.
+      #   Details about the cardholder, as it will appear on the physical card. The
+      #   combined first name and last name cannot exceed 25 characters.
       #
       #   @return [Increase::Models::PhysicalCardCreateParams::Cardholder]
       required :cardholder, -> { Increase::PhysicalCardCreateParams::Cardholder }
@@ -36,7 +37,8 @@ module Increase
       #   @param card_id [String] The underlying card representing this physical card.
       #
       #   @param cardholder [Increase::Models::PhysicalCardCreateParams::Cardholder]
-      #     Details about the cardholder, as it will appear on the physical card.
+      #     Details about the cardholder, as it will appear on the physical card. The
+      #     combined first name and last name cannot exceed 25 characters.
       #
       #   @param shipment [Increase::Models::PhysicalCardCreateParams::Shipment]
       #     The details used to ship this physical card.
@@ -61,7 +63,8 @@ module Increase
         required :last_name, String
 
         # @!method initialize(first_name:, last_name:)
-        #   Details about the cardholder, as it will appear on the physical card.
+        #   Details about the cardholder, as it will appear on the physical card. The
+        #   combined first name and last name cannot exceed 25 characters.
         #
         #   @param first_name [String] The cardholder's first name.
         #
