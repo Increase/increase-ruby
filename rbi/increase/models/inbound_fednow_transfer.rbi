@@ -73,6 +73,10 @@ module Increase
       end
       attr_writer :decline
 
+      # A free-form reference string set by the sender, to help identify the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :end_to_end_identification
+
       # The lifecycle status of the transfer.
       sig { returns(Increase::InboundFednowTransfer::Status::TaggedSymbol) }
       attr_accessor :status
@@ -81,6 +85,10 @@ module Increase
       # confirmed.
       sig { returns(T.nilable(String)) }
       attr_accessor :transaction_id
+
+      # The FedNow network identification of the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :transaction_identification
 
       # A constant representing the object's type. For this resource it will always be
       # `inbound_fednow_transfer`.
@@ -114,8 +122,10 @@ module Increase
           debtor_name: String,
           debtor_routing_number: String,
           decline: T.nilable(Increase::InboundFednowTransfer::Decline::OrHash),
+          end_to_end_identification: T.nilable(String),
           status: Increase::InboundFednowTransfer::Status::OrSymbol,
           transaction_id: T.nilable(String),
+          transaction_identification: T.nilable(String),
           type: Increase::InboundFednowTransfer::Type::OrSymbol,
           unique_end_to_end_transaction_reference: T.nilable(String),
           unstructured_remittance_information: T.nilable(String)
@@ -148,11 +158,15 @@ module Increase
         debtor_routing_number:,
         # If your transfer is declined, this will contain details of the decline.
         decline:,
+        # A free-form reference string set by the sender, to help identify the transfer.
+        end_to_end_identification:,
         # The lifecycle status of the transfer.
         status:,
         # The identifier of the Transaction object created when the transfer was
         # confirmed.
         transaction_id:,
+        # The FedNow network identification of the transfer.
+        transaction_identification:,
         # A constant representing the object's type. For this resource it will always be
         # `inbound_fednow_transfer`.
         type:,
@@ -181,8 +195,10 @@ module Increase
             debtor_name: String,
             debtor_routing_number: String,
             decline: T.nilable(Increase::InboundFednowTransfer::Decline),
+            end_to_end_identification: T.nilable(String),
             status: Increase::InboundFednowTransfer::Status::TaggedSymbol,
             transaction_id: T.nilable(String),
+            transaction_identification: T.nilable(String),
             type: Increase::InboundFednowTransfer::Type::TaggedSymbol,
             unique_end_to_end_transaction_reference: T.nilable(String),
             unstructured_remittance_information: T.nilable(String)

@@ -13,6 +13,7 @@ module Increase
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
         risk_rating: Increase::Entity::RiskRating?,
+        sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
@@ -46,6 +47,8 @@ module Increase
 
       attr_accessor risk_rating: Increase::Entity::RiskRating?
 
+      attr_accessor sole_proprietorship: Increase::Entity::SoleProprietorship?
+
       attr_accessor status: Increase::Models::Entity::status
 
       attr_accessor structure: Increase::Models::Entity::structure
@@ -74,6 +77,7 @@ module Increase
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
         risk_rating: Increase::Entity::RiskRating?,
+        sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
@@ -96,6 +100,7 @@ module Increase
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
         risk_rating: Increase::Entity::RiskRating?,
+        sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
         supplemental_documents: ::Array[Increase::EntitySupplementalDocument],
@@ -858,6 +863,219 @@ module Increase
         end
       end
 
+      type sole_proprietorship =
+        {
+          address: Increase::Entity::SoleProprietorship::Address,
+          doing_business_as_name: String?,
+          email: String?,
+          industry_code: String?,
+          sole_proprietor: Increase::Entity::SoleProprietorship::SoleProprietor,
+          tax_identifier: String?,
+          website: String?
+        }
+
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        attr_accessor address: Increase::Entity::SoleProprietorship::Address
+
+        attr_accessor doing_business_as_name: String?
+
+        attr_accessor email: String?
+
+        attr_accessor industry_code: String?
+
+        attr_accessor sole_proprietor: Increase::Entity::SoleProprietorship::SoleProprietor
+
+        attr_accessor tax_identifier: String?
+
+        attr_accessor website: String?
+
+        def initialize: (
+          address: Increase::Entity::SoleProprietorship::Address,
+          doing_business_as_name: String?,
+          email: String?,
+          industry_code: String?,
+          sole_proprietor: Increase::Entity::SoleProprietorship::SoleProprietor,
+          tax_identifier: String?,
+          website: String?
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::Entity::SoleProprietorship::Address,
+          doing_business_as_name: String?,
+          email: String?,
+          industry_code: String?,
+          sole_proprietor: Increase::Entity::SoleProprietorship::SoleProprietor,
+          tax_identifier: String?,
+          website: String?
+        }
+
+        type address =
+          {
+            city: String?,
+            country: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String?,
+            zip: String?
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String?
+
+          attr_accessor country: String
+
+          attr_accessor line1: String
+
+          attr_accessor line2: String?
+
+          attr_accessor state: String?
+
+          attr_accessor zip: String?
+
+          def initialize: (
+            city: String?,
+            country: String,
+            line1: String,
+            line2: String?,
+            state: String?,
+            zip: String?
+          ) -> void
+
+          def to_hash: -> {
+            city: String?,
+            country: String,
+            :line1 => String,
+            :line2 => String?,
+            state: String?,
+            zip: String?
+          }
+        end
+
+        type sole_proprietor =
+          {
+            address: Increase::Entity::SoleProprietorship::SoleProprietor::Address,
+            date_of_birth: Date,
+            identification: Increase::Entity::SoleProprietorship::SoleProprietor::Identification?,
+            name: String
+          }
+
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          attr_accessor address: Increase::Entity::SoleProprietorship::SoleProprietor::Address
+
+          attr_accessor date_of_birth: Date
+
+          attr_accessor identification: Increase::Entity::SoleProprietorship::SoleProprietor::Identification?
+
+          attr_accessor name: String
+
+          def initialize: (
+            address: Increase::Entity::SoleProprietorship::SoleProprietor::Address,
+            date_of_birth: Date,
+            identification: Increase::Entity::SoleProprietorship::SoleProprietor::Identification?,
+            name: String
+          ) -> void
+
+          def to_hash: -> {
+            address: Increase::Entity::SoleProprietorship::SoleProprietor::Address,
+            date_of_birth: Date,
+            identification: Increase::Entity::SoleProprietorship::SoleProprietor::Identification?,
+            name: String
+          }
+
+          type address =
+            {
+              city: String?,
+              country: String,
+              :line1 => String,
+              :line2 => String?,
+              state: String?,
+              zip: String?
+            }
+
+          class Address < Increase::Internal::Type::BaseModel
+            attr_accessor city: String?
+
+            attr_accessor country: String
+
+            attr_accessor line1: String
+
+            attr_accessor line2: String?
+
+            attr_accessor state: String?
+
+            attr_accessor zip: String?
+
+            def initialize: (
+              city: String?,
+              country: String,
+              line1: String,
+              line2: String?,
+              state: String?,
+              zip: String?
+            ) -> void
+
+            def to_hash: -> {
+              city: String?,
+              country: String,
+              :line1 => String,
+              :line2 => String?,
+              state: String?,
+              zip: String?
+            }
+          end
+
+          type identification =
+            {
+              method_: Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification::method_,
+              :number_last4 => String
+            }
+
+          class Identification < Increase::Internal::Type::BaseModel
+            attr_accessor method_: Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification::method_
+
+            attr_accessor number_last4: String
+
+            def initialize: (
+              method_: Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification::method_,
+              number_last4: String
+            ) -> void
+
+            def to_hash: -> {
+              method_: Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification::method_,
+              :number_last4 => String
+            }
+
+            type method_ =
+              :social_security_number
+              | :individual_taxpayer_identification_number
+              | :passport
+              | :drivers_license
+              | :other
+
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER: :social_security_number
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER: :individual_taxpayer_identification_number
+
+              # A passport number.
+              PASSPORT: :passport
+
+              # A driver's license number.
+              DRIVERS_LICENSE: :drivers_license
+
+              # Another identifying document.
+              OTHER: :other
+
+              def self?.values: -> ::Array[Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification::method_]
+            end
+          end
+        end
+      end
+
       type status = :active | :archived | :disabled
 
       module Status
@@ -876,7 +1094,12 @@ module Increase
       end
 
       type structure =
-        :corporation | :natural_person | :joint | :trust | :government_authority
+        :corporation
+        | :natural_person
+        | :joint
+        | :trust
+        | :government_authority
+        | :sole_proprietorship
 
       module Structure
         extend Increase::Internal::Type::Enum
@@ -895,6 +1118,9 @@ module Increase
 
         # A government authority.
         GOVERNMENT_AUTHORITY: :government_authority
+
+        # A sole proprietorship.
+        SOLE_PROPRIETORSHIP: :sole_proprietorship
 
         def self?.values: -> ::Array[Increase::Models::Entity::structure]
       end

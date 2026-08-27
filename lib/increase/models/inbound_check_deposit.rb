@@ -231,7 +231,8 @@ module Increase
         required :adjusted_at, Time
 
         # @!attribute amount
-        #   The amount of the adjustment.
+        #   The amount of the adjustment in USD cents. A positive amount is a credit to your
+        #   account and a negative amount is a debit.
         #
         #   @return [Integer]
         required :amount, Integer
@@ -251,7 +252,9 @@ module Increase
         # @!method initialize(adjusted_at:, amount:, reason:, transaction_id:)
         #   @param adjusted_at [Time] The time at which the return adjustment was received.
         #
-        #   @param amount [Integer] The amount of the adjustment.
+        #   @param amount [Integer]
+        #     The amount of the adjustment in USD cents. A positive amount is a credit to your
+        #     account and a negative amount is a debit.
         #
         #   @param reason [Symbol, Increase::Models::InboundCheckDeposit::Adjustment::Reason]
         #     The reason for the adjustment.

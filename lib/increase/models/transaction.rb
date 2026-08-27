@@ -7231,7 +7231,8 @@ module Increase
           required :adjusted_transaction_id, String
 
           # @!attribute amount
-          #   The amount of the check adjustment.
+          #   The amount of the check adjustment in USD cents. A positive amount is a credit
+          #   to your account and a negative amount is a debit.
           #
           #   @return [Integer]
           required :amount, Integer
@@ -7250,7 +7251,9 @@ module Increase
           #
           #   @param adjusted_transaction_id [String] The ID of the transaction that was adjusted.
           #
-          #   @param amount [Integer] The amount of the check adjustment.
+          #   @param amount [Integer]
+          #     The amount of the check adjustment in USD cents. A positive amount is a credit
+          #     to your account and a negative amount is a debit.
           #
           #   @param reason [Symbol, Increase::Models::Transaction::Source::InboundCheckAdjustment::Reason]
           #     The reason for the adjustment.

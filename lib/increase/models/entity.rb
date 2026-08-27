@@ -79,6 +79,13 @@ module Increase
       #   @return [Increase::Models::Entity::RiskRating, nil]
       required :risk_rating, -> { Increase::Entity::RiskRating }, nil?: true
 
+      # @!attribute sole_proprietorship
+      #   Details of the sole proprietorship entity. Will be present if `structure` is
+      #   equal to `sole_proprietorship`.
+      #
+      #   @return [Increase::Models::Entity::SoleProprietorship, nil]
+      required :sole_proprietorship, -> { Increase::Entity::SoleProprietorship }, nil?: true
+
       # @!attribute status
       #   The status of the entity.
       #
@@ -135,7 +142,7 @@ module Increase
       #   @return [Increase::Models::Entity::Validation, nil]
       required :validation, -> { Increase::Entity::Validation }, nil?: true
 
-      # @!method initialize(id:, corporation:, created_at:, creating_entity_onboarding_session_id:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:, validation:)
+      # @!method initialize(id:, corporation:, created_at:, creating_entity_onboarding_session_id:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, sole_proprietorship:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:, validation:)
       #   Entities are the legal entities that own accounts. They can be people,
       #   corporations, joint accounts, trusts, or government authorities. To learn more,
       #   see [Entities](/documentation/entities).
@@ -179,6 +186,10 @@ module Increase
       #   @param risk_rating [Increase::Models::Entity::RiskRating, nil]
       #     An assessment of the entity’s potential risk of involvement in financial crimes,
       #     such as money laundering.
+      #
+      #   @param sole_proprietorship [Increase::Models::Entity::SoleProprietorship, nil]
+      #     Details of the sole proprietorship entity. Will be present if `structure` is
+      #     equal to `sole_proprietorship`.
       #
       #   @param status [Symbol, Increase::Models::Entity::Status] The status of the entity.
       #
@@ -1154,6 +1165,284 @@ module Increase
         end
       end
 
+      # @see Increase::Models::Entity#sole_proprietorship
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        # @!attribute address
+        #   The sole proprietorship's address.
+        #
+        #   @return [Increase::Models::Entity::SoleProprietorship::Address]
+        required :address, -> { Increase::Entity::SoleProprietorship::Address }
+
+        # @!attribute doing_business_as_name
+        #   The name under which the sole proprietorship does business.
+        #
+        #   @return [String, nil]
+        required :doing_business_as_name, String, nil?: true
+
+        # @!attribute email
+        #   An email address for the sole proprietorship.
+        #
+        #   @return [String, nil]
+        required :email, String, nil?: true
+
+        # @!attribute industry_code
+        #   The numeric North American Industry Classification System (NAICS) code submitted
+        #   for the sole proprietorship.
+        #
+        #   @return [String, nil]
+        required :industry_code, String, nil?: true
+
+        # @!attribute sole_proprietor
+        #   The individual who operates the sole proprietorship.
+        #
+        #   @return [Increase::Models::Entity::SoleProprietorship::SoleProprietor]
+        required :sole_proprietor, -> { Increase::Entity::SoleProprietorship::SoleProprietor }
+
+        # @!attribute tax_identifier
+        #   The Employer Identification Number (EIN) for the sole proprietorship.
+        #
+        #   @return [String, nil]
+        required :tax_identifier, String, nil?: true
+
+        # @!attribute website
+        #   The sole proprietorship's website.
+        #
+        #   @return [String, nil]
+        required :website, String, nil?: true
+
+        # @!method initialize(address:, doing_business_as_name:, email:, industry_code:, sole_proprietor:, tax_identifier:, website:)
+        #   Details of the sole proprietorship entity. Will be present if `structure` is
+        #   equal to `sole_proprietorship`.
+        #
+        #   @param address [Increase::Models::Entity::SoleProprietorship::Address] The sole proprietorship's address.
+        #
+        #   @param doing_business_as_name [String, nil] The name under which the sole proprietorship does business.
+        #
+        #   @param email [String, nil] An email address for the sole proprietorship.
+        #
+        #   @param industry_code [String, nil]
+        #     The numeric North American Industry Classification System (NAICS) code submitted
+        #     for the sole proprietorship.
+        #
+        #   @param sole_proprietor [Increase::Models::Entity::SoleProprietorship::SoleProprietor]
+        #     The individual who operates the sole proprietorship.
+        #
+        #   @param tax_identifier [String, nil] The Employer Identification Number (EIN) for the sole proprietorship.
+        #
+        #   @param website [String, nil] The sole proprietorship's website.
+
+        # @see Increase::Models::Entity::SoleProprietorship#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city, district, town, or village of the address.
+          #
+          #   @return [String, nil]
+          required :city, String, nil?: true
+
+          # @!attribute country
+          #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #
+          #   @return [String]
+          required :country, String
+
+          # @!attribute line1
+          #   The first line of the address.
+          #
+          #   @return [String]
+          required :line1, String
+
+          # @!attribute line2
+          #   The second line of the address.
+          #
+          #   @return [String, nil]
+          required :line2, String, nil?: true
+
+          # @!attribute state
+          #   The two-letter United States Postal Service (USPS) abbreviation for the US
+          #   state, province, or region of the address.
+          #
+          #   @return [String, nil]
+          required :state, String, nil?: true
+
+          # @!attribute zip
+          #   The ZIP or postal code of the address.
+          #
+          #   @return [String, nil]
+          required :zip, String, nil?: true
+
+          # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
+          #   The sole proprietorship's address.
+          #
+          #   @param city [String, nil] The city, district, town, or village of the address.
+          #
+          #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+          #
+          #   @param line1 [String] The first line of the address.
+          #
+          #   @param line2 [String, nil] The second line of the address.
+          #
+          #   @param state [String, nil]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the US
+          #     state, province, or region of the address.
+          #
+          #   @param zip [String, nil] The ZIP or postal code of the address.
+        end
+
+        # @see Increase::Models::Entity::SoleProprietorship#sole_proprietor
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          # @!attribute address
+          #   The person's address.
+          #
+          #   @return [Increase::Models::Entity::SoleProprietorship::SoleProprietor::Address]
+          required :address, -> { Increase::Entity::SoleProprietorship::SoleProprietor::Address }
+
+          # @!attribute date_of_birth
+          #   The person's date of birth in YYYY-MM-DD format.
+          #
+          #   @return [Date]
+          required :date_of_birth, Date
+
+          # @!attribute identification
+          #   A means of verifying the person's identity.
+          #
+          #   @return [Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification, nil]
+          required :identification,
+                   -> { Increase::Entity::SoleProprietorship::SoleProprietor::Identification },
+                   nil?: true
+
+          # @!attribute name
+          #   The person's legal name.
+          #
+          #   @return [String]
+          required :name, String
+
+          # @!method initialize(address:, date_of_birth:, identification:, name:)
+          #   The individual who operates the sole proprietorship.
+          #
+          #   @param address [Increase::Models::Entity::SoleProprietorship::SoleProprietor::Address]
+          #     The person's address.
+          #
+          #   @param date_of_birth [Date] The person's date of birth in YYYY-MM-DD format.
+          #
+          #   @param identification [Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification, nil]
+          #     A means of verifying the person's identity.
+          #
+          #   @param name [String] The person's legal name.
+
+          # @see Increase::Models::Entity::SoleProprietorship::SoleProprietor#address
+          class Address < Increase::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city, district, town, or village of the address.
+            #
+            #   @return [String, nil]
+            required :city, String, nil?: true
+
+            # @!attribute country
+            #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #   @return [String]
+            required :country, String
+
+            # @!attribute line1
+            #   The first line of the address.
+            #
+            #   @return [String]
+            required :line1, String
+
+            # @!attribute line2
+            #   The second line of the address.
+            #
+            #   @return [String, nil]
+            required :line2, String, nil?: true
+
+            # @!attribute state
+            #   The two-letter United States Postal Service (USPS) abbreviation for the US
+            #   state, province, or region of the address.
+            #
+            #   @return [String, nil]
+            required :state, String, nil?: true
+
+            # @!attribute zip
+            #   The ZIP or postal code of the address.
+            #
+            #   @return [String, nil]
+            required :zip, String, nil?: true
+
+            # @!method initialize(city:, country:, line1:, line2:, state:, zip:)
+            #   The person's address.
+            #
+            #   @param city [String, nil] The city, district, town, or village of the address.
+            #
+            #   @param country [String] The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #   @param line1 [String] The first line of the address.
+            #
+            #   @param line2 [String, nil] The second line of the address.
+            #
+            #   @param state [String, nil]
+            #     The two-letter United States Postal Service (USPS) abbreviation for the US
+            #     state, province, or region of the address.
+            #
+            #   @param zip [String, nil] The ZIP or postal code of the address.
+          end
+
+          # @see Increase::Models::Entity::SoleProprietorship::SoleProprietor#identification
+          class Identification < Increase::Internal::Type::BaseModel
+            # @!attribute method_
+            #   A method that can be used to verify the individual's identity.
+            #
+            #   @return [Symbol, Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification::Method]
+            required :method_,
+                     enum: -> {
+                       Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method
+                     },
+                     api_name: :method
+
+            # @!attribute number_last4
+            #   The last 4 digits of the identification number that can be used to verify the
+            #   individual's identity.
+            #
+            #   @return [String]
+            required :number_last4, String
+
+            # @!method initialize(method_:, number_last4:)
+            #   A means of verifying the person's identity.
+            #
+            #   @param method_ [Symbol, Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification::Method]
+            #     A method that can be used to verify the individual's identity.
+            #
+            #   @param number_last4 [String]
+            #     The last 4 digits of the identification number that can be used to verify the
+            #     individual's identity.
+
+            # A method that can be used to verify the individual's identity.
+            #
+            # @see Increase::Models::Entity::SoleProprietorship::SoleProprietor::Identification#method_
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER = :social_security_number
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
+
+              # A passport number.
+              PASSPORT = :passport
+
+              # A driver's license number.
+              DRIVERS_LICENSE = :drivers_license
+
+              # Another identifying document.
+              OTHER = :other
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+          end
+        end
+      end
+
       # The status of the entity.
       #
       # @see Increase::Models::Entity#status
@@ -1193,6 +1482,9 @@ module Increase
 
         # A government authority.
         GOVERNMENT_AUTHORITY = :government_authority
+
+        # A sole proprietorship.
+        SOLE_PROPRIETORSHIP = :sole_proprietorship
 
         # @!method self.values
         #   @return [Array<Symbol>]
