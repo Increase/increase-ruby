@@ -12,6 +12,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The identifier for the Account the Card Purchase Supplement belongs to.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The ID of the Card Payment this transaction belongs to.
       sig { returns(T.nilable(String)) }
       attr_accessor :card_payment_id
@@ -59,6 +63,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_id: String,
           card_payment_id: T.nilable(String),
           invoice: T.nilable(Increase::CardPurchaseSupplement::Invoice::OrHash),
           line_items:
@@ -74,6 +79,8 @@ module Increase
       def self.new(
         # The Card Purchase Supplement identifier.
         id:,
+        # The identifier for the Account the Card Purchase Supplement belongs to.
+        account_id:,
         # The ID of the Card Payment this transaction belongs to.
         card_payment_id:,
         # Invoice-level information about the payment.
@@ -94,6 +101,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_id: String,
             card_payment_id: T.nilable(String),
             invoice: T.nilable(Increase::CardPurchaseSupplement::Invoice),
             line_items:
