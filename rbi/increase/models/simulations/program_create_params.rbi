@@ -43,6 +43,14 @@ module Increase
         sig { params(lending_maximum_extendable_credit: Integer).void }
         attr_writer :lending_maximum_extendable_credit
 
+        # Whether opening a loan Account under this Program requires an accepted Loan
+        # Offer. Requires `lending_maximum_extendable_credit`. Defaults to `false`.
+        sig { returns(T.nilable(T::Boolean)) }
+        attr_reader :loan_accounts_require_loan_offers
+
+        sig { params(loan_accounts_require_loan_offers: T::Boolean).void }
+        attr_writer :loan_accounts_require_loan_offers
+
         # The identifier of the Account the Program should be added to is for.
         sig { returns(T.nilable(String)) }
         attr_reader :reserve_account_id
@@ -55,6 +63,7 @@ module Increase
             name: String,
             bank: Increase::Simulations::ProgramCreateParams::Bank::OrSymbol,
             lending_maximum_extendable_credit: Integer,
+            loan_accounts_require_loan_offers: T::Boolean,
             reserve_account_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(T.attached_class)
@@ -66,6 +75,9 @@ module Increase
           bank: nil,
           # The maximum extendable credit of the program being added.
           lending_maximum_extendable_credit: nil,
+          # Whether opening a loan Account under this Program requires an accepted Loan
+          # Offer. Requires `lending_maximum_extendable_credit`. Defaults to `false`.
+          loan_accounts_require_loan_offers: nil,
           # The identifier of the Account the Program should be added to is for.
           reserve_account_id: nil,
           request_options: {}
@@ -78,6 +90,7 @@ module Increase
               name: String,
               bank: Increase::Simulations::ProgramCreateParams::Bank::OrSymbol,
               lending_maximum_extendable_credit: Integer,
+              loan_accounts_require_loan_offers: T::Boolean,
               reserve_account_id: String,
               request_options: Increase::RequestOptions
             }

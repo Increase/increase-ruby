@@ -12,6 +12,12 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The identifier for the Account that checks in this mail item are deposited into.
+      # For mail items that could not be routed to a Lockbox Recipient, this will be
+      # null.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :account_id
+
       # The checks in the mail item.
       sig { returns(T::Array[Increase::InboundMailItem::Check]) }
       attr_accessor :checks
@@ -62,6 +68,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_id: T.nilable(String),
           checks: T::Array[Increase::InboundMailItem::Check::OrHash],
           created_at: Time,
           file_id: String,
@@ -77,6 +84,10 @@ module Increase
       def self.new(
         # The Inbound Mail Item identifier.
         id:,
+        # The identifier for the Account that checks in this mail item are deposited into.
+        # For mail items that could not be routed to a Lockbox Recipient, this will be
+        # null.
+        account_id:,
         # The checks in the mail item.
         checks:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the Inbound
@@ -105,6 +116,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_id: T.nilable(String),
             checks: T::Array[Increase::InboundMailItem::Check],
             created_at: Time,
             file_id: String,
