@@ -20,6 +20,7 @@ class Increase::Test::Resources::Simulations::InboundWireDrawdownRequestsTest < 
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         amount: Integer,
         created_at: Time,
         creditor_account_number: String,

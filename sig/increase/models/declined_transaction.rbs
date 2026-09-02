@@ -1784,6 +1784,7 @@ module Increase
             | :group_locked
             | :entity_not_active
             | :fednow_not_enabled
+            | :transaction_not_allowed
 
           module Reason
             extend Increase::Internal::Type::Enum
@@ -1805,6 +1806,9 @@ module Increase
 
             # Your account is not enabled to receive FedNow transfers.
             FEDNOW_NOT_ENABLED: :fednow_not_enabled
+
+            # The transaction is not allowed per Increase's terms.
+            TRANSACTION_NOT_ALLOWED: :transaction_not_allowed
 
             def self?.values: -> ::Array[Increase::Models::DeclinedTransaction::Source::InboundFednowTransferDecline::reason]
           end

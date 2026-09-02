@@ -414,7 +414,7 @@ module Increase
         #   An Inbound Check Adjustment object. This field will be present in the JSON
         #   response if and only if `category` is equal to `inbound_check_adjustment`. An
         #   Inbound Check Adjustment is created when Increase receives an adjustment for a
-        #   check or return deposited through Check21.
+        #   check or return deposited through Check 21.
         #
         #   @return [Increase::Models::Transaction::Source::InboundCheckAdjustment, nil]
         optional :inbound_check_adjustment,
@@ -717,7 +717,7 @@ module Increase
         #     An Inbound Check Adjustment object. This field will be present in the JSON
         #     response if and only if `category` is equal to `inbound_check_adjustment`. An
         #     Inbound Check Adjustment is created when Increase receives an adjustment for a
-        #     check or return deposited through Check21.
+        #     check or return deposited through Check 21.
         #
         #   @param inbound_check_deposit_return_intention [Increase::Models::Transaction::Source::InboundCheckDepositReturnIntention, nil]
         #     An Inbound Check Deposit Return Intention object. This field will be present in
@@ -6855,7 +6855,7 @@ module Increase
           # @!attribute bank_of_first_deposit_routing_number
           #   The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
           #   bank depositing this check. In some rare cases, this is not transmitted via
-          #   Check21 and the value will be null.
+          #   Check 21 and the value will be null.
           #
           #   @return [String, nil]
           required :bank_of_first_deposit_routing_number, String, nil?: true
@@ -6912,7 +6912,7 @@ module Increase
           #   @param bank_of_first_deposit_routing_number [String, nil]
           #     The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
           #     bank depositing this check. In some rare cases, this is not transmitted via
-          #     Check21 and the value will be null.
+          #     Check 21 and the value will be null.
           #
           #   @param deposited_at [Time] When the check was deposited.
           #
@@ -7247,7 +7247,7 @@ module Increase
           #   An Inbound Check Adjustment object. This field will be present in the JSON
           #   response if and only if `category` is equal to `inbound_check_adjustment`. An
           #   Inbound Check Adjustment is created when Increase receives an adjustment for a
-          #   check or return deposited through Check21.
+          #   check or return deposited through Check 21.
           #
           #   @param adjusted_transaction_id [String] The ID of the transaction that was adjusted.
           #

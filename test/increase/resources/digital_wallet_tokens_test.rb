@@ -13,6 +13,7 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
@@ -44,6 +45,7 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
     assert_pattern do
       row => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
