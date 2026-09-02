@@ -9,7 +9,7 @@ module Increase
         # operates more than one program, `program_id` is a required field when creating
         # accounts.
         #
-        # @overload create(name:, bank: nil, lending_maximum_extendable_credit: nil, reserve_account_id: nil, request_options: {})
+        # @overload create(name:, bank: nil, lending_maximum_extendable_credit: nil, loan_accounts_require_loan_offers: nil, reserve_account_id: nil, request_options: {})
         #
         # @param name [String] The name of the program being added.
         #
@@ -18,6 +18,10 @@ module Increase
         #
         # @param lending_maximum_extendable_credit [Integer]
         #   The maximum extendable credit of the program being added.
+        #
+        # @param loan_accounts_require_loan_offers [Boolean]
+        #   Whether opening a loan Account under this Program requires an accepted Loan
+        #   Offer. Requires `lending_maximum_extendable_credit`. Defaults to `false`.
         #
         # @param reserve_account_id [String] The identifier of the Account the Program should be added to is for.
         #

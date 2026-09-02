@@ -14,6 +14,8 @@ module Increase
           joint: Increase::EntityCreateParams::Joint::OrHash,
           natural_person: Increase::EntityCreateParams::NaturalPerson::OrHash,
           risk_rating: Increase::EntityCreateParams::RiskRating::OrHash,
+          sole_proprietorship:
+            Increase::EntityCreateParams::SoleProprietorship::OrHash,
           supplemental_documents:
             T::Array[
               Increase::EntityCreateParams::SupplementalDocument::OrHash
@@ -48,6 +50,9 @@ module Increase
         # An assessment of the entity's potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
+        # Details of the sole proprietorship entity to create. Required if `structure` is
+        # equal to `sole_proprietorship`.
+        sole_proprietorship: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
         # The terms that the Entity agreed to. Not all programs are required to submit

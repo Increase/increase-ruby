@@ -509,8 +509,7 @@ module Increase
           #   An identification number that can be used to verify the individual's identity,
           #   such as a social security number. For Social Security Numbers and Individual
           #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          #   separators. When testing in sandbox, use one of our
-          #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          #   separators.
           #
           #   @return [String]
           required :number, String
@@ -549,8 +548,7 @@ module Increase
           #     An identification number that can be used to verify the individual's identity,
           #     such as a social security number. For Social Security Numbers and Individual
           #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          #     separators. When testing in sandbox, use one of our
-          #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          #     separators.
           #
           #   @param drivers_license [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::DriversLicense]
           #     Information about the United States driver's license used for identification.
@@ -1072,8 +1070,7 @@ module Increase
             #   An identification number that can be used to verify the individual's identity,
             #   such as a social security number. For Social Security Numbers and Individual
             #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #   separators. When testing in sandbox, use one of our
-            #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #   separators.
             #
             #   @return [String]
             required :number, String
@@ -1112,8 +1109,7 @@ module Increase
             #     An identification number that can be used to verify the individual's identity,
             #     such as a social security number. For Social Security Numbers and Individual
             #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #     separators. When testing in sandbox, use one of our
-            #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #     separators.
             #
             #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense]
             #     Information about the United States driver's license used for identification.
@@ -1455,8 +1451,7 @@ module Increase
               #   An identification number that can be used to verify the individual's identity,
               #   such as a social security number. For Social Security Numbers and Individual
               #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #   separators. When testing in sandbox, use one of our
-              #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #   separators.
               #
               #   @return [String]
               required :number, String
@@ -1496,8 +1491,7 @@ module Increase
               #     An identification number that can be used to verify the individual's identity,
               #     such as a social security number. For Social Security Numbers and Individual
               #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #     separators. When testing in sandbox, use one of our
-              #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #     separators.
               #
               #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense]
               #     Information about the United States driver's license used for identification.
