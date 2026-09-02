@@ -14,6 +14,7 @@ class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Tes
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         amount: Integer,
         created_at: Time,
         creditor_account_number: String,
@@ -55,6 +56,7 @@ class Increase::Test::Resources::InboundWireDrawdownRequestsTest < Increase::Tes
     assert_pattern do
       row => {
         id: String,
+        account_id: String,
         amount: Integer,
         created_at: Time,
         creditor_account_number: String,

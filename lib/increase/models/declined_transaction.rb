@@ -2445,6 +2445,9 @@ module Increase
             # Your account is not enabled to receive FedNow transfers.
             FEDNOW_NOT_ENABLED = :fednow_not_enabled
 
+            # The transaction is not allowed per Increase's terms.
+            TRANSACTION_NOT_ALLOWED = :transaction_not_allowed
+
             # @!method self.values
             #   @return [Array<Symbol>]
           end
