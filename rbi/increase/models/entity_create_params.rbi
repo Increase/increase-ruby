@@ -83,6 +83,21 @@ module Increase
       end
       attr_writer :risk_rating
 
+      # Details of the sole proprietorship entity to create. Required if `structure` is
+      # equal to `sole_proprietorship`.
+      sig do
+        returns(T.nilable(Increase::EntityCreateParams::SoleProprietorship))
+      end
+      attr_reader :sole_proprietorship
+
+      sig do
+        params(
+          sole_proprietorship:
+            Increase::EntityCreateParams::SoleProprietorship::OrHash
+        ).void
+      end
+      attr_writer :sole_proprietorship
+
       # Additional documentation associated with the entity.
       sig do
         returns(
@@ -152,6 +167,8 @@ module Increase
           joint: Increase::EntityCreateParams::Joint::OrHash,
           natural_person: Increase::EntityCreateParams::NaturalPerson::OrHash,
           risk_rating: Increase::EntityCreateParams::RiskRating::OrHash,
+          sole_proprietorship:
+            Increase::EntityCreateParams::SoleProprietorship::OrHash,
           supplemental_documents:
             T::Array[
               Increase::EntityCreateParams::SupplementalDocument::OrHash
@@ -186,6 +203,9 @@ module Increase
         # An assessment of the entity's potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
+        # Details of the sole proprietorship entity to create. Required if `structure` is
+        # equal to `sole_proprietorship`.
+        sole_proprietorship: nil,
         # Additional documentation associated with the entity.
         supplemental_documents: nil,
         # The terms that the Entity agreed to. Not all programs are required to submit
@@ -213,6 +233,8 @@ module Increase
             joint: Increase::EntityCreateParams::Joint,
             natural_person: Increase::EntityCreateParams::NaturalPerson,
             risk_rating: Increase::EntityCreateParams::RiskRating,
+            sole_proprietorship:
+              Increase::EntityCreateParams::SoleProprietorship,
             supplemental_documents:
               T::Array[Increase::EntityCreateParams::SupplementalDocument],
             terms_agreements:
@@ -263,6 +285,13 @@ module Increase
         GOVERNMENT_AUTHORITY =
           T.let(
             :government_authority,
+            Increase::EntityCreateParams::Structure::TaggedSymbol
+          )
+
+        # A sole proprietorship.
+        SOLE_PROPRIETORSHIP =
+          T.let(
+            :sole_proprietorship,
             Increase::EntityCreateParams::Structure::TaggedSymbol
           )
 
@@ -3014,6 +3043,512 @@ module Increase
             )
           end
           def self.values
+          end
+        end
+      end
+
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityCreateParams::SoleProprietorship,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The sole proprietorship's business address. Mail receiving locations like PO
+        # Boxes and PMB's are disallowed.
+        sig do
+          returns(Increase::EntityCreateParams::SoleProprietorship::Address)
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address:
+              Increase::EntityCreateParams::SoleProprietorship::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
+        # The individual who operates the sole proprietorship.
+        sig do
+          returns(
+            Increase::EntityCreateParams::SoleProprietorship::SoleProprietor
+          )
+        end
+        attr_reader :sole_proprietor
+
+        sig do
+          params(
+            sole_proprietor:
+              Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::OrHash
+          ).void
+        end
+        attr_writer :sole_proprietor
+
+        # The name under which the sole proprietorship does business, if it is different
+        # from the name of the sole proprietor.
+        sig { returns(T.nilable(String)) }
+        attr_reader :doing_business_as_name
+
+        sig { params(doing_business_as_name: String).void }
+        attr_writer :doing_business_as_name
+
+        # An email address for the sole proprietorship. Not every program requires an
+        # email for submitted Entities.
+        sig { returns(T.nilable(String)) }
+        attr_reader :email
+
+        sig { params(email: String).void }
+        attr_writer :email
+
+        # The North American Industry Classification System (NAICS) code for the sole
+        # proprietorship's primary line of business. This is a number, like `5132` for
+        # `Software Publishers`. A full list of classification codes is available
+        # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
+        sig { returns(T.nilable(String)) }
+        attr_reader :industry_code
+
+        sig { params(industry_code: String).void }
+        attr_writer :industry_code
+
+        # The United States Employer Identification Number (EIN) for the sole
+        # proprietorship, if the sole proprietor has one. Submit nine digits with no
+        # dashes or other separators.
+        sig { returns(T.nilable(String)) }
+        attr_reader :tax_identifier
+
+        sig { params(tax_identifier: String).void }
+        attr_writer :tax_identifier
+
+        # A website for the sole proprietorship. Not every program requires a website for
+        # submitted Entities.
+        sig { returns(T.nilable(String)) }
+        attr_reader :website
+
+        sig { params(website: String).void }
+        attr_writer :website
+
+        # Details of the sole proprietorship entity to create. Required if `structure` is
+        # equal to `sole_proprietorship`.
+        sig do
+          params(
+            address:
+              Increase::EntityCreateParams::SoleProprietorship::Address::OrHash,
+            sole_proprietor:
+              Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::OrHash,
+            doing_business_as_name: String,
+            email: String,
+            industry_code: String,
+            tax_identifier: String,
+            website: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The sole proprietorship's business address. Mail receiving locations like PO
+          # Boxes and PMB's are disallowed.
+          address:,
+          # The individual who operates the sole proprietorship.
+          sole_proprietor:,
+          # The name under which the sole proprietorship does business, if it is different
+          # from the name of the sole proprietor.
+          doing_business_as_name: nil,
+          # An email address for the sole proprietorship. Not every program requires an
+          # email for submitted Entities.
+          email: nil,
+          # The North American Industry Classification System (NAICS) code for the sole
+          # proprietorship's primary line of business. This is a number, like `5132` for
+          # `Software Publishers`. A full list of classification codes is available
+          # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
+          industry_code: nil,
+          # The United States Employer Identification Number (EIN) for the sole
+          # proprietorship, if the sole proprietor has one. Submit nine digits with no
+          # dashes or other separators.
+          tax_identifier: nil,
+          # A website for the sole proprietorship. Not every program requires a website for
+          # submitted Entities.
+          website: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address:
+                Increase::EntityCreateParams::SoleProprietorship::Address,
+              sole_proprietor:
+                Increase::EntityCreateParams::SoleProprietorship::SoleProprietor,
+              doing_business_as_name: String,
+              email: String,
+              industry_code: String,
+              tax_identifier: String,
+              website: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::SoleProprietorship::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(String) }
+          attr_accessor :city
+
+          # The first line of the address. This is usually the street number and street.
+          sig { returns(String) }
+          attr_accessor :line1
+
+          # The two-letter United States Postal Service (USPS) abbreviation for the state of
+          # the address.
+          sig { returns(String) }
+          attr_accessor :state
+
+          # The ZIP code of the address.
+          sig { returns(String) }
+          attr_accessor :zip
+
+          # The second line of the address. This might be the floor or room number.
+          sig { returns(T.nilable(String)) }
+          attr_reader :line2
+
+          sig { params(line2: String).void }
+          attr_writer :line2
+
+          # The sole proprietorship's business address. Mail receiving locations like PO
+          # Boxes and PMB's are disallowed.
+          sig do
+            params(
+              city: String,
+              line1: String,
+              state: String,
+              zip: String,
+              line2: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The first line of the address. This is usually the street number and street.
+            line1:,
+            # The two-letter United States Postal Service (USPS) abbreviation for the state of
+            # the address.
+            state:,
+            # The ZIP code of the address.
+            zip:,
+            # The second line of the address. This might be the floor or room number.
+            line2: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: String,
+                line1: String,
+                state: String,
+                zip: String,
+                line2: String
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityCreateParams::SoleProprietorship::SoleProprietor,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The individual's physical address. Mail receiving locations like PO Boxes and
+          # PMB's are disallowed.
+          sig do
+            returns(
+              Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address
+            )
+          end
+          attr_reader :address
+
+          sig do
+            params(
+              address:
+                Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address::OrHash
+            ).void
+          end
+          attr_writer :address
+
+          # The person's date of birth in YYYY-MM-DD format.
+          sig { returns(Date) }
+          attr_accessor :date_of_birth
+
+          # A means of verifying the person's identity. Sole proprietors must be identified
+          # with a `social_security_number` or an
+          # `individual_taxpayer_identification_number`.
+          sig do
+            returns(
+              Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification
+            )
+          end
+          attr_reader :identification
+
+          sig do
+            params(
+              identification:
+                Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::OrHash
+            ).void
+          end
+          attr_writer :identification
+
+          # The person's legal name.
+          sig { returns(String) }
+          attr_accessor :name
+
+          # The individual who operates the sole proprietorship.
+          sig do
+            params(
+              address:
+                Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address::OrHash,
+              date_of_birth: Date,
+              identification:
+                Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::OrHash,
+              name: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The individual's physical address. Mail receiving locations like PO Boxes and
+            # PMB's are disallowed.
+            address:,
+            # The person's date of birth in YYYY-MM-DD format.
+            date_of_birth:,
+            # A means of verifying the person's identity. Sole proprietors must be identified
+            # with a `social_security_number` or an
+            # `individual_taxpayer_identification_number`.
+            identification:,
+            # The person's legal name.
+            name:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                address:
+                  Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address,
+                date_of_birth: Date,
+                identification:
+                  Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification,
+                name: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Address < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The city, district, town, or village of the address.
+            sig { returns(String) }
+            attr_accessor :city
+
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            # Defaults to `US`.
+            sig { returns(String) }
+            attr_accessor :country
+
+            # The first line of the address. This is usually the street number and street.
+            sig { returns(String) }
+            attr_accessor :line1
+
+            # The second line of the address. This might be the floor or room number.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line2
+
+            sig { params(line2: String).void }
+            attr_writer :line2
+
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address. Required in certain countries.
+            sig { returns(T.nilable(String)) }
+            attr_reader :state
+
+            sig { params(state: String).void }
+            attr_writer :state
+
+            # The ZIP or postal code of the address. Required in certain countries.
+            sig { returns(T.nilable(String)) }
+            attr_reader :zip
+
+            sig { params(zip: String).void }
+            attr_writer :zip
+
+            # The individual's physical address. Mail receiving locations like PO Boxes and
+            # PMB's are disallowed.
+            sig do
+              params(
+                city: String,
+                country: String,
+                line1: String,
+                line2: String,
+                state: String,
+                zip: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The city, district, town, or village of the address.
+              city:,
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #
+              # Defaults to `US`.
+              country:,
+              # The first line of the address. This is usually the street number and street.
+              line1:,
+              # The second line of the address. This might be the floor or room number.
+              line2: nil,
+              # The two-letter United States Postal Service (USPS) abbreviation for the US
+              # state, province, or region of the address. Required in certain countries.
+              state: nil,
+              # The ZIP or postal code of the address. Required in certain countries.
+              zip: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  city: String,
+                  country: String,
+                  line1: String,
+                  line2: String,
+                  state: String,
+                  zip: String
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Identification < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
+            sig do
+              returns(
+                Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::Method::OrSymbol
+              )
+            end
+            attr_accessor :method_
+
+            # An identification number that can be used to verify the individual's identity,
+            # such as a social security number. Submit nine digits with no dashes or other
+            # separators. When testing in sandbox, use one of our
+            # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            sig { returns(String) }
+            attr_accessor :number
+
+            # A means of verifying the person's identity. Sole proprietors must be identified
+            # with a `social_security_number` or an
+            # `individual_taxpayer_identification_number`.
+            sig do
+              params(
+                method_:
+                  Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::Method::OrSymbol,
+                number: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # A method that can be used to verify the individual's identity.
+              #
+              # Defaults to `social_security_number`.
+              method_:,
+              # An identification number that can be used to verify the individual's identity,
+              # such as a social security number. Submit nine digits with no dashes or other
+              # separators. When testing in sandbox, use one of our
+              # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              number:
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  method_:
+                    Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::Method::OrSymbol,
+                  number: String
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::Method
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER =
+                T.let(
+                  :social_security_number,
+                  Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
+                T.let(
+                  :individual_taxpayer_identification_number,
+                  Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
           end
         end
       end
