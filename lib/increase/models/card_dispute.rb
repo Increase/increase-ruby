@@ -10,6 +10,12 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The Account that the Card Dispute is associated with.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute amount
       #   The amount of the dispute.
       #
@@ -107,11 +113,13 @@ module Increase
       #   @return [Increase::Models::CardDispute::Withdrawal, nil]
       required :withdrawal, -> { Increase::CardDispute::Withdrawal }, nil?: true
 
-      # @!method initialize(id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, rejection:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
+      # @!method initialize(id:, account_id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, rejection:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
       #   If unauthorized activity occurs on a card, you can create a Card Dispute and
       #   we'll work with the card networks to return the funds if appropriate.
       #
       #   @param id [String] The Card Dispute identifier.
+      #
+      #   @param account_id [String] The Account that the Card Dispute is associated with.
       #
       #   @param amount [Integer] The amount of the dispute.
       #

@@ -26,13 +26,20 @@ module Increase
         #   @return [Integer, nil]
         optional :lending_maximum_extendable_credit, Integer
 
+        # @!attribute loan_accounts_require_loan_offers
+        #   Whether opening a loan Account under this Program requires an accepted Loan
+        #   Offer. Requires `lending_maximum_extendable_credit`. Defaults to `false`.
+        #
+        #   @return [Boolean, nil]
+        optional :loan_accounts_require_loan_offers, Increase::Internal::Type::Boolean
+
         # @!attribute reserve_account_id
         #   The identifier of the Account the Program should be added to is for.
         #
         #   @return [String, nil]
         optional :reserve_account_id, String
 
-        # @!method initialize(name:, bank: nil, lending_maximum_extendable_credit: nil, reserve_account_id: nil, request_options: {})
+        # @!method initialize(name:, bank: nil, lending_maximum_extendable_credit: nil, loan_accounts_require_loan_offers: nil, reserve_account_id: nil, request_options: {})
         #   @param name [String] The name of the program being added.
         #
         #   @param bank [Symbol, Increase::Models::Simulations::ProgramCreateParams::Bank]
@@ -40,6 +47,10 @@ module Increase
         #
         #   @param lending_maximum_extendable_credit [Integer]
         #     The maximum extendable credit of the program being added.
+        #
+        #   @param loan_accounts_require_loan_offers [Boolean]
+        #     Whether opening a loan Account under this Program requires an accepted Loan
+        #     Offer. Requires `lending_maximum_extendable_credit`. Defaults to `false`.
         #
         #   @param reserve_account_id [String] The identifier of the Account the Program should be added to is for.
         #
