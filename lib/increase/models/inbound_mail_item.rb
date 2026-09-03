@@ -10,6 +10,14 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The identifier for the Account that checks in this mail item are deposited into.
+      #   For mail items that could not be routed to a Lockbox Recipient, this will be
+      #   null.
+      #
+      #   @return [String, nil]
+      required :account_id, String, nil?: true
+
       # @!attribute checks
       #   The checks in the mail item.
       #
@@ -67,13 +75,18 @@ module Increase
       #   @return [Symbol, Increase::Models::InboundMailItem::Type]
       required :type, enum: -> { Increase::InboundMailItem::Type }
 
-      # @!method initialize(id:, checks:, created_at:, file_id:, lockbox_address_id:, lockbox_recipient_id:, recipient_name:, rejection_reason:, status:, type:)
+      # @!method initialize(id:, account_id:, checks:, created_at:, file_id:, lockbox_address_id:, lockbox_recipient_id:, recipient_name:, rejection_reason:, status:, type:)
       #   Inbound Mail Items represent pieces of physical mail delivered to a Lockbox
       #   Address. Increase automatically deposits checks mailed to a Lockbox Recipient
       #   into the recipient's Account. Checks that are not matched to a Lockbox Recipient
       #   must be deposited or ignored using the Action an Inbound Mail Item endpoint.
       #
       #   @param id [String] The Inbound Mail Item identifier.
+      #
+      #   @param account_id [String, nil]
+      #     The identifier for the Account that checks in this mail item are deposited into.
+      #     For mail items that could not be routed to a Lockbox Recipient, this will be
+      #     null.
       #
       #   @param checks [Array<Increase::Models::InboundMailItem::Check>] The checks in the mail item.
       #

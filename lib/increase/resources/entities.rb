@@ -5,7 +5,7 @@ module Increase
     class Entities
       # Create an Entity
       #
-      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, sole_proprietorship: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param structure [Symbol, Increase::Models::EntityCreateParams::Structure] The type of Entity to create.
       #
@@ -32,6 +32,10 @@ module Increase
       # @param risk_rating [Increase::Models::EntityCreateParams::RiskRating]
       #   An assessment of the entity's potential risk of involvement in financial crimes,
       #   such as money laundering.
+      #
+      # @param sole_proprietorship [Increase::Models::EntityCreateParams::SoleProprietorship]
+      #   Details of the sole proprietorship entity to create. Required if `structure` is
+      #   equal to `sole_proprietorship`.
       #
       # @param supplemental_documents [Array<Increase::Models::EntityCreateParams::SupplementalDocument>]
       #   Additional documentation associated with the entity.
