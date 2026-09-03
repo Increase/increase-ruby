@@ -10,6 +10,12 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The identifier for the Account this Physical Card belongs to.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute card_id
       #   The identifier for the Card this Physical Card represents.
       #
@@ -62,7 +68,7 @@ module Increase
       #   @return [Symbol, Increase::Models::PhysicalCard::Type]
       required :type, enum: -> { Increase::PhysicalCard::Type }
 
-      # @!method initialize(id:, card_id:, cardholder:, created_at:, idempotency_key:, physical_card_profile_id:, shipment:, status:, type:)
+      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, idempotency_key:, physical_card_profile_id:, shipment:, status:, type:)
       #   Custom physical Visa cards that are shipped to your customers. The artwork is
       #   configurable by a connected [Card Profile](/documentation/api#card-profiles).
       #   The same Card can be used for multiple Physical Cards. Printing cards incurs a
@@ -70,6 +76,8 @@ module Increase
       #   pricing!
       #
       #   @param id [String] The physical card identifier.
+      #
+      #   @param account_id [String] The identifier for the Account this Physical Card belongs to.
       #
       #   @param card_id [String] The identifier for the Card this Physical Card represents.
       #

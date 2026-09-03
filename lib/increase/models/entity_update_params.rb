@@ -49,6 +49,13 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::RiskRating, nil]
       optional :risk_rating, -> { Increase::EntityUpdateParams::RiskRating }
 
+      # @!attribute sole_proprietorship
+      #   Details of the sole proprietorship entity to update. If you specify this
+      #   parameter and the entity is not a sole proprietorship, the request will fail.
+      #
+      #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship, nil]
+      optional :sole_proprietorship, -> { Increase::EntityUpdateParams::SoleProprietorship }
+
       # @!attribute terms_agreements
       #   New terms that the Entity agreed to. Not all programs are required to submit
       #   this data. This will not archive previously submitted terms.
@@ -72,7 +79,7 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::Trust, nil]
       optional :trust, -> { Increase::EntityUpdateParams::Trust }
 
-      # @!method initialize(entity_id:, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @!method initialize(entity_id:, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, sole_proprietorship: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   @param entity_id [String] The entity identifier.
       #
       #   @param corporation [Increase::Models::EntityUpdateParams::Corporation]
@@ -95,6 +102,10 @@ module Increase
       #   @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating]
       #     An assessment of the entity’s potential risk of involvement in financial crimes,
       #     such as money laundering.
+      #
+      #   @param sole_proprietorship [Increase::Models::EntityUpdateParams::SoleProprietorship]
+      #     Details of the sole proprietorship entity to update. If you specify this
+      #     parameter and the entity is not a sole proprietorship, the request will fail.
       #
       #   @param terms_agreements [Array<Increase::Models::EntityUpdateParams::TermsAgreement>]
       #     New terms that the Entity agreed to. Not all programs are required to submit
@@ -509,8 +520,7 @@ module Increase
           #   An identification number that can be used to verify the individual's identity,
           #   such as a social security number. For Social Security Numbers and Individual
           #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          #   separators. When testing in sandbox, use one of our
-          #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          #   separators.
           #
           #   @return [String]
           required :number, String
@@ -549,8 +559,7 @@ module Increase
           #     An identification number that can be used to verify the individual's identity,
           #     such as a social security number. For Social Security Numbers and Individual
           #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          #     separators. When testing in sandbox, use one of our
-          #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          #     separators.
           #
           #   @param drivers_license [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::DriversLicense]
           #     Information about the United States driver's license used for identification.
@@ -764,6 +773,443 @@ module Increase
         end
       end
 
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        # @!attribute address
+        #   The sole proprietorship's business address. Mail receiving locations like PO
+        #   Boxes and PMB's are disallowed.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship::Address, nil]
+        optional :address, -> { Increase::EntityUpdateParams::SoleProprietorship::Address }
+
+        # @!attribute email
+        #   An email address for the sole proprietorship. Not every program requires an
+        #   email for submitted Entities.
+        #
+        #   @return [String, nil]
+        optional :email, String
+
+        # @!attribute sole_proprietor
+        #   Details of the individual who operates the sole proprietorship.
+        #
+        #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor, nil]
+        optional :sole_proprietor, -> { Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor }
+
+        # @!attribute tax_identifier
+        #   The United States Employer Identification Number (EIN) for the sole
+        #   proprietorship. Submit nine digits with no dashes or other separators.
+        #
+        #   @return [String, nil]
+        optional :tax_identifier, String
+
+        # @!attribute website
+        #   A website for the sole proprietorship. Not every program requires a website for
+        #   submitted Entities.
+        #
+        #   @return [String, nil]
+        optional :website, String
+
+        # @!method initialize(address: nil, email: nil, sole_proprietor: nil, tax_identifier: nil, website: nil)
+        #   Details of the sole proprietorship entity to update. If you specify this
+        #   parameter and the entity is not a sole proprietorship, the request will fail.
+        #
+        #   @param address [Increase::Models::EntityUpdateParams::SoleProprietorship::Address]
+        #     The sole proprietorship's business address. Mail receiving locations like PO
+        #     Boxes and PMB's are disallowed.
+        #
+        #   @param email [String]
+        #     An email address for the sole proprietorship. Not every program requires an
+        #     email for submitted Entities.
+        #
+        #   @param sole_proprietor [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor]
+        #     Details of the individual who operates the sole proprietorship.
+        #
+        #   @param tax_identifier [String]
+        #     The United States Employer Identification Number (EIN) for the sole
+        #     proprietorship. Submit nine digits with no dashes or other separators.
+        #
+        #   @param website [String]
+        #     A website for the sole proprietorship. Not every program requires a website for
+        #     submitted Entities.
+
+        # @see Increase::Models::EntityUpdateParams::SoleProprietorship#address
+        class Address < Increase::Internal::Type::BaseModel
+          # @!attribute city
+          #   The city of the address.
+          #
+          #   @return [String]
+          required :city, String
+
+          # @!attribute line1
+          #   The first line of the address. This is usually the street number and street.
+          #
+          #   @return [String]
+          required :line1, String
+
+          # @!attribute state
+          #   The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #   the address.
+          #
+          #   @return [String]
+          required :state, String
+
+          # @!attribute zip
+          #   The ZIP code of the address.
+          #
+          #   @return [String]
+          required :zip, String
+
+          # @!attribute line2
+          #   The second line of the address. This might be the floor or room number.
+          #
+          #   @return [String, nil]
+          optional :line2, String
+
+          # @!method initialize(city:, line1:, state:, zip:, line2: nil)
+          #   The sole proprietorship's business address. Mail receiving locations like PO
+          #   Boxes and PMB's are disallowed.
+          #
+          #   @param city [String] The city of the address.
+          #
+          #   @param line1 [String] The first line of the address. This is usually the street number and street.
+          #
+          #   @param state [String]
+          #     The two-letter United States Postal Service (USPS) abbreviation for the state of
+          #     the address.
+          #
+          #   @param zip [String] The ZIP code of the address.
+          #
+          #   @param line2 [String] The second line of the address. This might be the floor or room number.
+        end
+
+        # @see Increase::Models::EntityUpdateParams::SoleProprietorship#sole_proprietor
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          # @!attribute address
+          #   The sole proprietor's physical address. Mail receiving locations like PO Boxes
+          #   and PMB's are disallowed.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address, nil]
+          optional :address, -> { Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address }
+
+          # @!attribute identification
+          #   A means of verifying the sole proprietor's identity. Unlike at creation, an
+          #   identity document is accepted here.
+          #
+          #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification, nil]
+          optional :identification,
+                   -> { Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification }
+
+          # @!attribute name
+          #   The sole proprietor's legal name.
+          #
+          #   @return [String, nil]
+          optional :name, String
+
+          # @!method initialize(address: nil, identification: nil, name: nil)
+          #   Details of the individual who operates the sole proprietorship.
+          #
+          #   @param address [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address]
+          #     The sole proprietor's physical address. Mail receiving locations like PO Boxes
+          #     and PMB's are disallowed.
+          #
+          #   @param identification [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification]
+          #     A means of verifying the sole proprietor's identity. Unlike at creation, an
+          #     identity document is accepted here.
+          #
+          #   @param name [String] The sole proprietor's legal name.
+
+          # @see Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor#address
+          class Address < Increase::Internal::Type::BaseModel
+            # @!attribute city
+            #   The city, district, town, or village of the address.
+            #
+            #   @return [String]
+            required :city, String
+
+            # @!attribute country
+            #   The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #   Defaults to `US`.
+            #
+            #   @return [String]
+            required :country, String
+
+            # @!attribute line1
+            #   The first line of the address. This is usually the street number and street.
+            #
+            #   @return [String]
+            required :line1, String
+
+            # @!attribute line2
+            #   The second line of the address. This might be the floor or room number.
+            #
+            #   @return [String, nil]
+            optional :line2, String
+
+            # @!attribute state
+            #   The two-letter United States Postal Service (USPS) abbreviation for the US
+            #   state, province, or region of the address. Required in certain countries.
+            #
+            #   @return [String, nil]
+            optional :state, String
+
+            # @!attribute zip
+            #   The ZIP or postal code of the address. Required in certain countries.
+            #
+            #   @return [String, nil]
+            optional :zip, String
+
+            # @!method initialize(city:, country:, line1:, line2: nil, state: nil, zip: nil)
+            #   The sole proprietor's physical address. Mail receiving locations like PO Boxes
+            #   and PMB's are disallowed.
+            #
+            #   @param city [String] The city, district, town, or village of the address.
+            #
+            #   @param country [String]
+            #     The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            #     Defaults to `US`.
+            #
+            #   @param line1 [String] The first line of the address. This is usually the street number and street.
+            #
+            #   @param line2 [String] The second line of the address. This might be the floor or room number.
+            #
+            #   @param state [String]
+            #     The two-letter United States Postal Service (USPS) abbreviation for the US
+            #     state, province, or region of the address. Required in certain countries.
+            #
+            #   @param zip [String] The ZIP or postal code of the address. Required in certain countries.
+          end
+
+          # @see Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor#identification
+          class Identification < Increase::Internal::Type::BaseModel
+            # @!attribute method_
+            #   A method that can be used to verify the individual's identity.
+            #
+            #   Defaults to `social_security_number`.
+            #
+            #   @return [Symbol, Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method]
+            required :method_,
+                     enum: -> {
+                       Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method
+                     },
+                     api_name: :method
+
+            # @!attribute number
+            #   An identification number that can be used to verify the individual's identity,
+            #   such as a social security number. For Social Security Numbers and Individual
+            #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            #   separators.
+            #
+            #   @return [String]
+            required :number, String
+
+            # @!attribute drivers_license
+            #   Information about the United States driver's license used for identification.
+            #   Required if `method` is equal to `drivers_license`.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense, nil]
+            optional :drivers_license,
+                     -> { Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense }
+
+            # @!attribute other
+            #   Information about the identification document provided. Required if `method` is
+            #   equal to `other`.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other, nil]
+            optional :other,
+                     -> { Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other }
+
+            # @!attribute passport
+            #   Information about the passport used for identification. Required if `method` is
+            #   equal to `passport`.
+            #
+            #   @return [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport, nil]
+            optional :passport,
+                     -> { Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport }
+
+            # @!method initialize(method_:, number:, drivers_license: nil, other: nil, passport: nil)
+            #   A means of verifying the sole proprietor's identity. Unlike at creation, an
+            #   identity document is accepted here.
+            #
+            #   @param method_ [Symbol, Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method]
+            #     A method that can be used to verify the individual's identity.
+            #
+            #     Defaults to `social_security_number`.
+            #
+            #   @param number [String]
+            #     An identification number that can be used to verify the individual's identity,
+            #     such as a social security number. For Social Security Numbers and Individual
+            #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            #     separators.
+            #
+            #   @param drivers_license [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense]
+            #     Information about the United States driver's license used for identification.
+            #     Required if `method` is equal to `drivers_license`.
+            #
+            #   @param other [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other]
+            #     Information about the identification document provided. Required if `method` is
+            #     equal to `other`.
+            #
+            #   @param passport [Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport]
+            #     Information about the passport used for identification. Required if `method` is
+            #     equal to `passport`.
+
+            # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
+            #
+            # @see Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification#method_
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER = :social_security_number
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
+
+              # A passport number.
+              PASSPORT = :passport
+
+              # A driver's license number.
+              DRIVERS_LICENSE = :drivers_license
+
+              # Another identifying document.
+              OTHER = :other
+
+              # @!method self.values
+              #   @return [Array<Symbol>]
+            end
+
+            # @see Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification#drivers_license
+            class DriversLicense < Increase::Internal::Type::BaseModel
+              # @!attribute expiration_date
+              #   The driver's license's expiration date in YYYY-MM-DD format.
+              #
+              #   @return [Date]
+              required :expiration_date, Date
+
+              # @!attribute file_id
+              #   The identifier of the File containing the front of the driver's license.
+              #
+              #   @return [String]
+              required :file_id, String
+
+              # @!attribute state
+              #   The state that issued the provided driver's license.
+              #
+              #   @return [String]
+              required :state, String
+
+              # @!attribute back_file_id
+              #   The identifier of the File containing the back of the driver's license.
+              #
+              #   @return [String, nil]
+              optional :back_file_id, String
+
+              # @!method initialize(expiration_date:, file_id:, state:, back_file_id: nil)
+              #   Information about the United States driver's license used for identification.
+              #   Required if `method` is equal to `drivers_license`.
+              #
+              #   @param expiration_date [Date] The driver's license's expiration date in YYYY-MM-DD format.
+              #
+              #   @param file_id [String] The identifier of the File containing the front of the driver's license.
+              #
+              #   @param state [String] The state that issued the provided driver's license.
+              #
+              #   @param back_file_id [String] The identifier of the File containing the back of the driver's license.
+            end
+
+            # @see Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification#other
+            class Other < Increase::Internal::Type::BaseModel
+              # @!attribute country
+              #   The two-character ISO 3166-1 code representing the country that issued the
+              #   document (e.g., `US`).
+              #
+              #   @return [String]
+              required :country, String
+
+              # @!attribute description
+              #   A description of the document submitted.
+              #
+              #   @return [String]
+              required :description, String
+
+              # @!attribute file_id
+              #   The identifier of the File containing the front of the document.
+              #
+              #   @return [String]
+              required :file_id, String
+
+              # @!attribute back_file_id
+              #   The identifier of the File containing the back of the document. Not every
+              #   document has a reverse side.
+              #
+              #   @return [String, nil]
+              optional :back_file_id, String
+
+              # @!attribute expiration_date
+              #   The document's expiration date in YYYY-MM-DD format.
+              #
+              #   @return [Date, nil]
+              optional :expiration_date, Date
+
+              # @!method initialize(country:, description:, file_id:, back_file_id: nil, expiration_date: nil)
+              #   Information about the identification document provided. Required if `method` is
+              #   equal to `other`.
+              #
+              #   @param country [String]
+              #     The two-character ISO 3166-1 code representing the country that issued the
+              #     document (e.g., `US`).
+              #
+              #   @param description [String] A description of the document submitted.
+              #
+              #   @param file_id [String] The identifier of the File containing the front of the document.
+              #
+              #   @param back_file_id [String]
+              #     The identifier of the File containing the back of the document. Not every
+              #     document has a reverse side.
+              #
+              #   @param expiration_date [Date] The document's expiration date in YYYY-MM-DD format.
+            end
+
+            # @see Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification#passport
+            class Passport < Increase::Internal::Type::BaseModel
+              # @!attribute country
+              #   The two-character ISO 3166-1 code representing the country that issued the
+              #   document (e.g., `US`).
+              #
+              #   @return [String]
+              required :country, String
+
+              # @!attribute expiration_date
+              #   The passport's expiration date in YYYY-MM-DD format.
+              #
+              #   @return [Date]
+              required :expiration_date, Date
+
+              # @!attribute file_id
+              #   The identifier of the File containing the passport.
+              #
+              #   @return [String]
+              required :file_id, String
+
+              # @!method initialize(country:, expiration_date:, file_id:)
+              #   Information about the passport used for identification. Required if `method` is
+              #   equal to `passport`.
+              #
+              #   @param country [String]
+              #     The two-character ISO 3166-1 code representing the country that issued the
+              #     document (e.g., `US`).
+              #
+              #   @param expiration_date [Date] The passport's expiration date in YYYY-MM-DD format.
+              #
+              #   @param file_id [String] The identifier of the File containing the passport.
+            end
+          end
+        end
+      end
+
       class TermsAgreement < Increase::Internal::Type::BaseModel
         # @!attribute agreed_at
         #   The timestamp of when the Entity agreed to the terms.
@@ -772,7 +1218,7 @@ module Increase
         required :agreed_at, Time
 
         # @!attribute ip_address
-        #   The IP address the Entity accessed reviewed the terms from.
+        #   The IP address the Entity reviewed the terms from.
         #
         #   @return [String]
         required :ip_address, String
@@ -786,7 +1232,7 @@ module Increase
         # @!method initialize(agreed_at:, ip_address:, terms_url:)
         #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
         #
-        #   @param ip_address [String] The IP address the Entity accessed reviewed the terms from.
+        #   @param ip_address [String] The IP address the Entity reviewed the terms from.
         #
         #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
@@ -1072,8 +1518,7 @@ module Increase
             #   An identification number that can be used to verify the individual's identity,
             #   such as a social security number. For Social Security Numbers and Individual
             #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #   separators. When testing in sandbox, use one of our
-            #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #   separators.
             #
             #   @return [String]
             required :number, String
@@ -1112,8 +1557,7 @@ module Increase
             #     An identification number that can be used to verify the individual's identity,
             #     such as a social security number. For Social Security Numbers and Individual
             #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #     separators. When testing in sandbox, use one of our
-            #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #     separators.
             #
             #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense]
             #     Information about the United States driver's license used for identification.
@@ -1455,8 +1899,7 @@ module Increase
               #   An identification number that can be used to verify the individual's identity,
               #   such as a social security number. For Social Security Numbers and Individual
               #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #   separators. When testing in sandbox, use one of our
-              #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #   separators.
               #
               #   @return [String]
               required :number, String
@@ -1496,8 +1939,7 @@ module Increase
               #     An identification number that can be used to verify the individual's identity,
               #     such as a social security number. For Social Security Numbers and Individual
               #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #     separators. When testing in sandbox, use one of our
-              #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #     separators.
               #
               #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense]
               #     Information about the United States driver's license used for identification.

@@ -37,7 +37,7 @@ module Increase
           merchant_category_code: nil,
           # The country the merchant resides in.
           merchant_country: nil,
-          # The name of the merchant
+          # The name of the merchant.
           merchant_name: nil,
           # The purchase amount in cents.
           purchase_amount: nil,

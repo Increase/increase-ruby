@@ -5,7 +5,7 @@ module Increase
     # @see Increase::Resources::CardTokens#capabilities
     class CardTokenCapabilities < Increase::Internal::Type::BaseModel
       # @!attribute routes
-      #   Each route represent a path e.g., a push transfer can take.
+      #   Each route represents a path e.g., a push transfer can take.
       #
       #   @return [Array<Increase::Models::CardTokenCapabilities::Route>]
       required :routes, -> { Increase::Internal::Type::ArrayOf[Increase::CardTokenCapabilities::Route] }
@@ -23,7 +23,7 @@ module Increase
       #   over time based on the issuing bank's configuration of the card range.
       #
       #   @param routes [Array<Increase::Models::CardTokenCapabilities::Route>]
-      #     Each route represent a path e.g., a push transfer can take.
+      #     Each route represents a path e.g., a push transfer can take.
       #
       #   @param type [Symbol, Increase::Models::CardTokenCapabilities::Type]
       #     A constant representing the object's type. For this resource it will always be
