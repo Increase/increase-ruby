@@ -509,8 +509,7 @@ module Increase
           #   An identification number that can be used to verify the individual's identity,
           #   such as a social security number. For Social Security Numbers and Individual
           #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          #   separators. When testing in sandbox, use one of our
-          #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          #   separators.
           #
           #   @return [String]
           required :number, String
@@ -549,8 +548,7 @@ module Increase
           #     An identification number that can be used to verify the individual's identity,
           #     such as a social security number. For Social Security Numbers and Individual
           #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          #     separators. When testing in sandbox, use one of our
-          #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          #     separators.
           #
           #   @param drivers_license [Increase::Models::EntityUpdateParams::NaturalPerson::Identification::DriversLicense]
           #     Information about the United States driver's license used for identification.
@@ -772,7 +770,7 @@ module Increase
         required :agreed_at, Time
 
         # @!attribute ip_address
-        #   The IP address the Entity accessed reviewed the terms from.
+        #   The IP address the Entity reviewed the terms from.
         #
         #   @return [String]
         required :ip_address, String
@@ -786,7 +784,7 @@ module Increase
         # @!method initialize(agreed_at:, ip_address:, terms_url:)
         #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
         #
-        #   @param ip_address [String] The IP address the Entity accessed reviewed the terms from.
+        #   @param ip_address [String] The IP address the Entity reviewed the terms from.
         #
         #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
@@ -1072,8 +1070,7 @@ module Increase
             #   An identification number that can be used to verify the individual's identity,
             #   such as a social security number. For Social Security Numbers and Individual
             #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #   separators. When testing in sandbox, use one of our
-            #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #   separators.
             #
             #   @return [String]
             required :number, String
@@ -1112,8 +1109,7 @@ module Increase
             #     An identification number that can be used to verify the individual's identity,
             #     such as a social security number. For Social Security Numbers and Individual
             #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            #     separators. When testing in sandbox, use one of our
-            #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            #     separators.
             #
             #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Grantor::Identification::DriversLicense]
             #     Information about the United States driver's license used for identification.
@@ -1455,8 +1451,7 @@ module Increase
               #   An identification number that can be used to verify the individual's identity,
               #   such as a social security number. For Social Security Numbers and Individual
               #   Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #   separators. When testing in sandbox, use one of our
-              #   [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #   separators.
               #
               #   @return [String]
               required :number, String
@@ -1496,8 +1491,7 @@ module Increase
               #     An identification number that can be used to verify the individual's identity,
               #     such as a social security number. For Social Security Numbers and Individual
               #     Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              #     separators. When testing in sandbox, use one of our
-              #     [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              #     separators.
               #
               #   @param drivers_license [Increase::Models::EntityUpdateParams::Trust::Trustee::Individual::Identification::DriversLicense]
               #     Information about the United States driver's license used for identification.

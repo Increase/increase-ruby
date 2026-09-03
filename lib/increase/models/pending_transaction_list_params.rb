@@ -193,9 +193,8 @@ module Increase
       class Status < Increase::Internal::Type::BaseModel
         # @!attribute in_
         #   Filter Pending Transactions for those with the specified status. By default only
-        #   Pending Transactions in with status `pending` will be returned. For GET
-        #   requests, this should be encoded as a comma-delimited string, such as
-        #   `?in=one,two,three`.
+        #   Pending Transactions with status `pending` will be returned. For GET requests,
+        #   this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         #
         #   @return [Array<Symbol, Increase::Models::PendingTransactionListParams::Status::In>, nil]
         optional :in_,
@@ -207,9 +206,8 @@ module Increase
         # @!method initialize(in_: nil)
         #   @param in_ [Array<Symbol, Increase::Models::PendingTransactionListParams::Status::In>]
         #     Filter Pending Transactions for those with the specified status. By default only
-        #     Pending Transactions in with status `pending` will be returned. For GET
-        #     requests, this should be encoded as a comma-delimited string, such as
-        #     `?in=one,two,three`.
+        #     Pending Transactions with status `pending` will be returned. For GET requests,
+        #     this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
 
         module In
           extend Increase::Internal::Type::Enum
