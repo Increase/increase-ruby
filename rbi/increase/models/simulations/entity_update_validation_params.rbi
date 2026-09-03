@@ -116,21 +116,21 @@ module Increase
               end
             OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-            # The entity's tax identifier could not be verified. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.legal_identifier).
+            # The entity's tax identifier could not be verified. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_TAX_IDENTIFIER =
               T.let(
                 :entity_tax_identifier,
                 Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
-            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
+            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_ADDRESS =
               T.let(
                 :entity_address,
                 Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
-            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_IDENTITY =
               T.let(
                 :entity_identity,

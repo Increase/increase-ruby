@@ -8,6 +8,7 @@ module Increase
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,
+        sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship,
         terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
         trust: Increase::EntityUpdateParams::Trust
@@ -48,6 +49,12 @@ module Increase
         Increase::EntityUpdateParams::RiskRating
       ) -> Increase::EntityUpdateParams::RiskRating
 
+      attr_reader sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship?
+
+      def sole_proprietorship=: (
+        Increase::EntityUpdateParams::SoleProprietorship
+      ) -> Increase::EntityUpdateParams::SoleProprietorship
+
       attr_reader terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement]?
 
       def terms_agreements=: (
@@ -73,6 +80,7 @@ module Increase
         ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         ?natural_person: Increase::EntityUpdateParams::NaturalPerson,
         ?risk_rating: Increase::EntityUpdateParams::RiskRating,
+        ?sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship,
         ?terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         ?third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
         ?trust: Increase::EntityUpdateParams::Trust,
@@ -86,6 +94,7 @@ module Increase
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
         risk_rating: Increase::EntityUpdateParams::RiskRating,
+        sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship,
         terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
         trust: Increase::EntityUpdateParams::Trust,
@@ -615,6 +624,356 @@ module Increase
           HIGH: :high
 
           def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::RiskRating::rating]
+        end
+      end
+
+      type sole_proprietorship =
+        {
+          address: Increase::EntityUpdateParams::SoleProprietorship::Address,
+          email: String,
+          sole_proprietor: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor,
+          tax_identifier: String,
+          website: String
+        }
+
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        attr_reader address: Increase::EntityUpdateParams::SoleProprietorship::Address?
+
+        def address=: (
+          Increase::EntityUpdateParams::SoleProprietorship::Address
+        ) -> Increase::EntityUpdateParams::SoleProprietorship::Address
+
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
+        attr_reader sole_proprietor: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor?
+
+        def sole_proprietor=: (
+          Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor
+        ) -> Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor
+
+        attr_reader tax_identifier: String?
+
+        def tax_identifier=: (String) -> String
+
+        attr_reader website: String?
+
+        def website=: (String) -> String
+
+        def initialize: (
+          ?address: Increase::EntityUpdateParams::SoleProprietorship::Address,
+          ?email: String,
+          ?sole_proprietor: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor,
+          ?tax_identifier: String,
+          ?website: String
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::EntityUpdateParams::SoleProprietorship::Address,
+          email: String,
+          sole_proprietor: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor,
+          tax_identifier: String,
+          website: String
+        }
+
+        type address =
+          {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String
+
+          attr_accessor line1: String
+
+          attr_accessor state: String
+
+          attr_accessor zip: String
+
+          attr_reader line2: String?
+
+          def line2=: (String) -> String
+
+          def initialize: (
+            city: String,
+            line1: String,
+            state: String,
+            zip: String,
+            ?line2: String
+          ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+        end
+
+        type sole_proprietor =
+          {
+            address: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address,
+            identification: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification,
+            name: String
+          }
+
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          attr_reader address: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address?
+
+          def address=: (
+            Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address
+          ) -> Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address
+
+          attr_reader identification: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification?
+
+          def identification=: (
+            Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification
+          ) -> Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification
+
+          attr_reader name: String?
+
+          def name=: (String) -> String
+
+          def initialize: (
+            ?address: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address,
+            ?identification: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification,
+            ?name: String
+          ) -> void
+
+          def to_hash: -> {
+            address: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address,
+            identification: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification,
+            name: String
+          }
+
+          type address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              state: String,
+              zip: String
+            }
+
+          class Address < Increase::Internal::Type::BaseModel
+            attr_accessor city: String
+
+            attr_accessor country: String
+
+            attr_accessor line1: String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            attr_reader zip: String?
+
+            def zip=: (String) -> String
+
+            def initialize: (
+              city: String,
+              country: String,
+              line1: String,
+              ?line2: String,
+              ?state: String,
+              ?zip: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              state: String,
+              zip: String
+            }
+          end
+
+          type identification =
+            {
+              method_: Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::method_,
+              number: String,
+              drivers_license: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense,
+              other: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other,
+              passport: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport
+            }
+
+          class Identification < Increase::Internal::Type::BaseModel
+            attr_accessor method_: Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::method_
+
+            attr_accessor number: String
+
+            attr_reader drivers_license: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense?
+
+            def drivers_license=: (
+              Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense
+            ) -> Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense
+
+            attr_reader other: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other?
+
+            def other=: (
+              Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other
+            ) -> Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other
+
+            attr_reader passport: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport?
+
+            def passport=: (
+              Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport
+            ) -> Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport
+
+            def initialize: (
+              method_: Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::method_,
+              number: String,
+              ?drivers_license: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense,
+              ?other: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other,
+              ?passport: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport
+            ) -> void
+
+            def to_hash: -> {
+              method_: Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::method_,
+              number: String,
+              drivers_license: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense,
+              other: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other,
+              passport: Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport
+            }
+
+            type method_ =
+              :social_security_number
+              | :individual_taxpayer_identification_number
+              | :passport
+              | :drivers_license
+              | :other
+
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER: :social_security_number
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER: :individual_taxpayer_identification_number
+
+              # A passport number.
+              PASSPORT: :passport
+
+              # A driver's license number.
+              DRIVERS_LICENSE: :drivers_license
+
+              # Another identifying document.
+              OTHER: :other
+
+              def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::method_]
+            end
+
+            type drivers_license =
+              {
+                expiration_date: Date,
+                file_id: String,
+                state: String,
+                back_file_id: String
+              }
+
+            class DriversLicense < Increase::Internal::Type::BaseModel
+              attr_accessor expiration_date: Date
+
+              attr_accessor file_id: String
+
+              attr_accessor state: String
+
+              attr_reader back_file_id: String?
+
+              def back_file_id=: (String) -> String
+
+              def initialize: (
+                expiration_date: Date,
+                file_id: String,
+                state: String,
+                ?back_file_id: String
+              ) -> void
+
+              def to_hash: -> {
+                expiration_date: Date,
+                file_id: String,
+                state: String,
+                back_file_id: String
+              }
+            end
+
+            type other =
+              {
+                country: String,
+                description: String,
+                file_id: String,
+                back_file_id: String,
+                expiration_date: Date
+              }
+
+            class Other < Increase::Internal::Type::BaseModel
+              attr_accessor country: String
+
+              attr_accessor description: String
+
+              attr_accessor file_id: String
+
+              attr_reader back_file_id: String?
+
+              def back_file_id=: (String) -> String
+
+              attr_reader expiration_date: Date?
+
+              def expiration_date=: (Date) -> Date
+
+              def initialize: (
+                country: String,
+                description: String,
+                file_id: String,
+                ?back_file_id: String,
+                ?expiration_date: Date
+              ) -> void
+
+              def to_hash: -> {
+                country: String,
+                description: String,
+                file_id: String,
+                back_file_id: String,
+                expiration_date: Date
+              }
+            end
+
+            type passport =
+              { country: String, expiration_date: Date, file_id: String }
+
+            class Passport < Increase::Internal::Type::BaseModel
+              attr_accessor country: String
+
+              attr_accessor expiration_date: Date
+
+              attr_accessor file_id: String
+
+              def initialize: (
+                country: String,
+                expiration_date: Date,
+                file_id: String
+              ) -> void
+
+              def to_hash: -> {
+                country: String,
+                expiration_date: Date,
+                file_id: String
+              }
+            end
+          end
         end
       end
 

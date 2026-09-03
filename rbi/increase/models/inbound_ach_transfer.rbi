@@ -130,7 +130,7 @@ module Increase
       sig { returns(String) }
       attr_accessor :originator_company_name
 
-      # The American Banking Association (ABA) routing number of the bank originating
+      # The American Bankers' Association (ABA) routing number of the bank originating
       # the transfer.
       sig { returns(String) }
       attr_accessor :originator_routing_number
@@ -274,7 +274,7 @@ module Increase
         originator_company_id:,
         # The name of the company that initiated the transfer.
         originator_company_name:,
-        # The American Banking Association (ABA) routing number of the bank originating
+        # The American Bankers' Association (ABA) routing number of the bank originating
         # the transfer.
         originator_routing_number:,
         # The id of the receiver of the transfer.

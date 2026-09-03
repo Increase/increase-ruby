@@ -1498,7 +1498,7 @@ module Increase
         required :agreed_at, Time
 
         # @!attribute ip_address
-        #   The IP address the Entity accessed reviewed the terms from.
+        #   The IP address the Entity reviewed the terms from.
         #
         #   @return [String, nil]
         required :ip_address, String, nil?: true
@@ -1512,7 +1512,7 @@ module Increase
         # @!method initialize(agreed_at:, ip_address:, terms_url:)
         #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
         #
-        #   @param ip_address [String, nil] The IP address the Entity accessed reviewed the terms from.
+        #   @param ip_address [String, nil] The IP address the Entity reviewed the terms from.
         #
         #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
@@ -2215,13 +2215,13 @@ module Increase
           module Category
             extend Increase::Internal::Type::Enum
 
-            # The entity's tax identifier could not be verified. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.legal_identifier).
+            # The entity's tax identifier could not be verified. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_TAX_IDENTIFIER = :entity_tax_identifier
 
-            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
+            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_ADDRESS = :entity_address
 
-            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_IDENTITY = :entity_identity
 
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).

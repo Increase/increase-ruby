@@ -280,13 +280,6 @@ module Increase
               Increase::FednowTransferListParams::Status::In::TaggedSymbol
             )
 
-          # The transfer has been rejected by Increase.
-          REVIEWING_REJECTED =
-            T.let(
-              :reviewing_rejected,
-              Increase::FednowTransferListParams::Status::In::TaggedSymbol
-            )
-
           # The transfer requires attention from an Increase operator.
           REQUIRES_ATTENTION =
             T.let(
