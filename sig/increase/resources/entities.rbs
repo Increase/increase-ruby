@@ -9,6 +9,7 @@ module Increase
         ?joint: Increase::EntityCreateParams::Joint,
         ?natural_person: Increase::EntityCreateParams::NaturalPerson,
         ?risk_rating: Increase::EntityCreateParams::RiskRating,
+        ?sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship,
         ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         ?terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
         ?third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,

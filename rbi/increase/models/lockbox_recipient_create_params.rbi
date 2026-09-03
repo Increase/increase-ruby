@@ -30,7 +30,7 @@ module Increase
       sig { params(description: String).void }
       attr_writer :description
 
-      # The name of the Lockbox Recipient
+      # The name of the Lockbox Recipient.
       sig { returns(T.nilable(String)) }
       attr_reader :recipient_name
 
@@ -54,7 +54,7 @@ module Increase
         lockbox_address_id:,
         # The description you choose for the Lockbox Recipient.
         description: nil,
-        # The name of the Lockbox Recipient
+        # The name of the Lockbox Recipient.
         recipient_name: nil,
         request_options: {}
       )

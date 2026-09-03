@@ -9,7 +9,7 @@ module Increase
         include Increase::Internal::Type::RequestParameters
 
         # @!attribute pending_transaction_id
-        #   The pending transaction to release. The pending transaction must have a
+        #   The pending transaction to release. The pending transaction must have an
         #   `inbound_funds_hold` source.
         #
         #   @return [String]
@@ -17,7 +17,7 @@ module Increase
 
         # @!method initialize(pending_transaction_id:, request_options: {})
         #   @param pending_transaction_id [String]
-        #     The pending transaction to release. The pending transaction must have a
+        #     The pending transaction to release. The pending transaction must have an
         #     `inbound_funds_hold` source.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]

@@ -10,6 +10,13 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The Account to which the debtor—the recipient of this request—is being requested
+      #   to send funds.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute account_number_id
       #   The Account Number to which the debtor—the recipient of this request—is being
       #   requested to send funds.
@@ -135,7 +142,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, end_to_end_identification:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, end_to_end_identification:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   Wire drawdown requests enable you to request that someone else send you a wire.
       #   Because there is nuance to making sure your counterparty's bank processes these
       #   correctly, we ask that you reach out to
@@ -144,6 +151,10 @@ module Increase
       #   [Wire Drawdown Requests documentation](/documentation/wire-drawdown-requests).
       #
       #   @param id [String] The Wire drawdown request identifier.
+      #
+      #   @param account_id [String]
+      #     The Account to which the debtor—the recipient of this request—is being requested
+      #     to send funds.
       #
       #   @param account_number_id [String]
       #     The Account Number to which the debtor—the recipient of this request—is being

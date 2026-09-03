@@ -885,8 +885,7 @@ module Increase
           # An identification number that can be used to verify the individual's identity,
           # such as a social security number. For Social Security Numbers and Individual
           # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          # separators. When testing in sandbox, use one of our
-          # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          # separators.
           sig { returns(String) }
           attr_accessor :number
 
@@ -969,8 +968,7 @@ module Increase
             # An identification number that can be used to verify the individual's identity,
             # such as a social security number. For Social Security Numbers and Individual
             # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            # separators. When testing in sandbox, use one of our
-            # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            # separators.
             number:,
             # Information about the United States driver's license used for identification.
             # Required if `method` is equal to `drivers_license`.
@@ -1363,7 +1361,7 @@ module Increase
         sig { returns(Time) }
         attr_accessor :agreed_at
 
-        # The IP address the Entity accessed reviewed the terms from.
+        # The IP address the Entity reviewed the terms from.
         sig { returns(String) }
         attr_accessor :ip_address
 
@@ -1381,7 +1379,7 @@ module Increase
         def self.new(
           # The timestamp of when the Entity agreed to the terms.
           agreed_at:,
-          # The IP address the Entity accessed reviewed the terms from.
+          # The IP address the Entity reviewed the terms from.
           ip_address:,
           # The URL of the terms agreement. This link will be provided by your bank partner.
           terms_url:
@@ -1894,8 +1892,7 @@ module Increase
             # An identification number that can be used to verify the individual's identity,
             # such as a social security number. For Social Security Numbers and Individual
             # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            # separators. When testing in sandbox, use one of our
-            # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            # separators.
             sig { returns(String) }
             attr_accessor :number
 
@@ -1978,8 +1975,7 @@ module Increase
               # An identification number that can be used to verify the individual's identity,
               # such as a social security number. For Social Security Numbers and Individual
               # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              # separators. When testing in sandbox, use one of our
-              # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              # separators.
               number:,
               # Information about the United States driver's license used for identification.
               # Required if `method` is equal to `drivers_license`.
@@ -2586,8 +2582,7 @@ module Increase
               # An identification number that can be used to verify the individual's identity,
               # such as a social security number. For Social Security Numbers and Individual
               # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              # separators. When testing in sandbox, use one of our
-              # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              # separators.
               sig { returns(String) }
               attr_accessor :number
 
@@ -2670,8 +2665,7 @@ module Increase
                 # An identification number that can be used to verify the individual's identity,
                 # such as a social security number. For Social Security Numbers and Individual
                 # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-                # separators. When testing in sandbox, use one of our
-                # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+                # separators.
                 number:,
                 # Information about the United States driver's license used for identification.
                 # Required if `method` is equal to `drivers_license`.
