@@ -10,7 +10,7 @@ module Increase
         # @overload release_inbound_funds_hold(pending_transaction_id, request_options: {})
         #
         # @param pending_transaction_id [String]
-        #   The pending transaction to release. The pending transaction must have a
+        #   The pending transaction to release. The pending transaction must have an
         #   `inbound_funds_hold` source.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
