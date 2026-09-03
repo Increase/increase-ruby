@@ -12,6 +12,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The identifier for the Account this Physical Card belongs to.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The identifier for the Card this Physical Card represents.
       sig { returns(String) }
       attr_accessor :card_id
@@ -64,6 +68,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_id: String,
           card_id: String,
           cardholder: Increase::PhysicalCard::Cardholder::OrHash,
           created_at: Time,
@@ -77,6 +82,8 @@ module Increase
       def self.new(
         # The physical card identifier.
         id:,
+        # The identifier for the Account this Physical Card belongs to.
+        account_id:,
         # The identifier for the Card this Physical Card represents.
         card_id:,
         # Details about the cardholder, as it appears on the printed card.
@@ -104,6 +111,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_id: String,
             card_id: String,
             cardholder: Increase::PhysicalCard::Cardholder,
             created_at: Time,

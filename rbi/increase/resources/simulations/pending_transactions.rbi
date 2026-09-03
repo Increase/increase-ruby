@@ -13,7 +13,7 @@ module Increase
           ).returns(Increase::PendingTransaction)
         end
         def release_inbound_funds_hold(
-          # The pending transaction to release. The pending transaction must have a
+          # The pending transaction to release. The pending transaction must have an
           # `inbound_funds_hold` source.
           pending_transaction_id,
           request_options: {}

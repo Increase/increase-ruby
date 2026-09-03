@@ -78,7 +78,7 @@ module Increase
         sig { params(merchant_country: String).void }
         attr_writer :merchant_country
 
-        # The name of the merchant
+        # The name of the merchant.
         sig { returns(T.nilable(String)) }
         attr_reader :merchant_name
 
@@ -122,7 +122,7 @@ module Increase
           merchant_category_code: nil,
           # The country the merchant resides in.
           merchant_country: nil,
-          # The name of the merchant
+          # The name of the merchant.
           merchant_name: nil,
           # The purchase amount in cents.
           purchase_amount: nil,

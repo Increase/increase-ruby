@@ -1498,7 +1498,7 @@ module Increase
         required :agreed_at, Time
 
         # @!attribute ip_address
-        #   The IP address the Entity accessed reviewed the terms from.
+        #   The IP address the Entity reviewed the terms from.
         #
         #   @return [String, nil]
         required :ip_address, String, nil?: true
@@ -1512,7 +1512,7 @@ module Increase
         # @!method initialize(agreed_at:, ip_address:, terms_url:)
         #   @param agreed_at [Time] The timestamp of when the Entity agreed to the terms.
         #
-        #   @param ip_address [String, nil] The IP address the Entity accessed reviewed the terms from.
+        #   @param ip_address [String, nil] The IP address the Entity reviewed the terms from.
         #
         #   @param terms_url [String] The URL of the terms agreement. This link will be provided by your bank partner.
       end
