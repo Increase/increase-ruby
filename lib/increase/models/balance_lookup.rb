@@ -38,7 +38,7 @@ module Increase
       required :type, enum: -> { Increase::BalanceLookup::Type }
 
       # @!method initialize(account_id:, available_balance:, current_balance:, loan:, type:)
-      #   Represents a request to lookup the balance of an Account at a given point in
+      #   Represents a request to look up the balance of an Account at a given point in
       #   time.
       #
       #   @param account_id [String] The identifier for the account for which the balance was queried.

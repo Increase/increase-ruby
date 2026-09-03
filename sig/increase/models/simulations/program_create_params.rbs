@@ -6,6 +6,7 @@ module Increase
           name: String,
           bank: Increase::Models::Simulations::ProgramCreateParams::bank,
           lending_maximum_extendable_credit: Integer,
+          loan_accounts_require_loan_offers: bool,
           reserve_account_id: String
         }
         & Increase::Internal::Type::request_parameters
@@ -26,6 +27,10 @@ module Increase
 
         def lending_maximum_extendable_credit=: (Integer) -> Integer
 
+        attr_reader loan_accounts_require_loan_offers: bool?
+
+        def loan_accounts_require_loan_offers=: (bool) -> bool
+
         attr_reader reserve_account_id: String?
 
         def reserve_account_id=: (String) -> String
@@ -34,6 +39,7 @@ module Increase
           name: String,
           ?bank: Increase::Models::Simulations::ProgramCreateParams::bank,
           ?lending_maximum_extendable_credit: Integer,
+          ?loan_accounts_require_loan_offers: bool,
           ?reserve_account_id: String,
           ?request_options: Increase::request_opts
         ) -> void
@@ -42,6 +48,7 @@ module Increase
           name: String,
           bank: Increase::Models::Simulations::ProgramCreateParams::bank,
           lending_maximum_extendable_credit: Integer,
+          loan_accounts_require_loan_offers: bool,
           reserve_account_id: String,
           request_options: Increase::RequestOptions
         }

@@ -16,7 +16,7 @@ module Increase
       #
       # @param description [String] The description you choose for the Lockbox Recipient.
       #
-      # @param recipient_name [String] The name of the Lockbox Recipient
+      # @param recipient_name [String] The name of the Lockbox Recipient.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
