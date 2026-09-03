@@ -3,6 +3,7 @@ module Increase
     type inbound_mail_item =
       {
         id: String,
+        account_id: String?,
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
@@ -16,6 +17,8 @@ module Increase
 
     class InboundMailItem < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_id: String?
 
       attr_accessor checks: ::Array[Increase::InboundMailItem::Check]
 
@@ -37,6 +40,7 @@ module Increase
 
       def initialize: (
         id: String,
+        account_id: String?,
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,
@@ -50,6 +54,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        account_id: String?,
         checks: ::Array[Increase::InboundMailItem::Check],
         created_at: Time,
         file_id: String,

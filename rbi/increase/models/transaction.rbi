@@ -654,7 +654,7 @@ module Increase
         # An Inbound Check Adjustment object. This field will be present in the JSON
         # response if and only if `category` is equal to `inbound_check_adjustment`. An
         # Inbound Check Adjustment is created when Increase receives an adjustment for a
-        # check or return deposited through Check21.
+        # check or return deposited through Check 21.
         sig do
           returns(
             T.nilable(Increase::Transaction::Source::InboundCheckAdjustment)
@@ -1213,7 +1213,7 @@ module Increase
           # An Inbound Check Adjustment object. This field will be present in the JSON
           # response if and only if `category` is equal to `inbound_check_adjustment`. An
           # Inbound Check Adjustment is created when Increase receives an adjustment for a
-          # check or return deposited through Check21.
+          # check or return deposited through Check 21.
           inbound_check_adjustment: nil,
           # An Inbound Check Deposit Return Intention object. This field will be present in
           # the JSON response if and only if `category` is equal to
@@ -3051,9 +3051,9 @@ module Increase
           end
           attr_accessor :actioner
 
-          # Additional amounts associated with the card authorization, such as ATM
-          # surcharges fees. These are usually a subset of the `amount` field and are used
-          # to provide more detailed information about the transaction.
+          # Additional amounts associated with the card authorization, such as ATM surcharge
+          # fees. These are usually a subset of the `amount` field and are used to provide
+          # more detailed information about the transaction.
           sig do
             returns(
               Increase::Transaction::Source::CardFinancial::AdditionalAmounts
@@ -3293,9 +3293,9 @@ module Increase
             # Whether this financial was approved by Increase, the card network through
             # stand-in processing, or the user through a real-time decision.
             actioner:,
-            # Additional amounts associated with the card authorization, such as ATM
-            # surcharges fees. These are usually a subset of the `amount` field and are used
-            # to provide more detailed information about the transaction.
+            # Additional amounts associated with the card authorization, such as ATM surcharge
+            # fees. These are usually a subset of the `amount` field and are used to provide
+            # more detailed information about the transaction.
             additional_amounts:,
             # The pending amount in the minor unit of the transaction's currency. For dollars,
             # for example, this is cents.
@@ -3669,9 +3669,9 @@ module Increase
             end
             attr_writer :vision
 
-            # Additional amounts associated with the card authorization, such as ATM
-            # surcharges fees. These are usually a subset of the `amount` field and are used
-            # to provide more detailed information about the transaction.
+            # Additional amounts associated with the card authorization, such as ATM surcharge
+            # fees. These are usually a subset of the `amount` field and are used to provide
+            # more detailed information about the transaction.
             sig do
               params(
                 clinic:
@@ -12167,7 +12167,7 @@ module Increase
 
           # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
           # bank depositing this check. In some rare cases, this is not transmitted via
-          # Check21 and the value will be null.
+          # Check 21 and the value will be null.
           sig { returns(T.nilable(String)) }
           attr_accessor :bank_of_first_deposit_routing_number
 
@@ -12225,7 +12225,7 @@ module Increase
             back_image_file_id:,
             # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
             # bank depositing this check. In some rare cases, this is not transmitted via
-            # Check21 and the value will be null.
+            # Check 21 and the value will be null.
             bank_of_first_deposit_routing_number:,
             # When the check was deposited.
             deposited_at:,
@@ -12824,7 +12824,7 @@ module Increase
           # An Inbound Check Adjustment object. This field will be present in the JSON
           # response if and only if `category` is equal to `inbound_check_adjustment`. An
           # Inbound Check Adjustment is created when Increase receives an adjustment for a
-          # check or return deposited through Check21.
+          # check or return deposited through Check 21.
           sig do
             params(
               adjusted_transaction_id: String,
@@ -13352,7 +13352,7 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :input_message_accountability_data
 
-          # The American Banking Association (ABA) routing number of the bank that sent the
+          # The American Bankers' Association (ABA) routing number of the bank that sent the
           # wire.
           sig { returns(T.nilable(String)) }
           attr_accessor :instructing_agent_routing_number
@@ -13432,7 +13432,7 @@ module Increase
             # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
             # service and is helpful when debugging wires with the originating bank.
             input_message_accountability_data:,
-            # The American Banking Association (ABA) routing number of the bank that sent the
+            # The American Bankers' Association (ABA) routing number of the bank that sent the
             # wire.
             instructing_agent_routing_number:,
             # The sending bank's identifier for the wire transfer.

@@ -2505,7 +2505,7 @@ module Increase
         sig { returns(Time) }
         attr_accessor :agreed_at
 
-        # The IP address the Entity accessed reviewed the terms from.
+        # The IP address the Entity reviewed the terms from.
         sig { returns(T.nilable(String)) }
         attr_accessor :ip_address
 
@@ -2523,7 +2523,7 @@ module Increase
         def self.new(
           # The timestamp of when the Entity agreed to the terms.
           agreed_at:,
-          # The IP address the Entity accessed reviewed the terms from.
+          # The IP address the Entity reviewed the terms from.
           ip_address:,
           # The URL of the terms agreement. This link will be provided by your bank partner.
           terms_url:
