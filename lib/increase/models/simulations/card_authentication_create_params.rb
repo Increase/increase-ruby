@@ -48,7 +48,7 @@ module Increase
         optional :merchant_country, String
 
         # @!attribute merchant_name
-        #   The name of the merchant
+        #   The name of the merchant.
         #
         #   @return [String, nil]
         optional :merchant_name, String
@@ -78,7 +78,7 @@ module Increase
         #
         #   @param merchant_country [String] The country the merchant resides in.
         #
-        #   @param merchant_name [String] The name of the merchant
+        #   @param merchant_name [String] The name of the merchant.
         #
         #   @param purchase_amount [Integer] The purchase amount in cents.
         #
