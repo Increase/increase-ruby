@@ -18,8 +18,8 @@ module Increase
         #   under the sub-object with the same identifier as the network.
         #
         # @param visa [Increase::Models::Simulations::CardDisputeActionParams::Visa]
-        #   The Visa-specific parameters for the taking action on the dispute. Required if
-        #   and only if `network` is `visa`.
+        #   The Visa-specific parameters for taking action on the dispute. Required if and
+        #   only if `network` is `visa`.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #

@@ -28,7 +28,7 @@ module Increase
         #
         # @param merchant_country [String] The country the merchant resides in.
         #
-        # @param merchant_name [String] The name of the merchant
+        # @param merchant_name [String] The name of the merchant.
         #
         # @param purchase_amount [Integer] The purchase amount in cents.
         #

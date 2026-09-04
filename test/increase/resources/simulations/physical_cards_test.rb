@@ -14,6 +14,7 @@ class Increase::Test::Resources::Simulations::PhysicalCardsTest < Increase::Test
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
@@ -40,6 +41,7 @@ class Increase::Test::Resources::Simulations::PhysicalCardsTest < Increase::Test
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,

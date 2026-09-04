@@ -27,6 +27,7 @@ class Increase::Test::Resources::PhysicalCardsTest < Increase::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
@@ -49,6 +50,7 @@ class Increase::Test::Resources::PhysicalCardsTest < Increase::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
@@ -71,6 +73,7 @@ class Increase::Test::Resources::PhysicalCardsTest < Increase::Test::ResourceTes
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
@@ -100,6 +103,7 @@ class Increase::Test::Resources::PhysicalCardsTest < Increase::Test::ResourceTes
     assert_pattern do
       row => {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
