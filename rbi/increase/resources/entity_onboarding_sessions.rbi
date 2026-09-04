@@ -41,7 +41,7 @@ module Increase
       )
       end
 
-      # List Entity Onboarding Session
+      # List Entity Onboarding Sessions
       sig do
         params(
           cursor: String,
