@@ -155,9 +155,6 @@ module Increase
           # The transfer has been canceled.
           CANCELED = :canceled
 
-          # The transfer has been rejected by Increase.
-          REVIEWING_REJECTED = :reviewing_rejected
-
           # The transfer requires attention from an Increase operator.
           REQUIRES_ATTENTION = :requires_attention
 
@@ -172,6 +169,9 @@ module Increase
 
           # The transfer was rejected by the network or the recipient's bank.
           REJECTED = :rejected
+
+          # The transfer was returned by the recipient's bank.
+          RETURNED = :returned
 
           # @!method self.values
           #   @return [Array<Symbol>]

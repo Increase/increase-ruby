@@ -55,7 +55,7 @@ module Increase
         )
       end
 
-      # List Entity Onboarding Session
+      # List Entity Onboarding Sessions
       #
       # @overload list(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #

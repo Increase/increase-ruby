@@ -23,8 +23,8 @@ module Increase
           # The network of the Card Dispute. Details specific to the network are required
           # under the sub-object with the same identifier as the network.
           network:,
-          # The Visa-specific parameters for the taking action on the dispute. Required if
-          # and only if `network` is `visa`.
+          # The Visa-specific parameters for taking action on the dispute. Required if and
+          # only if `network` is `visa`.
           visa: nil,
           request_options: {}
         )
