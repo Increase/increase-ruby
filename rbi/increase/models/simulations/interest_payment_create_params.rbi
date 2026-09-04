@@ -15,7 +15,7 @@ module Increase
             )
           end
 
-        # The identifier of the Account the Interest Payment should be paid to is for.
+        # The identifier of the Account the Interest Payment should be paid to.
         sig { returns(String) }
         attr_accessor :account_id
 
@@ -55,7 +55,7 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # The identifier of the Account the Interest Payment should be paid to is for.
+          # The identifier of the Account the Interest Payment should be paid to.
           account_id:,
           # The interest amount in cents. Must be positive.
           amount:,

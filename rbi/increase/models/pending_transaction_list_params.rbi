@@ -407,9 +407,8 @@ module Increase
           end
 
         # Filter Pending Transactions for those with the specified status. By default only
-        # Pending Transactions in with status `pending` will be returned. For GET
-        # requests, this should be encoded as a comma-delimited string, such as
-        # `?in=one,two,three`.
+        # Pending Transactions with status `pending` will be returned. For GET requests,
+        # this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
         sig do
           returns(
             T.nilable(
@@ -441,9 +440,8 @@ module Increase
         end
         def self.new(
           # Filter Pending Transactions for those with the specified status. By default only
-          # Pending Transactions in with status `pending` will be returned. For GET
-          # requests, this should be encoded as a comma-delimited string, such as
-          # `?in=one,two,three`.
+          # Pending Transactions with status `pending` will be returned. For GET requests,
+          # this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
           in_: nil
         )
         end

@@ -8,7 +8,7 @@ module Increase
           T.any(Increase::CardTokenCapabilities, Increase::Internal::AnyHash)
         end
 
-      # Each route represent a path e.g., a push transfer can take.
+      # Each route represents a path e.g., a push transfer can take.
       sig { returns(T::Array[Increase::CardTokenCapabilities::Route]) }
       attr_accessor :routes
 
@@ -27,7 +27,7 @@ module Increase
         ).returns(T.attached_class)
       end
       def self.new(
-        # Each route represent a path e.g., a push transfer can take.
+        # Each route represents a path e.g., a push transfer can take.
         routes:,
         # A constant representing the object's type. For this resource it will always be
         # `card_token_capabilities`.

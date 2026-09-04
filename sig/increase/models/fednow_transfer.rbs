@@ -18,6 +18,7 @@ module Increase
         idempotency_key: String?,
         pending_transaction_id: String?,
         rejection: Increase::FednowTransfer::Rejection?,
+        returns: ::Array[Increase::FednowTransfer::Return],
         routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::FednowTransfer::status,
@@ -61,6 +62,8 @@ module Increase
 
       attr_accessor rejection: Increase::FednowTransfer::Rejection?
 
+      attr_accessor returns: ::Array[Increase::FednowTransfer::Return]
+
       attr_accessor routing_number: String
 
       attr_accessor source_account_number_id: String
@@ -94,6 +97,7 @@ module Increase
         idempotency_key: String?,
         pending_transaction_id: String?,
         rejection: Increase::FednowTransfer::Rejection?,
+        returns: ::Array[Increase::FednowTransfer::Return],
         routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::FednowTransfer::status,
@@ -121,6 +125,7 @@ module Increase
         idempotency_key: String?,
         pending_transaction_id: String?,
         rejection: Increase::FednowTransfer::Rejection?,
+        returns: ::Array[Increase::FednowTransfer::Return],
         routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::FednowTransfer::status,
@@ -390,16 +395,120 @@ module Increase
         end
       end
 
+      type return_ =
+        {
+          amount: Integer,
+          return_reason_additional_information: String?,
+          return_reason_code: Increase::Models::FednowTransfer::Return::return_reason_code,
+          transfer_id: String
+        }
+
+      class Return < Increase::Internal::Type::BaseModel
+        attr_accessor amount: Integer
+
+        attr_accessor return_reason_additional_information: String?
+
+        attr_accessor return_reason_code: Increase::Models::FednowTransfer::Return::return_reason_code
+
+        attr_accessor transfer_id: String
+
+        def initialize: (
+          amount: Integer,
+          return_reason_additional_information: String?,
+          return_reason_code: Increase::Models::FednowTransfer::Return::return_reason_code,
+          transfer_id: String
+        ) -> void
+
+        def to_hash: -> {
+          amount: Integer,
+          return_reason_additional_information: String?,
+          return_reason_code: Increase::Models::FednowTransfer::Return::return_reason_code,
+          transfer_id: String
+        }
+
+        type return_reason_code =
+          :account_closed
+          | :account_blocked
+          | :invalid_agent
+          | :invalid_creditor_account_number
+          | :incorrect_account_number
+          | :end_customer_deceased
+          | :transaction_forbidden
+          | :regulatory_reason
+          | :fraud
+          | :duplication
+          | :wrong_amount
+          | :requested_by_customer
+          | :unable_to_apply
+          | :not_specified
+          | :narrative
+          | :other
+
+        module ReturnReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The destination account is closed. Corresponds to the FedNow reason codes `AC04` and `AC07`.
+          ACCOUNT_CLOSED: :account_closed
+
+          # The destination account is currently blocked from receiving transactions. Corresponds to the FedNow reason code `AC06`.
+          ACCOUNT_BLOCKED: :account_blocked
+
+          # The recipient's bank was not a valid agent for this transfer. Corresponds to the FedNow reason codes `AC14` and `AGNT`.
+          INVALID_AGENT: :invalid_agent
+
+          # The destination account does not exist. Corresponds to the FedNow reason code `AC03`.
+          INVALID_CREDITOR_ACCOUNT_NUMBER: :invalid_creditor_account_number
+
+          # The destination account number was incorrect. Corresponds to the FedNow reason code `AC01`.
+          INCORRECT_ACCOUNT_NUMBER: :incorrect_account_number
+
+          # The destination account holder is deceased. Corresponds to the FedNow reason code `MD07`.
+          END_CUSTOMER_DECEASED: :end_customer_deceased
+
+          # The transfer was not permitted by the recipient's bank. Corresponds to the FedNow reason code `AG01`.
+          TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+          # The transfer was returned for a regulatory reason at the recipient's bank. Corresponds to the FedNow reason code `RR04`.
+          REGULATORY_REASON: :regulatory_reason
+
+          # The transfer was reported as fraudulent. Corresponds to the FedNow reason code `FR01`.
+          FRAUD: :fraud
+
+          # The transfer duplicated another transfer. Corresponds to the FedNow reason codes `AM05` and `DUPL`.
+          DUPLICATION: :duplication
+
+          # The transfer amount was incorrect. Corresponds to the FedNow reason code `AM09`.
+          WRONG_AMOUNT: :wrong_amount
+
+          # The transfer was returned at the request of the recipient's customer. Corresponds to the FedNow reason code `CUST`.
+          REQUESTED_BY_CUSTOMER: :requested_by_customer
+
+          # The recipient's bank could not apply the funds. Corresponds to the FedNow reason code `RUTA`.
+          UNABLE_TO_APPLY: :unable_to_apply
+
+          # The recipient's bank did not specify a reason. Corresponds to the FedNow reason codes `MS02` and `MS03`.
+          NOT_SPECIFIED: :not_specified
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the FedNow reason code `NARR`.
+          NARRATIVE: :narrative
+
+          # The transfer was returned for some other reason.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::FednowTransfer::Return::return_reason_code]
+        end
+      end
+
       type status =
         :pending_submitting
         | :pending_reviewing
         | :canceled
-        | :reviewing_rejected
         | :requires_attention
         | :pending_approval
         | :pending_response
         | :complete
         | :rejected
+        | :returned
 
       module Status
         extend Increase::Internal::Type::Enum
@@ -412,9 +521,6 @@ module Increase
 
         # The transfer has been canceled.
         CANCELED: :canceled
-
-        # The transfer has been rejected by Increase.
-        REVIEWING_REJECTED: :reviewing_rejected
 
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION: :requires_attention
@@ -430,6 +536,9 @@ module Increase
 
         # The transfer was rejected by the network or the recipient's bank.
         REJECTED: :rejected
+
+        # The transfer was returned by the recipient's bank.
+        RETURNED: :returned
 
         def self?.values: -> ::Array[Increase::Models::FednowTransfer::status]
       end
