@@ -10,6 +10,12 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The identifier for the Account the Card Purchase Supplement belongs to.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute card_payment_id
       #   The ID of the Card Payment this transaction belongs to.
       #
@@ -49,11 +55,13 @@ module Increase
       #   @return [Symbol, Increase::Models::CardPurchaseSupplement::Type]
       required :type, enum: -> { Increase::CardPurchaseSupplement::Type }
 
-      # @!method initialize(id:, card_payment_id:, invoice:, line_items:, shipping:, transaction_id:, type:)
+      # @!method initialize(id:, account_id:, card_payment_id:, invoice:, line_items:, shipping:, transaction_id:, type:)
       #   Additional information about a card purchase (e.g., settlement or refund), such
       #   as level 3 line item data.
       #
       #   @param id [String] The Card Purchase Supplement identifier.
+      #
+      #   @param account_id [String] The identifier for the Account the Card Purchase Supplement belongs to.
       #
       #   @param card_payment_id [String, nil] The ID of the Card Payment this transaction belongs to.
       #

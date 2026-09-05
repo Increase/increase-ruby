@@ -112,6 +112,7 @@ module Increase
           check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
           fednow_transfer_acknowledgement: Increase::Transaction::Source::FednowTransferAcknowledgement?,
+          fednow_transfer_return: Increase::Transaction::Source::FednowTransferReturn?,
           fee_payment: Increase::Transaction::Source::FeePayment?,
           inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
@@ -175,6 +176,8 @@ module Increase
 
         attr_accessor fednow_transfer_acknowledgement: Increase::Transaction::Source::FednowTransferAcknowledgement?
 
+        attr_accessor fednow_transfer_return: Increase::Transaction::Source::FednowTransferReturn?
+
         attr_accessor fee_payment: Increase::Transaction::Source::FeePayment?
 
         attr_accessor inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?
@@ -233,6 +236,7 @@ module Increase
           ?check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           ?check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
           ?fednow_transfer_acknowledgement: Increase::Transaction::Source::FednowTransferAcknowledgement?,
+          ?fednow_transfer_return: Increase::Transaction::Source::FednowTransferReturn?,
           ?fee_payment: Increase::Transaction::Source::FeePayment?,
           ?inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
           ?inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
@@ -275,6 +279,7 @@ module Increase
           check_deposit_return: Increase::Transaction::Source::CheckDepositReturn?,
           check_transfer_deposit: Increase::Transaction::Source::CheckTransferDeposit?,
           fednow_transfer_acknowledgement: Increase::Transaction::Source::FednowTransferAcknowledgement?,
+          fednow_transfer_return: Increase::Transaction::Source::FednowTransferReturn?,
           fee_payment: Increase::Transaction::Source::FeePayment?,
           inbound_ach_transfer: Increase::Transaction::Source::InboundACHTransfer?,
           inbound_ach_transfer_return_intention: Increase::Transaction::Source::InboundACHTransferReturnIntention?,
@@ -311,6 +316,7 @@ module Increase
           | :check_deposit_acceptance
           | :check_deposit_return
           | :fednow_transfer_acknowledgement
+          | :fednow_transfer_return
           | :check_transfer_deposit
           | :fee_payment
           | :inbound_ach_transfer
@@ -382,6 +388,9 @@ module Increase
 
           # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
           FEDNOW_TRANSFER_ACKNOWLEDGEMENT: :fednow_transfer_acknowledgement
+
+          # FedNow Transfer Return: details will be under the `fednow_transfer_return` object.
+          FEDNOW_TRANSFER_RETURN: :fednow_transfer_return
 
           # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
           CHECK_TRANSFER_DEPOSIT: :check_transfer_deposit
@@ -4933,6 +4942,110 @@ module Increase
           def initialize: (transfer_id: String) -> void
 
           def to_hash: -> { transfer_id: String }
+        end
+
+        type fednow_transfer_return =
+          {
+            amount: Integer,
+            return_reason_additional_information: String?,
+            return_reason_code: Increase::Models::Transaction::Source::FednowTransferReturn::return_reason_code,
+            transfer_id: String
+          }
+
+        class FednowTransferReturn < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor return_reason_additional_information: String?
+
+          attr_accessor return_reason_code: Increase::Models::Transaction::Source::FednowTransferReturn::return_reason_code
+
+          attr_accessor transfer_id: String
+
+          def initialize: (
+            amount: Integer,
+            return_reason_additional_information: String?,
+            return_reason_code: Increase::Models::Transaction::Source::FednowTransferReturn::return_reason_code,
+            transfer_id: String
+          ) -> void
+
+          def to_hash: -> {
+            amount: Integer,
+            return_reason_additional_information: String?,
+            return_reason_code: Increase::Models::Transaction::Source::FednowTransferReturn::return_reason_code,
+            transfer_id: String
+          }
+
+          type return_reason_code =
+            :account_closed
+            | :account_blocked
+            | :invalid_agent
+            | :invalid_creditor_account_number
+            | :incorrect_account_number
+            | :end_customer_deceased
+            | :transaction_forbidden
+            | :regulatory_reason
+            | :fraud
+            | :duplication
+            | :wrong_amount
+            | :requested_by_customer
+            | :unable_to_apply
+            | :not_specified
+            | :narrative
+            | :other
+
+          module ReturnReasonCode
+            extend Increase::Internal::Type::Enum
+
+            # The destination account is closed. Corresponds to the FedNow reason codes `AC04` and `AC07`.
+            ACCOUNT_CLOSED: :account_closed
+
+            # The destination account is currently blocked from receiving transactions. Corresponds to the FedNow reason code `AC06`.
+            ACCOUNT_BLOCKED: :account_blocked
+
+            # The recipient's bank was not a valid agent for this transfer. Corresponds to the FedNow reason codes `AC14` and `AGNT`.
+            INVALID_AGENT: :invalid_agent
+
+            # The destination account does not exist. Corresponds to the FedNow reason code `AC03`.
+            INVALID_CREDITOR_ACCOUNT_NUMBER: :invalid_creditor_account_number
+
+            # The destination account number was incorrect. Corresponds to the FedNow reason code `AC01`.
+            INCORRECT_ACCOUNT_NUMBER: :incorrect_account_number
+
+            # The destination account holder is deceased. Corresponds to the FedNow reason code `MD07`.
+            END_CUSTOMER_DECEASED: :end_customer_deceased
+
+            # The transfer was not permitted by the recipient's bank. Corresponds to the FedNow reason code `AG01`.
+            TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+            # The transfer was returned for a regulatory reason at the recipient's bank. Corresponds to the FedNow reason code `RR04`.
+            REGULATORY_REASON: :regulatory_reason
+
+            # The transfer was reported as fraudulent. Corresponds to the FedNow reason code `FR01`.
+            FRAUD: :fraud
+
+            # The transfer duplicated another transfer. Corresponds to the FedNow reason codes `AM05` and `DUPL`.
+            DUPLICATION: :duplication
+
+            # The transfer amount was incorrect. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT: :wrong_amount
+
+            # The transfer was returned at the request of the recipient's customer. Corresponds to the FedNow reason code `CUST`.
+            REQUESTED_BY_CUSTOMER: :requested_by_customer
+
+            # The recipient's bank could not apply the funds. Corresponds to the FedNow reason code `RUTA`.
+            UNABLE_TO_APPLY: :unable_to_apply
+
+            # The recipient's bank did not specify a reason. Corresponds to the FedNow reason codes `MS02` and `MS03`.
+            NOT_SPECIFIED: :not_specified
+
+            # The reason is provided as narrative information in the additional information field. Corresponds to the FedNow reason code `NARR`.
+            NARRATIVE: :narrative
+
+            # The transfer was returned for some other reason.
+            OTHER: :other
+
+            def self?.values: -> ::Array[Increase::Models::Transaction::Source::FednowTransferReturn::return_reason_code]
+          end
         end
 
         type fee_payment =

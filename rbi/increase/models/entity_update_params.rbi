@@ -75,6 +75,21 @@ module Increase
       end
       attr_writer :risk_rating
 
+      # Details of the sole proprietorship entity to update. If you specify this
+      # parameter and the entity is not a sole proprietorship, the request will fail.
+      sig do
+        returns(T.nilable(Increase::EntityUpdateParams::SoleProprietorship))
+      end
+      attr_reader :sole_proprietorship
+
+      sig do
+        params(
+          sole_proprietorship:
+            Increase::EntityUpdateParams::SoleProprietorship::OrHash
+        ).void
+      end
+      attr_writer :sole_proprietorship
+
       # New terms that the Entity agreed to. Not all programs are required to submit
       # this data. This will not archive previously submitted terms.
       sig do
@@ -125,6 +140,8 @@ module Increase
             Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
           natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
           risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
+          sole_proprietorship:
+            Increase::EntityUpdateParams::SoleProprietorship::OrHash,
           terms_agreements:
             T::Array[Increase::EntityUpdateParams::TermsAgreement::OrHash],
           third_party_verification:
@@ -152,6 +169,9 @@ module Increase
         # An assessment of the entity’s potential risk of involvement in financial crimes,
         # such as money laundering.
         risk_rating: nil,
+        # Details of the sole proprietorship entity to update. If you specify this
+        # parameter and the entity is not a sole proprietorship, the request will fail.
+        sole_proprietorship: nil,
         # New terms that the Entity agreed to. Not all programs are required to submit
         # this data. This will not archive previously submitted terms.
         terms_agreements: nil,
@@ -176,6 +196,8 @@ module Increase
               Increase::EntityUpdateParams::GovernmentAuthority,
             natural_person: Increase::EntityUpdateParams::NaturalPerson,
             risk_rating: Increase::EntityUpdateParams::RiskRating,
+            sole_proprietorship:
+              Increase::EntityUpdateParams::SoleProprietorship,
             terms_agreements:
               T::Array[Increase::EntityUpdateParams::TermsAgreement],
             third_party_verification:
@@ -885,8 +907,7 @@ module Increase
           # An identification number that can be used to verify the individual's identity,
           # such as a social security number. For Social Security Numbers and Individual
           # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-          # separators. When testing in sandbox, use one of our
-          # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+          # separators.
           sig { returns(String) }
           attr_accessor :number
 
@@ -969,8 +990,7 @@ module Increase
             # An identification number that can be used to verify the individual's identity,
             # such as a social security number. For Social Security Numbers and Individual
             # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            # separators. When testing in sandbox, use one of our
-            # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            # separators.
             number:,
             # Information about the United States driver's license used for identification.
             # Required if `method` is equal to `drivers_license`.
@@ -1350,6 +1370,790 @@ module Increase
         end
       end
 
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::EntityUpdateParams::SoleProprietorship,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The sole proprietorship's business address. Mail receiving locations like PO
+        # Boxes and PMB's are disallowed.
+        sig do
+          returns(
+            T.nilable(Increase::EntityUpdateParams::SoleProprietorship::Address)
+          )
+        end
+        attr_reader :address
+
+        sig do
+          params(
+            address:
+              Increase::EntityUpdateParams::SoleProprietorship::Address::OrHash
+          ).void
+        end
+        attr_writer :address
+
+        # An email address for the sole proprietorship. Not every program requires an
+        # email for submitted Entities.
+        sig { returns(T.nilable(String)) }
+        attr_reader :email
+
+        sig { params(email: String).void }
+        attr_writer :email
+
+        # The North American Industry Classification System (NAICS) code for the sole
+        # proprietorship's primary line of business. This is a number, like `5132` for
+        # `Software Publishers`. A full list of classification codes is available
+        # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
+        sig { returns(T.nilable(String)) }
+        attr_reader :industry_code
+
+        sig { params(industry_code: String).void }
+        attr_writer :industry_code
+
+        # Details of the individual who operates the sole proprietorship.
+        sig do
+          returns(
+            T.nilable(
+              Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor
+            )
+          )
+        end
+        attr_reader :sole_proprietor
+
+        sig do
+          params(
+            sole_proprietor:
+              Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::OrHash
+          ).void
+        end
+        attr_writer :sole_proprietor
+
+        # The United States Employer Identification Number (EIN) for the sole
+        # proprietorship. Submit nine digits with no dashes or other separators.
+        sig { returns(T.nilable(String)) }
+        attr_reader :tax_identifier
+
+        sig { params(tax_identifier: String).void }
+        attr_writer :tax_identifier
+
+        # A website for the sole proprietorship. Not every program requires a website for
+        # submitted Entities.
+        sig { returns(T.nilable(String)) }
+        attr_reader :website
+
+        sig { params(website: String).void }
+        attr_writer :website
+
+        # Details of the sole proprietorship entity to update. If you specify this
+        # parameter and the entity is not a sole proprietorship, the request will fail.
+        sig do
+          params(
+            address:
+              Increase::EntityUpdateParams::SoleProprietorship::Address::OrHash,
+            email: String,
+            industry_code: String,
+            sole_proprietor:
+              Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::OrHash,
+            tax_identifier: String,
+            website: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The sole proprietorship's business address. Mail receiving locations like PO
+          # Boxes and PMB's are disallowed.
+          address: nil,
+          # An email address for the sole proprietorship. Not every program requires an
+          # email for submitted Entities.
+          email: nil,
+          # The North American Industry Classification System (NAICS) code for the sole
+          # proprietorship's primary line of business. This is a number, like `5132` for
+          # `Software Publishers`. A full list of classification codes is available
+          # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
+          industry_code: nil,
+          # Details of the individual who operates the sole proprietorship.
+          sole_proprietor: nil,
+          # The United States Employer Identification Number (EIN) for the sole
+          # proprietorship. Submit nine digits with no dashes or other separators.
+          tax_identifier: nil,
+          # A website for the sole proprietorship. Not every program requires a website for
+          # submitted Entities.
+          website: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address:
+                Increase::EntityUpdateParams::SoleProprietorship::Address,
+              email: String,
+              industry_code: String,
+              sole_proprietor:
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor,
+              tax_identifier: String,
+              website: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Address < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityUpdateParams::SoleProprietorship::Address,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The city of the address.
+          sig { returns(String) }
+          attr_accessor :city
+
+          # The first line of the address. This is usually the street number and street.
+          sig { returns(String) }
+          attr_accessor :line1
+
+          # The two-letter United States Postal Service (USPS) abbreviation for the state of
+          # the address.
+          sig { returns(String) }
+          attr_accessor :state
+
+          # The ZIP code of the address.
+          sig { returns(String) }
+          attr_accessor :zip
+
+          # The second line of the address. This might be the floor or room number.
+          sig { returns(T.nilable(String)) }
+          attr_reader :line2
+
+          sig { params(line2: String).void }
+          attr_writer :line2
+
+          # The sole proprietorship's business address. Mail receiving locations like PO
+          # Boxes and PMB's are disallowed.
+          sig do
+            params(
+              city: String,
+              line1: String,
+              state: String,
+              zip: String,
+              line2: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The city of the address.
+            city:,
+            # The first line of the address. This is usually the street number and street.
+            line1:,
+            # The two-letter United States Postal Service (USPS) abbreviation for the state of
+            # the address.
+            state:,
+            # The ZIP code of the address.
+            zip:,
+            # The second line of the address. This might be the floor or room number.
+            line2: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                city: String,
+                line1: String,
+                state: String,
+                zip: String,
+                line2: String
+              }
+            )
+          end
+          def to_hash
+          end
+        end
+
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The sole proprietor's physical address. Mail receiving locations like PO Boxes
+          # and PMB's are disallowed.
+          sig do
+            returns(
+              T.nilable(
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address
+              )
+            )
+          end
+          attr_reader :address
+
+          sig do
+            params(
+              address:
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address::OrHash
+            ).void
+          end
+          attr_writer :address
+
+          # A means of verifying the sole proprietor's identity. Unlike at creation, an
+          # identity document is accepted here.
+          sig do
+            returns(
+              T.nilable(
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification
+              )
+            )
+          end
+          attr_reader :identification
+
+          sig do
+            params(
+              identification:
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::OrHash
+            ).void
+          end
+          attr_writer :identification
+
+          # The sole proprietor's legal name.
+          sig { returns(T.nilable(String)) }
+          attr_reader :name
+
+          sig { params(name: String).void }
+          attr_writer :name
+
+          # Details of the individual who operates the sole proprietorship.
+          sig do
+            params(
+              address:
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address::OrHash,
+              identification:
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::OrHash,
+              name: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The sole proprietor's physical address. Mail receiving locations like PO Boxes
+            # and PMB's are disallowed.
+            address: nil,
+            # A means of verifying the sole proprietor's identity. Unlike at creation, an
+            # identity document is accepted here.
+            identification: nil,
+            # The sole proprietor's legal name.
+            name: nil
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                address:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address,
+                identification:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification,
+                name: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          class Address < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Address,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The city, district, town, or village of the address.
+            sig { returns(String) }
+            attr_accessor :city
+
+            # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+            #
+            # Defaults to `US`.
+            sig { returns(String) }
+            attr_accessor :country
+
+            # The first line of the address. This is usually the street number and street.
+            sig { returns(String) }
+            attr_accessor :line1
+
+            # The second line of the address. This might be the floor or room number.
+            sig { returns(T.nilable(String)) }
+            attr_reader :line2
+
+            sig { params(line2: String).void }
+            attr_writer :line2
+
+            # The two-letter United States Postal Service (USPS) abbreviation for the US
+            # state, province, or region of the address. Required in certain countries.
+            sig { returns(T.nilable(String)) }
+            attr_reader :state
+
+            sig { params(state: String).void }
+            attr_writer :state
+
+            # The ZIP or postal code of the address. Required in certain countries.
+            sig { returns(T.nilable(String)) }
+            attr_reader :zip
+
+            sig { params(zip: String).void }
+            attr_writer :zip
+
+            # The sole proprietor's physical address. Mail receiving locations like PO Boxes
+            # and PMB's are disallowed.
+            sig do
+              params(
+                city: String,
+                country: String,
+                line1: String,
+                line2: String,
+                state: String,
+                zip: String
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # The city, district, town, or village of the address.
+              city:,
+              # The two-letter ISO 3166-1 alpha-2 code for the country of the address.
+              #
+              # Defaults to `US`.
+              country:,
+              # The first line of the address. This is usually the street number and street.
+              line1:,
+              # The second line of the address. This might be the floor or room number.
+              line2: nil,
+              # The two-letter United States Postal Service (USPS) abbreviation for the US
+              # state, province, or region of the address. Required in certain countries.
+              state: nil,
+              # The ZIP or postal code of the address. Required in certain countries.
+              zip: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  city: String,
+                  country: String,
+                  line1: String,
+                  line2: String,
+                  state: String,
+                  zip: String
+                }
+              )
+            end
+            def to_hash
+            end
+          end
+
+          class Identification < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
+            sig do
+              returns(
+                Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::OrSymbol
+              )
+            end
+            attr_accessor :method_
+
+            # An identification number that can be used to verify the individual's identity,
+            # such as a social security number. For Social Security Numbers and Individual
+            # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+            # separators.
+            sig { returns(String) }
+            attr_accessor :number
+
+            # Information about the United States driver's license used for identification.
+            # Required if `method` is equal to `drivers_license`.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense
+                )
+              )
+            end
+            attr_reader :drivers_license
+
+            sig do
+              params(
+                drivers_license:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense::OrHash
+              ).void
+            end
+            attr_writer :drivers_license
+
+            # Information about the identification document provided. Required if `method` is
+            # equal to `other`.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other
+                )
+              )
+            end
+            attr_reader :other
+
+            sig do
+              params(
+                other:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other::OrHash
+              ).void
+            end
+            attr_writer :other
+
+            # Information about the passport used for identification. Required if `method` is
+            # equal to `passport`.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport
+                )
+              )
+            end
+            attr_reader :passport
+
+            sig do
+              params(
+                passport:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport::OrHash
+              ).void
+            end
+            attr_writer :passport
+
+            # A means of verifying the sole proprietor's identity. Unlike at creation, an
+            # identity document is accepted here.
+            sig do
+              params(
+                method_:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::OrSymbol,
+                number: String,
+                drivers_license:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense::OrHash,
+                other:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other::OrHash,
+                passport:
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport::OrHash
+              ).returns(T.attached_class)
+            end
+            def self.new(
+              # A method that can be used to verify the individual's identity.
+              #
+              # Defaults to `social_security_number`.
+              method_:,
+              # An identification number that can be used to verify the individual's identity,
+              # such as a social security number. For Social Security Numbers and Individual
+              # Taxpayer Identification Numbers, submit nine digits with no dashes or other
+              # separators.
+              number:,
+              # Information about the United States driver's license used for identification.
+              # Required if `method` is equal to `drivers_license`.
+              drivers_license: nil,
+              # Information about the identification document provided. Required if `method` is
+              # equal to `other`.
+              other: nil,
+              # Information about the passport used for identification. Required if `method` is
+              # equal to `passport`.
+              passport: nil
+            )
+            end
+
+            sig do
+              override.returns(
+                {
+                  method_:
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::OrSymbol,
+                  number: String,
+                  drivers_license:
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense,
+                  other:
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other,
+                  passport:
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport
+                }
+              )
+            end
+            def to_hash
+            end
+
+            # A method that can be used to verify the individual's identity.
+            #
+            # Defaults to `social_security_number`.
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              TaggedSymbol =
+                T.type_alias do
+                  T.all(
+                    Symbol,
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method
+                  )
+                end
+              OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER =
+                T.let(
+                  :social_security_number,
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
+                T.let(
+                  :individual_taxpayer_identification_number,
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # A passport number.
+              PASSPORT =
+                T.let(
+                  :passport,
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # A driver's license number.
+              DRIVERS_LICENSE =
+                T.let(
+                  :drivers_license,
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # Another identifying document.
+              OTHER =
+                T.let(
+                  :other,
+                  Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              sig do
+                override.returns(
+                  T::Array[
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                  ]
+                )
+              end
+              def self.values
+              end
+            end
+
+            class DriversLicense < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::DriversLicense,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The driver's license's expiration date in YYYY-MM-DD format.
+              sig { returns(Date) }
+              attr_accessor :expiration_date
+
+              # The identifier of the File containing the front of the driver's license.
+              sig { returns(String) }
+              attr_accessor :file_id
+
+              # The state that issued the provided driver's license.
+              sig { returns(String) }
+              attr_accessor :state
+
+              # The identifier of the File containing the back of the driver's license.
+              sig { returns(T.nilable(String)) }
+              attr_reader :back_file_id
+
+              sig { params(back_file_id: String).void }
+              attr_writer :back_file_id
+
+              # Information about the United States driver's license used for identification.
+              # Required if `method` is equal to `drivers_license`.
+              sig do
+                params(
+                  expiration_date: Date,
+                  file_id: String,
+                  state: String,
+                  back_file_id: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The driver's license's expiration date in YYYY-MM-DD format.
+                expiration_date:,
+                # The identifier of the File containing the front of the driver's license.
+                file_id:,
+                # The state that issued the provided driver's license.
+                state:,
+                # The identifier of the File containing the back of the driver's license.
+                back_file_id: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    expiration_date: Date,
+                    file_id: String,
+                    state: String,
+                    back_file_id: String
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Other < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Other,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The two-character ISO 3166-1 code representing the country that issued the
+              # document (e.g., `US`).
+              sig { returns(String) }
+              attr_accessor :country
+
+              # A description of the document submitted.
+              sig { returns(String) }
+              attr_accessor :description
+
+              # The identifier of the File containing the front of the document.
+              sig { returns(String) }
+              attr_accessor :file_id
+
+              # The identifier of the File containing the back of the document. Not every
+              # document has a reverse side.
+              sig { returns(T.nilable(String)) }
+              attr_reader :back_file_id
+
+              sig { params(back_file_id: String).void }
+              attr_writer :back_file_id
+
+              # The document's expiration date in YYYY-MM-DD format.
+              sig { returns(T.nilable(Date)) }
+              attr_reader :expiration_date
+
+              sig { params(expiration_date: Date).void }
+              attr_writer :expiration_date
+
+              # Information about the identification document provided. Required if `method` is
+              # equal to `other`.
+              sig do
+                params(
+                  country: String,
+                  description: String,
+                  file_id: String,
+                  back_file_id: String,
+                  expiration_date: Date
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The two-character ISO 3166-1 code representing the country that issued the
+                # document (e.g., `US`).
+                country:,
+                # A description of the document submitted.
+                description:,
+                # The identifier of the File containing the front of the document.
+                file_id:,
+                # The identifier of the File containing the back of the document. Not every
+                # document has a reverse side.
+                back_file_id: nil,
+                # The document's expiration date in YYYY-MM-DD format.
+                expiration_date: nil
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    country: String,
+                    description: String,
+                    file_id: String,
+                    back_file_id: String,
+                    expiration_date: Date
+                  }
+                )
+              end
+              def to_hash
+              end
+            end
+
+            class Passport < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::EntityUpdateParams::SoleProprietorship::SoleProprietor::Identification::Passport,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The two-character ISO 3166-1 code representing the country that issued the
+              # document (e.g., `US`).
+              sig { returns(String) }
+              attr_accessor :country
+
+              # The passport's expiration date in YYYY-MM-DD format.
+              sig { returns(Date) }
+              attr_accessor :expiration_date
+
+              # The identifier of the File containing the passport.
+              sig { returns(String) }
+              attr_accessor :file_id
+
+              # Information about the passport used for identification. Required if `method` is
+              # equal to `passport`.
+              sig do
+                params(
+                  country: String,
+                  expiration_date: Date,
+                  file_id: String
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The two-character ISO 3166-1 code representing the country that issued the
+                # document (e.g., `US`).
+                country:,
+                # The passport's expiration date in YYYY-MM-DD format.
+                expiration_date:,
+                # The identifier of the File containing the passport.
+                file_id:
+              )
+              end
+
+              sig do
+                override.returns(
+                  { country: String, expiration_date: Date, file_id: String }
+                )
+              end
+              def to_hash
+              end
+            end
+          end
+        end
+      end
+
       class TermsAgreement < Increase::Internal::Type::BaseModel
         OrHash =
           T.type_alias do
@@ -1363,7 +2167,7 @@ module Increase
         sig { returns(Time) }
         attr_accessor :agreed_at
 
-        # The IP address the Entity accessed reviewed the terms from.
+        # The IP address the Entity reviewed the terms from.
         sig { returns(String) }
         attr_accessor :ip_address
 
@@ -1381,7 +2185,7 @@ module Increase
         def self.new(
           # The timestamp of when the Entity agreed to the terms.
           agreed_at:,
-          # The IP address the Entity accessed reviewed the terms from.
+          # The IP address the Entity reviewed the terms from.
           ip_address:,
           # The URL of the terms agreement. This link will be provided by your bank partner.
           terms_url:
@@ -1894,8 +2698,7 @@ module Increase
             # An identification number that can be used to verify the individual's identity,
             # such as a social security number. For Social Security Numbers and Individual
             # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-            # separators. When testing in sandbox, use one of our
-            # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+            # separators.
             sig { returns(String) }
             attr_accessor :number
 
@@ -1978,8 +2781,7 @@ module Increase
               # An identification number that can be used to verify the individual's identity,
               # such as a social security number. For Social Security Numbers and Individual
               # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              # separators. When testing in sandbox, use one of our
-              # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              # separators.
               number:,
               # Information about the United States driver's license used for identification.
               # Required if `method` is equal to `drivers_license`.
@@ -2586,8 +3388,7 @@ module Increase
               # An identification number that can be used to verify the individual's identity,
               # such as a social security number. For Social Security Numbers and Individual
               # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-              # separators. When testing in sandbox, use one of our
-              # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+              # separators.
               sig { returns(String) }
               attr_accessor :number
 
@@ -2670,8 +3471,7 @@ module Increase
                 # An identification number that can be used to verify the individual's identity,
                 # such as a social security number. For Social Security Numbers and Individual
                 # Taxpayer Identification Numbers, submit nine digits with no dashes or other
-                # separators. When testing in sandbox, use one of our
-                # [sandbox test values](https://increase.com/documentation/sandbox-test-values).
+                # separators.
                 number:,
                 # Information about the United States driver's license used for identification.
                 # Required if `method` is equal to `drivers_license`.

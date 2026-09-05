@@ -27,7 +27,7 @@ module Increase
       optional :description, String
 
       # @!attribute recipient_name
-      #   The name of the Lockbox Recipient
+      #   The name of the Lockbox Recipient.
       #
       #   @return [String, nil]
       optional :recipient_name, String
@@ -42,7 +42,7 @@ module Increase
       #
       #   @param description [String] The description you choose for the Lockbox Recipient.
       #
-      #   @param recipient_name [String] The name of the Lockbox Recipient
+      #   @param recipient_name [String] The name of the Lockbox Recipient.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
     end
