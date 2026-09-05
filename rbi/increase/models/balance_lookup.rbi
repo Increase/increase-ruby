@@ -36,7 +36,7 @@ module Increase
       sig { returns(Increase::BalanceLookup::Type::TaggedSymbol) }
       attr_accessor :type
 
-      # Represents a request to lookup the balance of an Account at a given point in
+      # Represents a request to look up the balance of an Account at a given point in
       # time.
       sig do
         params(
