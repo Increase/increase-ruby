@@ -118,6 +118,12 @@ module Increase
       end
       attr_writer :rejection
 
+      # If the transfer is returned by the recipient's bank, this will contain details
+      # of each return. FedNow allows returning part of a transfer, so a transfer can be
+      # returned more than once.
+      sig { returns(T::Array[Increase::FednowTransfer::Return]) }
+      attr_accessor :returns
+
       # The destination American Bankers' Association (ABA) Routing Transit Number
       # (RTN).
       sig { returns(String) }
@@ -185,6 +191,7 @@ module Increase
           idempotency_key: T.nilable(String),
           pending_transaction_id: T.nilable(String),
           rejection: T.nilable(Increase::FednowTransfer::Rejection::OrHash),
+          returns: T::Array[Increase::FednowTransfer::Return::OrHash],
           routing_number: String,
           source_account_number_id: String,
           status: Increase::FednowTransfer::Status::OrSymbol,
@@ -236,6 +243,10 @@ module Increase
         # If the transfer is rejected by FedNow or the destination financial institution,
         # this will contain supplemental details.
         rejection:,
+        # If the transfer is returned by the recipient's bank, this will contain details
+        # of each return. FedNow allows returning part of a transfer, so a transfer can be
+        # returned more than once.
+        returns:,
         # The destination American Bankers' Association (ABA) Routing Transit Number
         # (RTN).
         routing_number:,
@@ -281,6 +292,7 @@ module Increase
             idempotency_key: T.nilable(String),
             pending_transaction_id: T.nilable(String),
             rejection: T.nilable(Increase::FednowTransfer::Rejection),
+            returns: T::Array[Increase::FednowTransfer::Return],
             routing_number: String,
             source_account_number_id: String,
             status: Increase::FednowTransfer::Status::TaggedSymbol,
@@ -877,6 +889,203 @@ module Increase
         end
       end
 
+      class Return < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::FednowTransfer::Return, Increase::Internal::AnyHash)
+          end
+
+        # The returned amount in USD cents. This is always a positive number.
+        sig { returns(Integer) }
+        attr_accessor :amount
+
+        # Additional information about the return provided by the recipient's bank.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :return_reason_additional_information
+
+        # The reason the transfer was returned as provided by the recipient's bank.
+        sig do
+          returns(
+            Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+          )
+        end
+        attr_accessor :return_reason_code
+
+        # The identifier of the FedNow Transfer that led to this Transaction.
+        sig { returns(String) }
+        attr_accessor :transfer_id
+
+        # A FedNow Transfer Return is created when a FedNow Transfer sent from Increase is
+        # returned by the recipient's bank.
+        sig do
+          params(
+            amount: Integer,
+            return_reason_additional_information: T.nilable(String),
+            return_reason_code:
+              Increase::FednowTransfer::Return::ReturnReasonCode::OrSymbol,
+            transfer_id: String
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The returned amount in USD cents. This is always a positive number.
+          amount:,
+          # Additional information about the return provided by the recipient's bank.
+          return_reason_additional_information:,
+          # The reason the transfer was returned as provided by the recipient's bank.
+          return_reason_code:,
+          # The identifier of the FedNow Transfer that led to this Transaction.
+          transfer_id:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: Integer,
+              return_reason_additional_information: T.nilable(String),
+              return_reason_code:
+                Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol,
+              transfer_id: String
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The reason the transfer was returned as provided by the recipient's bank.
+        module ReturnReasonCode
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::FednowTransfer::Return::ReturnReasonCode)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The destination account is closed. Corresponds to the FedNow reason codes `AC04` and `AC07`.
+          ACCOUNT_CLOSED =
+            T.let(
+              :account_closed,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The destination account is currently blocked from receiving transactions. Corresponds to the FedNow reason code `AC06`.
+          ACCOUNT_BLOCKED =
+            T.let(
+              :account_blocked,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The recipient's bank was not a valid agent for this transfer. Corresponds to the FedNow reason codes `AC14` and `AGNT`.
+          INVALID_AGENT =
+            T.let(
+              :invalid_agent,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The destination account does not exist. Corresponds to the FedNow reason code `AC03`.
+          INVALID_CREDITOR_ACCOUNT_NUMBER =
+            T.let(
+              :invalid_creditor_account_number,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The destination account number was incorrect. Corresponds to the FedNow reason code `AC01`.
+          INCORRECT_ACCOUNT_NUMBER =
+            T.let(
+              :incorrect_account_number,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The destination account holder is deceased. Corresponds to the FedNow reason code `MD07`.
+          END_CUSTOMER_DECEASED =
+            T.let(
+              :end_customer_deceased,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The transfer was not permitted by the recipient's bank. Corresponds to the FedNow reason code `AG01`.
+          TRANSACTION_FORBIDDEN =
+            T.let(
+              :transaction_forbidden,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The transfer was returned for a regulatory reason at the recipient's bank. Corresponds to the FedNow reason code `RR04`.
+          REGULATORY_REASON =
+            T.let(
+              :regulatory_reason,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The transfer was reported as fraudulent. Corresponds to the FedNow reason code `FR01`.
+          FRAUD =
+            T.let(
+              :fraud,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The transfer duplicated another transfer. Corresponds to the FedNow reason codes `AM05` and `DUPL`.
+          DUPLICATION =
+            T.let(
+              :duplication,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The transfer amount was incorrect. Corresponds to the FedNow reason code `AM09`.
+          WRONG_AMOUNT =
+            T.let(
+              :wrong_amount,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The transfer was returned at the request of the recipient's customer. Corresponds to the FedNow reason code `CUST`.
+          REQUESTED_BY_CUSTOMER =
+            T.let(
+              :requested_by_customer,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The recipient's bank could not apply the funds. Corresponds to the FedNow reason code `RUTA`.
+          UNABLE_TO_APPLY =
+            T.let(
+              :unable_to_apply,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The recipient's bank did not specify a reason. Corresponds to the FedNow reason codes `MS02` and `MS03`.
+          NOT_SPECIFIED =
+            T.let(
+              :not_specified,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the FedNow reason code `NARR`.
+          NARRATIVE =
+            T.let(
+              :narrative,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          # The transfer was returned for some other reason.
+          OTHER =
+            T.let(
+              :other,
+              Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::FednowTransfer::Return::ReturnReasonCode::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
+        end
+      end
+
       # The lifecycle status of the transfer.
       module Status
         extend Increase::Internal::Type::Enum
@@ -902,13 +1111,6 @@ module Increase
         # The transfer has been canceled.
         CANCELED =
           T.let(:canceled, Increase::FednowTransfer::Status::TaggedSymbol)
-
-        # The transfer has been rejected by Increase.
-        REVIEWING_REJECTED =
-          T.let(
-            :reviewing_rejected,
-            Increase::FednowTransfer::Status::TaggedSymbol
-          )
 
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION =
@@ -938,6 +1140,10 @@ module Increase
         # The transfer was rejected by the network or the recipient's bank.
         REJECTED =
           T.let(:rejected, Increase::FednowTransfer::Status::TaggedSymbol)
+
+        # The transfer was returned by the recipient's bank.
+        RETURNED =
+          T.let(:returned, Increase::FednowTransfer::Status::TaggedSymbol)
 
         sig do
           override.returns(

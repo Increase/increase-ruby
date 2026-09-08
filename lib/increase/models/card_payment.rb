@@ -1387,9 +1387,9 @@ module Increase
           required :actioner, enum: -> { Increase::CardPayment::Element::CardAuthorization::Actioner }
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts]
           required :additional_amounts, -> { Increase::CardPayment::Element::CardAuthorization::AdditionalAmounts }
@@ -1429,8 +1429,8 @@ module Increase
           required :direction, enum: -> { Increase::CardPayment::Element::CardAuthorization::Direction }
 
           # @!attribute expires_at
-          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization
-          #   will expire and the pending transaction will be released.
+          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which this
+          #   authorization will expire and the pending transaction will be released.
           #
           #   @return [Time]
           required :expires_at, Time
@@ -1603,9 +1603,9 @@ module Increase
           #     stand-in processing, or the user through a real-time decision.
           #
           #   @param additional_amounts [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param amount [Integer]
           #     The pending amount in the minor unit of the transaction's currency. For dollars,
@@ -1626,8 +1626,8 @@ module Increase
           #     cardholder to the merchant or from the merchant to the cardholder.
           #
           #   @param expires_at [Time]
-          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization
-          #     will expire and the pending transaction will be released.
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which this
+          #     authorization will expire and the pending transaction will be released.
           #
           #   @param healthcare [Increase::Models::CardPayment::Element::CardAuthorization::Healthcare, nil]
           #     The healthcare-related fields for this authorization. Only present for specific
@@ -1816,9 +1816,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::CardPayment::Element::CardAuthorization::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.
@@ -3111,9 +3111,9 @@ module Increase
           required :id, String
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts]
           required :additional_amounts, -> { Increase::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts }
@@ -3262,9 +3262,9 @@ module Increase
           #   @param id [String] The Card Balance Inquiry identifier.
           #
           #   @param additional_amounts [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param balance [Integer]
           #     The balance amount in the minor unit of the account's currency. For dollars, for
@@ -3422,9 +3422,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::CardPayment::Element::CardBalanceInquiry::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.
@@ -4509,9 +4509,9 @@ module Increase
           required :actioner, enum: -> { Increase::CardPayment::Element::CardDecline::Actioner }
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts]
           required :additional_amounts, -> { Increase::CardPayment::Element::CardDecline::AdditionalAmounts }
@@ -4709,9 +4709,9 @@ module Increase
           #     stand-in processing, or the user through a real-time decision.
           #
           #   @param additional_amounts [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param amount [Integer]
           #     The declined amount in the minor unit of the destination account currency. For
@@ -4908,9 +4908,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::CardPayment::Element::CardDecline::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.
@@ -6148,9 +6148,9 @@ module Increase
           required :actioner, enum: -> { Increase::CardPayment::Element::CardFinancial::Actioner }
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts]
           required :additional_amounts, -> { Increase::CardPayment::Element::CardFinancial::AdditionalAmounts }
@@ -6336,9 +6336,9 @@ module Increase
           #     stand-in processing, or the user through a real-time decision.
           #
           #   @param additional_amounts [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param amount [Integer]
           #     The pending amount in the minor unit of the transaction's currency. For dollars,
@@ -6527,9 +6527,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::CardPayment::Element::CardFinancial::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.
@@ -8049,9 +8049,9 @@ module Increase
           required :actioner, enum: -> { Increase::CardPayment::Element::CardIncrement::Actioner }
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts]
           required :additional_amounts, -> { Increase::CardPayment::Element::CardIncrement::AdditionalAmounts }
@@ -8155,9 +8155,9 @@ module Increase
           #     stand-in processing, or the user through a real-time decision.
           #
           #   @param additional_amounts [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param amount [Integer]
           #     The amount of this increment in the minor unit of the transaction's currency.
@@ -8308,9 +8308,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::CardPayment::Element::CardIncrement::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.
@@ -12674,9 +12674,9 @@ module Increase
           required :actioner, enum: -> { Increase::CardPayment::Element::CardValidation::Actioner }
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts]
           required :additional_amounts, -> { Increase::CardPayment::Element::CardValidation::AdditionalAmounts }
@@ -12820,9 +12820,9 @@ module Increase
           #     stand-in processing, or the user through a real-time decision.
           #
           #   @param additional_amounts [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param card_payment_id [String] The ID of the Card Payment this transaction belongs to.
           #
@@ -12994,9 +12994,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::CardPayment::Element::CardValidation::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.

@@ -30,7 +30,7 @@ module Increase
       required :entity_id, String
 
       # @!attribute excluded_at
-      #   When this was exclusion was confirmed by IntraFi.
+      #   When this exclusion was confirmed by IntraFi.
       #
       #   @return [Time, nil]
       required :excluded_at, Time, nil?: true
@@ -57,7 +57,7 @@ module Increase
       required :status, enum: -> { Increase::IntrafiExclusion::Status }
 
       # @!attribute submitted_at
-      #   When this was exclusion was submitted to IntraFi by Increase.
+      #   When this exclusion was submitted to IntraFi by Increase.
       #
       #   @return [Time, nil]
       required :submitted_at, Time, nil?: true
@@ -85,7 +85,7 @@ module Increase
       #
       #   @param entity_id [String] The entity for which this institution is excluded.
       #
-      #   @param excluded_at [Time, nil] When this was exclusion was confirmed by IntraFi.
+      #   @param excluded_at [Time, nil] When this exclusion was confirmed by IntraFi.
       #
       #   @param fdic_certificate_number [String, nil]
       #     The Federal Deposit Insurance Corporation's certificate number for the
@@ -98,7 +98,7 @@ module Increase
       #
       #   @param status [Symbol, Increase::Models::IntrafiExclusion::Status] The status of the exclusion request.
       #
-      #   @param submitted_at [Time, nil] When this was exclusion was submitted to IntraFi by Increase.
+      #   @param submitted_at [Time, nil] When this exclusion was submitted to IntraFi by Increase.
       #
       #   @param type [Symbol, Increase::Models::IntrafiExclusion::Type]
       #     A constant representing the object's type. For this resource it will always be

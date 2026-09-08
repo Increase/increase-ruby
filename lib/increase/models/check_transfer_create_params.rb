@@ -73,7 +73,7 @@ module Increase
       #   If provided, the check will be valid on or before this date. After this date,
       #   the check transfer will be automatically stopped and deposits will not be
       #   accepted. For checks printed by Increase, this date is included on the check as
-      #   its expiry.
+      #   its expiration.
       #
       #   @return [Date, nil]
       optional :valid_until_date, Date
@@ -116,7 +116,7 @@ module Increase
       #     If provided, the check will be valid on or before this date. After this date,
       #     the check transfer will be automatically stopped and deposits will not be
       #     accepted. For checks printed by Increase, this date is included on the check as
-      #     its expiry.
+      #     its expiration.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -195,7 +195,9 @@ module Increase
         optional :check_voucher_image_file_id, String
 
         # @!attribute note
-        #   The descriptor that will be printed on the letter included with the check.
+        #   A few paragraphs of text printed on the letter included with the check. It can
+        #   contain at most 22 lines. Paragraphs will wrap at about 120 characters, but
+        #   depending on your exact message, it might be slightly more or slightly less.
         #
         #   @return [String, nil]
         optional :note, String
@@ -264,7 +266,10 @@ module Increase
         #     `purpose: check_voucher_image`. For details on pricing and restrictions, see
         #     https://increase.com/documentation/originating-checks#printing-checks .
         #
-        #   @param note [String] The descriptor that will be printed on the letter included with the check.
+        #   @param note [String]
+        #     A few paragraphs of text printed on the letter included with the check. It can
+        #     contain at most 22 lines. Paragraphs will wrap at about 120 characters, but
+        #     depending on your exact message, it might be slightly more or slightly less.
         #
         #   @param physical_check_batch_id [String]
         #     The identifier of the Physical Check Batch to mail this check as a part of.

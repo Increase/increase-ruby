@@ -12,6 +12,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The Account that the Card Dispute is associated with.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The amount of the dispute.
       sig { returns(Integer) }
       attr_accessor :amount
@@ -109,6 +113,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_id: String,
           amount: Integer,
           card_id: String,
           created_at: Time,
@@ -128,6 +133,8 @@ module Increase
       def self.new(
         # The Card Dispute identifier.
         id:,
+        # The Account that the Card Dispute is associated with.
+        account_id:,
         # The amount of the dispute.
         amount:,
         # The Card that the Card Dispute is associated with.
@@ -176,6 +183,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_id: String,
             amount: Integer,
             card_id: String,
             created_at: Time,

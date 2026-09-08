@@ -275,6 +275,13 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # FedNow Transfer Return: details will be under the `fednow_transfer_return` object.
+          FEDNOW_TRANSFER_RETURN =
+            T.let(
+              :fednow_transfer_return,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
           CHECK_TRANSFER_DEPOSIT =
             T.let(

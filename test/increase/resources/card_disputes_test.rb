@@ -17,6 +17,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         amount: Integer,
         card_id: String,
         created_at: Time,
@@ -45,6 +46,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         amount: Integer,
         card_id: String,
         created_at: Time,
@@ -80,6 +82,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     assert_pattern do
       row => {
         id: String,
+        account_id: String,
         amount: Integer,
         card_id: String,
         created_at: Time,
@@ -109,6 +112,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         amount: Integer,
         card_id: String,
         created_at: Time,
@@ -137,6 +141,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         amount: Integer,
         card_id: String,
         created_at: Time,

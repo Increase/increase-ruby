@@ -46,7 +46,7 @@ module Increase
         # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
         # destination account.
         routing_number: nil,
-        # The ID of an Account Number that will be passed to the wire's recipient
+        # The ID of an Account Number that will be passed to the wire's recipient.
         source_account_number_id: nil,
         request_options: {}
       )

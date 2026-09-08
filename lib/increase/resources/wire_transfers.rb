@@ -40,7 +40,7 @@ module Increase
       #   destination account.
       #
       # @param source_account_number_id [String]
-      #   The ID of an Account Number that will be passed to the wire's recipient
+      #   The ID of an Account Number that will be passed to the wire's recipient.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

@@ -15,7 +15,7 @@ module Increase
             )
           end
 
-        # The pending transaction to release. The pending transaction must have a
+        # The pending transaction to release. The pending transaction must have an
         # `inbound_funds_hold` source.
         sig { returns(String) }
         attr_accessor :pending_transaction_id
@@ -27,7 +27,7 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # The pending transaction to release. The pending transaction must have a
+          # The pending transaction to release. The pending transaction must have an
           # `inbound_funds_hold` source.
           pending_transaction_id:,
           request_options: {}

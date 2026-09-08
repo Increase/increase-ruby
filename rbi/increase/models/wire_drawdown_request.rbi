@@ -12,6 +12,11 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The Account to which the debtor—the recipient of this request—is being requested
+      # to send funds.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The Account Number to which the debtor—the recipient of this request—is being
       # requested to send funds.
       sig { returns(String) }
@@ -131,6 +136,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_id: String,
           account_number_id: String,
           amount: Integer,
           created_at: Time,
@@ -157,6 +163,9 @@ module Increase
       def self.new(
         # The Wire drawdown request identifier.
         id:,
+        # The Account to which the debtor—the recipient of this request—is being requested
+        # to send funds.
+        account_id:,
         # The Account Number to which the debtor—the recipient of this request—is being
         # requested to send funds.
         account_number_id:,
@@ -213,6 +222,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_id: String,
             account_number_id: String,
             amount: Integer,
             created_at: Time,

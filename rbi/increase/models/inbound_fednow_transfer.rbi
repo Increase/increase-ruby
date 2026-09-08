@@ -358,6 +358,13 @@ module Increase
               Increase::InboundFednowTransfer::Decline::Reason::TaggedSymbol
             )
 
+          # The transaction is not allowed per Increase's terms.
+          TRANSACTION_NOT_ALLOWED =
+            T.let(
+              :transaction_not_allowed,
+              Increase::InboundFednowTransfer::Decline::Reason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

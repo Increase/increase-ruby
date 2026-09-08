@@ -73,7 +73,7 @@ module Increase
       optional :routing_number, String
 
       # @!attribute source_account_number_id
-      #   The ID of an Account Number that will be passed to the wire's recipient
+      #   The ID of an Account Number that will be passed to the wire's recipient.
       #
       #   @return [String, nil]
       optional :source_account_number_id, String
@@ -112,7 +112,7 @@ module Increase
       #     destination account.
       #
       #   @param source_account_number_id [String]
-      #     The ID of an Account Number that will be passed to the wire's recipient
+      #     The ID of an Account Number that will be passed to the wire's recipient.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 

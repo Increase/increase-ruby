@@ -768,9 +768,9 @@ module Increase
           required :actioner, enum: -> { Increase::PendingTransaction::Source::CardAuthorization::Actioner }
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts]
           required :additional_amounts,
@@ -811,8 +811,8 @@ module Increase
           required :direction, enum: -> { Increase::PendingTransaction::Source::CardAuthorization::Direction }
 
           # @!attribute expires_at
-          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization
-          #   will expire and the pending transaction will be released.
+          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which this
+          #   authorization will expire and the pending transaction will be released.
           #
           #   @return [Time]
           required :expires_at, Time
@@ -983,9 +983,9 @@ module Increase
           #     stand-in processing, or the user through a real-time decision.
           #
           #   @param additional_amounts [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param amount [Integer]
           #     The pending amount in the minor unit of the transaction's currency. For dollars,
@@ -1006,8 +1006,8 @@ module Increase
           #     cardholder to the merchant or from the merchant to the cardholder.
           #
           #   @param expires_at [Time]
-          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) when this authorization
-          #     will expire and the pending transaction will be released.
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which this
+          #     authorization will expire and the pending transaction will be released.
           #
           #   @param healthcare [Increase::Models::PendingTransaction::Source::CardAuthorization::Healthcare, nil]
           #     The healthcare-related fields for this authorization. Only present for specific
@@ -1210,9 +1210,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::PendingTransaction::Source::CardAuthorization::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.

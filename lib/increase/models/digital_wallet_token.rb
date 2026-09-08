@@ -10,6 +10,12 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The identifier for the Account this Digital Wallet Token belongs to.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute card_id
       #   The identifier for the Card this Digital Wallet Token belongs to.
       #
@@ -75,12 +81,14 @@ module Increase
       #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
       required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update] }
 
-      # @!method initialize(id:, card_id:, cardholder:, created_at:, decline:, device:, dynamic_primary_account_number:, status:, token_requestor:, type:, updates:)
+      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, decline:, device:, dynamic_primary_account_number:, status:, token_requestor:, type:, updates:)
       #   A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
       #   Google Pay app. The Digital Wallet Token can be used for purchases just like a
       #   Card.
       #
       #   @param id [String] The Digital Wallet Token identifier.
+      #
+      #   @param account_id [String] The identifier for the Account this Digital Wallet Token belongs to.
       #
       #   @param card_id [String] The identifier for the Card this Digital Wallet Token belongs to.
       #

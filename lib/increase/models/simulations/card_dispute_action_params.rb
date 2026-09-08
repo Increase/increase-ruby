@@ -22,8 +22,8 @@ module Increase
         required :network, enum: -> { Increase::Simulations::CardDisputeActionParams::Network }
 
         # @!attribute visa
-        #   The Visa-specific parameters for the taking action on the dispute. Required if
-        #   and only if `network` is `visa`.
+        #   The Visa-specific parameters for taking action on the dispute. Required if and
+        #   only if `network` is `visa`.
         #
         #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa, nil]
         optional :visa, -> { Increase::Simulations::CardDisputeActionParams::Visa }
@@ -36,8 +36,8 @@ module Increase
         #     under the sub-object with the same identifier as the network.
         #
         #   @param visa [Increase::Models::Simulations::CardDisputeActionParams::Visa]
-        #     The Visa-specific parameters for the taking action on the dispute. Required if
-        #     and only if `network` is `visa`.
+        #     The Visa-specific parameters for taking action on the dispute. Required if and
+        #     only if `network` is `visa`.
         #
         #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -147,8 +147,8 @@ module Increase
                    -> { Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration }
 
           # @!method initialize(action:, accept_chargeback: nil, accept_user_submission: nil, decline_user_prearbitration: nil, receive_merchant_prearbitration: nil, reject: nil, represent: nil, request_further_information: nil, time_out_chargeback: nil, time_out_merchant_prearbitration: nil, time_out_representment: nil, time_out_user_prearbitration: nil)
-          #   The Visa-specific parameters for the taking action on the dispute. Required if
-          #   and only if `network` is `visa`.
+          #   The Visa-specific parameters for taking action on the dispute. Required if and
+          #   only if `network` is `visa`.
           #
           #   @param action [Symbol, Increase::Models::Simulations::CardDisputeActionParams::Visa::Action]
           #     The action to take. Details specific to the action are required under the

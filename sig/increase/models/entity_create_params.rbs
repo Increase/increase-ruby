@@ -9,6 +9,7 @@ module Increase
         joint: Increase::EntityCreateParams::Joint,
         natural_person: Increase::EntityCreateParams::NaturalPerson,
         risk_rating: Increase::EntityCreateParams::RiskRating,
+        sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship,
         supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
         third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
@@ -56,6 +57,12 @@ module Increase
         Increase::EntityCreateParams::RiskRating
       ) -> Increase::EntityCreateParams::RiskRating
 
+      attr_reader sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship?
+
+      def sole_proprietorship=: (
+        Increase::EntityCreateParams::SoleProprietorship
+      ) -> Increase::EntityCreateParams::SoleProprietorship
+
       attr_reader supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument]?
 
       def supplemental_documents=: (
@@ -88,6 +95,7 @@ module Increase
         ?joint: Increase::EntityCreateParams::Joint,
         ?natural_person: Increase::EntityCreateParams::NaturalPerson,
         ?risk_rating: Increase::EntityCreateParams::RiskRating,
+        ?sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship,
         ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         ?terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
         ?third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
@@ -103,6 +111,7 @@ module Increase
         joint: Increase::EntityCreateParams::Joint,
         natural_person: Increase::EntityCreateParams::NaturalPerson,
         risk_rating: Increase::EntityCreateParams::RiskRating,
+        sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship,
         supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
         third_party_verification: Increase::EntityCreateParams::ThirdPartyVerification,
@@ -111,7 +120,12 @@ module Increase
       }
 
       type structure =
-        :corporation | :natural_person | :joint | :trust | :government_authority
+        :corporation
+        | :natural_person
+        | :joint
+        | :trust
+        | :government_authority
+        | :sole_proprietorship
 
       module Structure
         extend Increase::Internal::Type::Enum
@@ -130,6 +144,9 @@ module Increase
 
         # A government authority.
         GOVERNMENT_AUTHORITY: :government_authority
+
+        # A sole proprietorship.
+        SOLE_PROPRIETORSHIP: :sole_proprietorship
 
         def self?.values: -> ::Array[Increase::Models::EntityCreateParams::structure]
       end
@@ -1311,6 +1328,220 @@ module Increase
           HIGH: :high
 
           def self?.values: -> ::Array[Increase::Models::EntityCreateParams::RiskRating::rating]
+        end
+      end
+
+      type sole_proprietorship =
+        {
+          address: Increase::EntityCreateParams::SoleProprietorship::Address,
+          sole_proprietor: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor,
+          doing_business_as_name: String,
+          email: String,
+          industry_code: String,
+          tax_identifier: String,
+          website: String
+        }
+
+      class SoleProprietorship < Increase::Internal::Type::BaseModel
+        attr_accessor address: Increase::EntityCreateParams::SoleProprietorship::Address
+
+        attr_accessor sole_proprietor: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor
+
+        attr_reader doing_business_as_name: String?
+
+        def doing_business_as_name=: (String) -> String
+
+        attr_reader email: String?
+
+        def email=: (String) -> String
+
+        attr_reader industry_code: String?
+
+        def industry_code=: (String) -> String
+
+        attr_reader tax_identifier: String?
+
+        def tax_identifier=: (String) -> String
+
+        attr_reader website: String?
+
+        def website=: (String) -> String
+
+        def initialize: (
+          address: Increase::EntityCreateParams::SoleProprietorship::Address,
+          sole_proprietor: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor,
+          ?doing_business_as_name: String,
+          ?email: String,
+          ?industry_code: String,
+          ?tax_identifier: String,
+          ?website: String
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::EntityCreateParams::SoleProprietorship::Address,
+          sole_proprietor: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor,
+          doing_business_as_name: String,
+          email: String,
+          industry_code: String,
+          tax_identifier: String,
+          website: String
+        }
+
+        type address =
+          {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor city: String
+
+          attr_accessor line1: String
+
+          attr_accessor state: String
+
+          attr_accessor zip: String
+
+          attr_reader line2: String?
+
+          def line2=: (String) -> String
+
+          def initialize: (
+            city: String,
+            line1: String,
+            state: String,
+            zip: String,
+            ?line2: String
+          ) -> void
+
+          def to_hash: -> {
+            city: String,
+            :line1 => String,
+            state: String,
+            zip: String,
+            :line2 => String
+          }
+        end
+
+        type sole_proprietor =
+          {
+            address: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address,
+            date_of_birth: Date,
+            identification: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification,
+            name: String
+          }
+
+        class SoleProprietor < Increase::Internal::Type::BaseModel
+          attr_accessor address: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address
+
+          attr_accessor date_of_birth: Date
+
+          attr_accessor identification: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification
+
+          attr_accessor name: String
+
+          def initialize: (
+            address: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address,
+            date_of_birth: Date,
+            identification: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification,
+            name: String
+          ) -> void
+
+          def to_hash: -> {
+            address: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Address,
+            date_of_birth: Date,
+            identification: Increase::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification,
+            name: String
+          }
+
+          type address =
+            {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              state: String,
+              zip: String
+            }
+
+          class Address < Increase::Internal::Type::BaseModel
+            attr_accessor city: String
+
+            attr_accessor country: String
+
+            attr_accessor line1: String
+
+            attr_reader line2: String?
+
+            def line2=: (String) -> String
+
+            attr_reader state: String?
+
+            def state=: (String) -> String
+
+            attr_reader zip: String?
+
+            def zip=: (String) -> String
+
+            def initialize: (
+              city: String,
+              country: String,
+              line1: String,
+              ?line2: String,
+              ?state: String,
+              ?zip: String
+            ) -> void
+
+            def to_hash: -> {
+              city: String,
+              country: String,
+              :line1 => String,
+              :line2 => String,
+              state: String,
+              zip: String
+            }
+          end
+
+          type identification =
+            {
+              method_: Increase::Models::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::method_,
+              number: String
+            }
+
+          class Identification < Increase::Internal::Type::BaseModel
+            attr_accessor method_: Increase::Models::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::method_
+
+            attr_accessor number: String
+
+            def initialize: (
+              method_: Increase::Models::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::method_,
+              number: String
+            ) -> void
+
+            def to_hash: -> {
+              method_: Increase::Models::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::method_,
+              number: String
+            }
+
+            type method_ =
+              :social_security_number
+              | :individual_taxpayer_identification_number
+
+            module Method
+              extend Increase::Internal::Type::Enum
+
+              # A social security number.
+              SOCIAL_SECURITY_NUMBER: :social_security_number
+
+              # An individual taxpayer identification number (ITIN).
+              INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER: :individual_taxpayer_identification_number
+
+              def self?.values: -> ::Array[Increase::Models::EntityCreateParams::SoleProprietorship::SoleProprietor::Identification::method_]
+            end
+          end
         end
       end
 

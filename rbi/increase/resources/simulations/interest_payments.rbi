@@ -17,7 +17,7 @@ module Increase
           ).returns(Increase::Transaction)
         end
         def create(
-          # The identifier of the Account the Interest Payment should be paid to is for.
+          # The identifier of the Account the Interest Payment should be paid to.
           account_id:,
           # The interest amount in cents. Must be positive.
           amount:,

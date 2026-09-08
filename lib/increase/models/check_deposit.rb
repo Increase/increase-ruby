@@ -65,7 +65,7 @@ module Increase
       required :deposit_return, -> { Increase::CheckDeposit::DepositReturn }, nil?: true
 
       # @!attribute deposit_submission
-      #   After the check is parsed, it is submitted to the Check21 network for
+      #   After the check is parsed, it is submitted to the Check 21 network for
       #   processing. This will contain details of the submission.
       #
       #   @return [Increase::Models::CheckDeposit::DepositSubmission, nil]
@@ -164,7 +164,7 @@ module Increase
       #     returned.
       #
       #   @param deposit_submission [Increase::Models::CheckDeposit::DepositSubmission, nil]
-      #     After the check is parsed, it is submitted to the Check21 network for
+      #     After the check is parsed, it is submitted to the Check 21 network for
       #     processing. This will contain details of the submission.
       #
       #   @param description [String, nil] The description of the Check Deposit, for display purposes only.
@@ -646,20 +646,20 @@ module Increase
       class DepositSubmission < Increase::Internal::Type::BaseModel
         # @!attribute back_file_id
         #   The ID for the File containing the check back image that was submitted to the
-        #   Check21 network.
+        #   Check 21 network.
         #
         #   @return [String]
         required :back_file_id, String
 
         # @!attribute front_file_id
         #   The ID for the File containing the check front image that was submitted to the
-        #   Check21 network.
+        #   Check 21 network.
         #
         #   @return [String]
         required :front_file_id, String
 
         # @!attribute submitted_at
-        #   When the check deposit was submitted to the Check21 network for processing.
+        #   When the check deposit was submitted to the Check 21 network for processing.
         #   During business days, this happens within a few hours of the check being
         #   accepted by Increase.
         #
@@ -667,19 +667,19 @@ module Increase
         required :submitted_at, Time
 
         # @!method initialize(back_file_id:, front_file_id:, submitted_at:)
-        #   After the check is parsed, it is submitted to the Check21 network for
+        #   After the check is parsed, it is submitted to the Check 21 network for
         #   processing. This will contain details of the submission.
         #
         #   @param back_file_id [String]
         #     The ID for the File containing the check back image that was submitted to the
-        #     Check21 network.
+        #     Check 21 network.
         #
         #   @param front_file_id [String]
         #     The ID for the File containing the check front image that was submitted to the
-        #     Check21 network.
+        #     Check 21 network.
         #
         #   @param submitted_at [Time]
-        #     When the check deposit was submitted to the Check21 network for processing.
+        #     When the check deposit was submitted to the Check 21 network for processing.
         #     During business days, this happens within a few hours of the check being
         #     accepted by Increase.
       end

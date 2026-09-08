@@ -77,7 +77,7 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :debtor_name
 
-      # The American Banking Association (ABA) routing number of the sender.
+      # The American Bankers' Association (ABA) routing number of the sender.
       sig { returns(T.nilable(String)) }
       attr_accessor :debtor_routing_number
 
@@ -95,7 +95,7 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :input_message_accountability_data
 
-      # The American Banking Association (ABA) routing number of the bank that sent the
+      # The American Bankers' Association (ABA) routing number of the bank that sent the
       # wire.
       sig { returns(T.nilable(String)) }
       attr_accessor :instructing_agent_routing_number
@@ -209,7 +209,7 @@ module Increase
         debtor_address_line3:,
         # A name set by the sender.
         debtor_name:,
-        # The American Banking Association (ABA) routing number of the sender.
+        # The American Bankers' Association (ABA) routing number of the sender.
         debtor_routing_number:,
         # An Increase-constructed description of the transfer.
         description:,
@@ -219,7 +219,7 @@ module Increase
         # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
         # service and is helpful when debugging wires with the originating bank.
         input_message_accountability_data:,
-        # The American Banking Association (ABA) routing number of the bank that sent the
+        # The American Bankers' Association (ABA) routing number of the bank that sent the
         # wire.
         instructing_agent_routing_number:,
         # The sending bank's identifier for the wire transfer.

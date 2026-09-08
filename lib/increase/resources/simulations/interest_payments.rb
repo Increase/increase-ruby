@@ -9,7 +9,7 @@ module Increase
         #
         # @overload create(account_id:, amount:, accrued_on_account_id: nil, period_end: nil, period_start: nil, request_options: {})
         #
-        # @param account_id [String] The identifier of the Account the Interest Payment should be paid to is for.
+        # @param account_id [String] The identifier of the Account the Interest Payment should be paid to.
         #
         # @param amount [Integer] The interest amount in cents. Must be positive.
         #

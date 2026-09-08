@@ -22,6 +22,7 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         account_number_id: String,
         amount: Integer,
         created_at: Time,
@@ -55,6 +56,7 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         account_number_id: String,
         amount: Integer,
         created_at: Time,
@@ -95,6 +97,7 @@ class Increase::Test::Resources::WireDrawdownRequestsTest < Increase::Test::Reso
     assert_pattern do
       row => {
         id: String,
+        account_id: String,
         account_number_id: String,
         amount: Integer,
         created_at: Time,

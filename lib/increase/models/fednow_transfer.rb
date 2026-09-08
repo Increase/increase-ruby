@@ -108,6 +108,14 @@ module Increase
       #   @return [Increase::Models::FednowTransfer::Rejection, nil]
       required :rejection, -> { Increase::FednowTransfer::Rejection }, nil?: true
 
+      # @!attribute returns
+      #   If the transfer is returned by the recipient's bank, this will contain details
+      #   of each return. FedNow allows returning part of a transfer, so a transfer can be
+      #   returned more than once.
+      #
+      #   @return [Array<Increase::Models::FednowTransfer::Return>]
+      required :returns, -> { Increase::Internal::Type::ArrayOf[Increase::FednowTransfer::Return] }
+
       # @!attribute routing_number
       #   The destination American Bankers' Association (ABA) Routing Transit Number
       #   (RTN).
@@ -161,7 +169,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, created_at:, created_by:, creditor_address:, creditor_name:, currency:, debtor_address:, debtor_name:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, created_at:, created_by:, creditor_address:, creditor_name:, currency:, debtor_address:, debtor_name:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, returns:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   FedNow transfers move funds, within seconds, between your Increase account and
       #   any other account supporting FedNow.
       #
@@ -213,6 +221,11 @@ module Increase
       #   @param rejection [Increase::Models::FednowTransfer::Rejection, nil]
       #     If the transfer is rejected by FedNow or the destination financial institution,
       #     this will contain supplemental details.
+      #
+      #   @param returns [Array<Increase::Models::FednowTransfer::Return>]
+      #     If the transfer is returned by the recipient's bank, this will contain details
+      #     of each return. FedNow allows returning part of a transfer, so a transfer can be
+      #     returned more than once.
       #
       #   @param routing_number [String]
       #     The destination American Bankers' Association (ABA) Routing Transit Number
@@ -543,6 +556,104 @@ module Increase
         end
       end
 
+      class Return < Increase::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The returned amount in USD cents. This is always a positive number.
+        #
+        #   @return [Integer]
+        required :amount, Integer
+
+        # @!attribute return_reason_additional_information
+        #   Additional information about the return provided by the recipient's bank.
+        #
+        #   @return [String, nil]
+        required :return_reason_additional_information, String, nil?: true
+
+        # @!attribute return_reason_code
+        #   The reason the transfer was returned as provided by the recipient's bank.
+        #
+        #   @return [Symbol, Increase::Models::FednowTransfer::Return::ReturnReasonCode]
+        required :return_reason_code, enum: -> { Increase::FednowTransfer::Return::ReturnReasonCode }
+
+        # @!attribute transfer_id
+        #   The identifier of the FedNow Transfer that led to this Transaction.
+        #
+        #   @return [String]
+        required :transfer_id, String
+
+        # @!method initialize(amount:, return_reason_additional_information:, return_reason_code:, transfer_id:)
+        #   A FedNow Transfer Return is created when a FedNow Transfer sent from Increase is
+        #   returned by the recipient's bank.
+        #
+        #   @param amount [Integer] The returned amount in USD cents. This is always a positive number.
+        #
+        #   @param return_reason_additional_information [String, nil]
+        #     Additional information about the return provided by the recipient's bank.
+        #
+        #   @param return_reason_code [Symbol, Increase::Models::FednowTransfer::Return::ReturnReasonCode]
+        #     The reason the transfer was returned as provided by the recipient's bank.
+        #
+        #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this Transaction.
+
+        # The reason the transfer was returned as provided by the recipient's bank.
+        #
+        # @see Increase::Models::FednowTransfer::Return#return_reason_code
+        module ReturnReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The destination account is closed. Corresponds to the FedNow reason codes `AC04` and `AC07`.
+          ACCOUNT_CLOSED = :account_closed
+
+          # The destination account is currently blocked from receiving transactions. Corresponds to the FedNow reason code `AC06`.
+          ACCOUNT_BLOCKED = :account_blocked
+
+          # The recipient's bank was not a valid agent for this transfer. Corresponds to the FedNow reason codes `AC14` and `AGNT`.
+          INVALID_AGENT = :invalid_agent
+
+          # The destination account does not exist. Corresponds to the FedNow reason code `AC03`.
+          INVALID_CREDITOR_ACCOUNT_NUMBER = :invalid_creditor_account_number
+
+          # The destination account number was incorrect. Corresponds to the FedNow reason code `AC01`.
+          INCORRECT_ACCOUNT_NUMBER = :incorrect_account_number
+
+          # The destination account holder is deceased. Corresponds to the FedNow reason code `MD07`.
+          END_CUSTOMER_DECEASED = :end_customer_deceased
+
+          # The transfer was not permitted by the recipient's bank. Corresponds to the FedNow reason code `AG01`.
+          TRANSACTION_FORBIDDEN = :transaction_forbidden
+
+          # The transfer was returned for a regulatory reason at the recipient's bank. Corresponds to the FedNow reason code `RR04`.
+          REGULATORY_REASON = :regulatory_reason
+
+          # The transfer was reported as fraudulent. Corresponds to the FedNow reason code `FR01`.
+          FRAUD = :fraud
+
+          # The transfer duplicated another transfer. Corresponds to the FedNow reason codes `AM05` and `DUPL`.
+          DUPLICATION = :duplication
+
+          # The transfer amount was incorrect. Corresponds to the FedNow reason code `AM09`.
+          WRONG_AMOUNT = :wrong_amount
+
+          # The transfer was returned at the request of the recipient's customer. Corresponds to the FedNow reason code `CUST`.
+          REQUESTED_BY_CUSTOMER = :requested_by_customer
+
+          # The recipient's bank could not apply the funds. Corresponds to the FedNow reason code `RUTA`.
+          UNABLE_TO_APPLY = :unable_to_apply
+
+          # The recipient's bank did not specify a reason. Corresponds to the FedNow reason codes `MS02` and `MS03`.
+          NOT_SPECIFIED = :not_specified
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the FedNow reason code `NARR`.
+          NARRATIVE = :narrative
+
+          # The transfer was returned for some other reason.
+          OTHER = :other
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
+      end
+
       # The lifecycle status of the transfer.
       #
       # @see Increase::Models::FednowTransfer#status
@@ -558,9 +669,6 @@ module Increase
         # The transfer has been canceled.
         CANCELED = :canceled
 
-        # The transfer has been rejected by Increase.
-        REVIEWING_REJECTED = :reviewing_rejected
-
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION = :requires_attention
 
@@ -575,6 +683,9 @@ module Increase
 
         # The transfer was rejected by the network or the recipient's bank.
         REJECTED = :rejected
+
+        # The transfer was returned by the recipient's bank.
+        RETURNED = :returned
 
         # @!method self.values
         #   @return [Array<Symbol>]

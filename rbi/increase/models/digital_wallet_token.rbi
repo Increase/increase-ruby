@@ -12,6 +12,10 @@ module Increase
       sig { returns(String) }
       attr_accessor :id
 
+      # The identifier for the Account this Digital Wallet Token belongs to.
+      sig { returns(String) }
+      attr_accessor :account_id
+
       # The identifier for the Card this Digital Wallet Token belongs to.
       sig { returns(String) }
       attr_accessor :card_id
@@ -94,6 +98,7 @@ module Increase
       sig do
         params(
           id: String,
+          account_id: String,
           card_id: String,
           cardholder: Increase::DigitalWalletToken::Cardholder::OrHash,
           created_at: Time,
@@ -113,6 +118,8 @@ module Increase
       def self.new(
         # The Digital Wallet Token identifier.
         id:,
+        # The identifier for the Account this Digital Wallet Token belongs to.
+        account_id:,
         # The identifier for the Card this Digital Wallet Token belongs to.
         card_id:,
         # The cardholder information given when the Digital Wallet Token was created.
@@ -143,6 +150,7 @@ module Increase
         override.returns(
           {
             id: String,
+            account_id: String,
             card_id: String,
             cardholder: Increase::DigitalWalletToken::Cardholder,
             created_at: Time,

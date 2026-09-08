@@ -21,7 +21,7 @@ module Increase
         lockbox_address_id:,
         # The description you choose for the Lockbox Recipient.
         description: nil,
-        # The name of the Lockbox Recipient
+        # The name of the Lockbox Recipient.
         recipient_name: nil,
         request_options: {}
       )

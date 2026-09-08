@@ -73,7 +73,7 @@ module Increase
       end
       attr_writer :deposit_return
 
-      # After the check is parsed, it is submitted to the Check21 network for
+      # After the check is parsed, it is submitted to the Check 21 network for
       # processing. This will contain details of the submission.
       sig { returns(T.nilable(Increase::CheckDeposit::DepositSubmission)) }
       attr_reader :deposit_submission
@@ -191,7 +191,7 @@ module Increase
         # If your deposit is returned, this will contain details as to why it was
         # returned.
         deposit_return:,
-        # After the check is parsed, it is submitted to the Check21 network for
+        # After the check is parsed, it is submitted to the Check 21 network for
         # processing. This will contain details of the submission.
         deposit_submission:,
         # The description of the Check Deposit, for display purposes only.
@@ -1058,22 +1058,22 @@ module Increase
           end
 
         # The ID for the File containing the check back image that was submitted to the
-        # Check21 network.
+        # Check 21 network.
         sig { returns(String) }
         attr_accessor :back_file_id
 
         # The ID for the File containing the check front image that was submitted to the
-        # Check21 network.
+        # Check 21 network.
         sig { returns(String) }
         attr_accessor :front_file_id
 
-        # When the check deposit was submitted to the Check21 network for processing.
+        # When the check deposit was submitted to the Check 21 network for processing.
         # During business days, this happens within a few hours of the check being
         # accepted by Increase.
         sig { returns(Time) }
         attr_accessor :submitted_at
 
-        # After the check is parsed, it is submitted to the Check21 network for
+        # After the check is parsed, it is submitted to the Check 21 network for
         # processing. This will contain details of the submission.
         sig do
           params(
@@ -1084,12 +1084,12 @@ module Increase
         end
         def self.new(
           # The ID for the File containing the check back image that was submitted to the
-          # Check21 network.
+          # Check 21 network.
           back_file_id:,
           # The ID for the File containing the check front image that was submitted to the
-          # Check21 network.
+          # Check 21 network.
           front_file_id:,
-          # When the check deposit was submitted to the Check21 network for processing.
+          # When the check deposit was submitted to the Check 21 network for processing.
           # During business days, this happens within a few hours of the check being
           # accepted by Increase.
           submitted_at:

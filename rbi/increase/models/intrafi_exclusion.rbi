@@ -25,7 +25,7 @@ module Increase
       sig { returns(String) }
       attr_accessor :entity_id
 
-      # When this was exclusion was confirmed by IntraFi.
+      # When this exclusion was confirmed by IntraFi.
       sig { returns(T.nilable(Time)) }
       attr_accessor :excluded_at
 
@@ -44,7 +44,7 @@ module Increase
       sig { returns(Increase::IntrafiExclusion::Status::TaggedSymbol) }
       attr_accessor :status
 
-      # When this was exclusion was submitted to IntraFi by Increase.
+      # When this exclusion was submitted to IntraFi by Increase.
       sig { returns(T.nilable(Time)) }
       attr_accessor :submitted_at
 
@@ -81,7 +81,7 @@ module Increase
         created_at:,
         # The entity for which this institution is excluded.
         entity_id:,
-        # When this was exclusion was confirmed by IntraFi.
+        # When this exclusion was confirmed by IntraFi.
         excluded_at:,
         # The Federal Deposit Insurance Corporation's certificate number for the
         # institution.
@@ -92,7 +92,7 @@ module Increase
         idempotency_key:,
         # The status of the exclusion request.
         status:,
-        # When this was exclusion was submitted to IntraFi by Increase.
+        # When this exclusion was submitted to IntraFi by Increase.
         submitted_at:,
         # A constant representing the object's type. For this resource it will always be
         # `intrafi_exclusion`.

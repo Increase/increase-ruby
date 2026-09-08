@@ -117,7 +117,7 @@ module Increase
       required :originator_company_name, String
 
       # @!attribute originator_routing_number
-      #   The American Banking Association (ABA) routing number of the bank originating
+      #   The American Bankers' Association (ABA) routing number of the bank originating
       #   the transfer.
       #
       #   @return [String]
@@ -229,7 +229,7 @@ module Increase
       #   @param originator_company_name [String] The name of the company that initiated the transfer.
       #
       #   @param originator_routing_number [String]
-      #     The American Banking Association (ABA) routing number of the bank originating
+      #     The American Bankers' Association (ABA) routing number of the bank originating
       #     the transfer.
       #
       #   @param receiver_id_number [String, nil] The id of the receiver of the transfer.

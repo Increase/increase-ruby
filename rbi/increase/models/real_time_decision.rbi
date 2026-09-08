@@ -1700,9 +1700,9 @@ module Increase
         sig { returns(String) }
         attr_accessor :account_id
 
-        # Additional amounts associated with the card authorization, such as ATM
-        # surcharges fees. These are usually a subset of the `amount` field and are used
-        # to provide more detailed information about the transaction.
+        # Additional amounts associated with the card authorization, such as ATM surcharge
+        # fees. These are usually a subset of the `amount` field and are used to provide
+        # more detailed information about the transaction.
         sig do
           returns(
             Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts
@@ -2018,9 +2018,9 @@ module Increase
         def self.new(
           # The identifier of the Account the authorization will debit.
           account_id:,
-          # Additional amounts associated with the card authorization, such as ATM
-          # surcharges fees. These are usually a subset of the `amount` field and are used
-          # to provide more detailed information about the transaction.
+          # Additional amounts associated with the card authorization, such as ATM surcharge
+          # fees. These are usually a subset of the `amount` field and are used to provide
+          # more detailed information about the transaction.
           additional_amounts:,
           # Present if and only if `decision` is `approve`. Contains information related to
           # the approval of the authorization.
@@ -2375,9 +2375,9 @@ module Increase
           end
           attr_writer :vision
 
-          # Additional amounts associated with the card authorization, such as ATM
-          # surcharges fees. These are usually a subset of the `amount` field and are used
-          # to provide more detailed information about the transaction.
+          # Additional amounts associated with the card authorization, such as ATM surcharge
+          # fees. These are usually a subset of the `amount` field and are used to provide
+          # more detailed information about the transaction.
           sig do
             params(
               clinic:
@@ -4669,9 +4669,9 @@ module Increase
         sig { returns(String) }
         attr_accessor :account_id
 
-        # Additional amounts associated with the card authorization, such as ATM
-        # surcharges fees. These are usually a subset of the `amount` field and are used
-        # to provide more detailed information about the transaction.
+        # Additional amounts associated with the card authorization, such as ATM surcharge
+        # fees. These are usually a subset of the `amount` field and are used to provide
+        # more detailed information about the transaction.
         sig do
           returns(
             Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts
@@ -4861,9 +4861,9 @@ module Increase
         def self.new(
           # The identifier of the Account the authorization will debit.
           account_id:,
-          # Additional amounts associated with the card authorization, such as ATM
-          # surcharges fees. These are usually a subset of the `amount` field and are used
-          # to provide more detailed information about the transaction.
+          # Additional amounts associated with the card authorization, such as ATM surcharge
+          # fees. These are usually a subset of the `amount` field and are used to provide
+          # more detailed information about the transaction.
           additional_amounts:,
           # Present if and only if `decision` is `approve`. Contains information related to
           # the approval of the balance inquiry.
@@ -5162,9 +5162,9 @@ module Increase
           end
           attr_writer :vision
 
-          # Additional amounts associated with the card authorization, such as ATM
-          # surcharges fees. These are usually a subset of the `amount` field and are used
-          # to provide more detailed information about the transaction.
+          # Additional amounts associated with the card authorization, such as ATM surcharge
+          # fees. These are usually a subset of the `amount` field and are used to provide
+          # more detailed information about the transaction.
           sig do
             params(
               clinic:

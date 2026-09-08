@@ -880,9 +880,9 @@ module Increase
           end
           attr_accessor :actioner
 
-          # Additional amounts associated with the card authorization, such as ATM
-          # surcharges fees. These are usually a subset of the `amount` field and are used
-          # to provide more detailed information about the transaction.
+          # Additional amounts associated with the card authorization, such as ATM surcharge
+          # fees. These are usually a subset of the `amount` field and are used to provide
+          # more detailed information about the transaction.
           sig do
             returns(
               Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts
@@ -1143,9 +1143,9 @@ module Increase
             # Whether this authorization was approved by Increase, the card network through
             # stand-in processing, or the user through a real-time decision.
             actioner:,
-            # Additional amounts associated with the card authorization, such as ATM
-            # surcharges fees. These are usually a subset of the `amount` field and are used
-            # to provide more detailed information about the transaction.
+            # Additional amounts associated with the card authorization, such as ATM surcharge
+            # fees. These are usually a subset of the `amount` field and are used to provide
+            # more detailed information about the transaction.
             additional_amounts:,
             # The declined amount in the minor unit of the destination account currency. For
             # dollars, for example, this is cents.
@@ -1529,9 +1529,9 @@ module Increase
             end
             attr_writer :vision
 
-            # Additional amounts associated with the card authorization, such as ATM
-            # surcharges fees. These are usually a subset of the `amount` field and are used
-            # to provide more detailed information about the transaction.
+            # Additional amounts associated with the card authorization, such as ATM surcharge
+            # fees. These are usually a subset of the `amount` field and are used to provide
+            # more detailed information about the transaction.
             sig do
               params(
                 clinic:
@@ -4507,6 +4507,13 @@ module Increase
             FEDNOW_NOT_ENABLED =
               T.let(
                 :fednow_not_enabled,
+                Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
+              )
+
+            # The transaction is not allowed per Increase's terms.
+            TRANSACTION_NOT_ALLOWED =
+              T.let(
+                :transaction_not_allowed,
                 Increase::DeclinedTransaction::Source::InboundFednowTransferDecline::Reason::TaggedSymbol
               )
 

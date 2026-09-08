@@ -3573,6 +3573,7 @@ module Increase
           # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::UserPrearbitration#category_change
           class CategoryChange < Increase::Internal::Type::BaseModel
             # @!attribute category
+            #   The category the dispute is being changed to.
             #
             #   @return [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::UserPrearbitration::CategoryChange::Category]
             required :category,
@@ -3590,9 +3591,12 @@ module Increase
             #   pre-arbitration request.
             #
             #   @param category [Symbol, Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::UserPrearbitration::CategoryChange::Category]
+            #     The category the dispute is being changed to.
             #
             #   @param reason [String] The reason for the category change.
 
+            # The category the dispute is being changed to.
+            #
             # @see Increase::Models::CardDisputeSubmitUserSubmissionParams::Visa::UserPrearbitration::CategoryChange#category
             module Category
               extend Increase::Internal::Type::Enum

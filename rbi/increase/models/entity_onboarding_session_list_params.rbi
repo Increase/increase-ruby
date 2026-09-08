@@ -103,7 +103,7 @@ module Increase
             )
           end
 
-        # Filter Entity Onboarding Session for those with the specified status or
+        # Filter Entity Onboarding Sessions for those with the specified status or
         # statuses. For GET requests, this should be encoded as a comma-delimited string,
         # such as `?in=one,two,three`.
         sig do
@@ -136,7 +136,7 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # Filter Entity Onboarding Session for those with the specified status or
+          # Filter Entity Onboarding Sessions for those with the specified status or
           # statuses. For GET requests, this should be encoded as a comma-delimited string,
           # such as `?in=one,two,three`.
           in_: nil

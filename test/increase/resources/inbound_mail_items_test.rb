@@ -13,6 +13,7 @@ class Increase::Test::Resources::InboundMailItemsTest < Increase::Test::Resource
     assert_pattern do
       response => {
         id: String,
+        account_id: String | nil,
         checks: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check]),
         created_at: Time,
         file_id: String,
@@ -43,6 +44,7 @@ class Increase::Test::Resources::InboundMailItemsTest < Increase::Test::Resource
     assert_pattern do
       row => {
         id: String,
+        account_id: String | nil,
         checks: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check]),
         created_at: Time,
         file_id: String,
@@ -70,6 +72,7 @@ class Increase::Test::Resources::InboundMailItemsTest < Increase::Test::Resource
     assert_pattern do
       response => {
         id: String,
+        account_id: String | nil,
         checks: ^(Increase::Internal::Type::ArrayOf[Increase::InboundMailItem::Check]),
         created_at: Time,
         file_id: String,

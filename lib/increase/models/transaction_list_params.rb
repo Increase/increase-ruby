@@ -131,6 +131,9 @@ module Increase
           # FedNow Transfer Acknowledgement: details will be under the `fednow_transfer_acknowledgement` object.
           FEDNOW_TRANSFER_ACKNOWLEDGEMENT = :fednow_transfer_acknowledgement
 
+          # FedNow Transfer Return: details will be under the `fednow_transfer_return` object.
+          FEDNOW_TRANSFER_RETURN = :fednow_transfer_return
+
           # Check Transfer Deposit: details will be under the `check_transfer_deposit` object.
           CHECK_TRANSFER_DEPOSIT = :check_transfer_deposit
 

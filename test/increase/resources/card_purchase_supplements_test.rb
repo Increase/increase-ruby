@@ -13,6 +13,7 @@ class Increase::Test::Resources::CardPurchaseSupplementsTest < Increase::Test::R
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         card_payment_id: String | nil,
         invoice: Increase::CardPurchaseSupplement::Invoice | nil,
         line_items: ^(Increase::Internal::Type::ArrayOf[Increase::CardPurchaseSupplement::LineItem]) | nil,
@@ -40,6 +41,7 @@ class Increase::Test::Resources::CardPurchaseSupplementsTest < Increase::Test::R
     assert_pattern do
       row => {
         id: String,
+        account_id: String,
         card_payment_id: String | nil,
         invoice: Increase::CardPurchaseSupplement::Invoice | nil,
         line_items: ^(Increase::Internal::Type::ArrayOf[Increase::CardPurchaseSupplement::LineItem]) | nil,

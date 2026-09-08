@@ -13,6 +13,7 @@ module Increase
             name: String,
             bank: Increase::Simulations::ProgramCreateParams::Bank::OrSymbol,
             lending_maximum_extendable_credit: Integer,
+            loan_accounts_require_loan_offers: T::Boolean,
             reserve_account_id: String,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::Program)
@@ -24,7 +25,10 @@ module Increase
           bank: nil,
           # The maximum extendable credit of the program being added.
           lending_maximum_extendable_credit: nil,
-          # The identifier of the Account the Program should be added to is for.
+          # Whether opening a loan Account under this Program requires an accepted Loan
+          # Offer. Requires `lending_maximum_extendable_credit`. Defaults to `false`.
+          loan_accounts_require_loan_offers: nil,
+          # The identifier of the Account the Program should be added to.
           reserve_account_id: nil,
           request_options: {}
         )

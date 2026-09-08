@@ -57,7 +57,7 @@ module Increase
 
       class Status < Increase::Internal::Type::BaseModel
         # @!attribute in_
-        #   Filter Entity Onboarding Session for those with the specified status or
+        #   Filter Entity Onboarding Sessions for those with the specified status or
         #   statuses. For GET requests, this should be encoded as a comma-delimited string,
         #   such as `?in=one,two,three`.
         #
@@ -70,7 +70,7 @@ module Increase
 
         # @!method initialize(in_: nil)
         #   @param in_ [Array<Symbol, Increase::Models::EntityOnboardingSessionListParams::Status::In>]
-        #     Filter Entity Onboarding Session for those with the specified status or
+        #     Filter Entity Onboarding Sessions for those with the specified status or
         #     statuses. For GET requests, this should be encoded as a comma-delimited string,
         #     such as `?in=one,two,three`.
 

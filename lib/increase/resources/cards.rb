@@ -172,8 +172,8 @@ module Increase
         )
       end
 
-      # Sensitive details for a Card include the primary account number, expiry, card
-      # verification code, and PIN.
+      # Sensitive details for a Card include the primary account number, expiration,
+      # card verification code, and PIN.
       #
       # @overload details(card_id, request_options: {})
       #

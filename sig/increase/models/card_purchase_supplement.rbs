@@ -3,6 +3,7 @@ module Increase
     type card_purchase_supplement =
       {
         id: String,
+        account_id: String,
         card_payment_id: String?,
         invoice: Increase::CardPurchaseSupplement::Invoice?,
         line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,
@@ -13,6 +14,8 @@ module Increase
 
     class CardPurchaseSupplement < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_id: String
 
       attr_accessor card_payment_id: String?
 
@@ -28,6 +31,7 @@ module Increase
 
       def initialize: (
         id: String,
+        account_id: String,
         card_payment_id: String?,
         invoice: Increase::CardPurchaseSupplement::Invoice?,
         line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,
@@ -38,6 +42,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        account_id: String,
         card_payment_id: String?,
         invoice: Increase::CardPurchaseSupplement::Invoice?,
         line_items: ::Array[Increase::CardPurchaseSupplement::LineItem]?,

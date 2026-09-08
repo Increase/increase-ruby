@@ -129,12 +129,12 @@ module Increase
           :pending_submitting
           | :pending_reviewing
           | :canceled
-          | :reviewing_rejected
           | :requires_attention
           | :pending_approval
           | :pending_response
           | :complete
           | :rejected
+          | :returned
 
         module In
           extend Increase::Internal::Type::Enum
@@ -147,9 +147,6 @@ module Increase
 
           # The transfer has been canceled.
           CANCELED: :canceled
-
-          # The transfer has been rejected by Increase.
-          REVIEWING_REJECTED: :reviewing_rejected
 
           # The transfer requires attention from an Increase operator.
           REQUIRES_ATTENTION: :requires_attention
@@ -165,6 +162,9 @@ module Increase
 
           # The transfer was rejected by the network or the recipient's bank.
           REJECTED: :rejected
+
+          # The transfer was returned by the recipient's bank.
+          RETURNED: :returned
 
           def self?.values: -> ::Array[Increase::Models::FednowTransferListParams::Status::in_]
         end

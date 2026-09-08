@@ -594,6 +594,27 @@ module Increase
         end
         attr_writer :fednow_transfer_acknowledgement
 
+        # A FedNow Transfer Return object. This field will be present in the JSON response
+        # if and only if `category` is equal to `fednow_transfer_return`. A FedNow
+        # Transfer Return is created when a FedNow Transfer sent from Increase is returned
+        # by the recipient's bank.
+        sig do
+          returns(
+            T.nilable(Increase::Transaction::Source::FednowTransferReturn)
+          )
+        end
+        attr_reader :fednow_transfer_return
+
+        sig do
+          params(
+            fednow_transfer_return:
+              T.nilable(
+                Increase::Transaction::Source::FednowTransferReturn::OrHash
+              )
+          ).void
+        end
+        attr_writer :fednow_transfer_return
+
         # A Fee Payment object. This field will be present in the JSON response if and
         # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
         # made to Increase.
@@ -654,7 +675,7 @@ module Increase
         # An Inbound Check Adjustment object. This field will be present in the JSON
         # response if and only if `category` is equal to `inbound_check_adjustment`. An
         # Inbound Check Adjustment is created when Increase receives an adjustment for a
-        # check or return deposited through Check21.
+        # check or return deposited through Check 21.
         sig do
           returns(
             T.nilable(Increase::Transaction::Source::InboundCheckAdjustment)
@@ -1025,6 +1046,10 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::FednowTransferAcknowledgement::OrHash
               ),
+            fednow_transfer_return:
+              T.nilable(
+                Increase::Transaction::Source::FednowTransferReturn::OrHash
+              ),
             fee_payment:
               T.nilable(Increase::Transaction::Source::FeePayment::OrHash),
             inbound_ach_transfer:
@@ -1195,6 +1220,11 @@ module Increase
           # `fednow_transfer_acknowledgement`. A FedNow Transfer Acknowledgement is created
           # when a FedNow Transfer sent from Increase is acknowledged by the receiving bank.
           fednow_transfer_acknowledgement: nil,
+          # A FedNow Transfer Return object. This field will be present in the JSON response
+          # if and only if `category` is equal to `fednow_transfer_return`. A FedNow
+          # Transfer Return is created when a FedNow Transfer sent from Increase is returned
+          # by the recipient's bank.
+          fednow_transfer_return: nil,
           # A Fee Payment object. This field will be present in the JSON response if and
           # only if `category` is equal to `fee_payment`. A Fee Payment represents a payment
           # made to Increase.
@@ -1213,7 +1243,7 @@ module Increase
           # An Inbound Check Adjustment object. This field will be present in the JSON
           # response if and only if `category` is equal to `inbound_check_adjustment`. An
           # Inbound Check Adjustment is created when Increase receives an adjustment for a
-          # check or return deposited through Check21.
+          # check or return deposited through Check 21.
           inbound_check_adjustment: nil,
           # An Inbound Check Deposit Return Intention object. This field will be present in
           # the JSON response if and only if `category` is equal to
@@ -1342,6 +1372,8 @@ module Increase
                 T.nilable(
                   Increase::Transaction::Source::FednowTransferAcknowledgement
                 ),
+              fednow_transfer_return:
+                T.nilable(Increase::Transaction::Source::FednowTransferReturn),
               fee_payment: T.nilable(Increase::Transaction::Source::FeePayment),
               inbound_ach_transfer:
                 T.nilable(Increase::Transaction::Source::InboundACHTransfer),
@@ -1511,6 +1543,13 @@ module Increase
           FEDNOW_TRANSFER_ACKNOWLEDGEMENT =
             T.let(
               :fednow_transfer_acknowledgement,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # FedNow Transfer Return: details will be under the `fednow_transfer_return` object.
+          FEDNOW_TRANSFER_RETURN =
+            T.let(
+              :fednow_transfer_return,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
@@ -3051,9 +3090,9 @@ module Increase
           end
           attr_accessor :actioner
 
-          # Additional amounts associated with the card authorization, such as ATM
-          # surcharges fees. These are usually a subset of the `amount` field and are used
-          # to provide more detailed information about the transaction.
+          # Additional amounts associated with the card authorization, such as ATM surcharge
+          # fees. These are usually a subset of the `amount` field and are used to provide
+          # more detailed information about the transaction.
           sig do
             returns(
               Increase::Transaction::Source::CardFinancial::AdditionalAmounts
@@ -3293,9 +3332,9 @@ module Increase
             # Whether this financial was approved by Increase, the card network through
             # stand-in processing, or the user through a real-time decision.
             actioner:,
-            # Additional amounts associated with the card authorization, such as ATM
-            # surcharges fees. These are usually a subset of the `amount` field and are used
-            # to provide more detailed information about the transaction.
+            # Additional amounts associated with the card authorization, such as ATM surcharge
+            # fees. These are usually a subset of the `amount` field and are used to provide
+            # more detailed information about the transaction.
             additional_amounts:,
             # The pending amount in the minor unit of the transaction's currency. For dollars,
             # for example, this is cents.
@@ -3669,9 +3708,9 @@ module Increase
             end
             attr_writer :vision
 
-            # Additional amounts associated with the card authorization, such as ATM
-            # surcharges fees. These are usually a subset of the `amount` field and are used
-            # to provide more detailed information about the transaction.
+            # Additional amounts associated with the card authorization, such as ATM surcharge
+            # fees. These are usually a subset of the `amount` field and are used to provide
+            # more detailed information about the transaction.
             sig do
               params(
                 clinic:
@@ -12167,7 +12206,7 @@ module Increase
 
           # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
           # bank depositing this check. In some rare cases, this is not transmitted via
-          # Check21 and the value will be null.
+          # Check 21 and the value will be null.
           sig { returns(T.nilable(String)) }
           attr_accessor :bank_of_first_deposit_routing_number
 
@@ -12225,7 +12264,7 @@ module Increase
             back_image_file_id:,
             # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
             # bank depositing this check. In some rare cases, this is not transmitted via
-            # Check21 and the value will be null.
+            # Check 21 and the value will be null.
             bank_of_first_deposit_routing_number:,
             # When the check was deposited.
             deposited_at:,
@@ -12321,6 +12360,211 @@ module Increase
 
           sig { override.returns({ transfer_id: String }) }
           def to_hash
+          end
+        end
+
+        class FednowTransferReturn < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::FednowTransferReturn,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The returned amount in USD cents. This is always a positive number.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # Additional information about the return provided by the recipient's bank.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :return_reason_additional_information
+
+          # The reason the transfer was returned as provided by the recipient's bank.
+          sig do
+            returns(
+              Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+            )
+          end
+          attr_accessor :return_reason_code
+
+          # The identifier of the FedNow Transfer that led to this Transaction.
+          sig { returns(String) }
+          attr_accessor :transfer_id
+
+          # A FedNow Transfer Return object. This field will be present in the JSON response
+          # if and only if `category` is equal to `fednow_transfer_return`. A FedNow
+          # Transfer Return is created when a FedNow Transfer sent from Increase is returned
+          # by the recipient's bank.
+          sig do
+            params(
+              amount: Integer,
+              return_reason_additional_information: T.nilable(String),
+              return_reason_code:
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::OrSymbol,
+              transfer_id: String
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The returned amount in USD cents. This is always a positive number.
+            amount:,
+            # Additional information about the return provided by the recipient's bank.
+            return_reason_additional_information:,
+            # The reason the transfer was returned as provided by the recipient's bank.
+            return_reason_code:,
+            # The identifier of the FedNow Transfer that led to this Transaction.
+            transfer_id:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: Integer,
+                return_reason_additional_information: T.nilable(String),
+                return_reason_code:
+                  Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol,
+                transfer_id: String
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The reason the transfer was returned as provided by the recipient's bank.
+          module ReturnReasonCode
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The destination account is closed. Corresponds to the FedNow reason codes `AC04` and `AC07`.
+            ACCOUNT_CLOSED =
+              T.let(
+                :account_closed,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The destination account is currently blocked from receiving transactions. Corresponds to the FedNow reason code `AC06`.
+            ACCOUNT_BLOCKED =
+              T.let(
+                :account_blocked,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The recipient's bank was not a valid agent for this transfer. Corresponds to the FedNow reason codes `AC14` and `AGNT`.
+            INVALID_AGENT =
+              T.let(
+                :invalid_agent,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The destination account does not exist. Corresponds to the FedNow reason code `AC03`.
+            INVALID_CREDITOR_ACCOUNT_NUMBER =
+              T.let(
+                :invalid_creditor_account_number,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The destination account number was incorrect. Corresponds to the FedNow reason code `AC01`.
+            INCORRECT_ACCOUNT_NUMBER =
+              T.let(
+                :incorrect_account_number,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The destination account holder is deceased. Corresponds to the FedNow reason code `MD07`.
+            END_CUSTOMER_DECEASED =
+              T.let(
+                :end_customer_deceased,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The transfer was not permitted by the recipient's bank. Corresponds to the FedNow reason code `AG01`.
+            TRANSACTION_FORBIDDEN =
+              T.let(
+                :transaction_forbidden,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The transfer was returned for a regulatory reason at the recipient's bank. Corresponds to the FedNow reason code `RR04`.
+            REGULATORY_REASON =
+              T.let(
+                :regulatory_reason,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The transfer was reported as fraudulent. Corresponds to the FedNow reason code `FR01`.
+            FRAUD =
+              T.let(
+                :fraud,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The transfer duplicated another transfer. Corresponds to the FedNow reason codes `AM05` and `DUPL`.
+            DUPLICATION =
+              T.let(
+                :duplication,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The transfer amount was incorrect. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT =
+              T.let(
+                :wrong_amount,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The transfer was returned at the request of the recipient's customer. Corresponds to the FedNow reason code `CUST`.
+            REQUESTED_BY_CUSTOMER =
+              T.let(
+                :requested_by_customer,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The recipient's bank could not apply the funds. Corresponds to the FedNow reason code `RUTA`.
+            UNABLE_TO_APPLY =
+              T.let(
+                :unable_to_apply,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The recipient's bank did not specify a reason. Corresponds to the FedNow reason codes `MS02` and `MS03`.
+            NOT_SPECIFIED =
+              T.let(
+                :not_specified,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The reason is provided as narrative information in the additional information field. Corresponds to the FedNow reason code `NARR`.
+            NARRATIVE =
+              T.let(
+                :narrative,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            # The transfer was returned for some other reason.
+            OTHER =
+              T.let(
+                :other,
+                Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::Transaction::Source::FednowTransferReturn::ReturnReasonCode::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
@@ -12824,7 +13068,7 @@ module Increase
           # An Inbound Check Adjustment object. This field will be present in the JSON
           # response if and only if `category` is equal to `inbound_check_adjustment`. An
           # Inbound Check Adjustment is created when Increase receives an adjustment for a
-          # check or return deposited through Check21.
+          # check or return deposited through Check 21.
           sig do
             params(
               adjusted_transaction_id: String,
@@ -13352,7 +13596,7 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :input_message_accountability_data
 
-          # The American Banking Association (ABA) routing number of the bank that sent the
+          # The American Bankers' Association (ABA) routing number of the bank that sent the
           # wire.
           sig { returns(T.nilable(String)) }
           attr_accessor :instructing_agent_routing_number
@@ -13432,7 +13676,7 @@ module Increase
             # abbreviated as IMAD. It is created when the wire is submitted to the Fedwire
             # service and is helpful when debugging wires with the originating bank.
             input_message_accountability_data:,
-            # The American Banking Association (ABA) routing number of the bank that sent the
+            # The American Bankers' Association (ABA) routing number of the bank that sent the
             # wire.
             instructing_agent_routing_number:,
             # The sending bank's identifier for the wire transfer.

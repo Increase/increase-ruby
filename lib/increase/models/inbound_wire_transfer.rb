@@ -96,7 +96,7 @@ module Increase
       required :debtor_name, String, nil?: true
 
       # @!attribute debtor_routing_number
-      #   The American Banking Association (ABA) routing number of the sender.
+      #   The American Bankers' Association (ABA) routing number of the sender.
       #
       #   @return [String, nil]
       required :debtor_routing_number, String, nil?: true
@@ -122,7 +122,7 @@ module Increase
       required :input_message_accountability_data, String, nil?: true
 
       # @!attribute instructing_agent_routing_number
-      #   The American Banking Association (ABA) routing number of the bank that sent the
+      #   The American Bankers' Association (ABA) routing number of the bank that sent the
       #   wire.
       #
       #   @return [String, nil]
@@ -217,7 +217,7 @@ module Increase
       #   @param debtor_name [String, nil] A name set by the sender.
       #
       #   @param debtor_routing_number [String, nil]
-      #     The American Banking Association (ABA) routing number of the sender.
+      #     The American Bankers' Association (ABA) routing number of the sender.
       #
       #   @param description [String] An Increase-constructed description of the transfer.
       #
@@ -230,7 +230,7 @@ module Increase
       #     service and is helpful when debugging wires with the originating bank.
       #
       #   @param instructing_agent_routing_number [String, nil]
-      #     The American Banking Association (ABA) routing number of the bank that sent the
+      #     The American Bankers' Association (ABA) routing number of the bank that sent the
       #     wire.
       #
       #   @param instruction_identification [String, nil] The sending bank's identifier for the wire transfer.

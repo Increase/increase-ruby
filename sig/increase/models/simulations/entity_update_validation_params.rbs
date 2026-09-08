@@ -54,13 +54,13 @@ module Increase
           module Category
             extend Increase::Internal::Type::Enum
 
-            # The entity's tax identifier could not be verified. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.legal_identifier).
+            # The entity's tax identifier could not be verified. Update the tax ID with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_TAX_IDENTIFIER: :entity_tax_identifier
 
-            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity.corporation.address).
+            # The entity's address could not be validated. Update the address with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_ADDRESS: :entity_address
 
-            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity.natural_person.identification).
+            # The entity's identity could not be verified. Update the identification with the [update an entity API](/documentation/api/entities#update-an-entity).
             ENTITY_IDENTITY: :entity_identity
 
             # A beneficial owner's identity could not be verified. Update the identification with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).

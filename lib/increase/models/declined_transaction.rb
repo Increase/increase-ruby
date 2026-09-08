@@ -504,9 +504,9 @@ module Increase
           required :actioner, enum: -> { Increase::DeclinedTransaction::Source::CardDecline::Actioner }
 
           # @!attribute additional_amounts
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @return [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts]
           required :additional_amounts, -> { Increase::DeclinedTransaction::Source::CardDecline::AdditionalAmounts }
@@ -705,9 +705,9 @@ module Increase
           #     stand-in processing, or the user through a real-time decision.
           #
           #   @param additional_amounts [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts]
-          #     Additional amounts associated with the card authorization, such as ATM
-          #     surcharges fees. These are usually a subset of the `amount` field and are used
-          #     to provide more detailed information about the transaction.
+          #     Additional amounts associated with the card authorization, such as ATM surcharge
+          #     fees. These are usually a subset of the `amount` field and are used to provide
+          #     more detailed information about the transaction.
           #
           #   @param amount [Integer]
           #     The declined amount in the minor unit of the destination account currency. For
@@ -910,9 +910,9 @@ module Increase
                      nil?: true
 
             # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-            #   Additional amounts associated with the card authorization, such as ATM
-            #   surcharges fees. These are usually a subset of the `amount` field and are used
-            #   to provide more detailed information about the transaction.
+            #   Additional amounts associated with the card authorization, such as ATM surcharge
+            #   fees. These are usually a subset of the `amount` field and are used to provide
+            #   more detailed information about the transaction.
             #
             #   @param clinic [Increase::Models::DeclinedTransaction::Source::CardDecline::AdditionalAmounts::Clinic, nil]
             #     The part of this transaction amount that was for clinic-related services.
@@ -2444,6 +2444,9 @@ module Increase
 
             # Your account is not enabled to receive FedNow transfers.
             FEDNOW_NOT_ENABLED = :fednow_not_enabled
+
+            # The transaction is not allowed per Increase's terms.
+            TRANSACTION_NOT_ALLOWED = :transaction_not_allowed
 
             # @!method self.values
             #   @return [Array<Symbol>]

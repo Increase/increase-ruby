@@ -7403,6 +7403,7 @@ module Increase
                 )
               end
 
+            # The category the dispute is being changed to.
             sig do
               returns(
                 Increase::CardDisputeSubmitUserSubmissionParams::Visa::UserPrearbitration::CategoryChange::Category::OrSymbol
@@ -7425,6 +7426,7 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
+              # The category the dispute is being changed to.
               category:,
               # The reason for the category change.
               reason:
@@ -7443,6 +7445,7 @@ module Increase
             def to_hash
             end
 
+            # The category the dispute is being changed to.
             module Category
               extend Increase::Internal::Type::Enum
 

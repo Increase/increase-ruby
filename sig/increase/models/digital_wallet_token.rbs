@@ -3,6 +3,7 @@ module Increase
     type digital_wallet_token =
       {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
@@ -17,6 +18,8 @@ module Increase
 
     class DigitalWalletToken < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_id: String
 
       attr_accessor card_id: String
 
@@ -40,6 +43,7 @@ module Increase
 
       def initialize: (
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,
@@ -54,6 +58,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        account_id: String,
         card_id: String,
         cardholder: Increase::DigitalWalletToken::Cardholder,
         created_at: Time,

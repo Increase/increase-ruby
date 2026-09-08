@@ -14,6 +14,7 @@ class Increase::Test::Resources::Simulations::CardDisputesTest < Increase::Test:
     assert_pattern do
       response => {
         id: String,
+        account_id: String,
         amount: Integer,
         card_id: String,
         created_at: Time,

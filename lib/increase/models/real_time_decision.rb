@@ -975,9 +975,9 @@ module Increase
         required :account_id, String
 
         # @!attribute additional_amounts
-        #   Additional amounts associated with the card authorization, such as ATM
-        #   surcharges fees. These are usually a subset of the `amount` field and are used
-        #   to provide more detailed information about the transaction.
+        #   Additional amounts associated with the card authorization, such as ATM surcharge
+        #   fees. These are usually a subset of the `amount` field and are used to provide
+        #   more detailed information about the transaction.
         #
         #   @return [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts]
         required :additional_amounts, -> { Increase::RealTimeDecision::CardAuthorization::AdditionalAmounts }
@@ -1187,9 +1187,9 @@ module Increase
         #   @param account_id [String] The identifier of the Account the authorization will debit.
         #
         #   @param additional_amounts [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts]
-        #     Additional amounts associated with the card authorization, such as ATM
-        #     surcharges fees. These are usually a subset of the `amount` field and are used
-        #     to provide more detailed information about the transaction.
+        #     Additional amounts associated with the card authorization, such as ATM surcharge
+        #     fees. These are usually a subset of the `amount` field and are used to provide
+        #     more detailed information about the transaction.
         #
         #   @param approval [Increase::Models::RealTimeDecision::CardAuthorization::Approval, nil]
         #     Present if and only if `decision` is `approve`. Contains information related to
@@ -1379,9 +1379,9 @@ module Increase
                    nil?: true
 
           # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @param clinic [Increase::Models::RealTimeDecision::CardAuthorization::AdditionalAmounts::Clinic, nil]
           #     The part of this transaction amount that was for clinic-related services.
@@ -2543,9 +2543,9 @@ module Increase
         required :account_id, String
 
         # @!attribute additional_amounts
-        #   Additional amounts associated with the card authorization, such as ATM
-        #   surcharges fees. These are usually a subset of the `amount` field and are used
-        #   to provide more detailed information about the transaction.
+        #   Additional amounts associated with the card authorization, such as ATM surcharge
+        #   fees. These are usually a subset of the `amount` field and are used to provide
+        #   more detailed information about the transaction.
         #
         #   @return [Increase::Models::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts]
         required :additional_amounts, -> { Increase::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts }
@@ -2674,9 +2674,9 @@ module Increase
         #   @param account_id [String] The identifier of the Account the authorization will debit.
         #
         #   @param additional_amounts [Increase::Models::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts]
-        #     Additional amounts associated with the card authorization, such as ATM
-        #     surcharges fees. These are usually a subset of the `amount` field and are used
-        #     to provide more detailed information about the transaction.
+        #     Additional amounts associated with the card authorization, such as ATM surcharge
+        #     fees. These are usually a subset of the `amount` field and are used to provide
+        #     more detailed information about the transaction.
         #
         #   @param approval [Increase::Models::RealTimeDecision::CardBalanceInquiry::Approval, nil]
         #     Present if and only if `decision` is `approve`. Contains information related to
@@ -2820,9 +2820,9 @@ module Increase
                    nil?: true
 
           # @!method initialize(clinic:, dental:, original:, prescription:, surcharge:, total_cumulative:, total_healthcare:, transit:, unknown:, vision:)
-          #   Additional amounts associated with the card authorization, such as ATM
-          #   surcharges fees. These are usually a subset of the `amount` field and are used
-          #   to provide more detailed information about the transaction.
+          #   Additional amounts associated with the card authorization, such as ATM surcharge
+          #   fees. These are usually a subset of the `amount` field and are used to provide
+          #   more detailed information about the transaction.
           #
           #   @param clinic [Increase::Models::RealTimeDecision::CardBalanceInquiry::AdditionalAmounts::Clinic, nil]
           #     The part of this transaction amount that was for clinic-related services.

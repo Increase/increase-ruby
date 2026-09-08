@@ -3,6 +3,7 @@ module Increase
     type wire_drawdown_request =
       {
         id: String,
+        account_id: String,
         account_number_id: String,
         amount: Integer,
         created_at: Time,
@@ -26,6 +27,8 @@ module Increase
 
     class WireDrawdownRequest < Increase::Internal::Type::BaseModel
       attr_accessor id: String
+
+      attr_accessor account_id: String
 
       attr_accessor account_number_id: String
 
@@ -67,6 +70,7 @@ module Increase
 
       def initialize: (
         id: String,
+        account_id: String,
         account_number_id: String,
         amount: Integer,
         created_at: Time,
@@ -90,6 +94,7 @@ module Increase
 
       def to_hash: -> {
         id: String,
+        account_id: String,
         account_number_id: String,
         amount: Integer,
         created_at: Time,

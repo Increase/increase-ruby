@@ -10,6 +10,13 @@ module Increase
       #   @return [String]
       required :id, String
 
+      # @!attribute account_id
+      #   The Account from which the recipient of this request is being requested to send
+      #   funds.
+      #
+      #   @return [String]
+      required :account_id, String
+
       # @!attribute amount
       #   The amount being requested in cents.
       #
@@ -139,12 +146,16 @@ module Increase
       #   @return [String, nil]
       required :unstructured_remittance_information, String, nil?: true
 
-      # @!method initialize(id:, amount:, created_at:, creditor_account_number:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, creditor_routing_number:, currency:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, end_to_end_identification:, input_message_accountability_data:, instruction_identification:, recipient_account_number_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, amount:, created_at:, creditor_account_number:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, creditor_routing_number:, currency:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, end_to_end_identification:, input_message_accountability_data:, instruction_identification:, recipient_account_number_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   Inbound wire drawdown requests are requests from someone else to send them a
       #   wire. For more information, see our
       #   [Wire Drawdown Requests documentation](/documentation/wire-drawdown-requests).
       #
       #   @param id [String] The Wire drawdown request identifier.
+      #
+      #   @param account_id [String]
+      #     The Account from which the recipient of this request is being requested to send
+      #     funds.
       #
       #   @param amount [Integer] The amount being requested in cents.
       #
