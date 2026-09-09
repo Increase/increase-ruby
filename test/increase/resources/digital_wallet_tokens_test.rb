@@ -20,7 +20,9 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
         decline: Increase::DigitalWalletToken::Decline | nil,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber | nil,
+        primary_account_number_reference_identifier: String,
         status: Increase::DigitalWalletToken::Status,
+        token_reference_identifier: String,
         token_requestor: Increase::DigitalWalletToken::TokenRequestor,
         type: Increase::DigitalWalletToken::Type,
         updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update])
@@ -52,7 +54,9 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
         decline: Increase::DigitalWalletToken::Decline | nil,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber | nil,
+        primary_account_number_reference_identifier: String,
         status: Increase::DigitalWalletToken::Status,
+        token_reference_identifier: String,
         token_requestor: Increase::DigitalWalletToken::TokenRequestor,
         type: Increase::DigitalWalletToken::Type,
         updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update])

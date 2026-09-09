@@ -147,6 +147,7 @@ module Increase
           | :group_locked
           | :entity_not_active
           | :real_time_payments_not_enabled
+          | :transaction_not_allowed
 
         module Reason
           extend Increase::Internal::Type::Enum
@@ -168,6 +169,9 @@ module Increase
 
           # Your account is not enabled to receive Real-Time Payments transfers.
           REAL_TIME_PAYMENTS_NOT_ENABLED: :real_time_payments_not_enabled
+
+          # The transaction is not allowed per Increase's terms.
+          TRANSACTION_NOT_ALLOWED: :transaction_not_allowed
 
           def self?.values: -> ::Array[Increase::Models::InboundRealTimePaymentsTransfer::Decline::reason]
         end

@@ -10,7 +10,9 @@ module Increase
         decline: Increase::DigitalWalletToken::Decline?,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
+        primary_account_number_reference_identifier: String,
         status: Increase::Models::DigitalWalletToken::status,
+        token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
         updates: ::Array[Increase::DigitalWalletToken::Update]
@@ -33,7 +35,11 @@ module Increase
 
       attr_accessor dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?
 
+      attr_accessor primary_account_number_reference_identifier: String
+
       attr_accessor status: Increase::Models::DigitalWalletToken::status
+
+      attr_accessor token_reference_identifier: String
 
       attr_accessor token_requestor: Increase::Models::DigitalWalletToken::token_requestor
 
@@ -50,7 +56,9 @@ module Increase
         decline: Increase::DigitalWalletToken::Decline?,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
+        primary_account_number_reference_identifier: String,
         status: Increase::Models::DigitalWalletToken::status,
+        token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
         updates: ::Array[Increase::DigitalWalletToken::Update]
@@ -65,7 +73,9 @@ module Increase
         decline: Increase::DigitalWalletToken::Decline?,
         device: Increase::DigitalWalletToken::Device,
         dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber?,
+        primary_account_number_reference_identifier: String,
         status: Increase::Models::DigitalWalletToken::status,
+        token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
         type: Increase::Models::DigitalWalletToken::type_,
         updates: ::Array[Increase::DigitalWalletToken::Update]
