@@ -388,6 +388,13 @@ module Increase
               Increase::InboundRealTimePaymentsTransfer::Decline::Reason::TaggedSymbol
             )
 
+          # The transaction is not allowed per Increase's terms.
+          TRANSACTION_NOT_ALLOWED =
+            T.let(
+              :transaction_not_allowed,
+              Increase::InboundRealTimePaymentsTransfer::Decline::Reason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

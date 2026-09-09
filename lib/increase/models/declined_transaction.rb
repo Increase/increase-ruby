@@ -2594,6 +2594,9 @@ module Increase
             # Your account is not enabled to receive Real-Time Payments transfers.
             REAL_TIME_PAYMENTS_NOT_ENABLED = :real_time_payments_not_enabled
 
+            # The transaction is not allowed per Increase's terms.
+            TRANSACTION_NOT_ALLOWED = :transaction_not_allowed
+
             # @!method self.values
             #   @return [Array<Symbol>]
           end
