@@ -56,11 +56,23 @@ module Increase
                -> { Increase::DigitalWalletToken::DynamicPrimaryAccountNumber },
                nil?: true
 
+      # @!attribute primary_account_number_reference_identifier
+      #   The reference identifier assigned by the card network to the underlying Card.
+      #
+      #   @return [String]
+      required :primary_account_number_reference_identifier, String
+
       # @!attribute status
       #   This indicates if payments can be made with the Digital Wallet Token.
       #
       #   @return [Symbol, Increase::Models::DigitalWalletToken::Status]
       required :status, enum: -> { Increase::DigitalWalletToken::Status }
+
+      # @!attribute token_reference_identifier
+      #   The reference identifier assigned by the card network to the token.
+      #
+      #   @return [String]
+      required :token_reference_identifier, String
 
       # @!attribute token_requestor
       #   The digital wallet app being used.
@@ -81,7 +93,7 @@ module Increase
       #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
       required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update] }
 
-      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, decline:, device:, dynamic_primary_account_number:, status:, token_requestor:, type:, updates:)
+      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, decline:, device:, dynamic_primary_account_number:, primary_account_number_reference_identifier:, status:, token_reference_identifier:, token_requestor:, type:, updates:)
       #   A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
       #   Google Pay app. The Digital Wallet Token can be used for purchases just like a
       #   Card.
@@ -109,8 +121,14 @@ module Increase
       #   @param dynamic_primary_account_number [Increase::Models::DigitalWalletToken::DynamicPrimaryAccountNumber, nil]
       #     The redacted Dynamic Primary Account Number.
       #
+      #   @param primary_account_number_reference_identifier [String]
+      #     The reference identifier assigned by the card network to the underlying Card.
+      #
       #   @param status [Symbol, Increase::Models::DigitalWalletToken::Status]
       #     This indicates if payments can be made with the Digital Wallet Token.
+      #
+      #   @param token_reference_identifier [String]
+      #     The reference identifier assigned by the card network to the token.
       #
       #   @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
       #     The digital wallet app being used.

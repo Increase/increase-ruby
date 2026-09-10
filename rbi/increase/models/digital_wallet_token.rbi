@@ -73,9 +73,17 @@ module Increase
       end
       attr_writer :dynamic_primary_account_number
 
+      # The reference identifier assigned by the card network to the underlying Card.
+      sig { returns(String) }
+      attr_accessor :primary_account_number_reference_identifier
+
       # This indicates if payments can be made with the Digital Wallet Token.
       sig { returns(Increase::DigitalWalletToken::Status::TaggedSymbol) }
       attr_accessor :status
+
+      # The reference identifier assigned by the card network to the token.
+      sig { returns(String) }
+      attr_accessor :token_reference_identifier
 
       # The digital wallet app being used.
       sig do
@@ -108,7 +116,9 @@ module Increase
             T.nilable(
               Increase::DigitalWalletToken::DynamicPrimaryAccountNumber::OrHash
             ),
+          primary_account_number_reference_identifier: String,
           status: Increase::DigitalWalletToken::Status::OrSymbol,
+          token_reference_identifier: String,
           token_requestor:
             Increase::DigitalWalletToken::TokenRequestor::OrSymbol,
           type: Increase::DigitalWalletToken::Type::OrSymbol,
@@ -134,8 +144,12 @@ module Increase
         device:,
         # The redacted Dynamic Primary Account Number.
         dynamic_primary_account_number:,
+        # The reference identifier assigned by the card network to the underlying Card.
+        primary_account_number_reference_identifier:,
         # This indicates if payments can be made with the Digital Wallet Token.
         status:,
+        # The reference identifier assigned by the card network to the token.
+        token_reference_identifier:,
         # The digital wallet app being used.
         token_requestor:,
         # A constant representing the object's type. For this resource it will always be
@@ -160,7 +174,9 @@ module Increase
               T.nilable(
                 Increase::DigitalWalletToken::DynamicPrimaryAccountNumber
               ),
+            primary_account_number_reference_identifier: String,
             status: Increase::DigitalWalletToken::Status::TaggedSymbol,
+            token_reference_identifier: String,
             token_requestor:
               Increase::DigitalWalletToken::TokenRequestor::TaggedSymbol,
             type: Increase::DigitalWalletToken::Type::TaggedSymbol,
