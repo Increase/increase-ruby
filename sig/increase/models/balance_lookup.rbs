@@ -38,23 +38,15 @@ module Increase
 
       type loan =
         {
-          due_at: Time?,
-          due_balance: Integer,
           due_fees: Integer?,
           due_interest: Integer?,
           due_principal: Integer?,
           not_due_fees: Integer?,
           not_due_interest: Integer?,
-          not_due_principal: Integer?,
-          past_due_balance: Integer,
-          receivables: Increase::BalanceLookup::Loan::Receivables?
+          not_due_principal: Integer?
         }
 
       class Loan < Increase::Internal::Type::BaseModel
-        attr_accessor due_at: Time?
-
-        attr_accessor due_balance: Integer
-
         attr_accessor due_fees: Integer?
 
         attr_accessor due_interest: Integer?
@@ -67,54 +59,23 @@ module Increase
 
         attr_accessor not_due_principal: Integer?
 
-        attr_accessor past_due_balance: Integer
-
-        attr_accessor receivables: Increase::BalanceLookup::Loan::Receivables?
-
         def initialize: (
-          due_at: Time?,
-          due_balance: Integer,
           due_fees: Integer?,
           due_interest: Integer?,
           due_principal: Integer?,
           not_due_fees: Integer?,
           not_due_interest: Integer?,
-          not_due_principal: Integer?,
-          past_due_balance: Integer,
-          receivables: Increase::BalanceLookup::Loan::Receivables?
+          not_due_principal: Integer?
         ) -> void
 
         def to_hash: -> {
-          due_at: Time?,
-          due_balance: Integer,
           due_fees: Integer?,
           due_interest: Integer?,
           due_principal: Integer?,
           not_due_fees: Integer?,
           not_due_interest: Integer?,
-          not_due_principal: Integer?,
-          past_due_balance: Integer,
-          receivables: Increase::BalanceLookup::Loan::Receivables?
+          not_due_principal: Integer?
         }
-
-        type receivables =
-          { purchasable_balance: Integer, purchased_balance: Integer }
-
-        class Receivables < Increase::Internal::Type::BaseModel
-          attr_accessor purchasable_balance: Integer
-
-          attr_accessor purchased_balance: Integer
-
-          def initialize: (
-            purchasable_balance: Integer,
-            purchased_balance: Integer
-          ) -> void
-
-          def to_hash: -> {
-            purchasable_balance: Integer,
-            purchased_balance: Integer
-          }
-        end
       end
 
       type type_ = :balance_lookup
