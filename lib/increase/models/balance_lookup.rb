@@ -59,19 +59,6 @@ module Increase
 
       # @see Increase::Models::BalanceLookup#loan
       class Loan < Increase::Internal::Type::BaseModel
-        # @!attribute due_at
-        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
-        #   payment is due.
-        #
-        #   @return [Time, nil]
-        required :due_at, Time, nil?: true
-
-        # @!attribute due_balance
-        #   The total amount due on the loan.
-        #
-        #   @return [Integer]
-        required :due_balance, Integer
-
         # @!attribute due_fees
         #   The fees on the loan that are due and unpaid.
         #
@@ -108,26 +95,8 @@ module Increase
         #   @return [Integer, nil]
         required :not_due_principal, Integer, nil?: true
 
-        # @!attribute past_due_balance
-        #   The amount past due on the loan.
-        #
-        #   @return [Integer]
-        required :past_due_balance, Integer
-
-        # @!attribute receivables
-        #   The receivables balances for the loan.
-        #
-        #   @return [Increase::Models::BalanceLookup::Loan::Receivables, nil]
-        required :receivables, -> { Increase::BalanceLookup::Loan::Receivables }, nil?: true
-
-        # @!method initialize(due_at:, due_balance:, due_fees:, due_interest:, due_principal:, not_due_fees:, not_due_interest:, not_due_principal:, past_due_balance:, receivables:)
+        # @!method initialize(due_fees:, due_interest:, due_principal:, not_due_fees:, not_due_interest:, not_due_principal:)
         #   The loan balances for the Account.
-        #
-        #   @param due_at [Time, nil]
-        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the loan
-        #     payment is due.
-        #
-        #   @param due_balance [Integer] The total amount due on the loan.
         #
         #   @param due_fees [Integer, nil] The fees on the loan that are due and unpaid.
         #
@@ -140,33 +109,6 @@ module Increase
         #   @param not_due_interest [Integer, nil] The interest on the loan that is not yet due.
         #
         #   @param not_due_principal [Integer, nil] The principal on the loan that is not yet due.
-        #
-        #   @param past_due_balance [Integer] The amount past due on the loan.
-        #
-        #   @param receivables [Increase::Models::BalanceLookup::Loan::Receivables, nil]
-        #     The receivables balances for the loan.
-
-        # @see Increase::Models::BalanceLookup::Loan#receivables
-        class Receivables < Increase::Internal::Type::BaseModel
-          # @!attribute purchasable_balance
-          #   The balance of seasoned receivables available to be purchased.
-          #
-          #   @return [Integer]
-          required :purchasable_balance, Integer
-
-          # @!attribute purchased_balance
-          #   The balance of receivables that have been purchased.
-          #
-          #   @return [Integer]
-          required :purchased_balance, Integer
-
-          # @!method initialize(purchasable_balance:, purchased_balance:)
-          #   The receivables balances for the loan.
-          #
-          #   @param purchasable_balance [Integer] The balance of seasoned receivables available to be purchased.
-          #
-          #   @param purchased_balance [Integer] The balance of receivables that have been purchased.
-        end
       end
 
       # A constant representing the object's type. For this resource it will always be
