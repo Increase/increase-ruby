@@ -432,6 +432,12 @@ module Increase
         # Occurs whenever a Transaction is created.
         TRANSACTION_CREATED = :"transaction.created"
 
+        # Occurs whenever a UK Faster Payment System Transfer is created.
+        UK_FASTER_PAYMENT_SYSTEM_TRANSFER_CREATED = :"uk_faster_payment_system_transfer.created"
+
+        # Occurs whenever a UK Faster Payment System Transfer is updated.
+        UK_FASTER_PAYMENT_SYSTEM_TRANSFER_UPDATED = :"uk_faster_payment_system_transfer.updated"
+
         # Occurs whenever a Wire Drawdown Request is created.
         WIRE_DRAWDOWN_REQUEST_CREATED = :"wire_drawdown_request.created"
 
