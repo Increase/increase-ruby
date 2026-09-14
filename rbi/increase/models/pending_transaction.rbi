@@ -519,6 +519,28 @@ module Increase
         end
         attr_writer :real_time_payments_transfer_instruction
 
+        # A SEPA Instant Transfer Instruction object. This field will be present in the
+        # JSON response if and only if `category` is equal to
+        # `sepa_instant_transfer_instruction`.
+        sig do
+          returns(
+            T.nilable(
+              Increase::PendingTransaction::Source::SepaInstantTransferInstruction
+            )
+          )
+        end
+        attr_reader :sepa_instant_transfer_instruction
+
+        sig do
+          params(
+            sepa_instant_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::SepaInstantTransferInstruction::OrHash
+              )
+          ).void
+        end
+        attr_writer :sepa_instant_transfer_instruction
+
         # A Swift Transfer Instruction object. This field will be present in the JSON
         # response if and only if `category` is equal to `swift_transfer_instruction`.
         sig do
@@ -539,6 +561,28 @@ module Increase
           ).void
         end
         attr_writer :swift_transfer_instruction
+
+        # An UK Faster Payment System Transfer Instruction object. This field will be
+        # present in the JSON response if and only if `category` is equal to
+        # `uk_faster_payment_system_transfer_instruction`.
+        sig do
+          returns(
+            T.nilable(
+              Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction
+            )
+          )
+        end
+        attr_reader :uk_faster_payment_system_transfer_instruction
+
+        sig do
+          params(
+            uk_faster_payment_system_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::OrHash
+              )
+          ).void
+        end
+        attr_writer :uk_faster_payment_system_transfer_instruction
 
         # An User Initiated Hold object. This field will be present in the JSON response
         # if and only if `category` is equal to `user_initiated_hold`. Created when a user
@@ -623,9 +667,17 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction::OrHash
               ),
+            sepa_instant_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::SepaInstantTransferInstruction::OrHash
+              ),
             swift_transfer_instruction:
               T.nilable(
                 Increase::PendingTransaction::Source::SwiftTransferInstruction::OrHash
+              ),
+            uk_faster_payment_system_transfer_instruction:
+              T.nilable(
+                Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::OrHash
               ),
             user_initiated_hold: T.nilable(T::Hash[Symbol, T.anything]),
             wire_transfer_instruction:
@@ -687,9 +739,17 @@ module Increase
           # the JSON response if and only if `category` is equal to
           # `real_time_payments_transfer_instruction`.
           real_time_payments_transfer_instruction: nil,
+          # A SEPA Instant Transfer Instruction object. This field will be present in the
+          # JSON response if and only if `category` is equal to
+          # `sepa_instant_transfer_instruction`.
+          sepa_instant_transfer_instruction: nil,
           # A Swift Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `swift_transfer_instruction`.
           swift_transfer_instruction: nil,
+          # An UK Faster Payment System Transfer Instruction object. This field will be
+          # present in the JSON response if and only if `category` is equal to
+          # `uk_faster_payment_system_transfer_instruction`.
+          uk_faster_payment_system_transfer_instruction: nil,
           # An User Initiated Hold object. This field will be present in the JSON response
           # if and only if `category` is equal to `user_initiated_hold`. Created when a user
           # initiates a hold on funds in their account.
@@ -754,9 +814,17 @@ module Increase
                 T.nilable(
                   Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction
                 ),
+              sepa_instant_transfer_instruction:
+                T.nilable(
+                  Increase::PendingTransaction::Source::SepaInstantTransferInstruction
+                ),
               swift_transfer_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::SwiftTransferInstruction
+                ),
+              uk_faster_payment_system_transfer_instruction:
+                T.nilable(
+                  Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction
                 ),
               user_initiated_hold: T.nilable(T::Hash[Symbol, T.anything]),
               wire_transfer_instruction:
@@ -882,6 +950,20 @@ module Increase
           BLOCKCHAIN_OFFRAMP_TRANSFER =
             T.let(
               :blockchain_offramp_transfer,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # UK Faster Payment System Transfer Instruction: details will be under the `uk_faster_payment_system_transfer_instruction` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_INSTRUCTION =
+            T.let(
+              :uk_faster_payment_system_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # SEPA Instant Transfer Instruction: details will be under the `sepa_instant_transfer_instruction` object.
+          SEPA_INSTANT_TRANSFER_INSTRUCTION =
+            T.let(
+              :sepa_instant_transfer_instruction,
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
@@ -4892,6 +4974,92 @@ module Increase
           end
         end
 
+        class SepaInstantTransferInstruction < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::SepaInstantTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The transfer amount in EUR cents.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+          # transfer's currency. This is always `EUR`.
+          sig do
+            returns(
+              Increase::PendingTransaction::Source::SepaInstantTransferInstruction::Currency::TaggedSymbol
+            )
+          end
+          attr_accessor :currency
+
+          # A SEPA Instant Transfer Instruction object. This field will be present in the
+          # JSON response if and only if `category` is equal to
+          # `sepa_instant_transfer_instruction`.
+          sig do
+            params(
+              amount: Integer,
+              currency:
+                Increase::PendingTransaction::Source::SepaInstantTransferInstruction::Currency::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The transfer amount in EUR cents.
+            amount:,
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+            # transfer's currency. This is always `EUR`.
+            currency:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: Integer,
+                currency:
+                  Increase::PendingTransaction::Source::SepaInstantTransferInstruction::Currency::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+          # transfer's currency. This is always `EUR`.
+          module Currency
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::PendingTransaction::Source::SepaInstantTransferInstruction::Currency
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # EUR
+            EUR =
+              T.let(
+                :EUR,
+                Increase::PendingTransaction::Source::SepaInstantTransferInstruction::Currency::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::PendingTransaction::Source::SepaInstantTransferInstruction::Currency::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+
         class SwiftTransferInstruction < Increase::Internal::Type::BaseModel
           OrHash =
             T.type_alias do
@@ -4916,6 +5084,92 @@ module Increase
 
           sig { override.returns({ transfer_id: String }) }
           def to_hash
+          end
+        end
+
+        class UkFasterPaymentSystemTransferInstruction < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The transfer amount in GBP pence.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+          # transfer's currency. This is always `GBP`.
+          sig do
+            returns(
+              Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency::TaggedSymbol
+            )
+          end
+          attr_accessor :currency
+
+          # An UK Faster Payment System Transfer Instruction object. This field will be
+          # present in the JSON response if and only if `category` is equal to
+          # `uk_faster_payment_system_transfer_instruction`.
+          sig do
+            params(
+              amount: Integer,
+              currency:
+                Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The transfer amount in GBP pence.
+            amount:,
+            # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+            # transfer's currency. This is always `GBP`.
+            currency:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: Integer,
+                currency:
+                  Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+          # transfer's currency. This is always `GBP`.
+          module Currency
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # GBP
+            GBP =
+              T.let(
+                :GBP,
+                Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
