@@ -200,6 +200,9 @@ module Increase
           # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT = :blockchain_offramp_transfer_settlement
 
+          # UK Faster Payment System Transfer Acceptance: details will be under the `uk_faster_payment_system_transfer_acceptance` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_ACCEPTANCE = :uk_faster_payment_system_transfer_acceptance
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 

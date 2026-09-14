@@ -340,6 +340,16 @@ module Increase
                  -> { Increase::PendingTransaction::Source::SwiftTransferInstruction },
                  nil?: true
 
+        # @!attribute uk_faster_payment_system_transfer_instruction
+        #   An UK Faster Payment System Transfer Instruction object. This field will be
+        #   present in the JSON response if and only if `category` is equal to
+        #   `uk_faster_payment_system_transfer_instruction`.
+        #
+        #   @return [Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction, nil]
+        optional :uk_faster_payment_system_transfer_instruction,
+                 -> { Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction },
+                 nil?: true
+
         # @!attribute user_initiated_hold
         #   An User Initiated Hold object. This field will be present in the JSON response
         #   if and only if `category` is equal to `user_initiated_hold`. Created when a user
@@ -359,7 +369,7 @@ module Increase
                  -> { Increase::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!method initialize(category:, account_transfer_instruction: nil, ach_transfer_instruction: nil, blockchain_offramp_transfer: nil, blockchain_onramp_transfer_instruction: nil, card_authorization: nil, card_push_transfer_instruction: nil, check_deposit_instruction: nil, check_transfer_instruction: nil, fednow_transfer_instruction: nil, inbound_funds_hold: nil, inbound_wire_transfer_reversal: nil, other: nil, real_time_payments_transfer_instruction: nil, swift_transfer_instruction: nil, user_initiated_hold: nil, wire_transfer_instruction: nil)
+        # @!method initialize(category:, account_transfer_instruction: nil, ach_transfer_instruction: nil, blockchain_offramp_transfer: nil, blockchain_onramp_transfer_instruction: nil, card_authorization: nil, card_push_transfer_instruction: nil, check_deposit_instruction: nil, check_transfer_instruction: nil, fednow_transfer_instruction: nil, inbound_funds_hold: nil, inbound_wire_transfer_reversal: nil, other: nil, real_time_payments_transfer_instruction: nil, swift_transfer_instruction: nil, uk_faster_payment_system_transfer_instruction: nil, user_initiated_hold: nil, wire_transfer_instruction: nil)
         #   This is an object giving more details on the network-level event that caused the
         #   Pending Transaction. For example, for a card transaction this lists the
         #   merchant's industry and location.
@@ -434,6 +444,11 @@ module Increase
         #     A Swift Transfer Instruction object. This field will be present in the JSON
         #     response if and only if `category` is equal to `swift_transfer_instruction`.
         #
+        #   @param uk_faster_payment_system_transfer_instruction [Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction, nil]
+        #     An UK Faster Payment System Transfer Instruction object. This field will be
+        #     present in the JSON response if and only if `category` is equal to
+        #     `uk_faster_payment_system_transfer_instruction`.
+        #
         #   @param user_initiated_hold [Hash{Symbol=>Object}, nil]
         #     An User Initiated Hold object. This field will be present in the JSON response
         #     if and only if `category` is equal to `user_initiated_hold`. Created when a user
@@ -494,6 +509,9 @@ module Increase
 
           # Blockchain Off-Ramp Transfer: details will be under the `blockchain_offramp_transfer` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER = :blockchain_offramp_transfer
+
+          # UK Faster Payment System Transfer Instruction: details will be under the `uk_faster_payment_system_transfer_instruction` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_INSTRUCTION = :uk_faster_payment_system_transfer_instruction
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
@@ -2748,6 +2766,48 @@ module Increase
           #   response if and only if `category` is equal to `swift_transfer_instruction`.
           #
           #   @param transfer_id [String] The identifier of the Swift Transfer that led to this Pending Transaction.
+        end
+
+        # @see Increase::Models::PendingTransaction::Source#uk_faster_payment_system_transfer_instruction
+        class UkFasterPaymentSystemTransferInstruction < Increase::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The transfer amount in GBP pence.
+          #
+          #   @return [Integer]
+          required :amount, Integer
+
+          # @!attribute currency
+          #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+          #   transfer's currency. This is always `GBP`.
+          #
+          #   @return [Symbol, Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency]
+          required :currency,
+                   enum: -> { Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency }
+
+          # @!method initialize(amount:, currency:)
+          #   An UK Faster Payment System Transfer Instruction object. This field will be
+          #   present in the JSON response if and only if `category` is equal to
+          #   `uk_faster_payment_system_transfer_instruction`.
+          #
+          #   @param amount [Integer] The transfer amount in GBP pence.
+          #
+          #   @param currency [Symbol, Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::Currency]
+          #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+          #     transfer's currency. This is always `GBP`.
+
+          # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) currency code for the
+          # transfer's currency. This is always `GBP`.
+          #
+          # @see Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction#currency
+          module Currency
+            extend Increase::Internal::Type::Enum
+
+            # GBP
+            GBP = :GBP
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see Increase::Models::PendingTransaction::Source#wire_transfer_instruction

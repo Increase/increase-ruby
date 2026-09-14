@@ -135,6 +135,9 @@ module Increase
           # Blockchain Off-Ramp Transfer: details will be under the `blockchain_offramp_transfer` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER = :blockchain_offramp_transfer
 
+          # UK Faster Payment System Transfer Instruction: details will be under the `uk_faster_payment_system_transfer_instruction` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_INSTRUCTION = :uk_faster_payment_system_transfer_instruction
+
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
 
