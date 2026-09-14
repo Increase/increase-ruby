@@ -120,7 +120,9 @@ module Increase
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: Increase::PendingTransaction::Source::Other?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
+          sepa_instant_transfer_instruction: Increase::PendingTransaction::Source::SepaInstantTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
+          uk_faster_payment_system_transfer_instruction: Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction?,
           user_initiated_hold: ::Hash[Symbol, top]?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         }
@@ -154,7 +156,11 @@ module Increase
 
         attr_accessor real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?
 
+        attr_accessor sepa_instant_transfer_instruction: Increase::PendingTransaction::Source::SepaInstantTransferInstruction?
+
         attr_accessor swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?
+
+        attr_accessor uk_faster_payment_system_transfer_instruction: Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction?
 
         attr_accessor user_initiated_hold: ::Hash[Symbol, top]?
 
@@ -175,7 +181,9 @@ module Increase
           ?inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           ?other: Increase::PendingTransaction::Source::Other?,
           ?real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
+          ?sepa_instant_transfer_instruction: Increase::PendingTransaction::Source::SepaInstantTransferInstruction?,
           ?swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
+          ?uk_faster_payment_system_transfer_instruction: Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction?,
           ?user_initiated_hold: ::Hash[Symbol, top]?,
           ?wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         ) -> void
@@ -195,7 +203,9 @@ module Increase
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: Increase::PendingTransaction::Source::Other?,
           real_time_payments_transfer_instruction: Increase::PendingTransaction::Source::RealTimePaymentsTransferInstruction?,
+          sepa_instant_transfer_instruction: Increase::PendingTransaction::Source::SepaInstantTransferInstruction?,
           swift_transfer_instruction: Increase::PendingTransaction::Source::SwiftTransferInstruction?,
+          uk_faster_payment_system_transfer_instruction: Increase::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction?,
           user_initiated_hold: ::Hash[Symbol, top]?,
           wire_transfer_instruction: Increase::PendingTransaction::Source::WireTransferInstruction?
         }
@@ -216,6 +226,8 @@ module Increase
           | :card_push_transfer_instruction
           | :blockchain_onramp_transfer_instruction
           | :blockchain_offramp_transfer
+          | :uk_faster_payment_system_transfer_instruction
+          | :sepa_instant_transfer_instruction
           | :other
 
         module Category
@@ -265,6 +277,12 @@ module Increase
 
           # Blockchain Off-Ramp Transfer: details will be under the `blockchain_offramp_transfer` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER: :blockchain_offramp_transfer
+
+          # UK Faster Payment System Transfer Instruction: details will be under the `uk_faster_payment_system_transfer_instruction` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_INSTRUCTION: :uk_faster_payment_system_transfer_instruction
+
+          # SEPA Instant Transfer Instruction: details will be under the `sepa_instant_transfer_instruction` object.
+          SEPA_INSTANT_TRANSFER_INSTRUCTION: :sepa_instant_transfer_instruction
 
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
@@ -1778,6 +1796,39 @@ module Increase
           def to_hash: -> { amount: Integer, transfer_id: String }
         end
 
+        type sepa_instant_transfer_instruction =
+          {
+            amount: Integer,
+            currency: Increase::Models::PendingTransaction::Source::SepaInstantTransferInstruction::currency
+          }
+
+        class SepaInstantTransferInstruction < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor currency: Increase::Models::PendingTransaction::Source::SepaInstantTransferInstruction::currency
+
+          def initialize: (
+            amount: Integer,
+            currency: Increase::Models::PendingTransaction::Source::SepaInstantTransferInstruction::currency
+          ) -> void
+
+          def to_hash: -> {
+            amount: Integer,
+            currency: Increase::Models::PendingTransaction::Source::SepaInstantTransferInstruction::currency
+          }
+
+          type currency = :EUR
+
+          module Currency
+            extend Increase::Internal::Type::Enum
+
+            # EUR
+            EUR: :EUR
+
+            def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::SepaInstantTransferInstruction::currency]
+          end
+        end
+
         type swift_transfer_instruction = { transfer_id: String }
 
         class SwiftTransferInstruction < Increase::Internal::Type::BaseModel
@@ -1786,6 +1837,39 @@ module Increase
           def initialize: (transfer_id: String) -> void
 
           def to_hash: -> { transfer_id: String }
+        end
+
+        type uk_faster_payment_system_transfer_instruction =
+          {
+            amount: Integer,
+            currency: Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::currency
+          }
+
+        class UkFasterPaymentSystemTransferInstruction < Increase::Internal::Type::BaseModel
+          attr_accessor amount: Integer
+
+          attr_accessor currency: Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::currency
+
+          def initialize: (
+            amount: Integer,
+            currency: Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::currency
+          ) -> void
+
+          def to_hash: -> {
+            amount: Integer,
+            currency: Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::currency
+          }
+
+          type currency = :GBP
+
+          module Currency
+            extend Increase::Internal::Type::Enum
+
+            # GBP
+            GBP: :GBP
+
+            def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::UkFasterPaymentSystemTransferInstruction::currency]
+          end
         end
 
         type wire_transfer_instruction =
