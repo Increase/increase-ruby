@@ -949,6 +949,30 @@ module Increase
         end
         attr_writer :swift_transfer_return
 
+        # An UK Faster Payment System Transfer Acceptance object. This field will be
+        # present in the JSON response if and only if `category` is equal to
+        # `uk_faster_payment_system_transfer_acceptance`. A UK Faster Payment System
+        # Transfer Acceptance is created when a UK Faster Payment System Transfer sent
+        # from Increase is accepted by the recipient's bank.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance
+            )
+          )
+        end
+        attr_reader :uk_faster_payment_system_transfer_acceptance
+
+        sig do
+          params(
+            uk_faster_payment_system_transfer_acceptance:
+              T.nilable(
+                Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance::OrHash
+              )
+          ).void
+        end
+        attr_writer :uk_faster_payment_system_transfer_acceptance
+
         # A Wire Transfer Intention object. This field will be present in the JSON
         # response if and only if `category` is equal to `wire_transfer_intention`. A Wire
         # Transfer initiated via Increase and sent to a different bank.
@@ -1106,6 +1130,10 @@ module Increase
             swift_transfer_return:
               T.nilable(
                 Increase::Transaction::Source::SwiftTransferReturn::OrHash
+              ),
+            uk_faster_payment_system_transfer_acceptance:
+              T.nilable(
+                Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance::OrHash
               ),
             wire_transfer_intention:
               T.nilable(
@@ -1310,6 +1338,12 @@ module Increase
           # if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
           # Return is created when a Swift Transfer is returned by the receiving bank.
           swift_transfer_return: nil,
+          # An UK Faster Payment System Transfer Acceptance object. This field will be
+          # present in the JSON response if and only if `category` is equal to
+          # `uk_faster_payment_system_transfer_acceptance`. A UK Faster Payment System
+          # Transfer Acceptance is created when a UK Faster Payment System Transfer sent
+          # from Increase is accepted by the recipient's bank.
+          uk_faster_payment_system_transfer_acceptance: nil,
           # A Wire Transfer Intention object. This field will be present in the JSON
           # response if and only if `category` is equal to `wire_transfer_intention`. A Wire
           # Transfer initiated via Increase and sent to a different bank.
@@ -1422,6 +1456,10 @@ module Increase
                 ),
               swift_transfer_return:
                 T.nilable(Increase::Transaction::Source::SwiftTransferReturn),
+              uk_faster_payment_system_transfer_acceptance:
+                T.nilable(
+                  Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance
+                ),
               wire_transfer_intention:
                 T.nilable(Increase::Transaction::Source::WireTransferIntention)
             }
@@ -1704,6 +1742,13 @@ module Increase
           BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT =
             T.let(
               :blockchain_offramp_transfer_settlement,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # UK Faster Payment System Transfer Acceptance: details will be under the `uk_faster_payment_system_transfer_acceptance` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_ACCEPTANCE =
+            T.let(
+              :uk_faster_payment_system_transfer_acceptance,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
@@ -14294,6 +14339,50 @@ module Increase
           end
 
           sig { override.returns({ transfer_id: String }) }
+          def to_hash
+          end
+        end
+
+        class UkFasterPaymentSystemTransferAcceptance < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the recipient's bank accepted the transfer.
+          sig { returns(Time) }
+          attr_accessor :accepted_at
+
+          # The transfer amount in USD cents.
+          sig { returns(Integer) }
+          attr_accessor :settlement_amount
+
+          # An UK Faster Payment System Transfer Acceptance object. This field will be
+          # present in the JSON response if and only if `category` is equal to
+          # `uk_faster_payment_system_transfer_acceptance`. A UK Faster Payment System
+          # Transfer Acceptance is created when a UK Faster Payment System Transfer sent
+          # from Increase is accepted by the recipient's bank.
+          sig do
+            params(accepted_at: Time, settlement_amount: Integer).returns(
+              T.attached_class
+            )
+          end
+          def self.new(
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+            # the recipient's bank accepted the transfer.
+            accepted_at:,
+            # The transfer amount in USD cents.
+            settlement_amount:
+          )
+          end
+
+          sig do
+            override.returns({ accepted_at: Time, settlement_amount: Integer })
+          end
           def to_hash
           end
         end

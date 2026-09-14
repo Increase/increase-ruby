@@ -563,6 +563,18 @@ module Increase
         #   @return [Increase::Models::Transaction::Source::SwiftTransferReturn, nil]
         optional :swift_transfer_return, -> { Increase::Transaction::Source::SwiftTransferReturn }, nil?: true
 
+        # @!attribute uk_faster_payment_system_transfer_acceptance
+        #   An UK Faster Payment System Transfer Acceptance object. This field will be
+        #   present in the JSON response if and only if `category` is equal to
+        #   `uk_faster_payment_system_transfer_acceptance`. A UK Faster Payment System
+        #   Transfer Acceptance is created when a UK Faster Payment System Transfer sent
+        #   from Increase is accepted by the recipient's bank.
+        #
+        #   @return [Increase::Models::Transaction::Source::UkFasterPaymentSystemTransferAcceptance, nil]
+        optional :uk_faster_payment_system_transfer_acceptance,
+                 -> { Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance },
+                 nil?: true
+
         # @!attribute wire_transfer_intention
         #   A Wire Transfer Intention object. This field will be present in the JSON
         #   response if and only if `category` is equal to `wire_transfer_intention`. A Wire
@@ -575,7 +587,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(category:, account_revenue_payment: nil, account_transfer_intention: nil, ach_transfer_intention: nil, ach_transfer_rejection: nil, ach_transfer_return: nil, blockchain_offramp_transfer_settlement: nil, blockchain_onramp_transfer_intention: nil, card_dispute_acceptance: nil, card_dispute_financial: nil, card_dispute_loss: nil, card_financial: nil, card_push_transfer_acceptance: nil, card_refund: nil, card_revenue_payment: nil, card_settlement: nil, cashback_payment: nil, check_deposit_acceptance: nil, check_deposit_return: nil, check_transfer_deposit: nil, fednow_transfer_acknowledgement: nil, fednow_transfer_return: nil, fee_payment: nil, inbound_ach_transfer: nil, inbound_ach_transfer_return_intention: nil, inbound_check_adjustment: nil, inbound_check_deposit_return_intention: nil, inbound_fednow_transfer_confirmation: nil, inbound_real_time_payments_transfer_confirmation: nil, inbound_wire_reversal: nil, inbound_wire_transfer: nil, inbound_wire_transfer_reversal: nil, interest_payment: nil, internal_source: nil, other: nil, real_time_payments_transfer_acknowledgement: nil, sample_funds: nil, swift_transfer_intention: nil, swift_transfer_return: nil, wire_transfer_intention: nil)
+        # @!method initialize(category:, account_revenue_payment: nil, account_transfer_intention: nil, ach_transfer_intention: nil, ach_transfer_rejection: nil, ach_transfer_return: nil, blockchain_offramp_transfer_settlement: nil, blockchain_onramp_transfer_intention: nil, card_dispute_acceptance: nil, card_dispute_financial: nil, card_dispute_loss: nil, card_financial: nil, card_push_transfer_acceptance: nil, card_refund: nil, card_revenue_payment: nil, card_settlement: nil, cashback_payment: nil, check_deposit_acceptance: nil, check_deposit_return: nil, check_transfer_deposit: nil, fednow_transfer_acknowledgement: nil, fednow_transfer_return: nil, fee_payment: nil, inbound_ach_transfer: nil, inbound_ach_transfer_return_intention: nil, inbound_check_adjustment: nil, inbound_check_deposit_return_intention: nil, inbound_fednow_transfer_confirmation: nil, inbound_real_time_payments_transfer_confirmation: nil, inbound_wire_reversal: nil, inbound_wire_transfer: nil, inbound_wire_transfer_reversal: nil, interest_payment: nil, internal_source: nil, other: nil, real_time_payments_transfer_acknowledgement: nil, sample_funds: nil, swift_transfer_intention: nil, swift_transfer_return: nil, uk_faster_payment_system_transfer_acceptance: nil, wire_transfer_intention: nil)
         #   This is an object giving more details on the network-level event that caused the
         #   Transaction. Note that for backwards compatibility reasons, additional
         #   undocumented keys may appear in this object. These should be treated as
@@ -816,6 +828,13 @@ module Increase
         #     if and only if `category` is equal to `swift_transfer_return`. A Swift Transfer
         #     Return is created when a Swift Transfer is returned by the receiving bank.
         #
+        #   @param uk_faster_payment_system_transfer_acceptance [Increase::Models::Transaction::Source::UkFasterPaymentSystemTransferAcceptance, nil]
+        #     An UK Faster Payment System Transfer Acceptance object. This field will be
+        #     present in the JSON response if and only if `category` is equal to
+        #     `uk_faster_payment_system_transfer_acceptance`. A UK Faster Payment System
+        #     Transfer Acceptance is created when a UK Faster Payment System Transfer sent
+        #     from Increase is accepted by the recipient's bank.
+        #
         #   @param wire_transfer_intention [Increase::Models::Transaction::Source::WireTransferIntention, nil]
         #     A Wire Transfer Intention object. This field will be present in the JSON
         #     response if and only if `category` is equal to `wire_transfer_intention`. A Wire
@@ -941,6 +960,9 @@ module Increase
 
           # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT = :blockchain_offramp_transfer_settlement
+
+          # UK Faster Payment System Transfer Acceptance: details will be under the `uk_faster_payment_system_transfer_acceptance` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_ACCEPTANCE = :uk_faster_payment_system_transfer_acceptance
 
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER = :other
@@ -8173,6 +8195,35 @@ module Increase
           #   Return is created when a Swift Transfer is returned by the receiving bank.
           #
           #   @param transfer_id [String] The identifier of the Swift Transfer that led to this Transaction.
+        end
+
+        # @see Increase::Models::Transaction::Source#uk_faster_payment_system_transfer_acceptance
+        class UkFasterPaymentSystemTransferAcceptance < Increase::Internal::Type::BaseModel
+          # @!attribute accepted_at
+          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          #   the recipient's bank accepted the transfer.
+          #
+          #   @return [Time]
+          required :accepted_at, Time
+
+          # @!attribute settlement_amount
+          #   The transfer amount in USD cents.
+          #
+          #   @return [Integer]
+          required :settlement_amount, Integer
+
+          # @!method initialize(accepted_at:, settlement_amount:)
+          #   An UK Faster Payment System Transfer Acceptance object. This field will be
+          #   present in the JSON response if and only if `category` is equal to
+          #   `uk_faster_payment_system_transfer_acceptance`. A UK Faster Payment System
+          #   Transfer Acceptance is created when a UK Faster Payment System Transfer sent
+          #   from Increase is accepted by the recipient's bank.
+          #
+          #   @param accepted_at [Time]
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          #     the recipient's bank accepted the transfer.
+          #
+          #   @param settlement_amount [Integer] The transfer amount in USD cents.
         end
 
         # @see Increase::Models::Transaction::Source#wire_transfer_intention

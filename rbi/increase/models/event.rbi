@@ -842,6 +842,20 @@ module Increase
             Increase::Event::Category::TaggedSymbol
           )
 
+        # Occurs whenever a SEPA Instant Transfer is created.
+        SEPA_INSTANT_TRANSFER_CREATED =
+          T.let(
+            :"sepa_instant_transfer.created",
+            Increase::Event::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a SEPA Instant Transfer is updated.
+        SEPA_INSTANT_TRANSFER_UPDATED =
+          T.let(
+            :"sepa_instant_transfer.updated",
+            Increase::Event::Category::TaggedSymbol
+          )
+
         # Occurs whenever a Swift Transfer is created.
         SWIFT_TRANSFER_CREATED =
           T.let(
@@ -859,6 +873,20 @@ module Increase
         # Occurs whenever a Transaction is created.
         TRANSACTION_CREATED =
           T.let(:"transaction.created", Increase::Event::Category::TaggedSymbol)
+
+        # Occurs whenever a UK Faster Payment System Transfer is created.
+        UK_FASTER_PAYMENT_SYSTEM_TRANSFER_CREATED =
+          T.let(
+            :"uk_faster_payment_system_transfer.created",
+            Increase::Event::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a UK Faster Payment System Transfer is updated.
+        UK_FASTER_PAYMENT_SYSTEM_TRANSFER_UPDATED =
+          T.let(
+            :"uk_faster_payment_system_transfer.updated",
+            Increase::Event::Category::TaggedSymbol
+          )
 
         # Occurs whenever a Wire Drawdown Request is created.
         WIRE_DRAWDOWN_REQUEST_CREATED =
