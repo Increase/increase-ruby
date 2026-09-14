@@ -1009,6 +1009,20 @@ module Increase
               Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
+          # Occurs whenever a UK Faster Payment System Transfer is created.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_CREATED =
+            T.let(
+              :"uk_faster_payment_system_transfer.created",
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
+          # Occurs whenever a UK Faster Payment System Transfer is updated.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_UPDATED =
+            T.let(
+              :"uk_faster_payment_system_transfer.updated",
+              Increase::EventSubscriptionCreateParams::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
           # Occurs whenever a Wire Drawdown Request is created.
           WIRE_DRAWDOWN_REQUEST_CREATED =
             T.let(
