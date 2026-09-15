@@ -128,8 +128,10 @@ module Increase
           other: Increase::Transaction::Source::Other?,
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
+          sepa_instant_transfer_acceptance: Increase::Transaction::Source::SepaInstantTransferAcceptance?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
           swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
+          uk_faster_payment_system_transfer_acceptance: Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance?,
           wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         }
 
@@ -208,9 +210,13 @@ module Increase
 
         attr_accessor sample_funds: Increase::Transaction::Source::SampleFunds?
 
+        attr_accessor sepa_instant_transfer_acceptance: Increase::Transaction::Source::SepaInstantTransferAcceptance?
+
         attr_accessor swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?
 
         attr_accessor swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?
+
+        attr_accessor uk_faster_payment_system_transfer_acceptance: Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance?
 
         attr_accessor wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
 
@@ -252,8 +258,10 @@ module Increase
           ?other: Increase::Transaction::Source::Other?,
           ?real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           ?sample_funds: Increase::Transaction::Source::SampleFunds?,
+          ?sepa_instant_transfer_acceptance: Increase::Transaction::Source::SepaInstantTransferAcceptance?,
           ?swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
           ?swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
+          ?uk_faster_payment_system_transfer_acceptance: Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance?,
           ?wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         ) -> void
 
@@ -295,8 +303,10 @@ module Increase
           other: Increase::Transaction::Source::Other?,
           real_time_payments_transfer_acknowledgement: Increase::Transaction::Source::RealTimePaymentsTransferAcknowledgement?,
           sample_funds: Increase::Transaction::Source::SampleFunds?,
+          sepa_instant_transfer_acceptance: Increase::Transaction::Source::SepaInstantTransferAcceptance?,
           swift_transfer_intention: Increase::Transaction::Source::SwiftTransferIntention?,
           swift_transfer_return: Increase::Transaction::Source::SwiftTransferReturn?,
+          uk_faster_payment_system_transfer_acceptance: Increase::Transaction::Source::UkFasterPaymentSystemTransferAcceptance?,
           wire_transfer_intention: Increase::Transaction::Source::WireTransferIntention?
         }
 
@@ -339,6 +349,8 @@ module Increase
           | :account_revenue_payment
           | :blockchain_onramp_transfer_intention
           | :blockchain_offramp_transfer_settlement
+          | :uk_faster_payment_system_transfer_acceptance
+          | :sepa_instant_transfer_acceptance
           | :other
 
         module Category
@@ -457,6 +469,12 @@ module Increase
 
           # Blockchain Off-Ramp Transfer Settlement: details will be under the `blockchain_offramp_transfer_settlement` object.
           BLOCKCHAIN_OFFRAMP_TRANSFER_SETTLEMENT: :blockchain_offramp_transfer_settlement
+
+          # UK Faster Payment System Transfer Acceptance: details will be under the `uk_faster_payment_system_transfer_acceptance` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_ACCEPTANCE: :uk_faster_payment_system_transfer_acceptance
+
+          # SEPA Instant Transfer Acceptance: details will be under the `sepa_instant_transfer_acceptance` object.
+          SEPA_INSTANT_TRANSFER_ACCEPTANCE: :sepa_instant_transfer_acceptance
 
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER: :other
@@ -5797,6 +5815,22 @@ module Increase
           def to_hash: -> { originator: String }
         end
 
+        type sepa_instant_transfer_acceptance =
+          { accepted_at: Time, settlement_amount: Integer }
+
+        class SepaInstantTransferAcceptance < Increase::Internal::Type::BaseModel
+          attr_accessor accepted_at: Time
+
+          attr_accessor settlement_amount: Integer
+
+          def initialize: (
+            accepted_at: Time,
+            settlement_amount: Integer
+          ) -> void
+
+          def to_hash: -> { accepted_at: Time, settlement_amount: Integer }
+        end
+
         type swift_transfer_intention = { transfer_id: String }
 
         class SwiftTransferIntention < Increase::Internal::Type::BaseModel
@@ -5815,6 +5849,22 @@ module Increase
           def initialize: (transfer_id: String) -> void
 
           def to_hash: -> { transfer_id: String }
+        end
+
+        type uk_faster_payment_system_transfer_acceptance =
+          { accepted_at: Time, settlement_amount: Integer }
+
+        class UkFasterPaymentSystemTransferAcceptance < Increase::Internal::Type::BaseModel
+          attr_accessor accepted_at: Time
+
+          attr_accessor settlement_amount: Integer
+
+          def initialize: (
+            accepted_at: Time,
+            settlement_amount: Integer
+          ) -> void
+
+          def to_hash: -> { accepted_at: Time, settlement_amount: Integer }
         end
 
         type wire_transfer_intention =
