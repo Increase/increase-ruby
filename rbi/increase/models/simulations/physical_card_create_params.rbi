@@ -35,21 +35,22 @@ module Increase
         sig { params(carrier_estimated_delivery_at: Time).void }
         attr_writer :carrier_estimated_delivery_at
 
-        # The city where the event took place.
+        # The city where the event took place. Required if postal_code is not provided.
         sig { returns(T.nilable(String)) }
         attr_reader :city
 
         sig { params(city: String).void }
         attr_writer :city
 
-        # The postal code where the event took place.
+        # The postal code where the event took place. Required unless both city and state
+        # are provided.
         sig { returns(T.nilable(String)) }
         attr_reader :postal_code
 
         sig { params(postal_code: String).void }
         attr_writer :postal_code
 
-        # The state where the event took place.
+        # The state where the event took place. Required if postal_code is not provided.
         sig { returns(T.nilable(String)) }
         attr_reader :state
 
@@ -76,11 +77,12 @@ module Increase
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
           # carrier expects the card to be delivered.
           carrier_estimated_delivery_at: nil,
-          # The city where the event took place.
+          # The city where the event took place. Required if postal_code is not provided.
           city: nil,
-          # The postal code where the event took place.
+          # The postal code where the event took place. Required unless both city and state
+          # are provided.
           postal_code: nil,
-          # The state where the event took place.
+          # The state where the event took place. Required if postal_code is not provided.
           state: nil,
           request_options: {}
         )
