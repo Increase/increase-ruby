@@ -18,11 +18,13 @@ module Increase
         #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time when the
         #   carrier expects the card to be delivered.
         #
-        # @param city [String] The city where the event took place.
+        # @param city [String] The city where the event took place. Required if postal_code is not provided.
         #
-        # @param postal_code [String] The postal code where the event took place.
+        # @param postal_code [String]
+        #   The postal code where the event took place. Required unless both city and state
+        #   are provided.
         #
-        # @param state [String] The state where the event took place.
+        # @param state [String] The state where the event took place. Required if postal_code is not provided.
         #
         # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
         #
