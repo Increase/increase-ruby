@@ -436,6 +436,20 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # UK Faster Payment System Transfer Acceptance: details will be under the `uk_faster_payment_system_transfer_acceptance` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_ACCEPTANCE =
+            T.let(
+              :uk_faster_payment_system_transfer_acceptance,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
+          # SEPA Instant Transfer Acceptance: details will be under the `sepa_instant_transfer_acceptance` object.
+          SEPA_INSTANT_TRANSFER_ACCEPTANCE =
+            T.let(
+              :sepa_instant_transfer_acceptance,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # The Transaction was made for an undocumented or deprecated reason.
           OTHER =
             T.let(
