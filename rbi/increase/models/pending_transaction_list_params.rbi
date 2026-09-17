@@ -304,6 +304,20 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
+          # UK Faster Payment System Transfer Instruction: details will be under the `uk_faster_payment_system_transfer_instruction` object.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_INSTRUCTION =
+            T.let(
+              :uk_faster_payment_system_transfer_instruction,
+              Increase::PendingTransactionListParams::Category::In::TaggedSymbol
+            )
+
+          # SEPA Instant Transfer Instruction: details will be under the `sepa_instant_transfer_instruction` object.
+          SEPA_INSTANT_TRANSFER_INSTRUCTION =
+            T.let(
+              :sepa_instant_transfer_instruction,
+              Increase::PendingTransactionListParams::Category::In::TaggedSymbol
+            )
+
           # The Pending Transaction was made for an undocumented or deprecated reason.
           OTHER =
             T.let(

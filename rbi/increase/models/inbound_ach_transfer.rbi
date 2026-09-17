@@ -1783,6 +1783,10 @@ module Increase
             )
           end
 
+        # The three character ACH return code, in the range R01 to R85.
+        sig { returns(String) }
+        attr_accessor :raw_reason_code
+
         # The reason for the transfer return.
         sig do
           returns(
@@ -1802,6 +1806,7 @@ module Increase
         # If your transfer is returned, this will contain details of the return.
         sig do
           params(
+            raw_reason_code: String,
             reason:
               Increase::InboundACHTransfer::TransferReturn::Reason::OrSymbol,
             returned_at: Time,
@@ -1809,6 +1814,8 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
+          # The three character ACH return code, in the range R01 to R85.
+          raw_reason_code:,
           # The reason for the transfer return.
           reason:,
           # The time at which the transfer was returned.
@@ -1821,6 +1828,7 @@ module Increase
         sig do
           override.returns(
             {
+              raw_reason_code: String,
               reason:
                 Increase::InboundACHTransfer::TransferReturn::Reason::TaggedSymbol,
               returned_at: Time,

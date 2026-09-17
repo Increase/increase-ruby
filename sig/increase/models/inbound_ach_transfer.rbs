@@ -821,12 +821,15 @@ module Increase
 
       type transfer_return =
         {
+          raw_reason_code: String,
           reason: Increase::Models::InboundACHTransfer::TransferReturn::reason,
           returned_at: Time,
           transaction_id: String
         }
 
       class TransferReturn < Increase::Internal::Type::BaseModel
+        attr_accessor raw_reason_code: String
+
         attr_accessor reason: Increase::Models::InboundACHTransfer::TransferReturn::reason
 
         attr_accessor returned_at: Time
@@ -834,12 +837,14 @@ module Increase
         attr_accessor transaction_id: String
 
         def initialize: (
+          raw_reason_code: String,
           reason: Increase::Models::InboundACHTransfer::TransferReturn::reason,
           returned_at: Time,
           transaction_id: String
         ) -> void
 
         def to_hash: -> {
+          raw_reason_code: String,
           reason: Increase::Models::InboundACHTransfer::TransferReturn::reason,
           returned_at: Time,
           transaction_id: String
