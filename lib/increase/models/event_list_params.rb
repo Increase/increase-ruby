@@ -435,6 +435,12 @@ module Increase
           # Occurs whenever a Real-Time Payments Request for Payment is updated.
           REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT_UPDATED = :"real_time_payments_request_for_payment.updated"
 
+          # Occurs whenever a SEPA Instant Transfer is created.
+          SEPA_INSTANT_TRANSFER_CREATED = :"sepa_instant_transfer.created"
+
+          # Occurs whenever a SEPA Instant Transfer is updated.
+          SEPA_INSTANT_TRANSFER_UPDATED = :"sepa_instant_transfer.updated"
+
           # Occurs whenever a Swift Transfer is created.
           SWIFT_TRANSFER_CREATED = :"swift_transfer.created"
 
@@ -443,6 +449,12 @@ module Increase
 
           # Occurs whenever a Transaction is created.
           TRANSACTION_CREATED = :"transaction.created"
+
+          # Occurs whenever a UK Faster Payment System Transfer is created.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_CREATED = :"uk_faster_payment_system_transfer.created"
+
+          # Occurs whenever a UK Faster Payment System Transfer is updated.
+          UK_FASTER_PAYMENT_SYSTEM_TRANSFER_UPDATED = :"uk_faster_payment_system_transfer.updated"
 
           # Occurs whenever a Wire Drawdown Request is created.
           WIRE_DRAWDOWN_REQUEST_CREATED = :"wire_drawdown_request.created"

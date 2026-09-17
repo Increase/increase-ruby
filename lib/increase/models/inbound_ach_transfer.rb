@@ -1088,6 +1088,12 @@ module Increase
 
       # @see Increase::Models::InboundACHTransfer#transfer_return
       class TransferReturn < Increase::Internal::Type::BaseModel
+        # @!attribute raw_reason_code
+        #   The three character ACH return code, in the range R01 to R85.
+        #
+        #   @return [String]
+        required :raw_reason_code, String
+
         # @!attribute reason
         #   The reason for the transfer return.
         #
@@ -1106,8 +1112,10 @@ module Increase
         #   @return [String]
         required :transaction_id, String
 
-        # @!method initialize(reason:, returned_at:, transaction_id:)
+        # @!method initialize(raw_reason_code:, reason:, returned_at:, transaction_id:)
         #   If your transfer is returned, this will contain details of the return.
+        #
+        #   @param raw_reason_code [String] The three character ACH return code, in the range R01 to R85.
         #
         #   @param reason [Symbol, Increase::Models::InboundACHTransfer::TransferReturn::Reason]
         #     The reason for the transfer return.
