@@ -3656,6 +3656,16 @@ module Increase
             #   @return [String, nil]
             required :customer_reference_identifier, String, nil?: true
 
+            # @!attribute fleet
+            #   Fields specific to fleet purchases.
+            #
+            #   @return [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet, nil]
+            required :fleet,
+                     -> {
+                       Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet
+                     },
+                     nil?: true
+
             # @!attribute local_tax_amount
             #   The state or provincial tax amount in minor units.
             #
@@ -3718,7 +3728,7 @@ module Increase
                      },
                      nil?: true
 
-            # @!method initialize(car_rental:, customer_reference_identifier:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
+            # @!method initialize(car_rental:, customer_reference_identifier:, fleet:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
             #   Additional details about the card purchase, such as tax and industry-specific
             #   fields.
             #
@@ -3727,6 +3737,9 @@ module Increase
             #
             #   @param customer_reference_identifier [String, nil]
             #     An identifier from the merchant for the customer or consumer.
+            #
+            #   @param fleet [Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet, nil]
+            #     Fields specific to fleet purchases.
             #
             #   @param local_tax_amount [Integer, nil] The state or provincial tax amount in minor units.
             #
@@ -3958,6 +3971,576 @@ module Increase
 
                 # No show for specialized vehicle
                 NO_SHOW_FOR_SPECIALIZED_VEHICLE = :no_show_for_specialized_vehicle
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+
+            # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails#fleet
+            class Fleet < Increase::Internal::Type::BaseModel
+              # @!attribute employee_number
+              #   The fleet employee number.
+              #
+              #   @return [String, nil]
+              required :employee_number, String, nil?: true
+
+              # @!attribute fuel_quantity
+              #   The quantity of fuel purchased, given as a string containing a decimal number in
+              #   the indicated unit of measure.
+              #
+              #   @return [String, nil]
+              required :fuel_quantity, String, nil?: true
+
+              # @!attribute fuel_type
+              #   The type of fuel purchased.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType, nil]
+              required :fuel_type,
+                       enum: -> {
+                         Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType
+                       },
+                       nil?: true
+
+              # @!attribute fuel_unit_cost_amount
+              #   The cost per unit of fuel in minor units.
+              #
+              #   @return [Integer, nil]
+              required :fuel_unit_cost_amount, Integer, nil?: true
+
+              # @!attribute fuel_unit_cost_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+              #   cost.
+              #
+              #   @return [String, nil]
+              required :fuel_unit_cost_currency, String, nil?: true
+
+              # @!attribute fuel_unit_of_measure
+              #   The unit of measure for the fuel quantity.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure, nil]
+              required :fuel_unit_of_measure,
+                       enum: -> {
+                         Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure
+                       },
+                       nil?: true
+
+              # @!attribute gross_fuel_price_amount
+              #   The gross fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :gross_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute gross_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+              #   price.
+              #
+              #   @return [String, nil]
+              required :gross_fuel_price_currency, String, nil?: true
+
+              # @!attribute gross_non_fuel_price_amount
+              #   The gross non-fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :gross_non_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute gross_non_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+              #   non-fuel price.
+              #
+              #   @return [String, nil]
+              required :gross_non_fuel_price_currency, String, nil?: true
+
+              # @!attribute net_fuel_price_amount
+              #   The net fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :net_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute net_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+              #   price.
+              #
+              #   @return [String, nil]
+              required :net_fuel_price_currency, String, nil?: true
+
+              # @!attribute net_non_fuel_price_amount
+              #   The net non-fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :net_non_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute net_non_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+              #   price.
+              #
+              #   @return [String, nil]
+              required :net_non_fuel_price_currency, String, nil?: true
+
+              # @!attribute odometer_reading
+              #   The odometer reading reported by the merchant.
+              #
+              #   @return [Integer, nil]
+              required :odometer_reading, Integer, nil?: true
+
+              # @!attribute purchase_type
+              #   The type of fleet purchase.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType, nil]
+              required :purchase_type,
+                       enum: -> {
+                         Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType
+                       },
+                       nil?: true
+
+              # @!attribute service_type
+              #   The type of service provided.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType, nil]
+              required :service_type,
+                       enum: -> {
+                         Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType
+                       },
+                       nil?: true
+
+              # @!attribute trailer_number
+              #   The fleet trailer number.
+              #
+              #   @return [String, nil]
+              required :trailer_number, String, nil?: true
+
+              # @!method initialize(employee_number:, fuel_quantity:, fuel_type:, fuel_unit_cost_amount:, fuel_unit_cost_currency:, fuel_unit_of_measure:, gross_fuel_price_amount:, gross_fuel_price_currency:, gross_non_fuel_price_amount:, gross_non_fuel_price_currency:, net_fuel_price_amount:, net_fuel_price_currency:, net_non_fuel_price_amount:, net_non_fuel_price_currency:, odometer_reading:, purchase_type:, service_type:, trailer_number:)
+              #   Fields specific to fleet purchases.
+              #
+              #   @param employee_number [String, nil] The fleet employee number.
+              #
+              #   @param fuel_quantity [String, nil]
+              #     The quantity of fuel purchased, given as a string containing a decimal number in
+              #     the indicated unit of measure.
+              #
+              #   @param fuel_type [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType, nil]
+              #     The type of fuel purchased.
+              #
+              #   @param fuel_unit_cost_amount [Integer, nil] The cost per unit of fuel in minor units.
+              #
+              #   @param fuel_unit_cost_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+              #     cost.
+              #
+              #   @param fuel_unit_of_measure [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure, nil]
+              #     The unit of measure for the fuel quantity.
+              #
+              #   @param gross_fuel_price_amount [Integer, nil] The gross fuel price in minor units.
+              #
+              #   @param gross_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+              #     price.
+              #
+              #   @param gross_non_fuel_price_amount [Integer, nil] The gross non-fuel price in minor units.
+              #
+              #   @param gross_non_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+              #     non-fuel price.
+              #
+              #   @param net_fuel_price_amount [Integer, nil] The net fuel price in minor units.
+              #
+              #   @param net_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+              #     price.
+              #
+              #   @param net_non_fuel_price_amount [Integer, nil] The net non-fuel price in minor units.
+              #
+              #   @param net_non_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+              #     price.
+              #
+              #   @param odometer_reading [Integer, nil] The odometer reading reported by the merchant.
+              #
+              #   @param purchase_type [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType, nil]
+              #     The type of fleet purchase.
+              #
+              #   @param service_type [Symbol, Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType, nil]
+              #     The type of service provided.
+              #
+              #   @param trailer_number [String, nil] The fleet trailer number.
+
+              # The type of fuel purchased.
+              #
+              # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet#fuel_type
+              module FuelType
+                extend Increase::Internal::Type::Enum
+
+                # Regular
+                REGULAR = :regular
+
+                # Mid or plus
+                MID_OR_PLUS = :mid_or_plus
+
+                # Premium or super
+                PREMIUM_OR_SUPER = :premium_or_super
+
+                # Mid or plus 2
+                MID_OR_PLUS_2 = :mid_or_plus_2
+
+                # Premium or super 2
+                PREMIUM_OR_SUPER_2 = :premium_or_super_2
+
+                # Regular ethanol 5% blend outside the United States
+                REGULAR_ETHANOL_5_BLEND_NON_US = :regular_ethanol_5_blend_non_us
+
+                # Mid or plus ethanol 5% blend outside the United States
+                MID_OR_PLUS_ETHANOL_5_BLEND_NON_US = :mid_or_plus_ethanol_5_blend_non_us
+
+                # Premium or super ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_ETHANOL_5_BLEND_NON_US = :premium_or_super_ethanol_5_blend_non_us
+
+                # Mid or plus 2 ethanol 5% blend outside the United States
+                MID_OR_PLUS_2_ETHANOL_5_BLEND_NON_US = :mid_or_plus_2_ethanol_5_blend_non_us
+
+                # Green gasoline regular
+                GREEN_GASOLINE_REGULAR = :green_gasoline_regular
+
+                # Green gasoline mid or plus
+                GREEN_GASOLINE_MID_OR_PLUS = :green_gasoline_mid_or_plus
+
+                # Green gasoline premium or super
+                GREEN_GASOLINE_PREMIUM_OR_SUPER = :green_gasoline_premium_or_super
+
+                # Regular diesel 2
+                REGULAR_DIESEL_2 = :regular_diesel_2
+
+                # Premium diesel 2
+                PREMIUM_DIESEL_2 = :premium_diesel_2
+
+                # Regular diesel 1
+                REGULAR_DIESEL_1 = :regular_diesel_1
+
+                # Compressed natural gas
+                COMPRESSED_NATURAL_GAS = :compressed_natural_gas
+
+                # Liquid propane gas
+                LIQUID_PROPANE_GAS = :liquid_propane_gas
+
+                # Liquid natural gas
+                LIQUID_NATURAL_GAS = :liquid_natural_gas
+
+                # E85
+                E85 = :e85
+
+                # Regular reformulated
+                REGULAR_REFORMULATED = :regular_reformulated
+
+                # Mid or plus reformulated
+                MID_OR_PLUS_REFORMULATED = :mid_or_plus_reformulated
+
+                # Premium or super reformulated
+                PREMIUM_OR_SUPER_REFORMULATED = :premium_or_super_reformulated
+
+                # Mid or plus 2 reformulated
+                MID_OR_PLUS_2_REFORMULATED = :mid_or_plus_2_reformulated
+
+                # Premium or super 2 reformulated
+                PREMIUM_OR_SUPER_2_REFORMULATED = :premium_or_super_2_reformulated
+
+                # Diesel off-road 1/2 non-taxable
+                DIESEL_OFF_ROAD_1_2_NON_TAXABLE = :diesel_off_road_1_2_non_taxable
+
+                # Diesel off-road non-taxable
+                DIESEL_OFF_ROAD_NON_TAXABLE = :diesel_off_road_non_taxable
+
+                # Biodiesel blend off-road non-taxable
+                BIODIESEL_BLEND_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_off_road_non_taxable
+
+                # Racing fuel
+                RACING_FUEL = :racing_fuel
+
+                # Mid or plus 2 ethanol 10% blend
+                MID_OR_PLUS_2_ETHANOL_10_BLEND = :mid_or_plus_2_ethanol_10_blend
+
+                # Premium or super 2 ethanol 10% blend
+                PREMIUM_OR_SUPER_2_ETHANOL_10_BLEND = :premium_or_super_2_ethanol_10_blend
+
+                # Mid or plus ethanol 2–15% blend
+                MID_OR_PLUS_ETHANOL_2_15_BLEND = :mid_or_plus_ethanol_2_15_blend
+
+                # Premium or super ethanol 2–15% blend
+                PREMIUM_OR_SUPER_ETHANOL_2_15_BLEND = :premium_or_super_ethanol_2_15_blend
+
+                # Premium or super 2 ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_2_ETHANOL_5_BLEND_NON_US = :premium_or_super_2_ethanol_5_blend_non_us
+
+                # Regular ethanol 10% blend
+                REGULAR_ETHANOL_10_BLEND = :regular_ethanol_10_blend
+
+                # Mid or plus ethanol 10% blend
+                MID_OR_PLUS_ETHANOL_10_BLEND = :mid_or_plus_ethanol_10_blend
+
+                # Premium or super ethanol 10% blend
+                PREMIUM_OR_SUPER_ETHANOL_10_BLEND = :premium_or_super_ethanol_10_blend
+
+                # B2 diesel blend 2% biodiesel
+                B2_DIESEL_BLEND_2_BIODIESEL = :b2_diesel_blend_2_biodiesel
+
+                # B5 diesel blend 5% biodiesel
+                B5_DIESEL_BLEND_5_BIODIESEL = :b5_diesel_blend_5_biodiesel
+
+                # B10 diesel blend 10% biodiesel
+                B10_DIESEL_BLEND_10_BIODIESEL = :b10_diesel_blend_10_biodiesel
+
+                # B11 diesel blend 11% biodiesel
+                B11_DIESEL_BLEND_11_BIODIESEL = :b11_diesel_blend_11_biodiesel
+
+                # B15 diesel blend 15% biodiesel
+                B15_DIESEL_BLEND_15_BIODIESEL = :b15_diesel_blend_15_biodiesel
+
+                # B20 diesel blend 20% biodiesel
+                B20_DIESEL_BLEND_20_BIODIESEL = :b20_diesel_blend_20_biodiesel
+
+                # B100 diesel blend 100% biodiesel
+                B100_DIESEL_BLEND_100_BIODIESEL = :b100_diesel_blend_100_biodiesel
+
+                # B1 diesel blend 1% biodiesel
+                B1_DIESEL_BLEND_1_BIODIESEL = :b1_diesel_blend_1_biodiesel
+
+                # Additized diesel 2
+                ADDITIZED_DIESEL_2 = :additized_diesel_2
+
+                # Additized diesel 3
+                ADDITIZED_DIESEL_3 = :additized_diesel_3
+
+                # B7 diesel blend 7% biodiesel outside the United States
+                B7_DIESEL_BLEND_7_BIODIESEL_NON_US = :b7_diesel_blend_7_biodiesel_non_us
+
+                # B7 premium diesel blend 7% biodiesel outside the United States
+                B7_PREMIUM_DIESEL_BLEND_7_BIODIESEL_NON_US = :b7_premium_diesel_blend_7_biodiesel_non_us
+
+                # Renewable diesel R95 or greater
+                RENEWABLE_DIESEL_R95_OR_GREATER = :renewable_diesel_r95_or_greater
+
+                # Renewable diesel biodiesel 6% to 20%
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20 = :renewable_diesel_biodiesel_6_to_20
+
+                # Diesel exhaust fluid pump
+                DIESEL_EXHAUST_FLUID_PUMP = :diesel_exhaust_fluid_pump
+
+                # Premium diesel 1
+                PREMIUM_DIESEL_1 = :premium_diesel_1
+
+                # Regular ethanol 15% blend
+                REGULAR_ETHANOL_15_BLEND = :regular_ethanol_15_blend
+
+                # Mid or plus ethanol 15% blend
+                MID_OR_PLUS_ETHANOL_15_BLEND = :mid_or_plus_ethanol_15_blend
+
+                # Premium or super ethanol 15% blend
+                PREMIUM_OR_SUPER_ETHANOL_15_BLEND = :premium_or_super_ethanol_15_blend
+
+                # Premium diesel blend less than 20% biodiesel
+                PREMIUM_DIESEL_BLEND_LESS_THAN_20_BIODIESEL = :premium_diesel_blend_less_than_20_biodiesel
+
+                # Premium diesel blend 20% or more biodiesel
+                PREMIUM_DIESEL_BLEND_20_OR_MORE_BIODIESEL = :premium_diesel_blend_20_or_more_biodiesel
+
+                # B75 diesel blend 75% biodiesel
+                B75_DIESEL_BLEND_75_BIODIESEL = :b75_diesel_blend_75_biodiesel
+
+                # B99 diesel blend 99% biodiesel
+                B99_DIESEL_BLEND_99_BIODIESEL = :b99_diesel_blend_99_biodiesel
+
+                # Reserved for preauthorization use only
+                RESERVED_FOR_PREAUTHORIZATION_USE_ONLY = :reserved_for_preauthorization_use_only
+
+                # Undefined fuel reserved for proprietary use
+                UNDEFINED_FUEL_RESERVED_FOR_PROPRIETARY_USE = :undefined_fuel_reserved_for_proprietary_use
+
+                # Miscellaneous fuel
+                MISCELLANEOUS_FUEL = :miscellaneous_fuel
+
+                # Jet fuel
+                JET_FUEL = :jet_fuel
+
+                # Aviation fuel regular
+                AVIATION_FUEL_REGULAR = :aviation_fuel_regular
+
+                # Aviation fuel premium
+                AVIATION_FUEL_PREMIUM = :aviation_fuel_premium
+
+                # Aviation fuel JP8
+                AVIATION_FUEL_JP8 = :aviation_fuel_jp8
+
+                # Aviation fuel 4
+                AVIATION_FUEL_4 = :aviation_fuel_4
+
+                # Aviation fuel 5
+                AVIATION_FUEL_5 = :aviation_fuel_5
+
+                # Biojet diesel
+                BIOJET_DIESEL = :biojet_diesel
+
+                # Aviation biofuel gasoline
+                AVIATION_BIOFUEL_GASOLINE = :aviation_biofuel_gasoline
+
+                # Undefined aviation fuel reserved for proprietary use
+                UNDEFINED_AVIATION_FUEL_RESERVED_FOR_PROPRIETARY_USE =
+                  :undefined_aviation_fuel_reserved_for_proprietary_use
+
+                # Miscellaneous aviation fuel
+                MISCELLANEOUS_AVIATION_FUEL = :miscellaneous_aviation_fuel
+
+                # Marine fuel 1
+                MARINE_FUEL_1 = :marine_fuel_1
+
+                # Marine fuel 2
+                MARINE_FUEL_2 = :marine_fuel_2
+
+                # Marine fuel 3
+                MARINE_FUEL_3 = :marine_fuel_3
+
+                # Marine fuel 4
+                MARINE_FUEL_4 = :marine_fuel_4
+
+                # Marine fuel 5
+                MARINE_FUEL_5 = :marine_fuel_5
+
+                # Marine other
+                MARINE_OTHER = :marine_other
+
+                # Marine diesel
+                MARINE_DIESEL = :marine_diesel
+
+                # Miscellaneous marine fuel
+                MISCELLANEOUS_MARINE_FUEL = :miscellaneous_marine_fuel
+
+                # Kerosene low sulfur
+                KEROSENE_LOW_SULFUR = :kerosene_low_sulfur
+
+                # White gas
+                WHITE_GAS = :white_gas
+
+                # Heating oil
+                HEATING_OIL = :heating_oil
+
+                # Other fuel non-taxable
+                OTHER_FUEL_NON_TAXABLE = :other_fuel_non_taxable
+
+                # Kerosene ultra low sulfur
+                KEROSENE_ULTRA_LOW_SULFUR = :kerosene_ultra_low_sulfur
+
+                # Electric vehicle charging level 1 110 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT = :electric_vehicle_charging_level_1_110_volt
+
+                # Electric vehicle charging level 2 240 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_2_240_VOLT = :electric_vehicle_charging_level_2_240_volt
+
+                # Electric vehicle charging level 3 480 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
+
+                # Renewable diesel R95 or greater off-road non-taxable
+                RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
+                  :renewable_diesel_r95_or_greater_off_road_non_taxable
+
+                # Biodiesel blend 1% off-road non-taxable
+                BIODIESEL_BLEND_1_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_1_off_road_non_taxable
+
+                # Biodiesel blend 75% off-road non-taxable
+                BIODIESEL_BLEND_75_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_75_off_road_non_taxable
+
+                # Biodiesel blend 99% off-road non-taxable
+                BIODIESEL_BLEND_99_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_99_off_road_non_taxable
+
+                # Biodiesel blend 100% off-road non-taxable
+                BIODIESEL_BLEND_100_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_100_off_road_non_taxable
+
+                # Renewable diesel biodiesel 6% to 20% off-road non-taxable
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
+                  :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable
+
+                # Electric vehicle charging level 4 800 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_4_800_VOLT = :electric_vehicle_charging_level_4_800_volt
+
+                # Electric vehicle charging level 5 megawatt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_5_MEGAWATT = :electric_vehicle_charging_level_5_megawatt
+
+                # Hydrotreated vegetable oil 100
+                HYDROTREATED_VEGETABLE_OIL_100 = :hydrotreated_vegetable_oil_100
+
+                # Bio compressed natural gas
+                BIO_COMPRESSED_NATURAL_GAS = :bio_compressed_natural_gas
+
+                # Miscellaneous other fuel
+                MISCELLANEOUS_OTHER_FUEL = :miscellaneous_other_fuel
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # The unit of measure for the fuel quantity.
+              #
+              # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet#fuel_unit_of_measure
+              module FuelUnitOfMeasure
+                extend Increase::Internal::Type::Enum
+
+                # Liter
+                LITER = :liter
+
+                # US gallon
+                US_GALLON = :us_gallon
+
+                # Imperial gallon
+                IMPERIAL_GALLON = :imperial_gallon
+
+                # Kilogram
+                KILOGRAM = :kilogram
+
+                # Pound
+                POUND = :pound
+
+                # Charging minutes
+                CHARGING_MINUTES = :charging_minutes
+
+                # Kilowatt hour
+                KILOWATT_HOUR = :kilowatt_hour
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # The type of fleet purchase.
+              #
+              # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet#purchase_type
+              module PurchaseType
+                extend Increase::Internal::Type::Enum
+
+                # Fuel purchase
+                FUEL_PURCHASE = :fuel_purchase
+
+                # Non-fuel purchase
+                NON_FUEL_PURCHASE = :non_fuel_purchase
+
+                # Fuel and non-fuel purchase
+                FUEL_AND_NON_FUEL_PURCHASE = :fuel_and_non_fuel_purchase
+
+                # Fuel purchase with multiple fuel types
+                FUEL_PURCHASE_WITH_MULTIPLE_FUEL_TYPES = :fuel_purchase_with_multiple_fuel_types
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # The type of service provided.
+              #
+              # @see Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::Fleet#service_type
+              module ServiceType
+                extend Increase::Internal::Type::Enum
+
+                # Full service
+                FULL_SERVICE = :full_service
+
+                # Self service
+                SELF_SERVICE = :self_service
+
+                # High speed dispense
+                HIGH_SPEED_DISPENSE = :high_speed_dispense
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
@@ -5348,6 +5931,16 @@ module Increase
             #   @return [String, nil]
             required :customer_reference_identifier, String, nil?: true
 
+            # @!attribute fleet
+            #   Fields specific to fleet purchases.
+            #
+            #   @return [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet, nil]
+            required :fleet,
+                     -> {
+                       Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet
+                     },
+                     nil?: true
+
             # @!attribute local_tax_amount
             #   The state or provincial tax amount in minor units.
             #
@@ -5406,7 +5999,7 @@ module Increase
                      -> { Increase::Transaction::Source::CardSettlement::PurchaseDetails::Travel },
                      nil?: true
 
-            # @!method initialize(car_rental:, customer_reference_identifier:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
+            # @!method initialize(car_rental:, customer_reference_identifier:, fleet:, local_tax_amount:, local_tax_currency:, lodging:, national_tax_amount:, national_tax_currency:, purchase_identifier:, purchase_identifier_format:, travel:)
             #   Additional details about the card purchase, such as tax and industry-specific
             #   fields.
             #
@@ -5415,6 +6008,9 @@ module Increase
             #
             #   @param customer_reference_identifier [String, nil]
             #     An identifier from the merchant for the customer or consumer.
+            #
+            #   @param fleet [Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet, nil]
+            #     Fields specific to fleet purchases.
             #
             #   @param local_tax_amount [Integer, nil] The state or provincial tax amount in minor units.
             #
@@ -5646,6 +6242,576 @@ module Increase
 
                 # No show for specialized vehicle
                 NO_SHOW_FOR_SPECIALIZED_VEHICLE = :no_show_for_specialized_vehicle
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+            end
+
+            # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails#fleet
+            class Fleet < Increase::Internal::Type::BaseModel
+              # @!attribute employee_number
+              #   The fleet employee number.
+              #
+              #   @return [String, nil]
+              required :employee_number, String, nil?: true
+
+              # @!attribute fuel_quantity
+              #   The quantity of fuel purchased, given as a string containing a decimal number in
+              #   the indicated unit of measure.
+              #
+              #   @return [String, nil]
+              required :fuel_quantity, String, nil?: true
+
+              # @!attribute fuel_type
+              #   The type of fuel purchased.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType, nil]
+              required :fuel_type,
+                       enum: -> {
+                         Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType
+                       },
+                       nil?: true
+
+              # @!attribute fuel_unit_cost_amount
+              #   The cost per unit of fuel in minor units.
+              #
+              #   @return [Integer, nil]
+              required :fuel_unit_cost_amount, Integer, nil?: true
+
+              # @!attribute fuel_unit_cost_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+              #   cost.
+              #
+              #   @return [String, nil]
+              required :fuel_unit_cost_currency, String, nil?: true
+
+              # @!attribute fuel_unit_of_measure
+              #   The unit of measure for the fuel quantity.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure, nil]
+              required :fuel_unit_of_measure,
+                       enum: -> {
+                         Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure
+                       },
+                       nil?: true
+
+              # @!attribute gross_fuel_price_amount
+              #   The gross fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :gross_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute gross_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+              #   price.
+              #
+              #   @return [String, nil]
+              required :gross_fuel_price_currency, String, nil?: true
+
+              # @!attribute gross_non_fuel_price_amount
+              #   The gross non-fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :gross_non_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute gross_non_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+              #   non-fuel price.
+              #
+              #   @return [String, nil]
+              required :gross_non_fuel_price_currency, String, nil?: true
+
+              # @!attribute net_fuel_price_amount
+              #   The net fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :net_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute net_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+              #   price.
+              #
+              #   @return [String, nil]
+              required :net_fuel_price_currency, String, nil?: true
+
+              # @!attribute net_non_fuel_price_amount
+              #   The net non-fuel price in minor units.
+              #
+              #   @return [Integer, nil]
+              required :net_non_fuel_price_amount, Integer, nil?: true
+
+              # @!attribute net_non_fuel_price_currency
+              #   The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+              #   price.
+              #
+              #   @return [String, nil]
+              required :net_non_fuel_price_currency, String, nil?: true
+
+              # @!attribute odometer_reading
+              #   The odometer reading reported by the merchant.
+              #
+              #   @return [Integer, nil]
+              required :odometer_reading, Integer, nil?: true
+
+              # @!attribute purchase_type
+              #   The type of fleet purchase.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType, nil]
+              required :purchase_type,
+                       enum: -> {
+                         Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType
+                       },
+                       nil?: true
+
+              # @!attribute service_type
+              #   The type of service provided.
+              #
+              #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType, nil]
+              required :service_type,
+                       enum: -> {
+                         Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType
+                       },
+                       nil?: true
+
+              # @!attribute trailer_number
+              #   The fleet trailer number.
+              #
+              #   @return [String, nil]
+              required :trailer_number, String, nil?: true
+
+              # @!method initialize(employee_number:, fuel_quantity:, fuel_type:, fuel_unit_cost_amount:, fuel_unit_cost_currency:, fuel_unit_of_measure:, gross_fuel_price_amount:, gross_fuel_price_currency:, gross_non_fuel_price_amount:, gross_non_fuel_price_currency:, net_fuel_price_amount:, net_fuel_price_currency:, net_non_fuel_price_amount:, net_non_fuel_price_currency:, odometer_reading:, purchase_type:, service_type:, trailer_number:)
+              #   Fields specific to fleet purchases.
+              #
+              #   @param employee_number [String, nil] The fleet employee number.
+              #
+              #   @param fuel_quantity [String, nil]
+              #     The quantity of fuel purchased, given as a string containing a decimal number in
+              #     the indicated unit of measure.
+              #
+              #   @param fuel_type [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType, nil]
+              #     The type of fuel purchased.
+              #
+              #   @param fuel_unit_cost_amount [Integer, nil] The cost per unit of fuel in minor units.
+              #
+              #   @param fuel_unit_cost_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+              #     cost.
+              #
+              #   @param fuel_unit_of_measure [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure, nil]
+              #     The unit of measure for the fuel quantity.
+              #
+              #   @param gross_fuel_price_amount [Integer, nil] The gross fuel price in minor units.
+              #
+              #   @param gross_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+              #     price.
+              #
+              #   @param gross_non_fuel_price_amount [Integer, nil] The gross non-fuel price in minor units.
+              #
+              #   @param gross_non_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+              #     non-fuel price.
+              #
+              #   @param net_fuel_price_amount [Integer, nil] The net fuel price in minor units.
+              #
+              #   @param net_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+              #     price.
+              #
+              #   @param net_non_fuel_price_amount [Integer, nil] The net non-fuel price in minor units.
+              #
+              #   @param net_non_fuel_price_currency [String, nil]
+              #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+              #     price.
+              #
+              #   @param odometer_reading [Integer, nil] The odometer reading reported by the merchant.
+              #
+              #   @param purchase_type [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType, nil]
+              #     The type of fleet purchase.
+              #
+              #   @param service_type [Symbol, Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType, nil]
+              #     The type of service provided.
+              #
+              #   @param trailer_number [String, nil] The fleet trailer number.
+
+              # The type of fuel purchased.
+              #
+              # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet#fuel_type
+              module FuelType
+                extend Increase::Internal::Type::Enum
+
+                # Regular
+                REGULAR = :regular
+
+                # Mid or plus
+                MID_OR_PLUS = :mid_or_plus
+
+                # Premium or super
+                PREMIUM_OR_SUPER = :premium_or_super
+
+                # Mid or plus 2
+                MID_OR_PLUS_2 = :mid_or_plus_2
+
+                # Premium or super 2
+                PREMIUM_OR_SUPER_2 = :premium_or_super_2
+
+                # Regular ethanol 5% blend outside the United States
+                REGULAR_ETHANOL_5_BLEND_NON_US = :regular_ethanol_5_blend_non_us
+
+                # Mid or plus ethanol 5% blend outside the United States
+                MID_OR_PLUS_ETHANOL_5_BLEND_NON_US = :mid_or_plus_ethanol_5_blend_non_us
+
+                # Premium or super ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_ETHANOL_5_BLEND_NON_US = :premium_or_super_ethanol_5_blend_non_us
+
+                # Mid or plus 2 ethanol 5% blend outside the United States
+                MID_OR_PLUS_2_ETHANOL_5_BLEND_NON_US = :mid_or_plus_2_ethanol_5_blend_non_us
+
+                # Green gasoline regular
+                GREEN_GASOLINE_REGULAR = :green_gasoline_regular
+
+                # Green gasoline mid or plus
+                GREEN_GASOLINE_MID_OR_PLUS = :green_gasoline_mid_or_plus
+
+                # Green gasoline premium or super
+                GREEN_GASOLINE_PREMIUM_OR_SUPER = :green_gasoline_premium_or_super
+
+                # Regular diesel 2
+                REGULAR_DIESEL_2 = :regular_diesel_2
+
+                # Premium diesel 2
+                PREMIUM_DIESEL_2 = :premium_diesel_2
+
+                # Regular diesel 1
+                REGULAR_DIESEL_1 = :regular_diesel_1
+
+                # Compressed natural gas
+                COMPRESSED_NATURAL_GAS = :compressed_natural_gas
+
+                # Liquid propane gas
+                LIQUID_PROPANE_GAS = :liquid_propane_gas
+
+                # Liquid natural gas
+                LIQUID_NATURAL_GAS = :liquid_natural_gas
+
+                # E85
+                E85 = :e85
+
+                # Regular reformulated
+                REGULAR_REFORMULATED = :regular_reformulated
+
+                # Mid or plus reformulated
+                MID_OR_PLUS_REFORMULATED = :mid_or_plus_reformulated
+
+                # Premium or super reformulated
+                PREMIUM_OR_SUPER_REFORMULATED = :premium_or_super_reformulated
+
+                # Mid or plus 2 reformulated
+                MID_OR_PLUS_2_REFORMULATED = :mid_or_plus_2_reformulated
+
+                # Premium or super 2 reformulated
+                PREMIUM_OR_SUPER_2_REFORMULATED = :premium_or_super_2_reformulated
+
+                # Diesel off-road 1/2 non-taxable
+                DIESEL_OFF_ROAD_1_2_NON_TAXABLE = :diesel_off_road_1_2_non_taxable
+
+                # Diesel off-road non-taxable
+                DIESEL_OFF_ROAD_NON_TAXABLE = :diesel_off_road_non_taxable
+
+                # Biodiesel blend off-road non-taxable
+                BIODIESEL_BLEND_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_off_road_non_taxable
+
+                # Racing fuel
+                RACING_FUEL = :racing_fuel
+
+                # Mid or plus 2 ethanol 10% blend
+                MID_OR_PLUS_2_ETHANOL_10_BLEND = :mid_or_plus_2_ethanol_10_blend
+
+                # Premium or super 2 ethanol 10% blend
+                PREMIUM_OR_SUPER_2_ETHANOL_10_BLEND = :premium_or_super_2_ethanol_10_blend
+
+                # Mid or plus ethanol 2–15% blend
+                MID_OR_PLUS_ETHANOL_2_15_BLEND = :mid_or_plus_ethanol_2_15_blend
+
+                # Premium or super ethanol 2–15% blend
+                PREMIUM_OR_SUPER_ETHANOL_2_15_BLEND = :premium_or_super_ethanol_2_15_blend
+
+                # Premium or super 2 ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_2_ETHANOL_5_BLEND_NON_US = :premium_or_super_2_ethanol_5_blend_non_us
+
+                # Regular ethanol 10% blend
+                REGULAR_ETHANOL_10_BLEND = :regular_ethanol_10_blend
+
+                # Mid or plus ethanol 10% blend
+                MID_OR_PLUS_ETHANOL_10_BLEND = :mid_or_plus_ethanol_10_blend
+
+                # Premium or super ethanol 10% blend
+                PREMIUM_OR_SUPER_ETHANOL_10_BLEND = :premium_or_super_ethanol_10_blend
+
+                # B2 diesel blend 2% biodiesel
+                B2_DIESEL_BLEND_2_BIODIESEL = :b2_diesel_blend_2_biodiesel
+
+                # B5 diesel blend 5% biodiesel
+                B5_DIESEL_BLEND_5_BIODIESEL = :b5_diesel_blend_5_biodiesel
+
+                # B10 diesel blend 10% biodiesel
+                B10_DIESEL_BLEND_10_BIODIESEL = :b10_diesel_blend_10_biodiesel
+
+                # B11 diesel blend 11% biodiesel
+                B11_DIESEL_BLEND_11_BIODIESEL = :b11_diesel_blend_11_biodiesel
+
+                # B15 diesel blend 15% biodiesel
+                B15_DIESEL_BLEND_15_BIODIESEL = :b15_diesel_blend_15_biodiesel
+
+                # B20 diesel blend 20% biodiesel
+                B20_DIESEL_BLEND_20_BIODIESEL = :b20_diesel_blend_20_biodiesel
+
+                # B100 diesel blend 100% biodiesel
+                B100_DIESEL_BLEND_100_BIODIESEL = :b100_diesel_blend_100_biodiesel
+
+                # B1 diesel blend 1% biodiesel
+                B1_DIESEL_BLEND_1_BIODIESEL = :b1_diesel_blend_1_biodiesel
+
+                # Additized diesel 2
+                ADDITIZED_DIESEL_2 = :additized_diesel_2
+
+                # Additized diesel 3
+                ADDITIZED_DIESEL_3 = :additized_diesel_3
+
+                # B7 diesel blend 7% biodiesel outside the United States
+                B7_DIESEL_BLEND_7_BIODIESEL_NON_US = :b7_diesel_blend_7_biodiesel_non_us
+
+                # B7 premium diesel blend 7% biodiesel outside the United States
+                B7_PREMIUM_DIESEL_BLEND_7_BIODIESEL_NON_US = :b7_premium_diesel_blend_7_biodiesel_non_us
+
+                # Renewable diesel R95 or greater
+                RENEWABLE_DIESEL_R95_OR_GREATER = :renewable_diesel_r95_or_greater
+
+                # Renewable diesel biodiesel 6% to 20%
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20 = :renewable_diesel_biodiesel_6_to_20
+
+                # Diesel exhaust fluid pump
+                DIESEL_EXHAUST_FLUID_PUMP = :diesel_exhaust_fluid_pump
+
+                # Premium diesel 1
+                PREMIUM_DIESEL_1 = :premium_diesel_1
+
+                # Regular ethanol 15% blend
+                REGULAR_ETHANOL_15_BLEND = :regular_ethanol_15_blend
+
+                # Mid or plus ethanol 15% blend
+                MID_OR_PLUS_ETHANOL_15_BLEND = :mid_or_plus_ethanol_15_blend
+
+                # Premium or super ethanol 15% blend
+                PREMIUM_OR_SUPER_ETHANOL_15_BLEND = :premium_or_super_ethanol_15_blend
+
+                # Premium diesel blend less than 20% biodiesel
+                PREMIUM_DIESEL_BLEND_LESS_THAN_20_BIODIESEL = :premium_diesel_blend_less_than_20_biodiesel
+
+                # Premium diesel blend 20% or more biodiesel
+                PREMIUM_DIESEL_BLEND_20_OR_MORE_BIODIESEL = :premium_diesel_blend_20_or_more_biodiesel
+
+                # B75 diesel blend 75% biodiesel
+                B75_DIESEL_BLEND_75_BIODIESEL = :b75_diesel_blend_75_biodiesel
+
+                # B99 diesel blend 99% biodiesel
+                B99_DIESEL_BLEND_99_BIODIESEL = :b99_diesel_blend_99_biodiesel
+
+                # Reserved for preauthorization use only
+                RESERVED_FOR_PREAUTHORIZATION_USE_ONLY = :reserved_for_preauthorization_use_only
+
+                # Undefined fuel reserved for proprietary use
+                UNDEFINED_FUEL_RESERVED_FOR_PROPRIETARY_USE = :undefined_fuel_reserved_for_proprietary_use
+
+                # Miscellaneous fuel
+                MISCELLANEOUS_FUEL = :miscellaneous_fuel
+
+                # Jet fuel
+                JET_FUEL = :jet_fuel
+
+                # Aviation fuel regular
+                AVIATION_FUEL_REGULAR = :aviation_fuel_regular
+
+                # Aviation fuel premium
+                AVIATION_FUEL_PREMIUM = :aviation_fuel_premium
+
+                # Aviation fuel JP8
+                AVIATION_FUEL_JP8 = :aviation_fuel_jp8
+
+                # Aviation fuel 4
+                AVIATION_FUEL_4 = :aviation_fuel_4
+
+                # Aviation fuel 5
+                AVIATION_FUEL_5 = :aviation_fuel_5
+
+                # Biojet diesel
+                BIOJET_DIESEL = :biojet_diesel
+
+                # Aviation biofuel gasoline
+                AVIATION_BIOFUEL_GASOLINE = :aviation_biofuel_gasoline
+
+                # Undefined aviation fuel reserved for proprietary use
+                UNDEFINED_AVIATION_FUEL_RESERVED_FOR_PROPRIETARY_USE =
+                  :undefined_aviation_fuel_reserved_for_proprietary_use
+
+                # Miscellaneous aviation fuel
+                MISCELLANEOUS_AVIATION_FUEL = :miscellaneous_aviation_fuel
+
+                # Marine fuel 1
+                MARINE_FUEL_1 = :marine_fuel_1
+
+                # Marine fuel 2
+                MARINE_FUEL_2 = :marine_fuel_2
+
+                # Marine fuel 3
+                MARINE_FUEL_3 = :marine_fuel_3
+
+                # Marine fuel 4
+                MARINE_FUEL_4 = :marine_fuel_4
+
+                # Marine fuel 5
+                MARINE_FUEL_5 = :marine_fuel_5
+
+                # Marine other
+                MARINE_OTHER = :marine_other
+
+                # Marine diesel
+                MARINE_DIESEL = :marine_diesel
+
+                # Miscellaneous marine fuel
+                MISCELLANEOUS_MARINE_FUEL = :miscellaneous_marine_fuel
+
+                # Kerosene low sulfur
+                KEROSENE_LOW_SULFUR = :kerosene_low_sulfur
+
+                # White gas
+                WHITE_GAS = :white_gas
+
+                # Heating oil
+                HEATING_OIL = :heating_oil
+
+                # Other fuel non-taxable
+                OTHER_FUEL_NON_TAXABLE = :other_fuel_non_taxable
+
+                # Kerosene ultra low sulfur
+                KEROSENE_ULTRA_LOW_SULFUR = :kerosene_ultra_low_sulfur
+
+                # Electric vehicle charging level 1 110 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT = :electric_vehicle_charging_level_1_110_volt
+
+                # Electric vehicle charging level 2 240 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_2_240_VOLT = :electric_vehicle_charging_level_2_240_volt
+
+                # Electric vehicle charging level 3 480 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
+
+                # Renewable diesel R95 or greater off-road non-taxable
+                RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
+                  :renewable_diesel_r95_or_greater_off_road_non_taxable
+
+                # Biodiesel blend 1% off-road non-taxable
+                BIODIESEL_BLEND_1_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_1_off_road_non_taxable
+
+                # Biodiesel blend 75% off-road non-taxable
+                BIODIESEL_BLEND_75_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_75_off_road_non_taxable
+
+                # Biodiesel blend 99% off-road non-taxable
+                BIODIESEL_BLEND_99_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_99_off_road_non_taxable
+
+                # Biodiesel blend 100% off-road non-taxable
+                BIODIESEL_BLEND_100_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_100_off_road_non_taxable
+
+                # Renewable diesel biodiesel 6% to 20% off-road non-taxable
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
+                  :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable
+
+                # Electric vehicle charging level 4 800 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_4_800_VOLT = :electric_vehicle_charging_level_4_800_volt
+
+                # Electric vehicle charging level 5 megawatt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_5_MEGAWATT = :electric_vehicle_charging_level_5_megawatt
+
+                # Hydrotreated vegetable oil 100
+                HYDROTREATED_VEGETABLE_OIL_100 = :hydrotreated_vegetable_oil_100
+
+                # Bio compressed natural gas
+                BIO_COMPRESSED_NATURAL_GAS = :bio_compressed_natural_gas
+
+                # Miscellaneous other fuel
+                MISCELLANEOUS_OTHER_FUEL = :miscellaneous_other_fuel
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # The unit of measure for the fuel quantity.
+              #
+              # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet#fuel_unit_of_measure
+              module FuelUnitOfMeasure
+                extend Increase::Internal::Type::Enum
+
+                # Liter
+                LITER = :liter
+
+                # US gallon
+                US_GALLON = :us_gallon
+
+                # Imperial gallon
+                IMPERIAL_GALLON = :imperial_gallon
+
+                # Kilogram
+                KILOGRAM = :kilogram
+
+                # Pound
+                POUND = :pound
+
+                # Charging minutes
+                CHARGING_MINUTES = :charging_minutes
+
+                # Kilowatt hour
+                KILOWATT_HOUR = :kilowatt_hour
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # The type of fleet purchase.
+              #
+              # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet#purchase_type
+              module PurchaseType
+                extend Increase::Internal::Type::Enum
+
+                # Fuel purchase
+                FUEL_PURCHASE = :fuel_purchase
+
+                # Non-fuel purchase
+                NON_FUEL_PURCHASE = :non_fuel_purchase
+
+                # Fuel and non-fuel purchase
+                FUEL_AND_NON_FUEL_PURCHASE = :fuel_and_non_fuel_purchase
+
+                # Fuel purchase with multiple fuel types
+                FUEL_PURCHASE_WITH_MULTIPLE_FUEL_TYPES = :fuel_purchase_with_multiple_fuel_types
+
+                # @!method self.values
+                #   @return [Array<Symbol>]
+              end
+
+              # The type of service provided.
+              #
+              # @see Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::Fleet#service_type
+              module ServiceType
+                extend Increase::Internal::Type::Enum
+
+                # Full service
+                FULL_SERVICE = :full_service
+
+                # Self service
+                SELF_SERVICE = :self_service
+
+                # High speed dispense
+                HIGH_SPEED_DISPENSE = :high_speed_dispense
 
                 # @!method self.values
                 #   @return [Array<Symbol>]
