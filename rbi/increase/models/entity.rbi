@@ -828,6 +828,13 @@ module Increase
                     Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::Method::TaggedSymbol
                   )
 
+                # The last four digits of a social security number.
+                SOCIAL_SECURITY_NUMBER_LAST4 =
+                  T.let(
+                    :social_security_number_last4,
+                    Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::Method::TaggedSymbol
+                  )
+
                 # An individual taxpayer identification number (ITIN).
                 INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
                   T.let(
@@ -1585,6 +1592,13 @@ module Increase
                   Increase::Entity::Joint::Individual::Identification::Method::TaggedSymbol
                 )
 
+              # The last four digits of a social security number.
+              SOCIAL_SECURITY_NUMBER_LAST4 =
+                T.let(
+                  :social_security_number_last4,
+                  Increase::Entity::Joint::Individual::Identification::Method::TaggedSymbol
+                )
+
               # An individual taxpayer identification number (ITIN).
               INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
                 T.let(
@@ -1849,6 +1863,13 @@ module Increase
             SOCIAL_SECURITY_NUMBER =
               T.let(
                 :social_security_number,
+                Increase::Entity::NaturalPerson::Identification::Method::TaggedSymbol
+              )
+
+            # The last four digits of a social security number.
+            SOCIAL_SECURITY_NUMBER_LAST4 =
+              T.let(
+                :social_security_number_last4,
                 Increase::Entity::NaturalPerson::Identification::Method::TaggedSymbol
               )
 
@@ -2387,6 +2408,13 @@ module Increase
               SOCIAL_SECURITY_NUMBER =
                 T.let(
                   :social_security_number,
+                  Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
+                )
+
+              # The last four digits of a social security number.
+              SOCIAL_SECURITY_NUMBER_LAST4 =
+                T.let(
+                  :social_security_number_last4,
                   Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
                 )
 
@@ -3086,6 +3114,13 @@ module Increase
                   Increase::Entity::Trust::Grantor::Identification::Method::TaggedSymbol
                 )
 
+              # The last four digits of a social security number.
+              SOCIAL_SECURITY_NUMBER_LAST4 =
+                T.let(
+                  :social_security_number_last4,
+                  Increase::Entity::Trust::Grantor::Identification::Method::TaggedSymbol
+                )
+
               # An individual taxpayer identification number (ITIN).
               INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
                 T.let(
@@ -3426,6 +3461,13 @@ module Increase
                 SOCIAL_SECURITY_NUMBER =
                   T.let(
                     :social_security_number,
+                    Increase::Entity::Trust::Trustee::Individual::Identification::Method::TaggedSymbol
+                  )
+
+                # The last four digits of a social security number.
+                SOCIAL_SECURITY_NUMBER_LAST4 =
+                  T.let(
+                    :social_security_number_last4,
                     Increase::Entity::Trust::Trustee::Individual::Identification::Method::TaggedSymbol
                   )
 
