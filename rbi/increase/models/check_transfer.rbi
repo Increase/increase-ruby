@@ -96,8 +96,8 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
 
-      # If the check has been mailed by Increase, this will contain details of the
-      # shipment.
+      # Once the check has been mailed, this will contain details about the shipment.
+      # Only available when `fulfillment_method` is equal to `physical_check`.
       sig { returns(T.nilable(Increase::CheckTransfer::Mailing)) }
       attr_reader :mailing
 
@@ -154,7 +154,9 @@ module Increase
       end
       attr_writer :stop_payment_request
 
-      # After the transfer is submitted, this will contain supplemental details.
+      # Once the check has been submitted to our printer, this will contain details
+      # about the submission. Only available when `fulfillment_method` is equal to
+      # `physical_check`.
       sig { returns(T.nilable(Increase::CheckTransfer::Submission)) }
       attr_reader :submission
 
@@ -263,8 +265,8 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
-        # If the check has been mailed by Increase, this will contain details of the
-        # shipment.
+        # Once the check has been mailed, this will contain details about the shipment.
+        # Only available when `fulfillment_method` is equal to `physical_check`.
         mailing:,
         # The ID for the pending transaction representing the transfer. A pending
         # transaction is created when the transfer
@@ -284,7 +286,9 @@ module Increase
         # After a stop-payment is requested on the check, this will contain supplemental
         # details.
         stop_payment_request:,
-        # After the transfer is submitted, this will contain supplemental details.
+        # Once the check has been submitted to our printer, this will contain details
+        # about the submission. Only available when `fulfillment_method` is equal to
+        # `physical_check`.
         submission:,
         # Details relating to the custom fulfillment you will perform. Will be present if
         # and only if `fulfillment_method` is equal to `third_party`.
@@ -734,8 +738,8 @@ module Increase
         sig { returns(Time) }
         attr_accessor :mailed_at
 
-        # If the check has been mailed by Increase, this will contain details of the
-        # shipment.
+        # Once the check has been mailed, this will contain details about the shipment.
+        # Only available when `fulfillment_method` is equal to `physical_check`.
         sig { params(mailed_at: Time).returns(T.attached_class) }
         def self.new(
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -1629,7 +1633,9 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :tracking_number
 
-        # After the transfer is submitted, this will contain supplemental details.
+        # Once the check has been submitted to our printer, this will contain details
+        # about the submission. Only available when `fulfillment_method` is equal to
+        # `physical_check`.
         sig do
           params(
             preview_file_id: T.nilable(String),
