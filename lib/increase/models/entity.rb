@@ -546,6 +546,9 @@ module Increase
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER = :social_security_number
 
+                # The last four digits of a social security number.
+                SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
+
                 # An individual taxpayer identification number (ITIN).
                 INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
 
@@ -949,6 +952,9 @@ module Increase
               # A social security number.
               SOCIAL_SECURITY_NUMBER = :social_security_number
 
+              # The last four digits of a social security number.
+              SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
+
               # An individual taxpayer identification number (ITIN).
               INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
 
@@ -1101,6 +1107,9 @@ module Increase
 
             # A social security number.
             SOCIAL_SECURITY_NUMBER = :social_security_number
+
+            # The last four digits of a social security number.
+            SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
             # An individual taxpayer identification number (ITIN).
             INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
@@ -1423,6 +1432,9 @@ module Increase
 
               # A social security number.
               SOCIAL_SECURITY_NUMBER = :social_security_number
+
+              # The last four digits of a social security number.
+              SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
               # An individual taxpayer identification number (ITIN).
               INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
@@ -1846,6 +1858,9 @@ module Increase
               # A social security number.
               SOCIAL_SECURITY_NUMBER = :social_security_number
 
+              # The last four digits of a social security number.
+              SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
+
               # An individual taxpayer identification number (ITIN).
               INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number
 
@@ -2021,6 +2036,9 @@ module Increase
 
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER = :social_security_number
+
+                # The last four digits of a social security number.
+                SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
                 # An individual taxpayer identification number (ITIN).
                 INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER = :individual_taxpayer_identification_number

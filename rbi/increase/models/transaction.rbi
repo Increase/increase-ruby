@@ -6642,6 +6642,26 @@ module Increase
             sig { returns(T.nilable(String)) }
             attr_accessor :customer_reference_identifier
 
+            # Fields specific to fleet purchases.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet
+                )
+              )
+            end
+            attr_reader :fleet
+
+            sig do
+              params(
+                fleet:
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::OrHash
+                  )
+              ).void
+            end
+            attr_writer :fleet
+
             # The state or provincial tax amount in minor units.
             sig { returns(T.nilable(Integer)) }
             attr_accessor :local_tax_amount
@@ -6723,6 +6743,10 @@ module Increase
                     Increase::Transaction::Source::CardRefund::PurchaseDetails::CarRental::OrHash
                   ),
                 customer_reference_identifier: T.nilable(String),
+                fleet:
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::OrHash
+                  ),
                 local_tax_amount: T.nilable(Integer),
                 local_tax_currency: T.nilable(String),
                 lodging:
@@ -6747,6 +6771,8 @@ module Increase
               car_rental:,
               # An identifier from the merchant for the customer or consumer.
               customer_reference_identifier:,
+              # Fields specific to fleet purchases.
+              fleet:,
               # The state or provincial tax amount in minor units.
               local_tax_amount:,
               # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax
@@ -6776,6 +6802,10 @@ module Increase
                       Increase::Transaction::Source::CardRefund::PurchaseDetails::CarRental
                     ),
                   customer_reference_identifier: T.nilable(String),
+                  fleet:
+                    T.nilable(
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet
+                    ),
                   local_tax_amount: T.nilable(Integer),
                   local_tax_currency: T.nilable(String),
                   lodging:
@@ -7092,6 +7122,1132 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::Transaction::Source::CardRefund::PurchaseDetails::CarRental::NoShowIndicator::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            class Fleet < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The fleet employee number.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :employee_number
+
+              # The quantity of fuel purchased, given as a string containing a decimal number in
+              # the indicated unit of measure.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :fuel_quantity
+
+              # The type of fuel purchased.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :fuel_type
+
+              # The cost per unit of fuel in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :fuel_unit_cost_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+              # cost.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :fuel_unit_cost_currency
+
+              # The unit of measure for the fuel quantity.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :fuel_unit_of_measure
+
+              # The gross fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :gross_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+              # price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :gross_fuel_price_currency
+
+              # The gross non-fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :gross_non_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+              # non-fuel price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :gross_non_fuel_price_currency
+
+              # The net fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :net_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+              # price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :net_fuel_price_currency
+
+              # The net non-fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :net_non_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+              # price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :net_non_fuel_price_currency
+
+              # The odometer reading reported by the merchant.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :odometer_reading
+
+              # The type of fleet purchase.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :purchase_type
+
+              # The type of service provided.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :service_type
+
+              # The fleet trailer number.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :trailer_number
+
+              # Fields specific to fleet purchases.
+              sig do
+                params(
+                  employee_number: T.nilable(String),
+                  fuel_quantity: T.nilable(String),
+                  fuel_type:
+                    T.nilable(
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::OrSymbol
+                    ),
+                  fuel_unit_cost_amount: T.nilable(Integer),
+                  fuel_unit_cost_currency: T.nilable(String),
+                  fuel_unit_of_measure:
+                    T.nilable(
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::OrSymbol
+                    ),
+                  gross_fuel_price_amount: T.nilable(Integer),
+                  gross_fuel_price_currency: T.nilable(String),
+                  gross_non_fuel_price_amount: T.nilable(Integer),
+                  gross_non_fuel_price_currency: T.nilable(String),
+                  net_fuel_price_amount: T.nilable(Integer),
+                  net_fuel_price_currency: T.nilable(String),
+                  net_non_fuel_price_amount: T.nilable(Integer),
+                  net_non_fuel_price_currency: T.nilable(String),
+                  odometer_reading: T.nilable(Integer),
+                  purchase_type:
+                    T.nilable(
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::OrSymbol
+                    ),
+                  service_type:
+                    T.nilable(
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType::OrSymbol
+                    ),
+                  trailer_number: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The fleet employee number.
+                employee_number:,
+                # The quantity of fuel purchased, given as a string containing a decimal number in
+                # the indicated unit of measure.
+                fuel_quantity:,
+                # The type of fuel purchased.
+                fuel_type:,
+                # The cost per unit of fuel in minor units.
+                fuel_unit_cost_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+                # cost.
+                fuel_unit_cost_currency:,
+                # The unit of measure for the fuel quantity.
+                fuel_unit_of_measure:,
+                # The gross fuel price in minor units.
+                gross_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+                # price.
+                gross_fuel_price_currency:,
+                # The gross non-fuel price in minor units.
+                gross_non_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+                # non-fuel price.
+                gross_non_fuel_price_currency:,
+                # The net fuel price in minor units.
+                net_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+                # price.
+                net_fuel_price_currency:,
+                # The net non-fuel price in minor units.
+                net_non_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+                # price.
+                net_non_fuel_price_currency:,
+                # The odometer reading reported by the merchant.
+                odometer_reading:,
+                # The type of fleet purchase.
+                purchase_type:,
+                # The type of service provided.
+                service_type:,
+                # The fleet trailer number.
+                trailer_number:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    employee_number: T.nilable(String),
+                    fuel_quantity: T.nilable(String),
+                    fuel_type:
+                      T.nilable(
+                        Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                      ),
+                    fuel_unit_cost_amount: T.nilable(Integer),
+                    fuel_unit_cost_currency: T.nilable(String),
+                    fuel_unit_of_measure:
+                      T.nilable(
+                        Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                      ),
+                    gross_fuel_price_amount: T.nilable(Integer),
+                    gross_fuel_price_currency: T.nilable(String),
+                    gross_non_fuel_price_amount: T.nilable(Integer),
+                    gross_non_fuel_price_currency: T.nilable(String),
+                    net_fuel_price_amount: T.nilable(Integer),
+                    net_fuel_price_currency: T.nilable(String),
+                    net_non_fuel_price_amount: T.nilable(Integer),
+                    net_non_fuel_price_currency: T.nilable(String),
+                    odometer_reading: T.nilable(Integer),
+                    purchase_type:
+                      T.nilable(
+                        Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                      ),
+                    service_type:
+                      T.nilable(
+                        Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                      ),
+                    trailer_number: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The type of fuel purchased.
+              module FuelType
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Regular
+                REGULAR =
+                  T.let(
+                    :regular,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus
+                MID_OR_PLUS =
+                  T.let(
+                    :mid_or_plus,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super
+                PREMIUM_OR_SUPER =
+                  T.let(
+                    :premium_or_super,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2
+                MID_OR_PLUS_2 =
+                  T.let(
+                    :mid_or_plus_2,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2
+                PREMIUM_OR_SUPER_2 =
+                  T.let(
+                    :premium_or_super_2,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular ethanol 5% blend outside the United States
+                REGULAR_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :regular_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 5% blend outside the United States
+                MID_OR_PLUS_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :mid_or_plus_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :premium_or_super_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Ethanol 7.7% blend
+                ETHANOL_7_7_BLEND =
+                  T.let(
+                    :ethanol_7_7_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2 ethanol 5% blend outside the United States
+                MID_OR_PLUS_2_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :mid_or_plus_2_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Green gasoline regular
+                GREEN_GASOLINE_REGULAR =
+                  T.let(
+                    :green_gasoline_regular,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Green gasoline mid or plus
+                GREEN_GASOLINE_MID_OR_PLUS =
+                  T.let(
+                    :green_gasoline_mid_or_plus,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Green gasoline premium or super
+                GREEN_GASOLINE_PREMIUM_OR_SUPER =
+                  T.let(
+                    :green_gasoline_premium_or_super,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular diesel 2
+                REGULAR_DIESEL_2 =
+                  T.let(
+                    :regular_diesel_2,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel 2
+                PREMIUM_DIESEL_2 =
+                  T.let(
+                    :premium_diesel_2,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular diesel 1
+                REGULAR_DIESEL_1 =
+                  T.let(
+                    :regular_diesel_1,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Compressed natural gas
+                COMPRESSED_NATURAL_GAS =
+                  T.let(
+                    :compressed_natural_gas,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Liquid propane gas
+                LIQUID_PROPANE_GAS =
+                  T.let(
+                    :liquid_propane_gas,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Liquid natural gas
+                LIQUID_NATURAL_GAS =
+                  T.let(
+                    :liquid_natural_gas,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # E85
+                E85 =
+                  T.let(
+                    :e85,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular reformulated
+                REGULAR_REFORMULATED =
+                  T.let(
+                    :regular_reformulated,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus reformulated
+                MID_OR_PLUS_REFORMULATED =
+                  T.let(
+                    :mid_or_plus_reformulated,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super reformulated
+                PREMIUM_OR_SUPER_REFORMULATED =
+                  T.let(
+                    :premium_or_super_reformulated,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2 reformulated
+                MID_OR_PLUS_2_REFORMULATED =
+                  T.let(
+                    :mid_or_plus_2_reformulated,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2 reformulated
+                PREMIUM_OR_SUPER_2_REFORMULATED =
+                  T.let(
+                    :premium_or_super_2_reformulated,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel off-road 1/2 non-taxable
+                DIESEL_OFF_ROAD_1_2_NON_TAXABLE =
+                  T.let(
+                    :diesel_off_road_1_2_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel off-road non-taxable
+                DIESEL_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend off-road non-taxable
+                BIODIESEL_BLEND_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Racing fuel
+                RACING_FUEL =
+                  T.let(
+                    :racing_fuel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2 ethanol 10% blend
+                MID_OR_PLUS_2_ETHANOL_10_BLEND =
+                  T.let(
+                    :mid_or_plus_2_ethanol_10_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2 ethanol 10% blend
+                PREMIUM_OR_SUPER_2_ETHANOL_10_BLEND =
+                  T.let(
+                    :premium_or_super_2_ethanol_10_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 2–15% blend
+                MID_OR_PLUS_ETHANOL_2_15_BLEND =
+                  T.let(
+                    :mid_or_plus_ethanol_2_15_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 2–15% blend
+                PREMIUM_OR_SUPER_ETHANOL_2_15_BLEND =
+                  T.let(
+                    :premium_or_super_ethanol_2_15_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2 ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_2_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :premium_or_super_2_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular ethanol 10% blend
+                REGULAR_ETHANOL_10_BLEND =
+                  T.let(
+                    :regular_ethanol_10_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 10% blend
+                MID_OR_PLUS_ETHANOL_10_BLEND =
+                  T.let(
+                    :mid_or_plus_ethanol_10_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 10% blend
+                PREMIUM_OR_SUPER_ETHANOL_10_BLEND =
+                  T.let(
+                    :premium_or_super_ethanol_10_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B2 diesel blend 2% biodiesel
+                B2_DIESEL_BLEND_2_BIODIESEL =
+                  T.let(
+                    :b2_diesel_blend_2_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B5 diesel blend 5% biodiesel
+                B5_DIESEL_BLEND_5_BIODIESEL =
+                  T.let(
+                    :b5_diesel_blend_5_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B10 diesel blend 10% biodiesel
+                B10_DIESEL_BLEND_10_BIODIESEL =
+                  T.let(
+                    :b10_diesel_blend_10_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B11 diesel blend 11% biodiesel
+                B11_DIESEL_BLEND_11_BIODIESEL =
+                  T.let(
+                    :b11_diesel_blend_11_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B15 diesel blend 15% biodiesel
+                B15_DIESEL_BLEND_15_BIODIESEL =
+                  T.let(
+                    :b15_diesel_blend_15_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B20 diesel blend 20% biodiesel
+                B20_DIESEL_BLEND_20_BIODIESEL =
+                  T.let(
+                    :b20_diesel_blend_20_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B100 diesel blend 100% biodiesel
+                B100_DIESEL_BLEND_100_BIODIESEL =
+                  T.let(
+                    :b100_diesel_blend_100_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B1 diesel blend 1% biodiesel
+                B1_DIESEL_BLEND_1_BIODIESEL =
+                  T.let(
+                    :b1_diesel_blend_1_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Additized diesel 2
+                ADDITIZED_DIESEL_2 =
+                  T.let(
+                    :additized_diesel_2,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Additized diesel 3
+                ADDITIZED_DIESEL_3 =
+                  T.let(
+                    :additized_diesel_3,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B7 diesel blend 7% biodiesel outside the United States
+                B7_DIESEL_BLEND_7_BIODIESEL_NON_US =
+                  T.let(
+                    :b7_diesel_blend_7_biodiesel_non_us,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B7 premium diesel blend 7% biodiesel outside the United States
+                B7_PREMIUM_DIESEL_BLEND_7_BIODIESEL_NON_US =
+                  T.let(
+                    :b7_premium_diesel_blend_7_biodiesel_non_us,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel R95 or greater
+                RENEWABLE_DIESEL_R95_OR_GREATER =
+                  T.let(
+                    :renewable_diesel_r95_or_greater,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel biodiesel 6% to 20%
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20 =
+                  T.let(
+                    :renewable_diesel_biodiesel_6_to_20,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel exhaust fluid pump
+                DIESEL_EXHAUST_FLUID_PUMP =
+                  T.let(
+                    :diesel_exhaust_fluid_pump,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel 1
+                PREMIUM_DIESEL_1 =
+                  T.let(
+                    :premium_diesel_1,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular ethanol 15% blend
+                REGULAR_ETHANOL_15_BLEND =
+                  T.let(
+                    :regular_ethanol_15_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 15% blend
+                MID_OR_PLUS_ETHANOL_15_BLEND =
+                  T.let(
+                    :mid_or_plus_ethanol_15_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 15% blend
+                PREMIUM_OR_SUPER_ETHANOL_15_BLEND =
+                  T.let(
+                    :premium_or_super_ethanol_15_blend,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel blend less than 20% biodiesel
+                PREMIUM_DIESEL_BLEND_LESS_THAN_20_BIODIESEL =
+                  T.let(
+                    :premium_diesel_blend_less_than_20_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel blend 20% or more biodiesel
+                PREMIUM_DIESEL_BLEND_20_OR_MORE_BIODIESEL =
+                  T.let(
+                    :premium_diesel_blend_20_or_more_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B75 diesel blend 75% biodiesel
+                B75_DIESEL_BLEND_75_BIODIESEL =
+                  T.let(
+                    :b75_diesel_blend_75_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B99 diesel blend 99% biodiesel
+                B99_DIESEL_BLEND_99_BIODIESEL =
+                  T.let(
+                    :b99_diesel_blend_99_biodiesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Reserved for preauthorization use only
+                RESERVED_FOR_PREAUTHORIZATION_USE_ONLY =
+                  T.let(
+                    :reserved_for_preauthorization_use_only,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Undefined fuel reserved for proprietary use
+                UNDEFINED_FUEL_RESERVED_FOR_PROPRIETARY_USE =
+                  T.let(
+                    :undefined_fuel_reserved_for_proprietary_use,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous fuel
+                MISCELLANEOUS_FUEL =
+                  T.let(
+                    :miscellaneous_fuel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Jet fuel
+                JET_FUEL =
+                  T.let(
+                    :jet_fuel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel regular
+                AVIATION_FUEL_REGULAR =
+                  T.let(
+                    :aviation_fuel_regular,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel premium
+                AVIATION_FUEL_PREMIUM =
+                  T.let(
+                    :aviation_fuel_premium,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel JP8
+                AVIATION_FUEL_JP8 =
+                  T.let(
+                    :aviation_fuel_jp8,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel 4
+                AVIATION_FUEL_4 =
+                  T.let(
+                    :aviation_fuel_4,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel 5
+                AVIATION_FUEL_5 =
+                  T.let(
+                    :aviation_fuel_5,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biojet diesel
+                BIOJET_DIESEL =
+                  T.let(
+                    :biojet_diesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation biofuel gasoline
+                AVIATION_BIOFUEL_GASOLINE =
+                  T.let(
+                    :aviation_biofuel_gasoline,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Undefined aviation fuel reserved for proprietary use
+                UNDEFINED_AVIATION_FUEL_RESERVED_FOR_PROPRIETARY_USE =
+                  T.let(
+                    :undefined_aviation_fuel_reserved_for_proprietary_use,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous aviation fuel
+                MISCELLANEOUS_AVIATION_FUEL =
+                  T.let(
+                    :miscellaneous_aviation_fuel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 1
+                MARINE_FUEL_1 =
+                  T.let(
+                    :marine_fuel_1,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 2
+                MARINE_FUEL_2 =
+                  T.let(
+                    :marine_fuel_2,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 3
+                MARINE_FUEL_3 =
+                  T.let(
+                    :marine_fuel_3,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 4
+                MARINE_FUEL_4 =
+                  T.let(
+                    :marine_fuel_4,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 5
+                MARINE_FUEL_5 =
+                  T.let(
+                    :marine_fuel_5,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine other
+                MARINE_OTHER =
+                  T.let(
+                    :marine_other,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine diesel
+                MARINE_DIESEL =
+                  T.let(
+                    :marine_diesel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous marine fuel
+                MISCELLANEOUS_MARINE_FUEL =
+                  T.let(
+                    :miscellaneous_marine_fuel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Kerosene low sulfur
+                KEROSENE_LOW_SULFUR =
+                  T.let(
+                    :kerosene_low_sulfur,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # White gas
+                WHITE_GAS =
+                  T.let(
+                    :white_gas,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Heating oil
+                HEATING_OIL =
+                  T.let(
+                    :heating_oil,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Other fuel non-taxable
+                OTHER_FUEL_NON_TAXABLE =
+                  T.let(
+                    :other_fuel_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Kerosene ultra low sulfur
+                KEROSENE_ULTRA_LOW_SULFUR =
+                  T.let(
+                    :kerosene_ultra_low_sulfur,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 1 110 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_1_110_volt,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 2 240 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_2_240_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_2_240_volt,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 3 480 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_3_480_volt,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel R95 or greater off-road non-taxable
+                RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :renewable_diesel_r95_or_greater_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 1% off-road non-taxable
+                BIODIESEL_BLEND_1_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_1_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 75% off-road non-taxable
+                BIODIESEL_BLEND_75_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_75_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 99% off-road non-taxable
+                BIODIESEL_BLEND_99_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_99_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 100% off-road non-taxable
+                BIODIESEL_BLEND_100_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_100_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel biodiesel 6% to 20% off-road non-taxable
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 4 800 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_4_800_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_4_800_volt,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 5 megawatt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_5_MEGAWATT =
+                  T.let(
+                    :electric_vehicle_charging_level_5_megawatt,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Hydrotreated vegetable oil 100
+                HYDROTREATED_VEGETABLE_OIL_100 =
+                  T.let(
+                    :hydrotreated_vegetable_oil_100,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Bio compressed natural gas
+                BIO_COMPRESSED_NATURAL_GAS =
+                  T.let(
+                    :bio_compressed_natural_gas,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous other fuel
+                MISCELLANEOUS_OTHER_FUEL =
+                  T.let(
+                    :miscellaneous_other_fuel,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The unit of measure for the fuel quantity.
+              module FuelUnitOfMeasure
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Liter
+                LITER =
+                  T.let(
+                    :liter,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # US gallon
+                US_GALLON =
+                  T.let(
+                    :us_gallon,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Imperial gallon
+                IMPERIAL_GALLON =
+                  T.let(
+                    :imperial_gallon,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Kilogram
+                KILOGRAM =
+                  T.let(
+                    :kilogram,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Pound
+                POUND =
+                  T.let(
+                    :pound,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Charging minutes
+                CHARGING_MINUTES =
+                  T.let(
+                    :charging_minutes,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Kilowatt hour
+                KILOWATT_HOUR =
+                  T.let(
+                    :kilowatt_hour,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The type of fleet purchase.
+              module PurchaseType
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Fuel purchase
+                FUEL_PURCHASE =
+                  T.let(
+                    :fuel_purchase,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                # Non-fuel purchase
+                NON_FUEL_PURCHASE =
+                  T.let(
+                    :non_fuel_purchase,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                # Fuel and non-fuel purchase
+                FUEL_AND_NON_FUEL_PURCHASE =
+                  T.let(
+                    :fuel_and_non_fuel_purchase,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                # Fuel purchase with multiple fuel types
+                FUEL_PURCHASE_WITH_MULTIPLE_FUEL_TYPES =
+                  T.let(
+                    :fuel_purchase_with_multiple_fuel_types,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The type of service provided.
+              module ServiceType
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Full service
+                FULL_SERVICE =
+                  T.let(
+                    :full_service,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+
+                # Self service
+                SELF_SERVICE =
+                  T.let(
+                    :self_service,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+
+                # High speed dispense
+                HIGH_SPEED_DISPENSE =
+                  T.let(
+                    :high_speed_dispense,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
                     ]
                   )
                 end
@@ -9561,6 +10717,26 @@ module Increase
             sig { returns(T.nilable(String)) }
             attr_accessor :customer_reference_identifier
 
+            # Fields specific to fleet purchases.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet
+                )
+              )
+            end
+            attr_reader :fleet
+
+            sig do
+              params(
+                fleet:
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::OrHash
+                  )
+              ).void
+            end
+            attr_writer :fleet
+
             # The state or provincial tax amount in minor units.
             sig { returns(T.nilable(Integer)) }
             attr_accessor :local_tax_amount
@@ -9642,6 +10818,10 @@ module Increase
                     Increase::Transaction::Source::CardSettlement::PurchaseDetails::CarRental::OrHash
                   ),
                 customer_reference_identifier: T.nilable(String),
+                fleet:
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::OrHash
+                  ),
                 local_tax_amount: T.nilable(Integer),
                 local_tax_currency: T.nilable(String),
                 lodging:
@@ -9666,6 +10846,8 @@ module Increase
               car_rental:,
               # An identifier from the merchant for the customer or consumer.
               customer_reference_identifier:,
+              # Fields specific to fleet purchases.
+              fleet:,
               # The state or provincial tax amount in minor units.
               local_tax_amount:,
               # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the local tax
@@ -9695,6 +10877,10 @@ module Increase
                       Increase::Transaction::Source::CardSettlement::PurchaseDetails::CarRental
                     ),
                   customer_reference_identifier: T.nilable(String),
+                  fleet:
+                    T.nilable(
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet
+                    ),
                   local_tax_amount: T.nilable(Integer),
                   local_tax_currency: T.nilable(String),
                   lodging:
@@ -10011,6 +11197,1132 @@ module Increase
                   override.returns(
                     T::Array[
                       Increase::Transaction::Source::CardSettlement::PurchaseDetails::CarRental::NoShowIndicator::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+            end
+
+            class Fleet < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The fleet employee number.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :employee_number
+
+              # The quantity of fuel purchased, given as a string containing a decimal number in
+              # the indicated unit of measure.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :fuel_quantity
+
+              # The type of fuel purchased.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :fuel_type
+
+              # The cost per unit of fuel in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :fuel_unit_cost_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+              # cost.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :fuel_unit_cost_currency
+
+              # The unit of measure for the fuel quantity.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :fuel_unit_of_measure
+
+              # The gross fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :gross_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+              # price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :gross_fuel_price_currency
+
+              # The gross non-fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :gross_non_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+              # non-fuel price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :gross_non_fuel_price_currency
+
+              # The net fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :net_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+              # price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :net_fuel_price_currency
+
+              # The net non-fuel price in minor units.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :net_non_fuel_price_amount
+
+              # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+              # price.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :net_non_fuel_price_currency
+
+              # The odometer reading reported by the merchant.
+              sig { returns(T.nilable(Integer)) }
+              attr_accessor :odometer_reading
+
+              # The type of fleet purchase.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :purchase_type
+
+              # The type of service provided.
+              sig do
+                returns(
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+                )
+              end
+              attr_accessor :service_type
+
+              # The fleet trailer number.
+              sig { returns(T.nilable(String)) }
+              attr_accessor :trailer_number
+
+              # Fields specific to fleet purchases.
+              sig do
+                params(
+                  employee_number: T.nilable(String),
+                  fuel_quantity: T.nilable(String),
+                  fuel_type:
+                    T.nilable(
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::OrSymbol
+                    ),
+                  fuel_unit_cost_amount: T.nilable(Integer),
+                  fuel_unit_cost_currency: T.nilable(String),
+                  fuel_unit_of_measure:
+                    T.nilable(
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::OrSymbol
+                    ),
+                  gross_fuel_price_amount: T.nilable(Integer),
+                  gross_fuel_price_currency: T.nilable(String),
+                  gross_non_fuel_price_amount: T.nilable(Integer),
+                  gross_non_fuel_price_currency: T.nilable(String),
+                  net_fuel_price_amount: T.nilable(Integer),
+                  net_fuel_price_currency: T.nilable(String),
+                  net_non_fuel_price_amount: T.nilable(Integer),
+                  net_non_fuel_price_currency: T.nilable(String),
+                  odometer_reading: T.nilable(Integer),
+                  purchase_type:
+                    T.nilable(
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::OrSymbol
+                    ),
+                  service_type:
+                    T.nilable(
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType::OrSymbol
+                    ),
+                  trailer_number: T.nilable(String)
+                ).returns(T.attached_class)
+              end
+              def self.new(
+                # The fleet employee number.
+                employee_number:,
+                # The quantity of fuel purchased, given as a string containing a decimal number in
+                # the indicated unit of measure.
+                fuel_quantity:,
+                # The type of fuel purchased.
+                fuel_type:,
+                # The cost per unit of fuel in minor units.
+                fuel_unit_cost_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the fuel unit
+                # cost.
+                fuel_unit_cost_currency:,
+                # The unit of measure for the fuel quantity.
+                fuel_unit_of_measure:,
+                # The gross fuel price in minor units.
+                gross_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross fuel
+                # price.
+                gross_fuel_price_currency:,
+                # The gross non-fuel price in minor units.
+                gross_non_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the gross
+                # non-fuel price.
+                gross_non_fuel_price_currency:,
+                # The net fuel price in minor units.
+                net_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net fuel
+                # price.
+                net_fuel_price_currency:,
+                # The net non-fuel price in minor units.
+                net_non_fuel_price_amount:,
+                # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the net non-fuel
+                # price.
+                net_non_fuel_price_currency:,
+                # The odometer reading reported by the merchant.
+                odometer_reading:,
+                # The type of fleet purchase.
+                purchase_type:,
+                # The type of service provided.
+                service_type:,
+                # The fleet trailer number.
+                trailer_number:
+              )
+              end
+
+              sig do
+                override.returns(
+                  {
+                    employee_number: T.nilable(String),
+                    fuel_quantity: T.nilable(String),
+                    fuel_type:
+                      T.nilable(
+                        Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                      ),
+                    fuel_unit_cost_amount: T.nilable(Integer),
+                    fuel_unit_cost_currency: T.nilable(String),
+                    fuel_unit_of_measure:
+                      T.nilable(
+                        Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                      ),
+                    gross_fuel_price_amount: T.nilable(Integer),
+                    gross_fuel_price_currency: T.nilable(String),
+                    gross_non_fuel_price_amount: T.nilable(Integer),
+                    gross_non_fuel_price_currency: T.nilable(String),
+                    net_fuel_price_amount: T.nilable(Integer),
+                    net_fuel_price_currency: T.nilable(String),
+                    net_non_fuel_price_amount: T.nilable(Integer),
+                    net_non_fuel_price_currency: T.nilable(String),
+                    odometer_reading: T.nilable(Integer),
+                    purchase_type:
+                      T.nilable(
+                        Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                      ),
+                    service_type:
+                      T.nilable(
+                        Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                      ),
+                    trailer_number: T.nilable(String)
+                  }
+                )
+              end
+              def to_hash
+              end
+
+              # The type of fuel purchased.
+              module FuelType
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Regular
+                REGULAR =
+                  T.let(
+                    :regular,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus
+                MID_OR_PLUS =
+                  T.let(
+                    :mid_or_plus,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super
+                PREMIUM_OR_SUPER =
+                  T.let(
+                    :premium_or_super,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2
+                MID_OR_PLUS_2 =
+                  T.let(
+                    :mid_or_plus_2,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2
+                PREMIUM_OR_SUPER_2 =
+                  T.let(
+                    :premium_or_super_2,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular ethanol 5% blend outside the United States
+                REGULAR_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :regular_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 5% blend outside the United States
+                MID_OR_PLUS_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :mid_or_plus_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :premium_or_super_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Ethanol 7.7% blend
+                ETHANOL_7_7_BLEND =
+                  T.let(
+                    :ethanol_7_7_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2 ethanol 5% blend outside the United States
+                MID_OR_PLUS_2_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :mid_or_plus_2_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Green gasoline regular
+                GREEN_GASOLINE_REGULAR =
+                  T.let(
+                    :green_gasoline_regular,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Green gasoline mid or plus
+                GREEN_GASOLINE_MID_OR_PLUS =
+                  T.let(
+                    :green_gasoline_mid_or_plus,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Green gasoline premium or super
+                GREEN_GASOLINE_PREMIUM_OR_SUPER =
+                  T.let(
+                    :green_gasoline_premium_or_super,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular diesel 2
+                REGULAR_DIESEL_2 =
+                  T.let(
+                    :regular_diesel_2,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel 2
+                PREMIUM_DIESEL_2 =
+                  T.let(
+                    :premium_diesel_2,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular diesel 1
+                REGULAR_DIESEL_1 =
+                  T.let(
+                    :regular_diesel_1,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Compressed natural gas
+                COMPRESSED_NATURAL_GAS =
+                  T.let(
+                    :compressed_natural_gas,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Liquid propane gas
+                LIQUID_PROPANE_GAS =
+                  T.let(
+                    :liquid_propane_gas,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Liquid natural gas
+                LIQUID_NATURAL_GAS =
+                  T.let(
+                    :liquid_natural_gas,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # E85
+                E85 =
+                  T.let(
+                    :e85,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular reformulated
+                REGULAR_REFORMULATED =
+                  T.let(
+                    :regular_reformulated,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus reformulated
+                MID_OR_PLUS_REFORMULATED =
+                  T.let(
+                    :mid_or_plus_reformulated,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super reformulated
+                PREMIUM_OR_SUPER_REFORMULATED =
+                  T.let(
+                    :premium_or_super_reformulated,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2 reformulated
+                MID_OR_PLUS_2_REFORMULATED =
+                  T.let(
+                    :mid_or_plus_2_reformulated,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2 reformulated
+                PREMIUM_OR_SUPER_2_REFORMULATED =
+                  T.let(
+                    :premium_or_super_2_reformulated,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel off-road 1/2 non-taxable
+                DIESEL_OFF_ROAD_1_2_NON_TAXABLE =
+                  T.let(
+                    :diesel_off_road_1_2_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel off-road non-taxable
+                DIESEL_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend off-road non-taxable
+                BIODIESEL_BLEND_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Racing fuel
+                RACING_FUEL =
+                  T.let(
+                    :racing_fuel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus 2 ethanol 10% blend
+                MID_OR_PLUS_2_ETHANOL_10_BLEND =
+                  T.let(
+                    :mid_or_plus_2_ethanol_10_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2 ethanol 10% blend
+                PREMIUM_OR_SUPER_2_ETHANOL_10_BLEND =
+                  T.let(
+                    :premium_or_super_2_ethanol_10_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 2–15% blend
+                MID_OR_PLUS_ETHANOL_2_15_BLEND =
+                  T.let(
+                    :mid_or_plus_ethanol_2_15_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 2–15% blend
+                PREMIUM_OR_SUPER_ETHANOL_2_15_BLEND =
+                  T.let(
+                    :premium_or_super_ethanol_2_15_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super 2 ethanol 5% blend outside the United States
+                PREMIUM_OR_SUPER_2_ETHANOL_5_BLEND_NON_US =
+                  T.let(
+                    :premium_or_super_2_ethanol_5_blend_non_us,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular ethanol 10% blend
+                REGULAR_ETHANOL_10_BLEND =
+                  T.let(
+                    :regular_ethanol_10_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 10% blend
+                MID_OR_PLUS_ETHANOL_10_BLEND =
+                  T.let(
+                    :mid_or_plus_ethanol_10_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 10% blend
+                PREMIUM_OR_SUPER_ETHANOL_10_BLEND =
+                  T.let(
+                    :premium_or_super_ethanol_10_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B2 diesel blend 2% biodiesel
+                B2_DIESEL_BLEND_2_BIODIESEL =
+                  T.let(
+                    :b2_diesel_blend_2_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B5 diesel blend 5% biodiesel
+                B5_DIESEL_BLEND_5_BIODIESEL =
+                  T.let(
+                    :b5_diesel_blend_5_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B10 diesel blend 10% biodiesel
+                B10_DIESEL_BLEND_10_BIODIESEL =
+                  T.let(
+                    :b10_diesel_blend_10_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B11 diesel blend 11% biodiesel
+                B11_DIESEL_BLEND_11_BIODIESEL =
+                  T.let(
+                    :b11_diesel_blend_11_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B15 diesel blend 15% biodiesel
+                B15_DIESEL_BLEND_15_BIODIESEL =
+                  T.let(
+                    :b15_diesel_blend_15_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B20 diesel blend 20% biodiesel
+                B20_DIESEL_BLEND_20_BIODIESEL =
+                  T.let(
+                    :b20_diesel_blend_20_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B100 diesel blend 100% biodiesel
+                B100_DIESEL_BLEND_100_BIODIESEL =
+                  T.let(
+                    :b100_diesel_blend_100_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B1 diesel blend 1% biodiesel
+                B1_DIESEL_BLEND_1_BIODIESEL =
+                  T.let(
+                    :b1_diesel_blend_1_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Additized diesel 2
+                ADDITIZED_DIESEL_2 =
+                  T.let(
+                    :additized_diesel_2,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Additized diesel 3
+                ADDITIZED_DIESEL_3 =
+                  T.let(
+                    :additized_diesel_3,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B7 diesel blend 7% biodiesel outside the United States
+                B7_DIESEL_BLEND_7_BIODIESEL_NON_US =
+                  T.let(
+                    :b7_diesel_blend_7_biodiesel_non_us,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B7 premium diesel blend 7% biodiesel outside the United States
+                B7_PREMIUM_DIESEL_BLEND_7_BIODIESEL_NON_US =
+                  T.let(
+                    :b7_premium_diesel_blend_7_biodiesel_non_us,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel R95 or greater
+                RENEWABLE_DIESEL_R95_OR_GREATER =
+                  T.let(
+                    :renewable_diesel_r95_or_greater,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel biodiesel 6% to 20%
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20 =
+                  T.let(
+                    :renewable_diesel_biodiesel_6_to_20,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel exhaust fluid pump
+                DIESEL_EXHAUST_FLUID_PUMP =
+                  T.let(
+                    :diesel_exhaust_fluid_pump,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel 1
+                PREMIUM_DIESEL_1 =
+                  T.let(
+                    :premium_diesel_1,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Regular ethanol 15% blend
+                REGULAR_ETHANOL_15_BLEND =
+                  T.let(
+                    :regular_ethanol_15_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Mid or plus ethanol 15% blend
+                MID_OR_PLUS_ETHANOL_15_BLEND =
+                  T.let(
+                    :mid_or_plus_ethanol_15_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium or super ethanol 15% blend
+                PREMIUM_OR_SUPER_ETHANOL_15_BLEND =
+                  T.let(
+                    :premium_or_super_ethanol_15_blend,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel blend less than 20% biodiesel
+                PREMIUM_DIESEL_BLEND_LESS_THAN_20_BIODIESEL =
+                  T.let(
+                    :premium_diesel_blend_less_than_20_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Premium diesel blend 20% or more biodiesel
+                PREMIUM_DIESEL_BLEND_20_OR_MORE_BIODIESEL =
+                  T.let(
+                    :premium_diesel_blend_20_or_more_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B75 diesel blend 75% biodiesel
+                B75_DIESEL_BLEND_75_BIODIESEL =
+                  T.let(
+                    :b75_diesel_blend_75_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # B99 diesel blend 99% biodiesel
+                B99_DIESEL_BLEND_99_BIODIESEL =
+                  T.let(
+                    :b99_diesel_blend_99_biodiesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Reserved for preauthorization use only
+                RESERVED_FOR_PREAUTHORIZATION_USE_ONLY =
+                  T.let(
+                    :reserved_for_preauthorization_use_only,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Undefined fuel reserved for proprietary use
+                UNDEFINED_FUEL_RESERVED_FOR_PROPRIETARY_USE =
+                  T.let(
+                    :undefined_fuel_reserved_for_proprietary_use,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous fuel
+                MISCELLANEOUS_FUEL =
+                  T.let(
+                    :miscellaneous_fuel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Jet fuel
+                JET_FUEL =
+                  T.let(
+                    :jet_fuel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel regular
+                AVIATION_FUEL_REGULAR =
+                  T.let(
+                    :aviation_fuel_regular,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel premium
+                AVIATION_FUEL_PREMIUM =
+                  T.let(
+                    :aviation_fuel_premium,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel JP8
+                AVIATION_FUEL_JP8 =
+                  T.let(
+                    :aviation_fuel_jp8,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel 4
+                AVIATION_FUEL_4 =
+                  T.let(
+                    :aviation_fuel_4,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation fuel 5
+                AVIATION_FUEL_5 =
+                  T.let(
+                    :aviation_fuel_5,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biojet diesel
+                BIOJET_DIESEL =
+                  T.let(
+                    :biojet_diesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Aviation biofuel gasoline
+                AVIATION_BIOFUEL_GASOLINE =
+                  T.let(
+                    :aviation_biofuel_gasoline,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Undefined aviation fuel reserved for proprietary use
+                UNDEFINED_AVIATION_FUEL_RESERVED_FOR_PROPRIETARY_USE =
+                  T.let(
+                    :undefined_aviation_fuel_reserved_for_proprietary_use,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous aviation fuel
+                MISCELLANEOUS_AVIATION_FUEL =
+                  T.let(
+                    :miscellaneous_aviation_fuel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 1
+                MARINE_FUEL_1 =
+                  T.let(
+                    :marine_fuel_1,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 2
+                MARINE_FUEL_2 =
+                  T.let(
+                    :marine_fuel_2,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 3
+                MARINE_FUEL_3 =
+                  T.let(
+                    :marine_fuel_3,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 4
+                MARINE_FUEL_4 =
+                  T.let(
+                    :marine_fuel_4,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine fuel 5
+                MARINE_FUEL_5 =
+                  T.let(
+                    :marine_fuel_5,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine other
+                MARINE_OTHER =
+                  T.let(
+                    :marine_other,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Marine diesel
+                MARINE_DIESEL =
+                  T.let(
+                    :marine_diesel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous marine fuel
+                MISCELLANEOUS_MARINE_FUEL =
+                  T.let(
+                    :miscellaneous_marine_fuel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Kerosene low sulfur
+                KEROSENE_LOW_SULFUR =
+                  T.let(
+                    :kerosene_low_sulfur,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # White gas
+                WHITE_GAS =
+                  T.let(
+                    :white_gas,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Heating oil
+                HEATING_OIL =
+                  T.let(
+                    :heating_oil,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Other fuel non-taxable
+                OTHER_FUEL_NON_TAXABLE =
+                  T.let(
+                    :other_fuel_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Kerosene ultra low sulfur
+                KEROSENE_ULTRA_LOW_SULFUR =
+                  T.let(
+                    :kerosene_ultra_low_sulfur,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 1 110 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_1_110_volt,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 2 240 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_2_240_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_2_240_volt,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 3 480 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_3_480_volt,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel R95 or greater off-road non-taxable
+                RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :renewable_diesel_r95_or_greater_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 1% off-road non-taxable
+                BIODIESEL_BLEND_1_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_1_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 75% off-road non-taxable
+                BIODIESEL_BLEND_75_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_75_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 99% off-road non-taxable
+                BIODIESEL_BLEND_99_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_99_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 100% off-road non-taxable
+                BIODIESEL_BLEND_100_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_100_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel biodiesel 6% to 20% off-road non-taxable
+                RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 4 800 volt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_4_800_VOLT =
+                  T.let(
+                    :electric_vehicle_charging_level_4_800_volt,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Electric vehicle charging level 5 megawatt
+                ELECTRIC_VEHICLE_CHARGING_LEVEL_5_MEGAWATT =
+                  T.let(
+                    :electric_vehicle_charging_level_5_megawatt,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Hydrotreated vegetable oil 100
+                HYDROTREATED_VEGETABLE_OIL_100 =
+                  T.let(
+                    :hydrotreated_vegetable_oil_100,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Bio compressed natural gas
+                BIO_COMPRESSED_NATURAL_GAS =
+                  T.let(
+                    :bio_compressed_natural_gas,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Miscellaneous other fuel
+                MISCELLANEOUS_OTHER_FUEL =
+                  T.let(
+                    :miscellaneous_other_fuel,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The unit of measure for the fuel quantity.
+              module FuelUnitOfMeasure
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Liter
+                LITER =
+                  T.let(
+                    :liter,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # US gallon
+                US_GALLON =
+                  T.let(
+                    :us_gallon,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Imperial gallon
+                IMPERIAL_GALLON =
+                  T.let(
+                    :imperial_gallon,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Kilogram
+                KILOGRAM =
+                  T.let(
+                    :kilogram,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Pound
+                POUND =
+                  T.let(
+                    :pound,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Charging minutes
+                CHARGING_MINUTES =
+                  T.let(
+                    :charging_minutes,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                # Kilowatt hour
+                KILOWATT_HOUR =
+                  T.let(
+                    :kilowatt_hour,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelUnitOfMeasure::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The type of fleet purchase.
+              module PurchaseType
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Fuel purchase
+                FUEL_PURCHASE =
+                  T.let(
+                    :fuel_purchase,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                # Non-fuel purchase
+                NON_FUEL_PURCHASE =
+                  T.let(
+                    :non_fuel_purchase,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                # Fuel and non-fuel purchase
+                FUEL_AND_NON_FUEL_PURCHASE =
+                  T.let(
+                    :fuel_and_non_fuel_purchase,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                # Fuel purchase with multiple fuel types
+                FUEL_PURCHASE_WITH_MULTIPLE_FUEL_TYPES =
+                  T.let(
+                    :fuel_purchase_with_multiple_fuel_types,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::PurchaseType::TaggedSymbol
+                    ]
+                  )
+                end
+                def self.values
+                end
+              end
+
+              # The type of service provided.
+              module ServiceType
+                extend Increase::Internal::Type::Enum
+
+                TaggedSymbol =
+                  T.type_alias do
+                    T.all(
+                      Symbol,
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType
+                    )
+                  end
+                OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+                # Full service
+                FULL_SERVICE =
+                  T.let(
+                    :full_service,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+
+                # Self service
+                SELF_SERVICE =
+                  T.let(
+                    :self_service,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+
+                # High speed dispense
+                HIGH_SPEED_DISPENSE =
+                  T.let(
+                    :high_speed_dispense,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
+                  )
+
+                sig do
+                  override.returns(
+                    T::Array[
+                      Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::ServiceType::TaggedSymbol
                     ]
                   )
                 end
