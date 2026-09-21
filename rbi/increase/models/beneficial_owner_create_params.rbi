@@ -443,6 +443,13 @@ module Increase
                 Increase::BeneficialOwnerCreateParams::Individual::Identification::Method::TaggedSymbol
               )
 
+            # The last four digits of a social security number.
+            SOCIAL_SECURITY_NUMBER_LAST4 =
+              T.let(
+                :social_security_number_last4,
+                Increase::BeneficialOwnerCreateParams::Individual::Identification::Method::TaggedSymbol
+              )
+
             # An individual taxpayer identification number (ITIN).
             INDIVIDUAL_TAXPAYER_IDENTIFICATION_NUMBER =
               T.let(
