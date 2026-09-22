@@ -128,6 +128,12 @@ module Increase
       #   @return [String, nil]
       required :instructing_agent_routing_number, String, nil?: true
 
+      # @!attribute instruction_for_creditor_agent
+      #   A free-form instruction for the receiving bank set by the sender.
+      #
+      #   @return [String, nil]
+      required :instruction_for_creditor_agent, String, nil?: true
+
       # @!attribute instruction_identification
       #   The sending bank's identifier for the wire transfer.
       #
@@ -179,7 +185,7 @@ module Increase
       #   @return [String, nil]
       required :wire_drawdown_request_id, String, nil?: true
 
-      # @!method initialize(id:, acceptance:, account_id:, account_number_id:, amount:, created_at:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_account_number:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, debtor_routing_number:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_identification:, purpose:, reversal:, status:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:, wire_drawdown_request_id:)
+      # @!method initialize(id:, acceptance:, account_id:, account_number_id:, amount:, created_at:, creditor_address_line1:, creditor_address_line2:, creditor_address_line3:, creditor_name:, debtor_account_number:, debtor_address_line1:, debtor_address_line2:, debtor_address_line3:, debtor_name:, debtor_routing_number:, description:, end_to_end_identification:, input_message_accountability_data:, instructing_agent_routing_number:, instruction_for_creditor_agent:, instruction_identification:, purpose:, reversal:, status:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:, wire_drawdown_request_id:)
       #   An Inbound Wire Transfer is a wire transfer initiated outside of Increase to
       #   your account.
       #
@@ -232,6 +238,9 @@ module Increase
       #   @param instructing_agent_routing_number [String, nil]
       #     The American Bankers' Association (ABA) routing number of the bank that sent the
       #     wire.
+      #
+      #   @param instruction_for_creditor_agent [String, nil]
+      #     A free-form instruction for the receiving bank set by the sender.
       #
       #   @param instruction_identification [String, nil] The sending bank's identifier for the wire transfer.
       #
