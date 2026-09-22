@@ -2987,6 +2987,13 @@ module Increase
                 Increase::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason::TaggedSymbol
               )
 
+            # Additional customer authentication is required to complete the transaction, such as 3DS.
+            ADDITIONAL_CUSTOMER_AUTHENTICATION_REQUIRED =
+              T.let(
+                :additional_customer_authentication_required,
+                Increase::DeclinedTransaction::Source::CardDecline::RealTimeDecisionReason::TaggedSymbol
+              )
+
             # The transaction was declined for another reason. The merchant may attempt to process the transaction again. This should be used sparingly.
             OTHER =
               T.let(
