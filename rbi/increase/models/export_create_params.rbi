@@ -254,13 +254,6 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::ExportCreateParams::Category) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
-        ACCOUNT_STATEMENT_OFX =
-          T.let(
-            :account_statement_ofx,
-            Increase::ExportCreateParams::Category::TaggedSymbol
-          )
-
         # Export a BAI2 file of transactions and balances for a given date and optional Account.
         ACCOUNT_STATEMENT_BAI2 =
           T.let(
@@ -268,10 +261,17 @@ module Increase
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
-        # Export a CSV of all transactions for a given time range.
-        TRANSACTION_CSV =
+        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
+        ACCOUNT_STATEMENT_OFX =
           T.let(
-            :transaction_csv,
+            :account_statement_ofx,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER =
+          T.let(
+            :account_verification_letter,
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
@@ -289,10 +289,35 @@ module Increase
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV =
+          T.let(
+            :daily_account_balance_csv,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
         # Export a CSV of entities with a given status.
         ENTITY_CSV =
           T.let(
             :entity_csv,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV =
+          T.let(:fee_csv, Increase::ExportCreateParams::Category::TaggedSymbol)
+
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS =
+          T.let(
+            :funding_instructions,
+            Increase::ExportCreateParams::Category::TaggedSymbol
+          )
+
+        # Export a CSV of all transactions for a given time range.
+        TRANSACTION_CSV =
+          T.let(
+            :transaction_csv,
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
@@ -303,35 +328,10 @@ module Increase
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
-        # A PDF of an account verification letter.
-        ACCOUNT_VERIFICATION_LETTER =
-          T.let(
-            :account_verification_letter,
-            Increase::ExportCreateParams::Category::TaggedSymbol
-          )
-
-        # A PDF of funding instructions.
-        FUNDING_INSTRUCTIONS =
-          T.let(
-            :funding_instructions,
-            Increase::ExportCreateParams::Category::TaggedSymbol
-          )
-
-        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
-        FEE_CSV =
-          T.let(:fee_csv, Increase::ExportCreateParams::Category::TaggedSymbol)
-
         # A PDF of a voided check.
         VOIDED_CHECK =
           T.let(
             :voided_check,
-            Increase::ExportCreateParams::Category::TaggedSymbol
-          )
-
-        # Export a CSV of daily account balances with starting and ending balances for a given date range.
-        DAILY_ACCOUNT_BALANCE_CSV =
-          T.let(
-            :daily_account_balance_csv,
             Increase::ExportCreateParams::Category::TaggedSymbol
           )
 
