@@ -1025,7 +1025,7 @@ module Increase
                     Increase::EntityCreateParams::Corporation::BeneficialOwner::Individual::Identification::Method::TaggedSymbol
                   )
 
-                # The last four digits of a social security number.
+                # The last four digits of a social security number. Not all programs can use this method.
                 SOCIAL_SECURITY_NUMBER_LAST4 =
                   T.let(
                     :social_security_number_last4,
