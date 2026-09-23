@@ -828,7 +828,7 @@ module Increase
                     Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::Method::TaggedSymbol
                   )
 
-                # The last four digits of a social security number.
+                # The last four digits of a social security number. Not all programs can use this method.
                 SOCIAL_SECURITY_NUMBER_LAST4 =
                   T.let(
                     :social_security_number_last4,
@@ -1592,7 +1592,7 @@ module Increase
                   Increase::Entity::Joint::Individual::Identification::Method::TaggedSymbol
                 )
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 =
                 T.let(
                   :social_security_number_last4,
@@ -1866,7 +1866,7 @@ module Increase
                 Increase::Entity::NaturalPerson::Identification::Method::TaggedSymbol
               )
 
-            # The last four digits of a social security number.
+            # The last four digits of a social security number. Not all programs can use this method.
             SOCIAL_SECURITY_NUMBER_LAST4 =
               T.let(
                 :social_security_number_last4,
@@ -2411,7 +2411,7 @@ module Increase
                   Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
                 )
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 =
                 T.let(
                   :social_security_number_last4,
@@ -3114,7 +3114,7 @@ module Increase
                   Increase::Entity::Trust::Grantor::Identification::Method::TaggedSymbol
                 )
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 =
                 T.let(
                   :social_security_number_last4,
@@ -3464,7 +3464,7 @@ module Increase
                     Increase::Entity::Trust::Trustee::Individual::Identification::Method::TaggedSymbol
                   )
 
-                # The last four digits of a social security number.
+                # The last four digits of a social security number. Not all programs can use this method.
                 SOCIAL_SECURITY_NUMBER_LAST4 =
                   T.let(
                     :social_security_number_last4,
@@ -3649,6 +3649,26 @@ module Increase
           end
           attr_writer :beneficial_owner_identity
 
+          # Details when the issue is with a beneficial owner's tax identifier.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier
+              )
+            )
+          end
+          attr_reader :beneficial_owner_tax_identifier
+
+          sig do
+            params(
+              beneficial_owner_tax_identifier:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier::OrHash
+                )
+            ).void
+          end
+          attr_writer :beneficial_owner_tax_identifier
+
           # The type of issue. We may add additional possible values for this enum over
           # time; your application should be able to handle such additions gracefully.
           sig do
@@ -3722,6 +3742,10 @@ module Increase
                 T.nilable(
                   Increase::Entity::Validation::Issue::BeneficialOwnerIdentity::OrHash
                 ),
+              beneficial_owner_tax_identifier:
+                T.nilable(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier::OrHash
+                ),
               category: Increase::Entity::Validation::Issue::Category::OrSymbol,
               entity_address:
                 T.nilable(
@@ -3742,6 +3766,8 @@ module Increase
             beneficial_owner_address:,
             # Details when the issue is with a beneficial owner's identity verification.
             beneficial_owner_identity:,
+            # Details when the issue is with a beneficial owner's tax identifier.
+            beneficial_owner_tax_identifier:,
             # The type of issue. We may add additional possible values for this enum over
             # time; your application should be able to handle such additions gracefully.
             category:,
@@ -3764,6 +3790,10 @@ module Increase
                 beneficial_owner_identity:
                   T.nilable(
                     Increase::Entity::Validation::Issue::BeneficialOwnerIdentity
+                  ),
+                beneficial_owner_tax_identifier:
+                  T.nilable(
+                    Increase::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier
                   ),
                 category:
                   Increase::Entity::Validation::Issue::Category::TaggedSymbol,
@@ -3892,6 +3922,34 @@ module Increase
             end
           end
 
+          class BeneficialOwnerTaxIdentifier < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The ID of the beneficial owner.
+            sig { returns(String) }
+            attr_accessor :beneficial_owner_id
+
+            # Details when the issue is with a beneficial owner's tax identifier.
+            sig do
+              params(beneficial_owner_id: String).returns(T.attached_class)
+            end
+            def self.new(
+              # The ID of the beneficial owner.
+              beneficial_owner_id:
+            )
+            end
+
+            sig { override.returns({ beneficial_owner_id: String }) }
+            def to_hash
+            end
+          end
+
           # The type of issue. We may add additional possible values for this enum over
           # time; your application should be able to handle such additions gracefully.
           module Category
@@ -3935,6 +3993,13 @@ module Increase
             BENEFICIAL_OWNER_ADDRESS =
               T.let(
                 :beneficial_owner_address,
+                Increase::Entity::Validation::Issue::Category::TaggedSymbol
+              )
+
+            # A beneficial owner's full tax identifier is required. A non-US person can submit a passport or driver's license. Make changes via the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_TAX_IDENTIFIER =
+              T.let(
+                :beneficial_owner_tax_identifier,
                 Increase::Entity::Validation::Issue::Category::TaggedSymbol
               )
 

@@ -6682,6 +6682,7 @@ module Increase
             end_to_end_identification: String?,
             input_message_accountability_data: String?,
             instructing_agent_routing_number: String?,
+            instruction_for_creditor_agent: String?,
             instruction_identification: String?,
             purpose: String?,
             transfer_id: String,
@@ -6716,6 +6717,8 @@ module Increase
 
           attr_accessor instructing_agent_routing_number: String?
 
+          attr_accessor instruction_for_creditor_agent: String?
+
           attr_accessor instruction_identification: String?
 
           attr_accessor purpose: String?
@@ -6740,6 +6743,7 @@ module Increase
             end_to_end_identification: String?,
             input_message_accountability_data: String?,
             instructing_agent_routing_number: String?,
+            instruction_for_creditor_agent: String?,
             instruction_identification: String?,
             purpose: String?,
             transfer_id: String,
@@ -6761,6 +6765,7 @@ module Increase
             end_to_end_identification: String?,
             input_message_accountability_data: String?,
             instructing_agent_routing_number: String?,
+            instruction_for_creditor_agent: String?,
             instruction_identification: String?,
             purpose: String?,
             transfer_id: String,

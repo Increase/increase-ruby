@@ -468,13 +468,13 @@ module Increase
 
         # When the Federal Reserve acknowledged the submitted file containing this
         # transfer.
-        sig { returns(String) }
+        sig { returns(Time) }
         attr_accessor :acknowledged_at
 
         # After the transfer is acknowledged by FedACH, this will contain supplemental
         # details. The Federal Reserve sends an acknowledgement message for each file that
         # Increase submits.
-        sig { params(acknowledged_at: String).returns(T.attached_class) }
+        sig { params(acknowledged_at: Time).returns(T.attached_class) }
         def self.new(
           # When the Federal Reserve acknowledged the submitted file containing this
           # transfer.
@@ -482,7 +482,7 @@ module Increase
         )
         end
 
-        sig { override.returns({ acknowledged_at: String }) }
+        sig { override.returns({ acknowledged_at: Time }) }
         def to_hash
         end
       end
