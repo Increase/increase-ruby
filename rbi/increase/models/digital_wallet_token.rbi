@@ -304,6 +304,27 @@ module Increase
               Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
             )
 
+          # The group was locked.
+          GROUP_LOCKED =
+            T.let(
+              :group_locked,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # The account has been closed.
+          ACCOUNT_CLOSED =
+            T.let(
+              :account_closed,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # The account's entity was not active.
+          ENTITY_NOT_ACTIVE =
+            T.let(
+              :entity_not_active,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

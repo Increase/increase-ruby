@@ -385,15 +385,15 @@ module Increase
         #   When the Federal Reserve acknowledged the submitted file containing this
         #   transfer.
         #
-        #   @return [String]
-        required :acknowledged_at, String
+        #   @return [Time]
+        required :acknowledged_at, Time
 
         # @!method initialize(acknowledged_at:)
         #   After the transfer is acknowledged by FedACH, this will contain supplemental
         #   details. The Federal Reserve sends an acknowledgement message for each file that
         #   Increase submits.
         #
-        #   @param acknowledged_at [String]
+        #   @param acknowledged_at [Time]
         #     When the Federal Reserve acknowledged the submitted file containing this
         #     transfer.
       end

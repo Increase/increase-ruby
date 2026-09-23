@@ -828,7 +828,7 @@ module Increase
                     Increase::Entity::Corporation::BeneficialOwner::Individual::Identification::Method::TaggedSymbol
                   )
 
-                # The last four digits of a social security number.
+                # The last four digits of a social security number. Not all programs can use this method.
                 SOCIAL_SECURITY_NUMBER_LAST4 =
                   T.let(
                     :social_security_number_last4,
@@ -1592,7 +1592,7 @@ module Increase
                   Increase::Entity::Joint::Individual::Identification::Method::TaggedSymbol
                 )
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 =
                 T.let(
                   :social_security_number_last4,
@@ -1866,7 +1866,7 @@ module Increase
                 Increase::Entity::NaturalPerson::Identification::Method::TaggedSymbol
               )
 
-            # The last four digits of a social security number.
+            # The last four digits of a social security number. Not all programs can use this method.
             SOCIAL_SECURITY_NUMBER_LAST4 =
               T.let(
                 :social_security_number_last4,
@@ -2411,7 +2411,7 @@ module Increase
                   Increase::Entity::SoleProprietorship::SoleProprietor::Identification::Method::TaggedSymbol
                 )
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 =
                 T.let(
                   :social_security_number_last4,
@@ -3114,7 +3114,7 @@ module Increase
                   Increase::Entity::Trust::Grantor::Identification::Method::TaggedSymbol
                 )
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 =
                 T.let(
                   :social_security_number_last4,
@@ -3464,7 +3464,7 @@ module Increase
                     Increase::Entity::Trust::Trustee::Individual::Identification::Method::TaggedSymbol
                   )
 
-                # The last four digits of a social security number.
+                # The last four digits of a social security number. Not all programs can use this method.
                 SOCIAL_SECURITY_NUMBER_LAST4 =
                   T.let(
                     :social_security_number_last4,

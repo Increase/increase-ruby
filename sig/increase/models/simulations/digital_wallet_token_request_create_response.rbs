@@ -34,6 +34,9 @@ module Increase
           | :webhook_declined
           | :incorrect_card_verification_code
           | :declined_by_token_requestor
+          | :group_locked
+          | :account_closed
+          | :entity_not_active
 
         module DeclineReason
           extend Increase::Internal::Type::Enum
@@ -55,6 +58,15 @@ module Increase
 
           # The tokenization attempt was declined by the token requestor.
           DECLINED_BY_TOKEN_REQUESTOR: :declined_by_token_requestor
+
+          # The group was locked.
+          GROUP_LOCKED: :group_locked
+
+          # The account has been closed.
+          ACCOUNT_CLOSED: :account_closed
+
+          # The account's entity was not active.
+          ENTITY_NOT_ACTIVE: :entity_not_active
 
           def self?.values: -> ::Array[Increase::Models::Simulations::DigitalWalletTokenRequestCreateResponse::decline_reason]
         end
