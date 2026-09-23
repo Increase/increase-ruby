@@ -84,33 +84,33 @@ module Increase
       }
 
       type category =
-        :account_statement_ofx
-        | :account_statement_bai2
-        | :transaction_csv
+        :account_statement_bai2
+        | :account_statement_ofx
+        | :account_verification_letter
         | :balance_csv
         | :bookkeeping_account_balance_csv
-        | :entity_csv
-        | :vendor_csv
+        | :daily_account_balance_csv
         | :dashboard_table_csv
-        | :account_verification_letter
-        | :funding_instructions
+        | :entity_csv
+        | :fee_csv
         | :form_1099_int
         | :form_1099_misc
-        | :fee_csv
+        | :funding_instructions
+        | :transaction_csv
+        | :vendor_csv
         | :voided_check
-        | :daily_account_balance_csv
 
       module Category
         extend Increase::Internal::Type::Enum
 
-        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
-        ACCOUNT_STATEMENT_OFX: :account_statement_ofx
-
         # Export a BAI2 file of transactions and balances for a given date and optional Account.
         ACCOUNT_STATEMENT_BAI2: :account_statement_bai2
 
-        # Export a CSV of all transactions for a given time range.
-        TRANSACTION_CSV: :transaction_csv
+        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
+        ACCOUNT_STATEMENT_OFX: :account_statement_ofx
+
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
 
         # Export a CSV of account balances for the dates in a given range. (deprecated, use `daily_account_balance_csv` instead)
         BALANCE_CSV: :balance_csv
@@ -118,20 +118,17 @@ module Increase
         # Export a CSV of bookkeeping account balances for the dates in a given range.
         BOOKKEEPING_ACCOUNT_BALANCE_CSV: :bookkeeping_account_balance_csv
 
-        # Export a CSV of entities with a given status.
-        ENTITY_CSV: :entity_csv
-
-        # Export a CSV of vendors added to the third-party risk management dashboard.
-        VENDOR_CSV: :vendor_csv
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV: :daily_account_balance_csv
 
         # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
         DASHBOARD_TABLE_CSV: :dashboard_table_csv
 
-        # A PDF of an account verification letter.
-        ACCOUNT_VERIFICATION_LETTER: :account_verification_letter
+        # Export a CSV of entities with a given status.
+        ENTITY_CSV: :entity_csv
 
-        # A PDF of funding instructions.
-        FUNDING_INSTRUCTIONS: :funding_instructions
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV: :fee_csv
 
         # A PDF of an Internal Revenue Service Form 1099-INT.
         FORM_1099_INT: :form_1099_int
@@ -139,14 +136,17 @@ module Increase
         # A PDF of an Internal Revenue Service Form 1099-MISC.
         FORM_1099_MISC: :form_1099_misc
 
-        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
-        FEE_CSV: :fee_csv
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS: :funding_instructions
+
+        # Export a CSV of all transactions for a given time range.
+        TRANSACTION_CSV: :transaction_csv
+
+        # Export a CSV of vendors added to the third-party risk management dashboard.
+        VENDOR_CSV: :vendor_csv
 
         # A PDF of a voided check.
         VOIDED_CHECK: :voided_check
-
-        # Export a CSV of daily account balances with starting and ending balances for a given date range.
-        DAILY_ACCOUNT_BALANCE_CSV: :daily_account_balance_csv
 
         def self?.values: -> ::Array[Increase::Models::ExportListParams::category]
       end
