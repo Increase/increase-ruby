@@ -546,7 +546,7 @@ module Increase
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER = :social_security_number
 
-                # The last four digits of a social security number.
+                # The last four digits of a social security number. Not all programs can use this method.
                 SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
                 # An individual taxpayer identification number (ITIN).
@@ -952,7 +952,7 @@ module Increase
               # A social security number.
               SOCIAL_SECURITY_NUMBER = :social_security_number
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
               # An individual taxpayer identification number (ITIN).
@@ -1108,7 +1108,7 @@ module Increase
             # A social security number.
             SOCIAL_SECURITY_NUMBER = :social_security_number
 
-            # The last four digits of a social security number.
+            # The last four digits of a social security number. Not all programs can use this method.
             SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
             # An individual taxpayer identification number (ITIN).
@@ -1433,7 +1433,7 @@ module Increase
               # A social security number.
               SOCIAL_SECURITY_NUMBER = :social_security_number
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
               # An individual taxpayer identification number (ITIN).
@@ -1858,7 +1858,7 @@ module Increase
               # A social security number.
               SOCIAL_SECURITY_NUMBER = :social_security_number
 
-              # The last four digits of a social security number.
+              # The last four digits of a social security number. Not all programs can use this method.
               SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
               # An individual taxpayer identification number (ITIN).
@@ -2037,7 +2037,7 @@ module Increase
                 # A social security number.
                 SOCIAL_SECURITY_NUMBER = :social_security_number
 
-                # The last four digits of a social security number.
+                # The last four digits of a social security number. Not all programs can use this method.
                 SOCIAL_SECURITY_NUMBER_LAST4 = :social_security_number_last4
 
                 # An individual taxpayer identification number (ITIN).
@@ -2129,6 +2129,14 @@ module Increase
                    -> { Increase::Entity::Validation::Issue::BeneficialOwnerIdentity },
                    nil?: true
 
+          # @!attribute beneficial_owner_tax_identifier
+          #   Details when the issue is with a beneficial owner's tax identifier.
+          #
+          #   @return [Increase::Models::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier, nil]
+          required :beneficial_owner_tax_identifier,
+                   -> { Increase::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier },
+                   nil?: true
+
           # @!attribute category
           #   The type of issue. We may add additional possible values for this enum over
           #   time; your application should be able to handle such additions gracefully.
@@ -2156,12 +2164,15 @@ module Increase
                    -> { Increase::Entity::Validation::Issue::EntityTaxIdentifier },
                    nil?: true
 
-          # @!method initialize(beneficial_owner_address:, beneficial_owner_identity:, category:, entity_address:, entity_identity:, entity_tax_identifier:)
+          # @!method initialize(beneficial_owner_address:, beneficial_owner_identity:, beneficial_owner_tax_identifier:, category:, entity_address:, entity_identity:, entity_tax_identifier:)
           #   @param beneficial_owner_address [Increase::Models::Entity::Validation::Issue::BeneficialOwnerAddress, nil]
           #     Details when the issue is with a beneficial owner's address.
           #
           #   @param beneficial_owner_identity [Increase::Models::Entity::Validation::Issue::BeneficialOwnerIdentity, nil]
           #     Details when the issue is with a beneficial owner's identity verification.
+          #
+          #   @param beneficial_owner_tax_identifier [Increase::Models::Entity::Validation::Issue::BeneficialOwnerTaxIdentifier, nil]
+          #     Details when the issue is with a beneficial owner's tax identifier.
           #
           #   @param category [Symbol, Increase::Models::Entity::Validation::Issue::Category]
           #     The type of issue. We may add additional possible values for this enum over
@@ -2226,6 +2237,20 @@ module Increase
             #   @param beneficial_owner_id [String] The ID of the beneficial owner.
           end
 
+          # @see Increase::Models::Entity::Validation::Issue#beneficial_owner_tax_identifier
+          class BeneficialOwnerTaxIdentifier < Increase::Internal::Type::BaseModel
+            # @!attribute beneficial_owner_id
+            #   The ID of the beneficial owner.
+            #
+            #   @return [String]
+            required :beneficial_owner_id, String
+
+            # @!method initialize(beneficial_owner_id:)
+            #   Details when the issue is with a beneficial owner's tax identifier.
+            #
+            #   @param beneficial_owner_id [String] The ID of the beneficial owner.
+          end
+
           # The type of issue. We may add additional possible values for this enum over
           # time; your application should be able to handle such additions gracefully.
           #
@@ -2247,6 +2272,9 @@ module Increase
 
             # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_ADDRESS = :beneficial_owner_address
+
+            # A beneficial owner's full tax identifier is required. A non-US person can submit a passport or driver's license. Make changes via the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_TAX_IDENTIFIER = :beneficial_owner_tax_identifier
 
             # @!method self.values
             #   @return [Array<Symbol>]

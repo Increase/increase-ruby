@@ -714,13 +714,6 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::Export::Category) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
-        ACCOUNT_STATEMENT_OFX =
-          T.let(
-            :account_statement_ofx,
-            Increase::Export::Category::TaggedSymbol
-          )
-
         # Export a BAI2 file of transactions and balances for a given date and optional Account.
         ACCOUNT_STATEMENT_BAI2 =
           T.let(
@@ -728,9 +721,19 @@ module Increase
             Increase::Export::Category::TaggedSymbol
           )
 
-        # Export a CSV of all transactions for a given time range.
-        TRANSACTION_CSV =
-          T.let(:transaction_csv, Increase::Export::Category::TaggedSymbol)
+        # Export an Open Financial Exchange (OFX) file of transactions and balances for a given time range and Account.
+        ACCOUNT_STATEMENT_OFX =
+          T.let(
+            :account_statement_ofx,
+            Increase::Export::Category::TaggedSymbol
+          )
+
+        # A PDF of an account verification letter.
+        ACCOUNT_VERIFICATION_LETTER =
+          T.let(
+            :account_verification_letter,
+            Increase::Export::Category::TaggedSymbol
+          )
 
         # Export a CSV of account balances for the dates in a given range. (deprecated, use `daily_account_balance_csv` instead)
         BALANCE_CSV =
@@ -743,28 +746,23 @@ module Increase
             Increase::Export::Category::TaggedSymbol
           )
 
-        # Export a CSV of entities with a given status.
-        ENTITY_CSV =
-          T.let(:entity_csv, Increase::Export::Category::TaggedSymbol)
-
-        # Export a CSV of vendors added to the third-party risk management dashboard.
-        VENDOR_CSV =
-          T.let(:vendor_csv, Increase::Export::Category::TaggedSymbol)
+        # Export a CSV of daily account balances with starting and ending balances for a given date range.
+        DAILY_ACCOUNT_BALANCE_CSV =
+          T.let(
+            :daily_account_balance_csv,
+            Increase::Export::Category::TaggedSymbol
+          )
 
         # Certain dashboard tables are available as CSV exports. This export cannot be created via the API.
         DASHBOARD_TABLE_CSV =
           T.let(:dashboard_table_csv, Increase::Export::Category::TaggedSymbol)
 
-        # A PDF of an account verification letter.
-        ACCOUNT_VERIFICATION_LETTER =
-          T.let(
-            :account_verification_letter,
-            Increase::Export::Category::TaggedSymbol
-          )
+        # Export a CSV of entities with a given status.
+        ENTITY_CSV =
+          T.let(:entity_csv, Increase::Export::Category::TaggedSymbol)
 
-        # A PDF of funding instructions.
-        FUNDING_INSTRUCTIONS =
-          T.let(:funding_instructions, Increase::Export::Category::TaggedSymbol)
+        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
+        FEE_CSV = T.let(:fee_csv, Increase::Export::Category::TaggedSymbol)
 
         # A PDF of an Internal Revenue Service Form 1099-INT.
         FORM_1099_INT =
@@ -774,19 +772,21 @@ module Increase
         FORM_1099_MISC =
           T.let(:form_1099_misc, Increase::Export::Category::TaggedSymbol)
 
-        # Export a CSV of fees. The time range must not include any fees that are part of an open fee statement.
-        FEE_CSV = T.let(:fee_csv, Increase::Export::Category::TaggedSymbol)
+        # A PDF of funding instructions.
+        FUNDING_INSTRUCTIONS =
+          T.let(:funding_instructions, Increase::Export::Category::TaggedSymbol)
+
+        # Export a CSV of all transactions for a given time range.
+        TRANSACTION_CSV =
+          T.let(:transaction_csv, Increase::Export::Category::TaggedSymbol)
+
+        # Export a CSV of vendors added to the third-party risk management dashboard.
+        VENDOR_CSV =
+          T.let(:vendor_csv, Increase::Export::Category::TaggedSymbol)
 
         # A PDF of a voided check.
         VOIDED_CHECK =
           T.let(:voided_check, Increase::Export::Category::TaggedSymbol)
-
-        # Export a CSV of daily account balances with starting and ending balances for a given date range.
-        DAILY_ACCOUNT_BALANCE_CSV =
-          T.let(
-            :daily_account_balance_csv,
-            Increase::Export::Category::TaggedSymbol
-          )
 
         sig do
           override.returns(T::Array[Increase::Export::Category::TaggedSymbol])

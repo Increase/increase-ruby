@@ -16003,6 +16003,10 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :instructing_agent_routing_number
 
+          # A free-form instruction for the receiving bank set by the sender.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :instruction_for_creditor_agent
+
           # The sending bank's identifier for the wire transfer.
           sig { returns(T.nilable(String)) }
           attr_accessor :instruction_identification
@@ -16044,6 +16048,7 @@ module Increase
               end_to_end_identification: T.nilable(String),
               input_message_accountability_data: T.nilable(String),
               instructing_agent_routing_number: T.nilable(String),
+              instruction_for_creditor_agent: T.nilable(String),
               instruction_identification: T.nilable(String),
               purpose: T.nilable(String),
               transfer_id: String,
@@ -16081,6 +16086,8 @@ module Increase
             # The American Bankers' Association (ABA) routing number of the bank that sent the
             # wire.
             instructing_agent_routing_number:,
+            # A free-form instruction for the receiving bank set by the sender.
+            instruction_for_creditor_agent:,
             # The sending bank's identifier for the wire transfer.
             instruction_identification:,
             # The reason for the wire transfer, as set by the sender.
@@ -16112,6 +16119,7 @@ module Increase
                 end_to_end_identification: T.nilable(String),
                 input_message_accountability_data: T.nilable(String),
                 instructing_agent_routing_number: T.nilable(String),
+                instruction_for_creditor_agent: T.nilable(String),
                 instruction_identification: T.nilable(String),
                 purpose: T.nilable(String),
                 transfer_id: String,

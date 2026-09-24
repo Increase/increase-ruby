@@ -151,6 +151,13 @@ module Increase
                 Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
               )
 
+            # A beneficial owner's full tax identifier is required. A non-US person can submit a passport or driver's license. Make changes via the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_TAX_IDENTIFIER =
+              T.let(
+                :beneficial_owner_tax_identifier,
+                Increase::Simulations::EntityUpdateValidationParams::Issue::Category::TaggedSymbol
+              )
+
             sig do
               override.returns(
                 T::Array[
