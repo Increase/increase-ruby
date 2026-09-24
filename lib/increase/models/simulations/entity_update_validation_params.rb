@@ -63,6 +63,9 @@ module Increase
             # A beneficial owner's address could not be validated. Update the address with the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
             BENEFICIAL_OWNER_ADDRESS = :beneficial_owner_address
 
+            # A beneficial owner's full tax identifier is required. A non-US person can submit a passport or driver's license. Make changes via the [update a beneficial owner API](/documentation/api/beneficial-owners#update-a-beneficial-owner).
+            BENEFICIAL_OWNER_TAX_IDENTIFIER = :beneficial_owner_tax_identifier
+
             # @!method self.values
             #   @return [Array<Symbol>]
           end

@@ -192,6 +192,15 @@ module Increase
           # The tokenization attempt was declined by the token requestor.
           DECLINED_BY_TOKEN_REQUESTOR = :declined_by_token_requestor
 
+          # The group was locked.
+          GROUP_LOCKED = :group_locked
+
+          # The account has been closed.
+          ACCOUNT_CLOSED = :account_closed
+
+          # The account's entity was not active.
+          ENTITY_NOT_ACTIVE = :entity_not_active
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end
@@ -315,6 +324,9 @@ module Increase
         # The digital wallet token was declined during provisioning.
         DECLINED = :declined
 
+        # The digital wallet token is transitioning to a new status and is awaiting confirmation from the card network.
+        PENDING_TRANSITIONING = :pending_transitioning
+
         # @!method self.values
         #   @return [Array<Symbol>]
       end
@@ -396,6 +408,9 @@ module Increase
 
           # The digital wallet token was declined during provisioning.
           DECLINED = :declined
+
+          # The digital wallet token is transitioning to a new status and is awaiting confirmation from the card network.
+          PENDING_TRANSITIONING = :pending_transitioning
 
           # @!method self.values
           #   @return [Array<Symbol>]

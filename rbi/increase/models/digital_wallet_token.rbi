@@ -304,6 +304,27 @@ module Increase
               Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
             )
 
+          # The group was locked.
+          GROUP_LOCKED =
+            T.let(
+              :group_locked,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # The account has been closed.
+          ACCOUNT_CLOSED =
+            T.let(
+              :account_closed,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
+          # The account's entity was not active.
+          ENTITY_NOT_ACTIVE =
+            T.let(
+              :entity_not_active,
+              Increase::DigitalWalletToken::Decline::Reason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[
@@ -535,6 +556,13 @@ module Increase
         DECLINED =
           T.let(:declined, Increase::DigitalWalletToken::Status::TaggedSymbol)
 
+        # The digital wallet token is transitioning to a new status and is awaiting confirmation from the card network.
+        PENDING_TRANSITIONING =
+          T.let(
+            :pending_transitioning,
+            Increase::DigitalWalletToken::Status::TaggedSymbol
+          )
+
         sig do
           override.returns(
             T::Array[Increase::DigitalWalletToken::Status::TaggedSymbol]
@@ -704,6 +732,13 @@ module Increase
           DECLINED =
             T.let(
               :declined,
+              Increase::DigitalWalletToken::Update::Status::TaggedSymbol
+            )
+
+          # The digital wallet token is transitioning to a new status and is awaiting confirmation from the card network.
+          PENDING_TRANSITIONING =
+            T.let(
+              :pending_transitioning,
               Increase::DigitalWalletToken::Update::Status::TaggedSymbol
             )
 
