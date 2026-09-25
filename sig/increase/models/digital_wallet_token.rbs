@@ -112,6 +112,9 @@ module Increase
           | :webhook_declined
           | :incorrect_card_verification_code
           | :declined_by_token_requestor
+          | :group_locked
+          | :account_closed
+          | :entity_not_active
 
         module Reason
           extend Increase::Internal::Type::Enum
@@ -133,6 +136,15 @@ module Increase
 
           # The tokenization attempt was declined by the token requestor.
           DECLINED_BY_TOKEN_REQUESTOR: :declined_by_token_requestor
+
+          # The group was locked.
+          GROUP_LOCKED: :group_locked
+
+          # The account has been closed.
+          ACCOUNT_CLOSED: :account_closed
+
+          # The account's entity was not active.
+          ENTITY_NOT_ACTIVE: :entity_not_active
 
           def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Decline::reason]
         end
@@ -227,7 +239,13 @@ module Increase
         def to_hash: -> { :first6 => String, :last4 => String }
       end
 
-      type status = :active | :inactive | :suspended | :deactivated | :declined
+      type status =
+        :active
+        | :inactive
+        | :suspended
+        | :deactivated
+        | :declined
+        | :pending_transitioning
 
       module Status
         extend Increase::Internal::Type::Enum
@@ -246,6 +264,9 @@ module Increase
 
         # The digital wallet token was declined during provisioning.
         DECLINED: :declined
+
+        # The digital wallet token is transitioning to a new status and is awaiting confirmation from the card network.
+        PENDING_TRANSITIONING: :pending_transitioning
 
         def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::status]
       end
@@ -302,7 +323,12 @@ module Increase
         }
 
         type status =
-          :active | :inactive | :suspended | :deactivated | :declined
+          :active
+          | :inactive
+          | :suspended
+          | :deactivated
+          | :declined
+          | :pending_transitioning
 
         module Status
           extend Increase::Internal::Type::Enum
@@ -321,6 +347,9 @@ module Increase
 
           # The digital wallet token was declined during provisioning.
           DECLINED: :declined
+
+          # The digital wallet token is transitioning to a new status and is awaiting confirmation from the card network.
+          PENDING_TRANSITIONING: :pending_transitioning
 
           def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Update::status]
         end

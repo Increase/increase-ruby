@@ -191,14 +191,14 @@ module Increase
         type: Increase::Models::ACHTransfer::type_
       }
 
-      type acknowledgement = { acknowledged_at: String }
+      type acknowledgement = { acknowledged_at: Time }
 
       class Acknowledgement < Increase::Internal::Type::BaseModel
-        attr_accessor acknowledged_at: String
+        attr_accessor acknowledged_at: Time
 
-        def initialize: (acknowledged_at: String) -> void
+        def initialize: (acknowledged_at: Time) -> void
 
-        def to_hash: -> { acknowledged_at: String }
+        def to_hash: -> { acknowledged_at: Time }
       end
 
       type addenda =
