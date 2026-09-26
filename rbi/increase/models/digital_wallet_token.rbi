@@ -603,6 +603,13 @@ module Increase
             Increase::DigitalWalletToken::TokenRequestor::TaggedSymbol
           )
 
+        # Garmin Pay
+        GARMIN_PAY =
+          T.let(
+            :garmin_pay,
+            Increase::DigitalWalletToken::TokenRequestor::TaggedSymbol
+          )
+
         # Unknown
         UNKNOWN =
           T.let(

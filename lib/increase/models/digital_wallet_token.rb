@@ -346,6 +346,9 @@ module Increase
         # Samsung Pay
         SAMSUNG_PAY = :samsung_pay
 
+        # Garmin Pay
+        GARMIN_PAY = :garmin_pay
+
         # Unknown
         UNKNOWN = :unknown
 
