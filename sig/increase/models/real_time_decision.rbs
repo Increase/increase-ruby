@@ -2597,7 +2597,8 @@ module Increase
           def self?.values: -> ::Array[Increase::Models::RealTimeDecision::DigitalWalletAuthentication::channel]
         end
 
-        type digital_wallet = :apple_pay | :google_pay | :samsung_pay | :unknown
+        type digital_wallet =
+          :apple_pay | :google_pay | :samsung_pay | :garmin_pay | :unknown
 
         module DigitalWallet
           extend Increase::Internal::Type::Enum
@@ -2610,6 +2611,9 @@ module Increase
 
           # Samsung Pay
           SAMSUNG_PAY: :samsung_pay
+
+          # Garmin Pay
+          GARMIN_PAY: :garmin_pay
 
           # Unknown
           UNKNOWN: :unknown
@@ -2687,7 +2691,8 @@ module Increase
           def to_hash: -> { identifier: String? }
         end
 
-        type digital_wallet = :apple_pay | :google_pay | :samsung_pay | :unknown
+        type digital_wallet =
+          :apple_pay | :google_pay | :samsung_pay | :garmin_pay | :unknown
 
         module DigitalWallet
           extend Increase::Internal::Type::Enum
@@ -2700,6 +2705,9 @@ module Increase
 
           # Samsung Pay
           SAMSUNG_PAY: :samsung_pay
+
+          # Garmin Pay
+          GARMIN_PAY: :garmin_pay
 
           # Unknown
           UNKNOWN: :unknown

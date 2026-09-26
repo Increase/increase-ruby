@@ -7102,6 +7102,13 @@ module Increase
               Increase::RealTimeDecision::DigitalWalletAuthentication::DigitalWallet::TaggedSymbol
             )
 
+          # Garmin Pay
+          GARMIN_PAY =
+            T.let(
+              :garmin_pay,
+              Increase::RealTimeDecision::DigitalWalletAuthentication::DigitalWallet::TaggedSymbol
+            )
+
           # Unknown
           UNKNOWN =
             T.let(
@@ -7345,6 +7352,13 @@ module Increase
           SAMSUNG_PAY =
             T.let(
               :samsung_pay,
+              Increase::RealTimeDecision::DigitalWalletToken::DigitalWallet::TaggedSymbol
+            )
+
+          # Garmin Pay
+          GARMIN_PAY =
+            T.let(
+              :garmin_pay,
               Increase::RealTimeDecision::DigitalWalletToken::DigitalWallet::TaggedSymbol
             )
 
