@@ -2201,6 +2201,7 @@ module Increase
             merchant_name: String,
             merchant_postal_code: String?,
             merchant_state: String?,
+            network: Increase::Models::Transaction::Source::CardRefund::network,
             network_identifiers: Increase::Transaction::Source::CardRefund::NetworkIdentifiers,
             presentment_amount: Integer,
             presentment_currency: String,
@@ -2237,6 +2238,8 @@ module Increase
 
           attr_accessor merchant_state: String?
 
+          attr_accessor network: Increase::Models::Transaction::Source::CardRefund::network
+
           attr_accessor network_identifiers: Increase::Transaction::Source::CardRefund::NetworkIdentifiers
 
           attr_accessor presentment_amount: Integer
@@ -2265,6 +2268,7 @@ module Increase
             merchant_name: String,
             merchant_postal_code: String?,
             merchant_state: String?,
+            network: Increase::Models::Transaction::Source::CardRefund::network,
             network_identifiers: Increase::Transaction::Source::CardRefund::NetworkIdentifiers,
             presentment_amount: Integer,
             presentment_currency: String,
@@ -2288,6 +2292,7 @@ module Increase
             merchant_name: String,
             merchant_postal_code: String?,
             merchant_state: String?,
+            network: Increase::Models::Transaction::Source::CardRefund::network,
             network_identifiers: Increase::Transaction::Source::CardRefund::NetworkIdentifiers,
             presentment_amount: Integer,
             presentment_currency: String,
@@ -2377,6 +2382,20 @@ module Increase
 
               def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardRefund::Interchange::currency]
             end
+          end
+
+          type network = :visa | :pulse
+
+          module Network
+            extend Increase::Internal::Type::Enum
+
+            # Visa
+            VISA: :visa
+
+            # Pulse
+            PULSE: :pulse
+
+            def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardRefund::network]
           end
 
           type network_identifiers =
