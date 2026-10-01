@@ -1,0 +1,21 @@
+module Increase
+  module Resources
+    class InboundRealTimePaymentsRequestsForPayment
+      def retrieve: (
+        String inbound_real_time_payments_request_for_payment_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::InboundRealTimePaymentsRequestForPayment
+
+      def list: (
+        ?account_id: String,
+        ?account_number_id: String,
+        ?created_at: Increase::InboundRealTimePaymentsRequestsForPaymentListParams::CreatedAt,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::InboundRealTimePaymentsRequestForPayment]
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end

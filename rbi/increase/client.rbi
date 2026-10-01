@@ -58,6 +58,9 @@ module Increase
     sig { returns(Increase::Resources::DigitalWalletTokens) }
     attr_reader :digital_wallet_tokens
 
+    sig { returns(Increase::Resources::DigitalWalletTokenRequests) }
+    attr_reader :digital_wallet_token_requests
+
     sig { returns(Increase::Resources::Transactions) }
     attr_reader :transactions
 
@@ -99,6 +102,14 @@ module Increase
 
     sig { returns(Increase::Resources::InboundRealTimePaymentsTransfers) }
     attr_reader :inbound_real_time_payments_transfers
+
+    sig { returns(Increase::Resources::RealTimePaymentsRequestsForPayment) }
+    attr_reader :real_time_payments_requests_for_payment
+
+    sig do
+      returns(Increase::Resources::InboundRealTimePaymentsRequestsForPayment)
+    end
+    attr_reader :inbound_real_time_payments_requests_for_payment
 
     sig { returns(Increase::Resources::FednowTransfers) }
     attr_reader :fednow_transfers
@@ -192,6 +203,9 @@ module Increase
 
     sig { returns(Increase::Resources::CardValidations) }
     attr_reader :card_validations
+
+    sig { returns(Increase::Resources::PhysicalCheckBatches) }
+    attr_reader :physical_check_batches
 
     sig { returns(Increase::Resources::Simulations) }
     attr_reader :simulations

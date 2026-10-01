@@ -142,6 +142,22 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
     end
   end
 
+  def test_create_details_token
+    response = @increase.cards.create_details_token("card_oubs0hwk5rn6knuecxg2")
+
+    assert_pattern do
+      response => Increase::CardDetailsToken
+    end
+
+    assert_pattern do
+      response => {
+        token: String,
+        expires_at: Time,
+        type: Increase::CardDetailsToken::Type
+      }
+    end
+  end
+
   def test_details
     response = @increase.cards.details("card_oubs0hwk5rn6knuecxg2")
 

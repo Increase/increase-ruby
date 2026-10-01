@@ -63,4 +63,35 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
       }
     end
   end
+
+  def test_transition_required_params
+    response =
+      @increase.digital_wallet_tokens.transition(
+        "digital_wallet_token_izi62go3h51p369jrie0",
+        status: :suspended
+      )
+
+    assert_pattern do
+      response => Increase::DigitalWalletToken
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String,
+        card_id: String,
+        cardholder: Increase::DigitalWalletToken::Cardholder,
+        created_at: Time,
+        decline: Increase::DigitalWalletToken::Decline | nil,
+        device: Increase::DigitalWalletToken::Device,
+        dynamic_primary_account_number: Increase::DigitalWalletToken::DynamicPrimaryAccountNumber | nil,
+        primary_account_number_reference_identifier: String,
+        status: Increase::DigitalWalletToken::Status,
+        token_reference_identifier: String,
+        token_requestor: Increase::DigitalWalletToken::TokenRequestor,
+        type: Increase::DigitalWalletToken::Type,
+        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update])
+      }
+    end
+  end
 end

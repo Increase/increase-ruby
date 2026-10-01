@@ -59,6 +59,9 @@ module Increase
     # @return [Increase::Resources::DigitalWalletTokens]
     attr_reader :digital_wallet_tokens
 
+    # @return [Increase::Resources::DigitalWalletTokenRequests]
+    attr_reader :digital_wallet_token_requests
+
     # @return [Increase::Resources::Transactions]
     attr_reader :transactions
 
@@ -100,6 +103,12 @@ module Increase
 
     # @return [Increase::Resources::InboundRealTimePaymentsTransfers]
     attr_reader :inbound_real_time_payments_transfers
+
+    # @return [Increase::Resources::RealTimePaymentsRequestsForPayment]
+    attr_reader :real_time_payments_requests_for_payment
+
+    # @return [Increase::Resources::InboundRealTimePaymentsRequestsForPayment]
+    attr_reader :inbound_real_time_payments_requests_for_payment
 
     # @return [Increase::Resources::FednowTransfers]
     attr_reader :fednow_transfers
@@ -193,6 +202,9 @@ module Increase
 
     # @return [Increase::Resources::CardValidations]
     attr_reader :card_validations
+
+    # @return [Increase::Resources::PhysicalCheckBatches]
+    attr_reader :physical_check_batches
 
     # @return [Increase::Resources::Simulations]
     attr_reader :simulations
@@ -290,6 +302,7 @@ module Increase
       @digital_card_profiles = Increase::Resources::DigitalCardProfiles.new(client: self)
       @physical_card_profiles = Increase::Resources::PhysicalCardProfiles.new(client: self)
       @digital_wallet_tokens = Increase::Resources::DigitalWalletTokens.new(client: self)
+      @digital_wallet_token_requests = Increase::Resources::DigitalWalletTokenRequests.new(client: self)
       @transactions = Increase::Resources::Transactions.new(client: self)
       @pending_transactions = Increase::Resources::PendingTransactions.new(client: self)
       @declined_transactions = Increase::Resources::DeclinedTransactions.new(client: self)
@@ -305,6 +318,10 @@ module Increase
       @real_time_payments_transfers = Increase::Resources::RealTimePaymentsTransfers.new(client: self)
       @inbound_real_time_payments_transfers =
         Increase::Resources::InboundRealTimePaymentsTransfers.new(client: self)
+      @real_time_payments_requests_for_payment =
+        Increase::Resources::RealTimePaymentsRequestsForPayment.new(client: self)
+      @inbound_real_time_payments_requests_for_payment =
+        Increase::Resources::InboundRealTimePaymentsRequestsForPayment.new(client: self)
       @fednow_transfers = Increase::Resources::FednowTransfers.new(client: self)
       @inbound_fednow_transfers = Increase::Resources::InboundFednowTransfers.new(client: self)
       @swift_transfers = Increase::Resources::SwiftTransfers.new(client: self)
@@ -336,6 +353,7 @@ module Increase
       @card_tokens = Increase::Resources::CardTokens.new(client: self)
       @card_push_transfers = Increase::Resources::CardPushTransfers.new(client: self)
       @card_validations = Increase::Resources::CardValidations.new(client: self)
+      @physical_check_batches = Increase::Resources::PhysicalCheckBatches.new(client: self)
       @simulations = Increase::Resources::Simulations.new(client: self)
     end
   end

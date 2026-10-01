@@ -1,0 +1,156 @@
+module Increase
+  module Models
+    type physical_check_batch_create_params =
+      {
+        mailing_address: Increase::PhysicalCheckBatchCreateParams::MailingAddress,
+        return_address: Increase::PhysicalCheckBatchCreateParams::ReturnAddress,
+        shipping_method: Increase::Models::PhysicalCheckBatchCreateParams::shipping_method
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class PhysicalCheckBatchCreateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor mailing_address: Increase::PhysicalCheckBatchCreateParams::MailingAddress
+
+      attr_accessor return_address: Increase::PhysicalCheckBatchCreateParams::ReturnAddress
+
+      attr_reader shipping_method: Increase::Models::PhysicalCheckBatchCreateParams::shipping_method?
+
+      def shipping_method=: (
+        Increase::Models::PhysicalCheckBatchCreateParams::shipping_method
+      ) -> Increase::Models::PhysicalCheckBatchCreateParams::shipping_method
+
+      def initialize: (
+        mailing_address: Increase::PhysicalCheckBatchCreateParams::MailingAddress,
+        return_address: Increase::PhysicalCheckBatchCreateParams::ReturnAddress,
+        ?shipping_method: Increase::Models::PhysicalCheckBatchCreateParams::shipping_method,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        mailing_address: Increase::PhysicalCheckBatchCreateParams::MailingAddress,
+        return_address: Increase::PhysicalCheckBatchCreateParams::ReturnAddress,
+        shipping_method: Increase::Models::PhysicalCheckBatchCreateParams::shipping_method,
+        request_options: Increase::RequestOptions
+      }
+
+      type mailing_address =
+        {
+          city: String,
+          :line1 => String,
+          name: String,
+          postal_code: String,
+          state: String,
+          :line2 => String,
+          phone: String
+        }
+
+      class MailingAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor line1: String
+
+        attr_accessor name: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        attr_reader phone: String?
+
+        def phone=: (String) -> String
+
+        def initialize: (
+          city: String,
+          line1: String,
+          name: String,
+          postal_code: String,
+          state: String,
+          ?line2: String,
+          ?phone: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          name: String,
+          postal_code: String,
+          state: String,
+          :line2 => String,
+          phone: String
+        }
+      end
+
+      type return_address =
+        {
+          city: String,
+          :line1 => String,
+          name: String,
+          postal_code: String,
+          state: String,
+          :line2 => String,
+          phone: String
+        }
+
+      class ReturnAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor line1: String
+
+        attr_accessor name: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        attr_reader phone: String?
+
+        def phone=: (String) -> String
+
+        def initialize: (
+          city: String,
+          line1: String,
+          name: String,
+          postal_code: String,
+          state: String,
+          ?line2: String,
+          ?phone: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          name: String,
+          postal_code: String,
+          state: String,
+          :line2 => String,
+          phone: String
+        }
+      end
+
+      type shipping_method = :usps_first_class | :fedex_overnight
+
+      module ShippingMethod
+        extend Increase::Internal::Type::Enum
+
+        # USPS First Class
+        USPS_FIRST_CLASS: :usps_first_class
+
+        # FedEx Overnight
+        FEDEX_OVERNIGHT: :fedex_overnight
+
+        def self?.values: -> ::Array[Increase::Models::PhysicalCheckBatchCreateParams::shipping_method]
+      end
+    end
+  end
+end

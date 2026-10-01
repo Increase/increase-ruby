@@ -39,6 +39,8 @@ module Increase
 
     attr_reader digital_wallet_tokens: Increase::Resources::DigitalWalletTokens
 
+    attr_reader digital_wallet_token_requests: Increase::Resources::DigitalWalletTokenRequests
+
     attr_reader transactions: Increase::Resources::Transactions
 
     attr_reader pending_transactions: Increase::Resources::PendingTransactions
@@ -66,6 +68,10 @@ module Increase
     attr_reader real_time_payments_transfers: Increase::Resources::RealTimePaymentsTransfers
 
     attr_reader inbound_real_time_payments_transfers: Increase::Resources::InboundRealTimePaymentsTransfers
+
+    attr_reader real_time_payments_requests_for_payment: Increase::Resources::RealTimePaymentsRequestsForPayment
+
+    attr_reader inbound_real_time_payments_requests_for_payment: Increase::Resources::InboundRealTimePaymentsRequestsForPayment
 
     attr_reader fednow_transfers: Increase::Resources::FednowTransfers
 
@@ -128,6 +134,8 @@ module Increase
     attr_reader card_push_transfers: Increase::Resources::CardPushTransfers
 
     attr_reader card_validations: Increase::Resources::CardValidations
+
+    attr_reader physical_check_batches: Increase::Resources::PhysicalCheckBatches
 
     attr_reader simulations: Increase::Resources::Simulations
 

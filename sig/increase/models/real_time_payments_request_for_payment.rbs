@@ -1,0 +1,513 @@
+module Increase
+  module Models
+    type real_time_payments_request_for_payment =
+      {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        cancellation: Increase::RealTimePaymentsRequestForPayment::Cancellation?,
+        created_at: Time,
+        creditor_name: String,
+        currency: Increase::Models::RealTimePaymentsRequestForPayment::currency,
+        debtor: Increase::RealTimePaymentsRequestForPayment::Debtor,
+        debtor_account_number: String,
+        debtor_routing_number: String,
+        expires_at: Time,
+        fulfillment_inbound_real_time_payments_transfer_id: String?,
+        idempotency_key: String?,
+        refusal: Increase::RealTimePaymentsRequestForPayment::Refusal?,
+        rejection: Increase::RealTimePaymentsRequestForPayment::Rejection?,
+        requested_execution_at: Time?,
+        status: Increase::Models::RealTimePaymentsRequestForPayment::status,
+        submission: Increase::RealTimePaymentsRequestForPayment::Submission?,
+        type: Increase::Models::RealTimePaymentsRequestForPayment::type_,
+        unstructured_remittance_information: String
+      }
+
+    class RealTimePaymentsRequestForPayment < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor account_number_id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor cancellation: Increase::RealTimePaymentsRequestForPayment::Cancellation?
+
+      attr_accessor created_at: Time
+
+      attr_accessor creditor_name: String
+
+      attr_accessor currency: Increase::Models::RealTimePaymentsRequestForPayment::currency
+
+      attr_accessor debtor: Increase::RealTimePaymentsRequestForPayment::Debtor
+
+      attr_accessor debtor_account_number: String
+
+      attr_accessor debtor_routing_number: String
+
+      attr_accessor expires_at: Time
+
+      attr_accessor fulfillment_inbound_real_time_payments_transfer_id: String?
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor refusal: Increase::RealTimePaymentsRequestForPayment::Refusal?
+
+      attr_accessor rejection: Increase::RealTimePaymentsRequestForPayment::Rejection?
+
+      attr_accessor requested_execution_at: Time?
+
+      attr_accessor status: Increase::Models::RealTimePaymentsRequestForPayment::status
+
+      attr_accessor submission: Increase::RealTimePaymentsRequestForPayment::Submission?
+
+      attr_accessor type: Increase::Models::RealTimePaymentsRequestForPayment::type_
+
+      attr_accessor unstructured_remittance_information: String
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        cancellation: Increase::RealTimePaymentsRequestForPayment::Cancellation?,
+        created_at: Time,
+        creditor_name: String,
+        currency: Increase::Models::RealTimePaymentsRequestForPayment::currency,
+        debtor: Increase::RealTimePaymentsRequestForPayment::Debtor,
+        debtor_account_number: String,
+        debtor_routing_number: String,
+        expires_at: Time,
+        fulfillment_inbound_real_time_payments_transfer_id: String?,
+        idempotency_key: String?,
+        refusal: Increase::RealTimePaymentsRequestForPayment::Refusal?,
+        rejection: Increase::RealTimePaymentsRequestForPayment::Rejection?,
+        requested_execution_at: Time?,
+        status: Increase::Models::RealTimePaymentsRequestForPayment::status,
+        submission: Increase::RealTimePaymentsRequestForPayment::Submission?,
+        type: Increase::Models::RealTimePaymentsRequestForPayment::type_,
+        unstructured_remittance_information: String
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        cancellation: Increase::RealTimePaymentsRequestForPayment::Cancellation?,
+        created_at: Time,
+        creditor_name: String,
+        currency: Increase::Models::RealTimePaymentsRequestForPayment::currency,
+        debtor: Increase::RealTimePaymentsRequestForPayment::Debtor,
+        debtor_account_number: String,
+        debtor_routing_number: String,
+        expires_at: Time,
+        fulfillment_inbound_real_time_payments_transfer_id: String?,
+        idempotency_key: String?,
+        refusal: Increase::RealTimePaymentsRequestForPayment::Refusal?,
+        rejection: Increase::RealTimePaymentsRequestForPayment::Rejection?,
+        requested_execution_at: Time?,
+        status: Increase::Models::RealTimePaymentsRequestForPayment::status,
+        submission: Increase::RealTimePaymentsRequestForPayment::Submission?,
+        type: Increase::Models::RealTimePaymentsRequestForPayment::type_,
+        unstructured_remittance_information: String
+      }
+
+      type cancellation =
+        {
+          additional_information: String?,
+          canceled_at: Time,
+          reason: Increase::Models::RealTimePaymentsRequestForPayment::Cancellation::reason
+        }
+
+      class Cancellation < Increase::Internal::Type::BaseModel
+        attr_accessor additional_information: String?
+
+        attr_accessor canceled_at: Time
+
+        attr_accessor reason: Increase::Models::RealTimePaymentsRequestForPayment::Cancellation::reason
+
+        def initialize: (
+          additional_information: String?,
+          canceled_at: Time,
+          reason: Increase::Models::RealTimePaymentsRequestForPayment::Cancellation::reason
+        ) -> void
+
+        def to_hash: -> {
+          additional_information: String?,
+          canceled_at: Time,
+          reason: Increase::Models::RealTimePaymentsRequestForPayment::Cancellation::reason
+        }
+
+        type reason =
+          :requested_by_customer
+          | :paid_by_other_means
+          | :duplicate
+          | :wrong_amount
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The creditor no longer wants to be paid. Corresponds to the Real-Time Payments reason code `CUST`.
+          REQUESTED_BY_CUSTOMER: :requested_by_customer
+
+          # The requested payment has already been made through another channel. Corresponds to the Real-Time Payments reason code `UPAY`.
+          PAID_BY_OTHER_MEANS: :paid_by_other_means
+
+          # The request for payment duplicated another request for payment. Corresponds to the Real-Time Payments reason code `DUPL`.
+          DUPLICATE: :duplicate
+
+          # The request for payment was sent for the wrong amount. Corresponds to the Real-Time Payments reason code `AM09`.
+          WRONG_AMOUNT: :wrong_amount
+
+          def self?.values: -> ::Array[Increase::Models::RealTimePaymentsRequestForPayment::Cancellation::reason]
+        end
+      end
+
+      type currency = :USD
+
+      module Currency
+        extend Increase::Internal::Type::Enum
+
+        # US Dollar (USD)
+        USD: :USD
+
+        def self?.values: -> ::Array[Increase::Models::RealTimePaymentsRequestForPayment::currency]
+      end
+
+      type debtor =
+        {
+          address: Increase::RealTimePaymentsRequestForPayment::Debtor::Address,
+          name: String
+        }
+
+      class Debtor < Increase::Internal::Type::BaseModel
+        attr_accessor address: Increase::RealTimePaymentsRequestForPayment::Debtor::Address
+
+        attr_accessor name: String
+
+        def initialize: (
+          address: Increase::RealTimePaymentsRequestForPayment::Debtor::Address,
+          name: String
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::RealTimePaymentsRequestForPayment::Debtor::Address,
+          name: String
+        }
+
+        type address =
+          {
+            :address_line2 => String?,
+            building_number: String?,
+            city: String?,
+            country: String?,
+            postal_code: String?,
+            state: String?,
+            street_name: String?
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor address_line2: String?
+
+          attr_accessor building_number: String?
+
+          attr_accessor city: String?
+
+          attr_accessor country: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor state: String?
+
+          attr_accessor street_name: String?
+
+          def initialize: (
+            address_line2: String?,
+            building_number: String?,
+            city: String?,
+            country: String?,
+            postal_code: String?,
+            state: String?,
+            street_name: String?
+          ) -> void
+
+          def to_hash: -> {
+            :address_line2 => String?,
+            building_number: String?,
+            city: String?,
+            country: String?,
+            postal_code: String?,
+            state: String?,
+            street_name: String?
+          }
+        end
+      end
+
+      type refusal =
+        {
+          refusal_reason_additional_information: String?,
+          refusal_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Refusal::refusal_reason_code,
+          refused_at: Time?
+        }
+
+      class Refusal < Increase::Internal::Type::BaseModel
+        attr_accessor refusal_reason_additional_information: String?
+
+        attr_accessor refusal_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Refusal::refusal_reason_code
+
+        attr_accessor refused_at: Time?
+
+        def initialize: (
+          refusal_reason_additional_information: String?,
+          refusal_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Refusal::refusal_reason_code,
+          refused_at: Time?
+        ) -> void
+
+        def to_hash: -> {
+          refusal_reason_additional_information: String?,
+          refusal_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Refusal::refusal_reason_code,
+          refused_at: Time?
+        }
+
+        type refusal_reason_code =
+          :account_blocked
+          | :transaction_forbidden
+          | :transaction_type_not_supported
+          | :unexpected_amount
+          | :amount_exceeds_bank_limits
+          | :invalid_debtor_address
+          | :invalid_creditor_address
+          | :creditor_identifier_incorrect
+          | :requested_by_customer
+          | :order_rejected
+          | :end_customer_deceased
+          | :customer_has_opted_out
+          | :other
+
+        module RefusalReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The destination account is currently blocked from receiving transactions. Corresponds to the Real-Time Payments reason code `AC06`.
+          ACCOUNT_BLOCKED: :account_blocked
+
+          # Real-Time Payments transfers are not allowed to the destination account. Corresponds to the Real-Time Payments reason code `AG01`.
+          TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+          # Real-Time Payments transfers are not enabled for the destination account. Corresponds to the Real-Time Payments reason code `AG03`.
+          TRANSACTION_TYPE_NOT_SUPPORTED: :transaction_type_not_supported
+
+          # The amount of the transfer is different than expected by the recipient. Corresponds to the Real-Time Payments reason code `AM09`.
+          UNEXPECTED_AMOUNT: :unexpected_amount
+
+          # The amount is higher than the recipient is authorized to send or receive. Corresponds to the Real-Time Payments reason code `AM14`.
+          AMOUNT_EXCEEDS_BANK_LIMITS: :amount_exceeds_bank_limits
+
+          # The debtor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code `BE07`.
+          INVALID_DEBTOR_ADDRESS: :invalid_debtor_address
+
+          # The creditor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code `BE04`.
+          INVALID_CREDITOR_ADDRESS: :invalid_creditor_address
+
+          # Creditor identifier incorrect. Corresponds to the Real-Time Payments reason code `CH11`.
+          CREDITOR_IDENTIFIER_INCORRECT: :creditor_identifier_incorrect
+
+          # The customer refused the request. Corresponds to the Real-Time Payments reason code `CUST`.
+          REQUESTED_BY_CUSTOMER: :requested_by_customer
+
+          # The order was rejected. Corresponds to the Real-Time Payments reason code `DS04`.
+          ORDER_REJECTED: :order_rejected
+
+          # The destination account holder is deceased. Corresponds to the Real-Time Payments reason code `MD07`.
+          END_CUSTOMER_DECEASED: :end_customer_deceased
+
+          # The customer has opted out of receiving requests for payments from this creditor. Corresponds to the Real-Time Payments reason code `SL12`.
+          CUSTOMER_HAS_OPTED_OUT: :customer_has_opted_out
+
+          # Some other error or issue has occurred.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::RealTimePaymentsRequestForPayment::Refusal::refusal_reason_code]
+        end
+      end
+
+      type rejection =
+        {
+          reject_reason_additional_information: String?,
+          reject_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Rejection::reject_reason_code,
+          rejected_at: Time?
+        }
+
+      class Rejection < Increase::Internal::Type::BaseModel
+        attr_accessor reject_reason_additional_information: String?
+
+        attr_accessor reject_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Rejection::reject_reason_code
+
+        attr_accessor rejected_at: Time?
+
+        def initialize: (
+          reject_reason_additional_information: String?,
+          reject_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Rejection::reject_reason_code,
+          rejected_at: Time?
+        ) -> void
+
+        def to_hash: -> {
+          reject_reason_additional_information: String?,
+          reject_reason_code: Increase::Models::RealTimePaymentsRequestForPayment::Rejection::reject_reason_code,
+          rejected_at: Time?
+        }
+
+        type reject_reason_code =
+          :account_closed
+          | :account_blocked
+          | :invalid_creditor_account_type
+          | :invalid_creditor_account_number
+          | :invalid_creditor_financial_institution_identifier
+          | :end_customer_deceased
+          | :narrative
+          | :transaction_forbidden
+          | :transaction_type_not_supported
+          | :unexpected_amount
+          | :amount_exceeds_bank_limits
+          | :invalid_creditor_address
+          | :unknown_end_customer
+          | :invalid_debtor_address
+          | :timeout
+          | :unsupported_message_for_recipient
+          | :recipient_connection_not_available
+          | :real_time_payments_suspended
+          | :instructed_agent_signed_off
+          | :processing_error
+          | :other
+
+        module RejectReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The destination account is closed. Corresponds to the Real-Time Payments reason code "AC04".
+          ACCOUNT_CLOSED: :account_closed
+
+          # The destination account is currently blocked from receiving transactions. Corresponds to the Real-Time Payments reason code "AC06".
+          ACCOUNT_BLOCKED: :account_blocked
+
+          # The destination account is ineligible to receive Real-Time Payments transfers. Corresponds to the Real-Time Payments reason code "AC14".
+          INVALID_CREDITOR_ACCOUNT_TYPE: :invalid_creditor_account_type
+
+          # The destination account does not exist. Corresponds to the Real-Time Payments reason code "AC03".
+          INVALID_CREDITOR_ACCOUNT_NUMBER: :invalid_creditor_account_number
+
+          # The destination routing number is invalid. Corresponds to the Real-Time Payments reason code "RC04".
+          INVALID_CREDITOR_FINANCIAL_INSTITUTION_IDENTIFIER: :invalid_creditor_financial_institution_identifier
+
+          # The destination account holder is deceased. Corresponds to the Real-Time Payments reason code "MD07".
+          END_CUSTOMER_DECEASED: :end_customer_deceased
+
+          # The reason is provided as narrative information in the additional information field.
+          NARRATIVE: :narrative
+
+          # Real-Time Payments transfers are not allowed to the destination account. Corresponds to the Real-Time Payments reason code "AG01".
+          TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+          # Real-Time Payments transfers are not enabled for the destination account. Corresponds to the Real-Time Payments reason code "AG03".
+          TRANSACTION_TYPE_NOT_SUPPORTED: :transaction_type_not_supported
+
+          # The amount of the transfer is different than expected by the recipient. Corresponds to the Real-Time Payments reason code "AM09".
+          UNEXPECTED_AMOUNT: :unexpected_amount
+
+          # The amount is higher than the recipient is authorized to send or receive. Corresponds to the Real-Time Payments reason code "AM14".
+          AMOUNT_EXCEEDS_BANK_LIMITS: :amount_exceeds_bank_limits
+
+          # The creditor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code "BE04".
+          INVALID_CREDITOR_ADDRESS: :invalid_creditor_address
+
+          # The specified creditor is unknown. Corresponds to the Real-Time Payments reason code "BE06".
+          UNKNOWN_END_CUSTOMER: :unknown_end_customer
+
+          # The debtor's address is required, but missing or invalid. Corresponds to the Real-Time Payments reason code "BE07".
+          INVALID_DEBTOR_ADDRESS: :invalid_debtor_address
+
+          # There was a timeout processing the transfer. Corresponds to the Real-Time Payments reason code "DS24".
+          TIMEOUT: :timeout
+
+          # Real-Time Payments transfers are not enabled for the destination account. Corresponds to the Real-Time Payments reason code "NOAT".
+          UNSUPPORTED_MESSAGE_FOR_RECIPIENT: :unsupported_message_for_recipient
+
+          # The destination financial institution is currently not connected to Real-Time Payments. Corresponds to the Real-Time Payments reason code "9912".
+          RECIPIENT_CONNECTION_NOT_AVAILABLE: :recipient_connection_not_available
+
+          # Real-Time Payments is currently unavailable. Corresponds to the Real-Time Payments reason code "9948".
+          REAL_TIME_PAYMENTS_SUSPENDED: :real_time_payments_suspended
+
+          # The destination financial institution is currently signed off of Real-Time Payments. Corresponds to the Real-Time Payments reason code "9910".
+          INSTRUCTED_AGENT_SIGNED_OFF: :instructed_agent_signed_off
+
+          # The transfer was rejected due to an internal Increase issue. We have been notified.
+          PROCESSING_ERROR: :processing_error
+
+          # Some other error or issue has occurred.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::RealTimePaymentsRequestForPayment::Rejection::reject_reason_code]
+        end
+      end
+
+      type status =
+        :pending_submission
+        | :pending_response
+        | :rejected
+        | :accepted
+        | :refused
+        | :fulfilled
+        | :canceled
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The request for payment is queued to be submitted to Real-Time Payments.
+        PENDING_SUBMISSION: :pending_submission
+
+        # The request for payment has been submitted and is pending a response from Real-Time Payments.
+        PENDING_RESPONSE: :pending_response
+
+        # The request for payment was rejected by the network or the recipient.
+        REJECTED: :rejected
+
+        # The request for payment was accepted by the recipient but has not yet been paid.
+        ACCEPTED: :accepted
+
+        # The request for payment was refused by the recipient.
+        REFUSED: :refused
+
+        # The request for payment was fulfilled by the receiver.
+        FULFILLED: :fulfilled
+
+        # The request for payment was canceled and can no longer be paid.
+        CANCELED: :canceled
+
+        def self?.values: -> ::Array[Increase::Models::RealTimePaymentsRequestForPayment::status]
+      end
+
+      type submission = { payment_information_identification: String }
+
+      class Submission < Increase::Internal::Type::BaseModel
+        attr_accessor payment_information_identification: String
+
+        def initialize: (payment_information_identification: String) -> void
+
+        def to_hash: -> { payment_information_identification: String }
+      end
+
+      type type_ = :real_time_payments_request_for_payment
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT: :real_time_payments_request_for_payment
+
+        def self?.values: -> ::Array[Increase::Models::RealTimePaymentsRequestForPayment::type_]
+      end
+    end
+  end
+end

@@ -1,0 +1,24 @@
+module Increase
+  module Models
+    type physical_check_batch_complete_params =
+      { physical_check_batch_id: String }
+      & Increase::Internal::Type::request_parameters
+
+    class PhysicalCheckBatchCompleteParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor physical_check_batch_id: String
+
+      def initialize: (
+        physical_check_batch_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        physical_check_batch_id: String,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end

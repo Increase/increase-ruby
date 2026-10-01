@@ -1,0 +1,48 @@
+module Increase
+  module Models
+    type digital_wallet_token_transition_params =
+      {
+        digital_wallet_token_id: String,
+        status: Increase::Models::DigitalWalletTokenTransitionParams::status
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class DigitalWalletTokenTransitionParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor digital_wallet_token_id: String
+
+      attr_accessor status: Increase::Models::DigitalWalletTokenTransitionParams::status
+
+      def initialize: (
+        digital_wallet_token_id: String,
+        status: Increase::Models::DigitalWalletTokenTransitionParams::status,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        digital_wallet_token_id: String,
+        status: Increase::Models::DigitalWalletTokenTransitionParams::status,
+        request_options: Increase::RequestOptions
+      }
+
+      type status = :active | :suspended | :deactivated
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # Reactivate a suspended Digital Wallet Token.
+        ACTIVE: :active
+
+        # Temporarily pause an active Digital Wallet Token.
+        SUSPENDED: :suspended
+
+        # Permanently cancel an active, inactive, or suspended Digital Wallet Token.
+        DEACTIVATED: :deactivated
+
+        def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenTransitionParams::status]
+      end
+    end
+  end
+end

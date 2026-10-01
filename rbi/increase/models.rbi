@@ -85,11 +85,15 @@ module Increase
   CardCreateDetailsIframeParams =
     Increase::Models::CardCreateDetailsIframeParams
 
+  CardCreateDetailsTokenParams = Increase::Models::CardCreateDetailsTokenParams
+
   CardCreateParams = Increase::Models::CardCreateParams
 
   CardDetails = Increase::Models::CardDetails
 
   CardDetailsParams = Increase::Models::CardDetailsParams
+
+  CardDetailsToken = Increase::Models::CardDetailsToken
 
   CardDispute = Increase::Models::CardDispute
 
@@ -211,8 +215,19 @@ module Increase
 
   DigitalWalletTokenListParams = Increase::Models::DigitalWalletTokenListParams
 
+  DigitalWalletTokenRequest = Increase::Models::DigitalWalletTokenRequest
+
+  DigitalWalletTokenRequestListParams =
+    Increase::Models::DigitalWalletTokenRequestListParams
+
+  DigitalWalletTokenRequestRetrieveParams =
+    Increase::Models::DigitalWalletTokenRequestRetrieveParams
+
   DigitalWalletTokenRetrieveParams =
     Increase::Models::DigitalWalletTokenRetrieveParams
+
+  DigitalWalletTokenTransitionParams =
+    Increase::Models::DigitalWalletTokenTransitionParams
 
   Entity = Increase::Models::Entity
 
@@ -361,6 +376,15 @@ module Increase
   InboundMailItemRetrieveParams =
     Increase::Models::InboundMailItemRetrieveParams
 
+  InboundRealTimePaymentsRequestForPayment =
+    Increase::Models::InboundRealTimePaymentsRequestForPayment
+
+  InboundRealTimePaymentsRequestsForPaymentListParams =
+    Increase::Models::InboundRealTimePaymentsRequestsForPaymentListParams
+
+  InboundRealTimePaymentsRequestsForPaymentRetrieveParams =
+    Increase::Models::InboundRealTimePaymentsRequestsForPaymentRetrieveParams
+
   InboundRealTimePaymentsTransfer =
     Increase::Models::InboundRealTimePaymentsTransfer
 
@@ -499,6 +523,17 @@ module Increase
 
   PhysicalCardUpdateParams = Increase::Models::PhysicalCardUpdateParams
 
+  PhysicalCheckBatch = Increase::Models::PhysicalCheckBatch
+
+  PhysicalCheckBatchCancelParams =
+    Increase::Models::PhysicalCheckBatchCancelParams
+
+  PhysicalCheckBatchCompleteParams =
+    Increase::Models::PhysicalCheckBatchCompleteParams
+
+  PhysicalCheckBatchCreateParams =
+    Increase::Models::PhysicalCheckBatchCreateParams
+
   Program = Increase::Models::Program
 
   ProgramListParams = Increase::Models::ProgramListParams
@@ -511,6 +546,21 @@ module Increase
 
   RealTimeDecisionRetrieveParams =
     Increase::Models::RealTimeDecisionRetrieveParams
+
+  RealTimePaymentsRequestForPayment =
+    Increase::Models::RealTimePaymentsRequestForPayment
+
+  RealTimePaymentsRequestsForPaymentCancelParams =
+    Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams
+
+  RealTimePaymentsRequestsForPaymentCreateParams =
+    Increase::Models::RealTimePaymentsRequestsForPaymentCreateParams
+
+  RealTimePaymentsRequestsForPaymentListParams =
+    Increase::Models::RealTimePaymentsRequestsForPaymentListParams
+
+  RealTimePaymentsRequestsForPaymentRetrieveParams =
+    Increase::Models::RealTimePaymentsRequestsForPaymentRetrieveParams
 
   RealTimePaymentsTransfer = Increase::Models::RealTimePaymentsTransfer
 

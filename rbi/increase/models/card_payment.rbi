@@ -16391,6 +16391,14 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :merchant_state
 
+          # The card network on which this transaction was processed.
+          sig do
+            returns(
+              Increase::CardPayment::Element::CardRefund::Network::TaggedSymbol
+            )
+          end
+          attr_accessor :network
+
           # Network-specific identifiers for this refund.
           sig do
             returns(
@@ -16485,6 +16493,8 @@ module Increase
               merchant_name: String,
               merchant_postal_code: T.nilable(String),
               merchant_state: T.nilable(String),
+              network:
+                Increase::CardPayment::Element::CardRefund::Network::OrSymbol,
               network_identifiers:
                 Increase::CardPayment::Element::CardRefund::NetworkIdentifiers::OrHash,
               presentment_amount: Integer,
@@ -16532,6 +16542,8 @@ module Increase
             merchant_postal_code:,
             # The state the merchant resides in.
             merchant_state:,
+            # The card network on which this transaction was processed.
+            network:,
             # Network-specific identifiers for this refund.
             network_identifiers:,
             # The amount in the minor unit of the transaction's presentment currency.
@@ -16575,6 +16587,8 @@ module Increase
                 merchant_name: String,
                 merchant_postal_code: T.nilable(String),
                 merchant_state: T.nilable(String),
+                network:
+                  Increase::CardPayment::Element::CardRefund::Network::TaggedSymbol,
                 network_identifiers:
                   Increase::CardPayment::Element::CardRefund::NetworkIdentifiers,
                 presentment_amount: Integer,
@@ -16809,6 +16823,44 @@ module Increase
               end
               def self.values
               end
+            end
+          end
+
+          # The card network on which this transaction was processed.
+          module Network
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::CardPayment::Element::CardRefund::Network
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Visa
+            VISA =
+              T.let(
+                :visa,
+                Increase::CardPayment::Element::CardRefund::Network::TaggedSymbol
+              )
+
+            # Pulse
+            PULSE =
+              T.let(
+                :pulse,
+                Increase::CardPayment::Element::CardRefund::Network::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::CardPayment::Element::CardRefund::Network::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
             end
           end
 

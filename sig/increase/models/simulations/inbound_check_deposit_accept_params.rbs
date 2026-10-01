@@ -1,0 +1,26 @@
+module Increase
+  module Models
+    module Simulations
+      type inbound_check_deposit_accept_params =
+        { inbound_check_deposit_id: String }
+        & Increase::Internal::Type::request_parameters
+
+      class InboundCheckDepositAcceptParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor inbound_check_deposit_id: String
+
+        def initialize: (
+          inbound_check_deposit_id: String,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          inbound_check_deposit_id: String,
+          request_options: Increase::RequestOptions
+        }
+      end
+    end
+  end
+end

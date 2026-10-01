@@ -36,6 +36,22 @@ module Increase
         )
         end
 
+        # Simulates the acceptance of an [Inbound Check Deposit](#inbound-check-deposits),
+        # creating a Transaction as a result. The Inbound Check Deposit must first have a
+        # `status` of `pending`.
+        sig do
+          params(
+            inbound_check_deposit_id: String,
+            request_options: Increase::RequestOptions::OrHash
+          ).returns(Increase::InboundCheckDeposit)
+        end
+        def accept(
+          # The identifier of the Inbound Check Deposit you wish to accept.
+          inbound_check_deposit_id,
+          request_options: {}
+        )
+        end
+
         # Simulates an adjustment on an Inbound Check Deposit. The Inbound Check Deposit
         # must have a `status` of `accepted`.
         sig do

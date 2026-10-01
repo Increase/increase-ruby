@@ -1,0 +1,24 @@
+module Increase
+  module Resources
+    class PhysicalCheckBatches
+      def create: (
+        mailing_address: Increase::PhysicalCheckBatchCreateParams::MailingAddress,
+        return_address: Increase::PhysicalCheckBatchCreateParams::ReturnAddress,
+        ?shipping_method: Increase::Models::PhysicalCheckBatchCreateParams::shipping_method,
+        ?request_options: Increase::request_opts
+      ) -> Increase::PhysicalCheckBatch
+
+      def cancel: (
+        String physical_check_batch_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::PhysicalCheckBatch
+
+      def complete: (
+        String physical_check_batch_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::PhysicalCheckBatch
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end
