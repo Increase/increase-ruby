@@ -1,0 +1,149 @@
+module Increase
+  module Models
+    type real_time_payments_requests_for_payment_create_params =
+      {
+        account_number_id: String,
+        amount: Integer,
+        debtor: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor,
+        debtor_account_number: String,
+        debtor_routing_number: String,
+        expires_at: Time,
+        requested_execution_at: Time,
+        unstructured_remittance_information: String,
+        creditor_name: String
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class RealTimePaymentsRequestsForPaymentCreateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor account_number_id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor debtor: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor
+
+      attr_accessor debtor_account_number: String
+
+      attr_accessor debtor_routing_number: String
+
+      attr_accessor expires_at: Time
+
+      attr_accessor requested_execution_at: Time
+
+      attr_accessor unstructured_remittance_information: String
+
+      attr_reader creditor_name: String?
+
+      def creditor_name=: (String) -> String
+
+      def initialize: (
+        account_number_id: String,
+        amount: Integer,
+        debtor: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor,
+        debtor_account_number: String,
+        debtor_routing_number: String,
+        expires_at: Time,
+        requested_execution_at: Time,
+        unstructured_remittance_information: String,
+        ?creditor_name: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_number_id: String,
+        amount: Integer,
+        debtor: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor,
+        debtor_account_number: String,
+        debtor_routing_number: String,
+        expires_at: Time,
+        requested_execution_at: Time,
+        unstructured_remittance_information: String,
+        creditor_name: String,
+        request_options: Increase::RequestOptions
+      }
+
+      type debtor =
+        {
+          address: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor::Address,
+          name: String
+        }
+
+      class Debtor < Increase::Internal::Type::BaseModel
+        attr_accessor address: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor::Address
+
+        attr_accessor name: String
+
+        def initialize: (
+          address: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor::Address,
+          name: String
+        ) -> void
+
+        def to_hash: -> {
+          address: Increase::RealTimePaymentsRequestsForPaymentCreateParams::Debtor::Address,
+          name: String
+        }
+
+        type address =
+          {
+            country: String,
+            :address_line2 => String,
+            building_number: String,
+            city: String,
+            postal_code: String,
+            state: String,
+            street_name: String
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor country: String
+
+          attr_reader address_line2: String?
+
+          def address_line2=: (String) -> String
+
+          attr_reader building_number: String?
+
+          def building_number=: (String) -> String
+
+          attr_reader city: String?
+
+          def city=: (String) -> String
+
+          attr_reader postal_code: String?
+
+          def postal_code=: (String) -> String
+
+          attr_reader state: String?
+
+          def state=: (String) -> String
+
+          attr_reader street_name: String?
+
+          def street_name=: (String) -> String
+
+          def initialize: (
+            country: String,
+            ?address_line2: String,
+            ?building_number: String,
+            ?city: String,
+            ?postal_code: String,
+            ?state: String,
+            ?street_name: String
+          ) -> void
+
+          def to_hash: -> {
+            country: String,
+            :address_line2 => String,
+            building_number: String,
+            city: String,
+            postal_code: String,
+            state: String,
+            street_name: String
+          }
+        end
+      end
+    end
+  end
+end

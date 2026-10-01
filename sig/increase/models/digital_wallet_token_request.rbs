@@ -1,0 +1,260 @@
+module Increase
+  module Models
+    type digital_wallet_token_request =
+      {
+        id: String,
+        card_id: String,
+        created_at: Time,
+        declined: Increase::DigitalWalletTokenRequest::Declined?,
+        device: Increase::DigitalWalletTokenRequest::Device,
+        outcome: Increase::Models::DigitalWalletTokenRequest::outcome,
+        provisioned: Increase::DigitalWalletTokenRequest::Provisioned?,
+        token_reference_identifier: String,
+        token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor,
+        type: Increase::Models::DigitalWalletTokenRequest::type_
+      }
+
+    class DigitalWalletTokenRequest < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor card_id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor declined: Increase::DigitalWalletTokenRequest::Declined?
+
+      attr_accessor device: Increase::DigitalWalletTokenRequest::Device
+
+      attr_accessor outcome: Increase::Models::DigitalWalletTokenRequest::outcome
+
+      attr_accessor provisioned: Increase::DigitalWalletTokenRequest::Provisioned?
+
+      attr_accessor token_reference_identifier: String
+
+      attr_accessor token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor
+
+      attr_accessor type: Increase::Models::DigitalWalletTokenRequest::type_
+
+      def initialize: (
+        id: String,
+        card_id: String,
+        created_at: Time,
+        declined: Increase::DigitalWalletTokenRequest::Declined?,
+        device: Increase::DigitalWalletTokenRequest::Device,
+        outcome: Increase::Models::DigitalWalletTokenRequest::outcome,
+        provisioned: Increase::DigitalWalletTokenRequest::Provisioned?,
+        token_reference_identifier: String,
+        token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor,
+        type: Increase::Models::DigitalWalletTokenRequest::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        card_id: String,
+        created_at: Time,
+        declined: Increase::DigitalWalletTokenRequest::Declined?,
+        device: Increase::DigitalWalletTokenRequest::Device,
+        outcome: Increase::Models::DigitalWalletTokenRequest::outcome,
+        provisioned: Increase::DigitalWalletTokenRequest::Provisioned?,
+        token_reference_identifier: String,
+        token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor,
+        type: Increase::Models::DigitalWalletTokenRequest::type_
+      }
+
+      type declined =
+        {
+          reason: Increase::Models::DigitalWalletTokenRequest::Declined::reason
+        }
+
+      class Declined < Increase::Internal::Type::BaseModel
+        attr_accessor reason: Increase::Models::DigitalWalletTokenRequest::Declined::reason
+
+        def initialize: (
+          reason: Increase::Models::DigitalWalletTokenRequest::Declined::reason
+        ) -> void
+
+        def to_hash: -> {
+          reason: Increase::Models::DigitalWalletTokenRequest::Declined::reason
+        }
+
+        type reason =
+          :card_not_active
+          | :no_verification_method
+          | :webhook_timed_out
+          | :webhook_declined
+          | :incorrect_card_verification_code
+          | :declined_by_token_requestor
+          | :group_locked
+          | :account_closed
+          | :entity_not_active
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The card is not active.
+          CARD_NOT_ACTIVE: :card_not_active
+
+          # The card does not have a two-factor authentication method.
+          NO_VERIFICATION_METHOD: :no_verification_method
+
+          # Your webhook timed out when evaluating the token provisioning attempt.
+          WEBHOOK_TIMED_OUT: :webhook_timed_out
+
+          # Your webhook declined the token provisioning attempt.
+          WEBHOOK_DECLINED: :webhook_declined
+
+          # The tokenization attempt failed because the Card Verification Code (CVC) was incorrect.
+          INCORRECT_CARD_VERIFICATION_CODE: :incorrect_card_verification_code
+
+          # The tokenization attempt was declined by the token requestor.
+          DECLINED_BY_TOKEN_REQUESTOR: :declined_by_token_requestor
+
+          # The group was locked.
+          GROUP_LOCKED: :group_locked
+
+          # The account has been closed.
+          ACCOUNT_CLOSED: :account_closed
+
+          # The account's entity was not active.
+          ENTITY_NOT_ACTIVE: :entity_not_active
+
+          def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::Declined::reason]
+        end
+      end
+
+      type device =
+        {
+          device_type: Increase::Models::DigitalWalletTokenRequest::Device::device_type?,
+          identifier: String?,
+          ip_address: String?,
+          name: String?
+        }
+
+      class Device < Increase::Internal::Type::BaseModel
+        attr_accessor device_type: Increase::Models::DigitalWalletTokenRequest::Device::device_type?
+
+        attr_accessor identifier: String?
+
+        attr_accessor ip_address: String?
+
+        attr_accessor name: String?
+
+        def initialize: (
+          device_type: Increase::Models::DigitalWalletTokenRequest::Device::device_type?,
+          identifier: String?,
+          ip_address: String?,
+          name: String?
+        ) -> void
+
+        def to_hash: -> {
+          device_type: Increase::Models::DigitalWalletTokenRequest::Device::device_type?,
+          identifier: String?,
+          ip_address: String?,
+          name: String?
+        }
+
+        type device_type =
+          :unknown
+          | :mobile_phone
+          | :tablet
+          | :watch
+          | :mobilephone_or_tablet
+          | :pc
+          | :household_device
+          | :wearable_device
+          | :automobile_device
+
+        module DeviceType
+          extend Increase::Internal::Type::Enum
+
+          # Unknown
+          UNKNOWN: :unknown
+
+          # Mobile Phone
+          MOBILE_PHONE: :mobile_phone
+
+          # Tablet
+          TABLET: :tablet
+
+          # Watch
+          WATCH: :watch
+
+          # Mobile Phone or Tablet
+          MOBILEPHONE_OR_TABLET: :mobilephone_or_tablet
+
+          # PC
+          PC: :pc
+
+          # Household Device
+          HOUSEHOLD_DEVICE: :household_device
+
+          # Wearable Device
+          WEARABLE_DEVICE: :wearable_device
+
+          # Automobile Device
+          AUTOMOBILE_DEVICE: :automobile_device
+
+          def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::Device::device_type]
+        end
+      end
+
+      type outcome = :provisioned | :declined
+
+      module Outcome
+        extend Increase::Internal::Type::Enum
+
+        # The tokenization request was approved and a Digital Wallet Token was provisioned.
+        PROVISIONED: :provisioned
+
+        # The tokenization request was declined.
+        DECLINED: :declined
+
+        def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::outcome]
+      end
+
+      type provisioned = { digital_wallet_token_id: String }
+
+      class Provisioned < Increase::Internal::Type::BaseModel
+        attr_accessor digital_wallet_token_id: String
+
+        def initialize: (digital_wallet_token_id: String) -> void
+
+        def to_hash: -> { digital_wallet_token_id: String }
+      end
+
+      type token_requestor =
+        :apple_pay | :google_pay | :samsung_pay | :garmin_pay | :unknown
+
+      module TokenRequestor
+        extend Increase::Internal::Type::Enum
+
+        # Apple Pay
+        APPLE_PAY: :apple_pay
+
+        # Google Pay
+        GOOGLE_PAY: :google_pay
+
+        # Samsung Pay
+        SAMSUNG_PAY: :samsung_pay
+
+        # Garmin Pay
+        GARMIN_PAY: :garmin_pay
+
+        # Unknown
+        UNKNOWN: :unknown
+
+        def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::token_requestor]
+      end
+
+      type type_ = :digital_wallet_token_request
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        DIGITAL_WALLET_TOKEN_REQUEST: :digital_wallet_token_request
+
+        def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::type_]
+      end
+    end
+  end
+end

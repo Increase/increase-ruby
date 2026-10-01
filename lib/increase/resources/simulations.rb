@@ -81,6 +81,9 @@ module Increase
       # @return [Increase::Resources::Simulations::InboundRealTimePaymentsTransfers]
       attr_reader :inbound_real_time_payments_transfers
 
+      # @return [Increase::Resources::Simulations::FednowTransfers]
+      attr_reader :fednow_transfers
+
       # @return [Increase::Resources::Simulations::InboundFednowTransfers]
       attr_reader :inbound_fednow_transfers
 
@@ -145,6 +148,7 @@ module Increase
           Increase::Resources::Simulations::RealTimePaymentsTransfers.new(client: client)
         @inbound_real_time_payments_transfers =
           Increase::Resources::Simulations::InboundRealTimePaymentsTransfers.new(client: client)
+        @fednow_transfers = Increase::Resources::Simulations::FednowTransfers.new(client: client)
         @inbound_fednow_transfers = Increase::Resources::Simulations::InboundFednowTransfers.new(client: client)
         @check_deposits = Increase::Resources::Simulations::CheckDeposits.new(client: client)
         @inbound_mail_items = Increase::Resources::Simulations::InboundMailItems.new(client: client)

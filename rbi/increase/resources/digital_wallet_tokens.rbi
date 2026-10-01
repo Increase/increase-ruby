@@ -42,6 +42,27 @@ module Increase
       )
       end
 
+      # Submit a Digital Wallet Token status transition to the card network. The Digital
+      # Wallet Token will move to `pending_transitioning` until the card network
+      # confirms the transition, and a `digital_wallet_token.updated` webhook will be
+      # sent once the transition has been confirmed.
+      sig do
+        params(
+          digital_wallet_token_id: String,
+          status:
+            Increase::DigitalWalletTokenTransitionParams::Status::OrSymbol,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::DigitalWalletToken)
+      end
+      def transition(
+        # The identifier of the Digital Wallet Token.
+        digital_wallet_token_id,
+        # The status to transition the Digital Wallet Token to.
+        status:,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)

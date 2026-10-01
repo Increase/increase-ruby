@@ -145,6 +145,23 @@ module Increase
       )
       end
 
+      # Create a short-lived token that authorizes
+      # [Card Elements](/documentation/card-elements) to render the details of a Card in
+      # your frontend. Mint the token on your server and pass it to the browser; the
+      # token is valid for one hour and is scoped to a single Card.
+      sig do
+        params(
+          card_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::CardDetailsToken)
+      end
+      def create_details_token(
+        # The identifier of the Card to mint a details token for.
+        card_id,
+        request_options: {}
+      )
+      end
+
       # Sensitive details for a Card include the primary account number, expiration,
       # card verification code, and PIN.
       sig do

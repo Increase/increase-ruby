@@ -1,0 +1,122 @@
+module Increase
+  module Models
+    module Simulations
+      type fednow_transfer_complete_params =
+        {
+          fednow_transfer_id: String,
+          rejection: Increase::Simulations::FednowTransferCompleteParams::Rejection
+        }
+        & Increase::Internal::Type::request_parameters
+
+      class FednowTransferCompleteParams < Increase::Internal::Type::BaseModel
+        extend Increase::Internal::Type::RequestParameters::Converter
+        include Increase::Internal::Type::RequestParameters
+
+        attr_accessor fednow_transfer_id: String
+
+        attr_reader rejection: Increase::Simulations::FednowTransferCompleteParams::Rejection?
+
+        def rejection=: (
+          Increase::Simulations::FednowTransferCompleteParams::Rejection
+        ) -> Increase::Simulations::FednowTransferCompleteParams::Rejection
+
+        def initialize: (
+          fednow_transfer_id: String,
+          ?rejection: Increase::Simulations::FednowTransferCompleteParams::Rejection,
+          ?request_options: Increase::request_opts
+        ) -> void
+
+        def to_hash: -> {
+          fednow_transfer_id: String,
+          rejection: Increase::Simulations::FednowTransferCompleteParams::Rejection,
+          request_options: Increase::RequestOptions
+        }
+
+        type rejection =
+          {
+            reject_reason_code: Increase::Models::Simulations::FednowTransferCompleteParams::Rejection::reject_reason_code
+          }
+
+        class Rejection < Increase::Internal::Type::BaseModel
+          attr_accessor reject_reason_code: Increase::Models::Simulations::FednowTransferCompleteParams::Rejection::reject_reason_code
+
+          def initialize: (
+            reject_reason_code: Increase::Models::Simulations::FednowTransferCompleteParams::Rejection::reject_reason_code
+          ) -> void
+
+          def to_hash: -> {
+            reject_reason_code: Increase::Models::Simulations::FednowTransferCompleteParams::Rejection::reject_reason_code
+          }
+
+          type reject_reason_code =
+            :account_closed
+            | :account_blocked
+            | :invalid_creditor_account_type
+            | :invalid_creditor_account_number
+            | :invalid_creditor_financial_institution_identifier
+            | :end_customer_deceased
+            | :narrative
+            | :transaction_forbidden
+            | :transaction_type_not_supported
+            | :amount_exceeds_bank_limits
+            | :invalid_creditor_address
+            | :invalid_debtor_address
+            | :timeout
+            | :processing_error
+            | :other
+
+          module RejectReasonCode
+            extend Increase::Internal::Type::Enum
+
+            # The destination account is closed. Corresponds to the FedNow reason code `AC04`.
+            ACCOUNT_CLOSED: :account_closed
+
+            # The destination account is currently blocked from receiving transactions. Corresponds to the FedNow reason code `AC06`.
+            ACCOUNT_BLOCKED: :account_blocked
+
+            # The destination account is ineligible to receive FedNow transfers. Corresponds to the FedNow reason code `AC14`.
+            INVALID_CREDITOR_ACCOUNT_TYPE: :invalid_creditor_account_type
+
+            # The destination account does not exist. Corresponds to the FedNow reason code `AC03`.
+            INVALID_CREDITOR_ACCOUNT_NUMBER: :invalid_creditor_account_number
+
+            # The destination routing number is invalid. Corresponds to the FedNow reason code `RC04`.
+            INVALID_CREDITOR_FINANCIAL_INSTITUTION_IDENTIFIER: :invalid_creditor_financial_institution_identifier
+
+            # The destination account holder is deceased. Corresponds to the FedNow reason code `MD07`.
+            END_CUSTOMER_DECEASED: :end_customer_deceased
+
+            # The reason is provided as narrative information in the additional information field. Corresponds to the FedNow reason code `NARR`.
+            NARRATIVE: :narrative
+
+            # FedNow transfers are not allowed to the destination account. Corresponds to the FedNow reason code `AG01`.
+            TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+            # FedNow transfers are not enabled for the destination account. Corresponds to the FedNow reason code `AG03`.
+            TRANSACTION_TYPE_NOT_SUPPORTED: :transaction_type_not_supported
+
+            # The amount is higher than the recipient is authorized to send or receive. Corresponds to the FedNow reason code `E990`.
+            AMOUNT_EXCEEDS_BANK_LIMITS: :amount_exceeds_bank_limits
+
+            # The creditor's address is required, but missing or invalid. Corresponds to the FedNow reason code `BE04`.
+            INVALID_CREDITOR_ADDRESS: :invalid_creditor_address
+
+            # The debtor's address is required, but missing or invalid. Corresponds to the FedNow reason code `BE07`.
+            INVALID_DEBTOR_ADDRESS: :invalid_debtor_address
+
+            # There was a timeout processing the transfer. Corresponds to the FedNow reason code `E997`.
+            TIMEOUT: :timeout
+
+            # The transfer was rejected due to an internal Increase issue. We have been notified.
+            PROCESSING_ERROR: :processing_error
+
+            # Some other error or issue has occurred.
+            OTHER: :other
+
+            def self?.values: -> ::Array[Increase::Models::Simulations::FednowTransferCompleteParams::Rejection::reject_reason_code]
+          end
+        end
+      end
+    end
+  end
+end

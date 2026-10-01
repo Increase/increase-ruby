@@ -77,11 +77,15 @@ module Increase
 
   class CardCreateDetailsIframeParams = Increase::Models::CardCreateDetailsIframeParams
 
+  class CardCreateDetailsTokenParams = Increase::Models::CardCreateDetailsTokenParams
+
   class CardCreateParams = Increase::Models::CardCreateParams
 
   class CardDetails = Increase::Models::CardDetails
 
   class CardDetailsParams = Increase::Models::CardDetailsParams
+
+  class CardDetailsToken = Increase::Models::CardDetailsToken
 
   class CardDispute = Increase::Models::CardDispute
 
@@ -191,7 +195,15 @@ module Increase
 
   class DigitalWalletTokenListParams = Increase::Models::DigitalWalletTokenListParams
 
+  class DigitalWalletTokenRequest = Increase::Models::DigitalWalletTokenRequest
+
+  class DigitalWalletTokenRequestListParams = Increase::Models::DigitalWalletTokenRequestListParams
+
+  class DigitalWalletTokenRequestRetrieveParams = Increase::Models::DigitalWalletTokenRequestRetrieveParams
+
   class DigitalWalletTokenRetrieveParams = Increase::Models::DigitalWalletTokenRetrieveParams
+
+  class DigitalWalletTokenTransitionParams = Increase::Models::DigitalWalletTokenTransitionParams
 
   class Entity = Increase::Models::Entity
 
@@ -321,6 +333,12 @@ module Increase
 
   class InboundMailItemRetrieveParams = Increase::Models::InboundMailItemRetrieveParams
 
+  class InboundRealTimePaymentsRequestForPayment = Increase::Models::InboundRealTimePaymentsRequestForPayment
+
+  class InboundRealTimePaymentsRequestsForPaymentListParams = Increase::Models::InboundRealTimePaymentsRequestsForPaymentListParams
+
+  class InboundRealTimePaymentsRequestsForPaymentRetrieveParams = Increase::Models::InboundRealTimePaymentsRequestsForPaymentRetrieveParams
+
   class InboundRealTimePaymentsTransfer = Increase::Models::InboundRealTimePaymentsTransfer
 
   class InboundRealTimePaymentsTransferListParams = Increase::Models::InboundRealTimePaymentsTransferListParams
@@ -433,6 +451,14 @@ module Increase
 
   class PhysicalCardUpdateParams = Increase::Models::PhysicalCardUpdateParams
 
+  class PhysicalCheckBatch = Increase::Models::PhysicalCheckBatch
+
+  class PhysicalCheckBatchCancelParams = Increase::Models::PhysicalCheckBatchCancelParams
+
+  class PhysicalCheckBatchCompleteParams = Increase::Models::PhysicalCheckBatchCompleteParams
+
+  class PhysicalCheckBatchCreateParams = Increase::Models::PhysicalCheckBatchCreateParams
+
   class Program = Increase::Models::Program
 
   class ProgramListParams = Increase::Models::ProgramListParams
@@ -444,6 +470,16 @@ module Increase
   class RealTimeDecisionActionParams = Increase::Models::RealTimeDecisionActionParams
 
   class RealTimeDecisionRetrieveParams = Increase::Models::RealTimeDecisionRetrieveParams
+
+  class RealTimePaymentsRequestForPayment = Increase::Models::RealTimePaymentsRequestForPayment
+
+  class RealTimePaymentsRequestsForPaymentCancelParams = Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams
+
+  class RealTimePaymentsRequestsForPaymentCreateParams = Increase::Models::RealTimePaymentsRequestsForPaymentCreateParams
+
+  class RealTimePaymentsRequestsForPaymentListParams = Increase::Models::RealTimePaymentsRequestsForPaymentListParams
+
+  class RealTimePaymentsRequestsForPaymentRetrieveParams = Increase::Models::RealTimePaymentsRequestsForPaymentRetrieveParams
 
   class RealTimePaymentsTransfer = Increase::Models::RealTimePaymentsTransfer
 

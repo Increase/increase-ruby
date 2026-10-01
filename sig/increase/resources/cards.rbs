@@ -44,6 +44,11 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::CardIframeURL
 
+      def create_details_token: (
+        String card_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardDetailsToken
+
       def details: (
         String card_id,
         ?request_options: Increase::request_opts

@@ -1,0 +1,193 @@
+module Increase
+  module Models
+    type physical_check_batch =
+      {
+        id: String,
+        created_at: Time,
+        idempotency_key: String?,
+        mailing_address: Increase::PhysicalCheckBatch::MailingAddress,
+        return_address: Increase::PhysicalCheckBatch::ReturnAddress,
+        shipping_method: Increase::Models::PhysicalCheckBatch::shipping_method,
+        status: Increase::Models::PhysicalCheckBatch::status,
+        type: Increase::Models::PhysicalCheckBatch::type_
+      }
+
+    class PhysicalCheckBatch < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor idempotency_key: String?
+
+      attr_accessor mailing_address: Increase::PhysicalCheckBatch::MailingAddress
+
+      attr_accessor return_address: Increase::PhysicalCheckBatch::ReturnAddress
+
+      attr_accessor shipping_method: Increase::Models::PhysicalCheckBatch::shipping_method
+
+      attr_accessor status: Increase::Models::PhysicalCheckBatch::status
+
+      attr_accessor type: Increase::Models::PhysicalCheckBatch::type_
+
+      def initialize: (
+        id: String,
+        created_at: Time,
+        idempotency_key: String?,
+        mailing_address: Increase::PhysicalCheckBatch::MailingAddress,
+        return_address: Increase::PhysicalCheckBatch::ReturnAddress,
+        shipping_method: Increase::Models::PhysicalCheckBatch::shipping_method,
+        status: Increase::Models::PhysicalCheckBatch::status,
+        type: Increase::Models::PhysicalCheckBatch::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        created_at: Time,
+        idempotency_key: String?,
+        mailing_address: Increase::PhysicalCheckBatch::MailingAddress,
+        return_address: Increase::PhysicalCheckBatch::ReturnAddress,
+        shipping_method: Increase::Models::PhysicalCheckBatch::shipping_method,
+        status: Increase::Models::PhysicalCheckBatch::status,
+        type: Increase::Models::PhysicalCheckBatch::type_
+      }
+
+      type mailing_address =
+        {
+          city: String,
+          :line1 => String,
+          :line2 => String?,
+          name: String,
+          phone: String?,
+          postal_code: String,
+          state: String
+        }
+
+      class MailingAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor line1: String
+
+        attr_accessor line2: String?
+
+        attr_accessor name: String
+
+        attr_accessor phone: String?
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        def initialize: (
+          city: String,
+          line1: String,
+          line2: String?,
+          name: String,
+          phone: String?,
+          postal_code: String,
+          state: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          :line2 => String?,
+          name: String,
+          phone: String?,
+          postal_code: String,
+          state: String
+        }
+      end
+
+      type return_address =
+        {
+          city: String,
+          :line1 => String,
+          :line2 => String?,
+          name: String,
+          phone: String?,
+          postal_code: String,
+          state: String
+        }
+
+      class ReturnAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor line1: String
+
+        attr_accessor line2: String?
+
+        attr_accessor name: String
+
+        attr_accessor phone: String?
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        def initialize: (
+          city: String,
+          line1: String,
+          line2: String?,
+          name: String,
+          phone: String?,
+          postal_code: String,
+          state: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          :line2 => String?,
+          name: String,
+          phone: String?,
+          postal_code: String,
+          state: String
+        }
+      end
+
+      type shipping_method = :usps_first_class | :fedex_overnight
+
+      module ShippingMethod
+        extend Increase::Internal::Type::Enum
+
+        # USPS First Class
+        USPS_FIRST_CLASS: :usps_first_class
+
+        # FedEx Overnight
+        FEDEX_OVERNIGHT: :fedex_overnight
+
+        def self?.values: -> ::Array[Increase::Models::PhysicalCheckBatch::shipping_method]
+      end
+
+      type status = :pending | :completed | :canceled | :requires_attention
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The batch is pending completion and is open to accepting new checks.
+        PENDING: :pending
+
+        # The batch has been completed.
+        COMPLETED: :completed
+
+        # The batch and all checks related to it have been canceled.
+        CANCELED: :canceled
+
+        # The batch requires attention from an Increase operator.
+        REQUIRES_ATTENTION: :requires_attention
+
+        def self?.values: -> ::Array[Increase::Models::PhysicalCheckBatch::status]
+      end
+
+      type type_ = :physical_check_batch
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        PHYSICAL_CHECK_BATCH: :physical_check_batch
+
+        def self?.values: -> ::Array[Increase::Models::PhysicalCheckBatch::type_]
+      end
+    end
+  end
+end

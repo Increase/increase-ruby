@@ -1,0 +1,20 @@
+module Increase
+  module Resources
+    class DigitalWalletTokenRequests
+      def retrieve: (
+        String digital_wallet_token_request_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::DigitalWalletTokenRequest
+
+      def list: (
+        ?card_id: String,
+        ?created_at: Increase::DigitalWalletTokenRequestListParams::CreatedAt,
+        ?cursor: String,
+        ?limit: Integer,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::DigitalWalletTokenRequest]
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end

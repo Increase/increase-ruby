@@ -1,0 +1,66 @@
+module Increase
+  module Models
+    type real_time_payments_requests_for_payment_cancel_params =
+      {
+        real_time_payments_request_for_payment_id: String,
+        additional_information: String,
+        reason: Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams::reason
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class RealTimePaymentsRequestsForPaymentCancelParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor real_time_payments_request_for_payment_id: String
+
+      attr_reader additional_information: String?
+
+      def additional_information=: (String) -> String
+
+      attr_reader reason: Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams::reason?
+
+      def reason=: (
+        Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams::reason
+      ) -> Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams::reason
+
+      def initialize: (
+        real_time_payments_request_for_payment_id: String,
+        ?additional_information: String,
+        ?reason: Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams::reason,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        real_time_payments_request_for_payment_id: String,
+        additional_information: String,
+        reason: Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams::reason,
+        request_options: Increase::RequestOptions
+      }
+
+      type reason =
+        :requested_by_customer
+        | :paid_by_other_means
+        | :duplicate
+        | :wrong_amount
+
+      module Reason
+        extend Increase::Internal::Type::Enum
+
+        # The creditor no longer wants to be paid. Corresponds to the Real-Time Payments reason code `CUST`.
+        REQUESTED_BY_CUSTOMER: :requested_by_customer
+
+        # The requested payment has already been made through another channel. Corresponds to the Real-Time Payments reason code `UPAY`.
+        PAID_BY_OTHER_MEANS: :paid_by_other_means
+
+        # The request for payment duplicated another request for payment. Corresponds to the Real-Time Payments reason code `DUPL`.
+        DUPLICATE: :duplicate
+
+        # The request for payment was sent for the wrong amount. Corresponds to the Real-Time Payments reason code `AM09`.
+        WRONG_AMOUNT: :wrong_amount
+
+        def self?.values: -> ::Array[Increase::Models::RealTimePaymentsRequestsForPaymentCancelParams::reason]
+      end
+    end
+  end
+end

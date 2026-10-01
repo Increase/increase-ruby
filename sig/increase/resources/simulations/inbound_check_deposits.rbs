@@ -10,6 +10,11 @@ module Increase
           ?request_options: Increase::request_opts
         ) -> Increase::InboundCheckDeposit
 
+        def accept: (
+          String inbound_check_deposit_id,
+          ?request_options: Increase::request_opts
+        ) -> Increase::InboundCheckDeposit
+
         def adjustment: (
           String inbound_check_deposit_id,
           ?amount: Integer,

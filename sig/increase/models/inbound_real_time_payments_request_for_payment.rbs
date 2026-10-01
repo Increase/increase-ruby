@@ -1,0 +1,200 @@
+module Increase
+  module Models
+    type inbound_real_time_payments_request_for_payment =
+      {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        created_at: Time,
+        creditor: Increase::InboundRealTimePaymentsRequestForPayment::Creditor,
+        creditor_account_number: String,
+        creditor_routing_number: String,
+        currency: Increase::Models::InboundRealTimePaymentsRequestForPayment::currency,
+        debtor_name: String,
+        end_to_end_identification: String,
+        expires_at: Time,
+        fulfillment_real_time_payments_transfer_id: String?,
+        invoicer_identification: String?,
+        payment_information_identification: String,
+        requested_execution_at: Time?,
+        type: Increase::Models::InboundRealTimePaymentsRequestForPayment::type_,
+        unstructured_remittance_information: String?
+      }
+
+    class InboundRealTimePaymentsRequestForPayment < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor account_id: String
+
+      attr_accessor account_number_id: String
+
+      attr_accessor amount: Integer
+
+      attr_accessor created_at: Time
+
+      attr_accessor creditor: Increase::InboundRealTimePaymentsRequestForPayment::Creditor
+
+      attr_accessor creditor_account_number: String
+
+      attr_accessor creditor_routing_number: String
+
+      attr_accessor currency: Increase::Models::InboundRealTimePaymentsRequestForPayment::currency
+
+      attr_accessor debtor_name: String
+
+      attr_accessor end_to_end_identification: String
+
+      attr_accessor expires_at: Time
+
+      attr_accessor fulfillment_real_time_payments_transfer_id: String?
+
+      attr_accessor invoicer_identification: String?
+
+      attr_accessor payment_information_identification: String
+
+      attr_accessor requested_execution_at: Time?
+
+      attr_accessor type: Increase::Models::InboundRealTimePaymentsRequestForPayment::type_
+
+      attr_accessor unstructured_remittance_information: String?
+
+      def initialize: (
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        created_at: Time,
+        creditor: Increase::InboundRealTimePaymentsRequestForPayment::Creditor,
+        creditor_account_number: String,
+        creditor_routing_number: String,
+        currency: Increase::Models::InboundRealTimePaymentsRequestForPayment::currency,
+        debtor_name: String,
+        end_to_end_identification: String,
+        expires_at: Time,
+        fulfillment_real_time_payments_transfer_id: String?,
+        invoicer_identification: String?,
+        payment_information_identification: String,
+        requested_execution_at: Time?,
+        type: Increase::Models::InboundRealTimePaymentsRequestForPayment::type_,
+        unstructured_remittance_information: String?
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        account_id: String,
+        account_number_id: String,
+        amount: Integer,
+        created_at: Time,
+        creditor: Increase::InboundRealTimePaymentsRequestForPayment::Creditor,
+        creditor_account_number: String,
+        creditor_routing_number: String,
+        currency: Increase::Models::InboundRealTimePaymentsRequestForPayment::currency,
+        debtor_name: String,
+        end_to_end_identification: String,
+        expires_at: Time,
+        fulfillment_real_time_payments_transfer_id: String?,
+        invoicer_identification: String?,
+        payment_information_identification: String,
+        requested_execution_at: Time?,
+        type: Increase::Models::InboundRealTimePaymentsRequestForPayment::type_,
+        unstructured_remittance_information: String?
+      }
+
+      type creditor =
+        {
+          account_name: String?,
+          address: Increase::InboundRealTimePaymentsRequestForPayment::Creditor::Address,
+          name: String
+        }
+
+      class Creditor < Increase::Internal::Type::BaseModel
+        attr_accessor account_name: String?
+
+        attr_accessor address: Increase::InboundRealTimePaymentsRequestForPayment::Creditor::Address
+
+        attr_accessor name: String
+
+        def initialize: (
+          account_name: String?,
+          address: Increase::InboundRealTimePaymentsRequestForPayment::Creditor::Address,
+          name: String
+        ) -> void
+
+        def to_hash: -> {
+          account_name: String?,
+          address: Increase::InboundRealTimePaymentsRequestForPayment::Creditor::Address,
+          name: String
+        }
+
+        type address =
+          {
+            :address_line2 => String?,
+            building_number: String?,
+            city: String?,
+            country: String?,
+            postal_code: String?,
+            state: String?,
+            street_name: String?
+          }
+
+        class Address < Increase::Internal::Type::BaseModel
+          attr_accessor address_line2: String?
+
+          attr_accessor building_number: String?
+
+          attr_accessor city: String?
+
+          attr_accessor country: String?
+
+          attr_accessor postal_code: String?
+
+          attr_accessor state: String?
+
+          attr_accessor street_name: String?
+
+          def initialize: (
+            address_line2: String?,
+            building_number: String?,
+            city: String?,
+            country: String?,
+            postal_code: String?,
+            state: String?,
+            street_name: String?
+          ) -> void
+
+          def to_hash: -> {
+            :address_line2 => String?,
+            building_number: String?,
+            city: String?,
+            country: String?,
+            postal_code: String?,
+            state: String?,
+            street_name: String?
+          }
+        end
+      end
+
+      type currency = :USD
+
+      module Currency
+        extend Increase::Internal::Type::Enum
+
+        # US Dollar (USD)
+        USD: :USD
+
+        def self?.values: -> ::Array[Increase::Models::InboundRealTimePaymentsRequestForPayment::currency]
+      end
+
+      type type_ = :inbound_real_time_payments_request_for_payment
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        INBOUND_REAL_TIME_PAYMENTS_REQUEST_FOR_PAYMENT: :inbound_real_time_payments_request_for_payment
+
+        def self?.values: -> ::Array[Increase::Models::InboundRealTimePaymentsRequestForPayment::type_]
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+module Increase
+  module Resources
+    class Simulations
+      class FednowTransfers
+        def complete: (
+          String fednow_transfer_id,
+          ?rejection: Increase::Simulations::FednowTransferCompleteParams::Rejection,
+          ?request_options: Increase::request_opts
+        ) -> Increase::FednowTransfer
+
+        def initialize: (client: Increase::Client) -> void
+      end
+    end
+  end
+end
