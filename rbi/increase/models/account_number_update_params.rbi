@@ -184,7 +184,7 @@ module Increase
               Increase::AccountNumberUpdateParams::InboundACH::DebitStatus::TaggedSymbol
             )
 
-          # ACH Debits are blocked.
+          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
           BLOCKED =
             T.let(
               :blocked,
