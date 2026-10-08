@@ -273,6 +273,9 @@ module Increase
           # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
           WRONG_PAYEE_CREDIT = :wrong_payee_credit
 
+          # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+          DUPLICATE_ENTRY = :duplicate_entry
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end
