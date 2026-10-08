@@ -2212,6 +2212,9 @@ module Increase
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
