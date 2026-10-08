@@ -196,7 +196,11 @@ module Increase
         }
 
         type reason =
-          :wrong_payee_credit | :adjusted_amount | :non_conforming_item | :paid
+          :wrong_payee_credit
+          | :adjusted_amount
+          | :non_conforming_item
+          | :paid
+          | :duplicate_entry
 
         module Reason
           extend Increase::Internal::Type::Enum
@@ -212,6 +216,9 @@ module Increase
 
           # The check has already been deposited elsewhere and so this is a duplicate.
           PAID: :paid
+
+          # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+          DUPLICATE_ENTRY: :duplicate_entry
 
           def self?.values: -> ::Array[Increase::Models::CheckDeposit::DepositAdjustment::reason]
         end

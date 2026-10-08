@@ -1295,7 +1295,7 @@ module Increase
                   Increase::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod::TaggedSymbol
                 )
 
-              # The one-time code was not successfully delivered.
+              # The one-time code could not be delivered because the card has no phone number or email on file.
               NONE_AVAILABLE =
                 T.let(
                   :none_available,

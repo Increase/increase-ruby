@@ -868,7 +868,7 @@ module Increase
               # The one-time code was sent via email.
               EMAIL = :email
 
-              # The one-time code was not successfully delivered.
+              # The one-time code could not be delivered because the card has no phone number or email on file.
               NONE_AVAILABLE = :none_available
 
               # @!method self.values
