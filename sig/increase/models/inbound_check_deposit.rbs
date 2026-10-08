@@ -147,7 +147,7 @@ module Increase
           transaction_id: String
         }
 
-        type reason = :late_return | :wrong_payee_credit
+        type reason = :late_return | :wrong_payee_credit | :duplicate_entry
 
         module Reason
           extend Increase::Internal::Type::Enum
@@ -157,6 +157,9 @@ module Increase
 
           # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
           WRONG_PAYEE_CREDIT: :wrong_payee_credit
+
+          # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+          DUPLICATE_ENTRY: :duplicate_entry
 
           def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::Adjustment::reason]
         end
