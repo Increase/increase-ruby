@@ -8662,6 +8662,13 @@ module Increase
                   Increase::Transaction::Source::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
+                  Increase::Transaction::Source::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -12737,6 +12744,13 @@ module Increase
                   Increase::Transaction::Source::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
+                  Increase::Transaction::Source::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -15600,6 +15614,13 @@ module Increase
             PAID =
               T.let(
                 :paid,
+                Increase::Transaction::Source::InboundCheckAdjustment::Reason::TaggedSymbol
+              )
+
+            # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+            DUPLICATE_ENTRY =
+              T.let(
+                :duplicate_entry,
                 Increase::Transaction::Source::InboundCheckAdjustment::Reason::TaggedSymbol
               )
 

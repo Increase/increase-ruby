@@ -4808,6 +4808,9 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER = :visa_recurrent_reference_identifier
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -7082,6 +7085,9 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER = :visa_recurrent_reference_identifier
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -8643,6 +8649,9 @@ module Increase
 
             # The check has already been deposited elsewhere and so this is a duplicate.
             PAID = :paid
+
+            # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+            DUPLICATE_ENTRY = :duplicate_entry
 
             # @!method self.values
             #   @return [Array<Symbol>]

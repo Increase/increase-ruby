@@ -496,7 +496,7 @@ module Increase
               # The one-time code was sent via email.
               EMAIL: :email
 
-              # The one-time code was not successfully delivered.
+              # The one-time code could not be delivered because the card has no phone number or email on file.
               NONE_AVAILABLE: :none_available
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardAuthentication::Challenge::verification_method]
@@ -7347,6 +7347,7 @@ module Increase
               | :rental_agreement_number
               | :hotel_folio_number
               | :invoice_number
+              | :visa_recurrent_reference_identifier
 
             module PurchaseIdentifierFormat
               extend Increase::Internal::Type::Enum
@@ -7365,6 +7366,9 @@ module Increase
 
               # Invoice number
               INVOICE_NUMBER: :invoice_number
+
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER: :visa_recurrent_reference_identifier
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardRefund::PurchaseDetails::purchase_identifier_format]
             end
@@ -9532,6 +9536,7 @@ module Increase
               | :rental_agreement_number
               | :hotel_folio_number
               | :invoice_number
+              | :visa_recurrent_reference_identifier
 
             module PurchaseIdentifierFormat
               extend Increase::Internal::Type::Enum
@@ -9550,6 +9555,9 @@ module Increase
 
               # Invoice number
               INVOICE_NUMBER: :invoice_number
+
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER: :visa_recurrent_reference_identifier
 
               def self?.values: -> ::Array[Increase::Models::CardPayment::Element::CardSettlement::PurchaseDetails::purchase_identifier_format]
             end
