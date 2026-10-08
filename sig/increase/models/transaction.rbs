@@ -3371,6 +3371,7 @@ module Increase
               | :rental_agreement_number
               | :hotel_folio_number
               | :invoice_number
+              | :visa_recurrent_reference_identifier
 
             module PurchaseIdentifierFormat
               extend Increase::Internal::Type::Enum
@@ -3389,6 +3390,9 @@ module Increase
 
               # Invoice number
               INVOICE_NUMBER: :invoice_number
+
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER: :visa_recurrent_reference_identifier
 
               def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardRefund::PurchaseDetails::purchase_identifier_format]
             end
@@ -5214,6 +5218,7 @@ module Increase
               | :rental_agreement_number
               | :hotel_folio_number
               | :invoice_number
+              | :visa_recurrent_reference_identifier
 
             module PurchaseIdentifierFormat
               extend Increase::Internal::Type::Enum
@@ -5232,6 +5237,9 @@ module Increase
 
               # Invoice number
               INVOICE_NUMBER: :invoice_number
+
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER: :visa_recurrent_reference_identifier
 
               def self?.values: -> ::Array[Increase::Models::Transaction::Source::CardSettlement::PurchaseDetails::purchase_identifier_format]
             end
@@ -6484,6 +6492,7 @@ module Increase
             | :adjusted_amount
             | :non_conforming_item
             | :paid
+            | :duplicate_entry
 
           module Reason
             extend Increase::Internal::Type::Enum
@@ -6502,6 +6511,9 @@ module Increase
 
             # The check has already been deposited elsewhere and so this is a duplicate.
             PAID: :paid
+
+            # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+            DUPLICATE_ENTRY: :duplicate_entry
 
             def self?.values: -> ::Array[Increase::Models::Transaction::Source::InboundCheckAdjustment::reason]
           end

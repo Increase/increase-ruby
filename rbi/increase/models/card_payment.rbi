@@ -1295,7 +1295,7 @@ module Increase
                   Increase::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod::TaggedSymbol
                 )
 
-              # The one-time code was not successfully delivered.
+              # The one-time code could not be delivered because the card has no phone number or email on file.
               NONE_AVAILABLE =
                 T.let(
                   :none_available,
@@ -18931,6 +18931,13 @@ module Increase
                   Increase::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
+                  Increase::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -23754,6 +23761,13 @@ module Increase
               INVOICE_NUMBER =
                 T.let(
                   :invoice_number,
+                  Increase::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
                   Increase::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
