@@ -1300,6 +1300,7 @@ module Increase
               | :visa_community_growth_acceleration_program
               | :visa_processing_guarantee_commercial_credit
               | :pulse_switch_fee
+              | :pulse_tokenization_fee
 
             module FeeType
               extend Increase::Internal::Type::Enum
@@ -1390,6 +1391,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE: :pulse_tokenization_fee
 
               def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::CardAuthorization::SchemeFee::fee_type]
             end

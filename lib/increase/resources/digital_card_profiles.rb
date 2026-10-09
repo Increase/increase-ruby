@@ -5,7 +5,7 @@ module Increase
     class DigitalCardProfiles
       # Create a Digital Card Profile
       #
-      # @overload create(app_icon_file_id:, background_image_file_id:, card_description:, description:, issuer_name:, contact_email: nil, contact_phone: nil, contact_website: nil, text_color: nil, request_options: {})
+      # @overload create(app_icon_file_id:, background_image_file_id:, card_description:, description:, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, text_color: nil, request_options: {})
       #
       # @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
       #
@@ -15,9 +15,11 @@ module Increase
       #
       # @param description [String] A description you can use to identify the Card Profile.
       #
-      # @param issuer_name [String] A user-facing description for whoever is issuing the card.
-      #
       # @param contact_email [String] An email address the user can contact to receive support for their card.
+      #
+      # @param contact_name [String]
+      #   The name of your company or card program, shown to the user as who to contact
+      #   for support with their card.
       #
       # @param contact_phone [String] A phone number the user can contact to receive support for their card.
       #
