@@ -1295,7 +1295,7 @@ module Increase
                   Increase::CardPayment::Element::CardAuthentication::Challenge::VerificationMethod::TaggedSymbol
                 )
 
-              # The one-time code was not successfully delivered.
+              # The one-time code could not be delivered because the card has no phone number or email on file.
               NONE_AVAILABLE =
                 T.let(
                   :none_available,
@@ -4960,6 +4960,13 @@ module Increase
                   Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -7728,6 +7735,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -10825,6 +10839,13 @@ module Increase
                   Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -13618,6 +13639,13 @@ module Increase
                   Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -14684,6 +14712,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -16247,6 +16282,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -18931,6 +18973,13 @@ module Increase
                   Increase::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
+                  Increase::CardPayment::Element::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -20161,6 +20210,13 @@ module Increase
                   Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -21014,6 +21070,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -23757,6 +23820,13 @@ module Increase
                   Increase::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
+                  Increase::CardPayment::Element::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -24984,6 +25054,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -27255,6 +27332,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
                 )
 
