@@ -8,9 +8,8 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
       @increase.digital_card_profiles.create(
         app_icon_file_id: "file_8zxqkwlh43wo144u8yec",
         background_image_file_id: "file_1ai913suu1zfn1pdetru",
-        card_description: "MyBank Signature Card",
-        description: "My Card Profile",
-        issuer_name: "MyBank"
+        card_description: "National Phonograph Card",
+        description: "My Card Profile"
       )
 
     assert_pattern do
