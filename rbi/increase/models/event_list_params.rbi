@@ -39,8 +39,8 @@ module Increase
       sig { params(cursor: String).void }
       attr_writer :cursor
 
-      # Limit the size of the list that is returned. The default (and maximum) is 100
-      # objects.
+      # Limit the size of the list that is returned. The default is 100 objects and the
+      # maximum is 1,000.
       #
       # Defaults to `100`.
       sig { returns(T.nilable(Integer)) }
@@ -73,8 +73,8 @@ module Increase
         created_at: nil,
         # Return the page of entries after this one.
         cursor: nil,
-        # Limit the size of the list that is returned. The default (and maximum) is 100
-        # objects.
+        # Limit the size of the list that is returned. The default is 100 objects and the
+        # maximum is 1,000.
         #
         # Defaults to `100`.
         limit: nil,
@@ -420,6 +420,13 @@ module Increase
           DIGITAL_WALLET_TOKEN_UPDATED =
             T.let(
               :"digital_wallet_token.updated",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Digital Wallet Token Request is created.
+          DIGITAL_WALLET_TOKEN_REQUEST_CREATED =
+            T.let(
+              :"digital_wallet_token_request.created",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 

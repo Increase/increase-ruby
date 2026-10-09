@@ -30,8 +30,8 @@ module Increase
       optional :cursor, String
 
       # @!attribute limit
-      #   Limit the size of the list that is returned. The default (and maximum) is 100
-      #   objects.
+      #   Limit the size of the list that is returned. The default is 100 objects and the
+      #   maximum is 1,000.
       #
       #   Defaults to `100`.
       #
@@ -54,8 +54,8 @@ module Increase
       #   @param cursor [String] Return the page of entries after this one.
       #
       #   @param limit [Integer]
-      #     Limit the size of the list that is returned. The default (and maximum) is 100
-      #     objects.
+      #     Limit the size of the list that is returned. The default is 100 objects and the
+      #     maximum is 1,000.
       #
       #     Defaults to `100`.
       #
@@ -196,6 +196,9 @@ module Increase
 
           # Occurs whenever a Digital Wallet Token is updated.
           DIGITAL_WALLET_TOKEN_UPDATED = :"digital_wallet_token.updated"
+
+          # Occurs whenever a Digital Wallet Token Request is created.
+          DIGITAL_WALLET_TOKEN_REQUEST_CREATED = :"digital_wallet_token_request.created"
 
           # Occurs whenever an Entity is created.
           ENTITY_CREATED = :"entity.created"

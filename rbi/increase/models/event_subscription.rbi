@@ -444,6 +444,13 @@ module Increase
               Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
+          # Occurs whenever a Digital Wallet Token Request is created.
+          DIGITAL_WALLET_TOKEN_REQUEST_CREATED =
+            T.let(
+              :"digital_wallet_token_request.created",
+              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
           # Occurs whenever an Entity is created.
           ENTITY_CREATED =
             T.let(
