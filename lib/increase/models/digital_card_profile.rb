@@ -34,6 +34,13 @@ module Increase
       #   @return [String, nil]
       required :contact_email, String, nil?: true
 
+      # @!attribute contact_name
+      #   The name of your company or card program, shown to the user as who to contact
+      #   for support with their card.
+      #
+      #   @return [String]
+      required :contact_name, String
+
       # @!attribute contact_phone
       #   A phone number the user can contact to receive support for their card.
       #
@@ -67,12 +74,6 @@ module Increase
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
 
-      # @!attribute issuer_name
-      #   A user-facing description for whoever is issuing the card.
-      #
-      #   @return [String]
-      required :issuer_name, String
-
       # @!attribute status
       #   The status of the Card Profile.
       #
@@ -92,7 +93,7 @@ module Increase
       #   @return [Symbol, Increase::Models::DigitalCardProfile::Type]
       required :type, enum: -> { Increase::DigitalCardProfile::Type }
 
-      # @!method initialize(id:, app_icon_file_id:, background_image_file_id:, card_description:, contact_email:, contact_phone:, contact_website:, created_at:, description:, idempotency_key:, issuer_name:, status:, text_color:, type:)
+      # @!method initialize(id:, app_icon_file_id:, background_image_file_id:, card_description:, contact_email:, contact_name:, contact_phone:, contact_website:, created_at:, description:, idempotency_key:, status:, text_color:, type:)
       #   This contains artwork and metadata relating to a Card's appearance in digital
       #   wallet apps like Apple Pay and Google Pay. For more information, see our guide
       #   on [digital card artwork](https://increase.com/documentation/card-art).
@@ -107,6 +108,10 @@ module Increase
       #
       #   @param contact_email [String, nil]
       #     An email address the user can contact to receive support for their card.
+      #
+      #   @param contact_name [String]
+      #     The name of your company or card program, shown to the user as who to contact
+      #     for support with their card.
       #
       #   @param contact_phone [String, nil] A phone number the user can contact to receive support for their card.
       #
@@ -123,8 +128,6 @@ module Increase
       #     The idempotency key you chose for this object. This value is unique across
       #     Increase and is used to ensure that a request is only processed once. Learn more
       #     about [idempotency](https://increase.com/documentation/idempotency-keys).
-      #
-      #   @param issuer_name [String] A user-facing description for whoever is issuing the card.
       #
       #   @param status [Symbol, Increase::Models::DigitalCardProfile::Status] The status of the Card Profile.
       #

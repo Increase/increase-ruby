@@ -43,10 +43,9 @@ module Increase
             case [coerced, status]
             in [true | false, _]
               coerced
-            in [_, 408 | 409 | 429 | (500..)]
+            in [_, 408 | 429 | (500..)]
               # retry on:
               # 408: timeouts
-              # 409: locks
               # 429: rate limits
               # 500+: unknown errors
               true

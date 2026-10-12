@@ -54,8 +54,8 @@ module Increase
       # @!attribute back_image_file_id
       #   The ID for the File containing the image of the back of the check.
       #
-      #   @return [String, nil]
-      required :back_image_file_id, String, nil?: true
+      #   @return [String]
+      required :back_image_file_id, String
 
       # @!attribute bank_of_first_deposit_routing_number
       #   The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
@@ -116,8 +116,8 @@ module Increase
       # @!attribute front_image_file_id
       #   The ID for the File containing the image of the front of the check.
       #
-      #   @return [String, nil]
-      required :front_image_file_id, String, nil?: true
+      #   @return [String]
+      required :front_image_file_id, String
 
       # @!attribute payee_name_analysis
       #   Whether the details on the check match the recipient name of the check transfer.
@@ -172,7 +172,7 @@ module Increase
       #     the Inbound Check Deposit will be automatically resolved if it has not been
       #     actioned by then.
       #
-      #   @param back_image_file_id [String, nil] The ID for the File containing the image of the back of the check.
+      #   @param back_image_file_id [String] The ID for the File containing the image of the back of the check.
       #
       #   @param bank_of_first_deposit_routing_number [String, nil]
       #     The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
@@ -205,8 +205,7 @@ module Increase
       #     If you requested a return of this deposit, this will contain details of the
       #     return.
       #
-      #   @param front_image_file_id [String, nil]
-      #     The ID for the File containing the image of the front of the check.
+      #   @param front_image_file_id [String] The ID for the File containing the image of the front of the check.
       #
       #   @param payee_name_analysis [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis]
       #     Whether the details on the check match the recipient name of the check transfer.
@@ -272,6 +271,9 @@ module Increase
 
           # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
           WRONG_PAYEE_CREDIT = :wrong_payee_credit
+
+          # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+          DUPLICATE_ENTRY = :duplicate_entry
 
           # @!method self.values
           #   @return [Array<Symbol>]
