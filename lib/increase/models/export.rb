@@ -257,7 +257,7 @@ module Increase
         required :account_id, String, nil?: true
 
         # @!attribute effective_date
-        #   The date for which to retrieve the balance.
+        #   The UTC date for which to retrieve the balance.
         #
         #   @return [Date, nil]
         required :effective_date, Date, nil?: true
@@ -274,7 +274,7 @@ module Increase
         #
         #   @param account_id [String, nil] Filter results by Account.
         #
-        #   @param effective_date [Date, nil] The date for which to retrieve the balance.
+        #   @param effective_date [Date, nil] The UTC date for which to retrieve the balance.
         #
         #   @param program_id [String, nil] Filter results by Program.
       end
@@ -334,7 +334,7 @@ module Increase
         required :account_number_id, String
 
         # @!attribute balance_date
-        #   The date of the balance to include in the letter.
+        #   The UTC date of the balance to include in the letter.
         #
         #   @return [Date, nil]
         required :balance_date, Date, nil?: true
@@ -345,7 +345,7 @@ module Increase
         #
         #   @param account_number_id [String] The Account Number to create a letter for.
         #
-        #   @param balance_date [Date, nil] The date of the balance to include in the letter.
+        #   @param balance_date [Date, nil] The UTC date of the balance to include in the letter.
       end
 
       # @see Increase::Models::Export#balance_csv
@@ -403,13 +403,13 @@ module Increase
         required :bookkeeping_account_id, String, nil?: true
 
         # @!attribute on_or_after_date
-        #   Filter balances to those on or after this date.
+        #   Filter balances to those on or after this UTC date.
         #
         #   @return [Date, nil]
         required :on_or_after_date, Date, nil?: true
 
         # @!attribute on_or_before_date
-        #   Filter balances to those on or before this date.
+        #   Filter balances to those on or before this UTC date.
         #
         #   @return [Date, nil]
         required :on_or_before_date, Date, nil?: true
@@ -420,9 +420,9 @@ module Increase
         #
         #   @param bookkeeping_account_id [String, nil] Filter results by Bookkeeping Account.
         #
-        #   @param on_or_after_date [Date, nil] Filter balances to those on or after this date.
+        #   @param on_or_after_date [Date, nil] Filter balances to those on or after this UTC date.
         #
-        #   @param on_or_before_date [Date, nil] Filter balances to those on or before this date.
+        #   @param on_or_before_date [Date, nil] Filter balances to those on or before this UTC date.
       end
 
       # The category of the Export. We may add additional possible values for this enum
@@ -490,13 +490,13 @@ module Increase
         required :account_id, String, nil?: true
 
         # @!attribute on_or_after_date
-        #   Filter balances on or after this date.
+        #   Filter balances on or after this UTC date.
         #
         #   @return [Date, nil]
         required :on_or_after_date, Date, nil?: true
 
         # @!attribute on_or_before_date
-        #   Filter balances on or before this date.
+        #   Filter balances on or before this UTC date.
         #
         #   @return [Date, nil]
         required :on_or_before_date, Date, nil?: true
@@ -507,9 +507,9 @@ module Increase
         #
         #   @param account_id [String, nil] Filter results by Account.
         #
-        #   @param on_or_after_date [Date, nil] Filter balances on or after this date.
+        #   @param on_or_after_date [Date, nil] Filter balances on or after this UTC date.
         #
-        #   @param on_or_before_date [Date, nil] Filter balances on or before this date.
+        #   @param on_or_before_date [Date, nil] Filter balances on or before this UTC date.
       end
 
       # @see Increase::Models::Export#dashboard_table_csv
