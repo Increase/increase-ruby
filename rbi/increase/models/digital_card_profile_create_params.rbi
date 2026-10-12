@@ -30,16 +30,20 @@ module Increase
       sig { returns(String) }
       attr_accessor :description
 
-      # A user-facing description for whoever is issuing the card.
-      sig { returns(String) }
-      attr_accessor :issuer_name
-
       # An email address the user can contact to receive support for their card.
       sig { returns(T.nilable(String)) }
       attr_reader :contact_email
 
       sig { params(contact_email: String).void }
       attr_writer :contact_email
+
+      # The name of your company or card program, shown to the user as who to contact
+      # for support with their card.
+      sig { returns(T.nilable(String)) }
+      attr_reader :contact_name
+
+      sig { params(contact_name: String).void }
+      attr_writer :contact_name
 
       # A phone number the user can contact to receive support for their card.
       sig { returns(T.nilable(String)) }
@@ -75,8 +79,8 @@ module Increase
           background_image_file_id: String,
           card_description: String,
           description: String,
-          issuer_name: String,
           contact_email: String,
+          contact_name: String,
           contact_phone: String,
           contact_website: String,
           text_color:
@@ -93,10 +97,11 @@ module Increase
         card_description:,
         # A description you can use to identify the Card Profile.
         description:,
-        # A user-facing description for whoever is issuing the card.
-        issuer_name:,
         # An email address the user can contact to receive support for their card.
         contact_email: nil,
+        # The name of your company or card program, shown to the user as who to contact
+        # for support with their card.
+        contact_name: nil,
         # A phone number the user can contact to receive support for their card.
         contact_phone: nil,
         # A website the user can visit to view and receive support for their card.
@@ -114,8 +119,8 @@ module Increase
             background_image_file_id: String,
             card_description: String,
             description: String,
-            issuer_name: String,
             contact_email: String,
+            contact_name: String,
             contact_phone: String,
             contact_website: String,
             text_color: Increase::DigitalCardProfileCreateParams::TextColor,

@@ -219,6 +219,12 @@ module Increase
           #   @return [String]
           required :name, String
 
+          # @!attribute phone_number
+          #   The phone number of the recipient.
+          #
+          #   @return [String, nil]
+          required :phone_number, String, nil?: true
+
           # @!attribute postal_code
           #   The postal code of the shipping address.
           #
@@ -231,7 +237,7 @@ module Increase
           #   @return [String]
           required :state, String
 
-          # @!method initialize(city:, country:, line1:, line2:, line3:, name:, postal_code:, state:)
+          # @!method initialize(city:, country:, line1:, line2:, line3:, name:, phone_number:, postal_code:, state:)
           #   The location to where the card's packing label is addressed.
           #
           #   @param city [String] The city of the shipping address.
@@ -245,6 +251,8 @@ module Increase
           #   @param line3 [String, nil] The third line of the shipping address.
           #
           #   @param name [String] The name of the recipient.
+          #
+          #   @param phone_number [String, nil] The phone number of the recipient.
           #
           #   @param postal_code [String] The postal code of the shipping address.
           #

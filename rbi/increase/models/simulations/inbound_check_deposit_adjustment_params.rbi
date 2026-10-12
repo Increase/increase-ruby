@@ -113,6 +113,13 @@ module Increase
               Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason::TaggedSymbol
             )
 
+          # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+          DUPLICATE_ENTRY =
+            T.let(
+              :duplicate_entry,
+              Increase::Simulations::InboundCheckDepositAdjustmentParams::Reason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

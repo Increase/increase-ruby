@@ -19,9 +19,9 @@ module Increase
       # @!attribute amount
       #   The Pending Transaction amount in the minor unit of its currency. For dollars,
       #   for example, this is cents. For a card authorization this is the amount still
-      #   held: it decreases when the merchant reverses part of the authorization. The
-      #   amount that settled is available on the resulting Transaction and on the Card
-      #   Payment's `state.settled_amount`.
+      #   held: it decreases when the merchant reverses or partially settles the
+      #   authorization. The amount that settled is available on the resulting Transaction
+      #   and on the Card Payment's `state.settled_amount`.
       #
       #   @return [Integer]
       required :amount, Integer
@@ -112,9 +112,9 @@ module Increase
       #   @param amount [Integer]
       #     The Pending Transaction amount in the minor unit of its currency. For dollars,
       #     for example, this is cents. For a card authorization this is the amount still
-      #     held: it decreases when the merchant reverses part of the authorization. The
-      #     amount that settled is available on the resulting Transaction and on the Card
-      #     Payment's `state.settled_amount`.
+      #     held: it decreases when the merchant reverses or partially settles the
+      #     authorization. The amount that settled is available on the resulting Transaction
+      #     and on the Card Payment's `state.settled_amount`.
       #
       #   @param completed_at [Time, nil]
       #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date on which the Pending
@@ -2211,6 +2211,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]

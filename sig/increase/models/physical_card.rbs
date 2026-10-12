@@ -117,6 +117,7 @@ module Increase
             :line2 => String?,
             :line3 => String?,
             name: String,
+            phone_number: String?,
             postal_code: String,
             state: String
           }
@@ -134,6 +135,8 @@ module Increase
 
           attr_accessor name: String
 
+          attr_accessor phone_number: String?
+
           attr_accessor postal_code: String
 
           attr_accessor state: String
@@ -145,6 +148,7 @@ module Increase
             line2: String?,
             line3: String?,
             name: String,
+            phone_number: String?,
             postal_code: String,
             state: String
           ) -> void
@@ -156,6 +160,7 @@ module Increase
             :line2 => String?,
             :line3 => String?,
             name: String,
+            phone_number: String?,
             postal_code: String,
             state: String
           }

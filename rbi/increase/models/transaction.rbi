@@ -5549,6 +5549,13 @@ module Increase
                   Increase::Transaction::Source::CardFinancial::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
+                  Increase::Transaction::Source::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -8662,6 +8669,13 @@ module Increase
                   Increase::Transaction::Source::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
+                  Increase::Transaction::Source::CardRefund::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -9889,6 +9903,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::Transaction::Source::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::Transaction::Source::CardRefund::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -12737,6 +12758,13 @@ module Increase
                   Increase::Transaction::Source::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
                 )
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER =
+                T.let(
+                  :visa_recurrent_reference_identifier,
+                  Increase::Transaction::Source::CardSettlement::PurchaseDetails::PurchaseIdentifierFormat::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[
@@ -13964,6 +13992,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::Transaction::Source::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
                   Increase::Transaction::Source::CardSettlement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -15600,6 +15635,13 @@ module Increase
             PAID =
               T.let(
                 :paid,
+                Increase::Transaction::Source::InboundCheckAdjustment::Reason::TaggedSymbol
+              )
+
+            # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+            DUPLICATE_ENTRY =
+              T.let(
+                :duplicate_entry,
                 Increase::Transaction::Source::InboundCheckAdjustment::Reason::TaggedSymbol
               )
 

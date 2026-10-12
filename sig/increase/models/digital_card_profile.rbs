@@ -7,12 +7,12 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         contact_email: String?,
+        contact_name: String,
         contact_phone: String?,
         contact_website: String?,
         created_at: Time,
         description: String,
         idempotency_key: String?,
-        issuer_name: String,
         status: Increase::Models::DigitalCardProfile::status,
         text_color: Increase::DigitalCardProfile::TextColor,
         type: Increase::Models::DigitalCardProfile::type_
@@ -29,6 +29,8 @@ module Increase
 
       attr_accessor contact_email: String?
 
+      attr_accessor contact_name: String
+
       attr_accessor contact_phone: String?
 
       attr_accessor contact_website: String?
@@ -38,8 +40,6 @@ module Increase
       attr_accessor description: String
 
       attr_accessor idempotency_key: String?
-
-      attr_accessor issuer_name: String
 
       attr_accessor status: Increase::Models::DigitalCardProfile::status
 
@@ -53,12 +53,12 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         contact_email: String?,
+        contact_name: String,
         contact_phone: String?,
         contact_website: String?,
         created_at: Time,
         description: String,
         idempotency_key: String?,
-        issuer_name: String,
         status: Increase::Models::DigitalCardProfile::status,
         text_color: Increase::DigitalCardProfile::TextColor,
         type: Increase::Models::DigitalCardProfile::type_
@@ -70,12 +70,12 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         contact_email: String?,
+        contact_name: String,
         contact_phone: String?,
         contact_website: String?,
         created_at: Time,
         description: String,
         idempotency_key: String?,
-        issuer_name: String,
         status: Increase::Models::DigitalCardProfile::status,
         text_color: Increase::DigitalCardProfile::TextColor,
         type: Increase::Models::DigitalCardProfile::type_

@@ -3525,6 +3525,13 @@ module Increase
                   Increase::DeclinedTransaction::Source::CardDecline::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE =
+                T.let(
+                  :pulse_tokenization_fee,
+                  Increase::DeclinedTransaction::Source::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
               sig do
                 override.returns(
                   T::Array[

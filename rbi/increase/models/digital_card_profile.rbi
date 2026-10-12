@@ -28,6 +28,11 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :contact_email
 
+      # The name of your company or card program, shown to the user as who to contact
+      # for support with their card.
+      sig { returns(String) }
+      attr_accessor :contact_name
+
       # A phone number the user can contact to receive support for their card.
       sig { returns(T.nilable(String)) }
       attr_accessor :contact_phone
@@ -50,10 +55,6 @@ module Increase
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
-
-      # A user-facing description for whoever is issuing the card.
-      sig { returns(String) }
-      attr_accessor :issuer_name
 
       # The status of the Card Profile.
       sig { returns(Increase::DigitalCardProfile::Status::TaggedSymbol) }
@@ -83,12 +84,12 @@ module Increase
           background_image_file_id: String,
           card_description: String,
           contact_email: T.nilable(String),
+          contact_name: String,
           contact_phone: T.nilable(String),
           contact_website: T.nilable(String),
           created_at: Time,
           description: String,
           idempotency_key: T.nilable(String),
-          issuer_name: String,
           status: Increase::DigitalCardProfile::Status::OrSymbol,
           text_color: Increase::DigitalCardProfile::TextColor::OrHash,
           type: Increase::DigitalCardProfile::Type::OrSymbol
@@ -105,6 +106,9 @@ module Increase
         card_description:,
         # An email address the user can contact to receive support for their card.
         contact_email:,
+        # The name of your company or card program, shown to the user as who to contact
+        # for support with their card.
+        contact_name:,
         # A phone number the user can contact to receive support for their card.
         contact_phone:,
         # A website the user can visit to view and receive support for their card.
@@ -118,8 +122,6 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
-        # A user-facing description for whoever is issuing the card.
-        issuer_name:,
         # The status of the Card Profile.
         status:,
         # The Card's text color, specified as an RGB triple.
@@ -138,12 +140,12 @@ module Increase
             background_image_file_id: String,
             card_description: String,
             contact_email: T.nilable(String),
+            contact_name: String,
             contact_phone: T.nilable(String),
             contact_website: T.nilable(String),
             created_at: Time,
             description: String,
             idempotency_key: T.nilable(String),
-            issuer_name: String,
             status: Increase::DigitalCardProfile::Status::TaggedSymbol,
             text_color: Increase::DigitalCardProfile::TextColor,
             type: Increase::DigitalCardProfile::Type::TaggedSymbol

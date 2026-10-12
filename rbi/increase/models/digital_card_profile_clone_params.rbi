@@ -46,6 +46,14 @@ module Increase
       sig { params(contact_email: String).void }
       attr_writer :contact_email
 
+      # The name of your company or card program, shown to the user as who to contact
+      # for support with their card.
+      sig { returns(T.nilable(String)) }
+      attr_reader :contact_name
+
+      sig { params(contact_name: String).void }
+      attr_writer :contact_name
+
       # A phone number the user can contact to receive support for their card.
       sig { returns(T.nilable(String)) }
       attr_reader :contact_phone
@@ -67,13 +75,6 @@ module Increase
       sig { params(description: String).void }
       attr_writer :description
 
-      # A user-facing description for whoever is issuing the card.
-      sig { returns(T.nilable(String)) }
-      attr_reader :issuer_name
-
-      sig { params(issuer_name: String).void }
-      attr_writer :issuer_name
-
       # The Card's text color, specified as an RGB triple. The default is white.
       sig do
         returns(T.nilable(Increase::DigitalCardProfileCloneParams::TextColor))
@@ -94,10 +95,10 @@ module Increase
           background_image_file_id: String,
           card_description: String,
           contact_email: String,
+          contact_name: String,
           contact_phone: String,
           contact_website: String,
           description: String,
-          issuer_name: String,
           text_color:
             Increase::DigitalCardProfileCloneParams::TextColor::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -114,14 +115,15 @@ module Increase
         card_description: nil,
         # An email address the user can contact to receive support for their card.
         contact_email: nil,
+        # The name of your company or card program, shown to the user as who to contact
+        # for support with their card.
+        contact_name: nil,
         # A phone number the user can contact to receive support for their card.
         contact_phone: nil,
         # A website the user can visit to view and receive support for their card.
         contact_website: nil,
         # A description you can use to identify the Card Profile.
         description: nil,
-        # A user-facing description for whoever is issuing the card.
-        issuer_name: nil,
         # The Card's text color, specified as an RGB triple. The default is white.
         text_color: nil,
         request_options: {}
@@ -136,10 +138,10 @@ module Increase
             background_image_file_id: String,
             card_description: String,
             contact_email: String,
+            contact_name: String,
             contact_phone: String,
             contact_website: String,
             description: String,
-            issuer_name: String,
             text_color: Increase::DigitalCardProfileCloneParams::TextColor,
             request_options: Increase::RequestOptions
           }

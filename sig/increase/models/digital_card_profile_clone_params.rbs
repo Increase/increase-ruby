@@ -7,10 +7,10 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         contact_email: String,
+        contact_name: String,
         contact_phone: String,
         contact_website: String,
         description: String,
-        issuer_name: String,
         text_color: Increase::DigitalCardProfileCloneParams::TextColor
       }
       & Increase::Internal::Type::request_parameters
@@ -37,6 +37,10 @@ module Increase
 
       def contact_email=: (String) -> String
 
+      attr_reader contact_name: String?
+
+      def contact_name=: (String) -> String
+
       attr_reader contact_phone: String?
 
       def contact_phone=: (String) -> String
@@ -48,10 +52,6 @@ module Increase
       attr_reader description: String?
 
       def description=: (String) -> String
-
-      attr_reader issuer_name: String?
-
-      def issuer_name=: (String) -> String
 
       attr_reader text_color: Increase::DigitalCardProfileCloneParams::TextColor?
 
@@ -65,10 +65,10 @@ module Increase
         ?background_image_file_id: String,
         ?card_description: String,
         ?contact_email: String,
+        ?contact_name: String,
         ?contact_phone: String,
         ?contact_website: String,
         ?description: String,
-        ?issuer_name: String,
         ?text_color: Increase::DigitalCardProfileCloneParams::TextColor,
         ?request_options: Increase::request_opts
       ) -> void
@@ -79,10 +79,10 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         contact_email: String,
+        contact_name: String,
         contact_phone: String,
         contact_website: String,
         description: String,
-        issuer_name: String,
         text_color: Increase::DigitalCardProfileCloneParams::TextColor,
         request_options: Increase::RequestOptions
       }

@@ -9,7 +9,7 @@ module Increase
         adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment],
         amount: Integer,
         automatically_resolves_at: Time,
-        back_image_file_id: String?,
+        back_image_file_id: String,
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
         check_transfer_id: String?,
@@ -18,7 +18,7 @@ module Increase
         declined_at: Time?,
         declined_transaction_id: String?,
         deposit_return: Increase::InboundCheckDeposit::DepositReturn?,
-        front_image_file_id: String?,
+        front_image_file_id: String,
         payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis,
         status: Increase::Models::InboundCheckDeposit::status,
         transaction_id: String?,
@@ -40,7 +40,7 @@ module Increase
 
       attr_accessor automatically_resolves_at: Time
 
-      attr_accessor back_image_file_id: String?
+      attr_accessor back_image_file_id: String
 
       attr_accessor bank_of_first_deposit_routing_number: String?
 
@@ -58,7 +58,7 @@ module Increase
 
       attr_accessor deposit_return: Increase::InboundCheckDeposit::DepositReturn?
 
-      attr_accessor front_image_file_id: String?
+      attr_accessor front_image_file_id: String
 
       attr_accessor payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis
 
@@ -76,7 +76,7 @@ module Increase
         adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment],
         amount: Integer,
         automatically_resolves_at: Time,
-        back_image_file_id: String?,
+        back_image_file_id: String,
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
         check_transfer_id: String?,
@@ -85,7 +85,7 @@ module Increase
         declined_at: Time?,
         declined_transaction_id: String?,
         deposit_return: Increase::InboundCheckDeposit::DepositReturn?,
-        front_image_file_id: String?,
+        front_image_file_id: String,
         payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis,
         status: Increase::Models::InboundCheckDeposit::status,
         transaction_id: String?,
@@ -100,7 +100,7 @@ module Increase
         adjustments: ::Array[Increase::InboundCheckDeposit::Adjustment],
         amount: Integer,
         automatically_resolves_at: Time,
-        back_image_file_id: String?,
+        back_image_file_id: String,
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
         check_transfer_id: String?,
@@ -109,7 +109,7 @@ module Increase
         declined_at: Time?,
         declined_transaction_id: String?,
         deposit_return: Increase::InboundCheckDeposit::DepositReturn?,
-        front_image_file_id: String?,
+        front_image_file_id: String,
         payee_name_analysis: Increase::Models::InboundCheckDeposit::payee_name_analysis,
         status: Increase::Models::InboundCheckDeposit::status,
         transaction_id: String?,
@@ -147,7 +147,7 @@ module Increase
           transaction_id: String
         }
 
-        type reason = :late_return | :wrong_payee_credit
+        type reason = :late_return | :wrong_payee_credit | :duplicate_entry
 
         module Reason
           extend Increase::Internal::Type::Enum
@@ -157,6 +157,9 @@ module Increase
 
           # The check was deposited to the wrong payee and the depositing institution has reimbursed the funds with a Wrong Payee Credit.
           WRONG_PAYEE_CREDIT: :wrong_payee_credit
+
+          # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+          DUPLICATE_ENTRY: :duplicate_entry
 
           def self?.values: -> ::Array[Increase::Models::InboundCheckDeposit::Adjustment::reason]
         end

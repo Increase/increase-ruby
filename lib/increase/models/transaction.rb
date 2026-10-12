@@ -3048,6 +3048,9 @@ module Increase
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -4808,6 +4811,9 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER = :visa_recurrent_reference_identifier
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -5442,6 +5448,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -7082,6 +7091,9 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER = :visa_recurrent_reference_identifier
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -7718,6 +7730,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -8643,6 +8658,9 @@ module Increase
 
             # The check has already been deposited elsewhere and so this is a duplicate.
             PAID = :paid
+
+            # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+            DUPLICATE_ENTRY = :duplicate_entry
 
             # @!method self.values
             #   @return [Array<Symbol>]

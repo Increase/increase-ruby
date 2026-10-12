@@ -42,7 +42,7 @@ module Increase
       attr_accessor :automatically_resolves_at
 
       # The ID for the File containing the image of the back of the check.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :back_image_file_id
 
       # The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
@@ -94,7 +94,7 @@ module Increase
       attr_writer :deposit_return
 
       # The ID for the File containing the image of the front of the check.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :front_image_file_id
 
       # Whether the details on the check match the recipient name of the check transfer.
@@ -130,7 +130,7 @@ module Increase
             T::Array[Increase::InboundCheckDeposit::Adjustment::OrHash],
           amount: Integer,
           automatically_resolves_at: Time,
-          back_image_file_id: T.nilable(String),
+          back_image_file_id: String,
           bank_of_first_deposit_routing_number: T.nilable(String),
           check_number: T.nilable(String),
           check_transfer_id: T.nilable(String),
@@ -140,7 +140,7 @@ module Increase
           declined_transaction_id: T.nilable(String),
           deposit_return:
             T.nilable(Increase::InboundCheckDeposit::DepositReturn::OrHash),
-          front_image_file_id: T.nilable(String),
+          front_image_file_id: String,
           payee_name_analysis:
             Increase::InboundCheckDeposit::PayeeNameAnalysis::OrSymbol,
           status: Increase::InboundCheckDeposit::Status::OrSymbol,
@@ -220,7 +220,7 @@ module Increase
             adjustments: T::Array[Increase::InboundCheckDeposit::Adjustment],
             amount: Integer,
             automatically_resolves_at: Time,
-            back_image_file_id: T.nilable(String),
+            back_image_file_id: String,
             bank_of_first_deposit_routing_number: T.nilable(String),
             check_number: T.nilable(String),
             check_transfer_id: T.nilable(String),
@@ -230,7 +230,7 @@ module Increase
             declined_transaction_id: T.nilable(String),
             deposit_return:
               T.nilable(Increase::InboundCheckDeposit::DepositReturn),
-            front_image_file_id: T.nilable(String),
+            front_image_file_id: String,
             payee_name_analysis:
               Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol,
             status: Increase::InboundCheckDeposit::Status::TaggedSymbol,
@@ -328,6 +328,13 @@ module Increase
           WRONG_PAYEE_CREDIT =
             T.let(
               :wrong_payee_credit,
+              Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
+            )
+
+          # A previous adjustment for the check was applied twice and the duplicate has been reversed.
+          DUPLICATE_ENTRY =
+            T.let(
+              :duplicate_entry,
               Increase::InboundCheckDeposit::Adjustment::Reason::TaggedSymbol
             )
 

@@ -868,7 +868,7 @@ module Increase
               # The one-time code was sent via email.
               EMAIL = :email
 
-              # The one-time code was not successfully delivered.
+              # The one-time code could not be delivered because the card has no phone number or email on file.
               NONE_AVAILABLE = :none_available
 
               # @!method self.values
@@ -2782,6 +2782,9 @@ module Increase
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -4282,6 +4285,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -5938,6 +5944,9 @@ module Increase
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -7455,6 +7464,9 @@ module Increase
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -8016,6 +8028,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -8900,6 +8915,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -10445,6 +10463,9 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER = :visa_recurrent_reference_identifier
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -11080,6 +11101,9 @@ module Increase
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
 
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -11599,6 +11623,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -13175,6 +13202,9 @@ module Increase
               # Invoice number
               INVOICE_NUMBER = :invoice_number
 
+              # Visa Recurrent reference identifier
+              VISA_RECURRENT_REFERENCE_IDENTIFIER = :visa_recurrent_reference_identifier
+
               # @!method self.values
               #   @return [Array<Symbol>]
             end
@@ -13811,6 +13841,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
@@ -15057,6 +15090,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
+
+              # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
+              PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
               # @!method self.values
               #   @return [Array<Symbol>]
