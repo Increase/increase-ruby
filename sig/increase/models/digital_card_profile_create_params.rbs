@@ -6,8 +6,8 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
-        issuer_name: String,
         contact_email: String,
+        contact_name: String,
         contact_phone: String,
         contact_website: String,
         text_color: Increase::DigitalCardProfileCreateParams::TextColor
@@ -26,11 +26,13 @@ module Increase
 
       attr_accessor description: String
 
-      attr_accessor issuer_name: String
-
       attr_reader contact_email: String?
 
       def contact_email=: (String) -> String
+
+      attr_reader contact_name: String?
+
+      def contact_name=: (String) -> String
 
       attr_reader contact_phone: String?
 
@@ -51,8 +53,8 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
-        issuer_name: String,
         ?contact_email: String,
+        ?contact_name: String,
         ?contact_phone: String,
         ?contact_website: String,
         ?text_color: Increase::DigitalCardProfileCreateParams::TextColor,
@@ -64,8 +66,8 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
-        issuer_name: String,
         contact_email: String,
+        contact_name: String,
         contact_phone: String,
         contact_website: String,
         text_color: Increase::DigitalCardProfileCreateParams::TextColor,

@@ -6,8 +6,8 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
-        issuer_name: String,
         ?contact_email: String,
+        ?contact_name: String,
         ?contact_phone: String,
         ?contact_website: String,
         ?text_color: Increase::DigitalCardProfileCreateParams::TextColor,
@@ -38,10 +38,10 @@ module Increase
         ?background_image_file_id: String,
         ?card_description: String,
         ?contact_email: String,
+        ?contact_name: String,
         ?contact_phone: String,
         ?contact_website: String,
         ?description: String,
-        ?issuer_name: String,
         ?text_color: Increase::DigitalCardProfileCloneParams::TextColor,
         ?request_options: Increase::request_opts
       ) -> Increase::DigitalCardProfile

@@ -153,7 +153,7 @@ module Increase
             Increase::FileCreateParams::Purpose::TaggedSymbol
           )
 
-        # A card image to be rendered inside digital wallet apps. This must be a 1536x969 pixel PNG.
+        # A card image to be rendered inside digital wallet apps. This must be a 1536x969 pixel PNG with the Visa Brand Mark sized and placed as in the digital card template.
         DIGITAL_WALLET_ARTWORK =
           T.let(
             :digital_wallet_artwork,

@@ -286,6 +286,10 @@ module Increase
           sig { returns(String) }
           attr_accessor :name
 
+          # The phone number of the recipient.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :phone_number
+
           # The postal code of the shipping address.
           sig { returns(String) }
           attr_accessor :postal_code
@@ -303,6 +307,7 @@ module Increase
               line2: T.nilable(String),
               line3: T.nilable(String),
               name: String,
+              phone_number: T.nilable(String),
               postal_code: String,
               state: String
             ).returns(T.attached_class)
@@ -320,6 +325,8 @@ module Increase
             line3:,
             # The name of the recipient.
             name:,
+            # The phone number of the recipient.
+            phone_number:,
             # The postal code of the shipping address.
             postal_code:,
             # The state of the shipping address.
@@ -336,6 +343,7 @@ module Increase
                 line2: T.nilable(String),
                 line3: T.nilable(String),
                 name: String,
+                phone_number: T.nilable(String),
                 postal_code: String,
                 state: String
               }

@@ -37,6 +37,13 @@ module Increase
       #   @return [String, nil]
       optional :contact_email, String
 
+      # @!attribute contact_name
+      #   The name of your company or card program, shown to the user as who to contact
+      #   for support with their card.
+      #
+      #   @return [String, nil]
+      optional :contact_name, String
+
       # @!attribute contact_phone
       #   A phone number the user can contact to receive support for their card.
       #
@@ -55,19 +62,13 @@ module Increase
       #   @return [String, nil]
       optional :description, String
 
-      # @!attribute issuer_name
-      #   A user-facing description for whoever is issuing the card.
-      #
-      #   @return [String, nil]
-      optional :issuer_name, String
-
       # @!attribute text_color
       #   The Card's text color, specified as an RGB triple. The default is white.
       #
       #   @return [Increase::Models::DigitalCardProfileCloneParams::TextColor, nil]
       optional :text_color, -> { Increase::DigitalCardProfileCloneParams::TextColor }
 
-      # @!method initialize(digital_card_profile_id:, app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_phone: nil, contact_website: nil, description: nil, issuer_name: nil, text_color: nil, request_options: {})
+      # @!method initialize(digital_card_profile_id:, app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, description: nil, text_color: nil, request_options: {})
       #   @param digital_card_profile_id [String] The identifier of the Digital Card Profile to clone.
       #
       #   @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
@@ -78,13 +79,15 @@ module Increase
       #
       #   @param contact_email [String] An email address the user can contact to receive support for their card.
       #
+      #   @param contact_name [String]
+      #     The name of your company or card program, shown to the user as who to contact
+      #     for support with their card.
+      #
       #   @param contact_phone [String] A phone number the user can contact to receive support for their card.
       #
       #   @param contact_website [String] A website the user can visit to view and receive support for their card.
       #
       #   @param description [String] A description you can use to identify the Card Profile.
-      #
-      #   @param issuer_name [String] A user-facing description for whoever is issuing the card.
       #
       #   @param text_color [Increase::Models::DigitalCardProfileCloneParams::TextColor]
       #     The Card's text color, specified as an RGB triple. The default is white.
