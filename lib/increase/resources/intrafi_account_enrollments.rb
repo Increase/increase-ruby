@@ -3,7 +3,7 @@
 module Increase
   module Resources
     class IntrafiAccountEnrollments
-      # Enroll an account in the IntraFi deposit sweep network
+      # Enroll an Account in the IntraFi deposit sweep network
       #
       # @overload create(account_id:, email_address:, request_options: {})
       #
@@ -88,7 +88,7 @@ module Increase
         )
       end
 
-      # Unenroll an account from IntraFi
+      # Unenroll an Account from IntraFi
       #
       # @overload unenroll(intrafi_account_enrollment_id, request_options: {})
       #
