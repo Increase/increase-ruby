@@ -377,7 +377,7 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :account_id
 
-        # The date for which to retrieve the balance.
+        # The UTC date for which to retrieve the balance.
         sig { returns(T.nilable(Date)) }
         attr_accessor :effective_date
 
@@ -397,7 +397,7 @@ module Increase
         def self.new(
           # Filter results by Account.
           account_id:,
-          # The date for which to retrieve the balance.
+          # The UTC date for which to retrieve the balance.
           effective_date:,
           # Filter results by Program.
           program_id:
@@ -532,7 +532,7 @@ module Increase
         sig { returns(String) }
         attr_accessor :account_number_id
 
-        # The date of the balance to include in the letter.
+        # The UTC date of the balance to include in the letter.
         sig { returns(T.nilable(Date)) }
         attr_accessor :balance_date
 
@@ -547,7 +547,7 @@ module Increase
         def self.new(
           # The Account Number to create a letter for.
           account_number_id:,
-          # The date of the balance to include in the letter.
+          # The UTC date of the balance to include in the letter.
           balance_date:
         )
         end
@@ -665,11 +665,11 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :bookkeeping_account_id
 
-        # Filter balances to those on or after this date.
+        # Filter balances to those on or after this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_accessor :on_or_after_date
 
-        # Filter balances to those on or before this date.
+        # Filter balances to those on or before this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_accessor :on_or_before_date
 
@@ -685,9 +685,9 @@ module Increase
         def self.new(
           # Filter results by Bookkeeping Account.
           bookkeeping_account_id:,
-          # Filter balances to those on or after this date.
+          # Filter balances to those on or after this UTC date.
           on_or_after_date:,
-          # Filter balances to those on or before this date.
+          # Filter balances to those on or before this UTC date.
           on_or_before_date:
         )
         end
@@ -808,11 +808,11 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :account_id
 
-        # Filter balances on or after this date.
+        # Filter balances on or after this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_accessor :on_or_after_date
 
-        # Filter balances on or before this date.
+        # Filter balances on or before this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_accessor :on_or_before_date
 
@@ -828,9 +828,9 @@ module Increase
         def self.new(
           # Filter results by Account.
           account_id:,
-          # Filter balances on or after this date.
+          # Filter balances on or after this UTC date.
           on_or_after_date:,
-          # Filter balances on or before this date.
+          # Filter balances on or before this UTC date.
           on_or_before_date:
         )
         end

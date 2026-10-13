@@ -77,6 +77,10 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :end_to_end_identification
 
+      # The FedNow network identification of the transfer.
+      sig { returns(String) }
+      attr_accessor :message_identification
+
       # The lifecycle status of the transfer.
       sig { returns(Increase::InboundFednowTransfer::Status::TaggedSymbol) }
       attr_accessor :status
@@ -86,7 +90,7 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :transaction_id
 
-      # The FedNow network identification of the transfer.
+      # An optional identifier for the transfer set by the sending bank.
       sig { returns(T.nilable(String)) }
       attr_accessor :transaction_identification
 
@@ -123,6 +127,7 @@ module Increase
           debtor_routing_number: String,
           decline: T.nilable(Increase::InboundFednowTransfer::Decline::OrHash),
           end_to_end_identification: T.nilable(String),
+          message_identification: String,
           status: Increase::InboundFednowTransfer::Status::OrSymbol,
           transaction_id: T.nilable(String),
           transaction_identification: T.nilable(String),
@@ -160,12 +165,14 @@ module Increase
         decline:,
         # A free-form reference string set by the sender, to help identify the transfer.
         end_to_end_identification:,
+        # The FedNow network identification of the transfer.
+        message_identification:,
         # The lifecycle status of the transfer.
         status:,
         # The identifier of the Transaction object created when the transfer was
         # confirmed.
         transaction_id:,
-        # The FedNow network identification of the transfer.
+        # An optional identifier for the transfer set by the sending bank.
         transaction_identification:,
         # A constant representing the object's type. For this resource it will always be
         # `inbound_fednow_transfer`.
@@ -196,6 +203,7 @@ module Increase
             debtor_routing_number: String,
             decline: T.nilable(Increase::InboundFednowTransfer::Decline),
             end_to_end_identification: T.nilable(String),
+            message_identification: String,
             status: Increase::InboundFednowTransfer::Status::TaggedSymbol,
             transaction_id: T.nilable(String),
             transaction_identification: T.nilable(String),

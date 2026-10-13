@@ -38,7 +38,7 @@ module Increase
       )
       end
 
-      # Retrieve a Card Profile
+      # Retrieve a Physical Card Profile
       sig do
         params(
           physical_card_profile_id: String,

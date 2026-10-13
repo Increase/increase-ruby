@@ -361,10 +361,9 @@ module Increase
         sig { params(account_id: String).void }
         attr_writer :account_id
 
-        # The date to create a BAI2 report for. If not provided, the current date will be
-        # used. The timezone is UTC. If the current date is used, the report will include
-        # intraday balances, otherwise it will include end-of-day balances for the
-        # provided date.
+        # The UTC date to create a BAI2 report for. If not provided, the current date will
+        # be used. If the current date is used, the report will include intraday balances,
+        # otherwise it will include end-of-day balances for the provided date.
         sig { returns(T.nilable(Date)) }
         attr_reader :effective_date
 
@@ -392,10 +391,9 @@ module Increase
           # The Account to create a BAI2 report for. If not provided, all open accounts will
           # be included.
           account_id: nil,
-          # The date to create a BAI2 report for. If not provided, the current date will be
-          # used. The timezone is UTC. If the current date is used, the report will include
-          # intraday balances, otherwise it will include end-of-day balances for the
-          # provided date.
+          # The UTC date to create a BAI2 report for. If not provided, the current date will
+          # be used. If the current date is used, the report will include intraday balances,
+          # otherwise it will include end-of-day balances for the provided date.
           effective_date: nil,
           # The Program to create a BAI2 report for. If not provided, all open accounts will
           # be included.
@@ -526,7 +524,8 @@ module Increase
         sig { returns(String) }
         attr_accessor :account_number_id
 
-        # The date of the balance to include in the letter. Defaults to the current date.
+        # The UTC date of the balance to include in the letter. Defaults to the current
+        # date.
         sig { returns(T.nilable(Date)) }
         attr_reader :balance_date
 
@@ -543,7 +542,8 @@ module Increase
         def self.new(
           # The Account Number to create a letter for.
           account_number_id:,
-          # The date of the balance to include in the letter. Defaults to the current date.
+          # The UTC date of the balance to include in the letter. Defaults to the current
+          # date.
           balance_date: nil
         )
         end
@@ -572,14 +572,14 @@ module Increase
         sig { params(bookkeeping_account_id: String).void }
         attr_writer :bookkeeping_account_id
 
-        # Filter exported Balances to those on or after this date.
+        # Filter exported Balances to those on or after this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_reader :on_or_after_date
 
         sig { params(on_or_after_date: Date).void }
         attr_writer :on_or_after_date
 
-        # Filter exported Balances to those on or before this date.
+        # Filter exported Balances to those on or before this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_reader :on_or_before_date
 
@@ -599,9 +599,9 @@ module Increase
           # Filter exported Bookkeeping Account Balances to the specified Bookkeeping
           # Account.
           bookkeeping_account_id: nil,
-          # Filter exported Balances to those on or after this date.
+          # Filter exported Balances to those on or after this UTC date.
           on_or_after_date: nil,
-          # Filter exported Balances to those on or before this date.
+          # Filter exported Balances to those on or before this UTC date.
           on_or_before_date: nil
         )
         end
@@ -635,14 +635,14 @@ module Increase
         sig { params(account_id: String).void }
         attr_writer :account_id
 
-        # Filter exported Balances to those on or after this date.
+        # Filter exported Balances to those on or after this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_reader :on_or_after_date
 
         sig { params(on_or_after_date: Date).void }
         attr_writer :on_or_after_date
 
-        # Filter exported Balances to those on or before this date.
+        # Filter exported Balances to those on or before this UTC date.
         sig { returns(T.nilable(Date)) }
         attr_reader :on_or_before_date
 
@@ -661,9 +661,9 @@ module Increase
         def self.new(
           # Filter exported Balances to the specified Account.
           account_id: nil,
-          # Filter exported Balances to those on or after this date.
+          # Filter exported Balances to those on or after this UTC date.
           on_or_after_date: nil,
-          # Filter exported Balances to those on or before this date.
+          # Filter exported Balances to those on or before this UTC date.
           on_or_before_date: nil
         )
         end

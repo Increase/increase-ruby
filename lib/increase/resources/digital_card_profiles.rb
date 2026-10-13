@@ -64,7 +64,7 @@ module Increase
         )
       end
 
-      # List Card Profiles
+      # List Digital Card Profiles
       #
       # @overload list(cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
       #
@@ -122,7 +122,7 @@ module Increase
         )
       end
 
-      # Clones a Digital Card Profile
+      # Clone a Digital Card Profile
       #
       # @overload clone_(digital_card_profile_id, app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, description: nil, text_color: nil, request_options: {})
       #

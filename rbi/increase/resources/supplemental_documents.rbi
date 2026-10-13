@@ -3,7 +3,7 @@
 module Increase
   module Resources
     class SupplementalDocuments
-      # Create a supplemental document for an Entity
+      # Create a Supplemental Document
       sig do
         params(
           entity_id: String,
@@ -20,7 +20,7 @@ module Increase
       )
       end
 
-      # List Entity Supplemental Document Submissions
+      # List Supplemental Documents
       sig do
         params(
           entity_id: String,

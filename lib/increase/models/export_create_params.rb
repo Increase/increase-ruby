@@ -187,10 +187,9 @@ module Increase
         optional :account_id, String
 
         # @!attribute effective_date
-        #   The date to create a BAI2 report for. If not provided, the current date will be
-        #   used. The timezone is UTC. If the current date is used, the report will include
-        #   intraday balances, otherwise it will include end-of-day balances for the
-        #   provided date.
+        #   The UTC date to create a BAI2 report for. If not provided, the current date will
+        #   be used. If the current date is used, the report will include intraday balances,
+        #   otherwise it will include end-of-day balances for the provided date.
         #
         #   @return [Date, nil]
         optional :effective_date, Date
@@ -211,10 +210,9 @@ module Increase
         #     be included.
         #
         #   @param effective_date [Date]
-        #     The date to create a BAI2 report for. If not provided, the current date will be
-        #     used. The timezone is UTC. If the current date is used, the report will include
-        #     intraday balances, otherwise it will include end-of-day balances for the
-        #     provided date.
+        #     The UTC date to create a BAI2 report for. If not provided, the current date will
+        #     be used. If the current date is used, the report will include intraday balances,
+        #     otherwise it will include end-of-day balances for the provided date.
         #
         #   @param program_id [String]
         #     The Program to create a BAI2 report for. If not provided, all open accounts will
@@ -274,7 +272,8 @@ module Increase
         required :account_number_id, String
 
         # @!attribute balance_date
-        #   The date of the balance to include in the letter. Defaults to the current date.
+        #   The UTC date of the balance to include in the letter. Defaults to the current
+        #   date.
         #
         #   @return [Date, nil]
         optional :balance_date, Date
@@ -285,7 +284,9 @@ module Increase
         #
         #   @param account_number_id [String] The Account Number to create a letter for.
         #
-        #   @param balance_date [Date] The date of the balance to include in the letter. Defaults to the current date.
+        #   @param balance_date [Date]
+        #     The UTC date of the balance to include in the letter. Defaults to the current
+        #     date.
       end
 
       class BookkeepingAccountBalanceCsv < Increase::Internal::Type::BaseModel
@@ -297,13 +298,13 @@ module Increase
         optional :bookkeeping_account_id, String
 
         # @!attribute on_or_after_date
-        #   Filter exported Balances to those on or after this date.
+        #   Filter exported Balances to those on or after this UTC date.
         #
         #   @return [Date, nil]
         optional :on_or_after_date, Date
 
         # @!attribute on_or_before_date
-        #   Filter exported Balances to those on or before this date.
+        #   Filter exported Balances to those on or before this UTC date.
         #
         #   @return [Date, nil]
         optional :on_or_before_date, Date
@@ -316,9 +317,9 @@ module Increase
         #     Filter exported Bookkeeping Account Balances to the specified Bookkeeping
         #     Account.
         #
-        #   @param on_or_after_date [Date] Filter exported Balances to those on or after this date.
+        #   @param on_or_after_date [Date] Filter exported Balances to those on or after this UTC date.
         #
-        #   @param on_or_before_date [Date] Filter exported Balances to those on or before this date.
+        #   @param on_or_before_date [Date] Filter exported Balances to those on or before this UTC date.
       end
 
       class DailyAccountBalanceCsv < Increase::Internal::Type::BaseModel
@@ -329,13 +330,13 @@ module Increase
         optional :account_id, String
 
         # @!attribute on_or_after_date
-        #   Filter exported Balances to those on or after this date.
+        #   Filter exported Balances to those on or after this UTC date.
         #
         #   @return [Date, nil]
         optional :on_or_after_date, Date
 
         # @!attribute on_or_before_date
-        #   Filter exported Balances to those on or before this date.
+        #   Filter exported Balances to those on or before this UTC date.
         #
         #   @return [Date, nil]
         optional :on_or_before_date, Date
@@ -346,9 +347,9 @@ module Increase
         #
         #   @param account_id [String] Filter exported Balances to the specified Account.
         #
-        #   @param on_or_after_date [Date] Filter exported Balances to those on or after this date.
+        #   @param on_or_after_date [Date] Filter exported Balances to those on or after this UTC date.
         #
-        #   @param on_or_before_date [Date] Filter exported Balances to those on or before this date.
+        #   @param on_or_before_date [Date] Filter exported Balances to those on or before this UTC date.
       end
 
       class EntityCsv < Increase::Internal::Type::BaseModel
