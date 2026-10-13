@@ -16,6 +16,7 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         :last4 => String,
+        renewals: ::Array[Increase::Card::Renewal],
         status: Increase::Models::Card::status,
         type: Increase::Models::Card::type_
       }
@@ -49,6 +50,8 @@ module Increase
 
       attr_accessor last4: String
 
+      attr_accessor renewals: ::Array[Increase::Card::Renewal]
+
       attr_accessor status: Increase::Models::Card::status
 
       attr_accessor type: Increase::Models::Card::type_
@@ -68,6 +71,7 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         last4: String,
+        renewals: ::Array[Increase::Card::Renewal],
         status: Increase::Models::Card::status,
         type: Increase::Models::Card::type_
       ) -> void
@@ -87,6 +91,7 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         :last4 => String,
+        renewals: ::Array[Increase::Card::Renewal],
         status: Increase::Models::Card::status,
         type: Increase::Models::Card::type_
       }
@@ -492,6 +497,33 @@ module Increase
           digital_card_profile_id: String?,
           email: String?,
           phone: String?
+        }
+      end
+
+      type renewal =
+        {
+          expiration_month: Integer,
+          expiration_year: Integer,
+          renewed_at: Time
+        }
+
+      class Renewal < Increase::Internal::Type::BaseModel
+        attr_accessor expiration_month: Integer
+
+        attr_accessor expiration_year: Integer
+
+        attr_accessor renewed_at: Time
+
+        def initialize: (
+          expiration_month: Integer,
+          expiration_year: Integer,
+          renewed_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          expiration_month: Integer,
+          expiration_year: Integer,
+          renewed_at: Time
         }
       end
 

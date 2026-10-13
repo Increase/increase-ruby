@@ -26,6 +26,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
         expiration_year: Integer,
         idempotency_key: String | nil,
         last4: String,
+        renewals: ^(Increase::Internal::Type::ArrayOf[Increase::Card::Renewal]),
         status: Increase::Card::Status,
         type: Increase::Card::Type
       }
@@ -55,6 +56,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
         expiration_year: Integer,
         idempotency_key: String | nil,
         last4: String,
+        renewals: ^(Increase::Internal::Type::ArrayOf[Increase::Card::Renewal]),
         status: Increase::Card::Status,
         type: Increase::Card::Type
       }
@@ -84,6 +86,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
         expiration_year: Integer,
         idempotency_key: String | nil,
         last4: String,
+        renewals: ^(Increase::Internal::Type::ArrayOf[Increase::Card::Renewal]),
         status: Increase::Card::Status,
         type: Increase::Card::Type
       }
@@ -120,6 +123,7 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
         expiration_year: Integer,
         idempotency_key: String | nil,
         last4: String,
+        renewals: ^(Increase::Internal::Type::ArrayOf[Increase::Card::Renewal]),
         status: Increase::Card::Status,
         type: Increase::Card::Type
       }
@@ -174,6 +178,36 @@ class Increase::Test::Resources::CardsTest < Increase::Test::ResourceTest
         primary_account_number: String,
         type: Increase::CardDetails::Type,
         verification_code: String
+      }
+    end
+  end
+
+  def test_renew
+    response = @increase.cards.renew("card_oubs0hwk5rn6knuecxg2")
+
+    assert_pattern do
+      response => Increase::Card
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String,
+        authorization_controls: Increase::Card::AuthorizationControls | nil,
+        billing_address: Increase::Card::BillingAddress,
+        bin: String,
+        cardholder_name: Increase::Card::CardholderName | nil,
+        created_at: Time,
+        description: String | nil,
+        digital_wallet: Increase::Card::DigitalWallet | nil,
+        entity_id: String | nil,
+        expiration_month: Integer,
+        expiration_year: Integer,
+        idempotency_key: String | nil,
+        last4: String,
+        renewals: ^(Increase::Internal::Type::ArrayOf[Increase::Card::Renewal]),
+        status: Increase::Card::Status,
+        type: Increase::Card::Type
       }
     end
   end

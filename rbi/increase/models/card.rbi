@@ -95,6 +95,11 @@ module Increase
       sig { returns(String) }
       attr_accessor :last4
 
+      # Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+      # renewal records the expiration date the Card had before it was renewed.
+      sig { returns(T::Array[Increase::Card::Renewal]) }
+      attr_accessor :renewals
+
       # This indicates if payments can be made with the card.
       sig { returns(Increase::Card::Status::TaggedSymbol) }
       attr_accessor :status
@@ -126,6 +131,7 @@ module Increase
           expiration_year: Integer,
           idempotency_key: T.nilable(String),
           last4: String,
+          renewals: T::Array[Increase::Card::Renewal::OrHash],
           status: Increase::Card::Status::OrSymbol,
           type: Increase::Card::Type::OrSymbol
         ).returns(T.attached_class)
@@ -165,6 +171,9 @@ module Increase
         idempotency_key:,
         # The last 4 digits of the Card's Primary Account Number.
         last4:,
+        # Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+        # renewal records the expiration date the Card had before it was renewed.
+        renewals:,
         # This indicates if payments can be made with the card.
         status:,
         # A constant representing the object's type. For this resource it will always be
@@ -191,6 +200,7 @@ module Increase
             expiration_year: Integer,
             idempotency_key: T.nilable(String),
             last4: String,
+            renewals: T::Array[Increase::Card::Renewal],
             status: Increase::Card::Status::TaggedSymbol,
             type: Increase::Card::Type::TaggedSymbol
           }
@@ -1386,6 +1396,58 @@ module Increase
               digital_card_profile_id: T.nilable(String),
               email: T.nilable(String),
               phone: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Renewal < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Card::Renewal, Increase::Internal::AnyHash)
+          end
+
+        # The month the Card expired in before this renewal, in M format (e.g., August is
+        # 8).
+        sig { returns(Integer) }
+        attr_accessor :expiration_month
+
+        # The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+        sig { returns(Integer) }
+        attr_accessor :expiration_year
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the Card was renewed.
+        sig { returns(Time) }
+        attr_accessor :renewed_at
+
+        sig do
+          params(
+            expiration_month: Integer,
+            expiration_year: Integer,
+            renewed_at: Time
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The month the Card expired in before this renewal, in M format (e.g., August is
+          # 8).
+          expiration_month:,
+          # The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+          expiration_year:,
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the Card was renewed.
+          renewed_at:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              expiration_month: Integer,
+              expiration_year: Integer,
+              renewed_at: Time
             }
           )
         end
