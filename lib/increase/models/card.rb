@@ -94,6 +94,19 @@ module Increase
       #   @return [String]
       required :last4, String
 
+      # @!attribute renewals
+      #   Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+      #   renewal records the expiration date the Card had before it was renewed.
+      #
+      #   @return [Array<Increase::Models::Card::Renewal>]
+      required :renewals, -> { Increase::Internal::Type::ArrayOf[Increase::Card::Renewal] }
+
+      # @!attribute replacement_for
+      #   Details about the Card this Card replaces, if it was created as a replacement.
+      #
+      #   @return [Increase::Models::Card::ReplacementFor, nil]
+      required :replacement_for, -> { Increase::Card::ReplacementFor }, nil?: true
+
       # @!attribute status
       #   This indicates if payments can be made with the card.
       #
@@ -107,7 +120,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Card::Type]
       required :type, enum: -> { Increase::Card::Type }
 
-      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, cardholder_name:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
+      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, cardholder_name:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, renewals:, replacement_for:, status:, type:)
       #   Cards may operate on credit, debit, or prepaid BINs. They’ll immediately work
       #   for online purchases after you create them. All cards work on a good funds
       #   model, and maintain a maximum limit of 100% of the Account’s available balance
@@ -152,6 +165,13 @@ module Increase
       #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param last4 [String] The last 4 digits of the Card's Primary Account Number.
+      #
+      #   @param renewals [Array<Increase::Models::Card::Renewal>]
+      #     Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+      #     renewal records the expiration date the Card had before it was renewed.
+      #
+      #   @param replacement_for [Increase::Models::Card::ReplacementFor, nil]
+      #     Details about the Card this Card replaces, if it was created as a replacement.
       #
       #   @param status [Symbol, Increase::Models::Card::Status]
       #     This indicates if payments can be made with the card.
@@ -694,6 +714,88 @@ module Increase
         #   @param phone [String, nil]
         #     A phone number that can be used to verify the cardholder via one-time passcode
         #     over SMS.
+      end
+
+      class Renewal < Increase::Internal::Type::BaseModel
+        # @!attribute previous_expiration_month
+        #   The month the Card expired in before this renewal, in M format (e.g., August is
+        #   8).
+        #
+        #   @return [Integer]
+        required :previous_expiration_month, Integer
+
+        # @!attribute previous_expiration_year
+        #   The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+        #
+        #   @return [Integer]
+        required :previous_expiration_year, Integer
+
+        # @!attribute renewed_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #   the Card was renewed.
+        #
+        #   @return [Time]
+        required :renewed_at, Time
+
+        # @!method initialize(previous_expiration_month:, previous_expiration_year:, renewed_at:)
+        #   @param previous_expiration_month [Integer]
+        #     The month the Card expired in before this renewal, in M format (e.g., August is
+        #     8).
+        #
+        #   @param previous_expiration_year [Integer]
+        #     The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+        #
+        #   @param renewed_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the Card was renewed.
+      end
+
+      # @see Increase::Models::Card#replacement_for
+      class ReplacementFor < Increase::Internal::Type::BaseModel
+        # @!attribute card_id
+        #   The identifier of the replaced Card.
+        #
+        #   @return [String]
+        required :card_id, String
+
+        # @!attribute reason
+        #   Why the Card was replaced. Only `expiring` notifies merchants that have the
+        #   replaced Card on file of the new Card.
+        #
+        #   @return [Symbol, Increase::Models::Card::ReplacementFor::Reason]
+        required :reason, enum: -> { Increase::Card::ReplacementFor::Reason }
+
+        # @!method initialize(card_id:, reason:)
+        #   Details about the Card this Card replaces, if it was created as a replacement.
+        #
+        #   @param card_id [String] The identifier of the replaced Card.
+        #
+        #   @param reason [Symbol, Increase::Models::Card::ReplacementFor::Reason]
+        #     Why the Card was replaced. Only `expiring` notifies merchants that have the
+        #     replaced Card on file of the new Card.
+
+        # Why the Card was replaced. Only `expiring` notifies merchants that have the
+        # replaced Card on file of the new Card.
+        #
+        # @see Increase::Models::Card::ReplacementFor#reason
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The replaced card is expiring. Merchants with the replaced card on file will be notified of the new card.
+          EXPIRING = :expiring
+
+          # The replaced card was lost. Merchants will not be notified of the new card.
+          LOST = :lost
+
+          # The replaced card was stolen. Merchants will not be notified of the new card.
+          STOLEN = :stolen
+
+          # The replaced card was used fraudulently. Merchants will not be notified of the new card.
+          FRAUD = :fraud
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # This indicates if payments can be made with the card.

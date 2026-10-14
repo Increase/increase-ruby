@@ -84,6 +84,12 @@ module Increase
       #   @return [String, nil]
       required :end_to_end_identification, String, nil?: true
 
+      # @!attribute message_identification
+      #   The FedNow network identification of the transfer.
+      #
+      #   @return [String]
+      required :message_identification, String
+
       # @!attribute status
       #   The lifecycle status of the transfer.
       #
@@ -98,7 +104,7 @@ module Increase
       required :transaction_id, String, nil?: true
 
       # @!attribute transaction_identification
-      #   The FedNow network identification of the transfer.
+      #   An optional identifier for the transfer set by the sending bank.
       #
       #   @return [String, nil]
       required :transaction_identification, String, nil?: true
@@ -124,7 +130,7 @@ module Increase
       #   @return [String, nil]
       required :unstructured_remittance_information, String, nil?: true
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, end_to_end_identification:, status:, transaction_id:, transaction_identification:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, end_to_end_identification:, message_identification:, status:, transaction_id:, transaction_identification:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   An Inbound FedNow Transfer is a FedNow transfer initiated outside of Increase to
       #   your account.
       #
@@ -162,6 +168,8 @@ module Increase
       #   @param end_to_end_identification [String, nil]
       #     A free-form reference string set by the sender, to help identify the transfer.
       #
+      #   @param message_identification [String] The FedNow network identification of the transfer.
+      #
       #   @param status [Symbol, Increase::Models::InboundFednowTransfer::Status]
       #     The lifecycle status of the transfer.
       #
@@ -169,7 +177,8 @@ module Increase
       #     The identifier of the Transaction object created when the transfer was
       #     confirmed.
       #
-      #   @param transaction_identification [String, nil] The FedNow network identification of the transfer.
+      #   @param transaction_identification [String, nil]
+      #     An optional identifier for the transfer set by the sending bank.
       #
       #   @param type [Symbol, Increase::Models::InboundFednowTransfer::Type]
       #     A constant representing the object's type. For this resource it will always be

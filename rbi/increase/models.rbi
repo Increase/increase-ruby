@@ -140,6 +140,8 @@ module Increase
   CardPushTransferRetrieveParams =
     Increase::Models::CardPushTransferRetrieveParams
 
+  CardRenewParams = Increase::Models::CardRenewParams
+
   CardRetrieveParams = Increase::Models::CardRetrieveParams
 
   CardToken = Increase::Models::CardToken
