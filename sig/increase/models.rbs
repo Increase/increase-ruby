@@ -127,6 +127,8 @@ module Increase
 
   class CardPushTransferRetrieveParams = Increase::Models::CardPushTransferRetrieveParams
 
+  class CardRenewParams = Increase::Models::CardRenewParams
+
   class CardRetrieveParams = Increase::Models::CardRetrieveParams
 
   class CardToken = Increase::Models::CardToken

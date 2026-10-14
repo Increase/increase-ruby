@@ -3049,6 +3049,13 @@ module Increase
                   Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
                 )
 
+              # The merchant's pre-arbitration submission was accepted by the user or not responded to in time.
+              MERCHANT_PREARBITRATION_ACCEPTED =
+                T.let(
+                  :merchant_prearbitration_accepted,
+                  Increase::Transaction::Source::CardDisputeFinancial::Visa::EventType::TaggedSymbol
+                )
+
               # The user declined the merchant's pre-arbitration submission.
               MERCHANT_PREARBITRATION_DECLINE_SUBMITTED =
                 T.let(

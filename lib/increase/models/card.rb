@@ -94,6 +94,13 @@ module Increase
       #   @return [String]
       required :last4, String
 
+      # @!attribute renewals
+      #   Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+      #   renewal records the expiration date the Card had before it was renewed.
+      #
+      #   @return [Array<Increase::Models::Card::Renewal>]
+      required :renewals, -> { Increase::Internal::Type::ArrayOf[Increase::Card::Renewal] }
+
       # @!attribute status
       #   This indicates if payments can be made with the card.
       #
@@ -107,7 +114,7 @@ module Increase
       #   @return [Symbol, Increase::Models::Card::Type]
       required :type, enum: -> { Increase::Card::Type }
 
-      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, cardholder_name:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, status:, type:)
+      # @!method initialize(id:, account_id:, authorization_controls:, billing_address:, bin:, cardholder_name:, created_at:, description:, digital_wallet:, entity_id:, expiration_month:, expiration_year:, idempotency_key:, last4:, renewals:, status:, type:)
       #   Cards may operate on credit, debit, or prepaid BINs. They’ll immediately work
       #   for online purchases after you create them. All cards work on a good funds
       #   model, and maintain a maximum limit of 100% of the Account’s available balance
@@ -152,6 +159,10 @@ module Increase
       #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
       #   @param last4 [String] The last 4 digits of the Card's Primary Account Number.
+      #
+      #   @param renewals [Array<Increase::Models::Card::Renewal>]
+      #     Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+      #     renewal records the expiration date the Card had before it was renewed.
       #
       #   @param status [Symbol, Increase::Models::Card::Status]
       #     This indicates if payments can be made with the card.
@@ -694,6 +705,40 @@ module Increase
         #   @param phone [String, nil]
         #     A phone number that can be used to verify the cardholder via one-time passcode
         #     over SMS.
+      end
+
+      class Renewal < Increase::Internal::Type::BaseModel
+        # @!attribute previous_expiration_month
+        #   The month the Card expired in before this renewal, in M format (e.g., August is
+        #   8).
+        #
+        #   @return [Integer]
+        required :previous_expiration_month, Integer
+
+        # @!attribute previous_expiration_year
+        #   The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+        #
+        #   @return [Integer]
+        required :previous_expiration_year, Integer
+
+        # @!attribute renewed_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #   the Card was renewed.
+        #
+        #   @return [Time]
+        required :renewed_at, Time
+
+        # @!method initialize(previous_expiration_month:, previous_expiration_year:, renewed_at:)
+        #   @param previous_expiration_month [Integer]
+        #     The month the Card expired in before this renewal, in M format (e.g., August is
+        #     8).
+        #
+        #   @param previous_expiration_year [Integer]
+        #     The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+        #
+        #   @param renewed_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the Card was renewed.
       end
 
       # This indicates if payments can be made with the card.
