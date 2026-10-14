@@ -396,7 +396,8 @@ module Increase
 
         # The North American Industry Classification System (NAICS) code for the
         # corporation's primary line of business. This is a number, like `5132` for
-        # `Software Publishers`. A full list of classification codes is available
+        # `Software Publishers`. Increase uses the 2022 version of NAICS. A full list of
+        # classification codes is available
         # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
         sig { returns(T.nilable(String)) }
         attr_reader :industry_code
@@ -461,7 +462,8 @@ module Increase
           incorporation_state: nil,
           # The North American Industry Classification System (NAICS) code for the
           # corporation's primary line of business. This is a number, like `5132` for
-          # `Software Publishers`. A full list of classification codes is available
+          # `Software Publishers`. Increase uses the 2022 version of NAICS. A full list of
+          # classification codes is available
           # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
           industry_code: nil,
           # A website for the business. Not every program requires a website for submitted
@@ -3102,7 +3104,8 @@ module Increase
 
         # The North American Industry Classification System (NAICS) code for the sole
         # proprietorship's primary line of business. This is a number, like `5132` for
-        # `Software Publishers`. A full list of classification codes is available
+        # `Software Publishers`. Increase uses the 2022 version of NAICS. A full list of
+        # classification codes is available
         # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
         sig { returns(T.nilable(String)) }
         attr_reader :industry_code
@@ -3156,7 +3159,8 @@ module Increase
           email: nil,
           # The North American Industry Classification System (NAICS) code for the sole
           # proprietorship's primary line of business. This is a number, like `5132` for
-          # `Software Publishers`. A full list of classification codes is available
+          # `Software Publishers`. Increase uses the 2022 version of NAICS. A full list of
+          # classification codes is available
           # [here](https://increase.com/documentation/data-dictionary#north-american-industry-classification-system-codes).
           industry_code: nil,
           # The United States Employer Identification Number (EIN) for the sole

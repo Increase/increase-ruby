@@ -43,7 +43,7 @@ module Increase
         )
       end
 
-      # Retrieve a Card Profile
+      # Retrieve a Physical Card Profile
       #
       # @overload retrieve(physical_card_profile_id, request_options: {})
       #

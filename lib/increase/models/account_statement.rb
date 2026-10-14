@@ -50,8 +50,9 @@ module Increase
       # @!attribute statement_period_end
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the end
       #   of the period the Account Statement covers. The statement covers all
-      #   transactions up to, but not including this timestamp. Usually, this is the
-      #   beginning of the following month.
+      #   transactions up to, but not including this timestamp. Statement periods are
+      #   measured in UTC days, so this is usually midnight UTC on the first day of the
+      #   following month.
       #
       #   @return [Time]
       required :statement_period_end, Time
@@ -59,8 +60,9 @@ module Increase
       # @!attribute statement_period_start
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the
       #   start of the period the Account Statement covers. This is the first moment of
-      #   the statement period and is inclusive. Usually, this is the beginning of the
-      #   month this statement covers.
+      #   the statement period and is inclusive. Statement periods are measured in UTC
+      #   days, so this is usually midnight UTC on the first day of the month this
+      #   statement covers.
       #
       #   @return [Time]
       required :statement_period_start, Time
@@ -96,14 +98,16 @@ module Increase
       #   @param statement_period_end [Time]
       #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the end
       #     of the period the Account Statement covers. The statement covers all
-      #     transactions up to, but not including this timestamp. Usually, this is the
-      #     beginning of the following month.
+      #     transactions up to, but not including this timestamp. Statement periods are
+      #     measured in UTC days, so this is usually midnight UTC on the first day of the
+      #     following month.
       #
       #   @param statement_period_start [Time]
       #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time representing the
       #     start of the period the Account Statement covers. This is the first moment of
-      #     the statement period and is inclusive. Usually, this is the beginning of the
-      #     month this statement covers.
+      #     the statement period and is inclusive. Statement periods are measured in UTC
+      #     days, so this is usually midnight UTC on the first day of the month this
+      #     statement covers.
       #
       #   @param type [Symbol, Increase::Models::AccountStatement::Type]
       #     A constant representing the object's type. For this resource it will always be

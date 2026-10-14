@@ -7,6 +7,8 @@ module Increase
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
+        expiration_month: Integer,
+        expiration_year: Integer,
         idempotency_key: String?,
         physical_card_profile_id: String?,
         shipment: Increase::PhysicalCard::Shipment,
@@ -25,6 +27,10 @@ module Increase
 
       attr_accessor created_at: Time
 
+      attr_accessor expiration_month: Integer
+
+      attr_accessor expiration_year: Integer
+
       attr_accessor idempotency_key: String?
 
       attr_accessor physical_card_profile_id: String?
@@ -41,6 +47,8 @@ module Increase
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
+        expiration_month: Integer,
+        expiration_year: Integer,
         idempotency_key: String?,
         physical_card_profile_id: String?,
         shipment: Increase::PhysicalCard::Shipment,
@@ -54,6 +62,8 @@ module Increase
         card_id: String,
         cardholder: Increase::PhysicalCard::Cardholder,
         created_at: Time,
+        expiration_month: Integer,
+        expiration_year: Integer,
         idempotency_key: String?,
         physical_card_profile_id: String?,
         shipment: Increase::PhysicalCard::Shipment,

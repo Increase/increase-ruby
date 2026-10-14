@@ -216,6 +216,30 @@ module Increase
         )
       end
 
+      # Renew a Card in place. The Card keeps its identifier, card number, PIN, and
+      # Physical Cards, and receives a new expiration date in the current month four
+      # years from now along with a new verification code, which the Card's details will
+      # return afterwards. Physical Cards that have already shipped keep working until
+      # they are canceled.
+      #
+      # @overload renew(card_id, request_options: {})
+      #
+      # @param card_id [String] The identifier of the Card to renew.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::Card]
+      #
+      # @see Increase::Models::CardRenewParams
+      def renew(card_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["cards/%1$s/renew", card_id],
+          model: Increase::Card,
+          options: params[:request_options]
+        )
+      end
+
       # Update a Card's PIN
       #
       # @overload update_pin(card_id, pin:, request_options: {})
