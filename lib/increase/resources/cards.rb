@@ -5,7 +5,7 @@ module Increase
     class Cards
       # Create a Card
       #
-      # @overload create(account_id:, authorization_controls: nil, billing_address: nil, cardholder_name: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
+      # @overload create(account_id:, authorization_controls: nil, billing_address: nil, cardholder_name: nil, description: nil, digital_wallet: nil, entity_id: nil, replacement_for: nil, request_options: {})
       #
       # @param account_id [String] The Account the card should belong to.
       #
@@ -30,6 +30,10 @@ module Increase
       # @param entity_id [String]
       #   The Entity the card belongs to. You only need to supply this in rare situations
       #   when the card is not for the Account holder.
+      #
+      # @param replacement_for [Increase::Models::CardCreateParams::ReplacementFor]
+      #   Details about the Card this Card replaces. Supply this when issuing a new Card
+      #   to take over from an existing one. The replaced Card is not affected.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -212,6 +216,30 @@ module Increase
           method: :get,
           path: ["cards/%1$s/details", card_id],
           model: Increase::CardDetails,
+          options: params[:request_options]
+        )
+      end
+
+      # Renew a Card in place. The Card keeps its identifier, card number, PIN, and
+      # Physical Cards, and receives a new expiration date in the current month four
+      # years from now along with a new verification code, which the Card's details will
+      # return afterwards. Physical Cards that have already shipped keep working until
+      # they are canceled.
+      #
+      # @overload renew(card_id, request_options: {})
+      #
+      # @param card_id [String] The identifier of the Card to renew.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::Card]
+      #
+      # @see Increase::Models::CardRenewParams
+      def renew(card_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["cards/%1$s/renew", card_id],
+          model: Increase::Card,
           options: params[:request_options]
         )
       end

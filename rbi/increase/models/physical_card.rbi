@@ -34,6 +34,16 @@ module Increase
       sig { returns(Time) }
       attr_accessor :created_at
 
+      # The month printed on the Physical Card as its expiration, in M format (e.g.,
+      # August is 8). This stays the same when the Card is renewed.
+      sig { returns(Integer) }
+      attr_accessor :expiration_month
+
+      # The year printed on the Physical Card as its expiration, in YYYY format (e.g.,
+      # 2025). This stays the same when the Card is renewed.
+      sig { returns(Integer) }
+      attr_accessor :expiration_year
+
       # The idempotency key you chose for this object. This value is unique across
       # Increase and is used to ensure that a request is only processed once. Learn more
       # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -72,6 +82,8 @@ module Increase
           card_id: String,
           cardholder: Increase::PhysicalCard::Cardholder::OrHash,
           created_at: Time,
+          expiration_month: Integer,
+          expiration_year: Integer,
           idempotency_key: T.nilable(String),
           physical_card_profile_id: T.nilable(String),
           shipment: Increase::PhysicalCard::Shipment::OrHash,
@@ -91,6 +103,12 @@ module Increase
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Physical Card was created.
         created_at:,
+        # The month printed on the Physical Card as its expiration, in M format (e.g.,
+        # August is 8). This stays the same when the Card is renewed.
+        expiration_month:,
+        # The year printed on the Physical Card as its expiration, in YYYY format (e.g.,
+        # 2025). This stays the same when the Card is renewed.
+        expiration_year:,
         # The idempotency key you chose for this object. This value is unique across
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
@@ -115,6 +133,8 @@ module Increase
             card_id: String,
             cardholder: Increase::PhysicalCard::Cardholder,
             created_at: Time,
+            expiration_month: Integer,
+            expiration_year: Integer,
             idempotency_key: T.nilable(String),
             physical_card_profile_id: T.nilable(String),
             shipment: Increase::PhysicalCard::Shipment,

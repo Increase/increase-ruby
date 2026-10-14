@@ -3,7 +3,7 @@
 module Increase
   module Resources
     class IntrafiAccountEnrollments
-      # Enroll an account in the IntraFi deposit sweep network
+      # Enroll an Account in the IntraFi deposit sweep network
       sig do
         params(
           account_id: String,
@@ -65,7 +65,7 @@ module Increase
       )
       end
 
-      # Unenroll an account from IntraFi
+      # Unenroll an Account from IntraFi
       sig do
         params(
           intrafi_account_enrollment_id: String,

@@ -1666,6 +1666,9 @@ module Increase
               # The user's chargeback was submitted.
               CHARGEBACK_SUBMITTED = :chargeback_submitted
 
+              # The merchant's pre-arbitration submission was accepted by the user or not responded to in time.
+              MERCHANT_PREARBITRATION_ACCEPTED = :merchant_prearbitration_accepted
+
               # The user declined the merchant's pre-arbitration submission.
               MERCHANT_PREARBITRATION_DECLINE_SUBMITTED = :merchant_prearbitration_decline_submitted
 

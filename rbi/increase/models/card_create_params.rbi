@@ -82,6 +82,18 @@ module Increase
       sig { params(entity_id: String).void }
       attr_writer :entity_id
 
+      # Details about the Card this Card replaces. Supply this when issuing a new Card
+      # to take over from an existing one. The replaced Card is not affected.
+      sig { returns(T.nilable(Increase::CardCreateParams::ReplacementFor)) }
+      attr_reader :replacement_for
+
+      sig do
+        params(
+          replacement_for: Increase::CardCreateParams::ReplacementFor::OrHash
+        ).void
+      end
+      attr_writer :replacement_for
+
       sig do
         params(
           account_id: String,
@@ -92,6 +104,7 @@ module Increase
           description: String,
           digital_wallet: Increase::CardCreateParams::DigitalWallet::OrHash,
           entity_id: String,
+          replacement_for: Increase::CardCreateParams::ReplacementFor::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -116,6 +129,9 @@ module Increase
         # The Entity the card belongs to. You only need to supply this in rare situations
         # when the card is not for the Account holder.
         entity_id: nil,
+        # Details about the Card this Card replaces. Supply this when issuing a new Card
+        # to take over from an existing one. The replaced Card is not affected.
+        replacement_for: nil,
         request_options: {}
       )
       end
@@ -131,6 +147,7 @@ module Increase
             description: String,
             digital_wallet: Increase::CardCreateParams::DigitalWallet,
             entity_id: String,
+            replacement_for: Increase::CardCreateParams::ReplacementFor,
             request_options: Increase::RequestOptions
           }
         )
@@ -1385,6 +1402,106 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      class ReplacementFor < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::CardCreateParams::ReplacementFor,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The identifier of the Card being replaced.
+        sig { returns(String) }
+        attr_accessor :card_id
+
+        # Why the Card is being replaced. Only `expiring` notifies merchants that have the
+        # replaced Card on file of the new Card.
+        sig do
+          returns(Increase::CardCreateParams::ReplacementFor::Reason::OrSymbol)
+        end
+        attr_accessor :reason
+
+        # Details about the Card this Card replaces. Supply this when issuing a new Card
+        # to take over from an existing one. The replaced Card is not affected.
+        sig do
+          params(
+            card_id: String,
+            reason: Increase::CardCreateParams::ReplacementFor::Reason::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The identifier of the Card being replaced.
+          card_id:,
+          # Why the Card is being replaced. Only `expiring` notifies merchants that have the
+          # replaced Card on file of the new Card.
+          reason:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              card_id: String,
+              reason:
+                Increase::CardCreateParams::ReplacementFor::Reason::OrSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Why the Card is being replaced. Only `expiring` notifies merchants that have the
+        # replaced Card on file of the new Card.
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::CardCreateParams::ReplacementFor::Reason)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The replaced card is expiring. Merchants with the replaced card on file will be notified of the new card.
+          EXPIRING =
+            T.let(
+              :expiring,
+              Increase::CardCreateParams::ReplacementFor::Reason::TaggedSymbol
+            )
+
+          # The replaced card was lost. Merchants will not be notified of the new card.
+          LOST =
+            T.let(
+              :lost,
+              Increase::CardCreateParams::ReplacementFor::Reason::TaggedSymbol
+            )
+
+          # The replaced card was stolen. Merchants will not be notified of the new card.
+          STOLEN =
+            T.let(
+              :stolen,
+              Increase::CardCreateParams::ReplacementFor::Reason::TaggedSymbol
+            )
+
+          # The replaced card was used fraudulently. Merchants will not be notified of the new card.
+          FRAUD =
+            T.let(
+              :fraud,
+              Increase::CardCreateParams::ReplacementFor::Reason::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::CardCreateParams::ReplacementFor::Reason::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
     end

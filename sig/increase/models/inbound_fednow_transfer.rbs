@@ -15,6 +15,7 @@ module Increase
         debtor_routing_number: String,
         decline: Increase::InboundFednowTransfer::Decline?,
         end_to_end_identification: String?,
+        message_identification: String,
         status: Increase::Models::InboundFednowTransfer::status,
         transaction_id: String?,
         transaction_identification: String?,
@@ -50,6 +51,8 @@ module Increase
 
       attr_accessor end_to_end_identification: String?
 
+      attr_accessor message_identification: String
+
       attr_accessor status: Increase::Models::InboundFednowTransfer::status
 
       attr_accessor transaction_id: String?
@@ -76,6 +79,7 @@ module Increase
         debtor_routing_number: String,
         decline: Increase::InboundFednowTransfer::Decline?,
         end_to_end_identification: String?,
+        message_identification: String,
         status: Increase::Models::InboundFednowTransfer::status,
         transaction_id: String?,
         transaction_identification: String?,
@@ -98,6 +102,7 @@ module Increase
         debtor_routing_number: String,
         decline: Increase::InboundFednowTransfer::Decline?,
         end_to_end_identification: String?,
+        message_identification: String,
         status: Increase::Models::InboundFednowTransfer::status,
         transaction_id: String?,
         transaction_identification: String?,

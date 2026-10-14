@@ -55,7 +55,14 @@ module Increase
       #   @return [String, nil]
       optional :entity_id, String
 
-      # @!method initialize(account_id:, authorization_controls: nil, billing_address: nil, cardholder_name: nil, description: nil, digital_wallet: nil, entity_id: nil, request_options: {})
+      # @!attribute replacement_for
+      #   Details about the Card this Card replaces. Supply this when issuing a new Card
+      #   to take over from an existing one. The replaced Card is not affected.
+      #
+      #   @return [Increase::Models::CardCreateParams::ReplacementFor, nil]
+      optional :replacement_for, -> { Increase::CardCreateParams::ReplacementFor }
+
+      # @!method initialize(account_id:, authorization_controls: nil, billing_address: nil, cardholder_name: nil, description: nil, digital_wallet: nil, entity_id: nil, replacement_for: nil, request_options: {})
       #   @param account_id [String] The Account the card should belong to.
       #
       #   @param authorization_controls [Increase::Models::CardCreateParams::AuthorizationControls]
@@ -79,6 +86,10 @@ module Increase
       #   @param entity_id [String]
       #     The Entity the card belongs to. You only need to supply this in rare situations
       #     when the card is not for the Account holder.
+      #
+      #   @param replacement_for [Increase::Models::CardCreateParams::ReplacementFor]
+      #     Details about the Card this Card replaces. Supply this when issuing a new Card
+      #     to take over from an existing one. The replaced Card is not affected.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -597,6 +608,54 @@ module Increase
         #   @param phone [String]
         #     A phone number that can be used to contact and verify the cardholder via
         #     one-time passcode over SMS.
+      end
+
+      class ReplacementFor < Increase::Internal::Type::BaseModel
+        # @!attribute card_id
+        #   The identifier of the Card being replaced.
+        #
+        #   @return [String]
+        required :card_id, String
+
+        # @!attribute reason
+        #   Why the Card is being replaced. Only `expiring` notifies merchants that have the
+        #   replaced Card on file of the new Card.
+        #
+        #   @return [Symbol, Increase::Models::CardCreateParams::ReplacementFor::Reason]
+        required :reason, enum: -> { Increase::CardCreateParams::ReplacementFor::Reason }
+
+        # @!method initialize(card_id:, reason:)
+        #   Details about the Card this Card replaces. Supply this when issuing a new Card
+        #   to take over from an existing one. The replaced Card is not affected.
+        #
+        #   @param card_id [String] The identifier of the Card being replaced.
+        #
+        #   @param reason [Symbol, Increase::Models::CardCreateParams::ReplacementFor::Reason]
+        #     Why the Card is being replaced. Only `expiring` notifies merchants that have the
+        #     replaced Card on file of the new Card.
+
+        # Why the Card is being replaced. Only `expiring` notifies merchants that have the
+        # replaced Card on file of the new Card.
+        #
+        # @see Increase::Models::CardCreateParams::ReplacementFor#reason
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The replaced card is expiring. Merchants with the replaced card on file will be notified of the new card.
+          EXPIRING = :expiring
+
+          # The replaced card was lost. Merchants will not be notified of the new card.
+          LOST = :lost
+
+          # The replaced card was stolen. Merchants will not be notified of the new card.
+          STOLEN = :stolen
+
+          # The replaced card was used fraudulently. Merchants will not be notified of the new card.
+          FRAUD = :fraud
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
     end
   end

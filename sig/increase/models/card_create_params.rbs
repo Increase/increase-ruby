@@ -8,7 +8,8 @@ module Increase
         cardholder_name: Increase::CardCreateParams::CardholderName,
         description: String,
         digital_wallet: Increase::CardCreateParams::DigitalWallet,
-        entity_id: String
+        entity_id: String,
+        replacement_for: Increase::CardCreateParams::ReplacementFor
       }
       & Increase::Internal::Type::request_parameters
 
@@ -50,6 +51,12 @@ module Increase
 
       def entity_id=: (String) -> String
 
+      attr_reader replacement_for: Increase::CardCreateParams::ReplacementFor?
+
+      def replacement_for=: (
+        Increase::CardCreateParams::ReplacementFor
+      ) -> Increase::CardCreateParams::ReplacementFor
+
       def initialize: (
         account_id: String,
         ?authorization_controls: Increase::CardCreateParams::AuthorizationControls,
@@ -58,6 +65,7 @@ module Increase
         ?description: String,
         ?digital_wallet: Increase::CardCreateParams::DigitalWallet,
         ?entity_id: String,
+        ?replacement_for: Increase::CardCreateParams::ReplacementFor,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -69,6 +77,7 @@ module Increase
         description: String,
         digital_wallet: Increase::CardCreateParams::DigitalWallet,
         entity_id: String,
+        replacement_for: Increase::CardCreateParams::ReplacementFor,
         request_options: Increase::RequestOptions
       }
 
@@ -540,6 +549,48 @@ module Increase
           email: String,
           phone: String
         }
+      end
+
+      type replacement_for =
+        {
+          card_id: String,
+          reason: Increase::Models::CardCreateParams::ReplacementFor::reason
+        }
+
+      class ReplacementFor < Increase::Internal::Type::BaseModel
+        attr_accessor card_id: String
+
+        attr_accessor reason: Increase::Models::CardCreateParams::ReplacementFor::reason
+
+        def initialize: (
+          card_id: String,
+          reason: Increase::Models::CardCreateParams::ReplacementFor::reason
+        ) -> void
+
+        def to_hash: -> {
+          card_id: String,
+          reason: Increase::Models::CardCreateParams::ReplacementFor::reason
+        }
+
+        type reason = :expiring | :lost | :stolen | :fraud
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The replaced card is expiring. Merchants with the replaced card on file will be notified of the new card.
+          EXPIRING: :expiring
+
+          # The replaced card was lost. Merchants will not be notified of the new card.
+          LOST: :lost
+
+          # The replaced card was stolen. Merchants will not be notified of the new card.
+          STOLEN: :stolen
+
+          # The replaced card was used fraudulently. Merchants will not be notified of the new card.
+          FRAUD: :fraud
+
+          def self?.values: -> ::Array[Increase::Models::CardCreateParams::ReplacementFor::reason]
+        end
       end
     end
   end
