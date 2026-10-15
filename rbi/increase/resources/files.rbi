@@ -29,7 +29,9 @@ module Increase
       )
       end
 
-      # Retrieve a File
+      # Fetch metadata about a File, like its `purpose` and MIME type. To access the
+      # content, use the [Get File contents](/documentation/api/files#get-file-contents)
+      # API.
       sig do
         params(
           file_id: String,

@@ -9,6 +9,7 @@ module Increase
         ?description: String,
         ?digital_wallet: Increase::CardCreateParams::DigitalWallet,
         ?entity_id: String,
+        ?replacement_for: Increase::CardCreateParams::ReplacementFor,
         ?request_options: Increase::request_opts
       ) -> Increase::Card
 
@@ -53,6 +54,11 @@ module Increase
         String card_id,
         ?request_options: Increase::request_opts
       ) -> Increase::CardDetails
+
+      def renew: (
+        String card_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Card
 
       def update_pin: (
         String card_id,
