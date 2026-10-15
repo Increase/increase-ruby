@@ -3,7 +3,7 @@
 module Increase
   module Resources
     class SupplementalDocuments
-      # Create a supplemental document for an Entity
+      # Create a Supplemental Document
       #
       # @overload create(entity_id:, file_id:, request_options: {})
       #
@@ -27,7 +27,7 @@ module Increase
         )
       end
 
-      # List Entity Supplemental Document Submissions
+      # List Supplemental Documents
       #
       # @overload list(entity_id:, cursor: nil, idempotency_key: nil, limit: nil, request_options: {})
       #

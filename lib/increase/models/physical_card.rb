@@ -35,6 +35,20 @@ module Increase
       #   @return [Time]
       required :created_at, Time
 
+      # @!attribute expiration_month
+      #   The month printed on the Physical Card as its expiration, in M format (e.g.,
+      #   August is 8). This stays the same when the Card is renewed.
+      #
+      #   @return [Integer]
+      required :expiration_month, Integer
+
+      # @!attribute expiration_year
+      #   The year printed on the Physical Card as its expiration, in YYYY format (e.g.,
+      #   2025). This stays the same when the Card is renewed.
+      #
+      #   @return [Integer]
+      required :expiration_year, Integer
+
       # @!attribute idempotency_key
       #   The idempotency key you chose for this object. This value is unique across
       #   Increase and is used to ensure that a request is only processed once. Learn more
@@ -68,7 +82,7 @@ module Increase
       #   @return [Symbol, Increase::Models::PhysicalCard::Type]
       required :type, enum: -> { Increase::PhysicalCard::Type }
 
-      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, idempotency_key:, physical_card_profile_id:, shipment:, status:, type:)
+      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, expiration_month:, expiration_year:, idempotency_key:, physical_card_profile_id:, shipment:, status:, type:)
       #   Custom physical Visa cards that are shipped to your customers. The artwork is
       #   configurable by a connected [Card Profile](/documentation/api#card-profiles).
       #   The same Card can be used for multiple Physical Cards. Printing cards incurs a
@@ -87,6 +101,14 @@ module Increase
       #   @param created_at [Time]
       #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       #     the Physical Card was created.
+      #
+      #   @param expiration_month [Integer]
+      #     The month printed on the Physical Card as its expiration, in M format (e.g.,
+      #     August is 8). This stays the same when the Card is renewed.
+      #
+      #   @param expiration_year [Integer]
+      #     The year printed on the Physical Card as its expiration, in YYYY format (e.g.,
+      #     2025). This stays the same when the Card is renewed.
       #
       #   @param idempotency_key [String, nil]
       #     The idempotency key you chose for this object. This value is unique across

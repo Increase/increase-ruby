@@ -14,6 +14,7 @@ module Increase
           description: String,
           digital_wallet: Increase::CardCreateParams::DigitalWallet::OrHash,
           entity_id: String,
+          replacement_for: Increase::CardCreateParams::ReplacementFor::OrHash,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Card)
       end
@@ -38,6 +39,9 @@ module Increase
         # The Entity the card belongs to. You only need to supply this in rare situations
         # when the card is not for the Account holder.
         entity_id: nil,
+        # Details about the Card this Card replaces. Supply this when issuing a new Card
+        # to take over from an existing one. The replaced Card is not canceled.
+        replacement_for: nil,
         request_options: {}
       )
       end
@@ -172,6 +176,24 @@ module Increase
       end
       def details(
         # The identifier of the Card to retrieve details for.
+        card_id,
+        request_options: {}
+      )
+      end
+
+      # Renew a Card in place. The Card keeps its identifier, card number, PIN, and
+      # Physical Cards, and receives a new expiration date in the current month four
+      # years from now along with a new verification code, which the Card's details will
+      # return afterwards. Physical Cards that have already shipped keep working until
+      # they are canceled.
+      sig do
+        params(
+          card_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::Card)
+      end
+      def renew(
+        # The identifier of the Card to renew.
         card_id,
         request_options: {}
       )

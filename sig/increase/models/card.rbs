@@ -16,6 +16,8 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         :last4 => String,
+        renewals: ::Array[Increase::Card::Renewal],
+        replacement_for: Increase::Card::ReplacementFor?,
         status: Increase::Models::Card::status,
         type: Increase::Models::Card::type_
       }
@@ -49,6 +51,10 @@ module Increase
 
       attr_accessor last4: String
 
+      attr_accessor renewals: ::Array[Increase::Card::Renewal]
+
+      attr_accessor replacement_for: Increase::Card::ReplacementFor?
+
       attr_accessor status: Increase::Models::Card::status
 
       attr_accessor type: Increase::Models::Card::type_
@@ -68,6 +74,8 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         last4: String,
+        renewals: ::Array[Increase::Card::Renewal],
+        replacement_for: Increase::Card::ReplacementFor?,
         status: Increase::Models::Card::status,
         type: Increase::Models::Card::type_
       ) -> void
@@ -87,6 +95,8 @@ module Increase
         expiration_year: Integer,
         idempotency_key: String?,
         :last4 => String,
+        renewals: ::Array[Increase::Card::Renewal],
+        replacement_for: Increase::Card::ReplacementFor?,
         status: Increase::Models::Card::status,
         type: Increase::Models::Card::type_
       }
@@ -493,6 +503,75 @@ module Increase
           email: String?,
           phone: String?
         }
+      end
+
+      type renewal =
+        {
+          previous_expiration_month: Integer,
+          previous_expiration_year: Integer,
+          renewed_at: Time
+        }
+
+      class Renewal < Increase::Internal::Type::BaseModel
+        attr_accessor previous_expiration_month: Integer
+
+        attr_accessor previous_expiration_year: Integer
+
+        attr_accessor renewed_at: Time
+
+        def initialize: (
+          previous_expiration_month: Integer,
+          previous_expiration_year: Integer,
+          renewed_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          previous_expiration_month: Integer,
+          previous_expiration_year: Integer,
+          renewed_at: Time
+        }
+      end
+
+      type replacement_for =
+        {
+          card_id: String,
+          reason: Increase::Models::Card::ReplacementFor::reason
+        }
+
+      class ReplacementFor < Increase::Internal::Type::BaseModel
+        attr_accessor card_id: String
+
+        attr_accessor reason: Increase::Models::Card::ReplacementFor::reason
+
+        def initialize: (
+          card_id: String,
+          reason: Increase::Models::Card::ReplacementFor::reason
+        ) -> void
+
+        def to_hash: -> {
+          card_id: String,
+          reason: Increase::Models::Card::ReplacementFor::reason
+        }
+
+        type reason = :expiring | :lost | :stolen | :fraud
+
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          # The replaced card is expiring. Merchants with the replaced card on file will be notified of the new card, and its digital wallet tokens that have not been deactivated will move to the new card.
+          EXPIRING: :expiring
+
+          # The replaced card was lost. Merchants will not be notified of the new card.
+          LOST: :lost
+
+          # The replaced card was stolen. Merchants will not be notified of the new card.
+          STOLEN: :stolen
+
+          # The replaced card was used fraudulently. Merchants will not be notified of the new card.
+          FRAUD: :fraud
+
+          def self?.values: -> ::Array[Increase::Models::Card::ReplacementFor::reason]
+        end
       end
 
       type status = :active | :disabled | :canceled

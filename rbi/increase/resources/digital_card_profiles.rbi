@@ -57,7 +57,7 @@ module Increase
       )
       end
 
-      # List Card Profiles
+      # List Digital Card Profiles
       sig do
         params(
           cursor: String,
@@ -99,7 +99,7 @@ module Increase
       )
       end
 
-      # Clones a Digital Card Profile
+      # Clone a Digital Card Profile
       sig do
         params(
           digital_card_profile_id: String,

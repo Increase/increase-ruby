@@ -95,6 +95,22 @@ module Increase
       sig { returns(String) }
       attr_accessor :last4
 
+      # Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+      # renewal records the expiration date the Card had before it was renewed.
+      sig { returns(T::Array[Increase::Card::Renewal]) }
+      attr_accessor :renewals
+
+      # Details about the Card this Card replaces, if it was created as a replacement.
+      sig { returns(T.nilable(Increase::Card::ReplacementFor)) }
+      attr_reader :replacement_for
+
+      sig do
+        params(
+          replacement_for: T.nilable(Increase::Card::ReplacementFor::OrHash)
+        ).void
+      end
+      attr_writer :replacement_for
+
       # This indicates if payments can be made with the card.
       sig { returns(Increase::Card::Status::TaggedSymbol) }
       attr_accessor :status
@@ -126,6 +142,8 @@ module Increase
           expiration_year: Integer,
           idempotency_key: T.nilable(String),
           last4: String,
+          renewals: T::Array[Increase::Card::Renewal::OrHash],
+          replacement_for: T.nilable(Increase::Card::ReplacementFor::OrHash),
           status: Increase::Card::Status::OrSymbol,
           type: Increase::Card::Type::OrSymbol
         ).returns(T.attached_class)
@@ -165,6 +183,11 @@ module Increase
         idempotency_key:,
         # The last 4 digits of the Card's Primary Account Number.
         last4:,
+        # Completed renewals of this Card, sorted by `renewed_at` in ascending order. Each
+        # renewal records the expiration date the Card had before it was renewed.
+        renewals:,
+        # Details about the Card this Card replaces, if it was created as a replacement.
+        replacement_for:,
         # This indicates if payments can be made with the card.
         status:,
         # A constant representing the object's type. For this resource it will always be
@@ -191,6 +214,8 @@ module Increase
             expiration_year: Integer,
             idempotency_key: T.nilable(String),
             last4: String,
+            renewals: T::Array[Increase::Card::Renewal],
+            replacement_for: T.nilable(Increase::Card::ReplacementFor),
             status: Increase::Card::Status::TaggedSymbol,
             type: Increase::Card::Type::TaggedSymbol
           }
@@ -1390,6 +1415,143 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      class Renewal < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Card::Renewal, Increase::Internal::AnyHash)
+          end
+
+        # The month the Card expired in before this renewal, in M format (e.g., August is
+        # 8).
+        sig { returns(Integer) }
+        attr_accessor :previous_expiration_month
+
+        # The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+        sig { returns(Integer) }
+        attr_accessor :previous_expiration_year
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the Card was renewed.
+        sig { returns(Time) }
+        attr_accessor :renewed_at
+
+        sig do
+          params(
+            previous_expiration_month: Integer,
+            previous_expiration_year: Integer,
+            renewed_at: Time
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The month the Card expired in before this renewal, in M format (e.g., August is
+          # 8).
+          previous_expiration_month:,
+          # The year the Card expired in before this renewal, in YYYY format (e.g., 2025).
+          previous_expiration_year:,
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the Card was renewed.
+          renewed_at:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              previous_expiration_month: Integer,
+              previous_expiration_year: Integer,
+              renewed_at: Time
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class ReplacementFor < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(Increase::Card::ReplacementFor, Increase::Internal::AnyHash)
+          end
+
+        # The identifier of the replaced Card.
+        sig { returns(String) }
+        attr_accessor :card_id
+
+        # Why the Card was replaced. Only `expiring` notifies merchants that have the
+        # replaced Card on file of the new Card and moves Digital Wallet Tokens on the
+        # replaced Card that have not been deactivated to the new Card.
+        sig { returns(Increase::Card::ReplacementFor::Reason::TaggedSymbol) }
+        attr_accessor :reason
+
+        # Details about the Card this Card replaces, if it was created as a replacement.
+        sig do
+          params(
+            card_id: String,
+            reason: Increase::Card::ReplacementFor::Reason::OrSymbol
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The identifier of the replaced Card.
+          card_id:,
+          # Why the Card was replaced. Only `expiring` notifies merchants that have the
+          # replaced Card on file of the new Card and moves Digital Wallet Tokens on the
+          # replaced Card that have not been deactivated to the new Card.
+          reason:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              card_id: String,
+              reason: Increase::Card::ReplacementFor::Reason::TaggedSymbol
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # Why the Card was replaced. Only `expiring` notifies merchants that have the
+        # replaced Card on file of the new Card and moves Digital Wallet Tokens on the
+        # replaced Card that have not been deactivated to the new Card.
+        module Reason
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(Symbol, Increase::Card::ReplacementFor::Reason)
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The replaced card is expiring. Merchants with the replaced card on file will be notified of the new card, and its digital wallet tokens that have not been deactivated will move to the new card.
+          EXPIRING =
+            T.let(
+              :expiring,
+              Increase::Card::ReplacementFor::Reason::TaggedSymbol
+            )
+
+          # The replaced card was lost. Merchants will not be notified of the new card.
+          LOST =
+            T.let(:lost, Increase::Card::ReplacementFor::Reason::TaggedSymbol)
+
+          # The replaced card was stolen. Merchants will not be notified of the new card.
+          STOLEN =
+            T.let(:stolen, Increase::Card::ReplacementFor::Reason::TaggedSymbol)
+
+          # The replaced card was used fraudulently. Merchants will not be notified of the new card.
+          FRAUD =
+            T.let(:fraud, Increase::Card::ReplacementFor::Reason::TaggedSymbol)
+
+          sig do
+            override.returns(
+              T::Array[Increase::Card::ReplacementFor::Reason::TaggedSymbol]
+            )
+          end
+          def self.values
+          end
         end
       end
 
