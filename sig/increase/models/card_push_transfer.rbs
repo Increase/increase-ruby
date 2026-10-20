@@ -715,6 +715,7 @@ module Increase
           | :DZD
           | :USD
           | :AOA
+          | :XCD
           | :ARS
           | :AMD
           | :AWG
@@ -726,6 +727,7 @@ module Increase
           | :BBD
           | :BYN
           | :BZD
+          | :XOF
           | :BMD
           | :INR
           | :BTN
@@ -736,10 +738,10 @@ module Increase
           | :NOK
           | :BRL
           | :BND
-          | :BGN
           | :BIF
           | :CVE
           | :KHR
+          | :XAF
           | :CAD
           | :KYD
           | :CLP
@@ -752,6 +754,7 @@ module Increase
           | :NZD
           | :CRC
           | :CUP
+          | :XCG
           | :CZK
           | :DKK
           | :DJF
@@ -763,6 +766,7 @@ module Increase
           | :ETB
           | :FKP
           | :FJD
+          | :XPF
           | :GMD
           | :GEL
           | :GHS
@@ -869,6 +873,7 @@ module Increase
           | :YER
           | :ZMW
           | :ZWG
+          | :BGN
 
         module Currency
           extend Increase::Internal::Type::Enum
@@ -890,6 +895,9 @@ module Increase
 
           # AOA
           AOA: :AOA
+
+          # XCD
+          XCD: :XCD
 
           # ARS
           ARS: :ARS
@@ -924,6 +932,9 @@ module Increase
           # BZD
           BZD: :BZD
 
+          # XOF
+          XOF: :XOF
+
           # BMD
           BMD: :BMD
 
@@ -954,9 +965,6 @@ module Increase
           # BND
           BND: :BND
 
-          # BGN
-          BGN: :BGN
-
           # BIF
           BIF: :BIF
 
@@ -965,6 +973,9 @@ module Increase
 
           # KHR
           KHR: :KHR
+
+          # XAF
+          XAF: :XAF
 
           # CAD
           CAD: :CAD
@@ -1002,6 +1013,9 @@ module Increase
           # CUP
           CUP: :CUP
 
+          # XCG
+          XCG: :XCG
+
           # CZK
           CZK: :CZK
 
@@ -1034,6 +1048,9 @@ module Increase
 
           # FJD
           FJD: :FJD
+
+          # XPF
+          XPF: :XPF
 
           # GMD
           GMD: :GMD
@@ -1352,6 +1369,9 @@ module Increase
 
           # ZWG
           ZWG: :ZWG
+
+          # BGN
+          BGN: :BGN
 
           def self?.values: -> ::Array[Increase::Models::CardPushTransfer::PresentmentAmount::currency]
         end

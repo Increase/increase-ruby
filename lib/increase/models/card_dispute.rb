@@ -115,7 +115,9 @@ module Increase
 
       # @!method initialize(id:, account_id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, rejection:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
       #   If unauthorized activity occurs on a card, you can create a Card Dispute and
-      #   we'll work with the card networks to return the funds if appropriate.
+      #   we'll work with the card networks to return the funds if appropriate. For more
+      #   information, see our guide on
+      #   [card disputes](https://increase.com/documentation/card-disputes).
       #
       #   @param id [String] The Card Dispute identifier.
       #

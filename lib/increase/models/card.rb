@@ -125,7 +125,8 @@ module Increase
       #   for online purchases after you create them. All cards work on a good funds
       #   model, and maintain a maximum limit of 100% of the Account’s available balance
       #   at the time of transaction. Funds are deducted from the Account upon transaction
-      #   settlement.
+      #   settlement. For more information, see our guide on
+      #   [managing cards](https://increase.com/documentation/managing-cards).
       #
       #   @param id [String] The card identifier.
       #
@@ -693,7 +694,8 @@ module Increase
 
         # @!attribute phone
         #   A phone number that can be used to verify the cardholder via one-time passcode
-        #   over SMS.
+        #   over SMS. Returned in [E.164](https://en.wikipedia.org/wiki/E.164) format, for
+        #   example `+14155550123`.
         #
         #   @return [String, nil]
         required :phone, String, nil?: true
@@ -713,7 +715,8 @@ module Increase
         #
         #   @param phone [String, nil]
         #     A phone number that can be used to verify the cardholder via one-time passcode
-        #     over SMS.
+        #     over SMS. Returned in [E.164](https://en.wikipedia.org/wiki/E.164) format, for
+        #     example `+14155550123`.
       end
 
       class Renewal < Increase::Internal::Type::BaseModel

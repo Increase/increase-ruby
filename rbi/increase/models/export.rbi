@@ -891,8 +891,8 @@ module Increase
             T.any(Increase::Export::FeeCsv, Increase::Internal::AnyHash)
           end
 
-        # Filter fees by their created date. The time range must not include any fees that
-        # are part of an open fee statement.
+        # Filter fees by their created date. The time range must not include any fees on
+        # an open fee statement.
         sig { returns(T.nilable(Increase::Export::FeeCsv::CreatedAt)) }
         attr_reader :created_at
 
@@ -911,8 +911,8 @@ module Increase
           ).returns(T.attached_class)
         end
         def self.new(
-          # Filter fees by their created date. The time range must not include any fees that
-          # are part of an open fee statement.
+          # Filter fees by their created date. The time range must not include any fees on
+          # an open fee statement.
           created_at:
         )
         end
@@ -950,8 +950,8 @@ module Increase
           sig { returns(T.nilable(Time)) }
           attr_accessor :on_or_before
 
-          # Filter fees by their created date. The time range must not include any fees that
-          # are part of an open fee statement.
+          # Filter fees by their created date. The time range must not include any fees on
+          # an open fee statement.
           sig do
             params(
               after: T.nilable(Time),
