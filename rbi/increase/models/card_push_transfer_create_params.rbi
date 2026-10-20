@@ -523,6 +523,13 @@ module Increase
               Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
             )
 
+          # XCD
+          XCD =
+            T.let(
+              :XCD,
+              Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
+            )
+
           # ARS
           ARS =
             T.let(
@@ -600,6 +607,13 @@ module Increase
               Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
             )
 
+          # XOF
+          XOF =
+            T.let(
+              :XOF,
+              Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
+            )
+
           # BMD
           BMD =
             T.let(
@@ -670,13 +684,6 @@ module Increase
               Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
             )
 
-          # BGN
-          BGN =
-            T.let(
-              :BGN,
-              Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
-            )
-
           # BIF
           BIF =
             T.let(
@@ -695,6 +702,13 @@ module Increase
           KHR =
             T.let(
               :KHR,
+              Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # XAF
+          XAF =
+            T.let(
+              :XAF,
               Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
             )
 
@@ -782,6 +796,13 @@ module Increase
               Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
             )
 
+          # XCG
+          XCG =
+            T.let(
+              :XCG,
+              Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
+            )
+
           # CZK
           CZK =
             T.let(
@@ -856,6 +877,13 @@ module Increase
           FJD =
             T.let(
               :FJD,
+              Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # XPF
+          XPF =
+            T.let(
+              :XPF,
               Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
             )
 
@@ -1598,6 +1626,13 @@ module Increase
           ZWG =
             T.let(
               :ZWG,
+              Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
+            )
+
+          # BGN
+          BGN =
+            T.let(
+              :BGN,
               Increase::CardPushTransferCreateParams::PresentmentAmount::Currency::TaggedSymbol
             )
 

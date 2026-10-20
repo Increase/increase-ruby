@@ -935,6 +935,9 @@ module Increase
           # AOA
           AOA = :AOA
 
+          # XCD
+          XCD = :XCD
+
           # ARS
           ARS = :ARS
 
@@ -968,6 +971,9 @@ module Increase
           # BZD
           BZD = :BZD
 
+          # XOF
+          XOF = :XOF
+
           # BMD
           BMD = :BMD
 
@@ -998,9 +1004,6 @@ module Increase
           # BND
           BND = :BND
 
-          # BGN
-          BGN = :BGN
-
           # BIF
           BIF = :BIF
 
@@ -1009,6 +1012,9 @@ module Increase
 
           # KHR
           KHR = :KHR
+
+          # XAF
+          XAF = :XAF
 
           # CAD
           CAD = :CAD
@@ -1046,6 +1052,9 @@ module Increase
           # CUP
           CUP = :CUP
 
+          # XCG
+          XCG = :XCG
+
           # CZK
           CZK = :CZK
 
@@ -1078,6 +1087,9 @@ module Increase
 
           # FJD
           FJD = :FJD
+
+          # XPF
+          XPF = :XPF
 
           # GMD
           GMD = :GMD
@@ -1396,6 +1408,9 @@ module Increase
 
           # ZWG
           ZWG = :ZWG
+
+          # BGN
+          BGN = :BGN
 
           # @!method self.values
           #   @return [Array<Symbol>]
