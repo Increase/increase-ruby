@@ -540,7 +540,8 @@ module Increase
 
         # @!attribute phone
         #   A phone number that can be used to verify the cardholder via one-time passcode
-        #   over SMS.
+        #   over SMS. Accepts formats like `+14155550123`, `4155550123`, `415-555-0123`, or
+        #   `(415) 555-0123`.
         #
         #   @return [String, nil]
         optional :phone, String
@@ -558,7 +559,8 @@ module Increase
         #
         #   @param phone [String]
         #     A phone number that can be used to verify the cardholder via one-time passcode
-        #     over SMS.
+        #     over SMS. Accepts formats like `+14155550123`, `4155550123`, `415-555-0123`, or
+        #     `(415) 555-0123`.
       end
 
       # The status to update the Card with.

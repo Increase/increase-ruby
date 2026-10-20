@@ -529,8 +529,8 @@ module Increase
       # @see Increase::Models::Export#fee_csv
       class FeeCsv < Increase::Internal::Type::BaseModel
         # @!attribute created_at
-        #   Filter fees by their created date. The time range must not include any fees that
-        #   are part of an open fee statement.
+        #   Filter fees by their created date. The time range must not include any fees on
+        #   an open fee statement.
         #
         #   @return [Increase::Models::Export::FeeCsv::CreatedAt, nil]
         required :created_at, -> { Increase::Export::FeeCsv::CreatedAt }, nil?: true
@@ -540,8 +540,8 @@ module Increase
         #   equal to `fee_csv`.
         #
         #   @param created_at [Increase::Models::Export::FeeCsv::CreatedAt, nil]
-        #     Filter fees by their created date. The time range must not include any fees that
-        #     are part of an open fee statement.
+        #     Filter fees by their created date. The time range must not include any fees on
+        #     an open fee statement.
 
         # @see Increase::Models::Export::FeeCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel
@@ -570,8 +570,8 @@ module Increase
           required :on_or_before, Time, nil?: true
 
           # @!method initialize(after:, before:, on_or_after:, on_or_before:)
-          #   Filter fees by their created date. The time range must not include any fees that
-          #   are part of an open fee statement.
+          #   Filter fees by their created date. The time range must not include any fees on
+          #   an open fee statement.
           #
           #   @param after [Time, nil] Filter fees created after this time.
           #
