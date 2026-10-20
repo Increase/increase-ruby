@@ -62,7 +62,9 @@ module Increase
 
       # @!method initialize(id:, account_id:, card_id:, created_at:, digital_wallet_token_id:, elements:, physical_card_id:, state:, type:)
       #   Card Payments group together interactions related to a single card payment, such
-      #   as an authorization and its corresponding settlement.
+      #   as an authorization and its corresponding settlement. For more information, see
+      #   our guide on the
+      #   [Card Payment lifecycle](https://increase.com/documentation/card-payment-lifecycle).
       #
       #   @param id [String] The Card Payment identifier.
       #
