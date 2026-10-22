@@ -21,7 +21,7 @@ module Increase
         def create(
           # The name of the program being added.
           name:,
-          # The bank for the program's accounts, defaults to First Internet Bank.
+          # The bank for the program's accounts, defaults to Increase Bank.
           bank: nil,
           # The maximum extendable credit of the program being added.
           lending_maximum_extendable_credit: nil,
