@@ -20,6 +20,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
       response => {
         id: String,
         app_icon_file_id: String,
+        apple_pay: Increase::DigitalCardProfile::ApplePay | nil,
         background_image_file_id: String,
         card_description: String,
         contact_email: String | nil,
@@ -47,6 +48,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
       response => {
         id: String,
         app_icon_file_id: String,
+        apple_pay: Increase::DigitalCardProfile::ApplePay | nil,
         background_image_file_id: String,
         card_description: String,
         contact_email: String | nil,
@@ -81,6 +83,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
       row => {
         id: String,
         app_icon_file_id: String,
+        apple_pay: Increase::DigitalCardProfile::ApplePay | nil,
         background_image_file_id: String,
         card_description: String,
         contact_email: String | nil,
@@ -108,6 +111,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
       response => {
         id: String,
         app_icon_file_id: String,
+        apple_pay: Increase::DigitalCardProfile::ApplePay | nil,
         background_image_file_id: String,
         card_description: String,
         contact_email: String | nil,
@@ -135,6 +139,7 @@ class Increase::Test::Resources::DigitalCardProfilesTest < Increase::Test::Resou
       response => {
         id: String,
         app_icon_file_id: String,
+        apple_pay: Increase::DigitalCardProfile::ApplePay | nil,
         background_image_file_id: String,
         card_description: String,
         contact_email: String | nil,
