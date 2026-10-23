@@ -267,6 +267,13 @@ module Increase
               Increase::DigitalWalletTokenRequest::Declined::Reason::TaggedSymbol
             )
 
+          # The given expiration date did not match the card's value.
+          CARD_EXPIRATION_MISMATCH =
+            T.let(
+              :card_expiration_mismatch,
+              Increase::DigitalWalletTokenRequest::Declined::Reason::TaggedSymbol
+            )
+
           sig do
             override.returns(
               T::Array[

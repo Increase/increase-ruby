@@ -14,7 +14,7 @@ module Increase
         # @param name [String] The name of the program being added.
         #
         # @param bank [Symbol, Increase::Models::Simulations::ProgramCreateParams::Bank]
-        #   The bank for the program's accounts, defaults to First Internet Bank.
+        #   The bank for the program's accounts, defaults to Increase Bank.
         #
         # @param lending_maximum_extendable_credit [Integer]
         #   The maximum extendable credit of the program being added.
