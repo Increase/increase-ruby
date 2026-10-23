@@ -70,7 +70,7 @@ module Increase
       required :shipment, -> { Increase::PhysicalCard::Shipment }
 
       # @!attribute status
-      #   The status of the Physical Card.
+      #   The status of the Physical Card. The initial status is `disabled`.
       #
       #   @return [Symbol, Increase::Models::PhysicalCard::Status]
       required :status, enum: -> { Increase::PhysicalCard::Status }
@@ -120,7 +120,8 @@ module Increase
       #
       #   @param shipment [Increase::Models::PhysicalCard::Shipment] The details used to ship this physical card.
       #
-      #   @param status [Symbol, Increase::Models::PhysicalCard::Status] The status of the Physical Card.
+      #   @param status [Symbol, Increase::Models::PhysicalCard::Status]
+      #     The status of the Physical Card. The initial status is `disabled`.
       #
       #   @param type [Symbol, Increase::Models::PhysicalCard::Type]
       #     A constant representing the object's type. For this resource it will always be
@@ -498,7 +499,7 @@ module Increase
         end
       end
 
-      # The status of the Physical Card.
+      # The status of the Physical Card. The initial status is `disabled`.
       #
       # @see Increase::Models::PhysicalCard#status
       module Status
