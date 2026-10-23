@@ -30,6 +30,19 @@ module Increase
       sig { returns(String) }
       attr_accessor :description
 
+      # Apple Pay specific settings for the Card Profile.
+      sig do
+        returns(T.nilable(Increase::DigitalCardProfileCreateParams::ApplePay))
+      end
+      attr_reader :apple_pay
+
+      sig do
+        params(
+          apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay::OrHash
+        ).void
+      end
+      attr_writer :apple_pay
+
       # An email address the user can contact to receive support for their card.
       sig { returns(T.nilable(String)) }
       attr_reader :contact_email
@@ -79,6 +92,7 @@ module Increase
           background_image_file_id: String,
           card_description: String,
           description: String,
+          apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay::OrHash,
           contact_email: String,
           contact_name: String,
           contact_phone: String,
@@ -97,6 +111,8 @@ module Increase
         card_description:,
         # A description you can use to identify the Card Profile.
         description:,
+        # Apple Pay specific settings for the Card Profile.
+        apple_pay: nil,
         # An email address the user can contact to receive support for their card.
         contact_email: nil,
         # The name of your company or card program, shown to the user as who to contact
@@ -119,6 +135,7 @@ module Increase
             background_image_file_id: String,
             card_description: String,
             description: String,
+            apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay,
             contact_email: String,
             contact_name: String,
             contact_phone: String,
@@ -129,6 +146,152 @@ module Increase
         )
       end
       def to_hash
+      end
+
+      class ApplePay < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalCardProfileCreateParams::ApplePay,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The applications to associate with cards using this Card Profile.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier
+              ]
+            )
+          )
+        end
+        attr_reader :associated_application_identifiers
+
+        sig do
+          params(
+            associated_application_identifiers:
+              T::Array[
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier::OrHash
+              ]
+          ).void
+        end
+        attr_writer :associated_application_identifiers
+
+        # The App Store listings of the applications to associate with cards using this
+        # Card Profile.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier
+              ]
+            )
+          )
+        end
+        attr_reader :associated_store_identifiers
+
+        sig do
+          params(
+            associated_store_identifiers:
+              T::Array[
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier::OrHash
+              ]
+          ).void
+        end
+        attr_writer :associated_store_identifiers
+
+        # Apple Pay specific settings for the Card Profile.
+        sig do
+          params(
+            associated_application_identifiers:
+              T::Array[
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier::OrHash
+              ],
+            associated_store_identifiers:
+              T::Array[
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier::OrHash
+              ]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The applications to associate with cards using this Card Profile.
+          associated_application_identifiers: nil,
+          # The App Store listings of the applications to associate with cards using this
+          # Card Profile.
+          associated_store_identifiers: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              associated_application_identifiers:
+                T::Array[
+                  Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier
+                ],
+              associated_store_identifiers:
+                T::Array[
+                  Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier
+                ]
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class AssociatedApplicationIdentifier < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The application identifier, composed of your Apple Developer Team ID and the
+          # application's bundle identifier, like `ABCDE12345.com.example.app`.
+          sig { returns(String) }
+          attr_accessor :identifier
+
+          sig { params(identifier: String).returns(T.attached_class) }
+          def self.new(
+            # The application identifier, composed of your Apple Developer Team ID and the
+            # application's bundle identifier, like `ABCDE12345.com.example.app`.
+            identifier:
+          )
+          end
+
+          sig { override.returns({ identifier: String }) }
+          def to_hash
+          end
+        end
+
+        class AssociatedStoreIdentifier < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The numeric App Store identifier.
+          sig { returns(String) }
+          attr_accessor :identifier
+
+          sig { params(identifier: String).returns(T.attached_class) }
+          def self.new(
+            # The numeric App Store identifier.
+            identifier:
+          )
+          end
+
+          sig { override.returns({ identifier: String }) }
+          def to_hash
+          end
+        end
       end
 
       class TextColor < Increase::Internal::Type::BaseModel

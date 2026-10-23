@@ -77,8 +77,8 @@ module Increase
 
       # @!attribute company_name
       #   The name by which the recipient knows you, sent in the company batch header. We
-      #   recommend setting this on every transfer; if you do not, we fall back to the ACH
-      #   company name configured on your account.
+      #   recommend setting this on every transfer; if you do not, we fall back to the
+      #   `statement_descriptor`.
       #
       #   @return [String, nil]
       optional :company_name, String
@@ -197,8 +197,8 @@ module Increase
       #
       #   @param company_name [String]
       #     The name by which the recipient knows you, sent in the company batch header. We
-      #     recommend setting this on every transfer; if you do not, we fall back to the ACH
-      #     company name configured on your account.
+      #     recommend setting this on every transfer; if you do not, we fall back to the
+      #     `statement_descriptor`.
       #
       #   @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder]
       #     The type of entity that owns the receiver's account.
