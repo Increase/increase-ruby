@@ -14,6 +14,7 @@ module Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
+        end_to_end_identification: String?,
         status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
         type: Increase::Models::InboundRealTimePaymentsTransfer::type_,
@@ -45,6 +46,8 @@ module Increase
 
       attr_accessor decline: Increase::InboundRealTimePaymentsTransfer::Decline?
 
+      attr_accessor end_to_end_identification: String?
+
       attr_accessor status: Increase::Models::InboundRealTimePaymentsTransfer::status
 
       attr_accessor transaction_identification: String
@@ -66,6 +69,7 @@ module Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
+        end_to_end_identification: String?,
         status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
         type: Increase::Models::InboundRealTimePaymentsTransfer::type_,
@@ -85,6 +89,7 @@ module Increase
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline?,
+        end_to_end_identification: String?,
         status: Increase::Models::InboundRealTimePaymentsTransfer::status,
         transaction_identification: String,
         type: Increase::Models::InboundRealTimePaymentsTransfer::type_,
