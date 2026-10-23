@@ -68,8 +68,8 @@ module Increase
         # `PAYROLL`, and reversals must use `REVERSAL`.
         company_entry_description: nil,
         # The name by which the recipient knows you, sent in the company batch header. We
-        # recommend setting this on every transfer; if you do not, we fall back to the ACH
-        # company name configured on your account.
+        # recommend setting this on every transfer; if you do not, we fall back to the
+        # `statement_descriptor`.
         company_name: nil,
         # The type of entity that owns the receiver's account.
         destination_account_holder: nil,

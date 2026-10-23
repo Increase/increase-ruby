@@ -16,6 +16,12 @@ module Increase
       #   @return [String]
       required :app_icon_file_id, String
 
+      # @!attribute apple_pay
+      #   Apple Pay specific settings for the Card Profile.
+      #
+      #   @return [Increase::Models::DigitalCardProfile::ApplePay, nil]
+      required :apple_pay, -> { Increase::DigitalCardProfile::ApplePay }, nil?: true
+
       # @!attribute background_image_file_id
       #   The identifier of the File containing the card's front image.
       #
@@ -93,7 +99,7 @@ module Increase
       #   @return [Symbol, Increase::Models::DigitalCardProfile::Type]
       required :type, enum: -> { Increase::DigitalCardProfile::Type }
 
-      # @!method initialize(id:, app_icon_file_id:, background_image_file_id:, card_description:, contact_email:, contact_name:, contact_phone:, contact_website:, created_at:, description:, idempotency_key:, status:, text_color:, type:)
+      # @!method initialize(id:, app_icon_file_id:, apple_pay:, background_image_file_id:, card_description:, contact_email:, contact_name:, contact_phone:, contact_website:, created_at:, description:, idempotency_key:, status:, text_color:, type:)
       #   This contains artwork and metadata relating to a Card's appearance in digital
       #   wallet apps like Apple Pay and Google Pay. For more information, see our guide
       #   on [digital card artwork](https://increase.com/documentation/card-art).
@@ -101,6 +107,9 @@ module Increase
       #   @param id [String] The Card Profile identifier.
       #
       #   @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
+      #
+      #   @param apple_pay [Increase::Models::DigitalCardProfile::ApplePay, nil]
+      #     Apple Pay specific settings for the Card Profile.
       #
       #   @param background_image_file_id [String] The identifier of the File containing the card's front image.
       #
@@ -137,6 +146,59 @@ module Increase
       #   @param type [Symbol, Increase::Models::DigitalCardProfile::Type]
       #     A constant representing the object's type. For this resource it will always be
       #     `digital_card_profile`.
+
+      # @see Increase::Models::DigitalCardProfile#apple_pay
+      class ApplePay < Increase::Internal::Type::BaseModel
+        # @!attribute associated_application_identifiers
+        #   The applications associated with cards using this Card Profile.
+        #
+        #   @return [Array<Increase::Models::DigitalCardProfile::ApplePay::AssociatedApplicationIdentifier>]
+        required :associated_application_identifiers,
+                 -> { Increase::Internal::Type::ArrayOf[Increase::DigitalCardProfile::ApplePay::AssociatedApplicationIdentifier] }
+
+        # @!attribute associated_store_identifiers
+        #   The App Store listings of the applications associated with cards using this Card
+        #   Profile.
+        #
+        #   @return [Array<Increase::Models::DigitalCardProfile::ApplePay::AssociatedStoreIdentifier>]
+        required :associated_store_identifiers,
+                 -> { Increase::Internal::Type::ArrayOf[Increase::DigitalCardProfile::ApplePay::AssociatedStoreIdentifier] }
+
+        # @!method initialize(associated_application_identifiers:, associated_store_identifiers:)
+        #   Apple Pay specific settings for the Card Profile.
+        #
+        #   @param associated_application_identifiers [Array<Increase::Models::DigitalCardProfile::ApplePay::AssociatedApplicationIdentifier>]
+        #     The applications associated with cards using this Card Profile.
+        #
+        #   @param associated_store_identifiers [Array<Increase::Models::DigitalCardProfile::ApplePay::AssociatedStoreIdentifier>]
+        #     The App Store listings of the applications associated with cards using this Card
+        #     Profile.
+
+        class AssociatedApplicationIdentifier < Increase::Internal::Type::BaseModel
+          # @!attribute identifier
+          #   The application identifier, composed of your Apple Developer Team ID and the
+          #   application's bundle identifier, like `ABCDE12345.com.example.app`.
+          #
+          #   @return [String]
+          required :identifier, String
+
+          # @!method initialize(identifier:)
+          #   @param identifier [String]
+          #     The application identifier, composed of your Apple Developer Team ID and the
+          #     application's bundle identifier, like `ABCDE12345.com.example.app`.
+        end
+
+        class AssociatedStoreIdentifier < Increase::Internal::Type::BaseModel
+          # @!attribute identifier
+          #   The numeric App Store identifier.
+          #
+          #   @return [String]
+          required :identifier, String
+
+          # @!method initialize(identifier:)
+          #   @param identifier [String] The numeric App Store identifier.
+        end
+      end
 
       # The status of the Card Profile.
       #
