@@ -3,7 +3,8 @@
 module Increase
   module Resources
     class PhysicalCards
-      # Create a Physical Card
+      # Physical Cards start in the status `disabled`. Activate the card once it arrives
+      # at the destination and the recipient confirms receipt.
       #
       # @overload create(card_id:, cardholder:, shipment:, physical_card_profile_id: nil, request_options: {})
       #

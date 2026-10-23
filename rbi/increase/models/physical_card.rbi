@@ -61,7 +61,7 @@ module Increase
       sig { params(shipment: Increase::PhysicalCard::Shipment::OrHash).void }
       attr_writer :shipment
 
-      # The status of the Physical Card.
+      # The status of the Physical Card. The initial status is `disabled`.
       sig { returns(Increase::PhysicalCard::Status::TaggedSymbol) }
       attr_accessor :status
 
@@ -118,7 +118,7 @@ module Increase
         physical_card_profile_id:,
         # The details used to ship this physical card.
         shipment:,
-        # The status of the Physical Card.
+        # The status of the Physical Card. The initial status is `disabled`.
         status:,
         # A constant representing the object's type. For this resource it will always be
         # `physical_card`.
@@ -762,7 +762,7 @@ module Increase
         end
       end
 
-      # The status of the Physical Card.
+      # The status of the Physical Card. The initial status is `disabled`.
       module Status
         extend Increase::Internal::Type::Enum
 

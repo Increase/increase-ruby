@@ -19,7 +19,7 @@ module Increase
         sig { returns(String) }
         attr_accessor :name
 
-        # The bank for the program's accounts, defaults to First Internet Bank.
+        # The bank for the program's accounts, defaults to Increase Bank.
         sig do
           returns(
             T.nilable(
@@ -71,7 +71,7 @@ module Increase
         def self.new(
           # The name of the program being added.
           name:,
-          # The bank for the program's accounts, defaults to First Internet Bank.
+          # The bank for the program's accounts, defaults to Increase Bank.
           bank: nil,
           # The maximum extendable credit of the program being added.
           lending_maximum_extendable_credit: nil,
@@ -99,7 +99,7 @@ module Increase
         def to_hash
         end
 
-        # The bank for the program's accounts, defaults to First Internet Bank.
+        # The bank for the program's accounts, defaults to Increase Bank.
         module Bank
           extend Increase::Internal::Type::Enum
 

@@ -149,6 +149,9 @@ module Increase
           # The account's entity was not active.
           ENTITY_NOT_ACTIVE = :entity_not_active
 
+          # The given expiration date did not match the card's value.
+          CARD_EXPIRATION_MISMATCH = :card_expiration_mismatch
+
           # @!method self.values
           #   @return [Array<Symbol>]
         end
