@@ -5,7 +5,7 @@ module Increase
     class DigitalCardProfiles
       # Create a Digital Card Profile
       #
-      # @overload create(app_icon_file_id:, background_image_file_id:, card_description:, description:, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, text_color: nil, request_options: {})
+      # @overload create(app_icon_file_id:, background_image_file_id:, card_description:, description:, apple_pay: nil, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, text_color: nil, request_options: {})
       #
       # @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
       #
@@ -14,6 +14,9 @@ module Increase
       # @param card_description [String] A user-facing description for the card itself.
       #
       # @param description [String] A description you can use to identify the Card Profile.
+      #
+      # @param apple_pay [Increase::Models::DigitalCardProfileCreateParams::ApplePay]
+      #   Apple Pay specific settings for the Card Profile.
       #
       # @param contact_email [String] An email address the user can contact to receive support for their card.
       #
@@ -124,11 +127,15 @@ module Increase
 
       # Clone a Digital Card Profile
       #
-      # @overload clone_(digital_card_profile_id, app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, description: nil, text_color: nil, request_options: {})
+      # @overload clone_(digital_card_profile_id, app_icon_file_id: nil, apple_pay: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, description: nil, text_color: nil, request_options: {})
       #
       # @param digital_card_profile_id [String] The identifier of the Digital Card Profile to clone.
       #
       # @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
+      #
+      # @param apple_pay [Increase::Models::DigitalCardProfileCloneParams::ApplePay]
+      #   Apple Pay specific settings for the Card Profile. Each list you leave out is
+      #   copied from the original Card Profile.
       #
       # @param background_image_file_id [String] The identifier of the File containing the card's front image.
       #
