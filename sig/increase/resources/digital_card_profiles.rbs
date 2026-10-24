@@ -6,6 +6,7 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
+        ?apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay,
         ?contact_email: String,
         ?contact_name: String,
         ?contact_phone: String,
@@ -35,6 +36,7 @@ module Increase
       def clone_: (
         String digital_card_profile_id,
         ?app_icon_file_id: String,
+        ?apple_pay: Increase::DigitalCardProfileCloneParams::ApplePay,
         ?background_image_file_id: String,
         ?card_description: String,
         ?contact_email: String,

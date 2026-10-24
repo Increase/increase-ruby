@@ -19,6 +19,13 @@ module Increase
       #   @return [String, nil]
       optional :app_icon_file_id, String
 
+      # @!attribute apple_pay
+      #   Apple Pay specific settings for the Card Profile. Each list you leave out is
+      #   copied from the original Card Profile.
+      #
+      #   @return [Increase::Models::DigitalCardProfileCloneParams::ApplePay, nil]
+      optional :apple_pay, -> { Increase::DigitalCardProfileCloneParams::ApplePay }
+
       # @!attribute background_image_file_id
       #   The identifier of the File containing the card's front image.
       #
@@ -68,10 +75,14 @@ module Increase
       #   @return [Increase::Models::DigitalCardProfileCloneParams::TextColor, nil]
       optional :text_color, -> { Increase::DigitalCardProfileCloneParams::TextColor }
 
-      # @!method initialize(digital_card_profile_id:, app_icon_file_id: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, description: nil, text_color: nil, request_options: {})
+      # @!method initialize(digital_card_profile_id:, app_icon_file_id: nil, apple_pay: nil, background_image_file_id: nil, card_description: nil, contact_email: nil, contact_name: nil, contact_phone: nil, contact_website: nil, description: nil, text_color: nil, request_options: {})
       #   @param digital_card_profile_id [String] The identifier of the Digital Card Profile to clone.
       #
       #   @param app_icon_file_id [String] The identifier of the File containing the card's icon image.
+      #
+      #   @param apple_pay [Increase::Models::DigitalCardProfileCloneParams::ApplePay]
+      #     Apple Pay specific settings for the Card Profile. Each list you leave out is
+      #     copied from the original Card Profile.
       #
       #   @param background_image_file_id [String] The identifier of the File containing the card's front image.
       #
@@ -93,6 +104,59 @@ module Increase
       #     The Card's text color, specified as an RGB triple. The default is white.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
+
+      class ApplePay < Increase::Internal::Type::BaseModel
+        # @!attribute associated_application_identifiers
+        #   The applications to associate with cards using this Card Profile.
+        #
+        #   @return [Array<Increase::Models::DigitalCardProfileCloneParams::ApplePay::AssociatedApplicationIdentifier>, nil]
+        optional :associated_application_identifiers,
+                 -> { Increase::Internal::Type::ArrayOf[Increase::DigitalCardProfileCloneParams::ApplePay::AssociatedApplicationIdentifier] }
+
+        # @!attribute associated_store_identifiers
+        #   The App Store listings of the applications to associate with cards using this
+        #   Card Profile.
+        #
+        #   @return [Array<Increase::Models::DigitalCardProfileCloneParams::ApplePay::AssociatedStoreIdentifier>, nil]
+        optional :associated_store_identifiers,
+                 -> { Increase::Internal::Type::ArrayOf[Increase::DigitalCardProfileCloneParams::ApplePay::AssociatedStoreIdentifier] }
+
+        # @!method initialize(associated_application_identifiers: nil, associated_store_identifiers: nil)
+        #   Apple Pay specific settings for the Card Profile. Each list you leave out is
+        #   copied from the original Card Profile.
+        #
+        #   @param associated_application_identifiers [Array<Increase::Models::DigitalCardProfileCloneParams::ApplePay::AssociatedApplicationIdentifier>]
+        #     The applications to associate with cards using this Card Profile.
+        #
+        #   @param associated_store_identifiers [Array<Increase::Models::DigitalCardProfileCloneParams::ApplePay::AssociatedStoreIdentifier>]
+        #     The App Store listings of the applications to associate with cards using this
+        #     Card Profile.
+
+        class AssociatedApplicationIdentifier < Increase::Internal::Type::BaseModel
+          # @!attribute identifier
+          #   The application identifier, composed of your Apple Developer Team ID and the
+          #   application's bundle identifier, like `ABCDE12345.com.example.app`.
+          #
+          #   @return [String]
+          required :identifier, String
+
+          # @!method initialize(identifier:)
+          #   @param identifier [String]
+          #     The application identifier, composed of your Apple Developer Team ID and the
+          #     application's bundle identifier, like `ABCDE12345.com.example.app`.
+        end
+
+        class AssociatedStoreIdentifier < Increase::Internal::Type::BaseModel
+          # @!attribute identifier
+          #   The numeric App Store identifier.
+          #
+          #   @return [String]
+          required :identifier, String
+
+          # @!method initialize(identifier:)
+          #   @param identifier [String] The numeric App Store identifier.
+        end
+      end
 
       class TextColor < Increase::Internal::Type::BaseModel
         # @!attribute blue

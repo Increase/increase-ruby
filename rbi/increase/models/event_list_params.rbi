@@ -724,10 +724,17 @@ module Increase
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
-          # Occurs whenever a Loan Purchase is created.
-          LOAN_PURCHASE_CREATED =
+          # Occurs whenever a Loan Purchase Offer is created.
+          LOAN_PURCHASE_OFFER_CREATED =
             T.let(
-              :"loan_purchase.created",
+              :"loan_purchase_offer.created",
+              Increase::EventListParams::Category::In::TaggedSymbol
+            )
+
+          # Occurs whenever a Loan Purchase Offer is updated.
+          LOAN_PURCHASE_OFFER_UPDATED =
+            T.let(
+              :"loan_purchase_offer.updated",
               Increase::EventListParams::Category::In::TaggedSymbol
             )
 
