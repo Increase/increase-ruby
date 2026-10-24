@@ -28,6 +28,7 @@ class Increase::Test::Resources::Simulations::InboundRealTimePaymentsTransfersTe
         debtor_name: String,
         debtor_routing_number: String,
         decline: Increase::InboundRealTimePaymentsTransfer::Decline | nil,
+        end_to_end_identification: String | nil,
         status: Increase::InboundRealTimePaymentsTransfer::Status,
         transaction_identification: String,
         type: Increase::InboundRealTimePaymentsTransfer::Type,

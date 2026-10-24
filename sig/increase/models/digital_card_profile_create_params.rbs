@@ -6,6 +6,7 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
+        apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay,
         contact_email: String,
         contact_name: String,
         contact_phone: String,
@@ -25,6 +26,12 @@ module Increase
       attr_accessor card_description: String
 
       attr_accessor description: String
+
+      attr_reader apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay?
+
+      def apple_pay=: (
+        Increase::DigitalCardProfileCreateParams::ApplePay
+      ) -> Increase::DigitalCardProfileCreateParams::ApplePay
 
       attr_reader contact_email: String?
 
@@ -53,6 +60,7 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
+        ?apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay,
         ?contact_email: String,
         ?contact_name: String,
         ?contact_phone: String,
@@ -66,6 +74,7 @@ module Increase
         background_image_file_id: String,
         card_description: String,
         description: String,
+        apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay,
         contact_email: String,
         contact_name: String,
         contact_phone: String,
@@ -73,6 +82,56 @@ module Increase
         text_color: Increase::DigitalCardProfileCreateParams::TextColor,
         request_options: Increase::RequestOptions
       }
+
+      type apple_pay =
+        {
+          associated_application_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier],
+          associated_store_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier]
+        }
+
+      class ApplePay < Increase::Internal::Type::BaseModel
+        attr_reader associated_application_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier]?
+
+        def associated_application_identifiers=: (
+          ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier]
+        ) -> ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier]
+
+        attr_reader associated_store_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier]?
+
+        def associated_store_identifiers=: (
+          ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier]
+        ) -> ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier]
+
+        def initialize: (
+          ?associated_application_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier],
+          ?associated_store_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier]
+        ) -> void
+
+        def to_hash: -> {
+          associated_application_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedApplicationIdentifier],
+          associated_store_identifiers: ::Array[Increase::DigitalCardProfileCreateParams::ApplePay::AssociatedStoreIdentifier]
+        }
+
+        type associated_application_identifier = { identifier: String }
+
+        class AssociatedApplicationIdentifier < Increase::Internal::Type::BaseModel
+          attr_accessor identifier: String
+
+          def initialize: (identifier: String) -> void
+
+          def to_hash: -> { identifier: String }
+        end
+
+        type associated_store_identifier = { identifier: String }
+
+        class AssociatedStoreIdentifier < Increase::Internal::Type::BaseModel
+          attr_accessor identifier: String
+
+          def initialize: (identifier: String) -> void
+
+          def to_hash: -> { identifier: String }
+        end
+      end
 
       type text_color = { blue: Integer, green: Integer, red: Integer }
 

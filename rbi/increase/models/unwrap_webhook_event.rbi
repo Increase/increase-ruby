@@ -664,6 +664,20 @@ module Increase
             Increase::UnwrapWebhookEvent::Category::TaggedSymbol
           )
 
+        # Occurs whenever a Loan Purchase Offer is created.
+        LOAN_PURCHASE_OFFER_CREATED =
+          T.let(
+            :"loan_purchase_offer.created",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
+        # Occurs whenever a Loan Purchase Offer is updated.
+        LOAN_PURCHASE_OFFER_UPDATED =
+          T.let(
+            :"loan_purchase_offer.updated",
+            Increase::UnwrapWebhookEvent::Category::TaggedSymbol
+          )
+
         # Occurs whenever a Lockbox is created.
         LOCKBOX_CREATED =
           T.let(

@@ -360,6 +360,12 @@ module Increase
           # Occurs whenever a Loan Purchase is created.
           LOAN_PURCHASE_CREATED = :"loan_purchase.created"
 
+          # Occurs whenever a Loan Purchase Offer is created.
+          LOAN_PURCHASE_OFFER_CREATED = :"loan_purchase_offer.created"
+
+          # Occurs whenever a Loan Purchase Offer is updated.
+          LOAN_PURCHASE_OFFER_UPDATED = :"loan_purchase_offer.updated"
+
           # Occurs whenever a Lockbox is created.
           LOCKBOX_CREATED = :"lockbox.created"
 
