@@ -752,6 +752,20 @@ module Increase
               Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
             )
 
+          # Occurs whenever a Loan Purchase Offer is created.
+          LOAN_PURCHASE_OFFER_CREATED =
+            T.let(
+              :"loan_purchase_offer.created",
+              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
+          # Occurs whenever a Loan Purchase Offer is updated.
+          LOAN_PURCHASE_OFFER_UPDATED =
+            T.let(
+              :"loan_purchase_offer.updated",
+              Increase::EventSubscription::SelectedEventCategory::EventCategory::TaggedSymbol
+            )
+
           # Occurs whenever a Lockbox is created.
           LOCKBOX_CREATED =
             T.let(

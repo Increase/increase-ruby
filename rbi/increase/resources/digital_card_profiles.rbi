@@ -10,6 +10,7 @@ module Increase
           background_image_file_id: String,
           card_description: String,
           description: String,
+          apple_pay: Increase::DigitalCardProfileCreateParams::ApplePay::OrHash,
           contact_email: String,
           contact_name: String,
           contact_phone: String,
@@ -28,6 +29,8 @@ module Increase
         card_description:,
         # A description you can use to identify the Card Profile.
         description:,
+        # Apple Pay specific settings for the Card Profile.
+        apple_pay: nil,
         # An email address the user can contact to receive support for their card.
         contact_email: nil,
         # The name of your company or card program, shown to the user as who to contact
@@ -104,6 +107,7 @@ module Increase
         params(
           digital_card_profile_id: String,
           app_icon_file_id: String,
+          apple_pay: Increase::DigitalCardProfileCloneParams::ApplePay::OrHash,
           background_image_file_id: String,
           card_description: String,
           contact_email: String,
@@ -121,6 +125,9 @@ module Increase
         digital_card_profile_id,
         # The identifier of the File containing the card's icon image.
         app_icon_file_id: nil,
+        # Apple Pay specific settings for the Card Profile. Each list you leave out is
+        # copied from the original Card Profile.
+        apple_pay: nil,
         # The identifier of the File containing the card's front image.
         background_image_file_id: nil,
         # A user-facing description for the card itself.

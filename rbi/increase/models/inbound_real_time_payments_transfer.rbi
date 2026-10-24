@@ -91,6 +91,10 @@ module Increase
       end
       attr_writer :decline
 
+      # A free-form reference string set by the sender, to help identify the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :end_to_end_identification
+
       # The lifecycle status of the transfer.
       sig do
         returns(Increase::InboundRealTimePaymentsTransfer::Status::TaggedSymbol)
@@ -135,6 +139,7 @@ module Increase
             T.nilable(
               Increase::InboundRealTimePaymentsTransfer::Decline::OrHash
             ),
+          end_to_end_identification: T.nilable(String),
           status: Increase::InboundRealTimePaymentsTransfer::Status::OrSymbol,
           transaction_identification: String,
           type: Increase::InboundRealTimePaymentsTransfer::Type::OrSymbol,
@@ -168,6 +173,8 @@ module Increase
         debtor_routing_number:,
         # If your transfer is declined, this will contain details of the decline.
         decline:,
+        # A free-form reference string set by the sender, to help identify the transfer.
+        end_to_end_identification:,
         # The lifecycle status of the transfer.
         status:,
         # The Real-Time Payments network identification of the transfer.
@@ -200,6 +207,7 @@ module Increase
             debtor_routing_number: String,
             decline:
               T.nilable(Increase::InboundRealTimePaymentsTransfer::Decline),
+            end_to_end_identification: T.nilable(String),
             status:
               Increase::InboundRealTimePaymentsTransfer::Status::TaggedSymbol,
             transaction_identification: String,
