@@ -64,6 +64,9 @@ module Increase
           # @return [Array(Net::HTTPGenericRequest, Proc)]
           def build_request(request, &blk)
             method, url, headers, body = request.fetch_values(:method, :url, :headers, :body)
+            # Streamed bodies (e.g. multipart) arrive as a factory so each attempt gets a fresh stream.
+            body = body.call if body.is_a?(Proc)
+
             req = Net::HTTPGenericRequest.new(
               method.to_s.upcase,
               !body.nil?,

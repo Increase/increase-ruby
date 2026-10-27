@@ -608,34 +608,39 @@ module Increase
         #
         # @param body [Object]
         #
-        # @return [Array(String, Enumerable<String>)]
+        # @return [Array(String, Proc)]
         private def encode_multipart_streaming(body)
           # rubocop:disable Style/CaseEquality
           # RFC 1521 Section 7.2.1 says we should have 70 char maximum for boundary length
           boundary = SecureRandom.urlsafe_base64(46)
 
-          closing = []
-          strio = writable_enum do |y|
-            case body
-            in Hash
-              body.each do |key, val|
-                case val
-                in Array if val.all? { primitive?(_1) || Increase::Internal::Type::FileInput === _1 }
-                  val.each do |v|
-                    write_multipart_chunk(y, boundary: boundary, key: key, val: v, closing: closing)
+          # Retries and redirects resend the request, and a streamed body can only be read
+          # once, so hand back a factory that builds a fresh stream for each attempt.
+          stream = lambda do
+            closing = []
+            strio = writable_enum do |y|
+              case body
+              in Hash
+                body.each do |key, val|
+                  case val
+                  in Array if val.all? { primitive?(_1) || Increase::Internal::Type::FileInput === _1 }
+                    val.each do |v|
+                      write_multipart_chunk(y, boundary: boundary, key: key, val: v, closing: closing)
+                    end
+                  else
+                    write_multipart_chunk(y, boundary: boundary, key: key, val: val, closing: closing)
                   end
-                else
-                  write_multipart_chunk(y, boundary: boundary, key: key, val: val, closing: closing)
                 end
+              else
+                write_multipart_chunk(y, boundary: boundary, key: nil, val: body, closing: closing)
               end
-            else
-              write_multipart_chunk(y, boundary: boundary, key: nil, val: body, closing: closing)
+              y << "--#{boundary}--\r\n"
             end
-            y << "--#{boundary}--\r\n"
+
+            fused_enum(strio) { closing.each(&:call) }
           end
 
-          fused_io = fused_enum(strio) { closing.each(&:call) }
-          [boundary, fused_io]
+          [boundary, stream]
           # rubocop:enable Style/CaseEquality
         end
 
