@@ -8,15 +8,20 @@ module Increase
       include Increase::Internal::Type::RequestParameters
 
       # @!attribute account_id
-      #   The Increase identifier for the account that will send the transfer.
+      #   The Increase identifier for the account that will originate the transfer. For
+      #   credit transfers (transfers with a positive `amount`), this is the account that
+      #   funds will be sent from. For debit transfers (transfers with a negative
+      #   `amount`), this is the account that funds will be pulled into.
       #
       #   @return [String]
       required :account_id, String
 
       # @!attribute amount
       #   The transfer amount in USD cents. A positive amount originates a credit transfer
-      #   pushing funds to the receiving account. A negative amount originates a debit
-      #   transfer pulling funds from the receiving account.
+      #   pushing funds from Increase to the account at the other bank. A negative amount
+      #   originates a debit transfer pulling funds from the account at the other bank
+      #   into Increase. Debit transfers
+      #   [might result in a hold before funds are available](/documentation/sending-ach-debit-transfers).
       #
       #   @return [Integer]
       required :amount, Integer
@@ -33,9 +38,10 @@ module Increase
       required :statement_descriptor, String
 
       # @!attribute account_number
-      #   The receiver's account number. For credit transfers (positive `amount`) this is
-      #   the account that funds will be sent to. For debit transfers (negative `amount`)
-      #   this is the account that funds will be pulled from.
+      #   The receiver's account number. For credit transfers (transfers with a positive
+      #   `amount`), this is the account that funds will be sent to. For debit transfers
+      #   (transfers with a negative `amount`), this is the account that funds will be
+      #   pulled from.
       #
       #   @return [String, nil]
       optional :account_number, String
@@ -58,27 +64,32 @@ module Increase
       optional :company_descriptive_date, String
 
       # @!attribute company_discretionary_data
-      #   Custom data sent in the company batch header. This value is informational and
-      #   does not affect funds movement, settlement timing, or returns. Most ACH
-      #   transfers do not need this. Only set this if your recipient has asked for it.
+      #   Custom data sent in the company batch header, meant as metadata for the
+      #   originator. This value is informational and does not affect funds movement,
+      #   settlement timing, or returns. Most ACH transfers do not need this; we recommend
+      #   storing metadata in your own application instead.
       #
       #   @return [String, nil]
       optional :company_discretionary_data, String
 
       # @!attribute company_entry_description
-      #   A short description sent in the company batch header. Most receivers do not
-      #   surface this. Only set this if your recipient has asked for a specific value or
-      #   if Nacha mandates one for your Standard Entry Class (SEC) code and use case. For
-      #   example, Prearranged Payment and Deposit (PPD) payroll credits must use
-      #   `PAYROLL`, and reversals must use `REVERSAL`.
+      #   A short description sent in the company batch header, meant to provide the
+      #   receiver with a reason for the transfer. Many receivers do not surface this data
+      #   on the receiver's bank statement. Only set this if your recipient has asked for
+      #   a specific value or if Nacha mandates one for your Standard Entry Class (SEC)
+      #   code and use case. For example, some use cases require constants like
+      #   `ACCTVERIFY`, `PURCHASE`, `PAYROLL`, or `REVERSAL`.
       #
       #   @return [String, nil]
       optional :company_entry_description, String
 
       # @!attribute company_name
-      #   The name by which the recipient knows you, sent in the company batch header. We
-      #   recommend setting this on every transfer; if you do not, we fall back to the
-      #   `statement_descriptor`.
+      #   The name by which the recipient knows the counterparty of this transaction. If
+      #   you're processing payments on behalf of another party, use their name, not your
+      #   own, so that it's more likely the recipient understands the context of the
+      #   payment. This value is usually displayed to the recipient on their bank
+      #   statement. We recommend setting this on every transfer; if you do not, we fall
+      #   back to the `statement_descriptor`.
       #
       #   @return [String, nil]
       optional :company_name, String
@@ -106,15 +117,19 @@ module Increase
       optional :funding, enum: -> { Increase::ACHTransferCreateParams::Funding }
 
       # @!attribute individual_id
-      #   Your internal identifier for the transfer recipient. This value is informational
-      #   and not verified by the recipient's bank. Most callers can leave this unset.
+      #   Your internal identifier for the recipient. This value is informational and
+      #   generally not verified by the recipient's bank. Most callers can leave this
+      #   unset. For the specific case of person-to-person credits with the WEB standard
+      #   entry class code, this must include the name of the payer.
       #
       #   @return [String, nil]
       optional :individual_id, String
 
       # @!attribute individual_name
-      #   The name of the transfer recipient. This value is informational and not verified
-      #   by the recipient's bank.
+      #   The name of the transfer recipient. This value is informational and generally
+      #   not verified by the recipient's bank. This value is usually displayed to the
+      #   recipient on their bank statement. We recommend setting this on every transfer;
+      #   if you do not, we fall back to the `statement_descriptor`.
       #
       #   @return [String, nil]
       optional :individual_name, String
@@ -152,12 +167,18 @@ module Increase
                enum: -> { Increase::ACHTransferCreateParams::StandardEntryClassCode }
 
       # @!method initialize(account_id:, amount:, statement_descriptor:, account_number: nil, addenda: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, destination_account_holder: nil, external_account_id: nil, funding: nil, individual_id: nil, individual_name: nil, preferred_effective_date: nil, require_approval: nil, routing_number: nil, standard_entry_class_code: nil, request_options: {})
-      #   @param account_id [String] The Increase identifier for the account that will send the transfer.
+      #   @param account_id [String]
+      #     The Increase identifier for the account that will originate the transfer. For
+      #     credit transfers (transfers with a positive `amount`), this is the account that
+      #     funds will be sent from. For debit transfers (transfers with a negative
+      #     `amount`), this is the account that funds will be pulled into.
       #
       #   @param amount [Integer]
       #     The transfer amount in USD cents. A positive amount originates a credit transfer
-      #     pushing funds to the receiving account. A negative amount originates a debit
-      #     transfer pulling funds from the receiving account.
+      #     pushing funds from Increase to the account at the other bank. A negative amount
+      #     originates a debit transfer pulling funds from the account at the other bank
+      #     into Increase. Debit transfers
+      #     [might result in a hold before funds are available](/documentation/sending-ach-debit-transfers).
       #
       #   @param statement_descriptor [String]
       #     A description you choose to give the transfer. This will be saved with the
@@ -168,9 +189,10 @@ module Increase
       #     `individual_name` and `company_name` instead of relying on this fallback.
       #
       #   @param account_number [String]
-      #     The receiver's account number. For credit transfers (positive `amount`) this is
-      #     the account that funds will be sent to. For debit transfers (negative `amount`)
-      #     this is the account that funds will be pulled from.
+      #     The receiver's account number. For credit transfers (transfers with a positive
+      #     `amount`), this is the account that funds will be sent to. For debit transfers
+      #     (transfers with a negative `amount`), this is the account that funds will be
+      #     pulled from.
       #
       #   @param addenda [Increase::Models::ACHTransferCreateParams::Addenda]
       #     Additional information passed through to the receiving bank with the transfer.
@@ -184,21 +206,26 @@ module Increase
       #     settlement timing, or returns. Only set this if your recipient has asked for it.
       #
       #   @param company_discretionary_data [String]
-      #     Custom data sent in the company batch header. This value is informational and
-      #     does not affect funds movement, settlement timing, or returns. Most ACH
-      #     transfers do not need this. Only set this if your recipient has asked for it.
+      #     Custom data sent in the company batch header, meant as metadata for the
+      #     originator. This value is informational and does not affect funds movement,
+      #     settlement timing, or returns. Most ACH transfers do not need this; we recommend
+      #     storing metadata in your own application instead.
       #
       #   @param company_entry_description [String]
-      #     A short description sent in the company batch header. Most receivers do not
-      #     surface this. Only set this if your recipient has asked for a specific value or
-      #     if Nacha mandates one for your Standard Entry Class (SEC) code and use case. For
-      #     example, Prearranged Payment and Deposit (PPD) payroll credits must use
-      #     `PAYROLL`, and reversals must use `REVERSAL`.
+      #     A short description sent in the company batch header, meant to provide the
+      #     receiver with a reason for the transfer. Many receivers do not surface this data
+      #     on the receiver's bank statement. Only set this if your recipient has asked for
+      #     a specific value or if Nacha mandates one for your Standard Entry Class (SEC)
+      #     code and use case. For example, some use cases require constants like
+      #     `ACCTVERIFY`, `PURCHASE`, `PAYROLL`, or `REVERSAL`.
       #
       #   @param company_name [String]
-      #     The name by which the recipient knows you, sent in the company batch header. We
-      #     recommend setting this on every transfer; if you do not, we fall back to the
-      #     `statement_descriptor`.
+      #     The name by which the recipient knows the counterparty of this transaction. If
+      #     you're processing payments on behalf of another party, use their name, not your
+      #     own, so that it's more likely the recipient understands the context of the
+      #     payment. This value is usually displayed to the recipient on their bank
+      #     statement. We recommend setting this on every transfer; if you do not, we fall
+      #     back to the `statement_descriptor`.
       #
       #   @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder]
       #     The type of entity that owns the receiver's account.
@@ -213,12 +240,16 @@ module Increase
       #     Defaults to `checking`.
       #
       #   @param individual_id [String]
-      #     Your internal identifier for the transfer recipient. This value is informational
-      #     and not verified by the recipient's bank. Most callers can leave this unset.
+      #     Your internal identifier for the recipient. This value is informational and
+      #     generally not verified by the recipient's bank. Most callers can leave this
+      #     unset. For the specific case of person-to-person credits with the WEB standard
+      #     entry class code, this must include the name of the payer.
       #
       #   @param individual_name [String]
-      #     The name of the transfer recipient. This value is informational and not verified
-      #     by the recipient's bank.
+      #     The name of the transfer recipient. This value is informational and generally
+      #     not verified by the recipient's bank. This value is usually displayed to the
+      #     recipient on their bank statement. We recommend setting this on every transfer;
+      #     if you do not, we fall back to the `statement_descriptor`.
       #
       #   @param preferred_effective_date [Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate]
       #     Configuration for how the effective date of the transfer will be set. This

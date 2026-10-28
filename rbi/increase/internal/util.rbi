@@ -363,7 +363,9 @@ module Increase
         #
         # https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.1.1.md#special-considerations-for-multipart-content
         sig do
-          params(body: T.anything).returns([String, T::Enumerable[String]])
+          params(body: T.anything).returns(
+            [String, T.proc.returns(T::Enumerable[String])]
+          )
         end
         private def encode_multipart_streaming(body)
         end
