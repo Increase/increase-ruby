@@ -68,6 +68,14 @@ module Increase
           #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptChargeback, nil]
           optional :accept_chargeback, -> { Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback }
 
+          # @!attribute accept_user_prearbitration
+          #   The parameters for accepting the user prearbitration. Required if and only if
+          #   `action` is `accept_user_prearbitration`.
+          #
+          #   @return [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration, nil]
+          optional :accept_user_prearbitration,
+                   -> { Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration }
+
           # @!attribute accept_user_submission
           #   The parameters for accepting the user submission. Required if and only if
           #   `action` is `accept_user_submission`.
@@ -146,7 +154,7 @@ module Increase
           optional :time_out_user_prearbitration,
                    -> { Increase::Simulations::CardDisputeActionParams::Visa::TimeOutUserPrearbitration }
 
-          # @!method initialize(action:, accept_chargeback: nil, accept_user_submission: nil, decline_user_prearbitration: nil, receive_merchant_prearbitration: nil, reject: nil, represent: nil, request_further_information: nil, time_out_chargeback: nil, time_out_merchant_prearbitration: nil, time_out_representment: nil, time_out_user_prearbitration: nil)
+          # @!method initialize(action:, accept_chargeback: nil, accept_user_prearbitration: nil, accept_user_submission: nil, decline_user_prearbitration: nil, receive_merchant_prearbitration: nil, reject: nil, represent: nil, request_further_information: nil, time_out_chargeback: nil, time_out_merchant_prearbitration: nil, time_out_representment: nil, time_out_user_prearbitration: nil)
           #   The Visa-specific parameters for taking action on the dispute. Required if and
           #   only if `network` is `visa`.
           #
@@ -157,6 +165,10 @@ module Increase
           #   @param accept_chargeback [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptChargeback]
           #     The parameters for accepting the chargeback. Required if and only if `action` is
           #     `accept_chargeback`.
+          #
+          #   @param accept_user_prearbitration [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration]
+          #     The parameters for accepting the user prearbitration. Required if and only if
+          #     `action` is `accept_user_prearbitration`.
           #
           #   @param accept_user_submission [Increase::Models::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission]
           #     The parameters for accepting the user submission. Required if and only if
@@ -208,19 +220,22 @@ module Increase
             # Simulate the merchant accepting the chargeback. This will move the dispute to a `won` state.
             ACCEPT_CHARGEBACK = :accept_chargeback
 
+            # Simulate the merchant accepting the user's pre-arbitration. This will move the dispute to a `won` state.
+            ACCEPT_USER_PREARBITRATION = :accept_user_prearbitration
+
             # Accept the user's submission and transmit it to the network. This will move the dispute to a `pending_response` state.
             ACCEPT_USER_SUBMISSION = :accept_user_submission
 
             # Simulate the merchant declining the user's pre-arbitration. This will move the dispute to a `lost` state.
             DECLINE_USER_PREARBITRATION = :decline_user_prearbitration
 
-            # Simulate the merchant issuing pre-arbitration. This will move the dispute to a `user_submission_required` state.
+            # Simulate the merchant issuing pre-arbitration. Only available for disputes in the fraud or authorization category. This will move the dispute to a `user_submission_required` state.
             RECEIVE_MERCHANT_PREARBITRATION = :receive_merchant_prearbitration
 
             # Simulate the dispute being rejected before it is submitted to the network. This will move the dispute to a `rejected` state.
             REJECT = :reject
 
-            # Simulate the merchant re-presenting the dispute. This will move the dispute to a `user_submission_required` state.
+            # Simulate the merchant re-presenting the dispute. Only available for disputes in a consumer or processing error category. This will move the dispute to a `user_submission_required` state.
             REPRESENT = :represent
 
             # Simulate further information being requested from the user. This will move the dispute to a `user_submission_required` state.
@@ -235,7 +250,7 @@ module Increase
             # Simulate the user timing out responding to a merchant re-presentment. This will move the dispute to a `lost` state.
             TIME_OUT_REPRESENTMENT = :time_out_representment
 
-            # Simulate the merchant timing out responding to a user pre-arbitration. This will move the dispute to a `win` state.
+            # Simulate the merchant timing out responding to a user pre-arbitration. This will move the dispute to a `won` state.
             TIME_OUT_USER_PREARBITRATION = :time_out_user_prearbitration
 
             # @!method self.values
@@ -247,6 +262,13 @@ module Increase
             # @!method initialize
             #   The parameters for accepting the chargeback. Required if and only if `action` is
             #   `accept_chargeback`.
+          end
+
+          # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#accept_user_prearbitration
+          class AcceptUserPrearbitration < Increase::Internal::Type::BaseModel
+            # @!method initialize
+            #   The parameters for accepting the user prearbitration. Required if and only if
+            #   `action` is `accept_user_prearbitration`.
           end
 
           # @see Increase::Models::Simulations::CardDisputeActionParams::Visa#accept_user_submission

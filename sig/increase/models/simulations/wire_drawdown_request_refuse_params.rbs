@@ -2,7 +2,11 @@ module Increase
   module Models
     module Simulations
       type wire_drawdown_request_refuse_params =
-        { wire_drawdown_request_id: String }
+        {
+          wire_drawdown_request_id: String,
+          refusal_reason_additional_information: String,
+          refusal_reason_code: Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code
+        }
         & Increase::Internal::Type::request_parameters
 
       class WireDrawdownRequestRefuseParams < Increase::Internal::Type::BaseModel
@@ -11,15 +15,61 @@ module Increase
 
         attr_accessor wire_drawdown_request_id: String
 
+        attr_reader refusal_reason_additional_information: String?
+
+        def refusal_reason_additional_information=: (String) -> String
+
+        attr_reader refusal_reason_code: Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code?
+
+        def refusal_reason_code=: (
+          Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code
+        ) -> Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code
+
         def initialize: (
           wire_drawdown_request_id: String,
+          ?refusal_reason_additional_information: String,
+          ?refusal_reason_code: Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code,
           ?request_options: Increase::request_opts
         ) -> void
 
         def to_hash: -> {
           wire_drawdown_request_id: String,
+          refusal_reason_additional_information: String,
+          refusal_reason_code: Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code,
           request_options: Increase::RequestOptions
         }
+
+        type refusal_reason_code =
+          :invalid_debtor_account_number
+          | :transaction_forbidden
+          | :unsuccessful_direct_debit
+          | :inconsistent_with_end_customer
+          | :narrative
+          | :other
+
+        module RefusalReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The debtor's account number is invalid or missing. Corresponds to the Fedwire reason code `AC02`.
+          INVALID_DEBTOR_ACCOUNT_NUMBER: :invalid_debtor_account_number
+
+          # The debtor account does not allow drawdown requests. Corresponds to the Fedwire reason code `AG01`.
+          TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+          # The debtor account cannot be debited for a generic reason. Corresponds to the Fedwire reason code `AG07`.
+          UNSUCCESSFUL_DIRECT_DEBIT: :unsuccessful_direct_debit
+
+          # The debtor's identification is inconsistent with the debtor account number. Corresponds to the Fedwire reason code `BE01`.
+          INCONSISTENT_WITH_END_CUSTOMER: :inconsistent_with_end_customer
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the Fedwire reason code `NARR`.
+          NARRATIVE: :narrative
+
+          # Some other error or issue has occurred.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code]
+        end
       end
     end
   end

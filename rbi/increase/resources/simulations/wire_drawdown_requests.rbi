@@ -8,12 +8,21 @@ module Increase
         sig do
           params(
             wire_drawdown_request_id: String,
+            refusal_reason_additional_information: String,
+            refusal_reason_code:
+              Increase::Simulations::WireDrawdownRequestRefuseParams::RefusalReasonCode::OrSymbol,
             request_options: Increase::RequestOptions::OrHash
           ).returns(Increase::WireDrawdownRequest)
         end
         def refuse(
           # The identifier of the Wire Drawdown Request you wish to refuse.
           wire_drawdown_request_id,
+          # Additional information about the refusal that the simulated refusal will have.
+          refusal_reason_additional_information: nil,
+          # The reason code that the simulated refusal will have.
+          #
+          # Defaults to `other`.
+          refusal_reason_code: nil,
           request_options: {}
         )
         end
