@@ -7,7 +7,7 @@ class Increase::Test::Resources::Simulations::AccountRevenuePaymentsTest < Incre
     response =
       @increase.simulations.account_revenue_payments.create(
         account_id: "account_in71c4amph0vgo2qllky",
-        amount: 1000
+        amount: 100
       )
 
     assert_pattern do

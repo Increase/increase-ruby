@@ -52,6 +52,7 @@ module Increase
           {
             action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
             accept_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+            accept_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration,
             accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
             decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
             receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
@@ -72,6 +73,12 @@ module Increase
           def accept_chargeback=: (
             Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback
           ) -> Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback
+
+          attr_reader accept_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration?
+
+          def accept_user_prearbitration=: (
+            Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration
+          ) -> Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration
 
           attr_reader accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission?
 
@@ -136,6 +143,7 @@ module Increase
           def initialize: (
             action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
             ?accept_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+            ?accept_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration,
             ?accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
             ?decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
             ?receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
@@ -151,6 +159,7 @@ module Increase
           def to_hash: -> {
             action: Increase::Models::Simulations::CardDisputeActionParams::Visa::action,
             accept_chargeback: Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+            accept_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration,
             accept_user_submission: Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
             decline_user_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::DeclineUserPrearbitration,
             receive_merchant_prearbitration: Increase::Simulations::CardDisputeActionParams::Visa::ReceiveMerchantPrearbitration,
@@ -165,6 +174,7 @@ module Increase
 
           type action =
             :accept_chargeback
+            | :accept_user_prearbitration
             | :accept_user_submission
             | :decline_user_prearbitration
             | :receive_merchant_prearbitration
@@ -182,19 +192,22 @@ module Increase
             # Simulate the merchant accepting the chargeback. This will move the dispute to a `won` state.
             ACCEPT_CHARGEBACK: :accept_chargeback
 
+            # Simulate the merchant accepting the user's pre-arbitration. This will move the dispute to a `won` state.
+            ACCEPT_USER_PREARBITRATION: :accept_user_prearbitration
+
             # Accept the user's submission and transmit it to the network. This will move the dispute to a `pending_response` state.
             ACCEPT_USER_SUBMISSION: :accept_user_submission
 
             # Simulate the merchant declining the user's pre-arbitration. This will move the dispute to a `lost` state.
             DECLINE_USER_PREARBITRATION: :decline_user_prearbitration
 
-            # Simulate the merchant issuing pre-arbitration. This will move the dispute to a `user_submission_required` state.
+            # Simulate the merchant issuing pre-arbitration. Only available for disputes in the fraud or authorization category. This will move the dispute to a `user_submission_required` state.
             RECEIVE_MERCHANT_PREARBITRATION: :receive_merchant_prearbitration
 
             # Simulate the dispute being rejected before it is submitted to the network. This will move the dispute to a `rejected` state.
             REJECT: :reject
 
-            # Simulate the merchant re-presenting the dispute. This will move the dispute to a `user_submission_required` state.
+            # Simulate the merchant re-presenting the dispute. Only available for disputes in a consumer or processing error category. This will move the dispute to a `user_submission_required` state.
             REPRESENT: :represent
 
             # Simulate further information being requested from the user. This will move the dispute to a `user_submission_required` state.
@@ -209,7 +222,7 @@ module Increase
             # Simulate the user timing out responding to a merchant re-presentment. This will move the dispute to a `lost` state.
             TIME_OUT_REPRESENTMENT: :time_out_representment
 
-            # Simulate the merchant timing out responding to a user pre-arbitration. This will move the dispute to a `win` state.
+            # Simulate the merchant timing out responding to a user pre-arbitration. This will move the dispute to a `won` state.
             TIME_OUT_USER_PREARBITRATION: :time_out_user_prearbitration
 
             def self?.values: -> ::Array[Increase::Models::Simulations::CardDisputeActionParams::Visa::action]
@@ -218,6 +231,14 @@ module Increase
           type accept_chargeback = {  }
 
           class AcceptChargeback < Increase::Internal::Type::BaseModel
+            def initialize: -> void
+
+            def to_hash: -> {  }
+          end
+
+          type accept_user_prearbitration = {  }
+
+          class AcceptUserPrearbitration < Increase::Internal::Type::BaseModel
             def initialize: -> void
 
             def to_hash: -> {  }
