@@ -95,6 +95,18 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :idempotency_key
 
+      # If the debtor refuses the drawdown request, this will contain supplemental
+      # details.
+      sig { returns(T.nilable(Increase::WireDrawdownRequest::Refusal)) }
+      attr_reader :refusal
+
+      sig do
+        params(
+          refusal: T.nilable(Increase::WireDrawdownRequest::Refusal::OrHash)
+        ).void
+      end
+      attr_writer :refusal
+
       # The lifecycle status of the drawdown request.
       sig { returns(Increase::WireDrawdownRequest::Status::TaggedSymbol) }
       attr_accessor :status
@@ -152,6 +164,7 @@ module Increase
           end_to_end_identification: T.nilable(String),
           fulfillment_inbound_wire_transfer_id: T.nilable(String),
           idempotency_key: T.nilable(String),
+          refusal: T.nilable(Increase::WireDrawdownRequest::Refusal::OrHash),
           status: Increase::WireDrawdownRequest::Status::OrSymbol,
           submission:
             T.nilable(Increase::WireDrawdownRequest::Submission::OrHash),
@@ -201,6 +214,9 @@ module Increase
         # Increase and is used to ensure that a request is only processed once. Learn more
         # about [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key:,
+        # If the debtor refuses the drawdown request, this will contain supplemental
+        # details.
+        refusal:,
         # The lifecycle status of the drawdown request.
         status:,
         # After the drawdown request is submitted to Fedwire, this will contain
@@ -237,6 +253,7 @@ module Increase
             end_to_end_identification: T.nilable(String),
             fulfillment_inbound_wire_transfer_id: T.nilable(String),
             idempotency_key: T.nilable(String),
+            refusal: T.nilable(Increase::WireDrawdownRequest::Refusal),
             status: Increase::WireDrawdownRequest::Status::TaggedSymbol,
             submission: T.nilable(Increase::WireDrawdownRequest::Submission),
             type: Increase::WireDrawdownRequest::Type::TaggedSymbol,
@@ -405,6 +422,135 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      class Refusal < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::WireDrawdownRequest::Refusal,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Additional information about the refusal provided by the debtor bank. This is
+        # typically present when the `refusal_reason_code` is `narrative`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :refusal_reason_additional_information
+
+        # The reason the wire drawdown request was refused as provided by the debtor bank.
+        sig do
+          returns(
+            Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+          )
+        end
+        attr_accessor :refusal_reason_code
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the wire drawdown request was refused.
+        sig { returns(Time) }
+        attr_accessor :refused_at
+
+        # If the debtor refuses the drawdown request, this will contain supplemental
+        # details.
+        sig do
+          params(
+            refusal_reason_additional_information: T.nilable(String),
+            refusal_reason_code:
+              Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::OrSymbol,
+            refused_at: Time
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Additional information about the refusal provided by the debtor bank. This is
+          # typically present when the `refusal_reason_code` is `narrative`.
+          refusal_reason_additional_information:,
+          # The reason the wire drawdown request was refused as provided by the debtor bank.
+          refusal_reason_code:,
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the wire drawdown request was refused.
+          refused_at:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              refusal_reason_additional_information: T.nilable(String),
+              refusal_reason_code:
+                Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol,
+              refused_at: Time
+            }
+          )
+        end
+        def to_hash
+        end
+
+        # The reason the wire drawdown request was refused as provided by the debtor bank.
+        module RefusalReasonCode
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::WireDrawdownRequest::Refusal::RefusalReasonCode
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # The debtor's account number is invalid or missing. Corresponds to the Fedwire reason code `AC02`.
+          INVALID_DEBTOR_ACCOUNT_NUMBER =
+            T.let(
+              :invalid_debtor_account_number,
+              Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+            )
+
+          # The debtor account does not allow drawdown requests. Corresponds to the Fedwire reason code `AG01`.
+          TRANSACTION_FORBIDDEN =
+            T.let(
+              :transaction_forbidden,
+              Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+            )
+
+          # The debtor account cannot be debited for a generic reason. Corresponds to the Fedwire reason code `AG07`.
+          UNSUCCESSFUL_DIRECT_DEBIT =
+            T.let(
+              :unsuccessful_direct_debit,
+              Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+            )
+
+          # The debtor's identification is inconsistent with the debtor account number. Corresponds to the Fedwire reason code `BE01`.
+          INCONSISTENT_WITH_END_CUSTOMER =
+            T.let(
+              :inconsistent_with_end_customer,
+              Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+            )
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the Fedwire reason code `NARR`.
+          NARRATIVE =
+            T.let(
+              :narrative,
+              Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+            )
+
+          # Some other error or issue has occurred.
+          OTHER =
+            T.let(
+              :other,
+              Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::WireDrawdownRequest::Refusal::RefusalReasonCode::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 

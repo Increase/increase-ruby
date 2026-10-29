@@ -4,6 +4,8 @@ module Increase
       class WireDrawdownRequests
         def refuse: (
           String wire_drawdown_request_id,
+          ?refusal_reason_additional_information: String,
+          ?refusal_reason_code: Increase::Models::Simulations::WireDrawdownRequestRefuseParams::refusal_reason_code,
           ?request_options: Increase::request_opts
         ) -> Increase::WireDrawdownRequest
 

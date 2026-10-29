@@ -108,6 +108,13 @@ module Increase
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
 
+      # @!attribute refusal
+      #   If the debtor refuses the drawdown request, this will contain supplemental
+      #   details.
+      #
+      #   @return [Increase::Models::WireDrawdownRequest::Refusal, nil]
+      required :refusal, -> { Increase::WireDrawdownRequest::Refusal }, nil?: true
+
       # @!attribute status
       #   The lifecycle status of the drawdown request.
       #
@@ -142,7 +149,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, end_to_end_identification:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, status:, submission:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, created_at:, creditor_address:, creditor_name:, currency:, debtor_account_number:, debtor_address:, debtor_external_account_id:, debtor_name:, debtor_routing_number:, end_to_end_identification:, fulfillment_inbound_wire_transfer_id:, idempotency_key:, refusal:, status:, submission:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   Wire drawdown requests enable you to request that someone else send you a wire.
       #   Because there is nuance to making sure your counterparty's bank processes these
       #   correctly, we ask that you reach out to
@@ -196,6 +203,10 @@ module Increase
       #     The idempotency key you chose for this object. This value is unique across
       #     Increase and is used to ensure that a request is only processed once. Learn more
       #     about [idempotency](https://increase.com/documentation/idempotency-keys).
+      #
+      #   @param refusal [Increase::Models::WireDrawdownRequest::Refusal, nil]
+      #     If the debtor refuses the drawdown request, this will contain supplemental
+      #     details.
       #
       #   @param status [Symbol, Increase::Models::WireDrawdownRequest::Status]
       #     The lifecycle status of the drawdown request.
@@ -332,6 +343,72 @@ module Increase
         #   @param postal_code [String, nil] The postal code of the address.
         #
         #   @param state [String, nil] The address state.
+      end
+
+      # @see Increase::Models::WireDrawdownRequest#refusal
+      class Refusal < Increase::Internal::Type::BaseModel
+        # @!attribute refusal_reason_additional_information
+        #   Additional information about the refusal provided by the debtor bank. This is
+        #   typically present when the `refusal_reason_code` is `narrative`.
+        #
+        #   @return [String, nil]
+        required :refusal_reason_additional_information, String, nil?: true
+
+        # @!attribute refusal_reason_code
+        #   The reason the wire drawdown request was refused as provided by the debtor bank.
+        #
+        #   @return [Symbol, Increase::Models::WireDrawdownRequest::Refusal::RefusalReasonCode]
+        required :refusal_reason_code, enum: -> { Increase::WireDrawdownRequest::Refusal::RefusalReasonCode }
+
+        # @!attribute refused_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #   the wire drawdown request was refused.
+        #
+        #   @return [Time]
+        required :refused_at, Time
+
+        # @!method initialize(refusal_reason_additional_information:, refusal_reason_code:, refused_at:)
+        #   If the debtor refuses the drawdown request, this will contain supplemental
+        #   details.
+        #
+        #   @param refusal_reason_additional_information [String, nil]
+        #     Additional information about the refusal provided by the debtor bank. This is
+        #     typically present when the `refusal_reason_code` is `narrative`.
+        #
+        #   @param refusal_reason_code [Symbol, Increase::Models::WireDrawdownRequest::Refusal::RefusalReasonCode]
+        #     The reason the wire drawdown request was refused as provided by the debtor bank.
+        #
+        #   @param refused_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the wire drawdown request was refused.
+
+        # The reason the wire drawdown request was refused as provided by the debtor bank.
+        #
+        # @see Increase::Models::WireDrawdownRequest::Refusal#refusal_reason_code
+        module RefusalReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The debtor's account number is invalid or missing. Corresponds to the Fedwire reason code `AC02`.
+          INVALID_DEBTOR_ACCOUNT_NUMBER = :invalid_debtor_account_number
+
+          # The debtor account does not allow drawdown requests. Corresponds to the Fedwire reason code `AG01`.
+          TRANSACTION_FORBIDDEN = :transaction_forbidden
+
+          # The debtor account cannot be debited for a generic reason. Corresponds to the Fedwire reason code `AG07`.
+          UNSUCCESSFUL_DIRECT_DEBIT = :unsuccessful_direct_debit
+
+          # The debtor's identification is inconsistent with the debtor account number. Corresponds to the Fedwire reason code `BE01`.
+          INCONSISTENT_WITH_END_CUSTOMER = :inconsistent_with_end_customer
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the Fedwire reason code `NARR`.
+          NARRATIVE = :narrative
+
+          # Some other error or issue has occurred.
+          OTHER = :other
+
+          # @!method self.values
+          #   @return [Array<Symbol>]
+        end
       end
 
       # The lifecycle status of the drawdown request.

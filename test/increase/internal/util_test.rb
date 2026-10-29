@@ -203,7 +203,7 @@ end
 class Increase::Test::UtilFormDataEncodingTest < Minitest::Test
   class FakeCGI < CGI
     def initialize(headers, io)
-      encoded = io.to_a
+      encoded = io.call.to_a
       @ctype = headers["content-type"]
       # rubocop:disable Lint/EmptyBlock
       @io = Increase::Internal::Util::ReadIOAdapter.new(encoded.to_enum) {}
@@ -285,6 +285,27 @@ class Increase::Test::UtilFormDataEncodingTest < Minitest::Test
           parsed => ^val
         end
       end
+    end
+  end
+
+  def test_multipart_replay
+    headers = {"content-type" => "multipart/form-data"}
+    body = {
+      strio: StringIO.new("a"),
+      part: Increase::FilePart.new("b"),
+      pathname: Pathname(__FILE__)
+    }
+    headers, stream = Increase::Internal::Util.encode_content(headers, body)
+    request = {method: :post, url: URI("http://localhost"), headers: headers, body: stream}
+    expected = stream.call.to_a.join
+
+    # retries and redirects build a fresh request from the same input
+    2.times do
+      # rubocop:disable Lint/EmptyBlock
+      req, closing = Increase::Internal::Transport::PooledNetRequester.build_request(request) {}
+      # rubocop:enable Lint/EmptyBlock
+      assert_equal(expected, req.body_stream.read)
+      closing.call
     end
   end
 end

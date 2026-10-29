@@ -18,6 +18,7 @@ module Increase
         end_to_end_identification: String?,
         fulfillment_inbound_wire_transfer_id: String?,
         idempotency_key: String?,
+        refusal: Increase::WireDrawdownRequest::Refusal?,
         status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
         type: Increase::Models::WireDrawdownRequest::type_,
@@ -58,6 +59,8 @@ module Increase
 
       attr_accessor idempotency_key: String?
 
+      attr_accessor refusal: Increase::WireDrawdownRequest::Refusal?
+
       attr_accessor status: Increase::Models::WireDrawdownRequest::status
 
       attr_accessor submission: Increase::WireDrawdownRequest::Submission?
@@ -85,6 +88,7 @@ module Increase
         end_to_end_identification: String?,
         fulfillment_inbound_wire_transfer_id: String?,
         idempotency_key: String?,
+        refusal: Increase::WireDrawdownRequest::Refusal?,
         status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
         type: Increase::Models::WireDrawdownRequest::type_,
@@ -109,6 +113,7 @@ module Increase
         end_to_end_identification: String?,
         fulfillment_inbound_wire_transfer_id: String?,
         idempotency_key: String?,
+        refusal: Increase::WireDrawdownRequest::Refusal?,
         status: Increase::Models::WireDrawdownRequest::status,
         submission: Increase::WireDrawdownRequest::Submission?,
         type: Increase::Models::WireDrawdownRequest::type_,
@@ -198,6 +203,65 @@ module Increase
           postal_code: String?,
           state: String?
         }
+      end
+
+      type refusal =
+        {
+          refusal_reason_additional_information: String?,
+          refusal_reason_code: Increase::Models::WireDrawdownRequest::Refusal::refusal_reason_code,
+          refused_at: Time
+        }
+
+      class Refusal < Increase::Internal::Type::BaseModel
+        attr_accessor refusal_reason_additional_information: String?
+
+        attr_accessor refusal_reason_code: Increase::Models::WireDrawdownRequest::Refusal::refusal_reason_code
+
+        attr_accessor refused_at: Time
+
+        def initialize: (
+          refusal_reason_additional_information: String?,
+          refusal_reason_code: Increase::Models::WireDrawdownRequest::Refusal::refusal_reason_code,
+          refused_at: Time
+        ) -> void
+
+        def to_hash: -> {
+          refusal_reason_additional_information: String?,
+          refusal_reason_code: Increase::Models::WireDrawdownRequest::Refusal::refusal_reason_code,
+          refused_at: Time
+        }
+
+        type refusal_reason_code =
+          :invalid_debtor_account_number
+          | :transaction_forbidden
+          | :unsuccessful_direct_debit
+          | :inconsistent_with_end_customer
+          | :narrative
+          | :other
+
+        module RefusalReasonCode
+          extend Increase::Internal::Type::Enum
+
+          # The debtor's account number is invalid or missing. Corresponds to the Fedwire reason code `AC02`.
+          INVALID_DEBTOR_ACCOUNT_NUMBER: :invalid_debtor_account_number
+
+          # The debtor account does not allow drawdown requests. Corresponds to the Fedwire reason code `AG01`.
+          TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+          # The debtor account cannot be debited for a generic reason. Corresponds to the Fedwire reason code `AG07`.
+          UNSUCCESSFUL_DIRECT_DEBIT: :unsuccessful_direct_debit
+
+          # The debtor's identification is inconsistent with the debtor account number. Corresponds to the Fedwire reason code `BE01`.
+          INCONSISTENT_WITH_END_CUSTOMER: :inconsistent_with_end_customer
+
+          # The reason is provided as narrative information in the additional information field. Corresponds to the Fedwire reason code `NARR`.
+          NARRATIVE: :narrative
+
+          # Some other error or issue has occurred.
+          OTHER: :other
+
+          def self?.values: -> ::Array[Increase::Models::WireDrawdownRequest::Refusal::refusal_reason_code]
+        end
       end
 
       type status =

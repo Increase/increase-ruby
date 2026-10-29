@@ -149,6 +149,25 @@ module Increase
           end
           attr_writer :accept_chargeback
 
+          # The parameters for accepting the user prearbitration. Required if and only if
+          # `action` is `accept_user_prearbitration`.
+          sig do
+            returns(
+              T.nilable(
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration
+              )
+            )
+          end
+          attr_reader :accept_user_prearbitration
+
+          sig do
+            params(
+              accept_user_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration::OrHash
+            ).void
+          end
+          attr_writer :accept_user_prearbitration
+
           # The parameters for accepting the user submission. Required if and only if
           # `action` is `accept_user_submission`.
           sig do
@@ -347,6 +366,8 @@ module Increase
                 Increase::Simulations::CardDisputeActionParams::Visa::Action::OrSymbol,
               accept_chargeback:
                 Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback::OrHash,
+              accept_user_prearbitration:
+                Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration::OrHash,
               accept_user_submission:
                 Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission::OrHash,
               decline_user_prearbitration:
@@ -376,6 +397,9 @@ module Increase
             # The parameters for accepting the chargeback. Required if and only if `action` is
             # `accept_chargeback`.
             accept_chargeback: nil,
+            # The parameters for accepting the user prearbitration. Required if and only if
+            # `action` is `accept_user_prearbitration`.
+            accept_user_prearbitration: nil,
             # The parameters for accepting the user submission. Required if and only if
             # `action` is `accept_user_submission`.
             accept_user_submission: nil,
@@ -416,6 +440,8 @@ module Increase
                   Increase::Simulations::CardDisputeActionParams::Visa::Action::OrSymbol,
                 accept_chargeback:
                   Increase::Simulations::CardDisputeActionParams::Visa::AcceptChargeback,
+                accept_user_prearbitration:
+                  Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration,
                 accept_user_submission:
                   Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserSubmission,
                 decline_user_prearbitration:
@@ -463,6 +489,13 @@ module Increase
                 Increase::Simulations::CardDisputeActionParams::Visa::Action::TaggedSymbol
               )
 
+            # Simulate the merchant accepting the user's pre-arbitration. This will move the dispute to a `won` state.
+            ACCEPT_USER_PREARBITRATION =
+              T.let(
+                :accept_user_prearbitration,
+                Increase::Simulations::CardDisputeActionParams::Visa::Action::TaggedSymbol
+              )
+
             # Accept the user's submission and transmit it to the network. This will move the dispute to a `pending_response` state.
             ACCEPT_USER_SUBMISSION =
               T.let(
@@ -477,7 +510,7 @@ module Increase
                 Increase::Simulations::CardDisputeActionParams::Visa::Action::TaggedSymbol
               )
 
-            # Simulate the merchant issuing pre-arbitration. This will move the dispute to a `user_submission_required` state.
+            # Simulate the merchant issuing pre-arbitration. Only available for disputes in the fraud or authorization category. This will move the dispute to a `user_submission_required` state.
             RECEIVE_MERCHANT_PREARBITRATION =
               T.let(
                 :receive_merchant_prearbitration,
@@ -491,7 +524,7 @@ module Increase
                 Increase::Simulations::CardDisputeActionParams::Visa::Action::TaggedSymbol
               )
 
-            # Simulate the merchant re-presenting the dispute. This will move the dispute to a `user_submission_required` state.
+            # Simulate the merchant re-presenting the dispute. Only available for disputes in a consumer or processing error category. This will move the dispute to a `user_submission_required` state.
             REPRESENT =
               T.let(
                 :represent,
@@ -526,7 +559,7 @@ module Increase
                 Increase::Simulations::CardDisputeActionParams::Visa::Action::TaggedSymbol
               )
 
-            # Simulate the merchant timing out responding to a user pre-arbitration. This will move the dispute to a `win` state.
+            # Simulate the merchant timing out responding to a user pre-arbitration. This will move the dispute to a `won` state.
             TIME_OUT_USER_PREARBITRATION =
               T.let(
                 :time_out_user_prearbitration,
@@ -555,6 +588,26 @@ module Increase
 
             # The parameters for accepting the chargeback. Required if and only if `action` is
             # `accept_chargeback`.
+            sig { returns(T.attached_class) }
+            def self.new
+            end
+
+            sig { override.returns({}) }
+            def to_hash
+            end
+          end
+
+          class AcceptUserPrearbitration < Increase::Internal::Type::BaseModel
+            OrHash =
+              T.type_alias do
+                T.any(
+                  Increase::Simulations::CardDisputeActionParams::Visa::AcceptUserPrearbitration,
+                  Increase::Internal::AnyHash
+                )
+              end
+
+            # The parameters for accepting the user prearbitration. Required if and only if
+            # `action` is `accept_user_prearbitration`.
             sig { returns(T.attached_class) }
             def self.new
             end
