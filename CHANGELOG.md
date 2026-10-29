@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.362.0](https://github.com/Increase/increase-ruby/compare/v1.361.0...v1.362.0) (2026-10-29)
+
+
+### Features
+
+* **api:** api update ([#680](https://github.com/Increase/increase-ruby/issues/680)) ([5094cd6](https://github.com/Increase/increase-ruby/commit/5094cd667e297db72ba080c36c7707580634e42b))
+
 ## [1.361.0](https://github.com/Increase/increase-ruby/compare/v1.360.0...v1.361.0) (2026-10-27)
 
 
