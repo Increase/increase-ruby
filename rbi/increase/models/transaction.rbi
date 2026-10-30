@@ -2010,7 +2010,7 @@ module Increase
           attr_accessor :routing_number
 
           # A description set when the ACH Transfer was created.
-          sig { returns(String) }
+          sig { returns(T.nilable(String)) }
           attr_accessor :statement_descriptor
 
           # The identifier of the ACH Transfer that led to this Transaction.
@@ -2026,7 +2026,7 @@ module Increase
               account_number: String,
               amount: Integer,
               routing_number: String,
-              statement_descriptor: String,
+              statement_descriptor: T.nilable(String),
               transfer_id: String
             ).returns(T.attached_class)
           end
@@ -2052,7 +2052,7 @@ module Increase
                 account_number: String,
                 amount: Integer,
                 routing_number: String,
-                statement_descriptor: String,
+                statement_descriptor: T.nilable(String),
                 transfer_id: String
               }
             )
