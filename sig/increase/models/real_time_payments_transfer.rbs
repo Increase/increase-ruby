@@ -19,6 +19,7 @@ module Increase
         inbound_real_time_payments_request_for_payment_id: String?,
         pending_transaction_id: String?,
         rejection: Increase::RealTimePaymentsTransfer::Rejection?,
+        return_of_inbound_real_time_payments_transfer_id: String?,
         routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::RealTimePaymentsTransfer::status,
@@ -65,6 +66,8 @@ module Increase
 
       attr_accessor rejection: Increase::RealTimePaymentsTransfer::Rejection?
 
+      attr_accessor return_of_inbound_real_time_payments_transfer_id: String?
+
       attr_accessor routing_number: String
 
       attr_accessor source_account_number_id: String
@@ -101,6 +104,7 @@ module Increase
         inbound_real_time_payments_request_for_payment_id: String?,
         pending_transaction_id: String?,
         rejection: Increase::RealTimePaymentsTransfer::Rejection?,
+        return_of_inbound_real_time_payments_transfer_id: String?,
         routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::RealTimePaymentsTransfer::status,
@@ -130,6 +134,7 @@ module Increase
         inbound_real_time_payments_request_for_payment_id: String?,
         pending_transaction_id: String?,
         rejection: Increase::RealTimePaymentsTransfer::Rejection?,
+        return_of_inbound_real_time_payments_transfer_id: String?,
         routing_number: String,
         source_account_number_id: String,
         status: Increase::Models::RealTimePaymentsTransfer::status,

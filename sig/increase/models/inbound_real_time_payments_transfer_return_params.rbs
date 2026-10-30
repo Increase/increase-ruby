@@ -1,0 +1,30 @@
+module Increase
+  module Models
+    type inbound_real_time_payments_transfer_return_params =
+      { inbound_real_time_payments_transfer_id: String, amount: Integer }
+      & Increase::Internal::Type::request_parameters
+
+    class InboundRealTimePaymentsTransferReturnParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor inbound_real_time_payments_transfer_id: String
+
+      attr_reader amount: Integer?
+
+      def amount=: (Integer) -> Integer
+
+      def initialize: (
+        inbound_real_time_payments_transfer_id: String,
+        ?amount: Integer,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        inbound_real_time_payments_transfer_id: String,
+        amount: Integer,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end

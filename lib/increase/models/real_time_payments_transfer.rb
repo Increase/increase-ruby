@@ -120,6 +120,13 @@ module Increase
       #   @return [Increase::Models::RealTimePaymentsTransfer::Rejection, nil]
       required :rejection, -> { Increase::RealTimePaymentsTransfer::Rejection }, nil?: true
 
+      # @!attribute return_of_inbound_real_time_payments_transfer_id
+      #   The identifier of the Inbound Real-Time Payments Transfer this transfer returns,
+      #   if any.
+      #
+      #   @return [String, nil]
+      required :return_of_inbound_real_time_payments_transfer_id, String, nil?: true
+
       # @!attribute routing_number
       #   The destination American Bankers' Association (ABA) Routing Transit Number
       #   (RTN).
@@ -179,7 +186,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, external_account_id:, idempotency_key:, inbound_real_time_payments_request_for_payment_id:, pending_transaction_id:, rejection:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, external_account_id:, idempotency_key:, inbound_real_time_payments_request_for_payment_id:, pending_transaction_id:, rejection:, return_of_inbound_real_time_payments_transfer_id:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:, unstructured_remittance_information:)
       #   Real-Time Payments transfers move funds, within seconds, between your Increase
       #   account and any other account on the Real-Time Payments network.
       #
@@ -243,6 +250,10 @@ module Increase
       #   @param rejection [Increase::Models::RealTimePaymentsTransfer::Rejection, nil]
       #     If the transfer is rejected by Real-Time Payments or the destination financial
       #     institution, this will contain supplemental details.
+      #
+      #   @param return_of_inbound_real_time_payments_transfer_id [String, nil]
+      #     The identifier of the Inbound Real-Time Payments Transfer this transfer returns,
+      #     if any.
       #
       #   @param routing_number [String]
       #     The destination American Bankers' Association (ABA) Routing Transit Number

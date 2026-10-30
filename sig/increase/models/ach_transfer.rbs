@@ -33,7 +33,7 @@ module Increase
         routing_number: String,
         settlement: Increase::ACHTransfer::Settlement?,
         standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code,
-        statement_descriptor: String,
+        statement_descriptor: String?,
         status: Increase::Models::ACHTransfer::status,
         submission: Increase::ACHTransfer::Submission?,
         transaction_id: String?,
@@ -103,7 +103,7 @@ module Increase
 
       attr_accessor standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code
 
-      attr_accessor statement_descriptor: String
+      attr_accessor statement_descriptor: String?
 
       attr_accessor status: Increase::Models::ACHTransfer::status
 
@@ -145,7 +145,7 @@ module Increase
         routing_number: String,
         settlement: Increase::ACHTransfer::Settlement?,
         standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code,
-        statement_descriptor: String,
+        statement_descriptor: String?,
         status: Increase::Models::ACHTransfer::status,
         submission: Increase::ACHTransfer::Submission?,
         transaction_id: String?,
@@ -184,7 +184,7 @@ module Increase
         routing_number: String,
         settlement: Increase::ACHTransfer::Settlement?,
         standard_entry_class_code: Increase::Models::ACHTransfer::standard_entry_class_code,
-        statement_descriptor: String,
+        statement_descriptor: String?,
         status: Increase::Models::ACHTransfer::status,
         submission: Increase::ACHTransfer::Submission?,
         transaction_id: String?,

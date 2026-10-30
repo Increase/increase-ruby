@@ -95,6 +95,10 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :end_to_end_identification
 
+      # The identifier of the Real-Time Payments Transfer this transfer returns, if any.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :return_of_real_time_payments_transfer_id
+
       # The lifecycle status of the transfer.
       sig do
         returns(Increase::InboundRealTimePaymentsTransfer::Status::TaggedSymbol)
@@ -140,6 +144,7 @@ module Increase
               Increase::InboundRealTimePaymentsTransfer::Decline::OrHash
             ),
           end_to_end_identification: T.nilable(String),
+          return_of_real_time_payments_transfer_id: T.nilable(String),
           status: Increase::InboundRealTimePaymentsTransfer::Status::OrSymbol,
           transaction_identification: String,
           type: Increase::InboundRealTimePaymentsTransfer::Type::OrSymbol,
@@ -175,6 +180,8 @@ module Increase
         decline:,
         # A free-form reference string set by the sender, to help identify the transfer.
         end_to_end_identification:,
+        # The identifier of the Real-Time Payments Transfer this transfer returns, if any.
+        return_of_real_time_payments_transfer_id:,
         # The lifecycle status of the transfer.
         status:,
         # The Real-Time Payments network identification of the transfer.
@@ -208,6 +215,7 @@ module Increase
             decline:
               T.nilable(Increase::InboundRealTimePaymentsTransfer::Decline),
             end_to_end_identification: T.nilable(String),
+            return_of_real_time_payments_transfer_id: T.nilable(String),
             status:
               Increase::InboundRealTimePaymentsTransfer::Status::TaggedSymbol,
             transaction_identification: String,
