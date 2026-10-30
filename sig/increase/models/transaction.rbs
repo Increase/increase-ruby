@@ -567,7 +567,7 @@ module Increase
             account_number: String,
             amount: Integer,
             routing_number: String,
-            statement_descriptor: String,
+            statement_descriptor: String?,
             transfer_id: String
           }
 
@@ -578,7 +578,7 @@ module Increase
 
           attr_accessor routing_number: String
 
-          attr_accessor statement_descriptor: String
+          attr_accessor statement_descriptor: String?
 
           attr_accessor transfer_id: String
 
@@ -586,7 +586,7 @@ module Increase
             account_number: String,
             amount: Integer,
             routing_number: String,
-            statement_descriptor: String,
+            statement_descriptor: String?,
             transfer_id: String
           ) -> void
 
@@ -594,7 +594,7 @@ module Increase
             account_number: String,
             amount: Integer,
             routing_number: String,
-            statement_descriptor: String,
+            statement_descriptor: String?,
             transfer_id: String
           }
         end

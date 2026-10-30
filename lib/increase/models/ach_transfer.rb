@@ -218,8 +218,8 @@ module Increase
       # @!attribute statement_descriptor
       #   The descriptor that will show on the recipient's bank statement.
       #
-      #   @return [String]
-      required :statement_descriptor, String
+      #   @return [String, nil]
+      required :statement_descriptor, String, nil?: true
 
       # @!attribute status
       #   The lifecycle status of the transfer.
@@ -362,7 +362,7 @@ module Increase
       #     [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       #     to use for the transfer.
       #
-      #   @param statement_descriptor [String] The descriptor that will show on the recipient's bank statement.
+      #   @param statement_descriptor [String, nil] The descriptor that will show on the recipient's bank statement.
       #
       #   @param status [Symbol, Increase::Models::ACHTransfer::Status] The lifecycle status of the transfer.
       #
