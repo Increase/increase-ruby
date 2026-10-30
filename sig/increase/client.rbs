@@ -115,14 +115,6 @@ module Increase
 
     attr_reader real_time_decisions: Increase::Resources::RealTimeDecisions
 
-    attr_reader groups: Increase::Resources::Groups
-
-    attr_reader oauth_applications: Increase::Resources::OAuthApplications
-
-    attr_reader oauth_connections: Increase::Resources::OAuthConnections
-
-    attr_reader oauth_tokens: Increase::Resources::OAuthTokens
-
     attr_reader intrafi_account_enrollments: Increase::Resources::IntrafiAccountEnrollments
 
     attr_reader intrafi_balances: Increase::Resources::IntrafiBalances

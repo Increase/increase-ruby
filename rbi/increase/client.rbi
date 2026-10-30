@@ -174,18 +174,6 @@ module Increase
     sig { returns(Increase::Resources::RealTimeDecisions) }
     attr_reader :real_time_decisions
 
-    sig { returns(Increase::Resources::Groups) }
-    attr_reader :groups
-
-    sig { returns(Increase::Resources::OAuthApplications) }
-    attr_reader :oauth_applications
-
-    sig { returns(Increase::Resources::OAuthConnections) }
-    attr_reader :oauth_connections
-
-    sig { returns(Increase::Resources::OAuthTokens) }
-    attr_reader :oauth_tokens
-
     sig { returns(Increase::Resources::IntrafiAccountEnrollments) }
     attr_reader :intrafi_account_enrollments
 
