@@ -223,7 +223,7 @@ module Increase
       attr_accessor :standard_entry_class_code
 
       # The descriptor that will show on the recipient's bank statement.
-      sig { returns(String) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :statement_descriptor
 
       # The lifecycle status of the transfer.
@@ -295,7 +295,7 @@ module Increase
           settlement: T.nilable(Increase::ACHTransfer::Settlement::OrHash),
           standard_entry_class_code:
             Increase::ACHTransfer::StandardEntryClassCode::OrSymbol,
-          statement_descriptor: String,
+          statement_descriptor: T.nilable(String),
           status: Increase::ACHTransfer::Status::OrSymbol,
           submission: T.nilable(Increase::ACHTransfer::Submission::OrHash),
           transaction_id: T.nilable(String),
@@ -446,7 +446,7 @@ module Increase
             settlement: T.nilable(Increase::ACHTransfer::Settlement),
             standard_entry_class_code:
               Increase::ACHTransfer::StandardEntryClassCode::TaggedSymbol,
-            statement_descriptor: String,
+            statement_descriptor: T.nilable(String),
             status: Increase::ACHTransfer::Status::TaggedSymbol,
             submission: T.nilable(Increase::ACHTransfer::Submission),
             transaction_id: T.nilable(String),
