@@ -15,6 +15,12 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::InboundRealTimePaymentsTransfer]
 
+      def return_: (
+        String inbound_real_time_payments_transfer_id,
+        ?amount: Integer,
+        ?request_options: Increase::request_opts
+      ) -> Increase::RealTimePaymentsTransfer
+
       def initialize: (client: Increase::Client) -> void
     end
   end

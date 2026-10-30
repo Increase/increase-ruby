@@ -59,25 +59,34 @@ module Increase
       required :cancellation, -> { Increase::ACHTransfer::Cancellation }, nil?: true
 
       # @!attribute company_descriptive_date
-      #   The description of the date of the transfer.
+      #   A description of the transfer date (typically `YYMMDD`), sent in the company
+      #   batch header. This value is informational and does not affect funds movement,
+      #   settlement timing, or returns.
       #
       #   @return [String, nil]
       required :company_descriptive_date, String, nil?: true
 
       # @!attribute company_discretionary_data
-      #   The data you chose to associate with the transfer.
+      #   Custom data sent in the company batch header, meant as metadata for the
+      #   originator. This value is informational and does not affect funds movement,
+      #   settlement timing, or returns.
       #
       #   @return [String, nil]
       required :company_discretionary_data, String, nil?: true
 
       # @!attribute company_entry_description
-      #   The description of the transfer you set to be shown to the recipient.
+      #   A short description sent in the company batch header, meant to provide the
+      #   receiver with a reason for the transfer. Many receivers do not surface this data
+      #   on the receiver's bank statement.
       #
       #   @return [String, nil]
       required :company_entry_description, String, nil?: true
 
       # @!attribute company_id
-      #   The company ID associated with the transfer.
+      #   The Company ID sent in the batch header, which identifies the originator to the
+      #   receiving bank. Businesses use this value to allowlist the companies permitted
+      #   to debit their accounts. This value is configured by Increase and will be the
+      #   same for all your transfers.
       #
       #   @return [String]
       required :company_id, String
@@ -179,10 +188,8 @@ module Increase
       required :pending_transaction_id, String, nil?: true
 
       # @!attribute preferred_effective_date
-      #   Configuration for how the effective date of the transfer will be set. This
-      #   determines same-day vs future-dated settlement timing. If not set, defaults to a
-      #   `settlement_schedule` of `same_day`. If set, exactly one of the child attributes
-      #   must be set.
+      #   Configuration for how the effective date of the transfer was set. This
+      #   determines same-day vs future-dated settlement timing.
       #
       #   @return [Increase::Models::ACHTransfer::PreferredEffectiveDate]
       required :preferred_effective_date, -> { Increase::ACHTransfer::PreferredEffectiveDate }
@@ -218,8 +225,8 @@ module Increase
       # @!attribute statement_descriptor
       #   The descriptor that will show on the recipient's bank statement.
       #
-      #   @return [String]
-      required :statement_descriptor, String
+      #   @return [String, nil]
+      required :statement_descriptor, String, nil?: true
 
       # @!attribute status
       #   The lifecycle status of the transfer.
@@ -281,14 +288,26 @@ module Increase
       #     If your account requires approvals for transfers and the transfer was not
       #     approved, this will contain details of the cancellation.
       #
-      #   @param company_descriptive_date [String, nil] The description of the date of the transfer.
+      #   @param company_descriptive_date [String, nil]
+      #     A description of the transfer date (typically `YYMMDD`), sent in the company
+      #     batch header. This value is informational and does not affect funds movement,
+      #     settlement timing, or returns.
       #
-      #   @param company_discretionary_data [String, nil] The data you chose to associate with the transfer.
+      #   @param company_discretionary_data [String, nil]
+      #     Custom data sent in the company batch header, meant as metadata for the
+      #     originator. This value is informational and does not affect funds movement,
+      #     settlement timing, or returns.
       #
       #   @param company_entry_description [String, nil]
-      #     The description of the transfer you set to be shown to the recipient.
+      #     A short description sent in the company batch header, meant to provide the
+      #     receiver with a reason for the transfer. Many receivers do not surface this data
+      #     on the receiver's bank statement.
       #
-      #   @param company_id [String] The company ID associated with the transfer.
+      #   @param company_id [String]
+      #     The Company ID sent in the batch header, which identifies the originator to the
+      #     receiving bank. Businesses use this value to allowlist the companies permitted
+      #     to debit their accounts. This value is configured by Increase and will be the
+      #     same for all your transfers.
       #
       #   @param company_name [String, nil] The name by which the recipient knows you.
       #
@@ -341,10 +360,8 @@ module Increase
       #     by someone else in your organization.
       #
       #   @param preferred_effective_date [Increase::Models::ACHTransfer::PreferredEffectiveDate]
-      #     Configuration for how the effective date of the transfer will be set. This
-      #     determines same-day vs future-dated settlement timing. If not set, defaults to a
-      #     `settlement_schedule` of `same_day`. If set, exactly one of the child attributes
-      #     must be set.
+      #     Configuration for how the effective date of the transfer was set. This
+      #     determines same-day vs future-dated settlement timing.
       #
       #   @param return_ [Increase::Models::ACHTransfer::Return, nil]
       #     If your transfer is returned, this will contain details of the return.
@@ -362,7 +379,7 @@ module Increase
       #     [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       #     to use for the transfer.
       #
-      #   @param statement_descriptor [String] The descriptor that will show on the recipient's bank statement.
+      #   @param statement_descriptor [String, nil] The descriptor that will show on the recipient's bank statement.
       #
       #   @param status [Symbol, Increase::Models::ACHTransfer::Status] The lifecycle status of the transfer.
       #
@@ -1069,10 +1086,8 @@ module Increase
                  nil?: true
 
         # @!method initialize(date:, settlement_schedule:)
-        #   Configuration for how the effective date of the transfer will be set. This
-        #   determines same-day vs future-dated settlement timing. If not set, defaults to a
-        #   `settlement_schedule` of `same_day`. If set, exactly one of the child attributes
-        #   must be set.
+        #   Configuration for how the effective date of the transfer was set. This
+        #   determines same-day vs future-dated settlement timing.
         #
         #   @param date [Date, nil]
         #     A specific date in [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) format to

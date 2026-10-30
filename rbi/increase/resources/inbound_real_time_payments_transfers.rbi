@@ -50,6 +50,25 @@ module Increase
       )
       end
 
+      # Return an Inbound Real-Time Payments Transfer
+      sig do
+        params(
+          inbound_real_time_payments_transfer_id: String,
+          amount: Integer,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::RealTimePaymentsTransfer)
+      end
+      def return_(
+        # The identifier of the Inbound Real-Time Payments Transfer to return to its
+        # sender.
+        inbound_real_time_payments_transfer_id,
+        # The amount to return, in USD cents. Defaults to the full amount of the Inbound
+        # Real-Time Payments Transfer, and can't be higher than it.
+        amount: nil,
+        request_options: {}
+      )
+      end
+
       # @api private
       sig { params(client: Increase::Client).returns(T.attached_class) }
       def self.new(client:)

@@ -84,6 +84,12 @@ module Increase
       #   @return [String, nil]
       required :end_to_end_identification, String, nil?: true
 
+      # @!attribute return_of_real_time_payments_transfer_id
+      #   The identifier of the Real-Time Payments Transfer this transfer returns, if any.
+      #
+      #   @return [String, nil]
+      required :return_of_real_time_payments_transfer_id, String, nil?: true
+
       # @!attribute status
       #   The lifecycle status of the transfer.
       #
@@ -109,7 +115,7 @@ module Increase
       #   @return [String, nil]
       required :unstructured_remittance_information, String, nil?: true
 
-      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, end_to_end_identification:, status:, transaction_identification:, type:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number_id:, amount:, confirmation:, created_at:, creditor_name:, currency:, debtor_account_number:, debtor_name:, debtor_routing_number:, decline:, end_to_end_identification:, return_of_real_time_payments_transfer_id:, status:, transaction_identification:, type:, unstructured_remittance_information:)
       #   An Inbound Real-Time Payments Transfer is a Real-Time Payments transfer
       #   initiated outside of Increase to your account.
       #
@@ -146,6 +152,9 @@ module Increase
       #
       #   @param end_to_end_identification [String, nil]
       #     A free-form reference string set by the sender, to help identify the transfer.
+      #
+      #   @param return_of_real_time_payments_transfer_id [String, nil]
+      #     The identifier of the Real-Time Payments Transfer this transfer returns, if any.
       #
       #   @param status [Symbol, Increase::Models::InboundRealTimePaymentsTransfer::Status]
       #     The lifecycle status of the transfer.
