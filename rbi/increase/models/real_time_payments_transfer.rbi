@@ -93,7 +93,9 @@ module Increase
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       # currency. For real-time payments transfers this is always equal to `USD`.
-      sig { returns(Increase::RealTimePaymentsTransfer::Currency::OrSymbol) }
+      sig do
+        returns(Increase::RealTimePaymentsTransfer::Currency::TaggedSymbol)
+      end
       attr_accessor :currency
 
       # The name of the transfer's sender. If not provided, defaults to the name of the
@@ -151,7 +153,7 @@ module Increase
       attr_accessor :source_account_number_id
 
       # The lifecycle status of the transfer.
-      sig { returns(Increase::RealTimePaymentsTransfer::Status::OrSymbol) }
+      sig { returns(Increase::RealTimePaymentsTransfer::Status::TaggedSymbol) }
       attr_accessor :status
 
       # After the transfer is submitted to Real-Time Payments, this will contain
@@ -173,7 +175,7 @@ module Increase
 
       # A constant representing the object's type. For this resource it will always be
       # `real_time_payments_transfer`.
-      sig { returns(Increase::RealTimePaymentsTransfer::Type::OrSymbol) }
+      sig { returns(Increase::RealTimePaymentsTransfer::Type::TaggedSymbol) }
       attr_accessor :type
 
       # The name of the ultimate recipient of the transfer. Set this if the creditor is
@@ -325,7 +327,8 @@ module Increase
             created_by:
               T.nilable(Increase::RealTimePaymentsTransfer::CreatedBy),
             creditor_name: String,
-            currency: Increase::RealTimePaymentsTransfer::Currency::OrSymbol,
+            currency:
+              Increase::RealTimePaymentsTransfer::Currency::TaggedSymbol,
             debtor_name: T.nilable(String),
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
@@ -336,11 +339,11 @@ module Increase
             return_of_inbound_real_time_payments_transfer_id: T.nilable(String),
             routing_number: String,
             source_account_number_id: String,
-            status: Increase::RealTimePaymentsTransfer::Status::OrSymbol,
+            status: Increase::RealTimePaymentsTransfer::Status::TaggedSymbol,
             submission:
               T.nilable(Increase::RealTimePaymentsTransfer::Submission),
             transaction_id: T.nilable(String),
-            type: Increase::RealTimePaymentsTransfer::Type::OrSymbol,
+            type: Increase::RealTimePaymentsTransfer::Type::TaggedSymbol,
             ultimate_creditor_name: T.nilable(String),
             ultimate_debtor_name: T.nilable(String),
             unstructured_remittance_information: String
@@ -479,7 +482,7 @@ module Increase
         # The type of object that created this transfer.
         sig do
           returns(
-            Increase::RealTimePaymentsTransfer::CreatedBy::Category::OrSymbol
+            Increase::RealTimePaymentsTransfer::CreatedBy::Category::TaggedSymbol
           )
         end
         attr_accessor :category
@@ -575,7 +578,7 @@ module Increase
           override.returns(
             {
               category:
-                Increase::RealTimePaymentsTransfer::CreatedBy::Category::OrSymbol,
+                Increase::RealTimePaymentsTransfer::CreatedBy::Category::TaggedSymbol,
               api_key:
                 T.nilable(
                   Increase::RealTimePaymentsTransfer::CreatedBy::APIKey
@@ -763,7 +766,7 @@ module Increase
         # Real-Time Payments network.
         sig do
           returns(
-            Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::OrSymbol
+            Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
           )
         end
         attr_accessor :reject_reason_code
@@ -801,7 +804,7 @@ module Increase
             {
               reject_reason_additional_information: T.nilable(String),
               reject_reason_code:
-                Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::OrSymbol,
+                Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol,
               rejected_at: T.nilable(Time)
             }
           )
