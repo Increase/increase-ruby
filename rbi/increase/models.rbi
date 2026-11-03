@@ -327,10 +327,6 @@ module Increase
 
   FileRetrieveParams = Increase::Models::FileRetrieveParams
 
-  Group = Increase::Models::Group
-
-  GroupRetrieveParams = Increase::Models::GroupRetrieveParams
-
   InboundACHTransfer = Increase::Models::InboundACHTransfer
 
   InboundACHTransferCreateNotificationOfChangeParams =
@@ -395,6 +391,9 @@ module Increase
 
   InboundRealTimePaymentsTransferRetrieveParams =
     Increase::Models::InboundRealTimePaymentsTransferRetrieveParams
+
+  InboundRealTimePaymentsTransferReturnParams =
+    Increase::Models::InboundRealTimePaymentsTransferReturnParams
 
   InboundWireDrawdownRequest = Increase::Models::InboundWireDrawdownRequest
 
@@ -466,24 +465,6 @@ module Increase
     Increase::Models::LockboxRecipientRetrieveParams
 
   LockboxRecipientUpdateParams = Increase::Models::LockboxRecipientUpdateParams
-
-  OAuthApplication = Increase::Models::OAuthApplication
-
-  OAuthApplicationListParams = Increase::Models::OAuthApplicationListParams
-
-  OAuthApplicationRetrieveParams =
-    Increase::Models::OAuthApplicationRetrieveParams
-
-  OAuthConnection = Increase::Models::OAuthConnection
-
-  OAuthConnectionListParams = Increase::Models::OAuthConnectionListParams
-
-  OAuthConnectionRetrieveParams =
-    Increase::Models::OAuthConnectionRetrieveParams
-
-  OAuthToken = Increase::Models::OAuthToken
-
-  OAuthTokenCreateParams = Increase::Models::OAuthTokenCreateParams
 
   PendingTransaction = Increase::Models::PendingTransaction
 

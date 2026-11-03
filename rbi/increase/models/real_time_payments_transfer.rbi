@@ -93,9 +93,7 @@ module Increase
 
       # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       # currency. For real-time payments transfers this is always equal to `USD`.
-      sig do
-        returns(Increase::RealTimePaymentsTransfer::Currency::TaggedSymbol)
-      end
+      sig { returns(Increase::RealTimePaymentsTransfer::Currency::OrSymbol) }
       attr_accessor :currency
 
       # The name of the transfer's sender. If not provided, defaults to the name of the
@@ -138,6 +136,11 @@ module Increase
       end
       attr_writer :rejection
 
+      # The identifier of the Inbound Real-Time Payments Transfer this transfer returns,
+      # if any.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :return_of_inbound_real_time_payments_transfer_id
+
       # The destination American Bankers' Association (ABA) Routing Transit Number
       # (RTN).
       sig { returns(String) }
@@ -148,7 +151,7 @@ module Increase
       attr_accessor :source_account_number_id
 
       # The lifecycle status of the transfer.
-      sig { returns(Increase::RealTimePaymentsTransfer::Status::TaggedSymbol) }
+      sig { returns(Increase::RealTimePaymentsTransfer::Status::OrSymbol) }
       attr_accessor :status
 
       # After the transfer is submitted to Real-Time Payments, this will contain
@@ -170,7 +173,7 @@ module Increase
 
       # A constant representing the object's type. For this resource it will always be
       # `real_time_payments_transfer`.
-      sig { returns(Increase::RealTimePaymentsTransfer::Type::TaggedSymbol) }
+      sig { returns(Increase::RealTimePaymentsTransfer::Type::OrSymbol) }
       attr_accessor :type
 
       # The name of the ultimate recipient of the transfer. Set this if the creditor is
@@ -215,6 +218,7 @@ module Increase
           pending_transaction_id: T.nilable(String),
           rejection:
             T.nilable(Increase::RealTimePaymentsTransfer::Rejection::OrHash),
+          return_of_inbound_real_time_payments_transfer_id: T.nilable(String),
           routing_number: String,
           source_account_number_id: String,
           status: Increase::RealTimePaymentsTransfer::Status::OrSymbol,
@@ -276,6 +280,9 @@ module Increase
         # If the transfer is rejected by Real-Time Payments or the destination financial
         # institution, this will contain supplemental details.
         rejection:,
+        # The identifier of the Inbound Real-Time Payments Transfer this transfer returns,
+        # if any.
+        return_of_inbound_real_time_payments_transfer_id:,
         # The destination American Bankers' Association (ABA) Routing Transit Number
         # (RTN).
         routing_number:,
@@ -318,8 +325,7 @@ module Increase
             created_by:
               T.nilable(Increase::RealTimePaymentsTransfer::CreatedBy),
             creditor_name: String,
-            currency:
-              Increase::RealTimePaymentsTransfer::Currency::TaggedSymbol,
+            currency: Increase::RealTimePaymentsTransfer::Currency::OrSymbol,
             debtor_name: T.nilable(String),
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
@@ -327,13 +333,14 @@ module Increase
               T.nilable(String),
             pending_transaction_id: T.nilable(String),
             rejection: T.nilable(Increase::RealTimePaymentsTransfer::Rejection),
+            return_of_inbound_real_time_payments_transfer_id: T.nilable(String),
             routing_number: String,
             source_account_number_id: String,
-            status: Increase::RealTimePaymentsTransfer::Status::TaggedSymbol,
+            status: Increase::RealTimePaymentsTransfer::Status::OrSymbol,
             submission:
               T.nilable(Increase::RealTimePaymentsTransfer::Submission),
             transaction_id: T.nilable(String),
-            type: Increase::RealTimePaymentsTransfer::Type::TaggedSymbol,
+            type: Increase::RealTimePaymentsTransfer::Type::OrSymbol,
             ultimate_creditor_name: T.nilable(String),
             ultimate_debtor_name: T.nilable(String),
             unstructured_remittance_information: String
@@ -472,7 +479,7 @@ module Increase
         # The type of object that created this transfer.
         sig do
           returns(
-            Increase::RealTimePaymentsTransfer::CreatedBy::Category::TaggedSymbol
+            Increase::RealTimePaymentsTransfer::CreatedBy::Category::OrSymbol
           )
         end
         attr_accessor :category
@@ -568,7 +575,7 @@ module Increase
           override.returns(
             {
               category:
-                Increase::RealTimePaymentsTransfer::CreatedBy::Category::TaggedSymbol,
+                Increase::RealTimePaymentsTransfer::CreatedBy::Category::OrSymbol,
               api_key:
                 T.nilable(
                   Increase::RealTimePaymentsTransfer::CreatedBy::APIKey
@@ -756,7 +763,7 @@ module Increase
         # Real-Time Payments network.
         sig do
           returns(
-            Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol
+            Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::OrSymbol
           )
         end
         attr_accessor :reject_reason_code
@@ -794,7 +801,7 @@ module Increase
             {
               reject_reason_additional_information: T.nilable(String),
               reject_reason_code:
-                Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::TaggedSymbol,
+                Increase::RealTimePaymentsTransfer::Rejection::RejectReasonCode::OrSymbol,
               rejected_at: T.nilable(Time)
             }
           )

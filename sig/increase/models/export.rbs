@@ -363,16 +363,26 @@ module Increase
         def to_hash: -> {  }
       end
 
-      type fee_csv = { created_at: Increase::Export::FeeCsv::CreatedAt? }
+      type fee_csv =
+        {
+          created_at: Increase::Export::FeeCsv::CreatedAt?,
+          fee_statement_period_start: Date?
+        }
 
       class FeeCsv < Increase::Internal::Type::BaseModel
         attr_accessor created_at: Increase::Export::FeeCsv::CreatedAt?
 
+        attr_accessor fee_statement_period_start: Date?
+
         def initialize: (
-          created_at: Increase::Export::FeeCsv::CreatedAt?
+          created_at: Increase::Export::FeeCsv::CreatedAt?,
+          fee_statement_period_start: Date?
         ) -> void
 
-        def to_hash: -> { created_at: Increase::Export::FeeCsv::CreatedAt? }
+        def to_hash: -> {
+          created_at: Increase::Export::FeeCsv::CreatedAt?,
+          fee_statement_period_start: Date?
+        }
 
         type created_at =
           {

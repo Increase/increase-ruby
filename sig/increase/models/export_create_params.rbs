@@ -336,6 +336,7 @@ module Increase
       type fee_csv =
         {
           created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt,
+          fee_statement_period_start: Date,
           program_id: String
         }
 
@@ -346,17 +347,23 @@ module Increase
           Increase::ExportCreateParams::FeeCsv::CreatedAt
         ) -> Increase::ExportCreateParams::FeeCsv::CreatedAt
 
+        attr_reader fee_statement_period_start: Date?
+
+        def fee_statement_period_start=: (Date) -> Date
+
         attr_reader program_id: String?
 
         def program_id=: (String) -> String
 
         def initialize: (
           ?created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt,
+          ?fee_statement_period_start: Date,
           ?program_id: String
         ) -> void
 
         def to_hash: -> {
           created_at: Increase::ExportCreateParams::FeeCsv::CreatedAt,
+          fee_statement_period_start: Date,
           program_id: String
         }
 

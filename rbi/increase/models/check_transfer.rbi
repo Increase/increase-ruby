@@ -791,7 +791,7 @@ module Increase
         attr_accessor :note
 
         # The payer of the check. This will be printed on the top-left portion of the
-        # check and defaults to the return address if unspecified.
+        # check.
         sig { returns(T::Array[Increase::CheckTransfer::PhysicalCheck::Payer]) }
         attr_accessor :payer
 
@@ -894,7 +894,7 @@ module Increase
           # The descriptor that will be printed on the letter included with the check.
           note:,
           # The payer of the check. This will be printed on the top-left portion of the
-          # check and defaults to the return address if unspecified.
+          # check.
           payer:,
           # The identifier of the Physical Check Batch that this check is a part of.
           physical_check_batch_id:,

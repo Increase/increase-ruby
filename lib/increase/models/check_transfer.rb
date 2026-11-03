@@ -531,7 +531,7 @@ module Increase
 
         # @!attribute payer
         #   The payer of the check. This will be printed on the top-left portion of the
-        #   check and defaults to the return address if unspecified.
+        #   check.
         #
         #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
         required :payer, -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::Payer] }
@@ -597,7 +597,7 @@ module Increase
         #
         #   @param payer [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
         #     The payer of the check. This will be printed on the top-left portion of the
-        #     check and defaults to the return address if unspecified.
+        #     check.
         #
         #   @param physical_check_batch_id [String, nil]
         #     The identifier of the Physical Check Batch that this check is a part of.
