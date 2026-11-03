@@ -298,7 +298,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           physical_check_batch_id: String?,
           recipient_name: String,
-          return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
+          return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress,
           return_address_name: String?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
@@ -322,7 +322,7 @@ module Increase
 
         attr_accessor recipient_name: String
 
-        attr_accessor return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?
+        attr_accessor return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress
 
         attr_accessor return_address_name: String?
 
@@ -341,7 +341,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           physical_check_batch_id: String?,
           recipient_name: String,
-          return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
+          return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress,
           return_address_name: String?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
@@ -357,7 +357,7 @@ module Increase
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           physical_check_batch_id: String?,
           recipient_name: String,
-          return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress?,
+          return_address: Increase::CheckTransfer::PhysicalCheck::ReturnAddress,
           return_address_name: String?,
           shipping_method: Increase::Models::CheckTransfer::PhysicalCheck::shipping_method,
           signature: Increase::CheckTransfer::PhysicalCheck::Signature,
@@ -366,19 +366,19 @@ module Increase
 
         type mailing_address =
           {
-            city: String?,
-            :line1 => String?,
+            city: String,
+            :line1 => String,
             :line2 => String?,
             name: String?,
             phone: String?,
-            postal_code: String?,
-            state: String?
+            postal_code: String,
+            state: String
           }
 
         class MailingAddress < Increase::Internal::Type::BaseModel
-          attr_accessor city: String?
+          attr_accessor city: String
 
-          attr_accessor line1: String?
+          attr_accessor line1: String
 
           attr_accessor line2: String?
 
@@ -386,28 +386,28 @@ module Increase
 
           attr_accessor phone: String?
 
-          attr_accessor postal_code: String?
+          attr_accessor postal_code: String
 
-          attr_accessor state: String?
+          attr_accessor state: String
 
           def initialize: (
-            city: String?,
-            line1: String?,
+            city: String,
+            line1: String,
             line2: String?,
             name: String?,
             phone: String?,
-            postal_code: String?,
-            state: String?
+            postal_code: String,
+            state: String
           ) -> void
 
           def to_hash: -> {
-            city: String?,
-            :line1 => String?,
+            city: String,
+            :line1 => String,
             :line2 => String?,
             name: String?,
             phone: String?,
-            postal_code: String?,
-            state: String?
+            postal_code: String,
+            state: String
           }
         end
 
@@ -423,48 +423,48 @@ module Increase
 
         type return_address =
           {
-            city: String?,
-            :line1 => String?,
+            city: String,
+            :line1 => String,
             :line2 => String?,
-            name: String?,
+            name: String,
             phone: String?,
-            postal_code: String?,
-            state: String?
+            postal_code: String,
+            state: String
           }
 
         class ReturnAddress < Increase::Internal::Type::BaseModel
-          attr_accessor city: String?
+          attr_accessor city: String
 
-          attr_accessor line1: String?
+          attr_accessor line1: String
 
           attr_accessor line2: String?
 
-          attr_accessor name: String?
+          attr_accessor name: String
 
           attr_accessor phone: String?
 
-          attr_accessor postal_code: String?
+          attr_accessor postal_code: String
 
-          attr_accessor state: String?
+          attr_accessor state: String
 
           def initialize: (
-            city: String?,
-            line1: String?,
+            city: String,
+            line1: String,
             line2: String?,
-            name: String?,
+            name: String,
             phone: String?,
-            postal_code: String?,
-            state: String?
+            postal_code: String,
+            state: String
           ) -> void
 
           def to_hash: -> {
-            city: String?,
-            :line1 => String?,
+            city: String,
+            :line1 => String,
             :line2 => String?,
-            name: String?,
+            name: String,
             phone: String?,
-            postal_code: String?,
-            state: String?
+            postal_code: String,
+            state: String
           }
         end
 

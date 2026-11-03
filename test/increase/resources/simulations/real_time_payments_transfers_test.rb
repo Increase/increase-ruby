@@ -32,6 +32,7 @@ class Increase::Test::Resources::Simulations::RealTimePaymentsTransfersTest < In
         inbound_real_time_payments_request_for_payment_id: String | nil,
         pending_transaction_id: String | nil,
         rejection: Increase::RealTimePaymentsTransfer::Rejection | nil,
+        return_of_inbound_real_time_payments_transfer_id: String | nil,
         routing_number: String,
         source_account_number_id: String,
         status: Increase::RealTimePaymentsTransfer::Status,
