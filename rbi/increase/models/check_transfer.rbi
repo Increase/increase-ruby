@@ -954,7 +954,7 @@ module Increase
           attr_accessor :line2
 
           # The name component of the check's mailing address.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :name
 
           # The phone number to be used in case of delivery issues at the check's mailing
@@ -976,7 +976,7 @@ module Increase
               city: String,
               line1: String,
               line2: T.nilable(String),
-              name: T.nilable(String),
+              name: String,
               phone: T.nilable(String),
               postal_code: String,
               state: String
@@ -1007,7 +1007,7 @@ module Increase
                 city: String,
                 line1: String,
                 line2: T.nilable(String),
-                name: T.nilable(String),
+                name: String,
                 phone: T.nilable(String),
                 postal_code: String,
                 state: String

@@ -642,8 +642,8 @@ module Increase
           # @!attribute name
           #   The name component of the check's mailing address.
           #
-          #   @return [String, nil]
-          required :name, String, nil?: true
+          #   @return [String]
+          required :name, String
 
           # @!attribute phone
           #   The phone number to be used in case of delivery issues at the check's mailing
@@ -673,7 +673,7 @@ module Increase
           #
           #   @param line2 [String, nil] The second line of the address of the check's destination.
           #
-          #   @param name [String, nil] The name component of the check's mailing address.
+          #   @param name [String] The name component of the check's mailing address.
           #
           #   @param phone [String, nil]
           #     The phone number to be used in case of delivery issues at the check's mailing
