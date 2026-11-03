@@ -791,7 +791,7 @@ module Increase
         attr_accessor :note
 
         # The payer of the check. This will be printed on the top-left portion of the
-        # check and defaults to the return address if unspecified.
+        # check.
         sig { returns(T::Array[Increase::CheckTransfer::PhysicalCheck::Payer]) }
         attr_accessor :payer
 
@@ -804,19 +804,13 @@ module Increase
         attr_accessor :recipient_name
 
         # The return address to be printed on the check.
-        sig do
-          returns(
-            T.nilable(Increase::CheckTransfer::PhysicalCheck::ReturnAddress)
-          )
-        end
+        sig { returns(Increase::CheckTransfer::PhysicalCheck::ReturnAddress) }
         attr_reader :return_address
 
         sig do
           params(
             return_address:
-              T.nilable(
-                Increase::CheckTransfer::PhysicalCheck::ReturnAddress::OrHash
-              )
+              Increase::CheckTransfer::PhysicalCheck::ReturnAddress::OrHash
           ).void
         end
         attr_writer :return_address
@@ -868,9 +862,7 @@ module Increase
             physical_check_batch_id: T.nilable(String),
             recipient_name: String,
             return_address:
-              T.nilable(
-                Increase::CheckTransfer::PhysicalCheck::ReturnAddress::OrHash
-              ),
+              Increase::CheckTransfer::PhysicalCheck::ReturnAddress::OrHash,
             return_address_name: T.nilable(String),
             shipping_method:
               Increase::CheckTransfer::PhysicalCheck::ShippingMethod::OrSymbol,
@@ -894,7 +886,7 @@ module Increase
           # The descriptor that will be printed on the letter included with the check.
           note:,
           # The payer of the check. This will be printed on the top-left portion of the
-          # check and defaults to the return address if unspecified.
+          # check.
           payer:,
           # The identifier of the Physical Check Batch that this check is a part of.
           physical_check_batch_id:,
@@ -927,9 +919,7 @@ module Increase
               physical_check_batch_id: T.nilable(String),
               recipient_name: String,
               return_address:
-                T.nilable(
-                  Increase::CheckTransfer::PhysicalCheck::ReturnAddress
-                ),
+                Increase::CheckTransfer::PhysicalCheck::ReturnAddress,
               return_address_name: T.nilable(String),
               shipping_method:
                 Increase::CheckTransfer::PhysicalCheck::ShippingMethod::TaggedSymbol,
@@ -952,11 +942,11 @@ module Increase
             end
 
           # The city of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :city
 
           # The street address of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :line1
 
           # The second line of the address of the check's destination.
@@ -973,23 +963,23 @@ module Increase
           attr_accessor :phone
 
           # The postal code of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :postal_code
 
           # The state of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :state
 
           # Details for where Increase will mail the check.
           sig do
             params(
-              city: T.nilable(String),
-              line1: T.nilable(String),
+              city: String,
+              line1: String,
               line2: T.nilable(String),
               name: T.nilable(String),
               phone: T.nilable(String),
-              postal_code: T.nilable(String),
-              state: T.nilable(String)
+              postal_code: String,
+              state: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -1014,13 +1004,13 @@ module Increase
           sig do
             override.returns(
               {
-                city: T.nilable(String),
-                line1: T.nilable(String),
+                city: String,
+                line1: String,
                 line2: T.nilable(String),
                 name: T.nilable(String),
                 phone: T.nilable(String),
-                postal_code: T.nilable(String),
-                state: T.nilable(String)
+                postal_code: String,
+                state: String
               }
             )
           end
@@ -1063,11 +1053,11 @@ module Increase
             end
 
           # The city of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :city
 
           # The street address of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :line1
 
           # The second line of the address of the check's destination.
@@ -1075,7 +1065,7 @@ module Increase
           attr_accessor :line2
 
           # The name component of the check's return address.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :name
 
           # The shipper's phone number to be used in case of delivery issues. Only used for
@@ -1084,23 +1074,23 @@ module Increase
           attr_accessor :phone
 
           # The postal code of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :postal_code
 
           # The state of the check's destination.
-          sig { returns(T.nilable(String)) }
+          sig { returns(String) }
           attr_accessor :state
 
           # The return address to be printed on the check.
           sig do
             params(
-              city: T.nilable(String),
-              line1: T.nilable(String),
+              city: String,
+              line1: String,
               line2: T.nilable(String),
-              name: T.nilable(String),
+              name: String,
               phone: T.nilable(String),
-              postal_code: T.nilable(String),
-              state: T.nilable(String)
+              postal_code: String,
+              state: String
             ).returns(T.attached_class)
           end
           def self.new(
@@ -1125,13 +1115,13 @@ module Increase
           sig do
             override.returns(
               {
-                city: T.nilable(String),
-                line1: T.nilable(String),
+                city: String,
+                line1: String,
                 line2: T.nilable(String),
-                name: T.nilable(String),
+                name: String,
                 phone: T.nilable(String),
-                postal_code: T.nilable(String),
-                state: T.nilable(String)
+                postal_code: String,
+                state: String
               }
             )
           end

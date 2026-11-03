@@ -173,18 +173,6 @@ module Increase
     # @return [Increase::Resources::RealTimeDecisions]
     attr_reader :real_time_decisions
 
-    # @return [Increase::Resources::Groups]
-    attr_reader :groups
-
-    # @return [Increase::Resources::OAuthApplications]
-    attr_reader :oauth_applications
-
-    # @return [Increase::Resources::OAuthConnections]
-    attr_reader :oauth_connections
-
-    # @return [Increase::Resources::OAuthTokens]
-    attr_reader :oauth_tokens
-
     # @return [Increase::Resources::IntrafiAccountEnrollments]
     attr_reader :intrafi_account_enrollments
 
@@ -343,10 +331,6 @@ module Increase
       @events = Increase::Resources::Events.new(client: self)
       @event_subscriptions = Increase::Resources::EventSubscriptions.new(client: self)
       @real_time_decisions = Increase::Resources::RealTimeDecisions.new(client: self)
-      @groups = Increase::Resources::Groups.new(client: self)
-      @oauth_applications = Increase::Resources::OAuthApplications.new(client: self)
-      @oauth_connections = Increase::Resources::OAuthConnections.new(client: self)
-      @oauth_tokens = Increase::Resources::OAuthTokens.new(client: self)
       @intrafi_account_enrollments = Increase::Resources::IntrafiAccountEnrollments.new(client: self)
       @intrafi_balances = Increase::Resources::IntrafiBalances.new(client: self)
       @intrafi_exclusions = Increase::Resources::IntrafiExclusions.new(client: self)

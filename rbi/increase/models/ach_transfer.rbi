@@ -73,19 +73,28 @@ module Increase
       end
       attr_writer :cancellation
 
-      # The description of the date of the transfer.
+      # A description of the transfer date (typically `YYMMDD`), sent in the company
+      # batch header. This value is informational and does not affect funds movement,
+      # settlement timing, or returns.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_descriptive_date
 
-      # The data you chose to associate with the transfer.
+      # Custom data sent in the company batch header, meant as metadata for the
+      # originator. This value is informational and does not affect funds movement,
+      # settlement timing, or returns.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_discretionary_data
 
-      # The description of the transfer you set to be shown to the recipient.
+      # A short description sent in the company batch header, meant to provide the
+      # receiver with a reason for the transfer. Many receivers do not surface this data
+      # on the receiver's bank statement.
       sig { returns(T.nilable(String)) }
       attr_accessor :company_entry_description
 
-      # The company ID associated with the transfer.
+      # The Company ID sent in the batch header, which identifies the originator to the
+      # receiving bank. Businesses use this value to allowlist the companies permitted
+      # to debit their accounts. This value is configured by Increase and will be the
+      # same for all your transfers.
       sig { returns(String) }
       attr_accessor :company_id
 
@@ -173,10 +182,8 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :pending_transaction_id
 
-      # Configuration for how the effective date of the transfer will be set. This
-      # determines same-day vs future-dated settlement timing. If not set, defaults to a
-      # `settlement_schedule` of `same_day`. If set, exactly one of the child attributes
-      # must be set.
+      # Configuration for how the effective date of the transfer was set. This
+      # determines same-day vs future-dated settlement timing.
       sig { returns(Increase::ACHTransfer::PreferredEffectiveDate) }
       attr_reader :preferred_effective_date
 
@@ -223,7 +230,7 @@ module Increase
       attr_accessor :standard_entry_class_code
 
       # The descriptor that will show on the recipient's bank statement.
-      sig { returns(String) }
+      sig { returns(T.nilable(String)) }
       attr_accessor :statement_descriptor
 
       # The lifecycle status of the transfer.
@@ -295,7 +302,7 @@ module Increase
           settlement: T.nilable(Increase::ACHTransfer::Settlement::OrHash),
           standard_entry_class_code:
             Increase::ACHTransfer::StandardEntryClassCode::OrSymbol,
-          statement_descriptor: String,
+          statement_descriptor: T.nilable(String),
           status: Increase::ACHTransfer::Status::OrSymbol,
           submission: T.nilable(Increase::ACHTransfer::Submission::OrHash),
           transaction_id: T.nilable(String),
@@ -325,13 +332,22 @@ module Increase
         # If your account requires approvals for transfers and the transfer was not
         # approved, this will contain details of the cancellation.
         cancellation:,
-        # The description of the date of the transfer.
+        # A description of the transfer date (typically `YYMMDD`), sent in the company
+        # batch header. This value is informational and does not affect funds movement,
+        # settlement timing, or returns.
         company_descriptive_date:,
-        # The data you chose to associate with the transfer.
+        # Custom data sent in the company batch header, meant as metadata for the
+        # originator. This value is informational and does not affect funds movement,
+        # settlement timing, or returns.
         company_discretionary_data:,
-        # The description of the transfer you set to be shown to the recipient.
+        # A short description sent in the company batch header, meant to provide the
+        # receiver with a reason for the transfer. Many receivers do not surface this data
+        # on the receiver's bank statement.
         company_entry_description:,
-        # The company ID associated with the transfer.
+        # The Company ID sent in the batch header, which identifies the originator to the
+        # receiving bank. Businesses use this value to allowlist the companies permitted
+        # to debit their accounts. This value is configured by Increase and will be the
+        # same for all your transfers.
         company_id:,
         # The name by which the recipient knows you.
         company_name:,
@@ -372,10 +388,8 @@ module Increase
         # [requires approval](https://increase.com/documentation/transfer-approvals#transfer-approvals)
         # by someone else in your organization.
         pending_transaction_id:,
-        # Configuration for how the effective date of the transfer will be set. This
-        # determines same-day vs future-dated settlement timing. If not set, defaults to a
-        # `settlement_schedule` of `same_day`. If set, exactly one of the child attributes
-        # must be set.
+        # Configuration for how the effective date of the transfer was set. This
+        # determines same-day vs future-dated settlement timing.
         preferred_effective_date:,
         # If your transfer is returned, this will contain details of the return.
         return_:,
@@ -446,7 +460,7 @@ module Increase
             settlement: T.nilable(Increase::ACHTransfer::Settlement),
             standard_entry_class_code:
               Increase::ACHTransfer::StandardEntryClassCode::TaggedSymbol,
-            statement_descriptor: String,
+            statement_descriptor: T.nilable(String),
             status: Increase::ACHTransfer::Status::TaggedSymbol,
             submission: T.nilable(Increase::ACHTransfer::Submission),
             transaction_id: T.nilable(String),
@@ -1730,10 +1744,8 @@ module Increase
         end
         attr_accessor :settlement_schedule
 
-        # Configuration for how the effective date of the transfer will be set. This
-        # determines same-day vs future-dated settlement timing. If not set, defaults to a
-        # `settlement_schedule` of `same_day`. If set, exactly one of the child attributes
-        # must be set.
+        # Configuration for how the effective date of the transfer was set. This
+        # determines same-day vs future-dated settlement timing.
         sig do
           params(
             date: T.nilable(Date),

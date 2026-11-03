@@ -903,23 +903,35 @@ module Increase
         end
         attr_writer :created_at
 
+        # Filter fees by the UTC start date of their fee statement's period, such as
+        # `2026-08-01`.
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :fee_statement_period_start
+
         # Details of the fee CSV export. This field will be present when the `category` is
         # equal to `fee_csv`.
         sig do
           params(
-            created_at: T.nilable(Increase::Export::FeeCsv::CreatedAt::OrHash)
+            created_at: T.nilable(Increase::Export::FeeCsv::CreatedAt::OrHash),
+            fee_statement_period_start: T.nilable(Date)
           ).returns(T.attached_class)
         end
         def self.new(
           # Filter fees by their created date. The time range must not include any fees on
           # an open fee statement.
-          created_at:
+          created_at:,
+          # Filter fees by the UTC start date of their fee statement's period, such as
+          # `2026-08-01`.
+          fee_statement_period_start:
         )
         end
 
         sig do
           override.returns(
-            { created_at: T.nilable(Increase::Export::FeeCsv::CreatedAt) }
+            {
+              created_at: T.nilable(Increase::Export::FeeCsv::CreatedAt),
+              fee_statement_period_start: T.nilable(Date)
+            }
           )
         end
         def to_hash

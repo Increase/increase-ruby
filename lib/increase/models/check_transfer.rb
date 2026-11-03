@@ -531,7 +531,7 @@ module Increase
 
         # @!attribute payer
         #   The payer of the check. This will be printed on the top-left portion of the
-        #   check and defaults to the return address if unspecified.
+        #   check.
         #
         #   @return [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
         required :payer, -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransfer::PhysicalCheck::Payer] }
@@ -551,8 +551,8 @@ module Increase
         # @!attribute return_address
         #   The return address to be printed on the check.
         #
-        #   @return [Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress, nil]
-        required :return_address, -> { Increase::CheckTransfer::PhysicalCheck::ReturnAddress }, nil?: true
+        #   @return [Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress]
+        required :return_address, -> { Increase::CheckTransfer::PhysicalCheck::ReturnAddress }
 
         # @!attribute return_address_name
         #   A custom name printed above the Increase-managed return address.
@@ -597,14 +597,14 @@ module Increase
         #
         #   @param payer [Array<Increase::Models::CheckTransfer::PhysicalCheck::Payer>]
         #     The payer of the check. This will be printed on the top-left portion of the
-        #     check and defaults to the return address if unspecified.
+        #     check.
         #
         #   @param physical_check_batch_id [String, nil]
         #     The identifier of the Physical Check Batch that this check is a part of.
         #
         #   @param recipient_name [String] The name that will be printed on the check.
         #
-        #   @param return_address [Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress, nil]
+        #   @param return_address [Increase::Models::CheckTransfer::PhysicalCheck::ReturnAddress]
         #     The return address to be printed on the check.
         #
         #   @param return_address_name [String, nil] A custom name printed above the Increase-managed return address.
@@ -624,14 +624,14 @@ module Increase
           # @!attribute city
           #   The city of the check's destination.
           #
-          #   @return [String, nil]
-          required :city, String, nil?: true
+          #   @return [String]
+          required :city, String
 
           # @!attribute line1
           #   The street address of the check's destination.
           #
-          #   @return [String, nil]
-          required :line1, String, nil?: true
+          #   @return [String]
+          required :line1, String
 
           # @!attribute line2
           #   The second line of the address of the check's destination.
@@ -655,21 +655,21 @@ module Increase
           # @!attribute postal_code
           #   The postal code of the check's destination.
           #
-          #   @return [String, nil]
-          required :postal_code, String, nil?: true
+          #   @return [String]
+          required :postal_code, String
 
           # @!attribute state
           #   The state of the check's destination.
           #
-          #   @return [String, nil]
-          required :state, String, nil?: true
+          #   @return [String]
+          required :state, String
 
           # @!method initialize(city:, line1:, line2:, name:, phone:, postal_code:, state:)
           #   Details for where Increase will mail the check.
           #
-          #   @param city [String, nil] The city of the check's destination.
+          #   @param city [String] The city of the check's destination.
           #
-          #   @param line1 [String, nil] The street address of the check's destination.
+          #   @param line1 [String] The street address of the check's destination.
           #
           #   @param line2 [String, nil] The second line of the address of the check's destination.
           #
@@ -679,9 +679,9 @@ module Increase
           #     The phone number to be used in case of delivery issues at the check's mailing
           #     address. Only used for FedEx overnight shipping.
           #
-          #   @param postal_code [String, nil] The postal code of the check's destination.
+          #   @param postal_code [String] The postal code of the check's destination.
           #
-          #   @param state [String, nil] The state of the check's destination.
+          #   @param state [String] The state of the check's destination.
         end
 
         class Payer < Increase::Internal::Type::BaseModel
@@ -700,14 +700,14 @@ module Increase
           # @!attribute city
           #   The city of the check's destination.
           #
-          #   @return [String, nil]
-          required :city, String, nil?: true
+          #   @return [String]
+          required :city, String
 
           # @!attribute line1
           #   The street address of the check's destination.
           #
-          #   @return [String, nil]
-          required :line1, String, nil?: true
+          #   @return [String]
+          required :line1, String
 
           # @!attribute line2
           #   The second line of the address of the check's destination.
@@ -718,8 +718,8 @@ module Increase
           # @!attribute name
           #   The name component of the check's return address.
           #
-          #   @return [String, nil]
-          required :name, String, nil?: true
+          #   @return [String]
+          required :name, String
 
           # @!attribute phone
           #   The shipper's phone number to be used in case of delivery issues. Only used for
@@ -731,33 +731,33 @@ module Increase
           # @!attribute postal_code
           #   The postal code of the check's destination.
           #
-          #   @return [String, nil]
-          required :postal_code, String, nil?: true
+          #   @return [String]
+          required :postal_code, String
 
           # @!attribute state
           #   The state of the check's destination.
           #
-          #   @return [String, nil]
-          required :state, String, nil?: true
+          #   @return [String]
+          required :state, String
 
           # @!method initialize(city:, line1:, line2:, name:, phone:, postal_code:, state:)
           #   The return address to be printed on the check.
           #
-          #   @param city [String, nil] The city of the check's destination.
+          #   @param city [String] The city of the check's destination.
           #
-          #   @param line1 [String, nil] The street address of the check's destination.
+          #   @param line1 [String] The street address of the check's destination.
           #
           #   @param line2 [String, nil] The second line of the address of the check's destination.
           #
-          #   @param name [String, nil] The name component of the check's return address.
+          #   @param name [String] The name component of the check's return address.
           #
           #   @param phone [String, nil]
           #     The shipper's phone number to be used in case of delivery issues. Only used for
           #     FedEx overnight shipping.
           #
-          #   @param postal_code [String, nil] The postal code of the check's destination.
+          #   @param postal_code [String] The postal code of the check's destination.
           #
-          #   @param state [String, nil] The state of the check's destination.
+          #   @param state [String] The state of the check's destination.
         end
 
         # The shipping method for the check.

@@ -535,13 +535,24 @@ module Increase
         #   @return [Increase::Models::Export::FeeCsv::CreatedAt, nil]
         required :created_at, -> { Increase::Export::FeeCsv::CreatedAt }, nil?: true
 
-        # @!method initialize(created_at:)
+        # @!attribute fee_statement_period_start
+        #   Filter fees by the UTC start date of their fee statement's period, such as
+        #   `2026-08-01`.
+        #
+        #   @return [Date, nil]
+        required :fee_statement_period_start, Date, nil?: true
+
+        # @!method initialize(created_at:, fee_statement_period_start:)
         #   Details of the fee CSV export. This field will be present when the `category` is
         #   equal to `fee_csv`.
         #
         #   @param created_at [Increase::Models::Export::FeeCsv::CreatedAt, nil]
         #     Filter fees by their created date. The time range must not include any fees on
         #     an open fee statement.
+        #
+        #   @param fee_statement_period_start [Date, nil]
+        #     Filter fees by the UTC start date of their fee statement's period, such as
+        #     `2026-08-01`.
 
         # @see Increase::Models::Export::FeeCsv#created_at
         class CreatedAt < Increase::Internal::Type::BaseModel

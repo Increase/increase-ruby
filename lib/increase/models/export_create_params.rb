@@ -359,10 +359,21 @@ module Increase
 
       class FeeCsv < Increase::Internal::Type::BaseModel
         # @!attribute created_at
-        #   Filter results by time range on the `created_at` attribute.
+        #   Filter exported Fees by the time they were created. This suits historical
+        #   exports across many fee statements. To get all of the Fees for a given fee
+        #   statement period, we recommend using `fee_statement_period_start` instead. The
+        #   time range must not include any Fees on an open fee statement.
         #
         #   @return [Increase::Models::ExportCreateParams::FeeCsv::CreatedAt, nil]
         optional :created_at, -> { Increase::ExportCreateParams::FeeCsv::CreatedAt }
+
+        # @!attribute fee_statement_period_start
+        #   Filter exported Fees to the fee statements whose period starts on this UTC date,
+        #   such as `2026-08-01`. Use this filter to export all of the Fees on a fee
+        #   statement. The matching fee statements must be closed.
+        #
+        #   @return [Date, nil]
+        optional :fee_statement_period_start, Date
 
         # @!attribute program_id
         #   Filter exported Fees to the specified Program.
@@ -370,11 +381,19 @@ module Increase
         #   @return [String, nil]
         optional :program_id, String
 
-        # @!method initialize(created_at: nil, program_id: nil)
+        # @!method initialize(created_at: nil, fee_statement_period_start: nil, program_id: nil)
         #   Options for the created export. Required if `category` is equal to `fee_csv`.
         #
         #   @param created_at [Increase::Models::ExportCreateParams::FeeCsv::CreatedAt]
-        #     Filter results by time range on the `created_at` attribute.
+        #     Filter exported Fees by the time they were created. This suits historical
+        #     exports across many fee statements. To get all of the Fees for a given fee
+        #     statement period, we recommend using `fee_statement_period_start` instead. The
+        #     time range must not include any Fees on an open fee statement.
+        #
+        #   @param fee_statement_period_start [Date]
+        #     Filter exported Fees to the fee statements whose period starts on this UTC date,
+        #     such as `2026-08-01`. Use this filter to export all of the Fees on a fee
+        #     statement. The matching fee statements must be closed.
         #
         #   @param program_id [String] Filter exported Fees to the specified Program.
 
@@ -409,7 +428,10 @@ module Increase
           optional :on_or_before, Time
 
           # @!method initialize(after: nil, before: nil, on_or_after: nil, on_or_before: nil)
-          #   Filter results by time range on the `created_at` attribute.
+          #   Filter exported Fees by the time they were created. This suits historical
+          #   exports across many fee statements. To get all of the Fees for a given fee
+          #   statement period, we recommend using `fee_statement_period_start` instead. The
+          #   time range must not include any Fees on an open fee statement.
           #
           #   @param after [Time]
           #     Return results after this [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)
