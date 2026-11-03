@@ -1129,8 +1129,8 @@ module Increase
           # @!attribute statement_descriptor
           #   A description set when the ACH Transfer was created.
           #
-          #   @return [String]
-          required :statement_descriptor, String
+          #   @return [String, nil]
+          required :statement_descriptor, String, nil?: true
 
           # @!attribute transfer_id
           #   The identifier of the ACH Transfer that led to this Transaction.
@@ -1154,7 +1154,7 @@ module Increase
           #     The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
           #     destination account.
           #
-          #   @param statement_descriptor [String] A description set when the ACH Transfer was created.
+          #   @param statement_descriptor [String, nil] A description set when the ACH Transfer was created.
           #
           #   @param transfer_id [String] The identifier of the ACH Transfer that led to this Transaction.
         end

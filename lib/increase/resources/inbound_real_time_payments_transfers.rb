@@ -64,6 +64,34 @@ module Increase
         )
       end
 
+      # Return an Inbound Real-Time Payments Transfer
+      #
+      # @overload return_(inbound_real_time_payments_transfer_id, amount: nil, request_options: {})
+      #
+      # @param inbound_real_time_payments_transfer_id [String]
+      #   The identifier of the Inbound Real-Time Payments Transfer to return to its
+      #   sender.
+      #
+      # @param amount [Integer]
+      #   The amount to return, in USD cents. Defaults to the full amount of the Inbound
+      #   Real-Time Payments Transfer, and can't be higher than it.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::RealTimePaymentsTransfer]
+      #
+      # @see Increase::Models::InboundRealTimePaymentsTransferReturnParams
+      def return_(inbound_real_time_payments_transfer_id, params = {})
+        parsed, options = Increase::InboundRealTimePaymentsTransferReturnParams.dump_request(params)
+        @client.request(
+          method: :post,
+          path: ["inbound_real_time_payments_transfers/%1$s/return", inbound_real_time_payments_transfer_id],
+          body: parsed,
+          model: Increase::RealTimePaymentsTransfer,
+          options: options
+        )
+      end
+
       # @api private
       #
       # @param client [Increase::Client]

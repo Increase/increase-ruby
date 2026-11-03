@@ -295,10 +295,6 @@ module Increase
 
   class FileRetrieveParams = Increase::Models::FileRetrieveParams
 
-  class Group = Increase::Models::Group
-
-  class GroupRetrieveParams = Increase::Models::GroupRetrieveParams
-
   class InboundACHTransfer = Increase::Models::InboundACHTransfer
 
   class InboundACHTransferCreateNotificationOfChangeParams = Increase::Models::InboundACHTransferCreateNotificationOfChangeParams
@@ -346,6 +342,8 @@ module Increase
   class InboundRealTimePaymentsTransferListParams = Increase::Models::InboundRealTimePaymentsTransferListParams
 
   class InboundRealTimePaymentsTransferRetrieveParams = Increase::Models::InboundRealTimePaymentsTransferRetrieveParams
+
+  class InboundRealTimePaymentsTransferReturnParams = Increase::Models::InboundRealTimePaymentsTransferReturnParams
 
   class InboundWireDrawdownRequest = Increase::Models::InboundWireDrawdownRequest
 
@@ -404,22 +402,6 @@ module Increase
   class LockboxRecipientRetrieveParams = Increase::Models::LockboxRecipientRetrieveParams
 
   class LockboxRecipientUpdateParams = Increase::Models::LockboxRecipientUpdateParams
-
-  class OAuthApplication = Increase::Models::OAuthApplication
-
-  class OAuthApplicationListParams = Increase::Models::OAuthApplicationListParams
-
-  class OAuthApplicationRetrieveParams = Increase::Models::OAuthApplicationRetrieveParams
-
-  class OAuthConnection = Increase::Models::OAuthConnection
-
-  class OAuthConnectionListParams = Increase::Models::OAuthConnectionListParams
-
-  class OAuthConnectionRetrieveParams = Increase::Models::OAuthConnectionRetrieveParams
-
-  class OAuthToken = Increase::Models::OAuthToken
-
-  class OAuthTokenCreateParams = Increase::Models::OAuthTokenCreateParams
 
   class PendingTransaction = Increase::Models::PendingTransaction
 
