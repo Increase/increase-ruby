@@ -790,6 +790,11 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :note
 
+        # The payee of the check. This will be printed in the Pay to the Order Of portion
+        # of the check.
+        sig { returns(T::Array[Increase::CheckTransfer::PhysicalCheck::Payee]) }
+        attr_accessor :payee
+
         # The payer of the check. This will be printed on the top-left portion of the
         # check.
         sig { returns(T::Array[Increase::CheckTransfer::PhysicalCheck::Payer]) }
@@ -798,10 +803,6 @@ module Increase
         # The identifier of the Physical Check Batch that this check is a part of.
         sig { returns(T.nilable(String)) }
         attr_accessor :physical_check_batch_id
-
-        # The name that will be printed on the check.
-        sig { returns(String) }
-        attr_accessor :recipient_name
 
         # The return address to be printed on the check.
         sig { returns(Increase::CheckTransfer::PhysicalCheck::ReturnAddress) }
@@ -857,10 +858,11 @@ module Increase
               Increase::CheckTransfer::PhysicalCheck::MailingAddress::OrHash,
             memo: T.nilable(String),
             note: T.nilable(String),
+            payee:
+              T::Array[Increase::CheckTransfer::PhysicalCheck::Payee::OrHash],
             payer:
               T::Array[Increase::CheckTransfer::PhysicalCheck::Payer::OrHash],
             physical_check_batch_id: T.nilable(String),
-            recipient_name: String,
             return_address:
               Increase::CheckTransfer::PhysicalCheck::ReturnAddress::OrHash,
             return_address_name: T.nilable(String),
@@ -885,13 +887,14 @@ module Increase
           memo:,
           # The descriptor that will be printed on the letter included with the check.
           note:,
+          # The payee of the check. This will be printed in the Pay to the Order Of portion
+          # of the check.
+          payee:,
           # The payer of the check. This will be printed on the top-left portion of the
           # check.
           payer:,
           # The identifier of the Physical Check Batch that this check is a part of.
           physical_check_batch_id:,
-          # The name that will be printed on the check.
-          recipient_name:,
           # The return address to be printed on the check.
           return_address:,
           # A custom name printed above the Increase-managed return address.
@@ -915,9 +918,9 @@ module Increase
                 Increase::CheckTransfer::PhysicalCheck::MailingAddress,
               memo: T.nilable(String),
               note: T.nilable(String),
+              payee: T::Array[Increase::CheckTransfer::PhysicalCheck::Payee],
               payer: T::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
               physical_check_batch_id: T.nilable(String),
-              recipient_name: String,
               return_address:
                 Increase::CheckTransfer::PhysicalCheck::ReturnAddress,
               return_address_name: T.nilable(String),
@@ -1014,6 +1017,31 @@ module Increase
               }
             )
           end
+          def to_hash
+          end
+        end
+
+        class Payee < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::PhysicalCheck::Payee,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The contents of the line.
+          sig { returns(String) }
+          attr_accessor :contents
+
+          sig { params(contents: String).returns(T.attached_class) }
+          def self.new(
+            # The contents of the line.
+            contents:
+          )
+          end
+
+          sig { override.returns({ contents: String }) }
           def to_hash
           end
         end
