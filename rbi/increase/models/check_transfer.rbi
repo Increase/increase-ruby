@@ -790,6 +790,15 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :note
 
+        # The payee of the check. This will be printed in the Pay to the Order Of portion
+        # of the check.
+        sig do
+          returns(
+            T.nilable(T::Array[Increase::CheckTransfer::PhysicalCheck::Payee])
+          )
+        end
+        attr_accessor :payee
+
         # The payer of the check. This will be printed on the top-left portion of the
         # check.
         sig { returns(T::Array[Increase::CheckTransfer::PhysicalCheck::Payer]) }
@@ -857,6 +866,10 @@ module Increase
               Increase::CheckTransfer::PhysicalCheck::MailingAddress::OrHash,
             memo: T.nilable(String),
             note: T.nilable(String),
+            payee:
+              T.nilable(
+                T::Array[Increase::CheckTransfer::PhysicalCheck::Payee::OrHash]
+              ),
             payer:
               T::Array[Increase::CheckTransfer::PhysicalCheck::Payer::OrHash],
             physical_check_batch_id: T.nilable(String),
@@ -885,6 +898,9 @@ module Increase
           memo:,
           # The descriptor that will be printed on the letter included with the check.
           note:,
+          # The payee of the check. This will be printed in the Pay to the Order Of portion
+          # of the check.
+          payee:,
           # The payer of the check. This will be printed on the top-left portion of the
           # check.
           payer:,
@@ -915,6 +931,10 @@ module Increase
                 Increase::CheckTransfer::PhysicalCheck::MailingAddress,
               memo: T.nilable(String),
               note: T.nilable(String),
+              payee:
+                T.nilable(
+                  T::Array[Increase::CheckTransfer::PhysicalCheck::Payee]
+                ),
               payer: T::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
               physical_check_batch_id: T.nilable(String),
               recipient_name: String,
@@ -1014,6 +1034,31 @@ module Increase
               }
             )
           end
+          def to_hash
+          end
+        end
+
+        class Payee < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CheckTransfer::PhysicalCheck::Payee,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The contents of the line.
+          sig { returns(String) }
+          attr_accessor :contents
+
+          sig { params(contents: String).returns(T.attached_class) }
+          def self.new(
+            # The contents of the line.
+            contents:
+          )
+          end
+
+          sig { override.returns({ contents: String }) }
           def to_hash
           end
         end

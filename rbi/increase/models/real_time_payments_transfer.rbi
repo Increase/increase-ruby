@@ -103,6 +103,10 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :debtor_name
 
+      # A free-form reference string set by the sender, to help identify the transfer.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :end_to_end_identification
+
       # The identifier of the External Account the transfer was made to, if any.
       sig { returns(T.nilable(String)) }
       attr_accessor :external_account_id
@@ -214,6 +218,7 @@ module Increase
           creditor_name: String,
           currency: Increase::RealTimePaymentsTransfer::Currency::OrSymbol,
           debtor_name: T.nilable(String),
+          end_to_end_identification: T.nilable(String),
           external_account_id: T.nilable(String),
           idempotency_key: T.nilable(String),
           inbound_real_time_payments_request_for_payment_id: T.nilable(String),
@@ -265,6 +270,8 @@ module Increase
         # The name of the transfer's sender. If not provided, defaults to the name of the
         # account's entity.
         debtor_name:,
+        # A free-form reference string set by the sender, to help identify the transfer.
+        end_to_end_identification:,
         # The identifier of the External Account the transfer was made to, if any.
         external_account_id:,
         # The idempotency key you chose for this object. This value is unique across
@@ -330,6 +337,7 @@ module Increase
             currency:
               Increase::RealTimePaymentsTransfer::Currency::TaggedSymbol,
             debtor_name: T.nilable(String),
+            end_to_end_identification: T.nilable(String),
             external_account_id: T.nilable(String),
             idempotency_key: T.nilable(String),
             inbound_real_time_payments_request_for_payment_id:

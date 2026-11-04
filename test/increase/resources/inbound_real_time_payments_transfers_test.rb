@@ -99,6 +99,7 @@ class Increase::Test::Resources::InboundRealTimePaymentsTransfersTest < Increase
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
         debtor_name: String | nil,
+        end_to_end_identification: String | nil,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         inbound_real_time_payments_request_for_payment_id: String | nil,

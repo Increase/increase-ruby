@@ -295,6 +295,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
+          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee]?,
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           physical_check_batch_id: String?,
           recipient_name: String,
@@ -315,6 +316,8 @@ module Increase
         attr_accessor memo: String?
 
         attr_accessor note: String?
+
+        attr_accessor payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee]?
 
         attr_accessor payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer]
 
@@ -338,6 +341,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
+          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee]?,
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           physical_check_batch_id: String?,
           recipient_name: String,
@@ -354,6 +358,7 @@ module Increase
           mailing_address: Increase::CheckTransfer::PhysicalCheck::MailingAddress,
           memo: String?,
           note: String?,
+          payee: ::Array[Increase::CheckTransfer::PhysicalCheck::Payee]?,
           payer: ::Array[Increase::CheckTransfer::PhysicalCheck::Payer],
           physical_check_batch_id: String?,
           recipient_name: String,
@@ -409,6 +414,16 @@ module Increase
             postal_code: String,
             state: String
           }
+        end
+
+        type payee = { contents: String }
+
+        class Payee < Increase::Internal::Type::BaseModel
+          attr_accessor contents: String
+
+          def initialize: (contents: String) -> void
+
+          def to_hash: -> { contents: String }
         end
 
         type payer = { contents: String }

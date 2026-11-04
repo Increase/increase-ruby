@@ -83,6 +83,12 @@ module Increase
       #   @return [String, nil]
       required :debtor_name, String, nil?: true
 
+      # @!attribute end_to_end_identification
+      #   A free-form reference string set by the sender, to help identify the transfer.
+      #
+      #   @return [String, nil]
+      required :end_to_end_identification, String, nil?: true
+
       # @!attribute external_account_id
       #   The identifier of the External Account the transfer was made to, if any.
       #
@@ -186,7 +192,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, external_account_id:, idempotency_key:, inbound_real_time_payments_request_for_payment_id:, pending_transaction_id:, rejection:, return_of_inbound_real_time_payments_transfer_id:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, end_to_end_identification:, external_account_id:, idempotency_key:, inbound_real_time_payments_request_for_payment_id:, pending_transaction_id:, rejection:, return_of_inbound_real_time_payments_transfer_id:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:, unstructured_remittance_information:)
       #   Real-Time Payments transfers move funds, within seconds, between your Increase
       #   account and any other account on the Real-Time Payments network.
       #
@@ -228,6 +234,9 @@ module Increase
       #   @param debtor_name [String, nil]
       #     The name of the transfer's sender. If not provided, defaults to the name of the
       #     account's entity.
+      #
+      #   @param end_to_end_identification [String, nil]
+      #     A free-form reference string set by the sender, to help identify the transfer.
       #
       #   @param external_account_id [String, nil]
       #     The identifier of the External Account the transfer was made to, if any.
