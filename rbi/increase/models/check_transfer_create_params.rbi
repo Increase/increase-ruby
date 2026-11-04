@@ -289,6 +289,16 @@ module Increase
         sig { returns(String) }
         attr_accessor :memo
 
+        # The payee of the check. This will be printed in the Pay to the Order Of portion
+        # of the check. This should be an array of up to 4 elements, each of which
+        # represents a line of the payee.
+        sig do
+          returns(
+            T::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee]
+          )
+        end
+        attr_accessor :payee
+
         # The payer of the check. This will be printed on the top-left portion of the
         # check. This should be an array of up to 4 elements, each of which represents a
         # line of the payer.
@@ -298,10 +308,6 @@ module Increase
           )
         end
         attr_accessor :payer
-
-        # The name that will be printed on the check in the 'To:' field.
-        sig { returns(String) }
-        attr_accessor :recipient_name
 
         # The ID of a File to be attached to the check. This must have
         # `purpose: check_attachment`. For details on pricing and restrictions, see
@@ -412,11 +418,14 @@ module Increase
             mailing_address:
               Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress::OrHash,
             memo: String,
+            payee:
+              T::Array[
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payee::OrHash
+              ],
             payer:
               T::Array[
                 Increase::CheckTransferCreateParams::PhysicalCheck::Payer::OrHash
               ],
-            recipient_name: String,
             attachment_file_id: String,
             check_voucher_image_file_id: String,
             note: String,
@@ -436,12 +445,14 @@ module Increase
           mailing_address:,
           # The descriptor that will be printed on the memo field on the check.
           memo:,
+          # The payee of the check. This will be printed in the Pay to the Order Of portion
+          # of the check. This should be an array of up to 4 elements, each of which
+          # represents a line of the payee.
+          payee:,
           # The payer of the check. This will be printed on the top-left portion of the
           # check. This should be an array of up to 4 elements, each of which represents a
           # line of the payer.
           payer:,
-          # The name that will be printed on the check in the 'To:' field.
-          recipient_name:,
           # The ID of a File to be attached to the check. This must have
           # `purpose: check_attachment`. For details on pricing and restrictions, see
           # https://increase.com/documentation/originating-checks#printing-checks .
@@ -479,11 +490,14 @@ module Increase
               mailing_address:
                 Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
               memo: String,
+              payee:
+                T::Array[
+                  Increase::CheckTransferCreateParams::PhysicalCheck::Payee
+                ],
               payer:
                 T::Array[
                   Increase::CheckTransferCreateParams::PhysicalCheck::Payer
                 ],
-              recipient_name: String,
               attachment_file_id: String,
               check_voucher_image_file_id: String,
               note: String,
@@ -518,6 +532,10 @@ module Increase
           sig { returns(String) }
           attr_accessor :line1
 
+          # The name component of the check's destination address.
+          sig { returns(String) }
+          attr_accessor :name
+
           # The postal code component of the check's destination address.
           sig { returns(String) }
           attr_accessor :postal_code
@@ -532,14 +550,6 @@ module Increase
 
           sig { params(line2: String).void }
           attr_writer :line2
-
-          # The name component of the check's destination address. Defaults to the provided
-          # `recipient_name` parameter if `name` is not provided.
-          sig { returns(T.nilable(String)) }
-          attr_reader :name
-
-          sig { params(name: String).void }
-          attr_writer :name
 
           # The phone number to associate with the check's destination address. The phone
           # number is only used when `shipping_method` is `fedex_overnight` and will be
@@ -556,10 +566,10 @@ module Increase
             params(
               city: String,
               line1: String,
+              name: String,
               postal_code: String,
               state: String,
               line2: String,
-              name: String,
               phone: String
             ).returns(T.attached_class)
           end
@@ -568,15 +578,14 @@ module Increase
             city:,
             # The first line of the address component of the check's destination address.
             line1:,
+            # The name component of the check's destination address.
+            name:,
             # The postal code component of the check's destination address.
             postal_code:,
             # The US state component of the check's destination address.
             state:,
             # The second line of the address component of the check's destination address.
             line2: nil,
-            # The name component of the check's destination address. Defaults to the provided
-            # `recipient_name` parameter if `name` is not provided.
-            name: nil,
             # The phone number to associate with the check's destination address. The phone
             # number is only used when `shipping_method` is `fedex_overnight` and will be
             # supplied to FedEx to be used in case of delivery issues.
@@ -589,14 +598,39 @@ module Increase
               {
                 city: String,
                 line1: String,
+                name: String,
                 postal_code: String,
                 state: String,
                 line2: String,
-                name: String,
                 phone: String
               }
             )
           end
+          def to_hash
+          end
+        end
+
+        class Payee < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CheckTransferCreateParams::PhysicalCheck::Payee,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The contents of the line.
+          sig { returns(String) }
+          attr_accessor :contents
+
+          sig { params(contents: String).returns(T.attached_class) }
+          def self.new(
+            # The contents of the line.
+            contents:
+          )
+          end
+
+          sig { override.returns({ contents: String }) }
           def to_hash
           end
         end

@@ -163,6 +163,15 @@ module Increase
         #   @return [String]
         required :memo, String
 
+        # @!attribute payee
+        #   The payee of the check. This will be printed in the Pay to the Order Of portion
+        #   of the check. This should be an array of up to 4 elements, each of which
+        #   represents a line of the payee.
+        #
+        #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payee>]
+        required :payee,
+                 -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payee] }
+
         # @!attribute payer
         #   The payer of the check. This will be printed on the top-left portion of the
         #   check. This should be an array of up to 4 elements, each of which represents a
@@ -171,12 +180,6 @@ module Increase
         #   @return [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>]
         required :payer,
                  -> { Increase::Internal::Type::ArrayOf[Increase::CheckTransferCreateParams::PhysicalCheck::Payer] }
-
-        # @!attribute recipient_name
-        #   The name that will be printed on the check in the 'To:' field.
-        #
-        #   @return [String]
-        required :recipient_name, String
 
         # @!attribute attachment_file_id
         #   The ID of a File to be attached to the check. This must have
@@ -238,7 +241,7 @@ module Increase
         #   @return [Increase::Models::CheckTransferCreateParams::PhysicalCheck::Signature, nil]
         optional :signature, -> { Increase::CheckTransferCreateParams::PhysicalCheck::Signature }
 
-        # @!method initialize(mailing_address:, memo:, payer:, recipient_name:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, physical_check_batch_id: nil, return_address: nil, return_address_name: nil, shipping_method: nil, signature: nil)
+        # @!method initialize(mailing_address:, memo:, payee:, payer:, attachment_file_id: nil, check_voucher_image_file_id: nil, note: nil, physical_check_batch_id: nil, return_address: nil, return_address_name: nil, shipping_method: nil, signature: nil)
         #   Details relating to the physical check that Increase will print and mail. This
         #   is required if `fulfillment_method` is equal to `physical_check`. It must not be
         #   included if any other `fulfillment_method` is provided.
@@ -249,12 +252,15 @@ module Increase
         #
         #   @param memo [String] The descriptor that will be printed on the memo field on the check.
         #
+        #   @param payee [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payee>]
+        #     The payee of the check. This will be printed in the Pay to the Order Of portion
+        #     of the check. This should be an array of up to 4 elements, each of which
+        #     represents a line of the payee.
+        #
         #   @param payer [Array<Increase::Models::CheckTransferCreateParams::PhysicalCheck::Payer>]
         #     The payer of the check. This will be printed on the top-left portion of the
         #     check. This should be an array of up to 4 elements, each of which represents a
         #     line of the payer.
-        #
-        #   @param recipient_name [String] The name that will be printed on the check in the 'To:' field.
         #
         #   @param attachment_file_id [String]
         #     The ID of a File to be attached to the check. This must have
@@ -306,6 +312,12 @@ module Increase
           #   @return [String]
           required :line1, String
 
+          # @!attribute name
+          #   The name component of the check's destination address.
+          #
+          #   @return [String]
+          required :name, String
+
           # @!attribute postal_code
           #   The postal code component of the check's destination address.
           #
@@ -324,13 +336,6 @@ module Increase
           #   @return [String, nil]
           optional :line2, String
 
-          # @!attribute name
-          #   The name component of the check's destination address. Defaults to the provided
-          #   `recipient_name` parameter if `name` is not provided.
-          #
-          #   @return [String, nil]
-          optional :name, String
-
           # @!attribute phone
           #   The phone number to associate with the check's destination address. The phone
           #   number is only used when `shipping_method` is `fedex_overnight` and will be
@@ -339,7 +344,7 @@ module Increase
           #   @return [String, nil]
           optional :phone, String
 
-          # @!method initialize(city:, line1:, postal_code:, state:, line2: nil, name: nil, phone: nil)
+          # @!method initialize(city:, line1:, name:, postal_code:, state:, line2: nil, phone: nil)
           #   Details for where Increase will mail the check. When `physical_check_batch_id`
           #   is set, the address must match the Physical Check Batch.
           #
@@ -347,20 +352,29 @@ module Increase
           #
           #   @param line1 [String] The first line of the address component of the check's destination address.
           #
+          #   @param name [String] The name component of the check's destination address.
+          #
           #   @param postal_code [String] The postal code component of the check's destination address.
           #
           #   @param state [String] The US state component of the check's destination address.
           #
           #   @param line2 [String] The second line of the address component of the check's destination address.
           #
-          #   @param name [String]
-          #     The name component of the check's destination address. Defaults to the provided
-          #     `recipient_name` parameter if `name` is not provided.
-          #
           #   @param phone [String]
           #     The phone number to associate with the check's destination address. The phone
           #     number is only used when `shipping_method` is `fedex_overnight` and will be
           #     supplied to FedEx to be used in case of delivery issues.
+        end
+
+        class Payee < Increase::Internal::Type::BaseModel
+          # @!attribute contents
+          #   The contents of the line.
+          #
+          #   @return [String]
+          required :contents, String
+
+          # @!method initialize(contents:)
+          #   @param contents [String] The contents of the line.
         end
 
         class Payer < Increase::Internal::Type::BaseModel

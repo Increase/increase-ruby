@@ -117,8 +117,8 @@ module Increase
         {
           mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
+          payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee],
           payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
-          recipient_name: String,
           attachment_file_id: String,
           check_voucher_image_file_id: String,
           note: String,
@@ -134,9 +134,9 @@ module Increase
 
         attr_accessor memo: String
 
-        attr_accessor payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
+        attr_accessor payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee]
 
-        attr_accessor recipient_name: String
+        attr_accessor payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer]
 
         attr_reader attachment_file_id: String?
 
@@ -179,8 +179,8 @@ module Increase
         def initialize: (
           mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
+          payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee],
           payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
-          recipient_name: String,
           ?attachment_file_id: String,
           ?check_voucher_image_file_id: String,
           ?note: String,
@@ -194,8 +194,8 @@ module Increase
         def to_hash: -> {
           mailing_address: Increase::CheckTransferCreateParams::PhysicalCheck::MailingAddress,
           memo: String,
+          payee: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payee],
           payer: ::Array[Increase::CheckTransferCreateParams::PhysicalCheck::Payer],
-          recipient_name: String,
           attachment_file_id: String,
           check_voucher_image_file_id: String,
           note: String,
@@ -210,10 +210,10 @@ module Increase
           {
             city: String,
             :line1 => String,
+            name: String,
             postal_code: String,
             state: String,
             :line2 => String,
-            name: String,
             phone: String
           }
 
@@ -221,6 +221,8 @@ module Increase
           attr_accessor city: String
 
           attr_accessor line1: String
+
+          attr_accessor name: String
 
           attr_accessor postal_code: String
 
@@ -230,10 +232,6 @@ module Increase
 
           def line2=: (String) -> String
 
-          attr_reader name: String?
-
-          def name=: (String) -> String
-
           attr_reader phone: String?
 
           def phone=: (String) -> String
@@ -241,22 +239,32 @@ module Increase
           def initialize: (
             city: String,
             line1: String,
+            name: String,
             postal_code: String,
             state: String,
             ?line2: String,
-            ?name: String,
             ?phone: String
           ) -> void
 
           def to_hash: -> {
             city: String,
             :line1 => String,
+            name: String,
             postal_code: String,
             state: String,
             :line2 => String,
-            name: String,
             phone: String
           }
+        end
+
+        type payee = { contents: String }
+
+        class Payee < Increase::Internal::Type::BaseModel
+          attr_accessor contents: String
+
+          def initialize: (contents: String) -> void
+
+          def to_hash: -> { contents: String }
         end
 
         type payer = { contents: String }
