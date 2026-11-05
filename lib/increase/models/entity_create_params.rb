@@ -49,13 +49,6 @@ module Increase
       #   @return [Increase::Models::EntityCreateParams::NaturalPerson, nil]
       optional :natural_person, -> { Increase::EntityCreateParams::NaturalPerson }
 
-      # @!attribute risk_rating
-      #   An assessment of the entity's potential risk of involvement in financial crimes,
-      #   such as money laundering.
-      #
-      #   @return [Increase::Models::EntityCreateParams::RiskRating, nil]
-      optional :risk_rating, -> { Increase::EntityCreateParams::RiskRating }
-
       # @!attribute sole_proprietorship
       #   Details of the sole proprietorship entity to create. Required if `structure` is
       #   equal to `sole_proprietorship`.
@@ -93,7 +86,7 @@ module Increase
       #   @return [Increase::Models::EntityCreateParams::Trust, nil]
       optional :trust, -> { Increase::EntityCreateParams::Trust }
 
-      # @!method initialize(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, sole_proprietorship: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @!method initialize(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, sole_proprietorship: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   @param structure [Symbol, Increase::Models::EntityCreateParams::Structure] The type of Entity to create.
       #
       #   @param corporation [Increase::Models::EntityCreateParams::Corporation]
@@ -115,10 +108,6 @@ module Increase
       #     to `natural_person`. Natural people entities should be submitted with
       #     `social_security_number` or `individual_taxpayer_identification_number`
       #     identification methods.
-      #
-      #   @param risk_rating [Increase::Models::EntityCreateParams::RiskRating]
-      #     An assessment of the entity's potential risk of involvement in financial crimes,
-      #     such as money laundering.
       #
       #   @param sole_proprietorship [Increase::Models::EntityCreateParams::SoleProprietorship]
       #     Details of the sole proprietorship entity to create. Required if `structure` is
@@ -1672,51 +1661,6 @@ module Increase
             #
             #   @param file_id [String] The identifier of the File containing the passport.
           end
-        end
-      end
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        # @!attribute rated_at
-        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        #   rating was performed.
-        #
-        #   @return [Time]
-        required :rated_at, Time
-
-        # @!attribute rating
-        #   The rating given to this entity.
-        #
-        #   @return [Symbol, Increase::Models::EntityCreateParams::RiskRating::Rating]
-        required :rating, enum: -> { Increase::EntityCreateParams::RiskRating::Rating }
-
-        # @!method initialize(rated_at:, rating:)
-        #   An assessment of the entity's potential risk of involvement in financial crimes,
-        #   such as money laundering.
-        #
-        #   @param rated_at [Time]
-        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        #     rating was performed.
-        #
-        #   @param rating [Symbol, Increase::Models::EntityCreateParams::RiskRating::Rating]
-        #     The rating given to this entity.
-
-        # The rating given to this entity.
-        #
-        # @see Increase::Models::EntityCreateParams::RiskRating#rating
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          # Minimal risk of involvement in financial crime.
-          LOW = :low
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM = :medium
-
-          # Elevated risk of involvement in financial crime.
-          HIGH = :high
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
 

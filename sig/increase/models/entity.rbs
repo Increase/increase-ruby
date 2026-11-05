@@ -12,7 +12,6 @@ module Increase
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        risk_rating: Increase::Entity::RiskRating?,
         sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
@@ -45,8 +44,6 @@ module Increase
 
       attr_accessor natural_person: Increase::Entity::NaturalPerson?
 
-      attr_accessor risk_rating: Increase::Entity::RiskRating?
-
       attr_accessor sole_proprietorship: Increase::Entity::SoleProprietorship?
 
       attr_accessor status: Increase::Models::Entity::status
@@ -76,7 +73,6 @@ module Increase
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        risk_rating: Increase::Entity::RiskRating?,
         sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
@@ -99,7 +95,6 @@ module Increase
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        risk_rating: Increase::Entity::RiskRating?,
         sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
@@ -836,42 +831,6 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::Entity::NaturalPerson::Identification::method_]
           end
-        end
-      end
-
-      type risk_rating =
-        { rated_at: Time, rating: Increase::Models::Entity::RiskRating::rating }
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        attr_accessor rated_at: Time
-
-        attr_accessor rating: Increase::Models::Entity::RiskRating::rating
-
-        def initialize: (
-          rated_at: Time,
-          rating: Increase::Models::Entity::RiskRating::rating
-        ) -> void
-
-        def to_hash: -> {
-          rated_at: Time,
-          rating: Increase::Models::Entity::RiskRating::rating
-        }
-
-        type rating = :low | :medium | :high
-
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          # Minimal risk of involvement in financial crime.
-          LOW: :low
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM: :medium
-
-          # Elevated risk of involvement in financial crime.
-          HIGH: :high
-
-          def self?.values: -> ::Array[Increase::Models::Entity::RiskRating::rating]
         end
       end
 

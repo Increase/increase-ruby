@@ -26,7 +26,6 @@ class Increase::Test::Resources::Simulations::EntitiesTest < Increase::Test::Res
         idempotency_key: String | nil,
         joint: Increase::Entity::Joint | nil,
         natural_person: Increase::Entity::NaturalPerson | nil,
-        risk_rating: Increase::Entity::RiskRating | nil,
         sole_proprietorship: Increase::Entity::SoleProprietorship | nil,
         status: Increase::Entity::Status,
         structure: Increase::Entity::Structure,

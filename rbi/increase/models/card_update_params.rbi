@@ -1282,21 +1282,17 @@ module Increase
         attr_writer :digital_card_profile_id
 
         # An email address that can be used to verify the cardholder via one-time passcode
-        # over email.
+        # over email. Send `null` to clear the email address. Omit this field to leave it
+        # unchanged.
         sig { returns(T.nilable(String)) }
-        attr_reader :email
-
-        sig { params(email: String).void }
-        attr_writer :email
+        attr_accessor :email
 
         # A phone number that can be used to verify the cardholder via one-time passcode
         # over SMS. Accepts formats like `+14155550123`, `4155550123`, `415-555-0123`, or
-        # `(415) 555-0123`.
+        # `(415) 555-0123`. Send `null` to clear the phone number. Omit this field to
+        # leave it unchanged.
         sig { returns(T.nilable(String)) }
-        attr_reader :phone
-
-        sig { params(phone: String).void }
-        attr_writer :phone
+        attr_accessor :phone
 
         # The contact information used in the two-factor steps for digital wallet card
         # creation. At least one field must be present to complete the digital wallet
@@ -1304,26 +1300,32 @@ module Increase
         sig do
           params(
             digital_card_profile_id: String,
-            email: String,
-            phone: String
+            email: T.nilable(String),
+            phone: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
           # The digital card profile assigned to this digital card.
           digital_card_profile_id: nil,
           # An email address that can be used to verify the cardholder via one-time passcode
-          # over email.
+          # over email. Send `null` to clear the email address. Omit this field to leave it
+          # unchanged.
           email: nil,
           # A phone number that can be used to verify the cardholder via one-time passcode
           # over SMS. Accepts formats like `+14155550123`, `4155550123`, `415-555-0123`, or
-          # `(415) 555-0123`.
+          # `(415) 555-0123`. Send `null` to clear the phone number. Omit this field to
+          # leave it unchanged.
           phone: nil
         )
         end
 
         sig do
           override.returns(
-            { digital_card_profile_id: String, email: String, phone: String }
+            {
+              digital_card_profile_id: String,
+              email: T.nilable(String),
+              phone: T.nilable(String)
+            }
           )
         end
         def to_hash
