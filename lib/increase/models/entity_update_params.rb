@@ -42,13 +42,6 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::NaturalPerson, nil]
       optional :natural_person, -> { Increase::EntityUpdateParams::NaturalPerson }
 
-      # @!attribute risk_rating
-      #   An assessment of the entity’s potential risk of involvement in financial crimes,
-      #   such as money laundering.
-      #
-      #   @return [Increase::Models::EntityUpdateParams::RiskRating, nil]
-      optional :risk_rating, -> { Increase::EntityUpdateParams::RiskRating }
-
       # @!attribute sole_proprietorship
       #   Details of the sole proprietorship entity to update. If you specify this
       #   parameter and the entity is not a sole proprietorship, the request will fail.
@@ -79,7 +72,7 @@ module Increase
       #   @return [Increase::Models::EntityUpdateParams::Trust, nil]
       optional :trust, -> { Increase::EntityUpdateParams::Trust }
 
-      # @!method initialize(entity_id:, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, sole_proprietorship: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @!method initialize(entity_id:, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, sole_proprietorship: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #   @param entity_id [String] The entity identifier.
       #
       #   @param corporation [Increase::Models::EntityUpdateParams::Corporation]
@@ -98,10 +91,6 @@ module Increase
       #   @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson]
       #     Details of the natural person entity to update. If you specify this parameter
       #     and the entity is not a natural person, the request will fail.
-      #
-      #   @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating]
-      #     An assessment of the entity’s potential risk of involvement in financial crimes,
-      #     such as money laundering.
       #
       #   @param sole_proprietorship [Increase::Models::EntityUpdateParams::SoleProprietorship]
       #     Details of the sole proprietorship entity to update. If you specify this
@@ -727,51 +716,6 @@ module Increase
             #
             #   @param file_id [String] The identifier of the File containing the passport.
           end
-        end
-      end
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        # @!attribute rated_at
-        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        #   rating was performed.
-        #
-        #   @return [Time]
-        required :rated_at, Time
-
-        # @!attribute rating
-        #   The rating given to this entity.
-        #
-        #   @return [Symbol, Increase::Models::EntityUpdateParams::RiskRating::Rating]
-        required :rating, enum: -> { Increase::EntityUpdateParams::RiskRating::Rating }
-
-        # @!method initialize(rated_at:, rating:)
-        #   An assessment of the entity’s potential risk of involvement in financial crimes,
-        #   such as money laundering.
-        #
-        #   @param rated_at [Time]
-        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        #     rating was performed.
-        #
-        #   @param rating [Symbol, Increase::Models::EntityUpdateParams::RiskRating::Rating]
-        #     The rating given to this entity.
-
-        # The rating given to this entity.
-        #
-        # @see Increase::Models::EntityUpdateParams::RiskRating#rating
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          # Minimal risk of involvement in financial crime.
-          LOW = :low
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM = :medium
-
-          # Elevated risk of involvement in financial crime.
-          HIGH = :high
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
 

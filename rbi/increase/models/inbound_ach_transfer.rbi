@@ -143,8 +143,8 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :receiver_name
 
-      # A subhash containing information about when and how the transfer settled at the
-      # Federal Reserve.
+      # A subhash containing information about when the transfer settled (or will
+      # settle) at the Federal Reserve.
       sig { returns(Increase::InboundACHTransfer::Settlement) }
       attr_reader :settlement
 
@@ -281,8 +281,8 @@ module Increase
         receiver_id_number:,
         # The name of the receiver of the transfer.
         receiver_name:,
-        # A subhash containing information about when and how the transfer settled at the
-        # Federal Reserve.
+        # A subhash containing information about when the transfer settled (or will
+        # settle) at the Federal Reserve.
         settlement:,
         # The Standard Entry Class (SEC) code of the transfer.
         standard_entry_class_code:,
@@ -1539,8 +1539,8 @@ module Increase
         end
         attr_accessor :settlement_schedule
 
-        # A subhash containing information about when and how the transfer settled at the
-        # Federal Reserve.
+        # A subhash containing information about when the transfer settled (or will
+        # settle) at the Federal Reserve.
         sig do
           params(
             settled_at: Time,
