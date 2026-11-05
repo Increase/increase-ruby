@@ -5,7 +5,7 @@ module Increase
     class Entities
       # Create an Entity
       #
-      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, risk_rating: nil, sole_proprietorship: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @overload create(structure:, corporation: nil, description: nil, government_authority: nil, joint: nil, natural_person: nil, sole_proprietorship: nil, supplemental_documents: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param structure [Symbol, Increase::Models::EntityCreateParams::Structure] The type of Entity to create.
       #
@@ -28,10 +28,6 @@ module Increase
       #   to `natural_person`. Natural people entities should be submitted with
       #   `social_security_number` or `individual_taxpayer_identification_number`
       #   identification methods.
-      #
-      # @param risk_rating [Increase::Models::EntityCreateParams::RiskRating]
-      #   An assessment of the entity's potential risk of involvement in financial crimes,
-      #   such as money laundering.
       #
       # @param sole_proprietorship [Increase::Models::EntityCreateParams::SoleProprietorship]
       #   Details of the sole proprietorship entity to create. Required if `structure` is
@@ -91,7 +87,7 @@ module Increase
 
       # Update an Entity
       #
-      # @overload update(entity_id, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, risk_rating: nil, sole_proprietorship: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
+      # @overload update(entity_id, corporation: nil, details_confirmed_at: nil, government_authority: nil, natural_person: nil, sole_proprietorship: nil, terms_agreements: nil, third_party_verification: nil, trust: nil, request_options: {})
       #
       # @param entity_id [String] The entity identifier.
       #
@@ -111,10 +107,6 @@ module Increase
       # @param natural_person [Increase::Models::EntityUpdateParams::NaturalPerson]
       #   Details of the natural person entity to update. If you specify this parameter
       #   and the entity is not a natural person, the request will fail.
-      #
-      # @param risk_rating [Increase::Models::EntityUpdateParams::RiskRating]
-      #   An assessment of the entity’s potential risk of involvement in financial crimes,
-      #   such as money laundering.
       #
       # @param sole_proprietorship [Increase::Models::EntityUpdateParams::SoleProprietorship]
       #   Details of the sole proprietorship entity to update. If you specify this

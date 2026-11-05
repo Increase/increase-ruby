@@ -533,18 +533,20 @@ module Increase
 
         # @!attribute email
         #   An email address that can be used to verify the cardholder via one-time passcode
-        #   over email.
+        #   over email. Send `null` to clear the email address. Omit this field to leave it
+        #   unchanged.
         #
         #   @return [String, nil]
-        optional :email, String
+        optional :email, String, nil?: true
 
         # @!attribute phone
         #   A phone number that can be used to verify the cardholder via one-time passcode
         #   over SMS. Accepts formats like `+14155550123`, `4155550123`, `415-555-0123`, or
-        #   `(415) 555-0123`.
+        #   `(415) 555-0123`. Send `null` to clear the phone number. Omit this field to
+        #   leave it unchanged.
         #
         #   @return [String, nil]
-        optional :phone, String
+        optional :phone, String, nil?: true
 
         # @!method initialize(digital_card_profile_id: nil, email: nil, phone: nil)
         #   The contact information used in the two-factor steps for digital wallet card
@@ -553,14 +555,16 @@ module Increase
         #
         #   @param digital_card_profile_id [String] The digital card profile assigned to this digital card.
         #
-        #   @param email [String]
+        #   @param email [String, nil]
         #     An email address that can be used to verify the cardholder via one-time passcode
-        #     over email.
+        #     over email. Send `null` to clear the email address. Omit this field to leave it
+        #     unchanged.
         #
-        #   @param phone [String]
+        #   @param phone [String, nil]
         #     A phone number that can be used to verify the cardholder via one-time passcode
         #     over SMS. Accepts formats like `+14155550123`, `4155550123`, `415-555-0123`, or
-        #     `(415) 555-0123`.
+        #     `(415) 555-0123`. Send `null` to clear the phone number. Omit this field to
+        #     leave it unchanged.
       end
 
       # The status to update the Card with.
