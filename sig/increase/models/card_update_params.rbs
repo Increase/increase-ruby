@@ -498,31 +498,27 @@ module Increase
       end
 
       type digital_wallet =
-        { digital_card_profile_id: String, email: String, phone: String }
+        { digital_card_profile_id: String, email: String?, phone: String? }
 
       class DigitalWallet < Increase::Internal::Type::BaseModel
         attr_reader digital_card_profile_id: String?
 
         def digital_card_profile_id=: (String) -> String
 
-        attr_reader email: String?
+        attr_accessor email: String?
 
-        def email=: (String) -> String
-
-        attr_reader phone: String?
-
-        def phone=: (String) -> String
+        attr_accessor phone: String?
 
         def initialize: (
           ?digital_card_profile_id: String,
-          ?email: String,
-          ?phone: String
+          ?email: String?,
+          ?phone: String?
         ) -> void
 
         def to_hash: -> {
           digital_card_profile_id: String,
-          email: String,
-          phone: String
+          email: String?,
+          phone: String?
         }
       end
 
