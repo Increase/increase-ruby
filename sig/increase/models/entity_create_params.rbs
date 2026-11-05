@@ -8,7 +8,6 @@ module Increase
         government_authority: Increase::EntityCreateParams::GovernmentAuthority,
         joint: Increase::EntityCreateParams::Joint,
         natural_person: Increase::EntityCreateParams::NaturalPerson,
-        risk_rating: Increase::EntityCreateParams::RiskRating,
         sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship,
         supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
@@ -51,12 +50,6 @@ module Increase
         Increase::EntityCreateParams::NaturalPerson
       ) -> Increase::EntityCreateParams::NaturalPerson
 
-      attr_reader risk_rating: Increase::EntityCreateParams::RiskRating?
-
-      def risk_rating=: (
-        Increase::EntityCreateParams::RiskRating
-      ) -> Increase::EntityCreateParams::RiskRating
-
       attr_reader sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship?
 
       def sole_proprietorship=: (
@@ -94,7 +87,6 @@ module Increase
         ?government_authority: Increase::EntityCreateParams::GovernmentAuthority,
         ?joint: Increase::EntityCreateParams::Joint,
         ?natural_person: Increase::EntityCreateParams::NaturalPerson,
-        ?risk_rating: Increase::EntityCreateParams::RiskRating,
         ?sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship,
         ?supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         ?terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
@@ -110,7 +102,6 @@ module Increase
         government_authority: Increase::EntityCreateParams::GovernmentAuthority,
         joint: Increase::EntityCreateParams::Joint,
         natural_person: Increase::EntityCreateParams::NaturalPerson,
-        risk_rating: Increase::EntityCreateParams::RiskRating,
         sole_proprietorship: Increase::EntityCreateParams::SoleProprietorship,
         supplemental_documents: ::Array[Increase::EntityCreateParams::SupplementalDocument],
         terms_agreements: ::Array[Increase::EntityCreateParams::TermsAgreement],
@@ -1293,45 +1284,6 @@ module Increase
               file_id: String
             }
           end
-        end
-      end
-
-      type risk_rating =
-        {
-          rated_at: Time,
-          rating: Increase::Models::EntityCreateParams::RiskRating::rating
-        }
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        attr_accessor rated_at: Time
-
-        attr_accessor rating: Increase::Models::EntityCreateParams::RiskRating::rating
-
-        def initialize: (
-          rated_at: Time,
-          rating: Increase::Models::EntityCreateParams::RiskRating::rating
-        ) -> void
-
-        def to_hash: -> {
-          rated_at: Time,
-          rating: Increase::Models::EntityCreateParams::RiskRating::rating
-        }
-
-        type rating = :low | :medium | :high
-
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          # Minimal risk of involvement in financial crime.
-          LOW: :low
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM: :medium
-
-          # Elevated risk of involvement in financial crime.
-          HIGH: :high
-
-          def self?.values: -> ::Array[Increase::Models::EntityCreateParams::RiskRating::rating]
         end
       end
 

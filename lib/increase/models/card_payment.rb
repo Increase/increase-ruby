@@ -10120,6 +10120,9 @@ module Increase
                 # Electric vehicle charging level 3 480 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
 
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE = :diesel_1_off_road_non_taxable
+
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
                   :renewable_diesel_r95_or_greater_off_road_non_taxable
@@ -12858,6 +12861,9 @@ module Increase
 
                 # Electric vehicle charging level 3 480 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
+
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE = :diesel_1_off_road_non_taxable
 
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
