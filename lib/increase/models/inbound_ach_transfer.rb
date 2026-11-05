@@ -136,8 +136,8 @@ module Increase
       required :receiver_name, String, nil?: true
 
       # @!attribute settlement
-      #   A subhash containing information about when and how the transfer settled at the
-      #   Federal Reserve.
+      #   A subhash containing information about when the transfer settled (or will
+      #   settle) at the Federal Reserve.
       #
       #   @return [Increase::Models::InboundACHTransfer::Settlement]
       required :settlement, -> { Increase::InboundACHTransfer::Settlement }
@@ -237,8 +237,8 @@ module Increase
       #   @param receiver_name [String, nil] The name of the receiver of the transfer.
       #
       #   @param settlement [Increase::Models::InboundACHTransfer::Settlement]
-      #     A subhash containing information about when and how the transfer settled at the
-      #     Federal Reserve.
+      #     A subhash containing information about when the transfer settled (or will
+      #     settle) at the Federal Reserve.
       #
       #   @param standard_entry_class_code [Symbol, Increase::Models::InboundACHTransfer::StandardEntryClassCode]
       #     The Standard Entry Class (SEC) code of the transfer.
@@ -979,8 +979,8 @@ module Increase
         required :settlement_schedule, enum: -> { Increase::InboundACHTransfer::Settlement::SettlementSchedule }
 
         # @!method initialize(settled_at:, settlement_schedule:)
-        #   A subhash containing information about when and how the transfer settled at the
-        #   Federal Reserve.
+        #   A subhash containing information about when the transfer settled (or will
+        #   settle) at the Federal Reserve.
         #
         #   @param settled_at [Time]
         #     When the funds for this transfer settle at the recipient bank at the Federal
