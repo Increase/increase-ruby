@@ -18362,6 +18362,13 @@ module Increase
                     Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_1_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
                   T.let(
@@ -23206,6 +23213,13 @@ module Increase
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT =
                   T.let(
                     :electric_vehicle_charging_level_3_480_volt,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_1_off_road_non_taxable,
                     Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
