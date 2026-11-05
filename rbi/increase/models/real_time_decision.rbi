@@ -7302,22 +7302,153 @@ module Increase
               )
             end
 
+          # Device type.
+          sig do
+            returns(
+              T.nilable(
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+            )
+          end
+          attr_accessor :device_type
+
           # ID assigned to the device by the digital wallet provider.
           sig { returns(T.nilable(String)) }
           attr_accessor :identifier
 
+          # IP address of the device.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :ip_address
+
+          # Name of the device, for example "My Work Phone".
+          sig { returns(T.nilable(String)) }
+          attr_accessor :name
+
           # Device that is being used to provision the digital wallet token.
           sig do
-            params(identifier: T.nilable(String)).returns(T.attached_class)
+            params(
+              device_type:
+                T.nilable(
+                  Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::OrSymbol
+                ),
+              identifier: T.nilable(String),
+              ip_address: T.nilable(String),
+              name: T.nilable(String)
+            ).returns(T.attached_class)
           end
           def self.new(
+            # Device type.
+            device_type:,
             # ID assigned to the device by the digital wallet provider.
-            identifier:
+            identifier:,
+            # IP address of the device.
+            ip_address:,
+            # Name of the device, for example "My Work Phone".
+            name:
           )
           end
 
-          sig { override.returns({ identifier: T.nilable(String) }) }
+          sig do
+            override.returns(
+              {
+                device_type:
+                  T.nilable(
+                    Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+                  ),
+                identifier: T.nilable(String),
+                ip_address: T.nilable(String),
+                name: T.nilable(String)
+              }
+            )
+          end
           def to_hash
+          end
+
+          # Device type.
+          module DeviceType
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # Unknown
+            UNKNOWN =
+              T.let(
+                :unknown,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # Mobile Phone
+            MOBILE_PHONE =
+              T.let(
+                :mobile_phone,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # Tablet
+            TABLET =
+              T.let(
+                :tablet,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # Watch
+            WATCH =
+              T.let(
+                :watch,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # Mobile Phone or Tablet
+            MOBILEPHONE_OR_TABLET =
+              T.let(
+                :mobilephone_or_tablet,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # PC
+            PC =
+              T.let(
+                :pc,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # Household Device
+            HOUSEHOLD_DEVICE =
+              T.let(
+                :household_device,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # Wearable Device
+            WEARABLE_DEVICE =
+              T.let(
+                :wearable_device,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            # Automobile Device
+            AUTOMOBILE_DEVICE =
+              T.let(
+                :automobile_device,
+                Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 
