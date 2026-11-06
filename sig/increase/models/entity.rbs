@@ -6,13 +6,11 @@ module Increase
         corporation: Increase::Entity::Corporation?,
         created_at: Time,
         creating_entity_onboarding_session_id: String?,
-        description: String?,
         details_confirmed_at: Time?,
         government_authority: Increase::Entity::GovernmentAuthority?,
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        risk_rating: Increase::Entity::RiskRating?,
         sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
@@ -33,8 +31,6 @@ module Increase
 
       attr_accessor creating_entity_onboarding_session_id: String?
 
-      attr_accessor description: String?
-
       attr_accessor details_confirmed_at: Time?
 
       attr_accessor government_authority: Increase::Entity::GovernmentAuthority?
@@ -44,8 +40,6 @@ module Increase
       attr_accessor joint: Increase::Entity::Joint?
 
       attr_accessor natural_person: Increase::Entity::NaturalPerson?
-
-      attr_accessor risk_rating: Increase::Entity::RiskRating?
 
       attr_accessor sole_proprietorship: Increase::Entity::SoleProprietorship?
 
@@ -70,13 +64,11 @@ module Increase
         corporation: Increase::Entity::Corporation?,
         created_at: Time,
         creating_entity_onboarding_session_id: String?,
-        description: String?,
         details_confirmed_at: Time?,
         government_authority: Increase::Entity::GovernmentAuthority?,
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        risk_rating: Increase::Entity::RiskRating?,
         sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
@@ -93,13 +85,11 @@ module Increase
         corporation: Increase::Entity::Corporation?,
         created_at: Time,
         creating_entity_onboarding_session_id: String?,
-        description: String?,
         details_confirmed_at: Time?,
         government_authority: Increase::Entity::GovernmentAuthority?,
         idempotency_key: String?,
         joint: Increase::Entity::Joint?,
         natural_person: Increase::Entity::NaturalPerson?,
-        risk_rating: Increase::Entity::RiskRating?,
         sole_proprietorship: Increase::Entity::SoleProprietorship?,
         status: Increase::Models::Entity::status,
         structure: Increase::Models::Entity::structure,
@@ -836,42 +826,6 @@ module Increase
 
             def self?.values: -> ::Array[Increase::Models::Entity::NaturalPerson::Identification::method_]
           end
-        end
-      end
-
-      type risk_rating =
-        { rated_at: Time, rating: Increase::Models::Entity::RiskRating::rating }
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        attr_accessor rated_at: Time
-
-        attr_accessor rating: Increase::Models::Entity::RiskRating::rating
-
-        def initialize: (
-          rated_at: Time,
-          rating: Increase::Models::Entity::RiskRating::rating
-        ) -> void
-
-        def to_hash: -> {
-          rated_at: Time,
-          rating: Increase::Models::Entity::RiskRating::rating
-        }
-
-        type rating = :low | :medium | :high
-
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          # Minimal risk of involvement in financial crime.
-          LOW: :low
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM: :medium
-
-          # Elevated risk of involvement in financial crime.
-          HIGH: :high
-
-          def self?.values: -> ::Array[Increase::Models::Entity::RiskRating::rating]
         end
       end
 

@@ -2681,14 +2681,80 @@ module Increase
           def self?.values: -> ::Array[Increase::Models::RealTimeDecision::DigitalWalletToken::decision]
         end
 
-        type device = { identifier: String? }
+        type device =
+          {
+            device_type: Increase::Models::RealTimeDecision::DigitalWalletToken::Device::device_type?,
+            identifier: String?,
+            ip_address: String?,
+            name: String?
+          }
 
         class Device < Increase::Internal::Type::BaseModel
+          attr_accessor device_type: Increase::Models::RealTimeDecision::DigitalWalletToken::Device::device_type?
+
           attr_accessor identifier: String?
 
-          def initialize: (identifier: String?) -> void
+          attr_accessor ip_address: String?
 
-          def to_hash: -> { identifier: String? }
+          attr_accessor name: String?
+
+          def initialize: (
+            device_type: Increase::Models::RealTimeDecision::DigitalWalletToken::Device::device_type?,
+            identifier: String?,
+            ip_address: String?,
+            name: String?
+          ) -> void
+
+          def to_hash: -> {
+            device_type: Increase::Models::RealTimeDecision::DigitalWalletToken::Device::device_type?,
+            identifier: String?,
+            ip_address: String?,
+            name: String?
+          }
+
+          type device_type =
+            :unknown
+            | :mobile_phone
+            | :tablet
+            | :watch
+            | :mobilephone_or_tablet
+            | :pc
+            | :household_device
+            | :wearable_device
+            | :automobile_device
+
+          module DeviceType
+            extend Increase::Internal::Type::Enum
+
+            # Unknown
+            UNKNOWN: :unknown
+
+            # Mobile Phone
+            MOBILE_PHONE: :mobile_phone
+
+            # Tablet
+            TABLET: :tablet
+
+            # Watch
+            WATCH: :watch
+
+            # Mobile Phone or Tablet
+            MOBILEPHONE_OR_TABLET: :mobilephone_or_tablet
+
+            # PC
+            PC: :pc
+
+            # Household Device
+            HOUSEHOLD_DEVICE: :household_device
+
+            # Wearable Device
+            WEARABLE_DEVICE: :wearable_device
+
+            # Automobile Device
+            AUTOMOBILE_DEVICE: :automobile_device
+
+            def self?.values: -> ::Array[Increase::Models::RealTimeDecision::DigitalWalletToken::Device::device_type]
+          end
         end
 
         type digital_wallet =
