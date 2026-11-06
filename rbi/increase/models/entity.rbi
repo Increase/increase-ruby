@@ -32,10 +32,6 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :creating_entity_onboarding_session_id
 
-      # The entity's description for display purposes.
-      sig { returns(T.nilable(String)) }
-      attr_accessor :description
-
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
       # Entity's details were most recently confirmed.
       sig { returns(T.nilable(Time)) }
@@ -78,18 +74,6 @@ module Increase
         ).void
       end
       attr_writer :natural_person
-
-      # An assessment of the entity’s potential risk of involvement in financial crimes,
-      # such as money laundering.
-      sig { returns(T.nilable(Increase::Entity::RiskRating)) }
-      attr_reader :risk_rating
-
-      sig do
-        params(
-          risk_rating: T.nilable(Increase::Entity::RiskRating::OrHash)
-        ).void
-      end
-      attr_writer :risk_rating
 
       # Details of the sole proprietorship entity. Will be present if `structure` is
       # equal to `sole_proprietorship`.
@@ -168,14 +152,12 @@ module Increase
           corporation: T.nilable(Increase::Entity::Corporation::OrHash),
           created_at: Time,
           creating_entity_onboarding_session_id: T.nilable(String),
-          description: T.nilable(String),
           details_confirmed_at: T.nilable(Time),
           government_authority:
             T.nilable(Increase::Entity::GovernmentAuthority::OrHash),
           idempotency_key: T.nilable(String),
           joint: T.nilable(Increase::Entity::Joint::OrHash),
           natural_person: T.nilable(Increase::Entity::NaturalPerson::OrHash),
-          risk_rating: T.nilable(Increase::Entity::RiskRating::OrHash),
           sole_proprietorship:
             T.nilable(Increase::Entity::SoleProprietorship::OrHash),
           status: Increase::Entity::Status::OrSymbol,
@@ -202,8 +184,6 @@ module Increase
         # The identifier of the Entity Onboarding Session that was used to create this
         # Entity, if any.
         creating_entity_onboarding_session_id:,
-        # The entity's description for display purposes.
-        description:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
         # Entity's details were most recently confirmed.
         details_confirmed_at:,
@@ -219,9 +199,6 @@ module Increase
         # Details of the natural person entity. Will be present if `structure` is equal to
         # `natural_person`.
         natural_person:,
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
-        # such as money laundering.
-        risk_rating:,
         # Details of the sole proprietorship entity. Will be present if `structure` is
         # equal to `sole_proprietorship`.
         sole_proprietorship:,
@@ -258,14 +235,12 @@ module Increase
             corporation: T.nilable(Increase::Entity::Corporation),
             created_at: Time,
             creating_entity_onboarding_session_id: T.nilable(String),
-            description: T.nilable(String),
             details_confirmed_at: T.nilable(Time),
             government_authority:
               T.nilable(Increase::Entity::GovernmentAuthority),
             idempotency_key: T.nilable(String),
             joint: T.nilable(Increase::Entity::Joint),
             natural_person: T.nilable(Increase::Entity::NaturalPerson),
-            risk_rating: T.nilable(Increase::Entity::RiskRating),
             sole_proprietorship:
               T.nilable(Increase::Entity::SoleProprietorship),
             status: Increase::Entity::Status::TaggedSymbol,
@@ -1910,78 +1885,6 @@ module Increase
             end
             def self.values
             end
-          end
-        end
-      end
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(Increase::Entity::RiskRating, Increase::Internal::AnyHash)
-          end
-
-        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        # rating was performed.
-        sig { returns(Time) }
-        attr_accessor :rated_at
-
-        # The rating given to this entity.
-        sig { returns(Increase::Entity::RiskRating::Rating::TaggedSymbol) }
-        attr_accessor :rating
-
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
-        # such as money laundering.
-        sig do
-          params(
-            rated_at: Time,
-            rating: Increase::Entity::RiskRating::Rating::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-          # rating was performed.
-          rated_at:,
-          # The rating given to this entity.
-          rating:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              rated_at: Time,
-              rating: Increase::Entity::RiskRating::Rating::TaggedSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-
-        # The rating given to this entity.
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias { T.all(Symbol, Increase::Entity::RiskRating::Rating) }
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Minimal risk of involvement in financial crime.
-          LOW = T.let(:low, Increase::Entity::RiskRating::Rating::TaggedSymbol)
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM =
-            T.let(:medium, Increase::Entity::RiskRating::Rating::TaggedSymbol)
-
-          # Elevated risk of involvement in financial crime.
-          HIGH =
-            T.let(:high, Increase::Entity::RiskRating::Rating::TaggedSymbol)
-
-          sig do
-            override.returns(
-              T::Array[Increase::Entity::RiskRating::Rating::TaggedSymbol]
-            )
-          end
-          def self.values
           end
         end
       end
