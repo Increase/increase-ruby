@@ -3,10 +3,10 @@ module Increase
     type account_number_list_params =
       {
         account_id: String,
-        ach_debit_status: Increase::AccountNumberListParams::ACHDebitStatus,
         created_at: Increase::AccountNumberListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
+        inbound_ach_debits: Increase::AccountNumberListParams::InboundACHDebits,
         limit: Integer,
         status: Increase::AccountNumberListParams::Status
       }
@@ -19,12 +19,6 @@ module Increase
       attr_reader account_id: String?
 
       def account_id=: (String) -> String
-
-      attr_reader ach_debit_status: Increase::AccountNumberListParams::ACHDebitStatus?
-
-      def ach_debit_status=: (
-        Increase::AccountNumberListParams::ACHDebitStatus
-      ) -> Increase::AccountNumberListParams::ACHDebitStatus
 
       attr_reader created_at: Increase::AccountNumberListParams::CreatedAt?
 
@@ -40,6 +34,12 @@ module Increase
 
       def idempotency_key=: (String) -> String
 
+      attr_reader inbound_ach_debits: Increase::AccountNumberListParams::InboundACHDebits?
+
+      def inbound_ach_debits=: (
+        Increase::AccountNumberListParams::InboundACHDebits
+      ) -> Increase::AccountNumberListParams::InboundACHDebits
+
       attr_reader limit: Integer?
 
       def limit=: (Integer) -> Integer
@@ -52,10 +52,10 @@ module Increase
 
       def initialize: (
         ?account_id: String,
-        ?ach_debit_status: Increase::AccountNumberListParams::ACHDebitStatus,
         ?created_at: Increase::AccountNumberListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
+        ?inbound_ach_debits: Increase::AccountNumberListParams::InboundACHDebits,
         ?limit: Integer,
         ?status: Increase::AccountNumberListParams::Status,
         ?request_options: Increase::request_opts
@@ -63,49 +63,14 @@ module Increase
 
       def to_hash: -> {
         account_id: String,
-        ach_debit_status: Increase::AccountNumberListParams::ACHDebitStatus,
         created_at: Increase::AccountNumberListParams::CreatedAt,
         cursor: String,
         idempotency_key: String,
+        inbound_ach_debits: Increase::AccountNumberListParams::InboundACHDebits,
         limit: Integer,
         status: Increase::AccountNumberListParams::Status,
         request_options: Increase::RequestOptions
       }
-
-      type ach_debit_status =
-        {
-          in_: ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]
-        }
-
-      class ACHDebitStatus < Increase::Internal::Type::BaseModel
-        attr_reader in_: ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]?
-
-        def in_=: (
-          ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]
-        ) -> ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]
-
-        def initialize: (
-          ?in_: ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]
-        ) -> void
-
-        def to_hash: -> {
-          in_: ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]
-        }
-
-        type in_ = :allowed | :blocked
-
-        module In
-          extend Increase::Internal::Type::Enum
-
-          # ACH Debits are allowed.
-          ALLOWED: :allowed
-
-          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
-          BLOCKED: :blocked
-
-          def self?.values: -> ::Array[Increase::Models::AccountNumberListParams::ACHDebitStatus::in_]
-        end
-      end
 
       type created_at =
         { after: Time, before: Time, on_or_after: Time, on_or_before: Time }
@@ -140,6 +105,41 @@ module Increase
           on_or_after: Time,
           on_or_before: Time
         }
+      end
+
+      type inbound_ach_debits =
+        {
+          in_: ::Array[Increase::Models::AccountNumberListParams::InboundACHDebits::in_]
+        }
+
+      class InboundACHDebits < Increase::Internal::Type::BaseModel
+        attr_reader in_: ::Array[Increase::Models::AccountNumberListParams::InboundACHDebits::in_]?
+
+        def in_=: (
+          ::Array[Increase::Models::AccountNumberListParams::InboundACHDebits::in_]
+        ) -> ::Array[Increase::Models::AccountNumberListParams::InboundACHDebits::in_]
+
+        def initialize: (
+          ?in_: ::Array[Increase::Models::AccountNumberListParams::InboundACHDebits::in_]
+        ) -> void
+
+        def to_hash: -> {
+          in_: ::Array[Increase::Models::AccountNumberListParams::InboundACHDebits::in_]
+        }
+
+        type in_ = :allowed | :blocked
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          # ACH Debits are allowed.
+          ALLOWED: :allowed
+
+          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
+          BLOCKED: :blocked
+
+          def self?.values: -> ::Array[Increase::Models::AccountNumberListParams::InboundACHDebits::in_]
+        end
       end
 
       type status =

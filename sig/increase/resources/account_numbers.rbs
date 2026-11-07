@@ -4,8 +4,8 @@ module Increase
       def create: (
         account_id: String,
         name: String,
-        ?inbound_ach: Increase::AccountNumberCreateParams::InboundACH,
-        ?inbound_checks: Increase::AccountNumberCreateParams::InboundChecks,
+        ?inbound_ach_debits: Increase::Models::AccountNumberCreateParams::inbound_ach_debits,
+        ?unregistered_inbound_checks: Increase::Models::AccountNumberCreateParams::unregistered_inbound_checks,
         ?request_options: Increase::request_opts
       ) -> Increase::AccountNumber
 
@@ -16,19 +16,19 @@ module Increase
 
       def update: (
         String account_number_id,
-        ?inbound_ach: Increase::AccountNumberUpdateParams::InboundACH,
-        ?inbound_checks: Increase::AccountNumberUpdateParams::InboundChecks,
+        ?inbound_ach_debits: Increase::Models::AccountNumberUpdateParams::inbound_ach_debits,
         ?name: String,
         ?status: Increase::Models::AccountNumberUpdateParams::status,
+        ?unregistered_inbound_checks: Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks,
         ?request_options: Increase::request_opts
       ) -> Increase::AccountNumber
 
       def list: (
         ?account_id: String,
-        ?ach_debit_status: Increase::AccountNumberListParams::ACHDebitStatus,
         ?created_at: Increase::AccountNumberListParams::CreatedAt,
         ?cursor: String,
         ?idempotency_key: String,
+        ?inbound_ach_debits: Increase::AccountNumberListParams::InboundACHDebits,
         ?limit: Integer,
         ?status: Increase::AccountNumberListParams::Status,
         ?request_options: Increase::request_opts

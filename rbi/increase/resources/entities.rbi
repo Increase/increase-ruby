@@ -8,12 +8,10 @@ module Increase
         params(
           structure: Increase::EntityCreateParams::Structure::OrSymbol,
           corporation: Increase::EntityCreateParams::Corporation::OrHash,
-          description: String,
           government_authority:
             Increase::EntityCreateParams::GovernmentAuthority::OrHash,
           joint: Increase::EntityCreateParams::Joint::OrHash,
           natural_person: Increase::EntityCreateParams::NaturalPerson::OrHash,
-          risk_rating: Increase::EntityCreateParams::RiskRating::OrHash,
           sole_proprietorship:
             Increase::EntityCreateParams::SoleProprietorship::OrHash,
           supplemental_documents:
@@ -34,8 +32,6 @@ module Increase
         # Details of the corporation entity to create. Required if `structure` is equal to
         # `corporation`.
         corporation: nil,
-        # The description you choose to give the entity.
-        description: nil,
         # Details of the Government Authority entity to create. Required if `structure` is
         # equal to `government_authority`.
         government_authority: nil,
@@ -47,9 +43,6 @@ module Increase
         # `social_security_number` or `individual_taxpayer_identification_number`
         # identification methods.
         natural_person: nil,
-        # An assessment of the entity's potential risk of involvement in financial crimes,
-        # such as money laundering.
-        risk_rating: nil,
         # Details of the sole proprietorship entity to create. Required if `structure` is
         # equal to `sole_proprietorship`.
         sole_proprietorship: nil,
@@ -92,7 +85,6 @@ module Increase
           government_authority:
             Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
           natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
-          risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
           sole_proprietorship:
             Increase::EntityUpdateParams::SoleProprietorship::OrHash,
           terms_agreements:
@@ -119,9 +111,6 @@ module Increase
         # Details of the natural person entity to update. If you specify this parameter
         # and the entity is not a natural person, the request will fail.
         natural_person: nil,
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
-        # such as money laundering.
-        risk_rating: nil,
         # Details of the sole proprietorship entity to update. If you specify this
         # parameter and the entity is not a sole proprietorship, the request will fail.
         sole_proprietorship: nil,

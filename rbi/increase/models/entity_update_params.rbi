@@ -63,18 +63,6 @@ module Increase
       end
       attr_writer :natural_person
 
-      # An assessment of the entity’s potential risk of involvement in financial crimes,
-      # such as money laundering.
-      sig { returns(T.nilable(Increase::EntityUpdateParams::RiskRating)) }
-      attr_reader :risk_rating
-
-      sig do
-        params(
-          risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash
-        ).void
-      end
-      attr_writer :risk_rating
-
       # Details of the sole proprietorship entity to update. If you specify this
       # parameter and the entity is not a sole proprietorship, the request will fail.
       sig do
@@ -139,7 +127,6 @@ module Increase
           government_authority:
             Increase::EntityUpdateParams::GovernmentAuthority::OrHash,
           natural_person: Increase::EntityUpdateParams::NaturalPerson::OrHash,
-          risk_rating: Increase::EntityUpdateParams::RiskRating::OrHash,
           sole_proprietorship:
             Increase::EntityUpdateParams::SoleProprietorship::OrHash,
           terms_agreements:
@@ -166,9 +153,6 @@ module Increase
         # Details of the natural person entity to update. If you specify this parameter
         # and the entity is not a natural person, the request will fail.
         natural_person: nil,
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
-        # such as money laundering.
-        risk_rating: nil,
         # Details of the sole proprietorship entity to update. If you specify this
         # parameter and the entity is not a sole proprietorship, the request will fail.
         sole_proprietorship: nil,
@@ -195,7 +179,6 @@ module Increase
             government_authority:
               Increase::EntityUpdateParams::GovernmentAuthority,
             natural_person: Increase::EntityUpdateParams::NaturalPerson,
-            risk_rating: Increase::EntityUpdateParams::RiskRating,
             sole_proprietorship:
               Increase::EntityUpdateParams::SoleProprietorship,
             terms_agreements:
@@ -1277,97 +1260,6 @@ module Increase
             end
             def to_hash
             end
-          end
-        end
-      end
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              Increase::EntityUpdateParams::RiskRating,
-              Increase::Internal::AnyHash
-            )
-          end
-
-        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        # rating was performed.
-        sig { returns(Time) }
-        attr_accessor :rated_at
-
-        # The rating given to this entity.
-        sig do
-          returns(Increase::EntityUpdateParams::RiskRating::Rating::OrSymbol)
-        end
-        attr_accessor :rating
-
-        # An assessment of the entity’s potential risk of involvement in financial crimes,
-        # such as money laundering.
-        sig do
-          params(
-            rated_at: Time,
-            rating: Increase::EntityUpdateParams::RiskRating::Rating::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-          # rating was performed.
-          rated_at:,
-          # The rating given to this entity.
-          rating:
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              rated_at: Time,
-              rating: Increase::EntityUpdateParams::RiskRating::Rating::OrSymbol
-            }
-          )
-        end
-        def to_hash
-        end
-
-        # The rating given to this entity.
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(Symbol, Increase::EntityUpdateParams::RiskRating::Rating)
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Minimal risk of involvement in financial crime.
-          LOW =
-            T.let(
-              :low,
-              Increase::EntityUpdateParams::RiskRating::Rating::TaggedSymbol
-            )
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM =
-            T.let(
-              :medium,
-              Increase::EntityUpdateParams::RiskRating::Rating::TaggedSymbol
-            )
-
-          # Elevated risk of involvement in financial crime.
-          HIGH =
-            T.let(
-              :high,
-              Increase::EntityUpdateParams::RiskRating::Rating::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::EntityUpdateParams::RiskRating::Rating::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
           end
         end
       end

@@ -13,18 +13,13 @@ module Increase
       #   @return [String]
       required :account_number_id, String
 
-      # @!attribute inbound_ach
-      #   Options related to how this Account Number handles inbound ACH transfers.
+      # @!attribute inbound_ach_debits
+      #   Whether inbound ACH debits are allowed against this Account Number. Note that
+      #   ACH debits will be declined if this is `allowed` but the Account Number is not
+      #   active.
       #
-      #   @return [Increase::Models::AccountNumberUpdateParams::InboundACH, nil]
-      optional :inbound_ach, -> { Increase::AccountNumberUpdateParams::InboundACH }
-
-      # @!attribute inbound_checks
-      #   Options related to how this Account Number should handle inbound check
-      #   withdrawals.
-      #
-      #   @return [Increase::Models::AccountNumberUpdateParams::InboundChecks, nil]
-      optional :inbound_checks, -> { Increase::AccountNumberUpdateParams::InboundChecks }
+      #   @return [Symbol, Increase::Models::AccountNumberUpdateParams::InboundACHDebits, nil]
+      optional :inbound_ach_debits, enum: -> { Increase::AccountNumberUpdateParams::InboundACHDebits }
 
       # @!attribute name
       #   The name you choose for the Account Number.
@@ -38,85 +33,45 @@ module Increase
       #   @return [Symbol, Increase::Models::AccountNumberUpdateParams::Status, nil]
       optional :status, enum: -> { Increase::AccountNumberUpdateParams::Status }
 
-      # @!method initialize(account_number_id:, inbound_ach: nil, inbound_checks: nil, name: nil, status: nil, request_options: {})
+      # @!attribute unregistered_inbound_checks
+      #   Whether unregistered inbound checks for this Account Number can be deposited.
+      #
+      #   @return [Symbol, Increase::Models::AccountNumberUpdateParams::UnregisteredInboundChecks, nil]
+      optional :unregistered_inbound_checks,
+               enum: -> { Increase::AccountNumberUpdateParams::UnregisteredInboundChecks }
+
+      # @!method initialize(account_number_id:, inbound_ach_debits: nil, name: nil, status: nil, unregistered_inbound_checks: nil, request_options: {})
       #   @param account_number_id [String] The identifier of the Account Number.
       #
-      #   @param inbound_ach [Increase::Models::AccountNumberUpdateParams::InboundACH]
-      #     Options related to how this Account Number handles inbound ACH transfers.
-      #
-      #   @param inbound_checks [Increase::Models::AccountNumberUpdateParams::InboundChecks]
-      #     Options related to how this Account Number should handle inbound check
-      #     withdrawals.
+      #   @param inbound_ach_debits [Symbol, Increase::Models::AccountNumberUpdateParams::InboundACHDebits]
+      #     Whether inbound ACH debits are allowed against this Account Number. Note that
+      #     ACH debits will be declined if this is `allowed` but the Account Number is not
+      #     active.
       #
       #   @param name [String] The name you choose for the Account Number.
       #
       #   @param status [Symbol, Increase::Models::AccountNumberUpdateParams::Status]
       #     This indicates if transfers can be made to the Account Number.
       #
+      #   @param unregistered_inbound_checks [Symbol, Increase::Models::AccountNumberUpdateParams::UnregisteredInboundChecks]
+      #     Whether unregistered inbound checks for this Account Number can be deposited.
+      #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
-      class InboundACH < Increase::Internal::Type::BaseModel
-        # @!attribute debit_status
-        #   Whether ACH debits are allowed against this Account Number. Note that ACH debits
-        #   will be declined if this is `allowed` but the Account Number is not active.
-        #
-        #   @return [Symbol, Increase::Models::AccountNumberUpdateParams::InboundACH::DebitStatus, nil]
-        optional :debit_status, enum: -> { Increase::AccountNumberUpdateParams::InboundACH::DebitStatus }
+      # Whether inbound ACH debits are allowed against this Account Number. Note that
+      # ACH debits will be declined if this is `allowed` but the Account Number is not
+      # active.
+      module InboundACHDebits
+        extend Increase::Internal::Type::Enum
 
-        # @!method initialize(debit_status: nil)
-        #   Options related to how this Account Number handles inbound ACH transfers.
-        #
-        #   @param debit_status [Symbol, Increase::Models::AccountNumberUpdateParams::InboundACH::DebitStatus]
-        #     Whether ACH debits are allowed against this Account Number. Note that ACH debits
-        #     will be declined if this is `allowed` but the Account Number is not active.
+        # ACH Debits are allowed.
+        ALLOWED = :allowed
 
-        # Whether ACH debits are allowed against this Account Number. Note that ACH debits
-        # will be declined if this is `allowed` but the Account Number is not active.
-        #
-        # @see Increase::Models::AccountNumberUpdateParams::InboundACH#debit_status
-        module DebitStatus
-          extend Increase::Internal::Type::Enum
+        # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
+        BLOCKED = :blocked
 
-          # ACH Debits are allowed.
-          ALLOWED = :allowed
-
-          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
-          BLOCKED = :blocked
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
-
-      class InboundChecks < Increase::Internal::Type::BaseModel
-        # @!attribute status
-        #   How Increase should process checks with this account number printed on them.
-        #
-        #   @return [Symbol, Increase::Models::AccountNumberUpdateParams::InboundChecks::Status]
-        required :status, enum: -> { Increase::AccountNumberUpdateParams::InboundChecks::Status }
-
-        # @!method initialize(status:)
-        #   Options related to how this Account Number should handle inbound check
-        #   withdrawals.
-        #
-        #   @param status [Symbol, Increase::Models::AccountNumberUpdateParams::InboundChecks::Status]
-        #     How Increase should process checks with this account number printed on them.
-
-        # How Increase should process checks with this account number printed on them.
-        #
-        # @see Increase::Models::AccountNumberUpdateParams::InboundChecks#status
-        module Status
-          extend Increase::Internal::Type::Enum
-
-          # Checks with this Account Number will be processed even if they are not associated with a Check Transfer.
-          ALLOWED = :allowed
-
-          # Checks with this Account Number will be processed only if they can be matched to an existing Check Transfer.
-          CHECK_TRANSFERS_ONLY = :check_transfers_only
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # This indicates if transfers can be made to the Account Number.
@@ -131,6 +86,20 @@ module Increase
 
         # The account number is permanently disabled.
         CANCELED = :canceled
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Whether unregistered inbound checks for this Account Number can be deposited.
+      module UnregisteredInboundChecks
+        extend Increase::Internal::Type::Enum
+
+        # Accept all Inbound Check Deposits, even if they are not associated with a Check Transfer or Checkbook Check.
+        ALLOWED = :allowed
+
+        # Only accept Inbound Check Deposits if they can be matched to a Check Transfer or Checkbook Check.
+        BLOCKED = :blocked
 
         # @!method self.values
         #   @return [Array<Symbol>]
