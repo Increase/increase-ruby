@@ -8070,6 +8070,13 @@ module Increase
                     Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_1_off_road_non_taxable,
+                    Increase::Transaction::Source::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
                   T.let(
@@ -12159,6 +12166,13 @@ module Increase
                     Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_1_off_road_non_taxable,
+                    Increase::Transaction::Source::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
                   T.let(
@@ -14713,6 +14727,10 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :bank_of_first_deposit_routing_number
 
+          # The identifier of the Checkbook Check object that was deposited.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :checkbook_check_id
+
           # When the check was deposited.
           sig { returns(Time) }
           attr_accessor :deposited_at
@@ -14752,6 +14770,7 @@ module Increase
             params(
               back_image_file_id: T.nilable(String),
               bank_of_first_deposit_routing_number: T.nilable(String),
+              checkbook_check_id: T.nilable(String),
               deposited_at: Time,
               front_image_file_id: T.nilable(String),
               inbound_check_deposit_id: T.nilable(String),
@@ -14769,6 +14788,8 @@ module Increase
             # bank depositing this check. In some rare cases, this is not transmitted via
             # Check 21 and the value will be null.
             bank_of_first_deposit_routing_number:,
+            # The identifier of the Checkbook Check object that was deposited.
+            checkbook_check_id:,
             # When the check was deposited.
             deposited_at:,
             # The identifier of the API File object containing an image of the front of the
@@ -14792,6 +14813,7 @@ module Increase
               {
                 back_image_file_id: T.nilable(String),
                 bank_of_first_deposit_routing_number: T.nilable(String),
+                checkbook_check_id: T.nilable(String),
                 deposited_at: Time,
                 front_image_file_id: T.nilable(String),
                 inbound_check_deposit_id: T.nilable(String),
@@ -15680,6 +15702,10 @@ module Increase
               )
             end
 
+          # The identifier of the Checkbook Check object that was deposited.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :checkbook_check_id
+
           # The ID of the Inbound Check Deposit that is being returned.
           sig { returns(String) }
           attr_accessor :inbound_check_deposit_id
@@ -15695,11 +15721,14 @@ module Increase
           # requests that it be returned.
           sig do
             params(
+              checkbook_check_id: T.nilable(String),
               inbound_check_deposit_id: String,
               transfer_id: T.nilable(String)
             ).returns(T.attached_class)
           end
           def self.new(
+            # The identifier of the Checkbook Check object that was deposited.
+            checkbook_check_id:,
             # The ID of the Inbound Check Deposit that is being returned.
             inbound_check_deposit_id:,
             # The identifier of the Check Transfer object that was deposited.
@@ -15710,6 +15739,7 @@ module Increase
           sig do
             override.returns(
               {
+                checkbook_check_id: T.nilable(String),
                 inbound_check_deposit_id: String,
                 transfer_id: T.nilable(String)
               }

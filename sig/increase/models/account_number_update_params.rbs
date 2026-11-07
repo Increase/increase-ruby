@@ -3,10 +3,10 @@ module Increase
     type account_number_update_params =
       {
         account_number_id: String,
-        inbound_ach: Increase::AccountNumberUpdateParams::InboundACH,
-        inbound_checks: Increase::AccountNumberUpdateParams::InboundChecks,
+        inbound_ach_debits: Increase::Models::AccountNumberUpdateParams::inbound_ach_debits,
         name: String,
-        status: Increase::Models::AccountNumberUpdateParams::status
+        status: Increase::Models::AccountNumberUpdateParams::status,
+        unregistered_inbound_checks: Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks
       }
       & Increase::Internal::Type::request_parameters
 
@@ -16,17 +16,11 @@ module Increase
 
       attr_accessor account_number_id: String
 
-      attr_reader inbound_ach: Increase::AccountNumberUpdateParams::InboundACH?
+      attr_reader inbound_ach_debits: Increase::Models::AccountNumberUpdateParams::inbound_ach_debits?
 
-      def inbound_ach=: (
-        Increase::AccountNumberUpdateParams::InboundACH
-      ) -> Increase::AccountNumberUpdateParams::InboundACH
-
-      attr_reader inbound_checks: Increase::AccountNumberUpdateParams::InboundChecks?
-
-      def inbound_checks=: (
-        Increase::AccountNumberUpdateParams::InboundChecks
-      ) -> Increase::AccountNumberUpdateParams::InboundChecks
+      def inbound_ach_debits=: (
+        Increase::Models::AccountNumberUpdateParams::inbound_ach_debits
+      ) -> Increase::Models::AccountNumberUpdateParams::inbound_ach_debits
 
       attr_reader name: String?
 
@@ -38,88 +32,42 @@ module Increase
         Increase::Models::AccountNumberUpdateParams::status
       ) -> Increase::Models::AccountNumberUpdateParams::status
 
+      attr_reader unregistered_inbound_checks: Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks?
+
+      def unregistered_inbound_checks=: (
+        Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks
+      ) -> Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks
+
       def initialize: (
         account_number_id: String,
-        ?inbound_ach: Increase::AccountNumberUpdateParams::InboundACH,
-        ?inbound_checks: Increase::AccountNumberUpdateParams::InboundChecks,
+        ?inbound_ach_debits: Increase::Models::AccountNumberUpdateParams::inbound_ach_debits,
         ?name: String,
         ?status: Increase::Models::AccountNumberUpdateParams::status,
+        ?unregistered_inbound_checks: Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
         account_number_id: String,
-        inbound_ach: Increase::AccountNumberUpdateParams::InboundACH,
-        inbound_checks: Increase::AccountNumberUpdateParams::InboundChecks,
+        inbound_ach_debits: Increase::Models::AccountNumberUpdateParams::inbound_ach_debits,
         name: String,
         status: Increase::Models::AccountNumberUpdateParams::status,
+        unregistered_inbound_checks: Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks,
         request_options: Increase::RequestOptions
       }
 
-      type inbound_ach =
-        {
-          debit_status: Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status
-        }
+      type inbound_ach_debits = :allowed | :blocked
 
-      class InboundACH < Increase::Internal::Type::BaseModel
-        attr_reader debit_status: Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status?
+      module InboundACHDebits
+        extend Increase::Internal::Type::Enum
 
-        def debit_status=: (
-          Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status
-        ) -> Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status
+        # ACH Debits are allowed.
+        ALLOWED: :allowed
 
-        def initialize: (
-          ?debit_status: Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status
-        ) -> void
+        # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
+        BLOCKED: :blocked
 
-        def to_hash: -> {
-          debit_status: Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status
-        }
-
-        type debit_status = :allowed | :blocked
-
-        module DebitStatus
-          extend Increase::Internal::Type::Enum
-
-          # ACH Debits are allowed.
-          ALLOWED: :allowed
-
-          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
-          BLOCKED: :blocked
-
-          def self?.values: -> ::Array[Increase::Models::AccountNumberUpdateParams::InboundACH::debit_status]
-        end
-      end
-
-      type inbound_checks =
-        {
-          status: Increase::Models::AccountNumberUpdateParams::InboundChecks::status
-        }
-
-      class InboundChecks < Increase::Internal::Type::BaseModel
-        attr_accessor status: Increase::Models::AccountNumberUpdateParams::InboundChecks::status
-
-        def initialize: (
-          status: Increase::Models::AccountNumberUpdateParams::InboundChecks::status
-        ) -> void
-
-        def to_hash: -> {
-          status: Increase::Models::AccountNumberUpdateParams::InboundChecks::status
-        }
-
-        type status = :allowed | :check_transfers_only
-
-        module Status
-          extend Increase::Internal::Type::Enum
-
-          # Checks with this Account Number will be processed even if they are not associated with a Check Transfer.
-          ALLOWED: :allowed
-
-          # Checks with this Account Number will be processed only if they can be matched to an existing Check Transfer.
-          CHECK_TRANSFERS_ONLY: :check_transfers_only
-
-          def self?.values: -> ::Array[Increase::Models::AccountNumberUpdateParams::InboundChecks::status]
-        end
+        def self?.values: -> ::Array[Increase::Models::AccountNumberUpdateParams::inbound_ach_debits]
       end
 
       type status = :active | :disabled | :canceled
@@ -137,6 +85,20 @@ module Increase
         CANCELED: :canceled
 
         def self?.values: -> ::Array[Increase::Models::AccountNumberUpdateParams::status]
+      end
+
+      type unregistered_inbound_checks = :allowed | :blocked
+
+      module UnregisteredInboundChecks
+        extend Increase::Internal::Type::Enum
+
+        # Accept all Inbound Check Deposits, even if they are not associated with a Check Transfer or Checkbook Check.
+        ALLOWED: :allowed
+
+        # Only accept Inbound Check Deposits if they can be matched to a Check Transfer or Checkbook Check.
+        BLOCKED: :blocked
+
+        def self?.values: -> ::Array[Increase::Models::AccountNumberUpdateParams::unregistered_inbound_checks]
       end
     end
   end

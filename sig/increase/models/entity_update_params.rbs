@@ -7,7 +7,6 @@ module Increase
         details_confirmed_at: Time,
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
-        risk_rating: Increase::EntityUpdateParams::RiskRating,
         sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship,
         terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
@@ -43,12 +42,6 @@ module Increase
         Increase::EntityUpdateParams::NaturalPerson
       ) -> Increase::EntityUpdateParams::NaturalPerson
 
-      attr_reader risk_rating: Increase::EntityUpdateParams::RiskRating?
-
-      def risk_rating=: (
-        Increase::EntityUpdateParams::RiskRating
-      ) -> Increase::EntityUpdateParams::RiskRating
-
       attr_reader sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship?
 
       def sole_proprietorship=: (
@@ -79,7 +72,6 @@ module Increase
         ?details_confirmed_at: Time,
         ?government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         ?natural_person: Increase::EntityUpdateParams::NaturalPerson,
-        ?risk_rating: Increase::EntityUpdateParams::RiskRating,
         ?sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship,
         ?terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         ?third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
@@ -93,7 +85,6 @@ module Increase
         details_confirmed_at: Time,
         government_authority: Increase::EntityUpdateParams::GovernmentAuthority,
         natural_person: Increase::EntityUpdateParams::NaturalPerson,
-        risk_rating: Increase::EntityUpdateParams::RiskRating,
         sole_proprietorship: Increase::EntityUpdateParams::SoleProprietorship,
         terms_agreements: ::Array[Increase::EntityUpdateParams::TermsAgreement],
         third_party_verification: Increase::EntityUpdateParams::ThirdPartyVerification,
@@ -585,45 +576,6 @@ module Increase
               file_id: String
             }
           end
-        end
-      end
-
-      type risk_rating =
-        {
-          rated_at: Time,
-          rating: Increase::Models::EntityUpdateParams::RiskRating::rating
-        }
-
-      class RiskRating < Increase::Internal::Type::BaseModel
-        attr_accessor rated_at: Time
-
-        attr_accessor rating: Increase::Models::EntityUpdateParams::RiskRating::rating
-
-        def initialize: (
-          rated_at: Time,
-          rating: Increase::Models::EntityUpdateParams::RiskRating::rating
-        ) -> void
-
-        def to_hash: -> {
-          rated_at: Time,
-          rating: Increase::Models::EntityUpdateParams::RiskRating::rating
-        }
-
-        type rating = :low | :medium | :high
-
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          # Minimal risk of involvement in financial crime.
-          LOW: :low
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM: :medium
-
-          # Elevated risk of involvement in financial crime.
-          HIGH: :high
-
-          def self?.values: -> ::Array[Increase::Models::EntityUpdateParams::RiskRating::rating]
         end
       end
 

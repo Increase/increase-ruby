@@ -8,9 +8,10 @@ module Increase
         params(
           account_id: String,
           name: String,
-          inbound_ach: Increase::AccountNumberCreateParams::InboundACH::OrHash,
-          inbound_checks:
-            Increase::AccountNumberCreateParams::InboundChecks::OrHash,
+          inbound_ach_debits:
+            Increase::AccountNumberCreateParams::InboundACHDebits::OrSymbol,
+          unregistered_inbound_checks:
+            Increase::AccountNumberCreateParams::UnregisteredInboundChecks::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::AccountNumber)
       end
@@ -19,11 +20,13 @@ module Increase
         account_id:,
         # The name you choose for the Account Number.
         name:,
-        # Options related to how this Account Number should handle inbound ACH transfers.
-        inbound_ach: nil,
-        # Options related to how this Account Number should handle inbound check
-        # withdrawals.
-        inbound_checks: nil,
+        # Whether inbound ACH debits are allowed against this Account Number. Note that
+        # ACH debits will be declined if this is `allowed` but the Account Number is not
+        # active. If you do not specify this field, the default is `allowed`.
+        inbound_ach_debits: nil,
+        # Whether unregistered inbound checks for this Account Number can be deposited. If
+        # you do not specify this field, the default is `blocked`.
+        unregistered_inbound_checks: nil,
         request_options: {}
       )
       end
@@ -46,26 +49,28 @@ module Increase
       sig do
         params(
           account_number_id: String,
-          inbound_ach: Increase::AccountNumberUpdateParams::InboundACH::OrHash,
-          inbound_checks:
-            Increase::AccountNumberUpdateParams::InboundChecks::OrHash,
+          inbound_ach_debits:
+            Increase::AccountNumberUpdateParams::InboundACHDebits::OrSymbol,
           name: String,
           status: Increase::AccountNumberUpdateParams::Status::OrSymbol,
+          unregistered_inbound_checks:
+            Increase::AccountNumberUpdateParams::UnregisteredInboundChecks::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::AccountNumber)
       end
       def update(
         # The identifier of the Account Number.
         account_number_id,
-        # Options related to how this Account Number handles inbound ACH transfers.
-        inbound_ach: nil,
-        # Options related to how this Account Number should handle inbound check
-        # withdrawals.
-        inbound_checks: nil,
+        # Whether inbound ACH debits are allowed against this Account Number. Note that
+        # ACH debits will be declined if this is `allowed` but the Account Number is not
+        # active.
+        inbound_ach_debits: nil,
         # The name you choose for the Account Number.
         name: nil,
         # This indicates if transfers can be made to the Account Number.
         status: nil,
+        # Whether unregistered inbound checks for this Account Number can be deposited.
+        unregistered_inbound_checks: nil,
         request_options: {}
       )
       end
@@ -74,11 +79,11 @@ module Increase
       sig do
         params(
           account_id: String,
-          ach_debit_status:
-            Increase::AccountNumberListParams::ACHDebitStatus::OrHash,
           created_at: Increase::AccountNumberListParams::CreatedAt::OrHash,
           cursor: String,
           idempotency_key: String,
+          inbound_ach_debits:
+            Increase::AccountNumberListParams::InboundACHDebits::OrHash,
           limit: Integer,
           status: Increase::AccountNumberListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -87,7 +92,6 @@ module Increase
       def list(
         # Filter Account Numbers to those belonging to the specified Account.
         account_id: nil,
-        ach_debit_status: nil,
         created_at: nil,
         # Return the page of entries after this one.
         cursor: nil,
@@ -96,6 +100,7 @@ module Increase
         # request is only processed once. Learn more about
         # [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key: nil,
+        inbound_ach_debits: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         #

@@ -1534,6 +1534,7 @@ module Increase
             auxiliary_on_us: String?,
             back_image_file_id: String?,
             check_transfer_id: String?,
+            checkbook_check_id: String?,
             front_image_file_id: String?,
             inbound_check_deposit_id: String?,
             reason: Increase::Models::DeclinedTransaction::Source::CheckDecline::reason
@@ -1548,6 +1549,8 @@ module Increase
 
           attr_accessor check_transfer_id: String?
 
+          attr_accessor checkbook_check_id: String?
+
           attr_accessor front_image_file_id: String?
 
           attr_accessor inbound_check_deposit_id: String?
@@ -1559,6 +1562,7 @@ module Increase
             auxiliary_on_us: String?,
             back_image_file_id: String?,
             check_transfer_id: String?,
+            checkbook_check_id: String?,
             front_image_file_id: String?,
             inbound_check_deposit_id: String?,
             reason: Increase::Models::DeclinedTransaction::Source::CheckDecline::reason
@@ -1569,6 +1573,7 @@ module Increase
             auxiliary_on_us: String?,
             back_image_file_id: String?,
             check_transfer_id: String?,
+            checkbook_check_id: String?,
             front_image_file_id: String?,
             inbound_check_deposit_id: String?,
             reason: Increase::Models::DeclinedTransaction::Source::CheckDecline::reason

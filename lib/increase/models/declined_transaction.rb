@@ -2166,6 +2166,12 @@ module Increase
           #   @return [String, nil]
           required :check_transfer_id, String, nil?: true
 
+          # @!attribute checkbook_check_id
+          #   The identifier of the Checkbook Check object associated with this decline.
+          #
+          #   @return [String, nil]
+          required :checkbook_check_id, String, nil?: true
+
           # @!attribute front_image_file_id
           #   The identifier of the API File object containing an image of the front of the
           #   declined check.
@@ -2185,7 +2191,7 @@ module Increase
           #   @return [Symbol, Increase::Models::DeclinedTransaction::Source::CheckDecline::Reason]
           required :reason, enum: -> { Increase::DeclinedTransaction::Source::CheckDecline::Reason }
 
-          # @!method initialize(amount:, auxiliary_on_us:, back_image_file_id:, check_transfer_id:, front_image_file_id:, inbound_check_deposit_id:, reason:)
+          # @!method initialize(amount:, auxiliary_on_us:, back_image_file_id:, check_transfer_id:, checkbook_check_id:, front_image_file_id:, inbound_check_deposit_id:, reason:)
           #   A Check Decline object. This field will be present in the JSON response if and
           #   only if `category` is equal to `check_decline`.
           #
@@ -2202,6 +2208,9 @@ module Increase
           #
           #   @param check_transfer_id [String, nil]
           #     The identifier of the Check Transfer object associated with this decline.
+          #
+          #   @param checkbook_check_id [String, nil]
+          #     The identifier of the Checkbook Check object associated with this decline.
           #
           #   @param front_image_file_id [String, nil]
           #     The identifier of the API File object containing an image of the front of the

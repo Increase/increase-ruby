@@ -78,6 +78,9 @@ module Increase
       sig { returns(Increase::Resources::Simulations::CheckTransfers) }
       attr_reader :check_transfers
 
+      sig { returns(Increase::Resources::Simulations::Checkbooks) }
+      attr_reader :checkbooks
+
       sig { returns(Increase::Resources::Simulations::InboundCheckDeposits) }
       attr_reader :inbound_check_deposits
 

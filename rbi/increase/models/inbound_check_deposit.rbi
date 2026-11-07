@@ -60,6 +60,11 @@ module Increase
       sig { returns(T.nilable(String)) }
       attr_accessor :check_transfer_id
 
+      # If this deposit is for an existing Checkbook Check, the identifier of that
+      # Checkbook Check.
+      sig { returns(T.nilable(String)) }
+      attr_accessor :checkbook_check_id
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       # the deposit was attempted.
       sig { returns(Time) }
@@ -134,6 +139,7 @@ module Increase
           bank_of_first_deposit_routing_number: T.nilable(String),
           check_number: T.nilable(String),
           check_transfer_id: T.nilable(String),
+          checkbook_check_id: T.nilable(String),
           created_at: Time,
           currency: Increase::InboundCheckDeposit::Currency::OrSymbol,
           declined_at: T.nilable(Time),
@@ -179,6 +185,9 @@ module Increase
         # If this deposit is for an existing Check Transfer, the identifier of that Check
         # Transfer.
         check_transfer_id:,
+        # If this deposit is for an existing Checkbook Check, the identifier of that
+        # Checkbook Check.
+        checkbook_check_id:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the deposit was attempted.
         created_at:,
@@ -224,6 +233,7 @@ module Increase
             bank_of_first_deposit_routing_number: T.nilable(String),
             check_number: T.nilable(String),
             check_transfer_id: T.nilable(String),
+            checkbook_check_id: T.nilable(String),
             created_at: Time,
             currency: Increase::InboundCheckDeposit::Currency::TaggedSymbol,
             declined_at: T.nilable(Time),
