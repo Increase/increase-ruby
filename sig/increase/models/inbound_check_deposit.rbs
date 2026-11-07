@@ -13,6 +13,7 @@ module Increase
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
         check_transfer_id: String?,
+        checkbook_check_id: String?,
         created_at: Time,
         currency: Increase::Models::InboundCheckDeposit::currency,
         declined_at: Time?,
@@ -48,6 +49,8 @@ module Increase
 
       attr_accessor check_transfer_id: String?
 
+      attr_accessor checkbook_check_id: String?
+
       attr_accessor created_at: Time
 
       attr_accessor currency: Increase::Models::InboundCheckDeposit::currency
@@ -80,6 +83,7 @@ module Increase
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
         check_transfer_id: String?,
+        checkbook_check_id: String?,
         created_at: Time,
         currency: Increase::Models::InboundCheckDeposit::currency,
         declined_at: Time?,
@@ -104,6 +108,7 @@ module Increase
         bank_of_first_deposit_routing_number: String?,
         check_number: String?,
         check_transfer_id: String?,
+        checkbook_check_id: String?,
         created_at: Time,
         currency: Increase::Models::InboundCheckDeposit::currency,
         declined_at: Time?,

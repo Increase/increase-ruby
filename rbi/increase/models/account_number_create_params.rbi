@@ -22,41 +22,53 @@ module Increase
       sig { returns(String) }
       attr_accessor :name
 
-      # Options related to how this Account Number should handle inbound ACH transfers.
+      # Whether inbound ACH debits are allowed against this Account Number. Note that
+      # ACH debits will be declined if this is `allowed` but the Account Number is not
+      # active. If you do not specify this field, the default is `allowed`.
       sig do
-        returns(T.nilable(Increase::AccountNumberCreateParams::InboundACH))
+        returns(
+          T.nilable(
+            Increase::AccountNumberCreateParams::InboundACHDebits::OrSymbol
+          )
+        )
       end
-      attr_reader :inbound_ach
+      attr_reader :inbound_ach_debits
 
       sig do
         params(
-          inbound_ach: Increase::AccountNumberCreateParams::InboundACH::OrHash
+          inbound_ach_debits:
+            Increase::AccountNumberCreateParams::InboundACHDebits::OrSymbol
         ).void
       end
-      attr_writer :inbound_ach
+      attr_writer :inbound_ach_debits
 
-      # Options related to how this Account Number should handle inbound check
-      # withdrawals.
+      # Whether unregistered inbound checks for this Account Number can be deposited. If
+      # you do not specify this field, the default is `blocked`.
       sig do
-        returns(T.nilable(Increase::AccountNumberCreateParams::InboundChecks))
+        returns(
+          T.nilable(
+            Increase::AccountNumberCreateParams::UnregisteredInboundChecks::OrSymbol
+          )
+        )
       end
-      attr_reader :inbound_checks
+      attr_reader :unregistered_inbound_checks
 
       sig do
         params(
-          inbound_checks:
-            Increase::AccountNumberCreateParams::InboundChecks::OrHash
+          unregistered_inbound_checks:
+            Increase::AccountNumberCreateParams::UnregisteredInboundChecks::OrSymbol
         ).void
       end
-      attr_writer :inbound_checks
+      attr_writer :unregistered_inbound_checks
 
       sig do
         params(
           account_id: String,
           name: String,
-          inbound_ach: Increase::AccountNumberCreateParams::InboundACH::OrHash,
-          inbound_checks:
-            Increase::AccountNumberCreateParams::InboundChecks::OrHash,
+          inbound_ach_debits:
+            Increase::AccountNumberCreateParams::InboundACHDebits::OrSymbol,
+          unregistered_inbound_checks:
+            Increase::AccountNumberCreateParams::UnregisteredInboundChecks::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -65,11 +77,13 @@ module Increase
         account_id:,
         # The name you choose for the Account Number.
         name:,
-        # Options related to how this Account Number should handle inbound ACH transfers.
-        inbound_ach: nil,
-        # Options related to how this Account Number should handle inbound check
-        # withdrawals.
-        inbound_checks: nil,
+        # Whether inbound ACH debits are allowed against this Account Number. Note that
+        # ACH debits will be declined if this is `allowed` but the Account Number is not
+        # active. If you do not specify this field, the default is `allowed`.
+        inbound_ach_debits: nil,
+        # Whether unregistered inbound checks for this Account Number can be deposited. If
+        # you do not specify this field, the default is `blocked`.
+        unregistered_inbound_checks: nil,
         request_options: {}
       )
       end
@@ -79,8 +93,10 @@ module Increase
           {
             account_id: String,
             name: String,
-            inbound_ach: Increase::AccountNumberCreateParams::InboundACH,
-            inbound_checks: Increase::AccountNumberCreateParams::InboundChecks,
+            inbound_ach_debits:
+              Increase::AccountNumberCreateParams::InboundACHDebits::OrSymbol,
+            unregistered_inbound_checks:
+              Increase::AccountNumberCreateParams::UnregisteredInboundChecks::OrSymbol,
             request_options: Increase::RequestOptions
           }
         )
@@ -88,173 +104,79 @@ module Increase
       def to_hash
       end
 
-      class InboundACH < Increase::Internal::Type::BaseModel
-        OrHash =
+      # Whether inbound ACH debits are allowed against this Account Number. Note that
+      # ACH debits will be declined if this is `allowed` but the Account Number is not
+      # active. If you do not specify this field, the default is `allowed`.
+      module InboundACHDebits
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
           T.type_alias do
-            T.any(
-              Increase::AccountNumberCreateParams::InboundACH,
-              Increase::Internal::AnyHash
-            )
+            T.all(Symbol, Increase::AccountNumberCreateParams::InboundACHDebits)
           end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # Whether ACH debits are allowed against this Account Number. Note that ACH debits
-        # will be declined if this is `allowed` but the Account Number is not active. If
-        # you do not specify this field, the default is `allowed`.
-        sig do
-          returns(
-            Increase::AccountNumberCreateParams::InboundACH::DebitStatus::OrSymbol
+        # ACH Debits are allowed.
+        ALLOWED =
+          T.let(
+            :allowed,
+            Increase::AccountNumberCreateParams::InboundACHDebits::TaggedSymbol
           )
-        end
-        attr_accessor :debit_status
 
-        # Options related to how this Account Number should handle inbound ACH transfers.
-        sig do
-          params(
-            debit_status:
-              Increase::AccountNumberCreateParams::InboundACH::DebitStatus::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # Whether ACH debits are allowed against this Account Number. Note that ACH debits
-          # will be declined if this is `allowed` but the Account Number is not active. If
-          # you do not specify this field, the default is `allowed`.
-          debit_status:
-        )
-        end
+        # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
+        BLOCKED =
+          T.let(
+            :blocked,
+            Increase::AccountNumberCreateParams::InboundACHDebits::TaggedSymbol
+          )
 
         sig do
           override.returns(
-            {
-              debit_status:
-                Increase::AccountNumberCreateParams::InboundACH::DebitStatus::OrSymbol
-            }
+            T::Array[
+              Increase::AccountNumberCreateParams::InboundACHDebits::TaggedSymbol
+            ]
           )
         end
-        def to_hash
-        end
-
-        # Whether ACH debits are allowed against this Account Number. Note that ACH debits
-        # will be declined if this is `allowed` but the Account Number is not active. If
-        # you do not specify this field, the default is `allowed`.
-        module DebitStatus
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Increase::AccountNumberCreateParams::InboundACH::DebitStatus
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # ACH Debits are allowed.
-          ALLOWED =
-            T.let(
-              :allowed,
-              Increase::AccountNumberCreateParams::InboundACH::DebitStatus::TaggedSymbol
-            )
-
-          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
-          BLOCKED =
-            T.let(
-              :blocked,
-              Increase::AccountNumberCreateParams::InboundACH::DebitStatus::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::AccountNumberCreateParams::InboundACH::DebitStatus::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
+        def self.values
         end
       end
 
-      class InboundChecks < Increase::Internal::Type::BaseModel
-        OrHash =
+      # Whether unregistered inbound checks for this Account Number can be deposited. If
+      # you do not specify this field, the default is `blocked`.
+      module UnregisteredInboundChecks
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
           T.type_alias do
-            T.any(
-              Increase::AccountNumberCreateParams::InboundChecks,
-              Increase::Internal::AnyHash
+            T.all(
+              Symbol,
+              Increase::AccountNumberCreateParams::UnregisteredInboundChecks
             )
           end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
 
-        # How Increase should process checks with this account number printed on them. If
-        # you do not specify this field, the default is `check_transfers_only`.
-        sig do
-          returns(
-            Increase::AccountNumberCreateParams::InboundChecks::Status::OrSymbol
+        # Accept all Inbound Check Deposits, even if they are not associated with a Check Transfer or Checkbook Check.
+        ALLOWED =
+          T.let(
+            :allowed,
+            Increase::AccountNumberCreateParams::UnregisteredInboundChecks::TaggedSymbol
           )
-        end
-        attr_accessor :status
 
-        # Options related to how this Account Number should handle inbound check
-        # withdrawals.
-        sig do
-          params(
-            status:
-              Increase::AccountNumberCreateParams::InboundChecks::Status::OrSymbol
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # How Increase should process checks with this account number printed on them. If
-          # you do not specify this field, the default is `check_transfers_only`.
-          status:
-        )
-        end
+        # Only accept Inbound Check Deposits if they can be matched to a Check Transfer or Checkbook Check.
+        BLOCKED =
+          T.let(
+            :blocked,
+            Increase::AccountNumberCreateParams::UnregisteredInboundChecks::TaggedSymbol
+          )
 
         sig do
           override.returns(
-            {
-              status:
-                Increase::AccountNumberCreateParams::InboundChecks::Status::OrSymbol
-            }
+            T::Array[
+              Increase::AccountNumberCreateParams::UnregisteredInboundChecks::TaggedSymbol
+            ]
           )
         end
-        def to_hash
-        end
-
-        # How Increase should process checks with this account number printed on them. If
-        # you do not specify this field, the default is `check_transfers_only`.
-        module Status
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Increase::AccountNumberCreateParams::InboundChecks::Status
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # Checks with this Account Number will be processed even if they are not associated with a Check Transfer.
-          ALLOWED =
-            T.let(
-              :allowed,
-              Increase::AccountNumberCreateParams::InboundChecks::Status::TaggedSymbol
-            )
-
-          # Checks with this Account Number will be processed only if they can be matched to an existing Check Transfer.
-          CHECK_TRANSFERS_ONLY =
-            T.let(
-              :check_transfers_only,
-              Increase::AccountNumberCreateParams::InboundChecks::Status::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::AccountNumberCreateParams::InboundChecks::Status::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
+        def self.values
         end
       end
     end

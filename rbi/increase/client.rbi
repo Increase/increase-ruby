@@ -94,6 +94,12 @@ module Increase
     sig { returns(Increase::Resources::CheckTransfers) }
     attr_reader :check_transfers
 
+    sig { returns(Increase::Resources::Checkbooks) }
+    attr_reader :checkbooks
+
+    sig { returns(Increase::Resources::CheckbookChecks) }
+    attr_reader :checkbook_checks
+
     sig { returns(Increase::Resources::InboundCheckDeposits) }
     attr_reader :inbound_check_deposits
 

@@ -153,6 +153,24 @@ module Increase
 
   class CardValidationRetrieveParams = Increase::Models::CardValidationRetrieveParams
 
+  class Checkbook = Increase::Models::Checkbook
+
+  class CheckbookCheck = Increase::Models::CheckbookCheck
+
+  class CheckbookCheckListParams = Increase::Models::CheckbookCheckListParams
+
+  class CheckbookCheckRetrieveParams = Increase::Models::CheckbookCheckRetrieveParams
+
+  class CheckbookCheckStopParams = Increase::Models::CheckbookCheckStopParams
+
+  class CheckbookCreateParams = Increase::Models::CheckbookCreateParams
+
+  class CheckbookListParams = Increase::Models::CheckbookListParams
+
+  class CheckbookRetrieveParams = Increase::Models::CheckbookRetrieveParams
+
+  class CheckbookStopParams = Increase::Models::CheckbookStopParams
+
   class CheckDeposit = Increase::Models::CheckDeposit
 
   class CheckDepositCreateParams = Increase::Models::CheckDepositCreateParams

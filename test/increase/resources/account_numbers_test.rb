@@ -18,12 +18,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::AccountNumber::InboundACH,
-        inbound_checks: Increase::AccountNumber::InboundChecks,
+        inbound_ach_debits: Increase::AccountNumber::InboundACHDebits,
         name: String,
         routing_number: String,
         status: Increase::AccountNumber::Status,
-        type: Increase::AccountNumber::Type
+        type: Increase::AccountNumber::Type,
+        unregistered_inbound_checks: Increase::AccountNumber::UnregisteredInboundChecks
       }
     end
   end
@@ -42,12 +42,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::AccountNumber::InboundACH,
-        inbound_checks: Increase::AccountNumber::InboundChecks,
+        inbound_ach_debits: Increase::AccountNumber::InboundACHDebits,
         name: String,
         routing_number: String,
         status: Increase::AccountNumber::Status,
-        type: Increase::AccountNumber::Type
+        type: Increase::AccountNumber::Type,
+        unregistered_inbound_checks: Increase::AccountNumber::UnregisteredInboundChecks
       }
     end
   end
@@ -66,12 +66,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::AccountNumber::InboundACH,
-        inbound_checks: Increase::AccountNumber::InboundChecks,
+        inbound_ach_debits: Increase::AccountNumber::InboundACHDebits,
         name: String,
         routing_number: String,
         status: Increase::AccountNumber::Status,
-        type: Increase::AccountNumber::Type
+        type: Increase::AccountNumber::Type,
+        unregistered_inbound_checks: Increase::AccountNumber::UnregisteredInboundChecks
       }
     end
   end
@@ -97,12 +97,12 @@ class Increase::Test::Resources::AccountNumbersTest < Increase::Test::ResourceTe
         account_number: String,
         created_at: Time,
         idempotency_key: String | nil,
-        inbound_ach: Increase::AccountNumber::InboundACH,
-        inbound_checks: Increase::AccountNumber::InboundChecks,
+        inbound_ach_debits: Increase::AccountNumber::InboundACHDebits,
         name: String,
         routing_number: String,
         status: Increase::AccountNumber::Status,
-        type: Increase::AccountNumber::Type
+        type: Increase::AccountNumber::Type,
+        unregistered_inbound_checks: Increase::AccountNumber::UnregisteredInboundChecks
       }
     end
   end

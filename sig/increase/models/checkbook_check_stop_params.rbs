@@ -1,0 +1,24 @@
+module Increase
+  module Models
+    type checkbook_check_stop_params =
+      { checkbook_check_id: String }
+      & Increase::Internal::Type::request_parameters
+
+    class CheckbookCheckStopParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor checkbook_check_id: String
+
+      def initialize: (
+        checkbook_check_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        checkbook_check_id: String,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end

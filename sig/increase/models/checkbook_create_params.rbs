@@ -1,0 +1,90 @@
+module Increase
+  module Models
+    type checkbook_create_params =
+      {
+        account_number_id: String,
+        mailing_address: Increase::CheckbookCreateParams::MailingAddress,
+        payer: ::Array[Increase::CheckbookCreateParams::Payer]
+      }
+      & Increase::Internal::Type::request_parameters
+
+    class CheckbookCreateParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor account_number_id: String
+
+      attr_accessor mailing_address: Increase::CheckbookCreateParams::MailingAddress
+
+      attr_accessor payer: ::Array[Increase::CheckbookCreateParams::Payer]
+
+      def initialize: (
+        account_number_id: String,
+        mailing_address: Increase::CheckbookCreateParams::MailingAddress,
+        payer: ::Array[Increase::CheckbookCreateParams::Payer],
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        account_number_id: String,
+        mailing_address: Increase::CheckbookCreateParams::MailingAddress,
+        payer: ::Array[Increase::CheckbookCreateParams::Payer],
+        request_options: Increase::RequestOptions
+      }
+
+      type mailing_address =
+        {
+          city: String,
+          :line1 => String,
+          name: String,
+          postal_code: String,
+          state: String,
+          :line2 => String
+        }
+
+      class MailingAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor line1: String
+
+        attr_accessor name: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_reader line2: String?
+
+        def line2=: (String) -> String
+
+        def initialize: (
+          city: String,
+          line1: String,
+          name: String,
+          postal_code: String,
+          state: String,
+          ?line2: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          :line1 => String,
+          name: String,
+          postal_code: String,
+          state: String,
+          :line2 => String
+        }
+      end
+
+      type payer = { contents: String }
+
+      class Payer < Increase::Internal::Type::BaseModel
+        attr_accessor contents: String
+
+        def initialize: (contents: String) -> void
+
+        def to_hash: -> { contents: String }
+      end
+    end
+  end
+end

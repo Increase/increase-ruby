@@ -31,12 +31,6 @@ module Increase
       #   @return [String, nil]
       required :creating_entity_onboarding_session_id, String, nil?: true
 
-      # @!attribute description
-      #   The entity's description for display purposes.
-      #
-      #   @return [String, nil]
-      required :description, String, nil?: true
-
       # @!attribute details_confirmed_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
       #   Entity's details were most recently confirmed.
@@ -71,13 +65,6 @@ module Increase
       #
       #   @return [Increase::Models::Entity::NaturalPerson, nil]
       required :natural_person, -> { Increase::Entity::NaturalPerson }, nil?: true
-
-      # @!attribute risk_rating
-      #   An assessment of the entity’s potential risk of involvement in financial crimes,
-      #   such as money laundering.
-      #
-      #   @return [Increase::Models::Entity::RiskRating, nil]
-      required :risk_rating, -> { Increase::Entity::RiskRating }, nil?: true
 
       # @!attribute sole_proprietorship
       #   Details of the sole proprietorship entity. Will be present if `structure` is
@@ -142,7 +129,7 @@ module Increase
       #   @return [Increase::Models::Entity::Validation, nil]
       required :validation, -> { Increase::Entity::Validation }, nil?: true
 
-      # @!method initialize(id:, corporation:, created_at:, creating_entity_onboarding_session_id:, description:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, risk_rating:, sole_proprietorship:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:, validation:)
+      # @!method initialize(id:, corporation:, created_at:, creating_entity_onboarding_session_id:, details_confirmed_at:, government_authority:, idempotency_key:, joint:, natural_person:, sole_proprietorship:, status:, structure:, supplemental_documents:, terms_agreements:, third_party_verification:, trust:, type:, validation:)
       #   Entities are the legal entities that own accounts. They can be people,
       #   corporations, joint accounts, trusts, or government authorities. To learn more,
       #   see [Entities](/documentation/entities).
@@ -160,8 +147,6 @@ module Increase
       #   @param creating_entity_onboarding_session_id [String, nil]
       #     The identifier of the Entity Onboarding Session that was used to create this
       #     Entity, if any.
-      #
-      #   @param description [String, nil] The entity's description for display purposes.
       #
       #   @param details_confirmed_at [Time, nil]
       #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the
@@ -182,10 +167,6 @@ module Increase
       #   @param natural_person [Increase::Models::Entity::NaturalPerson, nil]
       #     Details of the natural person entity. Will be present if `structure` is equal to
       #     `natural_person`.
-      #
-      #   @param risk_rating [Increase::Models::Entity::RiskRating, nil]
-      #     An assessment of the entity’s potential risk of involvement in financial crimes,
-      #     such as money laundering.
       #
       #   @param sole_proprietorship [Increase::Models::Entity::SoleProprietorship, nil]
       #     Details of the sole proprietorship entity. Will be present if `structure` is
@@ -1126,51 +1107,6 @@ module Increase
             # @!method self.values
             #   @return [Array<Symbol>]
           end
-        end
-      end
-
-      # @see Increase::Models::Entity#risk_rating
-      class RiskRating < Increase::Internal::Type::BaseModel
-        # @!attribute rated_at
-        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        #   rating was performed.
-        #
-        #   @return [Time]
-        required :rated_at, Time
-
-        # @!attribute rating
-        #   The rating given to this entity.
-        #
-        #   @return [Symbol, Increase::Models::Entity::RiskRating::Rating]
-        required :rating, enum: -> { Increase::Entity::RiskRating::Rating }
-
-        # @!method initialize(rated_at:, rating:)
-        #   An assessment of the entity’s potential risk of involvement in financial crimes,
-        #   such as money laundering.
-        #
-        #   @param rated_at [Time]
-        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) time at which the risk
-        #     rating was performed.
-        #
-        #   @param rating [Symbol, Increase::Models::Entity::RiskRating::Rating] The rating given to this entity.
-
-        # The rating given to this entity.
-        #
-        # @see Increase::Models::Entity::RiskRating#rating
-        module Rating
-          extend Increase::Internal::Type::Enum
-
-          # Minimal risk of involvement in financial crime.
-          LOW = :low
-
-          # Moderate risk of involvement in financial crime.
-          MEDIUM = :medium
-
-          # Elevated risk of involvement in financial crime.
-          HIGH = :high
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
         end
       end
 

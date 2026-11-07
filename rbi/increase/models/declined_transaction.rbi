@@ -3962,6 +3962,10 @@ module Increase
           sig { returns(T.nilable(String)) }
           attr_accessor :check_transfer_id
 
+          # The identifier of the Checkbook Check object associated with this decline.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :checkbook_check_id
+
           # The identifier of the API File object containing an image of the front of the
           # declined check.
           sig { returns(T.nilable(String)) }
@@ -3987,6 +3991,7 @@ module Increase
               auxiliary_on_us: T.nilable(String),
               back_image_file_id: T.nilable(String),
               check_transfer_id: T.nilable(String),
+              checkbook_check_id: T.nilable(String),
               front_image_file_id: T.nilable(String),
               inbound_check_deposit_id: T.nilable(String),
               reason:
@@ -4005,6 +4010,8 @@ module Increase
             back_image_file_id:,
             # The identifier of the Check Transfer object associated with this decline.
             check_transfer_id:,
+            # The identifier of the Checkbook Check object associated with this decline.
+            checkbook_check_id:,
             # The identifier of the API File object containing an image of the front of the
             # declined check.
             front_image_file_id:,
@@ -4022,6 +4029,7 @@ module Increase
                 auxiliary_on_us: T.nilable(String),
                 back_image_file_id: T.nilable(String),
                 check_transfer_id: T.nilable(String),
+                checkbook_check_id: T.nilable(String),
                 front_image_file_id: T.nilable(String),
                 inbound_check_deposit_id: T.nilable(String),
                 reason:
