@@ -5,18 +5,20 @@ module Increase
     class AccountNumbers
       # Create an Account Number
       #
-      # @overload create(account_id:, name:, inbound_ach: nil, inbound_checks: nil, request_options: {})
+      # @overload create(account_id:, name:, inbound_ach_debits: nil, unregistered_inbound_checks: nil, request_options: {})
       #
       # @param account_id [String] The Account the Account Number should belong to.
       #
       # @param name [String] The name you choose for the Account Number.
       #
-      # @param inbound_ach [Increase::Models::AccountNumberCreateParams::InboundACH]
-      #   Options related to how this Account Number should handle inbound ACH transfers.
+      # @param inbound_ach_debits [Symbol, Increase::Models::AccountNumberCreateParams::InboundACHDebits]
+      #   Whether inbound ACH debits are allowed against this Account Number. Note that
+      #   ACH debits will be declined if this is `allowed` but the Account Number is not
+      #   active. If you do not specify this field, the default is `allowed`.
       #
-      # @param inbound_checks [Increase::Models::AccountNumberCreateParams::InboundChecks]
-      #   Options related to how this Account Number should handle inbound check
-      #   withdrawals.
+      # @param unregistered_inbound_checks [Symbol, Increase::Models::AccountNumberCreateParams::UnregisteredInboundChecks]
+      #   Whether unregistered inbound checks for this Account Number can be deposited. If
+      #   you do not specify this field, the default is `blocked`.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -56,21 +58,22 @@ module Increase
 
       # Update an Account Number
       #
-      # @overload update(account_number_id, inbound_ach: nil, inbound_checks: nil, name: nil, status: nil, request_options: {})
+      # @overload update(account_number_id, inbound_ach_debits: nil, name: nil, status: nil, unregistered_inbound_checks: nil, request_options: {})
       #
       # @param account_number_id [String] The identifier of the Account Number.
       #
-      # @param inbound_ach [Increase::Models::AccountNumberUpdateParams::InboundACH]
-      #   Options related to how this Account Number handles inbound ACH transfers.
-      #
-      # @param inbound_checks [Increase::Models::AccountNumberUpdateParams::InboundChecks]
-      #   Options related to how this Account Number should handle inbound check
-      #   withdrawals.
+      # @param inbound_ach_debits [Symbol, Increase::Models::AccountNumberUpdateParams::InboundACHDebits]
+      #   Whether inbound ACH debits are allowed against this Account Number. Note that
+      #   ACH debits will be declined if this is `allowed` but the Account Number is not
+      #   active.
       #
       # @param name [String] The name you choose for the Account Number.
       #
       # @param status [Symbol, Increase::Models::AccountNumberUpdateParams::Status]
       #   This indicates if transfers can be made to the Account Number.
+      #
+      # @param unregistered_inbound_checks [Symbol, Increase::Models::AccountNumberUpdateParams::UnregisteredInboundChecks]
+      #   Whether unregistered inbound checks for this Account Number can be deposited.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -90,11 +93,9 @@ module Increase
 
       # List Account Numbers
       #
-      # @overload list(account_id: nil, ach_debit_status: nil, created_at: nil, cursor: nil, idempotency_key: nil, limit: nil, status: nil, request_options: {})
+      # @overload list(account_id: nil, created_at: nil, cursor: nil, idempotency_key: nil, inbound_ach_debits: nil, limit: nil, status: nil, request_options: {})
       #
       # @param account_id [String] Filter Account Numbers to those belonging to the specified Account.
-      #
-      # @param ach_debit_status [Increase::Models::AccountNumberListParams::ACHDebitStatus]
       #
       # @param created_at [Increase::Models::AccountNumberListParams::CreatedAt]
       #
@@ -105,6 +106,8 @@ module Increase
       #   that object. This value is unique across Increase and is used to ensure that a
       #   request is only processed once. Learn more about
       #   [idempotency](https://increase.com/documentation/idempotency-keys).
+      #
+      # @param inbound_ach_debits [Increase::Models::AccountNumberListParams::InboundACHDebits]
       #
       # @param limit [Integer]
       #   Limit the size of the list that is returned. The default (and maximum) is 100
