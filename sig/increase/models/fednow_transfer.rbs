@@ -14,6 +14,7 @@ module Increase
         currency: Increase::Models::FednowTransfer::currency,
         debtor_address: Increase::FednowTransfer::DebtorAddress?,
         debtor_name: String,
+        end_to_end_identification: String?,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
@@ -54,6 +55,8 @@ module Increase
 
       attr_accessor debtor_name: String
 
+      attr_accessor end_to_end_identification: String?
+
       attr_accessor external_account_id: String?
 
       attr_accessor idempotency_key: String?
@@ -93,6 +96,7 @@ module Increase
         currency: Increase::Models::FednowTransfer::currency,
         debtor_address: Increase::FednowTransfer::DebtorAddress?,
         debtor_name: String,
+        end_to_end_identification: String?,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
@@ -121,6 +125,7 @@ module Increase
         currency: Increase::Models::FednowTransfer::currency,
         debtor_address: Increase::FednowTransfer::DebtorAddress?,
         debtor_name: String,
+        end_to_end_identification: String?,
         external_account_id: String?,
         idempotency_key: String?,
         pending_transaction_id: String?,
