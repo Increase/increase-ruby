@@ -4,18 +4,17 @@ module Increase
       {
         account_id: String,
         amount: Integer,
-        statement_descriptor: String,
+        company_name: String,
+        individual_name: String,
         account_number: String,
         addenda: Increase::ACHTransferCreateParams::Addenda,
         company_descriptive_date: String,
         company_discretionary_data: String,
         company_entry_description: String,
-        company_name: String,
         destination_account_holder: Increase::Models::ACHTransferCreateParams::destination_account_holder,
         external_account_id: String,
         funding: Increase::Models::ACHTransferCreateParams::funding,
         individual_id: String,
-        individual_name: String,
         preferred_effective_date: Increase::ACHTransferCreateParams::PreferredEffectiveDate,
         require_approval: bool,
         routing_number: String,
@@ -31,7 +30,9 @@ module Increase
 
       attr_accessor amount: Integer
 
-      attr_accessor statement_descriptor: String
+      attr_accessor company_name: String
+
+      attr_accessor individual_name: String
 
       attr_reader account_number: String?
 
@@ -55,10 +56,6 @@ module Increase
 
       def company_entry_description=: (String) -> String
 
-      attr_reader company_name: String?
-
-      def company_name=: (String) -> String
-
       attr_reader destination_account_holder: Increase::Models::ACHTransferCreateParams::destination_account_holder?
 
       def destination_account_holder=: (
@@ -78,10 +75,6 @@ module Increase
       attr_reader individual_id: String?
 
       def individual_id=: (String) -> String
-
-      attr_reader individual_name: String?
-
-      def individual_name=: (String) -> String
 
       attr_reader preferred_effective_date: Increase::ACHTransferCreateParams::PreferredEffectiveDate?
 
@@ -106,18 +99,17 @@ module Increase
       def initialize: (
         account_id: String,
         amount: Integer,
-        statement_descriptor: String,
+        company_name: String,
+        individual_name: String,
         ?account_number: String,
         ?addenda: Increase::ACHTransferCreateParams::Addenda,
         ?company_descriptive_date: String,
         ?company_discretionary_data: String,
         ?company_entry_description: String,
-        ?company_name: String,
         ?destination_account_holder: Increase::Models::ACHTransferCreateParams::destination_account_holder,
         ?external_account_id: String,
         ?funding: Increase::Models::ACHTransferCreateParams::funding,
         ?individual_id: String,
-        ?individual_name: String,
         ?preferred_effective_date: Increase::ACHTransferCreateParams::PreferredEffectiveDate,
         ?require_approval: bool,
         ?routing_number: String,
@@ -128,18 +120,17 @@ module Increase
       def to_hash: -> {
         account_id: String,
         amount: Integer,
-        statement_descriptor: String,
+        company_name: String,
+        individual_name: String,
         account_number: String,
         addenda: Increase::ACHTransferCreateParams::Addenda,
         company_descriptive_date: String,
         company_discretionary_data: String,
         company_entry_description: String,
-        company_name: String,
         destination_account_holder: Increase::Models::ACHTransferCreateParams::destination_account_holder,
         external_account_id: String,
         funding: Increase::Models::ACHTransferCreateParams::funding,
         individual_id: String,
-        individual_name: String,
         preferred_effective_date: Increase::ACHTransferCreateParams::PreferredEffectiveDate,
         require_approval: bool,
         routing_number: String,

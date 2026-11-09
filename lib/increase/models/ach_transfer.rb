@@ -223,7 +223,10 @@ module Increase
       required :standard_entry_class_code, enum: -> { Increase::ACHTransfer::StandardEntryClassCode }
 
       # @!attribute statement_descriptor
-      #   The descriptor that will show on the recipient's bank statement.
+      #   A description you chose to give the transfer. If `individual_name` and
+      #   `company_name` were not explicitly set, the `statement_descriptor` will be sent
+      #   in those fields to the receiving bank to help the customer recognize the
+      #   transfer.
       #
       #   @return [String, nil]
       required :statement_descriptor, String, nil?: true
@@ -379,7 +382,11 @@ module Increase
       #     [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
       #     to use for the transfer.
       #
-      #   @param statement_descriptor [String, nil] The descriptor that will show on the recipient's bank statement.
+      #   @param statement_descriptor [String, nil]
+      #     A description you chose to give the transfer. If `individual_name` and
+      #     `company_name` were not explicitly set, the `statement_descriptor` will be sent
+      #     in those fields to the receiving bank to help the customer recognize the
+      #     transfer.
       #
       #   @param status [Symbol, Increase::Models::ACHTransfer::Status] The lifecycle status of the transfer.
       #

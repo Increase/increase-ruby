@@ -229,7 +229,10 @@ module Increase
       end
       attr_accessor :standard_entry_class_code
 
-      # The descriptor that will show on the recipient's bank statement.
+      # A description you chose to give the transfer. If `individual_name` and
+      # `company_name` were not explicitly set, the `statement_descriptor` will be sent
+      # in those fields to the receiving bank to help the customer recognize the
+      # transfer.
       sig { returns(T.nilable(String)) }
       attr_accessor :statement_descriptor
 
@@ -403,7 +406,10 @@ module Increase
         # [Standard Entry Class (SEC) code](/documentation/ach-standard-entry-class-codes)
         # to use for the transfer.
         standard_entry_class_code:,
-        # The descriptor that will show on the recipient's bank statement.
+        # A description you chose to give the transfer. If `individual_name` and
+        # `company_name` were not explicitly set, the `statement_descriptor` will be sent
+        # in those fields to the receiving bank to help the customer recognize the
+        # transfer.
         statement_descriptor:,
         # The lifecycle status of the transfer.
         status:,
