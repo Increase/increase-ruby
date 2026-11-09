@@ -18,19 +18,6 @@ module Increase
       sig { params(account_id: String).void }
       attr_writer :account_id
 
-      sig do
-        returns(T.nilable(Increase::AccountNumberListParams::ACHDebitStatus))
-      end
-      attr_reader :ach_debit_status
-
-      sig do
-        params(
-          ach_debit_status:
-            Increase::AccountNumberListParams::ACHDebitStatus::OrHash
-        ).void
-      end
-      attr_writer :ach_debit_status
-
       sig { returns(T.nilable(Increase::AccountNumberListParams::CreatedAt)) }
       attr_reader :created_at
 
@@ -58,6 +45,19 @@ module Increase
       sig { params(idempotency_key: String).void }
       attr_writer :idempotency_key
 
+      sig do
+        returns(T.nilable(Increase::AccountNumberListParams::InboundACHDebits))
+      end
+      attr_reader :inbound_ach_debits
+
+      sig do
+        params(
+          inbound_ach_debits:
+            Increase::AccountNumberListParams::InboundACHDebits::OrHash
+        ).void
+      end
+      attr_writer :inbound_ach_debits
+
       # Limit the size of the list that is returned. The default (and maximum) is 100
       # objects.
       #
@@ -79,11 +79,11 @@ module Increase
       sig do
         params(
           account_id: String,
-          ach_debit_status:
-            Increase::AccountNumberListParams::ACHDebitStatus::OrHash,
           created_at: Increase::AccountNumberListParams::CreatedAt::OrHash,
           cursor: String,
           idempotency_key: String,
+          inbound_ach_debits:
+            Increase::AccountNumberListParams::InboundACHDebits::OrHash,
           limit: Integer,
           status: Increase::AccountNumberListParams::Status::OrHash,
           request_options: Increase::RequestOptions::OrHash
@@ -92,7 +92,6 @@ module Increase
       def self.new(
         # Filter Account Numbers to those belonging to the specified Account.
         account_id: nil,
-        ach_debit_status: nil,
         created_at: nil,
         # Return the page of entries after this one.
         cursor: nil,
@@ -101,6 +100,7 @@ module Increase
         # request is only processed once. Learn more about
         # [idempotency](https://increase.com/documentation/idempotency-keys).
         idempotency_key: nil,
+        inbound_ach_debits: nil,
         # Limit the size of the list that is returned. The default (and maximum) is 100
         # objects.
         #
@@ -115,10 +115,11 @@ module Increase
         override.returns(
           {
             account_id: String,
-            ach_debit_status: Increase::AccountNumberListParams::ACHDebitStatus,
             created_at: Increase::AccountNumberListParams::CreatedAt,
             cursor: String,
             idempotency_key: String,
+            inbound_ach_debits:
+              Increase::AccountNumberListParams::InboundACHDebits,
             limit: Integer,
             status: Increase::AccountNumberListParams::Status,
             request_options: Increase::RequestOptions
@@ -126,104 +127,6 @@ module Increase
         )
       end
       def to_hash
-      end
-
-      class ACHDebitStatus < Increase::Internal::Type::BaseModel
-        OrHash =
-          T.type_alias do
-            T.any(
-              Increase::AccountNumberListParams::ACHDebitStatus,
-              Increase::Internal::AnyHash
-            )
-          end
-
-        # The ACH Debit status to retrieve Account Numbers for. For GET requests, this
-        # should be encoded as a comma-delimited string, such as `?in=one,two,three`.
-        sig do
-          returns(
-            T.nilable(
-              T::Array[
-                Increase::AccountNumberListParams::ACHDebitStatus::In::OrSymbol
-              ]
-            )
-          )
-        end
-        attr_reader :in_
-
-        sig do
-          params(
-            in_:
-              T::Array[
-                Increase::AccountNumberListParams::ACHDebitStatus::In::OrSymbol
-              ]
-          ).void
-        end
-        attr_writer :in_
-
-        sig do
-          params(
-            in_:
-              T::Array[
-                Increase::AccountNumberListParams::ACHDebitStatus::In::OrSymbol
-              ]
-          ).returns(T.attached_class)
-        end
-        def self.new(
-          # The ACH Debit status to retrieve Account Numbers for. For GET requests, this
-          # should be encoded as a comma-delimited string, such as `?in=one,two,three`.
-          in_: nil
-        )
-        end
-
-        sig do
-          override.returns(
-            {
-              in_:
-                T::Array[
-                  Increase::AccountNumberListParams::ACHDebitStatus::In::OrSymbol
-                ]
-            }
-          )
-        end
-        def to_hash
-        end
-
-        module In
-          extend Increase::Internal::Type::Enum
-
-          TaggedSymbol =
-            T.type_alias do
-              T.all(
-                Symbol,
-                Increase::AccountNumberListParams::ACHDebitStatus::In
-              )
-            end
-          OrSymbol = T.type_alias { T.any(Symbol, String) }
-
-          # ACH Debits are allowed.
-          ALLOWED =
-            T.let(
-              :allowed,
-              Increase::AccountNumberListParams::ACHDebitStatus::In::TaggedSymbol
-            )
-
-          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
-          BLOCKED =
-            T.let(
-              :blocked,
-              Increase::AccountNumberListParams::ACHDebitStatus::In::TaggedSymbol
-            )
-
-          sig do
-            override.returns(
-              T::Array[
-                Increase::AccountNumberListParams::ACHDebitStatus::In::TaggedSymbol
-              ]
-            )
-          end
-          def self.values
-          end
-        end
       end
 
       class CreatedAt < Increase::Internal::Type::BaseModel
@@ -297,6 +200,104 @@ module Increase
           )
         end
         def to_hash
+        end
+      end
+
+      class InboundACHDebits < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::AccountNumberListParams::InboundACHDebits,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The inbound ACH debits status to retrieve Account Numbers for. For GET requests,
+        # this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
+        sig do
+          returns(
+            T.nilable(
+              T::Array[
+                Increase::AccountNumberListParams::InboundACHDebits::In::OrSymbol
+              ]
+            )
+          )
+        end
+        attr_reader :in_
+
+        sig do
+          params(
+            in_:
+              T::Array[
+                Increase::AccountNumberListParams::InboundACHDebits::In::OrSymbol
+              ]
+          ).void
+        end
+        attr_writer :in_
+
+        sig do
+          params(
+            in_:
+              T::Array[
+                Increase::AccountNumberListParams::InboundACHDebits::In::OrSymbol
+              ]
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The inbound ACH debits status to retrieve Account Numbers for. For GET requests,
+          # this should be encoded as a comma-delimited string, such as `?in=one,two,three`.
+          in_: nil
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              in_:
+                T::Array[
+                  Increase::AccountNumberListParams::InboundACHDebits::In::OrSymbol
+                ]
+            }
+          )
+        end
+        def to_hash
+        end
+
+        module In
+          extend Increase::Internal::Type::Enum
+
+          TaggedSymbol =
+            T.type_alias do
+              T.all(
+                Symbol,
+                Increase::AccountNumberListParams::InboundACHDebits::In
+              )
+            end
+          OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+          # ACH Debits are allowed.
+          ALLOWED =
+            T.let(
+              :allowed,
+              Increase::AccountNumberListParams::InboundACHDebits::In::TaggedSymbol
+            )
+
+          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
+          BLOCKED =
+            T.let(
+              :blocked,
+              Increase::AccountNumberListParams::InboundACHDebits::In::TaggedSymbol
+            )
+
+          sig do
+            override.returns(
+              T::Array[
+                Increase::AccountNumberListParams::InboundACHDebits::In::TaggedSymbol
+              ]
+            )
+          end
+          def self.values
+          end
         end
       end
 

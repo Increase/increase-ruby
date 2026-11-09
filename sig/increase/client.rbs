@@ -63,6 +63,10 @@ module Increase
 
     attr_reader check_transfers: Increase::Resources::CheckTransfers
 
+    attr_reader checkbooks: Increase::Resources::Checkbooks
+
+    attr_reader checkbook_checks: Increase::Resources::CheckbookChecks
+
     attr_reader inbound_check_deposits: Increase::Resources::InboundCheckDeposits
 
     attr_reader real_time_payments_transfers: Increase::Resources::RealTimePaymentsTransfers

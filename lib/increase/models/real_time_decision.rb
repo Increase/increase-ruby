@@ -3945,16 +3945,80 @@ module Increase
 
         # @see Increase::Models::RealTimeDecision::DigitalWalletToken#device
         class Device < Increase::Internal::Type::BaseModel
+          # @!attribute device_type
+          #   Device type.
+          #
+          #   @return [Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::Device::DeviceType, nil]
+          required :device_type,
+                   enum: -> { Increase::RealTimeDecision::DigitalWalletToken::Device::DeviceType },
+                   nil?: true
+
           # @!attribute identifier
           #   ID assigned to the device by the digital wallet provider.
           #
           #   @return [String, nil]
           required :identifier, String, nil?: true
 
-          # @!method initialize(identifier:)
+          # @!attribute ip_address
+          #   IP address of the device.
+          #
+          #   @return [String, nil]
+          required :ip_address, String, nil?: true
+
+          # @!attribute name
+          #   Name of the device, for example "My Work Phone".
+          #
+          #   @return [String, nil]
+          required :name, String, nil?: true
+
+          # @!method initialize(device_type:, identifier:, ip_address:, name:)
           #   Device that is being used to provision the digital wallet token.
           #
+          #   @param device_type [Symbol, Increase::Models::RealTimeDecision::DigitalWalletToken::Device::DeviceType, nil]
+          #     Device type.
+          #
           #   @param identifier [String, nil] ID assigned to the device by the digital wallet provider.
+          #
+          #   @param ip_address [String, nil] IP address of the device.
+          #
+          #   @param name [String, nil] Name of the device, for example "My Work Phone".
+
+          # Device type.
+          #
+          # @see Increase::Models::RealTimeDecision::DigitalWalletToken::Device#device_type
+          module DeviceType
+            extend Increase::Internal::Type::Enum
+
+            # Unknown
+            UNKNOWN = :unknown
+
+            # Mobile Phone
+            MOBILE_PHONE = :mobile_phone
+
+            # Tablet
+            TABLET = :tablet
+
+            # Watch
+            WATCH = :watch
+
+            # Mobile Phone or Tablet
+            MOBILEPHONE_OR_TABLET = :mobilephone_or_tablet
+
+            # PC
+            PC = :pc
+
+            # Household Device
+            HOUSEHOLD_DEVICE = :household_device
+
+            # Wearable Device
+            WEARABLE_DEVICE = :wearable_device
+
+            # Automobile Device
+            AUTOMOBILE_DEVICE = :automobile_device
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # The digital wallet app being used.

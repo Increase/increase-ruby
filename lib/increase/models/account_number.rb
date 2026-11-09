@@ -37,18 +37,13 @@ module Increase
       #   @return [String, nil]
       required :idempotency_key, String, nil?: true
 
-      # @!attribute inbound_ach
-      #   Properties related to how this Account Number handles inbound ACH transfers.
+      # @!attribute inbound_ach_debits
+      #   Whether inbound ACH debits are allowed against this Account Number. Note that
+      #   they will still be declined if this is `allowed` but the Account Number is not
+      #   active.
       #
-      #   @return [Increase::Models::AccountNumber::InboundACH]
-      required :inbound_ach, -> { Increase::AccountNumber::InboundACH }
-
-      # @!attribute inbound_checks
-      #   Properties related to how this Account Number should handle inbound check
-      #   withdrawals.
-      #
-      #   @return [Increase::Models::AccountNumber::InboundChecks]
-      required :inbound_checks, -> { Increase::AccountNumber::InboundChecks }
+      #   @return [Symbol, Increase::Models::AccountNumber::InboundACHDebits]
+      required :inbound_ach_debits, enum: -> { Increase::AccountNumber::InboundACHDebits }
 
       # @!attribute name
       #   The name you choose for the Account Number.
@@ -75,7 +70,13 @@ module Increase
       #   @return [Symbol, Increase::Models::AccountNumber::Type]
       required :type, enum: -> { Increase::AccountNumber::Type }
 
-      # @!method initialize(id:, account_id:, account_number:, created_at:, idempotency_key:, inbound_ach:, inbound_checks:, name:, routing_number:, status:, type:)
+      # @!attribute unregistered_inbound_checks
+      #   Whether unregistered inbound checks for this Account Number can be deposited.
+      #
+      #   @return [Symbol, Increase::Models::AccountNumber::UnregisteredInboundChecks]
+      required :unregistered_inbound_checks, enum: -> { Increase::AccountNumber::UnregisteredInboundChecks }
+
+      # @!method initialize(id:, account_id:, account_number:, created_at:, idempotency_key:, inbound_ach_debits:, name:, routing_number:, status:, type:, unregistered_inbound_checks:)
       #   Each account can have multiple account and routing numbers. We recommend that
       #   you use a set per vendor. This is similar to how you use different passwords for
       #   different websites. Account numbers can also be used to seamlessly reconcile
@@ -97,12 +98,10 @@ module Increase
       #     Increase and is used to ensure that a request is only processed once. Learn more
       #     about [idempotency](https://increase.com/documentation/idempotency-keys).
       #
-      #   @param inbound_ach [Increase::Models::AccountNumber::InboundACH]
-      #     Properties related to how this Account Number handles inbound ACH transfers.
-      #
-      #   @param inbound_checks [Increase::Models::AccountNumber::InboundChecks]
-      #     Properties related to how this Account Number should handle inbound check
-      #     withdrawals.
+      #   @param inbound_ach_debits [Symbol, Increase::Models::AccountNumber::InboundACHDebits]
+      #     Whether inbound ACH debits are allowed against this Account Number. Note that
+      #     they will still be declined if this is `allowed` but the Account Number is not
+      #     active.
       #
       #   @param name [String] The name you choose for the Account Number.
       #
@@ -114,71 +113,26 @@ module Increase
       #   @param type [Symbol, Increase::Models::AccountNumber::Type]
       #     A constant representing the object's type. For this resource it will always be
       #     `account_number`.
+      #
+      #   @param unregistered_inbound_checks [Symbol, Increase::Models::AccountNumber::UnregisteredInboundChecks]
+      #     Whether unregistered inbound checks for this Account Number can be deposited.
 
-      # @see Increase::Models::AccountNumber#inbound_ach
-      class InboundACH < Increase::Internal::Type::BaseModel
-        # @!attribute debit_status
-        #   Whether ACH debits are allowed against this Account Number. Note that they will
-        #   still be declined if this is `allowed` but the Account Number is not active.
-        #
-        #   @return [Symbol, Increase::Models::AccountNumber::InboundACH::DebitStatus]
-        required :debit_status, enum: -> { Increase::AccountNumber::InboundACH::DebitStatus }
+      # Whether inbound ACH debits are allowed against this Account Number. Note that
+      # they will still be declined if this is `allowed` but the Account Number is not
+      # active.
+      #
+      # @see Increase::Models::AccountNumber#inbound_ach_debits
+      module InboundACHDebits
+        extend Increase::Internal::Type::Enum
 
-        # @!method initialize(debit_status:)
-        #   Properties related to how this Account Number handles inbound ACH transfers.
-        #
-        #   @param debit_status [Symbol, Increase::Models::AccountNumber::InboundACH::DebitStatus]
-        #     Whether ACH debits are allowed against this Account Number. Note that they will
-        #     still be declined if this is `allowed` but the Account Number is not active.
+        # ACH Debits are allowed.
+        ALLOWED = :allowed
 
-        # Whether ACH debits are allowed against this Account Number. Note that they will
-        # still be declined if this is `allowed` but the Account Number is not active.
-        #
-        # @see Increase::Models::AccountNumber::InboundACH#debit_status
-        module DebitStatus
-          extend Increase::Internal::Type::Enum
+        # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
+        BLOCKED = :blocked
 
-          # ACH Debits are allowed.
-          ALLOWED = :allowed
-
-          # ACH Debits are blocked. Received debits will be declined and returned with code `R20` (non-transaction account).
-          BLOCKED = :blocked
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
-      end
-
-      # @see Increase::Models::AccountNumber#inbound_checks
-      class InboundChecks < Increase::Internal::Type::BaseModel
-        # @!attribute status
-        #   How Increase should process checks with this account number printed on them.
-        #
-        #   @return [Symbol, Increase::Models::AccountNumber::InboundChecks::Status]
-        required :status, enum: -> { Increase::AccountNumber::InboundChecks::Status }
-
-        # @!method initialize(status:)
-        #   Properties related to how this Account Number should handle inbound check
-        #   withdrawals.
-        #
-        #   @param status [Symbol, Increase::Models::AccountNumber::InboundChecks::Status]
-        #     How Increase should process checks with this account number printed on them.
-
-        # How Increase should process checks with this account number printed on them.
-        #
-        # @see Increase::Models::AccountNumber::InboundChecks#status
-        module Status
-          extend Increase::Internal::Type::Enum
-
-          # Checks with this Account Number will be processed even if they are not associated with a Check Transfer.
-          ALLOWED = :allowed
-
-          # Checks with this Account Number will be processed only if they can be matched to an existing Check Transfer.
-          CHECK_TRANSFERS_ONLY = :check_transfers_only
-
-          # @!method self.values
-          #   @return [Array<Symbol>]
-        end
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
 
       # This indicates if payments can be made to the Account Number.
@@ -208,6 +162,22 @@ module Increase
         extend Increase::Internal::Type::Enum
 
         ACCOUNT_NUMBER = :account_number
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
+      end
+
+      # Whether unregistered inbound checks for this Account Number can be deposited.
+      #
+      # @see Increase::Models::AccountNumber#unregistered_inbound_checks
+      module UnregisteredInboundChecks
+        extend Increase::Internal::Type::Enum
+
+        # Accept all Inbound Check Deposits, even if they are not associated with a Check Transfer or Checkbook Check.
+        ALLOWED = :allowed
+
+        # Only accept Inbound Check Deposits if they can be matched to a Check Transfer or Checkbook Check.
+        BLOCKED = :blocked
 
         # @!method self.values
         #   @return [Array<Symbol>]

@@ -72,6 +72,9 @@ module Increase
       # @return [Increase::Resources::Simulations::CheckTransfers]
       attr_reader :check_transfers
 
+      # @return [Increase::Resources::Simulations::Checkbooks]
+      attr_reader :checkbooks
+
       # @return [Increase::Resources::Simulations::InboundCheckDeposits]
       attr_reader :inbound_check_deposits
 
@@ -143,6 +146,7 @@ module Increase
         @inbound_wire_drawdown_requests =
           Increase::Resources::Simulations::InboundWireDrawdownRequests.new(client: client)
         @check_transfers = Increase::Resources::Simulations::CheckTransfers.new(client: client)
+        @checkbooks = Increase::Resources::Simulations::Checkbooks.new(client: client)
         @inbound_check_deposits = Increase::Resources::Simulations::InboundCheckDeposits.new(client: client)
         @real_time_payments_transfers =
           Increase::Resources::Simulations::RealTimePaymentsTransfers.new(client: client)

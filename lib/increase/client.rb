@@ -95,6 +95,12 @@ module Increase
     # @return [Increase::Resources::CheckTransfers]
     attr_reader :check_transfers
 
+    # @return [Increase::Resources::Checkbooks]
+    attr_reader :checkbooks
+
+    # @return [Increase::Resources::CheckbookChecks]
+    attr_reader :checkbook_checks
+
     # @return [Increase::Resources::InboundCheckDeposits]
     attr_reader :inbound_check_deposits
 
@@ -302,6 +308,8 @@ module Increase
       @wire_drawdown_requests = Increase::Resources::WireDrawdownRequests.new(client: self)
       @inbound_wire_drawdown_requests = Increase::Resources::InboundWireDrawdownRequests.new(client: self)
       @check_transfers = Increase::Resources::CheckTransfers.new(client: self)
+      @checkbooks = Increase::Resources::Checkbooks.new(client: self)
+      @checkbook_checks = Increase::Resources::CheckbookChecks.new(client: self)
       @inbound_check_deposits = Increase::Resources::InboundCheckDeposits.new(client: self)
       @real_time_payments_transfers = Increase::Resources::RealTimePaymentsTransfers.new(client: self)
       @inbound_real_time_payments_transfers =

@@ -1,0 +1,76 @@
+module Increase
+  module Models
+    type checkbook_check =
+      {
+        id: String,
+        check_number: Integer,
+        checkbook_id: String,
+        created_at: Time,
+        status: Increase::Models::CheckbookCheck::status,
+        type: Increase::Models::CheckbookCheck::type_
+      }
+
+    class CheckbookCheck < Increase::Internal::Type::BaseModel
+      attr_accessor id: String
+
+      attr_accessor check_number: Integer
+
+      attr_accessor checkbook_id: String
+
+      attr_accessor created_at: Time
+
+      attr_accessor status: Increase::Models::CheckbookCheck::status
+
+      attr_accessor type: Increase::Models::CheckbookCheck::type_
+
+      def initialize: (
+        id: String,
+        check_number: Integer,
+        checkbook_id: String,
+        created_at: Time,
+        status: Increase::Models::CheckbookCheck::status,
+        type: Increase::Models::CheckbookCheck::type_
+      ) -> void
+
+      def to_hash: -> {
+        id: String,
+        check_number: Integer,
+        checkbook_id: String,
+        created_at: Time,
+        status: Increase::Models::CheckbookCheck::status,
+        type: Increase::Models::CheckbookCheck::type_
+      }
+
+      type status =
+        :pending_deposit | :deposited | :stopped | :requires_attention
+
+      module Status
+        extend Increase::Internal::Type::Enum
+
+        # The check has not yet been deposited.
+        PENDING_DEPOSIT: :pending_deposit
+
+        # The check has been deposited.
+        DEPOSITED: :deposited
+
+        # The check has been stopped and can no longer be deposited.
+        STOPPED: :stopped
+
+        # The check requires attention from an Increase operator.
+        REQUIRES_ATTENTION: :requires_attention
+
+        def self?.values: -> ::Array[Increase::Models::CheckbookCheck::status]
+      end
+
+      type type_ = :checkbook_check
+
+      module Type
+        extend Increase::Internal::Type::Enum
+
+        CHECKBOOK_CHECK: :checkbook_check
+
+        def self?.values: -> ::Array[Increase::Models::CheckbookCheck::type_]
+      end
+    end
+  end
+end

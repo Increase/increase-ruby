@@ -4472,6 +4472,9 @@ module Increase
                 # Electric vehicle charging level 3 480 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
 
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE = :diesel_1_off_road_non_taxable
+
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
                   :renewable_diesel_r95_or_greater_off_road_non_taxable
@@ -6752,6 +6755,9 @@ module Increase
                 # Electric vehicle charging level 3 480 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
 
+                # Diesel 1 off-road non-taxable
+                DIESEL_1_OFF_ROAD_NON_TAXABLE = :diesel_1_off_road_non_taxable
+
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
                   :renewable_diesel_r95_or_greater_off_road_non_taxable
@@ -8144,6 +8150,12 @@ module Increase
           #   @return [String, nil]
           required :bank_of_first_deposit_routing_number, String, nil?: true
 
+          # @!attribute checkbook_check_id
+          #   The identifier of the Checkbook Check object that was deposited.
+          #
+          #   @return [String, nil]
+          required :checkbook_check_id, String, nil?: true
+
           # @!attribute deposited_at
           #   When the check was deposited.
           #
@@ -8183,7 +8195,7 @@ module Increase
           #   @return [Symbol, Increase::Models::Transaction::Source::CheckTransferDeposit::Type]
           required :type, enum: -> { Increase::Transaction::Source::CheckTransferDeposit::Type }
 
-          # @!method initialize(back_image_file_id:, bank_of_first_deposit_routing_number:, deposited_at:, front_image_file_id:, inbound_check_deposit_id:, transaction_id:, transfer_id:, type:)
+          # @!method initialize(back_image_file_id:, bank_of_first_deposit_routing_number:, checkbook_check_id:, deposited_at:, front_image_file_id:, inbound_check_deposit_id:, transaction_id:, transfer_id:, type:)
           #   A Check Transfer Deposit object. This field will be present in the JSON response
           #   if and only if `category` is equal to `check_transfer_deposit`. An Inbound Check
           #   is a check drawn on an Increase account that has been deposited by an external
@@ -8197,6 +8209,8 @@ module Increase
           #     The American Bankers' Association (ABA) Routing Transit Number (RTN) for the
           #     bank depositing this check. In some rare cases, this is not transmitted via
           #     Check 21 and the value will be null.
+          #
+          #   @param checkbook_check_id [String, nil] The identifier of the Checkbook Check object that was deposited.
           #
           #   @param deposited_at [Time] When the check was deposited.
           #
@@ -8675,6 +8689,12 @@ module Increase
 
         # @see Increase::Models::Transaction::Source#inbound_check_deposit_return_intention
         class InboundCheckDepositReturnIntention < Increase::Internal::Type::BaseModel
+          # @!attribute checkbook_check_id
+          #   The identifier of the Checkbook Check object that was deposited.
+          #
+          #   @return [String, nil]
+          required :checkbook_check_id, String, nil?: true
+
           # @!attribute inbound_check_deposit_id
           #   The ID of the Inbound Check Deposit that is being returned.
           #
@@ -8687,12 +8707,14 @@ module Increase
           #   @return [String, nil]
           required :transfer_id, String, nil?: true
 
-          # @!method initialize(inbound_check_deposit_id:, transfer_id:)
+          # @!method initialize(checkbook_check_id:, inbound_check_deposit_id:, transfer_id:)
           #   An Inbound Check Deposit Return Intention object. This field will be present in
           #   the JSON response if and only if `category` is equal to
           #   `inbound_check_deposit_return_intention`. An Inbound Check Deposit Return
           #   Intention is created when Increase receives an Inbound Check and the User
           #   requests that it be returned.
+          #
+          #   @param checkbook_check_id [String, nil] The identifier of the Checkbook Check object that was deposited.
           #
           #   @param inbound_check_deposit_id [String] The ID of the Inbound Check Deposit that is being returned.
           #

@@ -1,0 +1,33 @@
+module Increase
+  module Resources
+    class Checkbooks
+      def create: (
+        account_number_id: String,
+        mailing_address: Increase::CheckbookCreateParams::MailingAddress,
+        payer: ::Array[Increase::CheckbookCreateParams::Payer],
+        ?request_options: Increase::request_opts
+      ) -> Increase::Checkbook
+
+      def retrieve: (
+        String checkbook_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Checkbook
+
+      def list: (
+        ?account_number_id: String,
+        ?cursor: String,
+        ?idempotency_key: String,
+        ?limit: Integer,
+        ?status: Increase::CheckbookListParams::Status,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Internal::Page[Increase::Checkbook]
+
+      def stop: (
+        String checkbook_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::Checkbook
+
+      def initialize: (client: Increase::Client) -> void
+    end
+  end
+end
