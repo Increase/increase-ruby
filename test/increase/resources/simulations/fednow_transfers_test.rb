@@ -24,6 +24,7 @@ class Increase::Test::Resources::Simulations::FednowTransfersTest < Increase::Te
         currency: Increase::FednowTransfer::Currency,
         debtor_address: Increase::FednowTransfer::DebtorAddress | nil,
         debtor_name: String,
+        end_to_end_identification: String | nil,
         external_account_id: String | nil,
         idempotency_key: String | nil,
         pending_transaction_id: String | nil,
