@@ -23,7 +23,9 @@ module Increase
         account_id:,
         # Controls that restrict how this card can be used.
         authorization_controls: nil,
-        # The card's billing address.
+        # The card's billing address. This is used in card authorizations to
+        # [validate the address provided by the acquirer](/documentation/address-verification-system-codes-and-overrides).
+        # If not provided, the address associated with the account's entity will be used.
         billing_address: nil,
         # The name of the cardholder. Used to respond to Account Name Inquiry requests
         # from acquirers in Card Validations.
@@ -79,7 +81,9 @@ module Increase
         card_id,
         # Controls that restrict how this card can be used.
         authorization_controls: nil,
-        # The card's updated billing address.
+        # The card's billing address. This is used in card authorizations to
+        # [validate the address provided by the acquirer](/documentation/address-verification-system-codes-and-overrides).
+        # If not provided, the address associated with the account's entity will be used.
         billing_address: nil,
         # The description you choose to give the card.
         description: nil,

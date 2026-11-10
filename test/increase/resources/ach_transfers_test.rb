@@ -8,7 +8,8 @@ class Increase::Test::Resources::ACHTransfersTest < Increase::Test::ResourceTest
       @increase.ach_transfers.create(
         account_id: "account_in71c4amph0vgo2qllky",
         amount: 100,
-        statement_descriptor: "INVOICE 2468"
+        company_name: "Phonographs Inc",
+        individual_name: "Ian Crease"
       )
 
     assert_pattern do

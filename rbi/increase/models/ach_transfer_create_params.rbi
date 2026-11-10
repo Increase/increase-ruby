@@ -26,14 +26,21 @@ module Increase
       sig { returns(Integer) }
       attr_accessor :amount
 
-      # A description you choose to give the transfer. This will be saved with the
-      # transfer details, displayed in the dashboard, and returned by the API. If
-      # `individual_name` and `company_name` are not explicitly set by this API, the
-      # `statement_descriptor` will be sent in those fields to the receiving bank to
-      # help the customer recognize the transfer. You are highly encouraged to pass
-      # `individual_name` and `company_name` instead of relying on this fallback.
+      # The name by which the recipient knows the counterparty of this transaction. If
+      # you're processing payments on behalf of another party, use their name, not your
+      # own, so that it's more likely the recipient understands the context of the
+      # payment. This value is usually displayed to the recipient on their bank
+      # statement. We recommend setting this on every transfer; if you do not, we fall
+      # back to the `statement_descriptor`.
       sig { returns(String) }
-      attr_accessor :statement_descriptor
+      attr_accessor :company_name
+
+      # The name of the transfer recipient. This value is informational and generally
+      # not verified by the recipient's bank. This value is usually displayed to the
+      # recipient on their bank statement. We recommend setting this on every transfer;
+      # if you do not, we fall back to the `statement_descriptor`.
+      sig { returns(String) }
+      attr_accessor :individual_name
 
       # The receiver's account number. For credit transfers (transfers with a positive
       # `amount`), this is the account that funds will be sent to. For debit transfers
@@ -88,18 +95,6 @@ module Increase
       sig { params(company_entry_description: String).void }
       attr_writer :company_entry_description
 
-      # The name by which the recipient knows the counterparty of this transaction. If
-      # you're processing payments on behalf of another party, use their name, not your
-      # own, so that it's more likely the recipient understands the context of the
-      # payment. This value is usually displayed to the recipient on their bank
-      # statement. We recommend setting this on every transfer; if you do not, we fall
-      # back to the `statement_descriptor`.
-      sig { returns(T.nilable(String)) }
-      attr_reader :company_name
-
-      sig { params(company_name: String).void }
-      attr_writer :company_name
-
       # The type of entity that owns the receiver's account.
       sig do
         returns(
@@ -150,16 +145,6 @@ module Increase
 
       sig { params(individual_id: String).void }
       attr_writer :individual_id
-
-      # The name of the transfer recipient. This value is informational and generally
-      # not verified by the recipient's bank. This value is usually displayed to the
-      # recipient on their bank statement. We recommend setting this on every transfer;
-      # if you do not, we fall back to the `statement_descriptor`.
-      sig { returns(T.nilable(String)) }
-      attr_reader :individual_name
-
-      sig { params(individual_name: String).void }
-      attr_writer :individual_name
 
       # Configuration for how the effective date of the transfer will be set. This
       # determines same-day vs future-dated settlement timing. If not set, defaults to a
@@ -220,19 +205,18 @@ module Increase
         params(
           account_id: String,
           amount: Integer,
-          statement_descriptor: String,
+          company_name: String,
+          individual_name: String,
           account_number: String,
           addenda: Increase::ACHTransferCreateParams::Addenda::OrHash,
           company_descriptive_date: String,
           company_discretionary_data: String,
           company_entry_description: String,
-          company_name: String,
           destination_account_holder:
             Increase::ACHTransferCreateParams::DestinationAccountHolder::OrSymbol,
           external_account_id: String,
           funding: Increase::ACHTransferCreateParams::Funding::OrSymbol,
           individual_id: String,
-          individual_name: String,
           preferred_effective_date:
             Increase::ACHTransferCreateParams::PreferredEffectiveDate::OrHash,
           require_approval: T::Boolean,
@@ -254,13 +238,18 @@ module Increase
         # into Increase. Debit transfers
         # [might result in a hold before funds are available](/documentation/sending-ach-debit-transfers).
         amount:,
-        # A description you choose to give the transfer. This will be saved with the
-        # transfer details, displayed in the dashboard, and returned by the API. If
-        # `individual_name` and `company_name` are not explicitly set by this API, the
-        # `statement_descriptor` will be sent in those fields to the receiving bank to
-        # help the customer recognize the transfer. You are highly encouraged to pass
-        # `individual_name` and `company_name` instead of relying on this fallback.
-        statement_descriptor:,
+        # The name by which the recipient knows the counterparty of this transaction. If
+        # you're processing payments on behalf of another party, use their name, not your
+        # own, so that it's more likely the recipient understands the context of the
+        # payment. This value is usually displayed to the recipient on their bank
+        # statement. We recommend setting this on every transfer; if you do not, we fall
+        # back to the `statement_descriptor`.
+        company_name:,
+        # The name of the transfer recipient. This value is informational and generally
+        # not verified by the recipient's bank. This value is usually displayed to the
+        # recipient on their bank statement. We recommend setting this on every transfer;
+        # if you do not, we fall back to the `statement_descriptor`.
+        individual_name:,
         # The receiver's account number. For credit transfers (transfers with a positive
         # `amount`), this is the account that funds will be sent to. For debit transfers
         # (transfers with a negative `amount`), this is the account that funds will be
@@ -287,13 +276,6 @@ module Increase
         # code and use case. For example, some use cases require constants like
         # `ACCTVERIFY`, `PURCHASE`, `PAYROLL`, or `REVERSAL`.
         company_entry_description: nil,
-        # The name by which the recipient knows the counterparty of this transaction. If
-        # you're processing payments on behalf of another party, use their name, not your
-        # own, so that it's more likely the recipient understands the context of the
-        # payment. This value is usually displayed to the recipient on their bank
-        # statement. We recommend setting this on every transfer; if you do not, we fall
-        # back to the `statement_descriptor`.
-        company_name: nil,
         # The type of entity that owns the receiver's account.
         destination_account_holder: nil,
         # The ID of an External Account to initiate a transfer to. If this parameter is
@@ -308,11 +290,6 @@ module Increase
         # unset. For the specific case of person-to-person credits with the WEB standard
         # entry class code, this must include the name of the payer.
         individual_id: nil,
-        # The name of the transfer recipient. This value is informational and generally
-        # not verified by the recipient's bank. This value is usually displayed to the
-        # recipient on their bank statement. We recommend setting this on every transfer;
-        # if you do not, we fall back to the `statement_descriptor`.
-        individual_name: nil,
         # Configuration for how the effective date of the transfer will be set. This
         # determines same-day vs future-dated settlement timing. If not set, defaults to a
         # `settlement_schedule` of `same_day`. If set, exactly one of the child attributes
@@ -337,19 +314,18 @@ module Increase
           {
             account_id: String,
             amount: Integer,
-            statement_descriptor: String,
+            company_name: String,
+            individual_name: String,
             account_number: String,
             addenda: Increase::ACHTransferCreateParams::Addenda,
             company_descriptive_date: String,
             company_discretionary_data: String,
             company_entry_description: String,
-            company_name: String,
             destination_account_holder:
               Increase::ACHTransferCreateParams::DestinationAccountHolder::OrSymbol,
             external_account_id: String,
             funding: Increase::ACHTransferCreateParams::Funding::OrSymbol,
             individual_id: String,
-            individual_name: String,
             preferred_effective_date:
               Increase::ACHTransferCreateParams::PreferredEffectiveDate,
             require_approval: T::Boolean,

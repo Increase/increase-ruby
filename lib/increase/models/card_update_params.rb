@@ -20,7 +20,9 @@ module Increase
       optional :authorization_controls, -> { Increase::CardUpdateParams::AuthorizationControls }
 
       # @!attribute billing_address
-      #   The card's updated billing address.
+      #   The card's billing address. This is used in card authorizations to
+      #   [validate the address provided by the acquirer](/documentation/address-verification-system-codes-and-overrides).
+      #   If not provided, the address associated with the account's entity will be used.
       #
       #   @return [Increase::Models::CardUpdateParams::BillingAddress, nil]
       optional :billing_address, -> { Increase::CardUpdateParams::BillingAddress }
@@ -59,7 +61,9 @@ module Increase
       #     Controls that restrict how this card can be used.
       #
       #   @param billing_address [Increase::Models::CardUpdateParams::BillingAddress]
-      #     The card's updated billing address.
+      #     The card's billing address. This is used in card authorizations to
+      #     [validate the address provided by the acquirer](/documentation/address-verification-system-codes-and-overrides).
+      #     If not provided, the address associated with the account's entity will be used.
       #
       #   @param description [String] The description you choose to give the card.
       #
@@ -511,7 +515,9 @@ module Increase
         optional :line2, String
 
         # @!method initialize(city:, line1:, postal_code:, state:, line2: nil)
-        #   The card's updated billing address.
+        #   The card's billing address. This is used in card authorizations to
+        #   [validate the address provided by the acquirer](/documentation/address-verification-system-codes-and-overrides).
+        #   If not provided, the address associated with the account's entity will be used.
         #
         #   @param city [String] The city of the billing address.
         #

@@ -10,7 +10,7 @@ module Increase
       # You should set both of these, in addition to the required amount and account
       # fields.
       #
-      # @overload create(account_id:, amount:, statement_descriptor:, account_number: nil, addenda: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, company_name: nil, destination_account_holder: nil, external_account_id: nil, funding: nil, individual_id: nil, individual_name: nil, preferred_effective_date: nil, require_approval: nil, routing_number: nil, standard_entry_class_code: nil, request_options: {})
+      # @overload create(account_id:, amount:, company_name:, individual_name:, account_number: nil, addenda: nil, company_descriptive_date: nil, company_discretionary_data: nil, company_entry_description: nil, destination_account_holder: nil, external_account_id: nil, funding: nil, individual_id: nil, preferred_effective_date: nil, require_approval: nil, routing_number: nil, standard_entry_class_code: nil, request_options: {})
       #
       # @param account_id [String]
       #   The Increase identifier for the account that will originate the transfer. For
@@ -25,13 +25,19 @@ module Increase
       #   into Increase. Debit transfers
       #   [might result in a hold before funds are available](/documentation/sending-ach-debit-transfers).
       #
-      # @param statement_descriptor [String]
-      #   A description you choose to give the transfer. This will be saved with the
-      #   transfer details, displayed in the dashboard, and returned by the API. If
-      #   `individual_name` and `company_name` are not explicitly set by this API, the
-      #   `statement_descriptor` will be sent in those fields to the receiving bank to
-      #   help the customer recognize the transfer. You are highly encouraged to pass
-      #   `individual_name` and `company_name` instead of relying on this fallback.
+      # @param company_name [String]
+      #   The name by which the recipient knows the counterparty of this transaction. If
+      #   you're processing payments on behalf of another party, use their name, not your
+      #   own, so that it's more likely the recipient understands the context of the
+      #   payment. This value is usually displayed to the recipient on their bank
+      #   statement. We recommend setting this on every transfer; if you do not, we fall
+      #   back to the `statement_descriptor`.
+      #
+      # @param individual_name [String]
+      #   The name of the transfer recipient. This value is informational and generally
+      #   not verified by the recipient's bank. This value is usually displayed to the
+      #   recipient on their bank statement. We recommend setting this on every transfer;
+      #   if you do not, we fall back to the `statement_descriptor`.
       #
       # @param account_number [String]
       #   The receiver's account number. For credit transfers (transfers with a positive
@@ -64,14 +70,6 @@ module Increase
       #   code and use case. For example, some use cases require constants like
       #   `ACCTVERIFY`, `PURCHASE`, `PAYROLL`, or `REVERSAL`.
       #
-      # @param company_name [String]
-      #   The name by which the recipient knows the counterparty of this transaction. If
-      #   you're processing payments on behalf of another party, use their name, not your
-      #   own, so that it's more likely the recipient understands the context of the
-      #   payment. This value is usually displayed to the recipient on their bank
-      #   statement. We recommend setting this on every transfer; if you do not, we fall
-      #   back to the `statement_descriptor`.
-      #
       # @param destination_account_holder [Symbol, Increase::Models::ACHTransferCreateParams::DestinationAccountHolder]
       #   The type of entity that owns the receiver's account.
       #
@@ -89,12 +87,6 @@ module Increase
       #   generally not verified by the recipient's bank. Most callers can leave this
       #   unset. For the specific case of person-to-person credits with the WEB standard
       #   entry class code, this must include the name of the payer.
-      #
-      # @param individual_name [String]
-      #   The name of the transfer recipient. This value is informational and generally
-      #   not verified by the recipient's bank. This value is usually displayed to the
-      #   recipient on their bank statement. We recommend setting this on every transfer;
-      #   if you do not, we fall back to the `statement_descriptor`.
       #
       # @param preferred_effective_date [Increase::Models::ACHTransferCreateParams::PreferredEffectiveDate]
       #   Configuration for how the effective date of the transfer will be set. This

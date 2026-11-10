@@ -81,6 +81,12 @@ module Increase
       #   @return [String]
       required :debtor_name, String
 
+      # @!attribute end_to_end_identification
+      #   A free-form reference string set by the sender, to help identify the transfer.
+      #
+      #   @return [String, nil]
+      required :end_to_end_identification, String, nil?: true
+
       # @!attribute external_account_id
       #   The identifier of the External Account the transfer was made to, if any.
       #
@@ -169,7 +175,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, created_at:, created_by:, creditor_address:, creditor_name:, currency:, debtor_address:, debtor_name:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, returns:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, created_at:, created_by:, creditor_address:, creditor_name:, currency:, debtor_address:, debtor_name:, end_to_end_identification:, external_account_id:, idempotency_key:, pending_transaction_id:, rejection:, returns:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, unique_end_to_end_transaction_reference:, unstructured_remittance_information:)
       #   FedNow transfers move funds, within seconds, between your Increase account and
       #   any other account supporting FedNow.
       #
@@ -207,6 +213,9 @@ module Increase
       #   @param debtor_name [String]
       #     The name of the transfer's sender. If not provided, defaults to the name of the
       #     account's entity.
+      #
+      #   @param end_to_end_identification [String, nil]
+      #     A free-form reference string set by the sender, to help identify the transfer.
       #
       #   @param external_account_id [String, nil]
       #     The identifier of the External Account the transfer was made to, if any.
