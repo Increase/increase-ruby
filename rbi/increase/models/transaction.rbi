@@ -6489,6 +6489,27 @@ module Increase
                 )
               end
 
+            # An adjustment the card network made to the interchange after this transaction
+            # cleared, if any.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Transaction::Source::CardRefund::Interchange::Adjustment
+                )
+              )
+            end
+            attr_reader :adjustment
+
+            sig do
+              params(
+                adjustment:
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::Interchange::Adjustment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :adjustment
+
             # The interchange amount given as a string containing a decimal number in major
             # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
             # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -6512,6 +6533,10 @@ module Increase
             # Interchange assessed as a part of this transaction.
             sig do
               params(
+                adjustment:
+                  T.nilable(
+                    Increase::Transaction::Source::CardRefund::Interchange::Adjustment::OrHash
+                  ),
                 amount: String,
                 code: T.nilable(String),
                 currency:
@@ -6519,6 +6544,9 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              adjustment:,
               # The interchange amount given as a string containing a decimal number in major
               # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
               # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -6535,6 +6563,10 @@ module Increase
             sig do
               override.returns(
                 {
+                  adjustment:
+                    T.nilable(
+                      Increase::Transaction::Source::CardRefund::Interchange::Adjustment
+                    ),
                   amount: String,
                   code: T.nilable(String),
                   currency:
@@ -6543,6 +6575,59 @@ module Increase
               )
             end
             def to_hash
+            end
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::Transaction::Source::CardRefund::Interchange::Adjustment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              # the interchange was adjusted.
+              sig { returns(Time) }
+              attr_accessor :adjusted_at
+
+              # The adjustment amount given as a string containing a decimal number in major
+              # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              # credited to Increase and a negative number if it is debited.
+              sig { returns(String) }
+              attr_accessor :amount
+
+              # The card network specific interchange code that applies after the adjustment.
+              sig { returns(String) }
+              attr_accessor :code
+
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              sig do
+                params(adjusted_at: Time, amount: String, code: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+                # the interchange was adjusted.
+                adjusted_at:,
+                # The adjustment amount given as a string containing a decimal number in major
+                # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+                # credited to Increase and a negative number if it is debited.
+                amount:,
+                # The card network specific interchange code that applies after the adjustment.
+                code:
+              )
+              end
+
+              sig do
+                override.returns(
+                  { adjusted_at: Time, amount: String, code: String }
+                )
+              end
+              def to_hash
+              end
             end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
@@ -10585,6 +10670,27 @@ module Increase
                 )
               end
 
+            # An adjustment the card network made to the interchange after this transaction
+            # cleared, if any.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::Transaction::Source::CardSettlement::Interchange::Adjustment
+                )
+              )
+            end
+            attr_reader :adjustment
+
+            sig do
+              params(
+                adjustment:
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::Interchange::Adjustment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :adjustment
+
             # The interchange amount given as a string containing a decimal number in major
             # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
             # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -10608,6 +10714,10 @@ module Increase
             # Interchange assessed as a part of this transaction.
             sig do
               params(
+                adjustment:
+                  T.nilable(
+                    Increase::Transaction::Source::CardSettlement::Interchange::Adjustment::OrHash
+                  ),
                 amount: String,
                 code: T.nilable(String),
                 currency:
@@ -10615,6 +10725,9 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              adjustment:,
               # The interchange amount given as a string containing a decimal number in major
               # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
               # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -10631,6 +10744,10 @@ module Increase
             sig do
               override.returns(
                 {
+                  adjustment:
+                    T.nilable(
+                      Increase::Transaction::Source::CardSettlement::Interchange::Adjustment
+                    ),
                   amount: String,
                   code: T.nilable(String),
                   currency:
@@ -10639,6 +10756,59 @@ module Increase
               )
             end
             def to_hash
+            end
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::Transaction::Source::CardSettlement::Interchange::Adjustment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              # the interchange was adjusted.
+              sig { returns(Time) }
+              attr_accessor :adjusted_at
+
+              # The adjustment amount given as a string containing a decimal number in major
+              # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              # credited to Increase and a negative number if it is debited.
+              sig { returns(String) }
+              attr_accessor :amount
+
+              # The card network specific interchange code that applies after the adjustment.
+              sig { returns(String) }
+              attr_accessor :code
+
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              sig do
+                params(adjusted_at: Time, amount: String, code: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+                # the interchange was adjusted.
+                adjusted_at:,
+                # The adjustment amount given as a string containing a decimal number in major
+                # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+                # credited to Increase and a negative number if it is debited.
+                amount:,
+                # The card network specific interchange code that applies after the adjustment.
+                code:
+              )
+              end
+
+              sig do
+                override.returns(
+                  { adjusted_at: Time, amount: String, code: String }
+                )
+              end
+              def to_hash
+              end
             end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange

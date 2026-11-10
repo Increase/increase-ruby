@@ -3559,6 +3559,15 @@ module Increase
 
           # @see Increase::Models::Transaction::Source::CardRefund#interchange
           class Interchange < Increase::Internal::Type::BaseModel
+            # @!attribute adjustment
+            #   An adjustment the card network made to the interchange after this transaction
+            #   cleared, if any.
+            #
+            #   @return [Increase::Models::Transaction::Source::CardRefund::Interchange::Adjustment, nil]
+            required :adjustment,
+                     -> { Increase::Transaction::Source::CardRefund::Interchange::Adjustment },
+                     nil?: true
+
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number in major
             #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
@@ -3581,8 +3590,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::Interchange::Currency]
             required :currency, enum: -> { Increase::Transaction::Source::CardRefund::Interchange::Currency }
 
-            # @!method initialize(amount:, code:, currency:)
+            # @!method initialize(adjustment:, amount:, code:, currency:)
             #   Interchange assessed as a part of this transaction.
+            #
+            #   @param adjustment [Increase::Models::Transaction::Source::CardRefund::Interchange::Adjustment, nil]
+            #     An adjustment the card network made to the interchange after this transaction
+            #     cleared, if any.
             #
             #   @param amount [String]
             #     The interchange amount given as a string containing a decimal number in major
@@ -3595,6 +3608,45 @@ module Increase
             #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Interchange::Currency]
             #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #     reimbursement.
+
+            # @see Increase::Models::Transaction::Source::CardRefund::Interchange#adjustment
+            class Adjustment < Increase::Internal::Type::BaseModel
+              # @!attribute adjusted_at
+              #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #   the interchange was adjusted.
+              #
+              #   @return [Time]
+              required :adjusted_at, Time
+
+              # @!attribute amount
+              #   The adjustment amount given as a string containing a decimal number in major
+              #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #   credited to Increase and a negative number if it is debited.
+              #
+              #   @return [String]
+              required :amount, String
+
+              # @!attribute code
+              #   The card network specific interchange code that applies after the adjustment.
+              #
+              #   @return [String]
+              required :code, String
+
+              # @!method initialize(adjusted_at:, amount:, code:)
+              #   An adjustment the card network made to the interchange after this transaction
+              #   cleared, if any.
+              #
+              #   @param adjusted_at [Time]
+              #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #     the interchange was adjusted.
+              #
+              #   @param amount [String]
+              #     The adjustment amount given as a string containing a decimal number in major
+              #     units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #     credited to Increase and a negative number if it is debited.
+              #
+              #   @param code [String] The card network specific interchange code that applies after the adjustment.
+            end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.
@@ -5846,6 +5898,15 @@ module Increase
 
           # @see Increase::Models::Transaction::Source::CardSettlement#interchange
           class Interchange < Increase::Internal::Type::BaseModel
+            # @!attribute adjustment
+            #   An adjustment the card network made to the interchange after this transaction
+            #   cleared, if any.
+            #
+            #   @return [Increase::Models::Transaction::Source::CardSettlement::Interchange::Adjustment, nil]
+            required :adjustment,
+                     -> { Increase::Transaction::Source::CardSettlement::Interchange::Adjustment },
+                     nil?: true
+
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number in major
             #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
@@ -5868,8 +5929,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency]
             required :currency, enum: -> { Increase::Transaction::Source::CardSettlement::Interchange::Currency }
 
-            # @!method initialize(amount:, code:, currency:)
+            # @!method initialize(adjustment:, amount:, code:, currency:)
             #   Interchange assessed as a part of this transaction.
+            #
+            #   @param adjustment [Increase::Models::Transaction::Source::CardSettlement::Interchange::Adjustment, nil]
+            #     An adjustment the card network made to the interchange after this transaction
+            #     cleared, if any.
             #
             #   @param amount [String]
             #     The interchange amount given as a string containing a decimal number in major
@@ -5882,6 +5947,45 @@ module Increase
             #   @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency]
             #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #     reimbursement.
+
+            # @see Increase::Models::Transaction::Source::CardSettlement::Interchange#adjustment
+            class Adjustment < Increase::Internal::Type::BaseModel
+              # @!attribute adjusted_at
+              #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #   the interchange was adjusted.
+              #
+              #   @return [Time]
+              required :adjusted_at, Time
+
+              # @!attribute amount
+              #   The adjustment amount given as a string containing a decimal number in major
+              #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #   credited to Increase and a negative number if it is debited.
+              #
+              #   @return [String]
+              required :amount, String
+
+              # @!attribute code
+              #   The card network specific interchange code that applies after the adjustment.
+              #
+              #   @return [String]
+              required :code, String
+
+              # @!method initialize(adjusted_at:, amount:, code:)
+              #   An adjustment the card network made to the interchange after this transaction
+              #   cleared, if any.
+              #
+              #   @param adjusted_at [Time]
+              #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #     the interchange was adjusted.
+              #
+              #   @param amount [String]
+              #     The adjustment amount given as a string containing a decimal number in major
+              #     units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #     credited to Increase and a negative number if it is debited.
+              #
+              #   @param code [String] The card network specific interchange code that applies after the adjustment.
+            end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.

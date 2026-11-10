@@ -6348,12 +6348,15 @@ module Increase
 
           type interchange =
             {
+              adjustment: Increase::CardPayment::Element::CardRefund::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::CardPayment::Element::CardRefund::Interchange::currency
             }
 
           class Interchange < Increase::Internal::Type::BaseModel
+            attr_accessor adjustment: Increase::CardPayment::Element::CardRefund::Interchange::Adjustment?
+
             attr_accessor amount: String
 
             attr_accessor code: String?
@@ -6361,16 +6364,41 @@ module Increase
             attr_accessor currency: Increase::Models::CardPayment::Element::CardRefund::Interchange::currency
 
             def initialize: (
+              adjustment: Increase::CardPayment::Element::CardRefund::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::CardPayment::Element::CardRefund::Interchange::currency
             ) -> void
 
             def to_hash: -> {
+              adjustment: Increase::CardPayment::Element::CardRefund::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::CardPayment::Element::CardRefund::Interchange::currency
             }
+
+            type adjustment =
+              { adjusted_at: Time, amount: String, code: String }
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              attr_accessor adjusted_at: Time
+
+              attr_accessor amount: String
+
+              attr_accessor code: String
+
+              def initialize: (
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              ) -> void
+
+              def to_hash: -> {
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              }
+            end
 
             type currency = :USD
 
@@ -8549,12 +8577,15 @@ module Increase
 
           type interchange =
             {
+              adjustment: Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::CardPayment::Element::CardSettlement::Interchange::currency
             }
 
           class Interchange < Increase::Internal::Type::BaseModel
+            attr_accessor adjustment: Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment?
+
             attr_accessor amount: String
 
             attr_accessor code: String?
@@ -8562,16 +8593,41 @@ module Increase
             attr_accessor currency: Increase::Models::CardPayment::Element::CardSettlement::Interchange::currency
 
             def initialize: (
+              adjustment: Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::CardPayment::Element::CardSettlement::Interchange::currency
             ) -> void
 
             def to_hash: -> {
+              adjustment: Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::CardPayment::Element::CardSettlement::Interchange::currency
             }
+
+            type adjustment =
+              { adjusted_at: Time, amount: String, code: String }
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              attr_accessor adjusted_at: Time
+
+              attr_accessor amount: String
+
+              attr_accessor code: String
+
+              def initialize: (
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              ) -> void
+
+              def to_hash: -> {
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              }
+            end
 
             type currency = :USD
 
