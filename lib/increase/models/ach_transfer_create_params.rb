@@ -31,17 +31,18 @@ module Increase
       #   you're processing payments on behalf of another party, use their name, not your
       #   own, so that it's more likely the recipient understands the context of the
       #   payment. This value is usually displayed to the recipient on their bank
-      #   statement. We recommend setting this on every transfer; if you do not, we fall
-      #   back to the `statement_descriptor`.
+      #   statement.
       #
       #   @return [String]
       required :company_name, String
 
       # @!attribute individual_name
       #   The name of the transfer recipient. This value is informational and generally
-      #   not verified by the recipient's bank. This value is usually displayed to the
-      #   recipient on their bank statement. We recommend setting this on every transfer;
-      #   if you do not, we fall back to the `statement_descriptor`.
+      #   not verified by the recipient's bank. The business-to-business Standard Entry
+      #   Class (SEC) codes](/documentation/ach-standard-entry-class-codes) call this
+      #   "individual name or receiving company name;" it's reasonable to include a
+      #   business name in this field. This value is usually displayed to the recipient on
+      #   their bank statement.
       #
       #   @return [String]
       required :individual_name, String
@@ -174,14 +175,15 @@ module Increase
       #     you're processing payments on behalf of another party, use their name, not your
       #     own, so that it's more likely the recipient understands the context of the
       #     payment. This value is usually displayed to the recipient on their bank
-      #     statement. We recommend setting this on every transfer; if you do not, we fall
-      #     back to the `statement_descriptor`.
+      #     statement.
       #
       #   @param individual_name [String]
       #     The name of the transfer recipient. This value is informational and generally
-      #     not verified by the recipient's bank. This value is usually displayed to the
-      #     recipient on their bank statement. We recommend setting this on every transfer;
-      #     if you do not, we fall back to the `statement_descriptor`.
+      #     not verified by the recipient's bank. The business-to-business Standard Entry
+      #     Class (SEC) codes](/documentation/ach-standard-entry-class-codes) call this
+      #     "individual name or receiving company name;" it's reasonable to include a
+      #     business name in this field. This value is usually displayed to the recipient on
+      #     their bank statement.
       #
       #   @param account_number [String]
       #     The receiver's account number. For credit transfers (transfers with a positive

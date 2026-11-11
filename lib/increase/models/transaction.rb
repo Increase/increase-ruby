@@ -2991,7 +2991,7 @@ module Increase
               # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
               VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE = :visa_authorization_address_verification_service
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION = :visa_advanced_authorization
 
               # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
@@ -3050,6 +3050,15 @@ module Increase
 
               # Issuer Processing Guarantee for Commercial Credit cards.
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT = :visa_processing_guarantee_commercial_credit
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC = :visa_atm_cash_withdrawal_domestic
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL = :visa_atm_cash_withdrawal_international
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC = :visa_atm_cash_deposit_domestic
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
@@ -3559,6 +3568,15 @@ module Increase
 
           # @see Increase::Models::Transaction::Source::CardRefund#interchange
           class Interchange < Increase::Internal::Type::BaseModel
+            # @!attribute adjustment
+            #   An adjustment the card network made to the interchange after this transaction
+            #   cleared, if any.
+            #
+            #   @return [Increase::Models::Transaction::Source::CardRefund::Interchange::Adjustment, nil]
+            required :adjustment,
+                     -> { Increase::Transaction::Source::CardRefund::Interchange::Adjustment },
+                     nil?: true
+
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number in major
             #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
@@ -3581,8 +3599,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardRefund::Interchange::Currency]
             required :currency, enum: -> { Increase::Transaction::Source::CardRefund::Interchange::Currency }
 
-            # @!method initialize(amount:, code:, currency:)
+            # @!method initialize(adjustment:, amount:, code:, currency:)
             #   Interchange assessed as a part of this transaction.
+            #
+            #   @param adjustment [Increase::Models::Transaction::Source::CardRefund::Interchange::Adjustment, nil]
+            #     An adjustment the card network made to the interchange after this transaction
+            #     cleared, if any.
             #
             #   @param amount [String]
             #     The interchange amount given as a string containing a decimal number in major
@@ -3595,6 +3617,45 @@ module Increase
             #   @param currency [Symbol, Increase::Models::Transaction::Source::CardRefund::Interchange::Currency]
             #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #     reimbursement.
+
+            # @see Increase::Models::Transaction::Source::CardRefund::Interchange#adjustment
+            class Adjustment < Increase::Internal::Type::BaseModel
+              # @!attribute adjusted_at
+              #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #   the interchange was adjusted.
+              #
+              #   @return [Time]
+              required :adjusted_at, Time
+
+              # @!attribute amount
+              #   The adjustment amount given as a string containing a decimal number in major
+              #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #   credited to Increase and a negative number if it is debited.
+              #
+              #   @return [String]
+              required :amount, String
+
+              # @!attribute code
+              #   The card network specific interchange code that applies after the adjustment.
+              #
+              #   @return [String]
+              required :code, String
+
+              # @!method initialize(adjusted_at:, amount:, code:)
+              #   An adjustment the card network made to the interchange after this transaction
+              #   cleared, if any.
+              #
+              #   @param adjusted_at [Time]
+              #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #     the interchange was adjusted.
+              #
+              #   @param amount [String]
+              #     The adjustment amount given as a string containing a decimal number in major
+              #     units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #     credited to Increase and a negative number if it is debited.
+              #
+              #   @param code [String] The card network specific interchange code that applies after the adjustment.
+            end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.
@@ -4463,6 +4524,12 @@ module Increase
                 # Kerosene ultra low sulfur
                 KEROSENE_ULTRA_LOW_SULFUR = :kerosene_ultra_low_sulfur
 
+                # Kerosene low sulfur non-taxable
+                KEROSENE_LOW_SULFUR_NON_TAXABLE = :kerosene_low_sulfur_non_taxable
+
+                # Kerosene ultra low sulfur non-taxable
+                KEROSENE_ULTRA_LOW_SULFUR_NON_TAXABLE = :kerosene_ultra_low_sulfur_non_taxable
+
                 # Electric vehicle charging level 1 110 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT = :electric_vehicle_charging_level_1_110_volt
 
@@ -4472,8 +4539,71 @@ module Increase
                 # Electric vehicle charging level 3 480 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
 
+                # Biodiesel blend 2% off-road non-taxable
+                BIODIESEL_BLEND_2_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_2_off_road_non_taxable
+
+                # Biodiesel blend 5% off-road non-taxable
+                BIODIESEL_BLEND_5_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_5_off_road_non_taxable
+
+                # Biodiesel blend 10% off-road non-taxable
+                BIODIESEL_BLEND_10_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_10_off_road_non_taxable
+
+                # Biodiesel blend 11% off-road non-taxable
+                BIODIESEL_BLEND_11_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_11_off_road_non_taxable
+
+                # Biodiesel blend 15% off-road non-taxable
+                BIODIESEL_BLEND_15_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_15_off_road_non_taxable
+
+                # Biodiesel blend 20% off-road non-taxable
+                BIODIESEL_BLEND_20_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_20_off_road_non_taxable
+
                 # Diesel 1 off-road non-taxable
                 DIESEL_1_OFF_ROAD_NON_TAXABLE = :diesel_1_off_road_non_taxable
+
+                # Diesel 2 off-road non-taxable
+                DIESEL_2_OFF_ROAD_NON_TAXABLE = :diesel_2_off_road_non_taxable
+
+                # Diesel 1 premium off-road non-taxable
+                DIESEL_1_PREMIUM_OFF_ROAD_NON_TAXABLE = :diesel_1_premium_off_road_non_taxable
+
+                # Diesel 2 premium off-road non-taxable
+                DIESEL_2_PREMIUM_OFF_ROAD_NON_TAXABLE = :diesel_2_premium_off_road_non_taxable
+
+                # Additive dosage
+                ADDITIVE_DOSAGE = :additive_dosage
+
+                # Ethanol blends E16 to E84
+                ETHANOL_BLENDS_E16_TO_E84 = :ethanol_blends_e16_to_e84
+
+                # Low octane unleaded
+                LOW_OCTANE_UNLEADED = :low_octane_unleaded
+
+                # Blended diesel 1 and 2
+                BLENDED_DIESEL_1_AND_2 = :blended_diesel_1_and_2
+
+                # Off-road regular non-taxable
+                OFF_ROAD_REGULAR_NON_TAXABLE = :off_road_regular_non_taxable
+
+                # Off-road mid or plus non-taxable
+                OFF_ROAD_MID_OR_PLUS_NON_TAXABLE = :off_road_mid_or_plus_non_taxable
+
+                # Off-road premium or super non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_NON_TAXABLE = :off_road_premium_or_super_non_taxable
+
+                # Off-road mid or plus 2 non-taxable
+                OFF_ROAD_MID_OR_PLUS_2_NON_TAXABLE = :off_road_mid_or_plus_2_non_taxable
+
+                # Off-road premium or super 2 non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_2_NON_TAXABLE = :off_road_premium_or_super_2_non_taxable
+
+                # Recreational fuel 90 octane
+                RECREATIONAL_FUEL_90_OCTANE = :recreational_fuel_90_octane
+
+                # Hydrogen H35
+                HYDROGEN_H35 = :hydrogen_h35
+
+                # Hydrogen H70
+                HYDROGEN_H70 = :hydrogen_h70
 
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
@@ -4494,6 +4624,10 @@ module Increase
                 # Renewable diesel biodiesel 6% to 20% off-road non-taxable
                 RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
                   :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable
+
+                # Renewable diesel R25 hydrotreated vegetable oil 25% blend
+                RENEWABLE_DIESEL_R25_HYDROTREATED_VEGETABLE_OIL_25_BLEND =
+                  :renewable_diesel_r25_hydrotreated_vegetable_oil_25_blend
 
                 # Electric vehicle charging level 4 800 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_4_800_VOLT = :electric_vehicle_charging_level_4_800_volt
@@ -5395,7 +5529,7 @@ module Increase
               # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
               VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE = :visa_authorization_address_verification_service
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION = :visa_advanced_authorization
 
               # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
@@ -5454,6 +5588,15 @@ module Increase
 
               # Issuer Processing Guarantee for Commercial Credit cards.
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT = :visa_processing_guarantee_commercial_credit
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC = :visa_atm_cash_withdrawal_domestic
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL = :visa_atm_cash_withdrawal_international
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC = :visa_atm_cash_deposit_domestic
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
@@ -5846,6 +5989,15 @@ module Increase
 
           # @see Increase::Models::Transaction::Source::CardSettlement#interchange
           class Interchange < Increase::Internal::Type::BaseModel
+            # @!attribute adjustment
+            #   An adjustment the card network made to the interchange after this transaction
+            #   cleared, if any.
+            #
+            #   @return [Increase::Models::Transaction::Source::CardSettlement::Interchange::Adjustment, nil]
+            required :adjustment,
+                     -> { Increase::Transaction::Source::CardSettlement::Interchange::Adjustment },
+                     nil?: true
+
             # @!attribute amount
             #   The interchange amount given as a string containing a decimal number in major
             #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
@@ -5868,8 +6020,12 @@ module Increase
             #   @return [Symbol, Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency]
             required :currency, enum: -> { Increase::Transaction::Source::CardSettlement::Interchange::Currency }
 
-            # @!method initialize(amount:, code:, currency:)
+            # @!method initialize(adjustment:, amount:, code:, currency:)
             #   Interchange assessed as a part of this transaction.
+            #
+            #   @param adjustment [Increase::Models::Transaction::Source::CardSettlement::Interchange::Adjustment, nil]
+            #     An adjustment the card network made to the interchange after this transaction
+            #     cleared, if any.
             #
             #   @param amount [String]
             #     The interchange amount given as a string containing a decimal number in major
@@ -5882,6 +6038,45 @@ module Increase
             #   @param currency [Symbol, Increase::Models::Transaction::Source::CardSettlement::Interchange::Currency]
             #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             #     reimbursement.
+
+            # @see Increase::Models::Transaction::Source::CardSettlement::Interchange#adjustment
+            class Adjustment < Increase::Internal::Type::BaseModel
+              # @!attribute adjusted_at
+              #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #   the interchange was adjusted.
+              #
+              #   @return [Time]
+              required :adjusted_at, Time
+
+              # @!attribute amount
+              #   The adjustment amount given as a string containing a decimal number in major
+              #   units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #   credited to Increase and a negative number if it is debited.
+              #
+              #   @return [String]
+              required :amount, String
+
+              # @!attribute code
+              #   The card network specific interchange code that applies after the adjustment.
+              #
+              #   @return [String]
+              required :code, String
+
+              # @!method initialize(adjusted_at:, amount:, code:)
+              #   An adjustment the card network made to the interchange after this transaction
+              #   cleared, if any.
+              #
+              #   @param adjusted_at [Time]
+              #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              #     the interchange was adjusted.
+              #
+              #   @param amount [String]
+              #     The adjustment amount given as a string containing a decimal number in major
+              #     units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              #     credited to Increase and a negative number if it is debited.
+              #
+              #   @param code [String] The card network specific interchange code that applies after the adjustment.
+            end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
             # reimbursement.
@@ -6746,6 +6941,12 @@ module Increase
                 # Kerosene ultra low sulfur
                 KEROSENE_ULTRA_LOW_SULFUR = :kerosene_ultra_low_sulfur
 
+                # Kerosene low sulfur non-taxable
+                KEROSENE_LOW_SULFUR_NON_TAXABLE = :kerosene_low_sulfur_non_taxable
+
+                # Kerosene ultra low sulfur non-taxable
+                KEROSENE_ULTRA_LOW_SULFUR_NON_TAXABLE = :kerosene_ultra_low_sulfur_non_taxable
+
                 # Electric vehicle charging level 1 110 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT = :electric_vehicle_charging_level_1_110_volt
 
@@ -6755,8 +6956,71 @@ module Increase
                 # Electric vehicle charging level 3 480 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_3_480_VOLT = :electric_vehicle_charging_level_3_480_volt
 
+                # Biodiesel blend 2% off-road non-taxable
+                BIODIESEL_BLEND_2_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_2_off_road_non_taxable
+
+                # Biodiesel blend 5% off-road non-taxable
+                BIODIESEL_BLEND_5_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_5_off_road_non_taxable
+
+                # Biodiesel blend 10% off-road non-taxable
+                BIODIESEL_BLEND_10_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_10_off_road_non_taxable
+
+                # Biodiesel blend 11% off-road non-taxable
+                BIODIESEL_BLEND_11_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_11_off_road_non_taxable
+
+                # Biodiesel blend 15% off-road non-taxable
+                BIODIESEL_BLEND_15_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_15_off_road_non_taxable
+
+                # Biodiesel blend 20% off-road non-taxable
+                BIODIESEL_BLEND_20_OFF_ROAD_NON_TAXABLE = :biodiesel_blend_20_off_road_non_taxable
+
                 # Diesel 1 off-road non-taxable
                 DIESEL_1_OFF_ROAD_NON_TAXABLE = :diesel_1_off_road_non_taxable
+
+                # Diesel 2 off-road non-taxable
+                DIESEL_2_OFF_ROAD_NON_TAXABLE = :diesel_2_off_road_non_taxable
+
+                # Diesel 1 premium off-road non-taxable
+                DIESEL_1_PREMIUM_OFF_ROAD_NON_TAXABLE = :diesel_1_premium_off_road_non_taxable
+
+                # Diesel 2 premium off-road non-taxable
+                DIESEL_2_PREMIUM_OFF_ROAD_NON_TAXABLE = :diesel_2_premium_off_road_non_taxable
+
+                # Additive dosage
+                ADDITIVE_DOSAGE = :additive_dosage
+
+                # Ethanol blends E16 to E84
+                ETHANOL_BLENDS_E16_TO_E84 = :ethanol_blends_e16_to_e84
+
+                # Low octane unleaded
+                LOW_OCTANE_UNLEADED = :low_octane_unleaded
+
+                # Blended diesel 1 and 2
+                BLENDED_DIESEL_1_AND_2 = :blended_diesel_1_and_2
+
+                # Off-road regular non-taxable
+                OFF_ROAD_REGULAR_NON_TAXABLE = :off_road_regular_non_taxable
+
+                # Off-road mid or plus non-taxable
+                OFF_ROAD_MID_OR_PLUS_NON_TAXABLE = :off_road_mid_or_plus_non_taxable
+
+                # Off-road premium or super non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_NON_TAXABLE = :off_road_premium_or_super_non_taxable
+
+                # Off-road mid or plus 2 non-taxable
+                OFF_ROAD_MID_OR_PLUS_2_NON_TAXABLE = :off_road_mid_or_plus_2_non_taxable
+
+                # Off-road premium or super 2 non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_2_NON_TAXABLE = :off_road_premium_or_super_2_non_taxable
+
+                # Recreational fuel 90 octane
+                RECREATIONAL_FUEL_90_OCTANE = :recreational_fuel_90_octane
+
+                # Hydrogen H35
+                HYDROGEN_H35 = :hydrogen_h35
+
+                # Hydrogen H70
+                HYDROGEN_H70 = :hydrogen_h70
 
                 # Renewable diesel R95 or greater off-road non-taxable
                 RENEWABLE_DIESEL_R95_OR_GREATER_OFF_ROAD_NON_TAXABLE =
@@ -6777,6 +7041,10 @@ module Increase
                 # Renewable diesel biodiesel 6% to 20% off-road non-taxable
                 RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
                   :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable
+
+                # Renewable diesel R25 hydrotreated vegetable oil 25% blend
+                RENEWABLE_DIESEL_R25_HYDROTREATED_VEGETABLE_OIL_25_BLEND =
+                  :renewable_diesel_r25_hydrotreated_vegetable_oil_25_blend
 
                 # Electric vehicle charging level 4 800 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_4_800_VOLT = :electric_vehicle_charging_level_4_800_volt
@@ -7680,7 +7948,7 @@ module Increase
               # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
               VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE = :visa_authorization_address_verification_service
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION = :visa_advanced_authorization
 
               # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
@@ -7739,6 +8007,15 @@ module Increase
 
               # Issuer Processing Guarantee for Commercial Credit cards.
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT = :visa_processing_guarantee_commercial_credit
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC = :visa_atm_cash_withdrawal_domestic
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL = :visa_atm_cash_withdrawal_international
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC = :visa_atm_cash_deposit_domestic
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
