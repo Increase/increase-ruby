@@ -30,15 +30,13 @@ module Increase
       # you're processing payments on behalf of another party, use their name, not your
       # own, so that it's more likely the recipient understands the context of the
       # payment. This value is usually displayed to the recipient on their bank
-      # statement. We recommend setting this on every transfer; if you do not, we fall
-      # back to the `statement_descriptor`.
+      # statement.
       sig { returns(String) }
       attr_accessor :company_name
 
       # The name of the transfer recipient. This value is informational and generally
       # not verified by the recipient's bank. This value is usually displayed to the
-      # recipient on their bank statement. We recommend setting this on every transfer;
-      # if you do not, we fall back to the `statement_descriptor`.
+      # recipient on their bank statement.
       sig { returns(String) }
       attr_accessor :individual_name
 
@@ -242,13 +240,11 @@ module Increase
         # you're processing payments on behalf of another party, use their name, not your
         # own, so that it's more likely the recipient understands the context of the
         # payment. This value is usually displayed to the recipient on their bank
-        # statement. We recommend setting this on every transfer; if you do not, we fall
-        # back to the `statement_descriptor`.
+        # statement.
         company_name:,
         # The name of the transfer recipient. This value is informational and generally
         # not verified by the recipient's bank. This value is usually displayed to the
-        # recipient on their bank statement. We recommend setting this on every transfer;
-        # if you do not, we fall back to the `statement_descriptor`.
+        # recipient on their bank statement.
         individual_name:,
         # The receiver's account number. For credit transfers (transfers with a positive
         # `amount`), this is the account that funds will be sent to. For debit transfers
