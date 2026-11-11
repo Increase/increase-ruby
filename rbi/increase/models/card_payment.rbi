@@ -4815,7 +4815,7 @@ module Increase
                   Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -4952,6 +4952,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -7593,7 +7614,7 @@ module Increase
                   Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -7730,6 +7751,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -10694,7 +10736,7 @@ module Increase
                   Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -10831,6 +10873,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -13494,7 +13557,7 @@ module Increase
                   Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -13631,6 +13694,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -14570,7 +14654,7 @@ module Increase
                   Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -14707,6 +14791,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -16140,7 +16245,7 @@ module Increase
                   Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -16277,6 +16382,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -16781,6 +16907,27 @@ module Increase
                 )
               end
 
+            # An adjustment the card network made to the interchange after this transaction
+            # cleared, if any.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardRefund::Interchange::Adjustment
+                )
+              )
+            end
+            attr_reader :adjustment
+
+            sig do
+              params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardRefund::Interchange::Adjustment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :adjustment
+
             # The interchange amount given as a string containing a decimal number in major
             # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
             # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -16804,6 +16951,10 @@ module Increase
             # Interchange assessed as a part of this transaction.
             sig do
               params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardRefund::Interchange::Adjustment::OrHash
+                  ),
                 amount: String,
                 code: T.nilable(String),
                 currency:
@@ -16811,6 +16962,9 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              adjustment:,
               # The interchange amount given as a string containing a decimal number in major
               # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
               # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -16827,6 +16981,10 @@ module Increase
             sig do
               override.returns(
                 {
+                  adjustment:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardRefund::Interchange::Adjustment
+                    ),
                   amount: String,
                   code: T.nilable(String),
                   currency:
@@ -16835,6 +16993,59 @@ module Increase
               )
             end
             def to_hash
+            end
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardRefund::Interchange::Adjustment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              # the interchange was adjusted.
+              sig { returns(Time) }
+              attr_accessor :adjusted_at
+
+              # The adjustment amount given as a string containing a decimal number in major
+              # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              # credited to Increase and a negative number if it is debited.
+              sig { returns(String) }
+              attr_accessor :amount
+
+              # The card network specific interchange code that applies after the adjustment.
+              sig { returns(String) }
+              attr_accessor :code
+
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              sig do
+                params(adjusted_at: Time, amount: String, code: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+                # the interchange was adjusted.
+                adjusted_at:,
+                # The adjustment amount given as a string containing a decimal number in major
+                # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+                # credited to Increase and a negative number if it is debited.
+                amount:,
+                # The card network specific interchange code that applies after the adjustment.
+                code:
+              )
+              end
+
+              sig do
+                override.returns(
+                  { adjusted_at: Time, amount: String, code: String }
+                )
+              end
+              def to_hash
+              end
             end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
@@ -20072,7 +20283,7 @@ module Increase
                   Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -20209,6 +20420,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -20935,7 +21167,7 @@ module Increase
                   Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -21072,6 +21304,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -21635,6 +21888,27 @@ module Increase
                 )
               end
 
+            # An adjustment the card network made to the interchange after this transaction
+            # cleared, if any.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment
+                )
+              )
+            end
+            attr_reader :adjustment
+
+            sig do
+              params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :adjustment
+
             # The interchange amount given as a string containing a decimal number in major
             # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
             # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -21658,6 +21932,10 @@ module Increase
             # Interchange assessed as a part of this transaction.
             sig do
               params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment::OrHash
+                  ),
                 amount: String,
                 code: T.nilable(String),
                 currency:
@@ -21665,6 +21943,9 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              adjustment:,
               # The interchange amount given as a string containing a decimal number in major
               # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
               # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -21681,6 +21962,10 @@ module Increase
             sig do
               override.returns(
                 {
+                  adjustment:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment
+                    ),
                   amount: String,
                   code: T.nilable(String),
                   currency:
@@ -21689,6 +21974,59 @@ module Increase
               )
             end
             def to_hash
+            end
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              # the interchange was adjusted.
+              sig { returns(Time) }
+              attr_accessor :adjusted_at
+
+              # The adjustment amount given as a string containing a decimal number in major
+              # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              # credited to Increase and a negative number if it is debited.
+              sig { returns(String) }
+              attr_accessor :amount
+
+              # The card network specific interchange code that applies after the adjustment.
+              sig { returns(String) }
+              attr_accessor :code
+
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              sig do
+                params(adjusted_at: Time, amount: String, code: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+                # the interchange was adjusted.
+                adjusted_at:,
+                # The adjustment amount given as a string containing a decimal number in major
+                # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+                # credited to Increase and a negative number if it is debited.
+                amount:,
+                # The card network specific interchange code that applies after the adjustment.
+                code:
+              )
+              end
+
+              sig do
+                override.returns(
+                  { adjusted_at: Time, amount: String, code: String }
+                )
+              end
+              def to_hash
+              end
             end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
@@ -24926,7 +25264,7 @@ module Increase
                   Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -25063,6 +25401,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -27204,7 +27563,7 @@ module Increase
                   Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -27341,6 +27700,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
                 )
 

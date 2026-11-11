@@ -1914,6 +1914,9 @@ module Increase
               | :visa_advertising_service_commercial_credit
               | :visa_community_growth_acceleration_program
               | :visa_processing_guarantee_commercial_credit
+              | :visa_atm_cash_withdrawal_domestic
+              | :visa_atm_cash_withdrawal_international
+              | :visa_atm_cash_deposit_domestic
               | :pulse_switch_fee
               | :pulse_tokenization_fee
 
@@ -1944,7 +1947,7 @@ module Increase
               # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
               VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE: :visa_authorization_address_verification_service
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION: :visa_advanced_authorization
 
               # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
@@ -2003,6 +2006,15 @@ module Increase
 
               # Issuer Processing Guarantee for Commercial Credit cards.
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT: :visa_processing_guarantee_commercial_credit
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC: :visa_atm_cash_withdrawal_domestic
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL: :visa_atm_cash_withdrawal_international
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC: :visa_atm_cash_deposit_domestic
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee
@@ -2360,12 +2372,15 @@ module Increase
 
           type interchange =
             {
+              adjustment: Increase::Transaction::Source::CardRefund::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::Transaction::Source::CardRefund::Interchange::currency
             }
 
           class Interchange < Increase::Internal::Type::BaseModel
+            attr_accessor adjustment: Increase::Transaction::Source::CardRefund::Interchange::Adjustment?
+
             attr_accessor amount: String
 
             attr_accessor code: String?
@@ -2373,16 +2388,41 @@ module Increase
             attr_accessor currency: Increase::Models::Transaction::Source::CardRefund::Interchange::currency
 
             def initialize: (
+              adjustment: Increase::Transaction::Source::CardRefund::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::Transaction::Source::CardRefund::Interchange::currency
             ) -> void
 
             def to_hash: -> {
+              adjustment: Increase::Transaction::Source::CardRefund::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::Transaction::Source::CardRefund::Interchange::currency
             }
+
+            type adjustment =
+              { adjusted_at: Time, amount: String, code: String }
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              attr_accessor adjusted_at: Time
+
+              attr_accessor amount: String
+
+              attr_accessor code: String
+
+              def initialize: (
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              ) -> void
+
+              def to_hash: -> {
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              }
+            end
 
             type currency = :USD
 
@@ -3879,6 +3919,9 @@ module Increase
               | :visa_advertising_service_commercial_credit
               | :visa_community_growth_acceleration_program
               | :visa_processing_guarantee_commercial_credit
+              | :visa_atm_cash_withdrawal_domestic
+              | :visa_atm_cash_withdrawal_international
+              | :visa_atm_cash_deposit_domestic
               | :pulse_switch_fee
               | :pulse_tokenization_fee
 
@@ -3909,7 +3952,7 @@ module Increase
               # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
               VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE: :visa_authorization_address_verification_service
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION: :visa_advanced_authorization
 
               # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
@@ -3968,6 +4011,15 @@ module Increase
 
               # Issuer Processing Guarantee for Commercial Credit cards.
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT: :visa_processing_guarantee_commercial_credit
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC: :visa_atm_cash_withdrawal_domestic
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL: :visa_atm_cash_withdrawal_international
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC: :visa_atm_cash_deposit_domestic
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee
@@ -4215,12 +4267,15 @@ module Increase
 
           type interchange =
             {
+              adjustment: Increase::Transaction::Source::CardSettlement::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::Transaction::Source::CardSettlement::Interchange::currency
             }
 
           class Interchange < Increase::Internal::Type::BaseModel
+            attr_accessor adjustment: Increase::Transaction::Source::CardSettlement::Interchange::Adjustment?
+
             attr_accessor amount: String
 
             attr_accessor code: String?
@@ -4228,16 +4283,41 @@ module Increase
             attr_accessor currency: Increase::Models::Transaction::Source::CardSettlement::Interchange::currency
 
             def initialize: (
+              adjustment: Increase::Transaction::Source::CardSettlement::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::Transaction::Source::CardSettlement::Interchange::currency
             ) -> void
 
             def to_hash: -> {
+              adjustment: Increase::Transaction::Source::CardSettlement::Interchange::Adjustment?,
               amount: String,
               code: String?,
               currency: Increase::Models::Transaction::Source::CardSettlement::Interchange::currency
             }
+
+            type adjustment =
+              { adjusted_at: Time, amount: String, code: String }
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              attr_accessor adjusted_at: Time
+
+              attr_accessor amount: String
+
+              attr_accessor code: String
+
+              def initialize: (
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              ) -> void
+
+              def to_hash: -> {
+                adjusted_at: Time,
+                amount: String,
+                code: String
+              }
+            end
 
             type currency = :USD
 
@@ -5734,6 +5814,9 @@ module Increase
               | :visa_advertising_service_commercial_credit
               | :visa_community_growth_acceleration_program
               | :visa_processing_guarantee_commercial_credit
+              | :visa_atm_cash_withdrawal_domestic
+              | :visa_atm_cash_withdrawal_international
+              | :visa_atm_cash_deposit_domestic
               | :pulse_switch_fee
               | :pulse_tokenization_fee
 
@@ -5764,7 +5847,7 @@ module Increase
               # A per Address Verification Service (AVS) result fee. Applies to all usable AVS result codes.
               VISA_AUTHORIZATION_ADDRESS_VERIFICATION_SERVICE: :visa_authorization_address_verification_service
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION: :visa_advanced_authorization
 
               # Issuer Transactions Visa represents a charge based on total actual monthly processing (Visa transactions only) through a VisaNet Access Point (VAP). Charges are assessed to the processor for each VisaNet Access Point.
@@ -5823,6 +5906,15 @@ module Increase
 
               # Issuer Processing Guarantee for Commercial Credit cards.
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT: :visa_processing_guarantee_commercial_credit
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC: :visa_atm_cash_withdrawal_domestic
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL: :visa_atm_cash_withdrawal_international
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC: :visa_atm_cash_deposit_domestic
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee

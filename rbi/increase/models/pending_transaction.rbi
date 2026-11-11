@@ -3801,7 +3801,7 @@ module Increase
                   Increase::PendingTransaction::Source::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -3938,6 +3938,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::PendingTransaction::Source::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::PendingTransaction::Source::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::PendingTransaction::Source::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::PendingTransaction::Source::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
