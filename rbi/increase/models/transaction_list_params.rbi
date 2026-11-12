@@ -219,6 +219,13 @@ module Increase
               Increase::TransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Card Dispute Provisional Credit: details will be under the `card_dispute_provisional_credit` object.
+          CARD_DISPUTE_PROVISIONAL_CREDIT =
+            T.let(
+              :card_dispute_provisional_credit,
+              Increase::TransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS =
             T.let(

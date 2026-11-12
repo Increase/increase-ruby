@@ -107,6 +107,9 @@ module Increase
           # Card Dispute Financial: details will be under the `card_dispute_financial` object.
           CARD_DISPUTE_FINANCIAL = :card_dispute_financial
 
+          # Card Dispute Provisional Credit: details will be under the `card_dispute_provisional_credit` object.
+          CARD_DISPUTE_PROVISIONAL_CREDIT = :card_dispute_provisional_credit
+
           # Legacy Card Dispute Loss: details will be under the `card_dispute_loss` object.
           CARD_DISPUTE_LOSS = :card_dispute_loss
 
