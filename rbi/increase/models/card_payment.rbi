@@ -4815,7 +4815,7 @@ module Increase
                   Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -4952,6 +4952,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -7593,7 +7614,7 @@ module Increase
                   Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -7730,6 +7751,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -10694,7 +10736,7 @@ module Increase
                   Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -10831,6 +10873,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -13494,7 +13557,7 @@ module Increase
                   Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -13631,6 +13694,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -14570,7 +14654,7 @@ module Increase
                   Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -14707,6 +14791,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -16140,7 +16245,7 @@ module Increase
                   Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -16277,6 +16382,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -16781,6 +16907,27 @@ module Increase
                 )
               end
 
+            # An adjustment the card network made to the interchange after this transaction
+            # cleared, if any.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardRefund::Interchange::Adjustment
+                )
+              )
+            end
+            attr_reader :adjustment
+
+            sig do
+              params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardRefund::Interchange::Adjustment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :adjustment
+
             # The interchange amount given as a string containing a decimal number in major
             # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
             # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -16804,6 +16951,10 @@ module Increase
             # Interchange assessed as a part of this transaction.
             sig do
               params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardRefund::Interchange::Adjustment::OrHash
+                  ),
                 amount: String,
                 code: T.nilable(String),
                 currency:
@@ -16811,6 +16962,9 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              adjustment:,
               # The interchange amount given as a string containing a decimal number in major
               # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
               # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -16827,6 +16981,10 @@ module Increase
             sig do
               override.returns(
                 {
+                  adjustment:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardRefund::Interchange::Adjustment
+                    ),
                   amount: String,
                   code: T.nilable(String),
                   currency:
@@ -16835,6 +16993,59 @@ module Increase
               )
             end
             def to_hash
+            end
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardRefund::Interchange::Adjustment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              # the interchange was adjusted.
+              sig { returns(Time) }
+              attr_accessor :adjusted_at
+
+              # The adjustment amount given as a string containing a decimal number in major
+              # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              # credited to Increase and a negative number if it is debited.
+              sig { returns(String) }
+              attr_accessor :amount
+
+              # The card network specific interchange code that applies after the adjustment.
+              sig { returns(String) }
+              attr_accessor :code
+
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              sig do
+                params(adjusted_at: Time, amount: String, code: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+                # the interchange was adjusted.
+                adjusted_at:,
+                # The adjustment amount given as a string containing a decimal number in major
+                # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+                # credited to Increase and a negative number if it is debited.
+                amount:,
+                # The card network specific interchange code that applies after the adjustment.
+                code:
+              )
+              end
+
+              sig do
+                override.returns(
+                  { adjusted_at: Time, amount: String, code: String }
+                )
+              end
+              def to_hash
+              end
             end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
@@ -18341,6 +18552,20 @@ module Increase
                     Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
+                # Kerosene low sulfur non-taxable
+                KEROSENE_LOW_SULFUR_NON_TAXABLE =
+                  T.let(
+                    :kerosene_low_sulfur_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Kerosene ultra low sulfur non-taxable
+                KEROSENE_ULTRA_LOW_SULFUR_NON_TAXABLE =
+                  T.let(
+                    :kerosene_ultra_low_sulfur_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
                 # Electric vehicle charging level 1 110 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT =
                   T.let(
@@ -18362,10 +18587,157 @@ module Increase
                     Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
+                # Biodiesel blend 2% off-road non-taxable
+                BIODIESEL_BLEND_2_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_2_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 5% off-road non-taxable
+                BIODIESEL_BLEND_5_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_5_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 10% off-road non-taxable
+                BIODIESEL_BLEND_10_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_10_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 11% off-road non-taxable
+                BIODIESEL_BLEND_11_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_11_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 15% off-road non-taxable
+                BIODIESEL_BLEND_15_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_15_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 20% off-road non-taxable
+                BIODIESEL_BLEND_20_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_20_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
                 # Diesel 1 off-road non-taxable
                 DIESEL_1_OFF_ROAD_NON_TAXABLE =
                   T.let(
                     :diesel_1_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel 2 off-road non-taxable
+                DIESEL_2_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_2_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel 1 premium off-road non-taxable
+                DIESEL_1_PREMIUM_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_1_premium_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel 2 premium off-road non-taxable
+                DIESEL_2_PREMIUM_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_2_premium_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Additive dosage
+                ADDITIVE_DOSAGE =
+                  T.let(
+                    :additive_dosage,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Ethanol blends E16 to E84
+                ETHANOL_BLENDS_E16_TO_E84 =
+                  T.let(
+                    :ethanol_blends_e16_to_e84,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Low octane unleaded
+                LOW_OCTANE_UNLEADED =
+                  T.let(
+                    :low_octane_unleaded,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Blended diesel 1 and 2
+                BLENDED_DIESEL_1_AND_2 =
+                  T.let(
+                    :blended_diesel_1_and_2,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road regular non-taxable
+                OFF_ROAD_REGULAR_NON_TAXABLE =
+                  T.let(
+                    :off_road_regular_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road mid or plus non-taxable
+                OFF_ROAD_MID_OR_PLUS_NON_TAXABLE =
+                  T.let(
+                    :off_road_mid_or_plus_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road premium or super non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_NON_TAXABLE =
+                  T.let(
+                    :off_road_premium_or_super_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road mid or plus 2 non-taxable
+                OFF_ROAD_MID_OR_PLUS_2_NON_TAXABLE =
+                  T.let(
+                    :off_road_mid_or_plus_2_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road premium or super 2 non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_2_NON_TAXABLE =
+                  T.let(
+                    :off_road_premium_or_super_2_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Recreational fuel 90 octane
+                RECREATIONAL_FUEL_90_OCTANE =
+                  T.let(
+                    :recreational_fuel_90_octane,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Hydrogen H35
+                HYDROGEN_H35 =
+                  T.let(
+                    :hydrogen_h35,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Hydrogen H70
+                HYDROGEN_H70 =
+                  T.let(
+                    :hydrogen_h70,
                     Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
@@ -18408,6 +18780,13 @@ module Increase
                 RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
                   T.let(
                     :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel R25 hydrotreated vegetable oil 25% blend
+                RENEWABLE_DIESEL_R25_HYDROTREATED_VEGETABLE_OIL_25_BLEND =
+                  T.let(
+                    :renewable_diesel_r25_hydrotreated_vegetable_oil_25_blend,
                     Increase::CardPayment::Element::CardRefund::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
@@ -20072,7 +20451,7 @@ module Increase
                   Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -20209,6 +20588,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -20935,7 +21335,7 @@ module Increase
                   Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -21072,6 +21472,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -21635,6 +22056,27 @@ module Increase
                 )
               end
 
+            # An adjustment the card network made to the interchange after this transaction
+            # cleared, if any.
+            sig do
+              returns(
+                T.nilable(
+                  Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment
+                )
+              )
+            end
+            attr_reader :adjustment
+
+            sig do
+              params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment::OrHash
+                  )
+              ).void
+            end
+            attr_writer :adjustment
+
             # The interchange amount given as a string containing a decimal number in major
             # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
             # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -21658,6 +22100,10 @@ module Increase
             # Interchange assessed as a part of this transaction.
             sig do
               params(
+                adjustment:
+                  T.nilable(
+                    Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment::OrHash
+                  ),
                 amount: String,
                 code: T.nilable(String),
                 currency:
@@ -21665,6 +22111,9 @@ module Increase
               ).returns(T.attached_class)
             end
             def self.new(
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              adjustment:,
               # The interchange amount given as a string containing a decimal number in major
               # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
               # credited to Increase (e.g., settlements) and a negative number if it is debited
@@ -21681,6 +22130,10 @@ module Increase
             sig do
               override.returns(
                 {
+                  adjustment:
+                    T.nilable(
+                      Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment
+                    ),
                   amount: String,
                   code: T.nilable(String),
                   currency:
@@ -21689,6 +22142,59 @@ module Increase
               )
             end
             def to_hash
+            end
+
+            class Adjustment < Increase::Internal::Type::BaseModel
+              OrHash =
+                T.type_alias do
+                  T.any(
+                    Increase::CardPayment::Element::CardSettlement::Interchange::Adjustment,
+                    Increase::Internal::AnyHash
+                  )
+                end
+
+              # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+              # the interchange was adjusted.
+              sig { returns(Time) }
+              attr_accessor :adjusted_at
+
+              # The adjustment amount given as a string containing a decimal number in major
+              # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+              # credited to Increase and a negative number if it is debited.
+              sig { returns(String) }
+              attr_accessor :amount
+
+              # The card network specific interchange code that applies after the adjustment.
+              sig { returns(String) }
+              attr_accessor :code
+
+              # An adjustment the card network made to the interchange after this transaction
+              # cleared, if any.
+              sig do
+                params(adjusted_at: Time, amount: String, code: String).returns(
+                  T.attached_class
+                )
+              end
+              def self.new(
+                # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+                # the interchange was adjusted.
+                adjusted_at:,
+                # The adjustment amount given as a string containing a decimal number in major
+                # units (so e.g., "3.14" for $3.14). The amount is a positive number if it is
+                # credited to Increase and a negative number if it is debited.
+                amount:,
+                # The card network specific interchange code that applies after the adjustment.
+                code:
+              )
+              end
+
+              sig do
+                override.returns(
+                  { adjusted_at: Time, amount: String, code: String }
+                )
+              end
+              def to_hash
+              end
             end
 
             # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the interchange
@@ -23195,6 +23701,20 @@ module Increase
                     Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
+                # Kerosene low sulfur non-taxable
+                KEROSENE_LOW_SULFUR_NON_TAXABLE =
+                  T.let(
+                    :kerosene_low_sulfur_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Kerosene ultra low sulfur non-taxable
+                KEROSENE_ULTRA_LOW_SULFUR_NON_TAXABLE =
+                  T.let(
+                    :kerosene_ultra_low_sulfur_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
                 # Electric vehicle charging level 1 110 volt
                 ELECTRIC_VEHICLE_CHARGING_LEVEL_1_110_VOLT =
                   T.let(
@@ -23216,10 +23736,157 @@ module Increase
                     Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
+                # Biodiesel blend 2% off-road non-taxable
+                BIODIESEL_BLEND_2_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_2_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 5% off-road non-taxable
+                BIODIESEL_BLEND_5_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_5_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 10% off-road non-taxable
+                BIODIESEL_BLEND_10_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_10_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 11% off-road non-taxable
+                BIODIESEL_BLEND_11_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_11_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 15% off-road non-taxable
+                BIODIESEL_BLEND_15_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_15_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Biodiesel blend 20% off-road non-taxable
+                BIODIESEL_BLEND_20_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :biodiesel_blend_20_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
                 # Diesel 1 off-road non-taxable
                 DIESEL_1_OFF_ROAD_NON_TAXABLE =
                   T.let(
                     :diesel_1_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel 2 off-road non-taxable
+                DIESEL_2_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_2_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel 1 premium off-road non-taxable
+                DIESEL_1_PREMIUM_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_1_premium_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Diesel 2 premium off-road non-taxable
+                DIESEL_2_PREMIUM_OFF_ROAD_NON_TAXABLE =
+                  T.let(
+                    :diesel_2_premium_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Additive dosage
+                ADDITIVE_DOSAGE =
+                  T.let(
+                    :additive_dosage,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Ethanol blends E16 to E84
+                ETHANOL_BLENDS_E16_TO_E84 =
+                  T.let(
+                    :ethanol_blends_e16_to_e84,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Low octane unleaded
+                LOW_OCTANE_UNLEADED =
+                  T.let(
+                    :low_octane_unleaded,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Blended diesel 1 and 2
+                BLENDED_DIESEL_1_AND_2 =
+                  T.let(
+                    :blended_diesel_1_and_2,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road regular non-taxable
+                OFF_ROAD_REGULAR_NON_TAXABLE =
+                  T.let(
+                    :off_road_regular_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road mid or plus non-taxable
+                OFF_ROAD_MID_OR_PLUS_NON_TAXABLE =
+                  T.let(
+                    :off_road_mid_or_plus_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road premium or super non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_NON_TAXABLE =
+                  T.let(
+                    :off_road_premium_or_super_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road mid or plus 2 non-taxable
+                OFF_ROAD_MID_OR_PLUS_2_NON_TAXABLE =
+                  T.let(
+                    :off_road_mid_or_plus_2_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Off-road premium or super 2 non-taxable
+                OFF_ROAD_PREMIUM_OR_SUPER_2_NON_TAXABLE =
+                  T.let(
+                    :off_road_premium_or_super_2_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Recreational fuel 90 octane
+                RECREATIONAL_FUEL_90_OCTANE =
+                  T.let(
+                    :recreational_fuel_90_octane,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Hydrogen H35
+                HYDROGEN_H35 =
+                  T.let(
+                    :hydrogen_h35,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Hydrogen H70
+                HYDROGEN_H70 =
+                  T.let(
+                    :hydrogen_h70,
                     Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
@@ -23262,6 +23929,13 @@ module Increase
                 RENEWABLE_DIESEL_BIODIESEL_6_TO_20_OFF_ROAD_NON_TAXABLE =
                   T.let(
                     :renewable_diesel_biodiesel_6_to_20_off_road_non_taxable,
+                    Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
+                  )
+
+                # Renewable diesel R25 hydrotreated vegetable oil 25% blend
+                RENEWABLE_DIESEL_R25_HYDROTREATED_VEGETABLE_OIL_25_BLEND =
+                  T.let(
+                    :renewable_diesel_r25_hydrotreated_vegetable_oil_25_blend,
                     Increase::CardPayment::Element::CardSettlement::PurchaseDetails::Fleet::FuelType::TaggedSymbol
                   )
 
@@ -24926,7 +25600,7 @@ module Increase
                   Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -25063,6 +25737,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -27204,7 +27899,7 @@ module Increase
                   Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
                 )
 
-              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions).
+              # Advanced Authorization is a fraud detection tool that monitors and risk evaluates 100 percent of US VisaNet authorizations in real-time. Activity related to Purchase (includes Signature Authenticated Visa and PIN Authenticated Visa Debit (PAVD) transactions) and ATM transactions.
               VISA_ADVANCED_AUTHORIZATION =
                 T.let(
                   :visa_advanced_authorization,
@@ -27341,6 +28036,27 @@ module Increase
               VISA_PROCESSING_GUARANTEE_COMMERCIAL_CREDIT =
                 T.let(
                   :visa_processing_guarantee_commercial_credit,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at a domestic ATM.
+              VISA_ATM_CASH_WITHDRAWAL_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_withdrawal_domestic,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original cash withdrawal at an international ATM.
+              VISA_ATM_CASH_WITHDRAWAL_INTERNATIONAL =
+                T.let(
+                  :visa_atm_cash_withdrawal_international,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Activity and fees for the processing of an original deposit at a domestic ATM.
+              VISA_ATM_CASH_DEPOSIT_DOMESTIC =
+                T.let(
+                  :visa_atm_cash_deposit_domestic,
                   Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
                 )
 
