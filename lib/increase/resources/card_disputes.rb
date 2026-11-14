@@ -12,8 +12,8 @@ module Increase
       #   of `card_settlement`.
       #
       # @param network [Symbol, Increase::Models::CardDisputeCreateParams::Network]
-      #   The network of the disputed transaction. Details specific to the network are
-      #   required under the sub-object with the same identifier as the network.
+      #   The network of the disputed transaction. Details specific to the network can be
+      #   provided under the sub-object with the same identifier as the network.
       #
       # @param amount [Integer]
       #   The monetary amount of the part of the transaction that is being disputed. This
@@ -22,15 +22,17 @@ module Increase
       #   the transaction.
       #
       # @param attachment_files [Array<Increase::Models::CardDisputeCreateParams::AttachmentFile>]
-      #   The files to be attached to the initial dispute submission.
+      #   The files to be attached to the initial dispute submission. Can only be provided
+      #   along with the network-specific details.
       #
       # @param explanation [String]
       #   The free-form explanation provided to Increase to provide more context for the
-      #   user submission. This field is not sent directly to the card networks.
+      #   user submission. This field is not sent directly to the card networks. Can only
+      #   be provided along with the network-specific details.
       #
       # @param visa [Increase::Models::CardDisputeCreateParams::Visa]
-      #   The Visa-specific parameters for the dispute. Required if and only if `network`
-      #   is `visa`.
+      #   The Visa-specific parameters for the initial User Submission. If omitted, a
+      #   later User Submission will be required.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
