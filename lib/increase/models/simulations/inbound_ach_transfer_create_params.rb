@@ -130,6 +130,7 @@ module Increase
 
           # @!attribute freeform
           #   Unstructured `payment_related_information` passed through with the transfer.
+          #   Required if and only if `category` is `freeform`.
           #
           #   @return [Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::Freeform, nil]
           optional :freeform, -> { Increase::Simulations::InboundACHTransferCreateParams::Addenda::Freeform }
@@ -142,6 +143,7 @@ module Increase
           #
           #   @param freeform [Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::Freeform]
           #     Unstructured `payment_related_information` passed through with the transfer.
+          #     Required if and only if `category` is `freeform`.
 
           # The type of addenda to simulate being sent with the transfer.
           #
@@ -167,6 +169,7 @@ module Increase
 
             # @!method initialize(entries:)
             #   Unstructured `payment_related_information` passed through with the transfer.
+            #   Required if and only if `category` is `freeform`.
             #
             #   @param entries [Array<Increase::Models::Simulations::InboundACHTransferCreateParams::Addenda::Freeform::Entry>]
             #     Each entry represents an addendum sent with the transfer.
