@@ -16,8 +16,8 @@ module Increase
       sig { returns(String) }
       attr_accessor :disputed_transaction_id
 
-      # The network of the disputed transaction. Details specific to the network are
-      # required under the sub-object with the same identifier as the network.
+      # The network of the disputed transaction. Details specific to the network can be
+      # provided under the sub-object with the same identifier as the network.
       sig { returns(Increase::CardDisputeCreateParams::Network::OrSymbol) }
       attr_accessor :network
 
@@ -31,7 +31,8 @@ module Increase
       sig { params(amount: Integer).void }
       attr_writer :amount
 
-      # The files to be attached to the initial dispute submission.
+      # The files to be attached to the initial dispute submission. Can only be provided
+      # along with the network-specific details.
       sig do
         returns(
           T.nilable(T::Array[Increase::CardDisputeCreateParams::AttachmentFile])
@@ -48,15 +49,16 @@ module Increase
       attr_writer :attachment_files
 
       # The free-form explanation provided to Increase to provide more context for the
-      # user submission. This field is not sent directly to the card networks.
+      # user submission. This field is not sent directly to the card networks. Can only
+      # be provided along with the network-specific details.
       sig { returns(T.nilable(String)) }
       attr_reader :explanation
 
       sig { params(explanation: String).void }
       attr_writer :explanation
 
-      # The Visa-specific parameters for the dispute. Required if and only if `network`
-      # is `visa`.
+      # The Visa-specific parameters for the initial User Submission. If omitted, a
+      # later User Submission will be required.
       sig { returns(T.nilable(Increase::CardDisputeCreateParams::Visa)) }
       attr_reader :visa
 
@@ -79,21 +81,23 @@ module Increase
         # The Transaction you wish to dispute. This Transaction must have a `source_type`
         # of `card_settlement`.
         disputed_transaction_id:,
-        # The network of the disputed transaction. Details specific to the network are
-        # required under the sub-object with the same identifier as the network.
+        # The network of the disputed transaction. Details specific to the network can be
+        # provided under the sub-object with the same identifier as the network.
         network:,
         # The monetary amount of the part of the transaction that is being disputed. This
         # is optional and will default to the full amount of the transaction if not
         # provided. If provided, the amount must be less than or equal to the amount of
         # the transaction.
         amount: nil,
-        # The files to be attached to the initial dispute submission.
+        # The files to be attached to the initial dispute submission. Can only be provided
+        # along with the network-specific details.
         attachment_files: nil,
         # The free-form explanation provided to Increase to provide more context for the
-        # user submission. This field is not sent directly to the card networks.
+        # user submission. This field is not sent directly to the card networks. Can only
+        # be provided along with the network-specific details.
         explanation: nil,
-        # The Visa-specific parameters for the dispute. Required if and only if `network`
-        # is `visa`.
+        # The Visa-specific parameters for the initial User Submission. If omitted, a
+        # later User Submission will be required.
         visa: nil,
         request_options: {}
       )
@@ -116,8 +120,8 @@ module Increase
       def to_hash
       end
 
-      # The network of the disputed transaction. Details specific to the network are
-      # required under the sub-object with the same identifier as the network.
+      # The network of the disputed transaction. Details specific to the network can be
+      # provided under the sub-object with the same identifier as the network.
       module Network
         extend Increase::Internal::Type::Enum
 
@@ -531,8 +535,8 @@ module Increase
         end
         attr_writer :processing_error
 
-        # The Visa-specific parameters for the dispute. Required if and only if `network`
-        # is `visa`.
+        # The Visa-specific parameters for the initial User Submission. If omitted, a
+        # later User Submission will be required.
         sig do
           params(
             category:

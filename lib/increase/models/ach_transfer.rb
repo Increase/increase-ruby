@@ -94,8 +94,8 @@ module Increase
       # @!attribute company_name
       #   The name by which the recipient knows you.
       #
-      #   @return [String, nil]
-      required :company_name, String, nil?: true
+      #   @return [String]
+      required :company_name, String
 
       # @!attribute created_at
       #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -161,8 +161,8 @@ module Increase
       #   The name of the transfer recipient. This value is informational and not verified
       #   by the recipient's bank.
       #
-      #   @return [String, nil]
-      required :individual_name, String, nil?: true
+      #   @return [String]
+      required :individual_name, String
 
       # @!attribute network
       #   The transfer's network.
@@ -312,7 +312,7 @@ module Increase
       #     to debit their accounts. This value is configured by Increase and will be the
       #     same for all your transfers.
       #
-      #   @param company_name [String, nil] The name by which the recipient knows you.
+      #   @param company_name [String] The name by which the recipient knows you.
       #
       #   @param created_at [Time]
       #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -346,7 +346,7 @@ module Increase
       #     Your internal identifier for the transfer recipient. This value is informational
       #     and not verified by the recipient's bank.
       #
-      #   @param individual_name [String, nil]
+      #   @param individual_name [String]
       #     The name of the transfer recipient. This value is informational and not verified
       #     by the recipient's bank.
       #
