@@ -23,9 +23,9 @@ module Increase
         sig { params(amount: Integer).void }
         attr_writer :amount
 
-        # The identifier of the Pending Transaction for the refund authorization. If this
-        # is provided, `transaction` must not be provided as a refund with a refund
-        # authorized can not be linked to a regular transaction.
+        # The identifier of the Pending Transaction for the refund or original credit
+        # authorization. If this is provided, `transaction` must not be provided as a
+        # refund with a refund authorized can not be linked to a regular transaction.
         sig { returns(T.nilable(String)) }
         attr_reader :pending_transaction_id
 
@@ -52,9 +52,9 @@ module Increase
           # The refund amount in cents. Pulled off the `pending_transaction` or the
           # `transaction` if not provided.
           amount: nil,
-          # The identifier of the Pending Transaction for the refund authorization. If this
-          # is provided, `transaction` must not be provided as a refund with a refund
-          # authorized can not be linked to a regular transaction.
+          # The identifier of the Pending Transaction for the refund or original credit
+          # authorization. If this is provided, `transaction` must not be provided as a
+          # refund with a refund authorized can not be linked to a regular transaction.
           pending_transaction_id: nil,
           # The identifier for the Transaction to refund. The Transaction's source must have
           # a category of card_settlement.

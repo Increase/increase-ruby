@@ -1,0 +1,23 @@
+module Increase
+  module Models
+    type card_dispute_provide_provisional_credit_params =
+      { card_dispute_id: String } & Increase::Internal::Type::request_parameters
+
+    class CardDisputeProvideProvisionalCreditParams < Increase::Internal::Type::BaseModel
+      extend Increase::Internal::Type::RequestParameters::Converter
+      include Increase::Internal::Type::RequestParameters
+
+      attr_accessor card_dispute_id: String
+
+      def initialize: (
+        card_dispute_id: String,
+        ?request_options: Increase::request_opts
+      ) -> void
+
+      def to_hash: -> {
+        card_dispute_id: String,
+        request_options: Increase::RequestOptions
+      }
+    end
+  end
+end

@@ -25,6 +25,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         idempotency_key: String | nil,
         loss: Increase::CardDispute::Loss | nil,
         network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
         rejection: Increase::CardDispute::Rejection | nil,
         status: Increase::CardDispute::Status,
         type: Increase::CardDispute::Type,
@@ -54,6 +55,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         idempotency_key: String | nil,
         loss: Increase::CardDispute::Loss | nil,
         network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
         rejection: Increase::CardDispute::Rejection | nil,
         status: Increase::CardDispute::Status,
         type: Increase::CardDispute::Type,
@@ -90,6 +92,67 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         idempotency_key: String | nil,
         loss: Increase::CardDispute::Loss | nil,
         network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
+        rejection: Increase::CardDispute::Rejection | nil,
+        status: Increase::CardDispute::Status,
+        type: Increase::CardDispute::Type,
+        user_submission_required_by: Time | nil,
+        visa: Increase::CardDispute::Visa | nil,
+        win: Increase::CardDispute::Win | nil,
+        withdrawal: Increase::CardDispute::Withdrawal | nil
+      }
+    end
+  end
+
+  def test_provide_provisional_credit
+    response = @increase.card_disputes.provide_provisional_credit("card_dispute_h9sc95nbl1cgltpp7men")
+
+    assert_pattern do
+      response => Increase::CardDispute
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String,
+        amount: Integer,
+        card_id: String,
+        created_at: Time,
+        disputed_transaction_id: String,
+        idempotency_key: String | nil,
+        loss: Increase::CardDispute::Loss | nil,
+        network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
+        rejection: Increase::CardDispute::Rejection | nil,
+        status: Increase::CardDispute::Status,
+        type: Increase::CardDispute::Type,
+        user_submission_required_by: Time | nil,
+        visa: Increase::CardDispute::Visa | nil,
+        win: Increase::CardDispute::Win | nil,
+        withdrawal: Increase::CardDispute::Withdrawal | nil
+      }
+    end
+  end
+
+  def test_reverse_provisional_credit
+    response = @increase.card_disputes.reverse_provisional_credit("card_dispute_h9sc95nbl1cgltpp7men")
+
+    assert_pattern do
+      response => Increase::CardDispute
+    end
+
+    assert_pattern do
+      response => {
+        id: String,
+        account_id: String,
+        amount: Integer,
+        card_id: String,
+        created_at: Time,
+        disputed_transaction_id: String,
+        idempotency_key: String | nil,
+        loss: Increase::CardDispute::Loss | nil,
+        network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
         rejection: Increase::CardDispute::Rejection | nil,
         status: Increase::CardDispute::Status,
         type: Increase::CardDispute::Type,
@@ -120,6 +183,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         idempotency_key: String | nil,
         loss: Increase::CardDispute::Loss | nil,
         network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
         rejection: Increase::CardDispute::Rejection | nil,
         status: Increase::CardDispute::Status,
         type: Increase::CardDispute::Type,
@@ -149,6 +213,7 @@ class Increase::Test::Resources::CardDisputesTest < Increase::Test::ResourceTest
         idempotency_key: String | nil,
         loss: Increase::CardDispute::Loss | nil,
         network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
         rejection: Increase::CardDispute::Rejection | nil,
         status: Increase::CardDispute::Status,
         type: Increase::CardDispute::Type,

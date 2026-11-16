@@ -133,7 +133,11 @@ module Increase
 
   CardDisputeListParams = Increase::Models::CardDisputeListParams
 
+  CardDisputeProvideProvisionalCreditParams = Increase::Models::CardDisputeProvideProvisionalCreditParams
+
   CardDisputeRetrieveParams = Increase::Models::CardDisputeRetrieveParams
+
+  CardDisputeReverseProvisionalCreditParams = Increase::Models::CardDisputeReverseProvisionalCreditParams
 
   CardDisputeSubmitUserSubmissionParams = Increase::Models::CardDisputeSubmitUserSubmissionParams
 

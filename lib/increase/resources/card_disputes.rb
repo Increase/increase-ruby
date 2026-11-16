@@ -12,8 +12,8 @@ module Increase
       #   of `card_settlement`.
       #
       # @param network [Symbol, Increase::Models::CardDisputeCreateParams::Network]
-      #   The network of the disputed transaction. Details specific to the network are
-      #   required under the sub-object with the same identifier as the network.
+      #   The network of the disputed transaction. Details specific to the network can be
+      #   provided under the sub-object with the same identifier as the network.
       #
       # @param amount [Integer]
       #   The monetary amount of the part of the transaction that is being disputed. This
@@ -22,15 +22,17 @@ module Increase
       #   the transaction.
       #
       # @param attachment_files [Array<Increase::Models::CardDisputeCreateParams::AttachmentFile>]
-      #   The files to be attached to the initial dispute submission.
+      #   The files to be attached to the initial dispute submission. Can only be provided
+      #   along with the network-specific details.
       #
       # @param explanation [String]
       #   The free-form explanation provided to Increase to provide more context for the
-      #   user submission. This field is not sent directly to the card networks.
+      #   user submission. This field is not sent directly to the card networks. Can only
+      #   be provided along with the network-specific details.
       #
       # @param visa [Increase::Models::CardDisputeCreateParams::Visa]
-      #   The Visa-specific parameters for the dispute. Required if and only if `network`
-      #   is `visa`.
+      #   The Visa-specific parameters for the initial User Submission. If omitted, a
+      #   later User Submission will be required.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
@@ -105,6 +107,48 @@ module Increase
           page: Increase::Internal::Page,
           model: Increase::CardDispute,
           options: options
+        )
+      end
+
+      # Credits the cardholder's Account for the Card Dispute amount, funded by your
+      # program's provisional credit Account.
+      #
+      # @overload provide_provisional_credit(card_dispute_id, request_options: {})
+      #
+      # @param card_dispute_id [String] The identifier of the Card Dispute to provide a provisional credit for.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::CardDispute]
+      #
+      # @see Increase::Models::CardDisputeProvideProvisionalCreditParams
+      def provide_provisional_credit(card_dispute_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["card_disputes/%1$s/provide_provisional_credit", card_dispute_id],
+          model: Increase::CardDispute,
+          options: params[:request_options]
+        )
+      end
+
+      # Debits the cardholder's Account for the provisional credit and returns it to
+      # your program's provisional credit Account.
+      #
+      # @overload reverse_provisional_credit(card_dispute_id, request_options: {})
+      #
+      # @param card_dispute_id [String] The identifier of the Card Dispute to reverse the provisional credit for.
+      #
+      # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
+      #
+      # @return [Increase::Models::CardDispute]
+      #
+      # @see Increase::Models::CardDisputeReverseProvisionalCreditParams
+      def reverse_provisional_credit(card_dispute_id, params = {})
+        @client.request(
+          method: :post,
+          path: ["card_disputes/%1$s/reverse_provisional_credit", card_dispute_id],
+          model: Increase::CardDispute,
+          options: params[:request_options]
         )
       end
 

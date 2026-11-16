@@ -62,6 +62,13 @@ module Increase
       #   @return [Symbol, Increase::Models::CardDispute::Network]
       required :network, enum: -> { Increase::CardDispute::Network }
 
+      # @!attribute provisional_credit
+      #   If a provisional credit has been provided for the Card Dispute, this will
+      #   contain details of the provisional credit.
+      #
+      #   @return [Increase::Models::CardDispute::ProvisionalCredit, nil]
+      required :provisional_credit, -> { Increase::CardDispute::ProvisionalCredit }, nil?: true
+
       # @!attribute rejection
       #   If the Card Dispute has been rejected, this will contain details of the
       #   rejection.
@@ -113,7 +120,7 @@ module Increase
       #   @return [Increase::Models::CardDispute::Withdrawal, nil]
       required :withdrawal, -> { Increase::CardDispute::Withdrawal }, nil?: true
 
-      # @!method initialize(id:, account_id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, rejection:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
+      # @!method initialize(id:, account_id:, amount:, card_id:, created_at:, disputed_transaction_id:, idempotency_key:, loss:, network:, provisional_credit:, rejection:, status:, type:, user_submission_required_by:, visa:, win:, withdrawal:)
       #   If unauthorized activity occurs on a card, you can create a Card Dispute and
       #   we'll work with the card networks to return the funds if appropriate. For more
       #   information, see our guide on
@@ -144,6 +151,10 @@ module Increase
       #
       #   @param network [Symbol, Increase::Models::CardDispute::Network]
       #     The network that the Card Dispute is associated with.
+      #
+      #   @param provisional_credit [Increase::Models::CardDispute::ProvisionalCredit, nil]
+      #     If a provisional credit has been provided for the Card Dispute, this will
+      #     contain details of the provisional credit.
       #
       #   @param rejection [Increase::Models::CardDispute::Rejection, nil]
       #     If the Card Dispute has been rejected, this will contain details of the
@@ -230,6 +241,115 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::CardDispute#provisional_credit
+      class ProvisionalCredit < Increase::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount of the provisional credit in the minor unit of its currency. For
+        #   dollars, for example, this is cents.
+        #
+        #   @return [Integer]
+        required :amount, Integer
+
+        # @!attribute cardholder_account_transaction_id
+        #   The identifier of the Transaction that credited the cardholder's Account.
+        #
+        #   @return [String]
+        required :cardholder_account_transaction_id, String
+
+        # @!attribute provided_at
+        #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #   the provisional credit was provided.
+        #
+        #   @return [Time]
+        required :provided_at, Time
+
+        # @!attribute provisional_credit_funding_account_transaction_id
+        #   The identifier of the Transaction that debited the provisional credit funding
+        #   Account.
+        #
+        #   @return [String]
+        required :provisional_credit_funding_account_transaction_id, String
+
+        # @!attribute reversal
+        #   If the provisional credit has been reversed, this will contain details of the
+        #   reversal.
+        #
+        #   @return [Increase::Models::CardDispute::ProvisionalCredit::Reversal, nil]
+        required :reversal, -> { Increase::CardDispute::ProvisionalCredit::Reversal }, nil?: true
+
+        # @!method initialize(amount:, cardholder_account_transaction_id:, provided_at:, provisional_credit_funding_account_transaction_id:, reversal:)
+        #   If a provisional credit has been provided for the Card Dispute, this will
+        #   contain details of the provisional credit.
+        #
+        #   @param amount [Integer]
+        #     The amount of the provisional credit in the minor unit of its currency. For
+        #     dollars, for example, this is cents.
+        #
+        #   @param cardholder_account_transaction_id [String]
+        #     The identifier of the Transaction that credited the cardholder's Account.
+        #
+        #   @param provided_at [Time]
+        #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        #     the provisional credit was provided.
+        #
+        #   @param provisional_credit_funding_account_transaction_id [String]
+        #     The identifier of the Transaction that debited the provisional credit funding
+        #     Account.
+        #
+        #   @param reversal [Increase::Models::CardDispute::ProvisionalCredit::Reversal, nil]
+        #     If the provisional credit has been reversed, this will contain details of the
+        #     reversal.
+
+        # @see Increase::Models::CardDispute::ProvisionalCredit#reversal
+        class Reversal < Increase::Internal::Type::BaseModel
+          # @!attribute amount
+          #   The amount of the reversal in the minor unit of its currency. For dollars, for
+          #   example, this is cents.
+          #
+          #   @return [Integer]
+          required :amount, Integer
+
+          # @!attribute cardholder_account_transaction_id
+          #   The identifier of the Transaction that debited the cardholder's Account.
+          #
+          #   @return [String]
+          required :cardholder_account_transaction_id, String
+
+          # @!attribute provisional_credit_funding_account_transaction_id
+          #   The identifier of the Transaction that credited the provisional credit funding
+          #   Account.
+          #
+          #   @return [String]
+          required :provisional_credit_funding_account_transaction_id, String
+
+          # @!attribute reversed_at
+          #   The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          #   the provisional credit was reversed.
+          #
+          #   @return [Time]
+          required :reversed_at, Time
+
+          # @!method initialize(amount:, cardholder_account_transaction_id:, provisional_credit_funding_account_transaction_id:, reversed_at:)
+          #   If the provisional credit has been reversed, this will contain details of the
+          #   reversal.
+          #
+          #   @param amount [Integer]
+          #     The amount of the reversal in the minor unit of its currency. For dollars, for
+          #     example, this is cents.
+          #
+          #   @param cardholder_account_transaction_id [String]
+          #     The identifier of the Transaction that debited the cardholder's Account.
+          #
+          #   @param provisional_credit_funding_account_transaction_id [String]
+          #     The identifier of the Transaction that credited the provisional credit funding
+          #     Account.
+          #
+          #   @param reversed_at [Time]
+          #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          #     the provisional credit was reversed.
+        end
       end
 
       # @see Increase::Models::CardDispute#rejection
@@ -369,6 +489,12 @@ module Increase
           #
           #   @return [Time]
           required :created_at, Time
+
+          # @!attribute dispute_financial_account_id
+          #   The account the dispute financial transaction was posted to, if any.
+          #
+          #   @return [String, nil]
+          required :dispute_financial_account_id, String, nil?: true
 
           # @!attribute dispute_financial_transaction_id
           #   The dispute financial transaction that resulted from the network event, if any.
@@ -532,7 +658,7 @@ module Increase
                    -> { Increase::CardDispute::Visa::NetworkEvent::UserWithdrawalSubmitted },
                    nil?: true
 
-          # @!method initialize(attachment_files:, category:, created_at:, dispute_financial_transaction_id:, chargeback_accepted: nil, chargeback_submitted: nil, chargeback_timed_out: nil, merchant_prearbitration_decline_submitted: nil, merchant_prearbitration_received: nil, merchant_prearbitration_timed_out: nil, represented: nil, representment_timed_out: nil, user_prearbitration_accepted: nil, user_prearbitration_declined: nil, user_prearbitration_submitted: nil, user_prearbitration_timed_out: nil, user_withdrawal_submitted: nil)
+          # @!method initialize(attachment_files:, category:, created_at:, dispute_financial_account_id:, dispute_financial_transaction_id:, chargeback_accepted: nil, chargeback_submitted: nil, chargeback_timed_out: nil, merchant_prearbitration_decline_submitted: nil, merchant_prearbitration_received: nil, merchant_prearbitration_timed_out: nil, represented: nil, representment_timed_out: nil, user_prearbitration_accepted: nil, user_prearbitration_declined: nil, user_prearbitration_submitted: nil, user_prearbitration_timed_out: nil, user_withdrawal_submitted: nil)
           #   @param attachment_files [Array<Increase::Models::CardDispute::Visa::NetworkEvent::AttachmentFile>]
           #     The files attached to the Visa Card Dispute User Submission.
           #
@@ -544,6 +670,9 @@ module Increase
           #   @param created_at [Time]
           #     The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
           #     the Visa Card Dispute Network Event was created.
+          #
+          #   @param dispute_financial_account_id [String, nil]
+          #     The account the dispute financial transaction was posted to, if any.
           #
           #   @param dispute_financial_transaction_id [String, nil]
           #     The dispute financial transaction that resulted from the network event, if any.
