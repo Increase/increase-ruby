@@ -748,7 +748,13 @@ module Increase
           #   @return [Symbol, Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::Category, nil]
           optional :category, enum: -> { Increase::EntityCreateParams::Corporation::LegalIdentifier::Category }
 
-          # @!method initialize(value:, category: nil)
+          # @!attribute issued_on
+          #   The date on which the legal identifier was issued.
+          #
+          #   @return [Date, nil]
+          optional :issued_on, Date
+
+          # @!method initialize(value:, category: nil, issued_on: nil)
           #   The legal identifier of the corporation. This is usually the Employer
           #   Identification Number (EIN). This replaces the deprecated `tax_identifier`
           #   field.
@@ -761,6 +767,8 @@ module Increase
           #     The category of the legal identifier.
           #
           #     Defaults to `us_employer_identification_number`.
+          #
+          #   @param issued_on [Date] The date on which the legal identifier was issued.
 
           # The category of the legal identifier.
           #
