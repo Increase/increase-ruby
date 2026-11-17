@@ -25,6 +25,16 @@ module Increase
         ?request_options: Increase::request_opts
       ) -> Increase::Internal::Page[Increase::CardDispute]
 
+      def provide_provisional_credit: (
+        String card_dispute_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardDispute
+
+      def reverse_provisional_credit: (
+        String card_dispute_id,
+        ?request_options: Increase::request_opts
+      ) -> Increase::CardDispute
+
       def submit_user_submission: (
         String card_dispute_id,
         network: Increase::Models::CardDisputeSubmitUserSubmissionParams::network,

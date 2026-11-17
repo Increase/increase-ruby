@@ -99,7 +99,7 @@ module Increase
       attr_accessor :company_id
 
       # The name by which the recipient knows you.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :company_name
 
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -163,7 +163,7 @@ module Increase
 
       # The name of the transfer recipient. This value is informational and not verified
       # by the recipient's bank.
-      sig { returns(T.nilable(String)) }
+      sig { returns(String) }
       attr_accessor :individual_name
 
       # The transfer's network.
@@ -281,7 +281,7 @@ module Increase
           company_discretionary_data: T.nilable(String),
           company_entry_description: T.nilable(String),
           company_id: String,
-          company_name: T.nilable(String),
+          company_name: String,
           created_at: Time,
           created_by: T.nilable(Increase::ACHTransfer::CreatedBy::OrHash),
           currency: Increase::ACHTransfer::Currency::OrSymbol,
@@ -293,7 +293,7 @@ module Increase
           inbound_funds_hold:
             T.nilable(Increase::ACHTransfer::InboundFundsHold::OrHash),
           individual_id: T.nilable(String),
-          individual_name: T.nilable(String),
+          individual_name: String,
           network: Increase::ACHTransfer::Network::OrSymbol,
           notifications_of_change:
             T::Array[Increase::ACHTransfer::NotificationsOfChange::OrHash],
@@ -442,7 +442,7 @@ module Increase
             company_discretionary_data: T.nilable(String),
             company_entry_description: T.nilable(String),
             company_id: String,
-            company_name: T.nilable(String),
+            company_name: String,
             created_at: Time,
             created_by: T.nilable(Increase::ACHTransfer::CreatedBy),
             currency: Increase::ACHTransfer::Currency::TaggedSymbol,
@@ -454,7 +454,7 @@ module Increase
             inbound_funds_hold:
               T.nilable(Increase::ACHTransfer::InboundFundsHold),
             individual_id: T.nilable(String),
-            individual_name: T.nilable(String),
+            individual_name: String,
             network: Increase::ACHTransfer::Network::TaggedSymbol,
             notifications_of_change:
               T::Array[Increase::ACHTransfer::NotificationsOfChange],

@@ -14,7 +14,7 @@ module Increase
         company_discretionary_data: String?,
         company_entry_description: String?,
         company_id: String,
-        company_name: String?,
+        company_name: String,
         created_at: Time,
         created_by: Increase::ACHTransfer::CreatedBy?,
         currency: Increase::Models::ACHTransfer::currency,
@@ -24,7 +24,7 @@ module Increase
         idempotency_key: String?,
         inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold?,
         individual_id: String?,
-        individual_name: String?,
+        individual_name: String,
         network: Increase::Models::ACHTransfer::network,
         notifications_of_change: ::Array[Increase::ACHTransfer::NotificationsOfChange],
         pending_transaction_id: String?,
@@ -65,7 +65,7 @@ module Increase
 
       attr_accessor company_id: String
 
-      attr_accessor company_name: String?
+      attr_accessor company_name: String
 
       attr_accessor created_at: Time
 
@@ -85,7 +85,7 @@ module Increase
 
       attr_accessor individual_id: String?
 
-      attr_accessor individual_name: String?
+      attr_accessor individual_name: String
 
       attr_accessor network: Increase::Models::ACHTransfer::network
 
@@ -126,7 +126,7 @@ module Increase
         company_discretionary_data: String?,
         company_entry_description: String?,
         company_id: String,
-        company_name: String?,
+        company_name: String,
         created_at: Time,
         created_by: Increase::ACHTransfer::CreatedBy?,
         currency: Increase::Models::ACHTransfer::currency,
@@ -136,7 +136,7 @@ module Increase
         idempotency_key: String?,
         inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold?,
         individual_id: String?,
-        individual_name: String?,
+        individual_name: String,
         network: Increase::Models::ACHTransfer::network,
         notifications_of_change: ::Array[Increase::ACHTransfer::NotificationsOfChange],
         pending_transaction_id: String?,
@@ -165,7 +165,7 @@ module Increase
         company_discretionary_data: String?,
         company_entry_description: String?,
         company_id: String,
-        company_name: String?,
+        company_name: String,
         created_at: Time,
         created_by: Increase::ACHTransfer::CreatedBy?,
         currency: Increase::Models::ACHTransfer::currency,
@@ -175,7 +175,7 @@ module Increase
         idempotency_key: String?,
         inbound_funds_hold: Increase::ACHTransfer::InboundFundsHold?,
         individual_id: String?,
-        individual_name: String?,
+        individual_name: String,
         network: Increase::Models::ACHTransfer::network,
         notifications_of_change: ::Array[Increase::ACHTransfer::NotificationsOfChange],
         pending_transaction_id: String?,

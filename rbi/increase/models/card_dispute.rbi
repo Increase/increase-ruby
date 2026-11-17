@@ -51,6 +51,19 @@ module Increase
       sig { returns(Increase::CardDispute::Network::TaggedSymbol) }
       attr_accessor :network
 
+      # If a provisional credit has been provided for the Card Dispute, this will
+      # contain details of the provisional credit.
+      sig { returns(T.nilable(Increase::CardDispute::ProvisionalCredit)) }
+      attr_reader :provisional_credit
+
+      sig do
+        params(
+          provisional_credit:
+            T.nilable(Increase::CardDispute::ProvisionalCredit::OrHash)
+        ).void
+      end
+      attr_writer :provisional_credit
+
       # If the Card Dispute has been rejected, this will contain details of the
       # rejection.
       sig { returns(T.nilable(Increase::CardDispute::Rejection)) }
@@ -123,6 +136,8 @@ module Increase
           idempotency_key: T.nilable(String),
           loss: T.nilable(Increase::CardDispute::Loss::OrHash),
           network: Increase::CardDispute::Network::OrSymbol,
+          provisional_credit:
+            T.nilable(Increase::CardDispute::ProvisionalCredit::OrHash),
           rejection: T.nilable(Increase::CardDispute::Rejection::OrHash),
           status: Increase::CardDispute::Status::OrSymbol,
           type: Increase::CardDispute::Type::OrSymbol,
@@ -155,6 +170,9 @@ module Increase
         loss:,
         # The network that the Card Dispute is associated with.
         network:,
+        # If a provisional credit has been provided for the Card Dispute, this will
+        # contain details of the provisional credit.
+        provisional_credit:,
         # If the Card Dispute has been rejected, this will contain details of the
         # rejection.
         rejection:,
@@ -193,6 +211,8 @@ module Increase
             idempotency_key: T.nilable(String),
             loss: T.nilable(Increase::CardDispute::Loss),
             network: Increase::CardDispute::Network::TaggedSymbol,
+            provisional_credit:
+              T.nilable(Increase::CardDispute::ProvisionalCredit),
             rejection: T.nilable(Increase::CardDispute::Rejection),
             status: Increase::CardDispute::Status::TaggedSymbol,
             type: Increase::CardDispute::Type::TaggedSymbol,
@@ -297,6 +317,166 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class ProvisionalCredit < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::CardDispute::ProvisionalCredit,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The amount of the provisional credit in the minor unit of its currency. For
+        # dollars, for example, this is cents.
+        sig { returns(Integer) }
+        attr_accessor :amount
+
+        # The identifier of the Transaction that credited the cardholder's Account.
+        sig { returns(String) }
+        attr_accessor :cardholder_account_transaction_id
+
+        # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+        # the provisional credit was provided.
+        sig { returns(Time) }
+        attr_accessor :provided_at
+
+        # The identifier of the Transaction that debited the provisional credit funding
+        # Account.
+        sig { returns(String) }
+        attr_accessor :provisional_credit_funding_account_transaction_id
+
+        # If the provisional credit has been reversed, this will contain details of the
+        # reversal.
+        sig do
+          returns(T.nilable(Increase::CardDispute::ProvisionalCredit::Reversal))
+        end
+        attr_reader :reversal
+
+        sig do
+          params(
+            reversal:
+              T.nilable(
+                Increase::CardDispute::ProvisionalCredit::Reversal::OrHash
+              )
+          ).void
+        end
+        attr_writer :reversal
+
+        # If a provisional credit has been provided for the Card Dispute, this will
+        # contain details of the provisional credit.
+        sig do
+          params(
+            amount: Integer,
+            cardholder_account_transaction_id: String,
+            provided_at: Time,
+            provisional_credit_funding_account_transaction_id: String,
+            reversal:
+              T.nilable(
+                Increase::CardDispute::ProvisionalCredit::Reversal::OrHash
+              )
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The amount of the provisional credit in the minor unit of its currency. For
+          # dollars, for example, this is cents.
+          amount:,
+          # The identifier of the Transaction that credited the cardholder's Account.
+          cardholder_account_transaction_id:,
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the provisional credit was provided.
+          provided_at:,
+          # The identifier of the Transaction that debited the provisional credit funding
+          # Account.
+          provisional_credit_funding_account_transaction_id:,
+          # If the provisional credit has been reversed, this will contain details of the
+          # reversal.
+          reversal:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              amount: Integer,
+              cardholder_account_transaction_id: String,
+              provided_at: Time,
+              provisional_credit_funding_account_transaction_id: String,
+              reversal:
+                T.nilable(Increase::CardDispute::ProvisionalCredit::Reversal)
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class Reversal < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::CardDispute::ProvisionalCredit::Reversal,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The amount of the reversal in the minor unit of its currency. For dollars, for
+          # example, this is cents.
+          sig { returns(Integer) }
+          attr_accessor :amount
+
+          # The identifier of the Transaction that debited the cardholder's Account.
+          sig { returns(String) }
+          attr_accessor :cardholder_account_transaction_id
+
+          # The identifier of the Transaction that credited the provisional credit funding
+          # Account.
+          sig { returns(String) }
+          attr_accessor :provisional_credit_funding_account_transaction_id
+
+          # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+          # the provisional credit was reversed.
+          sig { returns(Time) }
+          attr_accessor :reversed_at
+
+          # If the provisional credit has been reversed, this will contain details of the
+          # reversal.
+          sig do
+            params(
+              amount: Integer,
+              cardholder_account_transaction_id: String,
+              provisional_credit_funding_account_transaction_id: String,
+              reversed_at: Time
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The amount of the reversal in the minor unit of its currency. For dollars, for
+            # example, this is cents.
+            amount:,
+            # The identifier of the Transaction that debited the cardholder's Account.
+            cardholder_account_transaction_id:,
+            # The identifier of the Transaction that credited the provisional credit funding
+            # Account.
+            provisional_credit_funding_account_transaction_id:,
+            # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
+            # the provisional credit was reversed.
+            reversed_at:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                amount: Integer,
+                cardholder_account_transaction_id: String,
+                provisional_credit_funding_account_transaction_id: String,
+                reversed_at: Time
+              }
+            )
+          end
+          def to_hash
+          end
         end
       end
 
@@ -516,6 +696,10 @@ module Increase
           # the Visa Card Dispute Network Event was created.
           sig { returns(Time) }
           attr_accessor :created_at
+
+          # The account the dispute financial transaction was posted to, if any.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :dispute_financial_account_id
 
           # The dispute financial transaction that resulted from the network event, if any.
           sig { returns(T.nilable(String)) }
@@ -842,6 +1026,7 @@ module Increase
               category:
                 Increase::CardDispute::Visa::NetworkEvent::Category::OrSymbol,
               created_at: Time,
+              dispute_financial_account_id: T.nilable(String),
               dispute_financial_transaction_id: T.nilable(String),
               chargeback_accepted:
                 T.nilable(
@@ -907,6 +1092,8 @@ module Increase
             # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
             # the Visa Card Dispute Network Event was created.
             created_at:,
+            # The account the dispute financial transaction was posted to, if any.
+            dispute_financial_account_id:,
             # The dispute financial transaction that resulted from the network event, if any.
             dispute_financial_transaction_id:,
             # A Card Dispute Chargeback Accepted Visa Network Event object. This field will be
@@ -1002,6 +1189,7 @@ module Increase
                 category:
                   Increase::CardDispute::Visa::NetworkEvent::Category::TaggedSymbol,
                 created_at: Time,
+                dispute_financial_account_id: T.nilable(String),
                 dispute_financial_transaction_id: T.nilable(String),
                 chargeback_accepted:
                   T.nilable(

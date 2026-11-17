@@ -22,6 +22,7 @@ class Increase::Test::Resources::Simulations::CardDisputesTest < Increase::Test:
         idempotency_key: String | nil,
         loss: Increase::CardDispute::Loss | nil,
         network: Increase::CardDispute::Network,
+        provisional_credit: Increase::CardDispute::ProvisionalCredit | nil,
         rejection: Increase::CardDispute::Rejection | nil,
         status: Increase::CardDispute::Status,
         type: Increase::CardDispute::Type,

@@ -213,6 +213,7 @@ module Increase
           attr_accessor :category
 
           # Unstructured `payment_related_information` passed through with the transfer.
+          # Required if and only if `category` is `freeform`.
           sig do
             returns(
               T.nilable(
@@ -243,6 +244,7 @@ module Increase
             # The type of addenda to simulate being sent with the transfer.
             category:,
             # Unstructured `payment_related_information` passed through with the transfer.
+            # Required if and only if `category` is `freeform`.
             freeform: nil
           )
           end
@@ -311,6 +313,7 @@ module Increase
             attr_accessor :entries
 
             # Unstructured `payment_related_information` passed through with the transfer.
+            # Required if and only if `category` is `freeform`.
             sig do
               params(
                 entries:

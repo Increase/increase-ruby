@@ -20,21 +20,23 @@ module Increase
         # The Transaction you wish to dispute. This Transaction must have a `source_type`
         # of `card_settlement`.
         disputed_transaction_id:,
-        # The network of the disputed transaction. Details specific to the network are
-        # required under the sub-object with the same identifier as the network.
+        # The network of the disputed transaction. Details specific to the network can be
+        # provided under the sub-object with the same identifier as the network.
         network:,
         # The monetary amount of the part of the transaction that is being disputed. This
         # is optional and will default to the full amount of the transaction if not
         # provided. If provided, the amount must be less than or equal to the amount of
         # the transaction.
         amount: nil,
-        # The files to be attached to the initial dispute submission.
+        # The files to be attached to the initial dispute submission. Can only be provided
+        # along with the network-specific details.
         attachment_files: nil,
         # The free-form explanation provided to Increase to provide more context for the
-        # user submission. This field is not sent directly to the card networks.
+        # user submission. This field is not sent directly to the card networks. Can only
+        # be provided along with the network-specific details.
         explanation: nil,
-        # The Visa-specific parameters for the dispute. Required if and only if `network`
-        # is `visa`.
+        # The Visa-specific parameters for the initial User Submission. If omitted, a
+        # later User Submission will be required.
         visa: nil,
         request_options: {}
       )
@@ -80,6 +82,36 @@ module Increase
         # Defaults to `100`.
         limit: nil,
         status: nil,
+        request_options: {}
+      )
+      end
+
+      # Credits the cardholder's Account for the Card Dispute amount, funded by your
+      # program's provisional credit Account.
+      sig do
+        params(
+          card_dispute_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::CardDispute)
+      end
+      def provide_provisional_credit(
+        # The identifier of the Card Dispute to provide a provisional credit for.
+        card_dispute_id,
+        request_options: {}
+      )
+      end
+
+      # Debits the cardholder's Account for the provisional credit and returns it to
+      # your program's provisional credit Account.
+      sig do
+        params(
+          card_dispute_id: String,
+          request_options: Increase::RequestOptions::OrHash
+        ).returns(Increase::CardDispute)
+      end
+      def reverse_provisional_credit(
+        # The identifier of the Card Dispute to reverse the provisional credit for.
+        card_dispute_id,
         request_options: {}
       )
       end
