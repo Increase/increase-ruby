@@ -256,11 +256,19 @@ module Increase
         #   @return [String, nil]
         required :account_id, String, nil?: true
 
-        # @!attribute effective_date
-        #   The UTC date for which to retrieve the balance.
+        # @!attribute on_or_after_date
+        #   The first as-of date (UTC) reported in the BAI2 file. If null, the report
+        #   started from the earliest included Account.
         #
         #   @return [Date, nil]
-        required :effective_date, Date, nil?: true
+        required :on_or_after_date, Date, nil?: true
+
+        # @!attribute on_or_before_date
+        #   The last as-of date (UTC) reported in the BAI2 file. If null, the report ran
+        #   through the date the Export was created.
+        #
+        #   @return [Date, nil]
+        required :on_or_before_date, Date, nil?: true
 
         # @!attribute program_id
         #   Filter results by Program.
@@ -268,13 +276,19 @@ module Increase
         #   @return [String, nil]
         required :program_id, String, nil?: true
 
-        # @!method initialize(account_id:, effective_date:, program_id:)
+        # @!method initialize(account_id:, on_or_after_date:, on_or_before_date:, program_id:)
         #   Details of the account statement BAI2 export. This field will be present when
         #   the `category` is equal to `account_statement_bai2`.
         #
         #   @param account_id [String, nil] Filter results by Account.
         #
-        #   @param effective_date [Date, nil] The UTC date for which to retrieve the balance.
+        #   @param on_or_after_date [Date, nil]
+        #     The first as-of date (UTC) reported in the BAI2 file. If null, the report
+        #     started from the earliest included Account.
+        #
+        #   @param on_or_before_date [Date, nil]
+        #     The last as-of date (UTC) reported in the BAI2 file. If null, the report ran
+        #     through the date the Export was created.
         #
         #   @param program_id [String, nil] Filter results by Program.
       end

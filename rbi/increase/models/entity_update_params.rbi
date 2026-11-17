@@ -461,13 +461,21 @@ module Increase
           end
           attr_writer :category
 
+          # The date on which the legal identifier was issued.
+          sig { returns(T.nilable(Date)) }
+          attr_reader :issued_on
+
+          sig { params(issued_on: Date).void }
+          attr_writer :issued_on
+
           # The legal identifier of the corporation. This is usually the Employer
           # Identification Number (EIN).
           sig do
             params(
               value: String,
               category:
-                Increase::EntityUpdateParams::Corporation::LegalIdentifier::Category::OrSymbol
+                Increase::EntityUpdateParams::Corporation::LegalIdentifier::Category::OrSymbol,
+              issued_on: Date
             ).returns(T.attached_class)
           end
           def self.new(
@@ -477,7 +485,9 @@ module Increase
             # The category of the legal identifier.
             #
             # Defaults to `us_employer_identification_number`.
-            category: nil
+            category: nil,
+            # The date on which the legal identifier was issued.
+            issued_on: nil
           )
           end
 
@@ -486,7 +496,8 @@ module Increase
               {
                 value: String,
                 category:
-                  Increase::EntityUpdateParams::Corporation::LegalIdentifier::Category::OrSymbol
+                  Increase::EntityUpdateParams::Corporation::LegalIdentifier::Category::OrSymbol,
+                issued_on: Date
               }
             )
           end

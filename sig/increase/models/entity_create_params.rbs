@@ -563,7 +563,8 @@ module Increase
         type legal_identifier =
           {
             value: String,
-            category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+            category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category,
+            issued_on: Date
           }
 
         class LegalIdentifier < Increase::Internal::Type::BaseModel
@@ -575,14 +576,20 @@ module Increase
             Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
           ) -> Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
 
+          attr_reader issued_on: Date?
+
+          def issued_on=: (Date) -> Date
+
           def initialize: (
             value: String,
-            ?category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+            ?category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category,
+            ?issued_on: Date
           ) -> void
 
           def to_hash: -> {
             value: String,
-            category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category
+            category: Increase::Models::EntityCreateParams::Corporation::LegalIdentifier::category,
+            issued_on: Date
           }
 
           type category = :us_employer_identification_number | :other
