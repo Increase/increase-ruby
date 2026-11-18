@@ -766,6 +766,30 @@ module Increase
         end
         attr_writer :inbound_fednow_transfer_confirmation
 
+        # An Inbound FedNow Transfer Return Acknowledgement object. This field will be
+        # present in the JSON response if and only if `category` is equal to
+        # `inbound_fednow_transfer_return_acknowledgement`. An Inbound FedNow Transfer
+        # Return Acknowledgement is created when a return of an Inbound FedNow Transfer
+        # has been accepted and settled by the FedNow Service.
+        sig do
+          returns(
+            T.nilable(
+              Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement
+            )
+          )
+        end
+        attr_reader :inbound_fednow_transfer_return_acknowledgement
+
+        sig do
+          params(
+            inbound_fednow_transfer_return_acknowledgement:
+              T.nilable(
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::OrHash
+              )
+          ).void
+        end
+        attr_writer :inbound_fednow_transfer_return_acknowledgement
+
         # An Inbound Real-Time Payments Transfer Confirmation object. This field will be
         # present in the JSON response if and only if `category` is equal to
         # `inbound_real_time_payments_transfer_confirmation`. An Inbound Real-Time
@@ -1149,6 +1173,10 @@ module Increase
               T.nilable(
                 Increase::Transaction::Source::InboundFednowTransferConfirmation::OrHash
               ),
+            inbound_fednow_transfer_return_acknowledgement:
+              T.nilable(
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::OrHash
+              ),
             inbound_real_time_payments_transfer_confirmation:
               T.nilable(
                 Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation::OrHash
@@ -1349,6 +1377,12 @@ module Increase
           # is created when a FedNow transfer is initiated at another bank and received by
           # Increase.
           inbound_fednow_transfer_confirmation: nil,
+          # An Inbound FedNow Transfer Return Acknowledgement object. This field will be
+          # present in the JSON response if and only if `category` is equal to
+          # `inbound_fednow_transfer_return_acknowledgement`. An Inbound FedNow Transfer
+          # Return Acknowledgement is created when a return of an Inbound FedNow Transfer
+          # has been accepted and settled by the FedNow Service.
+          inbound_fednow_transfer_return_acknowledgement: nil,
           # An Inbound Real-Time Payments Transfer Confirmation object. This field will be
           # present in the JSON response if and only if `category` is equal to
           # `inbound_real_time_payments_transfer_confirmation`. An Inbound Real-Time
@@ -1500,6 +1534,10 @@ module Increase
               inbound_fednow_transfer_confirmation:
                 T.nilable(
                   Increase::Transaction::Source::InboundFednowTransferConfirmation
+                ),
+              inbound_fednow_transfer_return_acknowledgement:
+                T.nilable(
+                  Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement
                 ),
               inbound_real_time_payments_transfer_confirmation:
                 T.nilable(
@@ -1722,6 +1760,13 @@ module Increase
           INBOUND_FEDNOW_TRANSFER_CONFIRMATION =
             T.let(
               :inbound_fednow_transfer_confirmation,
+              Increase::Transaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound FedNow Transfer Return Acknowledgement: details will be under the `inbound_fednow_transfer_return_acknowledgement` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN_ACKNOWLEDGEMENT =
+            T.let(
+              :inbound_fednow_transfer_return_acknowledgement,
               Increase::Transaction::Source::Category::TaggedSymbol
             )
 
@@ -16565,6 +16610,119 @@ module Increase
 
           sig { override.returns({ transfer_id: String }) }
           def to_hash
+          end
+        end
+
+        class InboundFednowTransferReturnAcknowledgement < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the Inbound FedNow Transfer that was returned.
+          sig { returns(String) }
+          attr_accessor :inbound_fednow_transfer_id
+
+          # The reason for the return.
+          sig do
+            returns(
+              Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+            )
+          end
+          attr_accessor :reason
+
+          # An Inbound FedNow Transfer Return Acknowledgement object. This field will be
+          # present in the JSON response if and only if `category` is equal to
+          # `inbound_fednow_transfer_return_acknowledgement`. An Inbound FedNow Transfer
+          # Return Acknowledgement is created when a return of an Inbound FedNow Transfer
+          # has been accepted and settled by the FedNow Service.
+          sig do
+            params(
+              inbound_fednow_transfer_id: String,
+              reason:
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The identifier of the Inbound FedNow Transfer that was returned.
+            inbound_fednow_transfer_id:,
+            # The reason for the return.
+            reason:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                inbound_fednow_transfer_id: String,
+                reason:
+                  Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The reason for the return.
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The inbound FedNow transfer was a duplicate. Corresponds to the FedNow reason code `DUPL`.
+            DUPLICATE =
+              T.let(
+                :duplicate,
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+              )
+
+            # The recipient of the inbound FedNow transfer requested the funds be returned to the sender. Corresponds to the FedNow reason code `CUST`.
+            CREDITOR_REQUEST =
+              T.let(
+                :creditor_request,
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+              )
+
+            # The inbound FedNow transfer was for the wrong amount. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT =
+              T.let(
+                :wrong_amount,
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+              )
+
+            # The recipient of the inbound FedNow transfer was not owed the funds. Corresponds to the FedNow reason code `UPAY`.
+            UNDUE_PAYMENT =
+              T.let(
+                :undue_payment,
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+              )
+
+            # The inbound FedNow transfer was determined to be fraudulent. Corresponds to the FedNow reason code `FR01`, and reports the fraud to the Federal Reserve and the sending bank.
+            FRAUD =
+              T.let(
+                :fraud,
+                Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 

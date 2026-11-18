@@ -108,6 +108,9 @@ module Increase
           # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
           FEDNOW_TRANSFER_INSTRUCTION = :fednow_transfer_instruction
 
+          # Inbound FedNow Transfer Return: details will be under the `inbound_fednow_transfer_return` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN = :inbound_fednow_transfer_return
+
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
 

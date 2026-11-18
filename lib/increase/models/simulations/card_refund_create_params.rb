@@ -18,7 +18,7 @@ module Increase
         # @!attribute pending_transaction_id
         #   The identifier of the Pending Transaction for the refund or original credit
         #   authorization. If this is provided, `transaction` must not be provided as a
-        #   refund with a refund authorized can not be linked to a regular transaction.
+        #   refund with a refund authorization can not be linked to a regular transaction.
         #
         #   @return [String, nil]
         optional :pending_transaction_id, String
@@ -38,7 +38,7 @@ module Increase
         #   @param pending_transaction_id [String]
         #     The identifier of the Pending Transaction for the refund or original credit
         #     authorization. If this is provided, `transaction` must not be provided as a
-        #     refund with a refund authorized can not be linked to a regular transaction.
+        #     refund with a refund authorization can not be linked to a regular transaction.
         #
         #   @param transaction_id [String]
         #     The identifier for the Transaction to refund. The Transaction's source must have
