@@ -471,6 +471,18 @@ module Increase
                  -> { Increase::Transaction::Source::InboundFednowTransferConfirmation },
                  nil?: true
 
+        # @!attribute inbound_fednow_transfer_return_acknowledgement
+        #   An Inbound FedNow Transfer Return Acknowledgement object. This field will be
+        #   present in the JSON response if and only if `category` is equal to
+        #   `inbound_fednow_transfer_return_acknowledgement`. An Inbound FedNow Transfer
+        #   Return Acknowledgement is created when a return of an Inbound FedNow Transfer
+        #   has been accepted and settled by the FedNow Service.
+        #
+        #   @return [Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement, nil]
+        optional :inbound_fednow_transfer_return_acknowledgement,
+                 -> { Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement },
+                 nil?: true
+
         # @!attribute inbound_real_time_payments_transfer_confirmation
         #   An Inbound Real-Time Payments Transfer Confirmation object. This field will be
         #   present in the JSON response if and only if `category` is equal to
@@ -612,7 +624,7 @@ module Increase
                  },
                  nil?: true
 
-        # @!method initialize(category:, account_revenue_payment: nil, account_transfer_intention: nil, ach_transfer_intention: nil, ach_transfer_rejection: nil, ach_transfer_return: nil, blockchain_offramp_transfer_settlement: nil, blockchain_onramp_transfer_intention: nil, card_dispute_acceptance: nil, card_dispute_financial: nil, card_dispute_loss: nil, card_dispute_provisional_credit: nil, card_financial: nil, card_push_transfer_acceptance: nil, card_refund: nil, card_revenue_payment: nil, card_settlement: nil, cashback_payment: nil, check_deposit_acceptance: nil, check_deposit_return: nil, check_transfer_deposit: nil, fednow_transfer_acknowledgement: nil, fednow_transfer_return: nil, fee_payment: nil, inbound_ach_transfer: nil, inbound_ach_transfer_return_intention: nil, inbound_check_adjustment: nil, inbound_check_deposit_return_intention: nil, inbound_fednow_transfer_confirmation: nil, inbound_real_time_payments_transfer_confirmation: nil, inbound_wire_reversal: nil, inbound_wire_transfer: nil, inbound_wire_transfer_reversal: nil, interest_payment: nil, internal_source: nil, other: nil, real_time_payments_transfer_acknowledgement: nil, sample_funds: nil, sepa_instant_transfer_acceptance: nil, swift_transfer_intention: nil, swift_transfer_return: nil, uk_faster_payment_system_transfer_acceptance: nil, wire_transfer_intention: nil)
+        # @!method initialize(category:, account_revenue_payment: nil, account_transfer_intention: nil, ach_transfer_intention: nil, ach_transfer_rejection: nil, ach_transfer_return: nil, blockchain_offramp_transfer_settlement: nil, blockchain_onramp_transfer_intention: nil, card_dispute_acceptance: nil, card_dispute_financial: nil, card_dispute_loss: nil, card_dispute_provisional_credit: nil, card_financial: nil, card_push_transfer_acceptance: nil, card_refund: nil, card_revenue_payment: nil, card_settlement: nil, cashback_payment: nil, check_deposit_acceptance: nil, check_deposit_return: nil, check_transfer_deposit: nil, fednow_transfer_acknowledgement: nil, fednow_transfer_return: nil, fee_payment: nil, inbound_ach_transfer: nil, inbound_ach_transfer_return_intention: nil, inbound_check_adjustment: nil, inbound_check_deposit_return_intention: nil, inbound_fednow_transfer_confirmation: nil, inbound_fednow_transfer_return_acknowledgement: nil, inbound_real_time_payments_transfer_confirmation: nil, inbound_wire_reversal: nil, inbound_wire_transfer: nil, inbound_wire_transfer_reversal: nil, interest_payment: nil, internal_source: nil, other: nil, real_time_payments_transfer_acknowledgement: nil, sample_funds: nil, sepa_instant_transfer_acceptance: nil, swift_transfer_intention: nil, swift_transfer_return: nil, uk_faster_payment_system_transfer_acceptance: nil, wire_transfer_intention: nil)
         #   This is an object giving more details on the network-level event that caused the
         #   Transaction. Note that for backwards compatibility reasons, additional
         #   undocumented keys may appear in this object. These should be treated as
@@ -797,6 +809,13 @@ module Increase
         #     is created when a FedNow transfer is initiated at another bank and received by
         #     Increase.
         #
+        #   @param inbound_fednow_transfer_return_acknowledgement [Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement, nil]
+        #     An Inbound FedNow Transfer Return Acknowledgement object. This field will be
+        #     present in the JSON response if and only if `category` is equal to
+        #     `inbound_fednow_transfer_return_acknowledgement`. An Inbound FedNow Transfer
+        #     Return Acknowledgement is created when a return of an Inbound FedNow Transfer
+        #     has been accepted and settled by the FedNow Service.
+        #
         #   @param inbound_real_time_payments_transfer_confirmation [Increase::Models::Transaction::Source::InboundRealTimePaymentsTransferConfirmation, nil]
         #     An Inbound Real-Time Payments Transfer Confirmation object. This field will be
         #     present in the JSON response if and only if `category` is equal to
@@ -958,6 +977,9 @@ module Increase
 
           # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
           INBOUND_FEDNOW_TRANSFER_CONFIRMATION = :inbound_fednow_transfer_confirmation
+
+          # Inbound FedNow Transfer Return Acknowledgement: details will be under the `inbound_fednow_transfer_return_acknowledgement` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN_ACKNOWLEDGEMENT = :inbound_fednow_transfer_return_acknowledgement
 
           # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION = :inbound_real_time_payments_transfer_confirmation
@@ -9142,6 +9164,60 @@ module Increase
           #   Increase.
           #
           #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this Transaction.
+        end
+
+        # @see Increase::Models::Transaction::Source#inbound_fednow_transfer_return_acknowledgement
+        class InboundFednowTransferReturnAcknowledgement < Increase::Internal::Type::BaseModel
+          # @!attribute inbound_fednow_transfer_id
+          #   The identifier of the Inbound FedNow Transfer that was returned.
+          #
+          #   @return [String]
+          required :inbound_fednow_transfer_id, String
+
+          # @!attribute reason
+          #   The reason for the return.
+          #
+          #   @return [Symbol, Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason]
+          required :reason,
+                   enum: -> { Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason }
+
+          # @!method initialize(inbound_fednow_transfer_id:, reason:)
+          #   An Inbound FedNow Transfer Return Acknowledgement object. This field will be
+          #   present in the JSON response if and only if `category` is equal to
+          #   `inbound_fednow_transfer_return_acknowledgement`. An Inbound FedNow Transfer
+          #   Return Acknowledgement is created when a return of an Inbound FedNow Transfer
+          #   has been accepted and settled by the FedNow Service.
+          #
+          #   @param inbound_fednow_transfer_id [String]
+          #     The identifier of the Inbound FedNow Transfer that was returned.
+          #
+          #   @param reason [Symbol, Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement::Reason]
+          #     The reason for the return.
+
+          # The reason for the return.
+          #
+          # @see Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement#reason
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The inbound FedNow transfer was a duplicate. Corresponds to the FedNow reason code `DUPL`.
+            DUPLICATE = :duplicate
+
+            # The recipient of the inbound FedNow transfer requested the funds be returned to the sender. Corresponds to the FedNow reason code `CUST`.
+            CREDITOR_REQUEST = :creditor_request
+
+            # The inbound FedNow transfer was for the wrong amount. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT = :wrong_amount
+
+            # The recipient of the inbound FedNow transfer was not owed the funds. Corresponds to the FedNow reason code `UPAY`.
+            UNDUE_PAYMENT = :undue_payment
+
+            # The inbound FedNow transfer was determined to be fraudulent. Corresponds to the FedNow reason code `FR01`, and reports the fraud to the Federal Reserve and the sending bank.
+            FRAUD = :fraud
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see Increase::Models::Transaction::Source#inbound_real_time_payments_transfer_confirmation

@@ -290,6 +290,17 @@ module Increase
                  -> { Increase::PendingTransaction::Source::FednowTransferInstruction },
                  nil?: true
 
+        # @!attribute inbound_fednow_transfer_return
+        #   An Inbound FedNow Transfer Return object. This field will be present in the JSON
+        #   response if and only if `category` is equal to `inbound_fednow_transfer_return`.
+        #   An Inbound FedNow Transfer Return is created when Increase has received a FedNow
+        #   transfer and the User requests that it be returned.
+        #
+        #   @return [Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn, nil]
+        optional :inbound_fednow_transfer_return,
+                 -> { Increase::PendingTransaction::Source::InboundFednowTransferReturn },
+                 nil?: true
+
         # @!attribute inbound_funds_hold
         #   An Inbound Funds Hold object. This field will be present in the JSON response if
         #   and only if `category` is equal to `inbound_funds_hold`. We hold funds for
@@ -379,7 +390,7 @@ module Increase
                  -> { Increase::PendingTransaction::Source::WireTransferInstruction },
                  nil?: true
 
-        # @!method initialize(category:, account_transfer_instruction: nil, ach_transfer_instruction: nil, blockchain_offramp_transfer: nil, blockchain_onramp_transfer_instruction: nil, card_authorization: nil, card_push_transfer_instruction: nil, check_deposit_instruction: nil, check_transfer_instruction: nil, fednow_transfer_instruction: nil, inbound_funds_hold: nil, inbound_wire_transfer_reversal: nil, other: nil, real_time_payments_transfer_instruction: nil, sepa_instant_transfer_instruction: nil, swift_transfer_instruction: nil, uk_faster_payment_system_transfer_instruction: nil, user_initiated_hold: nil, wire_transfer_instruction: nil)
+        # @!method initialize(category:, account_transfer_instruction: nil, ach_transfer_instruction: nil, blockchain_offramp_transfer: nil, blockchain_onramp_transfer_instruction: nil, card_authorization: nil, card_push_transfer_instruction: nil, check_deposit_instruction: nil, check_transfer_instruction: nil, fednow_transfer_instruction: nil, inbound_fednow_transfer_return: nil, inbound_funds_hold: nil, inbound_wire_transfer_reversal: nil, other: nil, real_time_payments_transfer_instruction: nil, sepa_instant_transfer_instruction: nil, swift_transfer_instruction: nil, uk_faster_payment_system_transfer_instruction: nil, user_initiated_hold: nil, wire_transfer_instruction: nil)
         #   This is an object giving more details on the network-level event that caused the
         #   Pending Transaction. For example, for a card transaction this lists the
         #   merchant's industry and location.
@@ -428,6 +439,12 @@ module Increase
         #   @param fednow_transfer_instruction [Increase::Models::PendingTransaction::Source::FednowTransferInstruction, nil]
         #     A FedNow Transfer Instruction object. This field will be present in the JSON
         #     response if and only if `category` is equal to `fednow_transfer_instruction`.
+        #
+        #   @param inbound_fednow_transfer_return [Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn, nil]
+        #     An Inbound FedNow Transfer Return object. This field will be present in the JSON
+        #     response if and only if `category` is equal to `inbound_fednow_transfer_return`.
+        #     An Inbound FedNow Transfer Return is created when Increase has received a FedNow
+        #     transfer and the User requests that it be returned.
         #
         #   @param inbound_funds_hold [Increase::Models::PendingTransaction::Source::InboundFundsHold, nil]
         #     An Inbound Funds Hold object. This field will be present in the JSON response if
@@ -497,6 +514,9 @@ module Increase
 
           # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
           FEDNOW_TRANSFER_INSTRUCTION = :fednow_transfer_instruction
+
+          # Inbound FedNow Transfer Return: details will be under the `inbound_fednow_transfer_return` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN = :inbound_fednow_transfer_return
 
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD = :inbound_funds_hold
@@ -2590,6 +2610,58 @@ module Increase
           #   response if and only if `category` is equal to `fednow_transfer_instruction`.
           #
           #   @param transfer_id [String] The identifier of the FedNow Transfer that led to this Pending Transaction.
+        end
+
+        # @see Increase::Models::PendingTransaction::Source#inbound_fednow_transfer_return
+        class InboundFednowTransferReturn < Increase::Internal::Type::BaseModel
+          # @!attribute inbound_fednow_transfer_id
+          #   The identifier of the Inbound FedNow Transfer that is being returned.
+          #
+          #   @return [String]
+          required :inbound_fednow_transfer_id, String
+
+          # @!attribute reason
+          #   The reason for the return.
+          #
+          #   @return [Symbol, Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn::Reason]
+          required :reason, enum: -> { Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason }
+
+          # @!method initialize(inbound_fednow_transfer_id:, reason:)
+          #   An Inbound FedNow Transfer Return object. This field will be present in the JSON
+          #   response if and only if `category` is equal to `inbound_fednow_transfer_return`.
+          #   An Inbound FedNow Transfer Return is created when Increase has received a FedNow
+          #   transfer and the User requests that it be returned.
+          #
+          #   @param inbound_fednow_transfer_id [String]
+          #     The identifier of the Inbound FedNow Transfer that is being returned.
+          #
+          #   @param reason [Symbol, Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn::Reason]
+          #     The reason for the return.
+
+          # The reason for the return.
+          #
+          # @see Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn#reason
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The inbound FedNow transfer was a duplicate. Corresponds to the FedNow reason code `DUPL`.
+            DUPLICATE = :duplicate
+
+            # The recipient of the inbound FedNow transfer requested the funds be returned to the sender. Corresponds to the FedNow reason code `CUST`.
+            CREDITOR_REQUEST = :creditor_request
+
+            # The inbound FedNow transfer was for the wrong amount. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT = :wrong_amount
+
+            # The recipient of the inbound FedNow transfer was not owed the funds. Corresponds to the FedNow reason code `UPAY`.
+            UNDUE_PAYMENT = :undue_payment
+
+            # The inbound FedNow transfer was determined to be fraudulent. Corresponds to the FedNow reason code `FR01`, and reports the fraud to the Federal Reserve and the sending bank.
+            FRAUD = :fraud
+
+            # @!method self.values
+            #   @return [Array<Symbol>]
+          end
         end
 
         # @see Increase::Models::PendingTransaction::Source#inbound_funds_hold

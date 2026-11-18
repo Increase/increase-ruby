@@ -15,7 +15,11 @@ module Increase
 
       # @!attribute account_statement_bai2
       #   Options for the created export. Required if `category` is equal to
-      #   `account_statement_bai2`.
+      #   `account_statement_bai2`. Each as-of date from `on_or_after_date` through
+      #   `on_or_before_date` gets its own BAI2 group (`02` record) in the file. If a
+      #   group's as-of date is before the UTC date the Export was created, it has
+      #   end-of-day balances. If it's the UTC date the Export was created, it has
+      #   intraday balances as of the time the Export was created.
       #
       #   @return [Increase::Models::ExportCreateParams::AccountStatementBai2, nil]
       optional :account_statement_bai2, -> { Increase::ExportCreateParams::AccountStatementBai2 }
@@ -93,7 +97,11 @@ module Increase
       #
       #   @param account_statement_bai2 [Increase::Models::ExportCreateParams::AccountStatementBai2]
       #     Options for the created export. Required if `category` is equal to
-      #     `account_statement_bai2`.
+      #     `account_statement_bai2`. Each as-of date from `on_or_after_date` through
+      #     `on_or_before_date` gets its own BAI2 group (`02` record) in the file. If a
+      #     group's as-of date is before the UTC date the Export was created, it has
+      #     end-of-day balances. If it's the UTC date the Export was created, it has
+      #     intraday balances as of the time the Export was created.
       #
       #   @param account_statement_ofx [Increase::Models::ExportCreateParams::AccountStatementOfx]
       #     Options for the created export. Required if `category` is equal to
@@ -186,13 +194,20 @@ module Increase
         #   @return [String, nil]
         optional :account_id, String
 
-        # @!attribute effective_date
-        #   The UTC date to create a BAI2 report for. If not provided, the current date will
-        #   be used. If the current date is used, the report will include intraday balances,
-        #   otherwise it will include end-of-day balances for the provided date.
+        # @!attribute on_or_after_date
+        #   The first as-of date (UTC) to report. Each as-of date gets its own group in the
+        #   BAI2 file. If not provided, the report starts from the earliest included
+        #   Account.
         #
         #   @return [Date, nil]
-        optional :effective_date, Date
+        optional :on_or_after_date, Date
+
+        # @!attribute on_or_before_date
+        #   The last as-of date (UTC) to report. If not provided, the report runs through
+        #   the current UTC date.
+        #
+        #   @return [Date, nil]
+        optional :on_or_before_date, Date
 
         # @!attribute program_id
         #   The Program to create a BAI2 report for. If not provided, all open accounts will
@@ -201,18 +216,26 @@ module Increase
         #   @return [String, nil]
         optional :program_id, String
 
-        # @!method initialize(account_id: nil, effective_date: nil, program_id: nil)
+        # @!method initialize(account_id: nil, on_or_after_date: nil, on_or_before_date: nil, program_id: nil)
         #   Options for the created export. Required if `category` is equal to
-        #   `account_statement_bai2`.
+        #   `account_statement_bai2`. Each as-of date from `on_or_after_date` through
+        #   `on_or_before_date` gets its own BAI2 group (`02` record) in the file. If a
+        #   group's as-of date is before the UTC date the Export was created, it has
+        #   end-of-day balances. If it's the UTC date the Export was created, it has
+        #   intraday balances as of the time the Export was created.
         #
         #   @param account_id [String]
         #     The Account to create a BAI2 report for. If not provided, all open accounts will
         #     be included.
         #
-        #   @param effective_date [Date]
-        #     The UTC date to create a BAI2 report for. If not provided, the current date will
-        #     be used. If the current date is used, the report will include intraday balances,
-        #     otherwise it will include end-of-day balances for the provided date.
+        #   @param on_or_after_date [Date]
+        #     The first as-of date (UTC) to report. Each as-of date gets its own group in the
+        #     BAI2 file. If not provided, the report starts from the earliest included
+        #     Account.
+        #
+        #   @param on_or_before_date [Date]
+        #     The last as-of date (UTC) to report. If not provided, the report runs through
+        #     the current UTC date.
         #
         #   @param program_id [String]
         #     The Program to create a BAI2 report for. If not provided, all open accounts will

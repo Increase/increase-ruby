@@ -292,6 +292,9 @@ module Increase
         # The transfer has been declined.
         DECLINED = :declined
 
+        # The transfer has been returned, in full or in part, to its sender.
+        RETURNED = :returned
+
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION = :requires_attention
 
