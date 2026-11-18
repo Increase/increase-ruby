@@ -16,7 +16,11 @@ module Increase
       attr_accessor :category
 
       # Options for the created export. Required if `category` is equal to
-      # `account_statement_bai2`.
+      # `account_statement_bai2`. Each as-of date from `on_or_after_date` through
+      # `on_or_before_date` gets its own BAI2 group (`02` record) in the file. If a
+      # group's as-of date is before the UTC date the Export was created, it has
+      # end-of-day balances. If it's the UTC date the Export was created, it has
+      # intraday balances as of the time the Export was created.
       sig do
         returns(T.nilable(Increase::ExportCreateParams::AccountStatementBai2))
       end
@@ -185,7 +189,11 @@ module Increase
         # The type of Export to create.
         category:,
         # Options for the created export. Required if `category` is equal to
-        # `account_statement_bai2`.
+        # `account_statement_bai2`. Each as-of date from `on_or_after_date` through
+        # `on_or_before_date` gets its own BAI2 group (`02` record) in the file. If a
+        # group's as-of date is before the UTC date the Export was created, it has
+        # end-of-day balances. If it's the UTC date the Export was created, it has
+        # intraday balances as of the time the Export was created.
         account_statement_bai2: nil,
         # Options for the created export. Required if `category` is equal to
         # `account_statement_ofx`.
@@ -361,14 +369,22 @@ module Increase
         sig { params(account_id: String).void }
         attr_writer :account_id
 
-        # The UTC date to create a BAI2 report for. If not provided, the current date will
-        # be used. If the current date is used, the report will include intraday balances,
-        # otherwise it will include end-of-day balances for the provided date.
+        # The first as-of date (UTC) to report. Each as-of date gets its own group in the
+        # BAI2 file. If not provided, the report starts from the earliest included
+        # Account.
         sig { returns(T.nilable(Date)) }
-        attr_reader :effective_date
+        attr_reader :on_or_after_date
 
-        sig { params(effective_date: Date).void }
-        attr_writer :effective_date
+        sig { params(on_or_after_date: Date).void }
+        attr_writer :on_or_after_date
+
+        # The last as-of date (UTC) to report. If not provided, the report runs through
+        # the current UTC date.
+        sig { returns(T.nilable(Date)) }
+        attr_reader :on_or_before_date
+
+        sig { params(on_or_before_date: Date).void }
+        attr_writer :on_or_before_date
 
         # The Program to create a BAI2 report for. If not provided, all open accounts will
         # be included.
@@ -379,11 +395,16 @@ module Increase
         attr_writer :program_id
 
         # Options for the created export. Required if `category` is equal to
-        # `account_statement_bai2`.
+        # `account_statement_bai2`. Each as-of date from `on_or_after_date` through
+        # `on_or_before_date` gets its own BAI2 group (`02` record) in the file. If a
+        # group's as-of date is before the UTC date the Export was created, it has
+        # end-of-day balances. If it's the UTC date the Export was created, it has
+        # intraday balances as of the time the Export was created.
         sig do
           params(
             account_id: String,
-            effective_date: Date,
+            on_or_after_date: Date,
+            on_or_before_date: Date,
             program_id: String
           ).returns(T.attached_class)
         end
@@ -391,10 +412,13 @@ module Increase
           # The Account to create a BAI2 report for. If not provided, all open accounts will
           # be included.
           account_id: nil,
-          # The UTC date to create a BAI2 report for. If not provided, the current date will
-          # be used. If the current date is used, the report will include intraday balances,
-          # otherwise it will include end-of-day balances for the provided date.
-          effective_date: nil,
+          # The first as-of date (UTC) to report. Each as-of date gets its own group in the
+          # BAI2 file. If not provided, the report starts from the earliest included
+          # Account.
+          on_or_after_date: nil,
+          # The last as-of date (UTC) to report. If not provided, the report runs through
+          # the current UTC date.
+          on_or_before_date: nil,
           # The Program to create a BAI2 report for. If not provided, all open accounts will
           # be included.
           program_id: nil
@@ -403,7 +427,12 @@ module Increase
 
         sig do
           override.returns(
-            { account_id: String, effective_date: Date, program_id: String }
+            {
+              account_id: String,
+              on_or_after_date: Date,
+              on_or_before_date: Date,
+              program_id: String
+            }
           )
         end
         def to_hash

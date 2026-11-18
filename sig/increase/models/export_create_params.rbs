@@ -178,16 +178,25 @@ module Increase
       end
 
       type account_statement_bai2 =
-        { account_id: String, effective_date: Date, program_id: String }
+        {
+          account_id: String,
+          on_or_after_date: Date,
+          on_or_before_date: Date,
+          program_id: String
+        }
 
       class AccountStatementBai2 < Increase::Internal::Type::BaseModel
         attr_reader account_id: String?
 
         def account_id=: (String) -> String
 
-        attr_reader effective_date: Date?
+        attr_reader on_or_after_date: Date?
 
-        def effective_date=: (Date) -> Date
+        def on_or_after_date=: (Date) -> Date
+
+        attr_reader on_or_before_date: Date?
+
+        def on_or_before_date=: (Date) -> Date
 
         attr_reader program_id: String?
 
@@ -195,13 +204,15 @@ module Increase
 
         def initialize: (
           ?account_id: String,
-          ?effective_date: Date,
+          ?on_or_after_date: Date,
+          ?on_or_before_date: Date,
           ?program_id: String
         ) -> void
 
         def to_hash: -> {
           account_id: String,
-          effective_date: Date,
+          on_or_after_date: Date,
+          on_or_before_date: Date,
           program_id: String
         }
       end
