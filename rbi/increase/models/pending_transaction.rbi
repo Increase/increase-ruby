@@ -440,6 +440,29 @@ module Increase
         end
         attr_writer :fednow_transfer_instruction
 
+        # An Inbound FedNow Transfer Return object. This field will be present in the JSON
+        # response if and only if `category` is equal to `inbound_fednow_transfer_return`.
+        # An Inbound FedNow Transfer Return is created when Increase has received a FedNow
+        # transfer and the User requests that it be returned.
+        sig do
+          returns(
+            T.nilable(
+              Increase::PendingTransaction::Source::InboundFednowTransferReturn
+            )
+          )
+        end
+        attr_reader :inbound_fednow_transfer_return
+
+        sig do
+          params(
+            inbound_fednow_transfer_return:
+              T.nilable(
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::OrHash
+              )
+          ).void
+        end
+        attr_writer :inbound_fednow_transfer_return
+
         # An Inbound Funds Hold object. This field will be present in the JSON response if
         # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
         # certain transaction types to account for return windows where funds might still
@@ -653,6 +676,10 @@ module Increase
               T.nilable(
                 Increase::PendingTransaction::Source::FednowTransferInstruction::OrHash
               ),
+            inbound_fednow_transfer_return:
+              T.nilable(
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::OrHash
+              ),
             inbound_funds_hold:
               T.nilable(
                 Increase::PendingTransaction::Source::InboundFundsHold::OrHash
@@ -722,6 +749,11 @@ module Increase
           # A FedNow Transfer Instruction object. This field will be present in the JSON
           # response if and only if `category` is equal to `fednow_transfer_instruction`.
           fednow_transfer_instruction: nil,
+          # An Inbound FedNow Transfer Return object. This field will be present in the JSON
+          # response if and only if `category` is equal to `inbound_fednow_transfer_return`.
+          # An Inbound FedNow Transfer Return is created when Increase has received a FedNow
+          # transfer and the User requests that it be returned.
+          inbound_fednow_transfer_return: nil,
           # An Inbound Funds Hold object. This field will be present in the JSON response if
           # and only if `category` is equal to `inbound_funds_hold`. We hold funds for
           # certain transaction types to account for return windows where funds might still
@@ -800,6 +832,10 @@ module Increase
               fednow_transfer_instruction:
                 T.nilable(
                   Increase::PendingTransaction::Source::FednowTransferInstruction
+                ),
+              inbound_fednow_transfer_return:
+                T.nilable(
+                  Increase::PendingTransaction::Source::InboundFednowTransferReturn
                 ),
               inbound_funds_hold:
                 T.nilable(
@@ -887,6 +923,13 @@ module Increase
           FEDNOW_TRANSFER_INSTRUCTION =
             T.let(
               :fednow_transfer_instruction,
+              Increase::PendingTransaction::Source::Category::TaggedSymbol
+            )
+
+          # Inbound FedNow Transfer Return: details will be under the `inbound_fednow_transfer_return` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN =
+            T.let(
+              :inbound_fednow_transfer_return,
               Increase::PendingTransaction::Source::Category::TaggedSymbol
             )
 
@@ -3969,6 +4012,13 @@ module Increase
                   Increase::PendingTransaction::Source::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
+                  Increase::PendingTransaction::Source::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE =
                 T.let(
@@ -4676,6 +4726,118 @@ module Increase
 
           sig { override.returns({ transfer_id: String }) }
           def to_hash
+          end
+        end
+
+        class InboundFednowTransferReturn < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # The identifier of the Inbound FedNow Transfer that is being returned.
+          sig { returns(String) }
+          attr_accessor :inbound_fednow_transfer_id
+
+          # The reason for the return.
+          sig do
+            returns(
+              Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+            )
+          end
+          attr_accessor :reason
+
+          # An Inbound FedNow Transfer Return object. This field will be present in the JSON
+          # response if and only if `category` is equal to `inbound_fednow_transfer_return`.
+          # An Inbound FedNow Transfer Return is created when Increase has received a FedNow
+          # transfer and the User requests that it be returned.
+          sig do
+            params(
+              inbound_fednow_transfer_id: String,
+              reason:
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # The identifier of the Inbound FedNow Transfer that is being returned.
+            inbound_fednow_transfer_id:,
+            # The reason for the return.
+            reason:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                inbound_fednow_transfer_id: String,
+                reason:
+                  Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The reason for the return.
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # The inbound FedNow transfer was a duplicate. Corresponds to the FedNow reason code `DUPL`.
+            DUPLICATE =
+              T.let(
+                :duplicate,
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+              )
+
+            # The recipient of the inbound FedNow transfer requested the funds be returned to the sender. Corresponds to the FedNow reason code `CUST`.
+            CREDITOR_REQUEST =
+              T.let(
+                :creditor_request,
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+              )
+
+            # The inbound FedNow transfer was for the wrong amount. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT =
+              T.let(
+                :wrong_amount,
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+              )
+
+            # The recipient of the inbound FedNow transfer was not owed the funds. Corresponds to the FedNow reason code `UPAY`.
+            UNDUE_PAYMENT =
+              T.let(
+                :undue_payment,
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+              )
+
+            # The inbound FedNow transfer was determined to be fraudulent. Corresponds to the FedNow reason code `FR01`, and reports the fraud to the Federal Reserve and the sending bank.
+            FRAUD =
+              T.let(
+                :fraud,
+                Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::PendingTransaction::Source::InboundFednowTransferReturn::Reason::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
           end
         end
 

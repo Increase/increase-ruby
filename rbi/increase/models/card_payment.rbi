@@ -4983,6 +4983,13 @@ module Increase
                   Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
+                  Increase::CardPayment::Element::CardAuthorization::SchemeFee::FeeType::TaggedSymbol
+                )
+
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE =
                 T.let(
@@ -7779,6 +7786,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
                   Increase::CardPayment::Element::CardBalanceInquiry::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -10904,6 +10918,13 @@ module Increase
                   Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
+                  Increase::CardPayment::Element::CardDecline::SchemeFee::FeeType::TaggedSymbol
+                )
+
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE =
                 T.let(
@@ -13725,6 +13746,13 @@ module Increase
                   Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
+                  Increase::CardPayment::Element::CardFinancial::SchemeFee::FeeType::TaggedSymbol
+                )
+
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE =
                 T.let(
@@ -14819,6 +14847,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
                   Increase::CardPayment::Element::CardFuelConfirmation::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -16410,6 +16445,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
                   Increase::CardPayment::Element::CardIncrement::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -20619,6 +20661,13 @@ module Increase
                   Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
+                  Increase::CardPayment::Element::CardRefund::SchemeFee::FeeType::TaggedSymbol
+                )
+
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE =
                 T.let(
@@ -21500,6 +21549,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
                   Increase::CardPayment::Element::CardReversal::SchemeFee::FeeType::TaggedSymbol
                 )
 
@@ -25768,6 +25824,13 @@ module Increase
                   Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
                 )
 
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
+                  Increase::CardPayment::Element::CardSettlement::SchemeFee::FeeType::TaggedSymbol
+                )
+
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE =
                 T.let(
@@ -28064,6 +28127,13 @@ module Increase
               PULSE_SWITCH_FEE =
                 T.let(
                   :pulse_switch_fee,
+                  Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
+                )
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT =
+                T.let(
+                  :pulse_switch_fee_credit,
                   Increase::CardPayment::Element::CardValidation::SchemeFee::FeeType::TaggedSymbol
                 )
 

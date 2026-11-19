@@ -158,6 +158,9 @@ module Increase
           # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
           INBOUND_FEDNOW_TRANSFER_CONFIRMATION = :inbound_fednow_transfer_confirmation
 
+          # Inbound FedNow Transfer Return Acknowledgement: details will be under the `inbound_fednow_transfer_return_acknowledgement` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN_ACKNOWLEDGEMENT = :inbound_fednow_transfer_return_acknowledgement
+
           # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION = :inbound_real_time_payments_transfer_confirmation
 

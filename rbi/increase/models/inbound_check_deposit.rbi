@@ -103,7 +103,6 @@ module Increase
       attr_accessor :front_image_file_id
 
       # Whether the details on the check match the recipient name of the check transfer.
-      # This is an optional feature, contact sales to enable.
       sig do
         returns(Increase::InboundCheckDeposit::PayeeNameAnalysis::TaggedSymbol)
       end
@@ -206,7 +205,6 @@ module Increase
         # The ID for the File containing the image of the front of the check.
         front_image_file_id:,
         # Whether the details on the check match the recipient name of the check transfer.
-        # This is an optional feature, contact sales to enable.
         payee_name_analysis:,
         # The status of the Inbound Check Deposit.
         status:,
@@ -508,7 +506,6 @@ module Increase
       end
 
       # Whether the details on the check match the recipient name of the check transfer.
-      # This is an optional feature, contact sales to enable.
       module PayeeNameAnalysis
         extend Increase::Internal::Type::Enum
 

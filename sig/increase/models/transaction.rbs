@@ -120,6 +120,7 @@ module Increase
           inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
           inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
           inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
+          inbound_fednow_transfer_return_acknowledgement: Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement?,
           inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
           inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
           inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
@@ -195,6 +196,8 @@ module Increase
 
         attr_accessor inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?
 
+        attr_accessor inbound_fednow_transfer_return_acknowledgement: Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement?
+
         attr_accessor inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?
 
         attr_accessor inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?
@@ -253,6 +256,7 @@ module Increase
           ?inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
           ?inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
           ?inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
+          ?inbound_fednow_transfer_return_acknowledgement: Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement?,
           ?inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
           ?inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
           ?inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
@@ -299,6 +303,7 @@ module Increase
           inbound_check_adjustment: Increase::Transaction::Source::InboundCheckAdjustment?,
           inbound_check_deposit_return_intention: Increase::Transaction::Source::InboundCheckDepositReturnIntention?,
           inbound_fednow_transfer_confirmation: Increase::Transaction::Source::InboundFednowTransferConfirmation?,
+          inbound_fednow_transfer_return_acknowledgement: Increase::Transaction::Source::InboundFednowTransferReturnAcknowledgement?,
           inbound_real_time_payments_transfer_confirmation: Increase::Transaction::Source::InboundRealTimePaymentsTransferConfirmation?,
           inbound_wire_reversal: Increase::Transaction::Source::InboundWireReversal?,
           inbound_wire_transfer: Increase::Transaction::Source::InboundWireTransfer?,
@@ -340,6 +345,7 @@ module Increase
           | :inbound_check_deposit_return_intention
           | :inbound_check_adjustment
           | :inbound_fednow_transfer_confirmation
+          | :inbound_fednow_transfer_return_acknowledgement
           | :inbound_real_time_payments_transfer_confirmation
           | :inbound_wire_reversal
           | :inbound_wire_transfer
@@ -433,6 +439,9 @@ module Increase
 
           # Inbound FedNow Transfer Confirmation: details will be under the `inbound_fednow_transfer_confirmation` object.
           INBOUND_FEDNOW_TRANSFER_CONFIRMATION: :inbound_fednow_transfer_confirmation
+
+          # Inbound FedNow Transfer Return Acknowledgement: details will be under the `inbound_fednow_transfer_return_acknowledgement` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN_ACKNOWLEDGEMENT: :inbound_fednow_transfer_return_acknowledgement
 
           # Inbound Real-Time Payments Transfer Confirmation: details will be under the `inbound_real_time_payments_transfer_confirmation` object.
           INBOUND_REAL_TIME_PAYMENTS_TRANSFER_CONFIRMATION: :inbound_real_time_payments_transfer_confirmation
@@ -1994,6 +2003,7 @@ module Increase
               | :visa_atm_cash_withdrawal_international
               | :visa_atm_cash_deposit_domestic
               | :pulse_switch_fee
+              | :pulse_switch_fee_credit
               | :pulse_tokenization_fee
 
             module FeeType
@@ -2094,6 +2104,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT: :pulse_switch_fee_credit
 
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE: :pulse_tokenization_fee
@@ -4095,6 +4108,7 @@ module Increase
               | :visa_atm_cash_withdrawal_international
               | :visa_atm_cash_deposit_domestic
               | :pulse_switch_fee
+              | :pulse_switch_fee_credit
               | :pulse_tokenization_fee
 
             module FeeType
@@ -4195,6 +4209,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT: :pulse_switch_fee_credit
 
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE: :pulse_tokenization_fee
@@ -6086,6 +6103,7 @@ module Increase
               | :visa_atm_cash_withdrawal_international
               | :visa_atm_cash_deposit_domestic
               | :pulse_switch_fee
+              | :pulse_switch_fee_credit
               | :pulse_tokenization_fee
 
             module FeeType
@@ -6186,6 +6204,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT: :pulse_switch_fee_credit
 
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE: :pulse_tokenization_fee
@@ -6947,6 +6968,56 @@ module Increase
           def initialize: (transfer_id: String) -> void
 
           def to_hash: -> { transfer_id: String }
+        end
+
+        type inbound_fednow_transfer_return_acknowledgement =
+          {
+            inbound_fednow_transfer_id: String,
+            reason: Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement::reason
+          }
+
+        class InboundFednowTransferReturnAcknowledgement < Increase::Internal::Type::BaseModel
+          attr_accessor inbound_fednow_transfer_id: String
+
+          attr_accessor reason: Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement::reason
+
+          def initialize: (
+            inbound_fednow_transfer_id: String,
+            reason: Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement::reason
+          ) -> void
+
+          def to_hash: -> {
+            inbound_fednow_transfer_id: String,
+            reason: Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement::reason
+          }
+
+          type reason =
+            :duplicate
+            | :creditor_request
+            | :wrong_amount
+            | :undue_payment
+            | :fraud
+
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The inbound FedNow transfer was a duplicate. Corresponds to the FedNow reason code `DUPL`.
+            DUPLICATE: :duplicate
+
+            # The recipient of the inbound FedNow transfer requested the funds be returned to the sender. Corresponds to the FedNow reason code `CUST`.
+            CREDITOR_REQUEST: :creditor_request
+
+            # The inbound FedNow transfer was for the wrong amount. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT: :wrong_amount
+
+            # The recipient of the inbound FedNow transfer was not owed the funds. Corresponds to the FedNow reason code `UPAY`.
+            UNDUE_PAYMENT: :undue_payment
+
+            # The inbound FedNow transfer was determined to be fraudulent. Corresponds to the FedNow reason code `FR01`, and reports the fraud to the Federal Reserve and the sending bank.
+            FRAUD: :fraud
+
+            def self?.values: -> ::Array[Increase::Models::Transaction::Source::InboundFednowTransferReturnAcknowledgement::reason]
+          end
         end
 
         type inbound_real_time_payments_transfer_confirmation =

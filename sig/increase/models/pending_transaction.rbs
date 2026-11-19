@@ -116,6 +116,7 @@ module Increase
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
+          inbound_fednow_transfer_return: Increase::PendingTransaction::Source::InboundFednowTransferReturn?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: Increase::PendingTransaction::Source::Other?,
@@ -148,6 +149,8 @@ module Increase
 
         attr_accessor fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?
 
+        attr_accessor inbound_fednow_transfer_return: Increase::PendingTransaction::Source::InboundFednowTransferReturn?
+
         attr_accessor inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?
 
         attr_accessor inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?
@@ -177,6 +180,7 @@ module Increase
           ?check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           ?check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           ?fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
+          ?inbound_fednow_transfer_return: Increase::PendingTransaction::Source::InboundFednowTransferReturn?,
           ?inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           ?inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           ?other: Increase::PendingTransaction::Source::Other?,
@@ -199,6 +203,7 @@ module Increase
           check_deposit_instruction: Increase::PendingTransaction::Source::CheckDepositInstruction?,
           check_transfer_instruction: Increase::PendingTransaction::Source::CheckTransferInstruction?,
           fednow_transfer_instruction: Increase::PendingTransaction::Source::FednowTransferInstruction?,
+          inbound_fednow_transfer_return: Increase::PendingTransaction::Source::InboundFednowTransferReturn?,
           inbound_funds_hold: Increase::PendingTransaction::Source::InboundFundsHold?,
           inbound_wire_transfer_reversal: Increase::PendingTransaction::Source::InboundWireTransferReversal?,
           other: Increase::PendingTransaction::Source::Other?,
@@ -217,6 +222,7 @@ module Increase
           | :check_deposit_instruction
           | :check_transfer_instruction
           | :fednow_transfer_instruction
+          | :inbound_fednow_transfer_return
           | :inbound_funds_hold
           | :user_initiated_hold
           | :real_time_payments_transfer_instruction
@@ -250,6 +256,9 @@ module Increase
 
           # FedNow Transfer Instruction: details will be under the `fednow_transfer_instruction` object.
           FEDNOW_TRANSFER_INSTRUCTION: :fednow_transfer_instruction
+
+          # Inbound FedNow Transfer Return: details will be under the `inbound_fednow_transfer_return` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN: :inbound_fednow_transfer_return
 
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD: :inbound_funds_hold
@@ -1303,6 +1312,7 @@ module Increase
               | :visa_atm_cash_withdrawal_international
               | :visa_atm_cash_deposit_domestic
               | :pulse_switch_fee
+              | :pulse_switch_fee_credit
               | :pulse_tokenization_fee
 
             module FeeType
@@ -1403,6 +1413,9 @@ module Increase
 
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE: :pulse_switch_fee
+
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT: :pulse_switch_fee_credit
 
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE: :pulse_tokenization_fee
@@ -1686,6 +1699,56 @@ module Increase
           def initialize: (transfer_id: String) -> void
 
           def to_hash: -> { transfer_id: String }
+        end
+
+        type inbound_fednow_transfer_return =
+          {
+            inbound_fednow_transfer_id: String,
+            reason: Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn::reason
+          }
+
+        class InboundFednowTransferReturn < Increase::Internal::Type::BaseModel
+          attr_accessor inbound_fednow_transfer_id: String
+
+          attr_accessor reason: Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn::reason
+
+          def initialize: (
+            inbound_fednow_transfer_id: String,
+            reason: Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn::reason
+          ) -> void
+
+          def to_hash: -> {
+            inbound_fednow_transfer_id: String,
+            reason: Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn::reason
+          }
+
+          type reason =
+            :duplicate
+            | :creditor_request
+            | :wrong_amount
+            | :undue_payment
+            | :fraud
+
+          module Reason
+            extend Increase::Internal::Type::Enum
+
+            # The inbound FedNow transfer was a duplicate. Corresponds to the FedNow reason code `DUPL`.
+            DUPLICATE: :duplicate
+
+            # The recipient of the inbound FedNow transfer requested the funds be returned to the sender. Corresponds to the FedNow reason code `CUST`.
+            CREDITOR_REQUEST: :creditor_request
+
+            # The inbound FedNow transfer was for the wrong amount. Corresponds to the FedNow reason code `AM09`.
+            WRONG_AMOUNT: :wrong_amount
+
+            # The recipient of the inbound FedNow transfer was not owed the funds. Corresponds to the FedNow reason code `UPAY`.
+            UNDUE_PAYMENT: :undue_payment
+
+            # The inbound FedNow transfer was determined to be fraudulent. Corresponds to the FedNow reason code `FR01`, and reports the fraud to the Federal Reserve and the sending bank.
+            FRAUD: :fraud
+
+            def self?.values: -> ::Array[Increase::Models::PendingTransaction::Source::InboundFednowTransferReturn::reason]
+          end
         end
 
         type inbound_funds_hold =

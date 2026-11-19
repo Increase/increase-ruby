@@ -128,7 +128,6 @@ module Increase
 
       # @!attribute payee_name_analysis
       #   Whether the details on the check match the recipient name of the check transfer.
-      #   This is an optional feature, contact sales to enable.
       #
       #   @return [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis]
       required :payee_name_analysis, enum: -> { Increase::InboundCheckDeposit::PayeeNameAnalysis }
@@ -220,7 +219,6 @@ module Increase
       #
       #   @param payee_name_analysis [Symbol, Increase::Models::InboundCheckDeposit::PayeeNameAnalysis]
       #     Whether the details on the check match the recipient name of the check transfer.
-      #     This is an optional feature, contact sales to enable.
       #
       #   @param status [Symbol, Increase::Models::InboundCheckDeposit::Status]
       #     The status of the Inbound Check Deposit.
@@ -365,7 +363,6 @@ module Increase
       end
 
       # Whether the details on the check match the recipient name of the check transfer.
-      # This is an optional feature, contact sales to enable.
       #
       # @see Increase::Models::InboundCheckDeposit#payee_name_analysis
       module PayeeNameAnalysis
