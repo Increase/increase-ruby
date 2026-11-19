@@ -423,6 +423,13 @@ module Increase
             Increase::InboundFednowTransfer::Status::TaggedSymbol
           )
 
+        # The transfer has been returned, in full or in part, to its sender.
+        RETURNED =
+          T.let(
+            :returned,
+            Increase::InboundFednowTransfer::Status::TaggedSymbol
+          )
+
         # The transfer requires attention from an Increase operator.
         REQUIRES_ATTENTION =
           T.let(

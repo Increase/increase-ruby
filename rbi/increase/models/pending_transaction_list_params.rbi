@@ -241,6 +241,13 @@ module Increase
               Increase::PendingTransactionListParams::Category::In::TaggedSymbol
             )
 
+          # Inbound FedNow Transfer Return: details will be under the `inbound_fednow_transfer_return` object.
+          INBOUND_FEDNOW_TRANSFER_RETURN =
+            T.let(
+              :inbound_fednow_transfer_return,
+              Increase::PendingTransactionListParams::Category::In::TaggedSymbol
+            )
+
           # Inbound Funds Hold: details will be under the `inbound_funds_hold` object.
           INBOUND_FUNDS_HOLD =
             T.let(

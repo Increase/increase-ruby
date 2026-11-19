@@ -122,24 +122,33 @@ module Increase
       }
 
       type account_statement_bai2 =
-        { account_id: String?, effective_date: Date?, program_id: String? }
+        {
+          account_id: String?,
+          on_or_after_date: Date?,
+          on_or_before_date: Date?,
+          program_id: String?
+        }
 
       class AccountStatementBai2 < Increase::Internal::Type::BaseModel
         attr_accessor account_id: String?
 
-        attr_accessor effective_date: Date?
+        attr_accessor on_or_after_date: Date?
+
+        attr_accessor on_or_before_date: Date?
 
         attr_accessor program_id: String?
 
         def initialize: (
           account_id: String?,
-          effective_date: Date?,
+          on_or_after_date: Date?,
+          on_or_before_date: Date?,
           program_id: String?
         ) -> void
 
         def to_hash: -> {
           account_id: String?,
-          effective_date: Date?,
+          on_or_after_date: Date?,
+          on_or_before_date: Date?,
           program_id: String?
         }
       end

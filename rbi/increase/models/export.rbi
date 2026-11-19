@@ -377,9 +377,15 @@ module Increase
         sig { returns(T.nilable(String)) }
         attr_accessor :account_id
 
-        # The UTC date for which to retrieve the balance.
+        # The first as-of date (UTC) reported in the BAI2 file. If null, the report
+        # started from the earliest included Account.
         sig { returns(T.nilable(Date)) }
-        attr_accessor :effective_date
+        attr_accessor :on_or_after_date
+
+        # The last as-of date (UTC) reported in the BAI2 file. If null, the report ran
+        # through the date the Export was created.
+        sig { returns(T.nilable(Date)) }
+        attr_accessor :on_or_before_date
 
         # Filter results by Program.
         sig { returns(T.nilable(String)) }
@@ -390,15 +396,20 @@ module Increase
         sig do
           params(
             account_id: T.nilable(String),
-            effective_date: T.nilable(Date),
+            on_or_after_date: T.nilable(Date),
+            on_or_before_date: T.nilable(Date),
             program_id: T.nilable(String)
           ).returns(T.attached_class)
         end
         def self.new(
           # Filter results by Account.
           account_id:,
-          # The UTC date for which to retrieve the balance.
-          effective_date:,
+          # The first as-of date (UTC) reported in the BAI2 file. If null, the report
+          # started from the earliest included Account.
+          on_or_after_date:,
+          # The last as-of date (UTC) reported in the BAI2 file. If null, the report ran
+          # through the date the Export was created.
+          on_or_before_date:,
           # Filter results by Program.
           program_id:
         )
@@ -408,7 +419,8 @@ module Increase
           override.returns(
             {
               account_id: T.nilable(String),
-              effective_date: T.nilable(Date),
+              on_or_after_date: T.nilable(Date),
+              on_or_before_date: T.nilable(Date),
               program_id: T.nilable(String)
             }
           )

@@ -1946,6 +1946,9 @@ module Increase
               # Pulse Switch Fee is a fee charged by the Pulse network for processing transactions on its network.
               PULSE_SWITCH_FEE = :pulse_switch_fee
 
+              # Pulse Switch Fee Credit is a credit of the Pulse Switch Fee charged for an authorization that was subsequently reversed in full.
+              PULSE_SWITCH_FEE_CREDIT = :pulse_switch_fee_credit
+
               # Pulse Tokenization Fee is a fee charged by the Pulse network for processing tokenized transactions on its network.
               PULSE_TOKENIZATION_FEE = :pulse_tokenization_fee
 
