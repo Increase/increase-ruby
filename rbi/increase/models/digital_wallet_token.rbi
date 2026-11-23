@@ -79,6 +79,18 @@ module Increase
       end
       attr_accessor :token_requestor
 
+      # The digital wallet or merchant that requested the token.
+      sig { returns(Increase::DigitalWalletToken::TokenRequestorDetails) }
+      attr_reader :token_requestor_details
+
+      sig do
+        params(
+          token_requestor_details:
+            Increase::DigitalWalletToken::TokenRequestorDetails::OrHash
+        ).void
+      end
+      attr_writer :token_requestor_details
+
       # A constant representing the object's type. For this resource it will always be
       # `digital_wallet_token`.
       sig { returns(Increase::DigitalWalletToken::Type::TaggedSymbol) }
@@ -87,6 +99,13 @@ module Increase
       # Updates to the Digital Wallet Token.
       sig { returns(T::Array[Increase::DigitalWalletToken::Update]) }
       attr_accessor :updates
+
+      # Details about the digital wallet.
+      sig { returns(Increase::DigitalWalletToken::Wallet) }
+      attr_reader :wallet
+
+      sig { params(wallet: Increase::DigitalWalletToken::Wallet::OrHash).void }
+      attr_writer :wallet
 
       # A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
       # Google Pay app. The Digital Wallet Token can be used for purchases just like a
@@ -108,8 +127,11 @@ module Increase
           token_reference_identifier: String,
           token_requestor:
             Increase::DigitalWalletToken::TokenRequestor::OrSymbol,
+          token_requestor_details:
+            Increase::DigitalWalletToken::TokenRequestorDetails::OrHash,
           type: Increase::DigitalWalletToken::Type::OrSymbol,
-          updates: T::Array[Increase::DigitalWalletToken::Update::OrHash]
+          updates: T::Array[Increase::DigitalWalletToken::Update::OrHash],
+          wallet: Increase::DigitalWalletToken::Wallet::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -136,11 +158,15 @@ module Increase
         token_reference_identifier:,
         # The digital wallet app being used.
         token_requestor:,
+        # The digital wallet or merchant that requested the token.
+        token_requestor_details:,
         # A constant representing the object's type. For this resource it will always be
         # `digital_wallet_token`.
         type:,
         # Updates to the Digital Wallet Token.
-        updates:
+        updates:,
+        # Details about the digital wallet.
+        wallet:
       )
       end
 
@@ -162,8 +188,11 @@ module Increase
             token_reference_identifier: String,
             token_requestor:
               Increase::DigitalWalletToken::TokenRequestor::TaggedSymbol,
+            token_requestor_details:
+              Increase::DigitalWalletToken::TokenRequestorDetails,
             type: Increase::DigitalWalletToken::Type::TaggedSymbol,
-            updates: T::Array[Increase::DigitalWalletToken::Update]
+            updates: T::Array[Increase::DigitalWalletToken::Update],
+            wallet: Increase::DigitalWalletToken::Wallet
           }
         )
       end
@@ -481,6 +510,44 @@ module Increase
         end
       end
 
+      class TokenRequestorDetails < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletToken::TokenRequestorDetails,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The identifier assigned to the token requestor by the card network.
+        sig { returns(String) }
+        attr_accessor :identifier
+
+        # The name of the token requestor, for example "Apple Inc.".
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The digital wallet or merchant that requested the token.
+        sig do
+          params(identifier: String, name: T.nilable(String)).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The identifier assigned to the token requestor by the card network.
+          identifier:,
+          # The name of the token requestor, for example "Apple Inc.".
+          name:
+        )
+        end
+
+        sig do
+          override.returns({ identifier: String, name: T.nilable(String) })
+        end
+        def to_hash
+        end
+      end
+
       # A constant representing the object's type. For this resource it will always be
       # `digital_wallet_token`.
       module Type
@@ -606,6 +673,50 @@ module Increase
           end
           def self.values
           end
+        end
+      end
+
+      class Wallet < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletToken::Wallet,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # An identifier for the cardholder's account with the digital wallet.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :account_identifier
+
+        # A hash of the email address on the cardholder's digital wallet account.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email_hash
+
+        # Details about the digital wallet.
+        sig do
+          params(
+            account_identifier: T.nilable(String),
+            email_hash: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # An identifier for the cardholder's account with the digital wallet.
+          account_identifier:,
+          # A hash of the email address on the cardholder's digital wallet account.
+          email_hash:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              account_identifier: T.nilable(String),
+              email_hash: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
         end
       end
     end

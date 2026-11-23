@@ -19,6 +19,17 @@ module Increase
       sig { returns(String) }
       attr_accessor :card_id
 
+      # The cardholder adding the card to the digital wallet.
+      sig { returns(Increase::DigitalWalletTokenRequest::Cardholder) }
+      attr_reader :cardholder
+
+      sig do
+        params(
+          cardholder: Increase::DigitalWalletTokenRequest::Cardholder::OrHash
+        ).void
+      end
+      attr_writer :cardholder
+
       # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
       # the Digital Wallet Token Request was created.
       sig { returns(Time) }
@@ -45,11 +56,27 @@ module Increase
       end
       attr_writer :device
 
+      # The card network the token is being provisioned on.
+      sig do
+        returns(Increase::DigitalWalletTokenRequest::Network::TaggedSymbol)
+      end
+      attr_accessor :network
+
       # The outcome of the tokenization request.
       sig do
         returns(Increase::DigitalWalletTokenRequest::Outcome::TaggedSymbol)
       end
       attr_accessor :outcome
+
+      # How the card number was provided to the digital wallet.
+      sig do
+        returns(
+          T.nilable(
+            Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+          )
+        )
+      end
+      attr_accessor :primary_account_number_source
 
       # Details of the provisioned Digital Wallet Token. Present if and only if
       # `outcome` is `provisioned`.
@@ -78,10 +105,57 @@ module Increase
       end
       attr_accessor :token_requestor
 
+      # The digital wallet or merchant that requested the token.
+      sig do
+        returns(Increase::DigitalWalletTokenRequest::TokenRequestorDetails)
+      end
+      attr_reader :token_requestor_details
+
+      sig do
+        params(
+          token_requestor_details:
+            Increase::DigitalWalletTokenRequest::TokenRequestorDetails::OrHash
+        ).void
+      end
+      attr_writer :token_requestor_details
+
       # A constant representing the object's type. For this resource it will always be
       # `digital_wallet_token_request`.
       sig { returns(Increase::DigitalWalletTokenRequest::Type::TaggedSymbol) }
       attr_accessor :type
+
+      # Fields related to verification of cardholder-provided values.
+      sig { returns(Increase::DigitalWalletTokenRequest::Verification) }
+      attr_reader :verification
+
+      sig do
+        params(
+          verification:
+            Increase::DigitalWalletTokenRequest::Verification::OrHash
+        ).void
+      end
+      attr_writer :verification
+
+      # Risk scores provided by Visa for the provisioning request. This field will be
+      # present in the JSON response if and only if `network` is equal to `visa`.
+      sig { returns(T.nilable(Increase::DigitalWalletTokenRequest::Visa)) }
+      attr_reader :visa
+
+      sig do
+        params(
+          visa: T.nilable(Increase::DigitalWalletTokenRequest::Visa::OrHash)
+        ).void
+      end
+      attr_writer :visa
+
+      # Details about the digital wallet.
+      sig { returns(Increase::DigitalWalletTokenRequest::Wallet) }
+      attr_reader :wallet
+
+      sig do
+        params(wallet: Increase::DigitalWalletTokenRequest::Wallet::OrHash).void
+      end
+      attr_writer :wallet
 
       # A Digital Wallet Token Request is created each time a digital wallet app, such
       # as Apple Pay or Google Pay, requests to tokenize a Card.
@@ -89,17 +163,29 @@ module Increase
         params(
           id: String,
           card_id: String,
+          cardholder: Increase::DigitalWalletTokenRequest::Cardholder::OrHash,
           created_at: Time,
           declined:
             T.nilable(Increase::DigitalWalletTokenRequest::Declined::OrHash),
           device: Increase::DigitalWalletTokenRequest::Device::OrHash,
+          network: Increase::DigitalWalletTokenRequest::Network::OrSymbol,
           outcome: Increase::DigitalWalletTokenRequest::Outcome::OrSymbol,
+          primary_account_number_source:
+            T.nilable(
+              Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::OrSymbol
+            ),
           provisioned:
             T.nilable(Increase::DigitalWalletTokenRequest::Provisioned::OrHash),
           token_reference_identifier: String,
           token_requestor:
             Increase::DigitalWalletTokenRequest::TokenRequestor::OrSymbol,
-          type: Increase::DigitalWalletTokenRequest::Type::OrSymbol
+          token_requestor_details:
+            Increase::DigitalWalletTokenRequest::TokenRequestorDetails::OrHash,
+          type: Increase::DigitalWalletTokenRequest::Type::OrSymbol,
+          verification:
+            Increase::DigitalWalletTokenRequest::Verification::OrHash,
+          visa: T.nilable(Increase::DigitalWalletTokenRequest::Visa::OrHash),
+          wallet: Increase::DigitalWalletTokenRequest::Wallet::OrHash
         ).returns(T.attached_class)
       end
       def self.new(
@@ -107,6 +193,8 @@ module Increase
         id:,
         # The identifier of the Card the tokenization was requested for.
         card_id:,
+        # The cardholder adding the card to the digital wallet.
+        cardholder:,
         # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
         # the Digital Wallet Token Request was created.
         created_at:,
@@ -114,8 +202,12 @@ module Increase
         declined:,
         # The device that requested the tokenization.
         device:,
+        # The card network the token is being provisioned on.
+        network:,
         # The outcome of the tokenization request.
         outcome:,
+        # How the card number was provided to the digital wallet.
+        primary_account_number_source:,
         # Details of the provisioned Digital Wallet Token. Present if and only if
         # `outcome` is `provisioned`.
         provisioned:,
@@ -123,9 +215,18 @@ module Increase
         token_reference_identifier:,
         # The digital wallet app being used.
         token_requestor:,
+        # The digital wallet or merchant that requested the token.
+        token_requestor_details:,
         # A constant representing the object's type. For this resource it will always be
         # `digital_wallet_token_request`.
-        type:
+        type:,
+        # Fields related to verification of cardholder-provided values.
+        verification:,
+        # Risk scores provided by Visa for the provisioning request. This field will be
+        # present in the JSON response if and only if `network` is equal to `visa`.
+        visa:,
+        # Details about the digital wallet.
+        wallet:
       )
       end
 
@@ -134,20 +235,57 @@ module Increase
           {
             id: String,
             card_id: String,
+            cardholder: Increase::DigitalWalletTokenRequest::Cardholder,
             created_at: Time,
             declined: T.nilable(Increase::DigitalWalletTokenRequest::Declined),
             device: Increase::DigitalWalletTokenRequest::Device,
+            network: Increase::DigitalWalletTokenRequest::Network::TaggedSymbol,
             outcome: Increase::DigitalWalletTokenRequest::Outcome::TaggedSymbol,
+            primary_account_number_source:
+              T.nilable(
+                Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+              ),
             provisioned:
               T.nilable(Increase::DigitalWalletTokenRequest::Provisioned),
             token_reference_identifier: String,
             token_requestor:
               Increase::DigitalWalletTokenRequest::TokenRequestor::TaggedSymbol,
-            type: Increase::DigitalWalletTokenRequest::Type::TaggedSymbol
+            token_requestor_details:
+              Increase::DigitalWalletTokenRequest::TokenRequestorDetails,
+            type: Increase::DigitalWalletTokenRequest::Type::TaggedSymbol,
+            verification: Increase::DigitalWalletTokenRequest::Verification,
+            visa: T.nilable(Increase::DigitalWalletTokenRequest::Visa),
+            wallet: Increase::DigitalWalletTokenRequest::Wallet
           }
         )
       end
       def to_hash
+      end
+
+      class Cardholder < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletTokenRequest::Cardholder,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The cardholder's name, as entered in the digital wallet.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The cardholder adding the card to the digital wallet.
+        sig { params(name: T.nilable(String)).returns(T.attached_class) }
+        def self.new(
+          # The cardholder's name, as entered in the digital wallet.
+          name:
+        )
+        end
+
+        sig { override.returns({ name: T.nilable(String) }) }
+        def to_hash
+        end
       end
 
       class Declined < Increase::Internal::Type::BaseModel
@@ -445,6 +583,32 @@ module Increase
         end
       end
 
+      # The card network the token is being provisioned on.
+      module Network
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(Symbol, Increase::DigitalWalletTokenRequest::Network)
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # Visa
+        VISA =
+          T.let(
+            :visa,
+            Increase::DigitalWalletTokenRequest::Network::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Increase::DigitalWalletTokenRequest::Network::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
       # The outcome of the tokenization request.
       module Outcome
         extend Increase::Internal::Type::Enum
@@ -472,6 +636,72 @@ module Increase
         sig do
           override.returns(
             T::Array[Increase::DigitalWalletTokenRequest::Outcome::TaggedSymbol]
+          )
+        end
+        def self.values
+        end
+      end
+
+      # How the card number was provided to the digital wallet.
+      module PrimaryAccountNumberSource
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias do
+            T.all(
+              Symbol,
+              Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource
+            )
+          end
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # The cardholder entered the card number manually.
+        KEY_ENTERED =
+          T.let(
+            :key_entered,
+            Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+          )
+
+        # The card number was already on file with the token requestor.
+        ON_FILE =
+          T.let(
+            :on_file,
+            Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+          )
+
+        # The card was added from your mobile app using push provisioning.
+        MOBILE_APP =
+          T.let(
+            :mobile_app,
+            Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+          )
+
+        # The card number was sourced from an existing token.
+        TOKEN =
+          T.let(
+            :token,
+            Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+          )
+
+        # The card number was read from the chip of the physical card.
+        CHIP_DIP =
+          T.let(
+            :chip_dip,
+            Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+          )
+
+        # The card number was read by tapping the physical card on the device.
+        CONTACTLESS_TAP =
+          T.let(
+            :contactless_tap,
+            Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[
+              Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource::TaggedSymbol
+            ]
           )
         end
         def self.values
@@ -563,6 +793,44 @@ module Increase
         end
       end
 
+      class TokenRequestorDetails < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletTokenRequest::TokenRequestorDetails,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The identifier assigned to the token requestor by the card network.
+        sig { returns(String) }
+        attr_accessor :identifier
+
+        # The name of the token requestor, for example "Apple Inc.".
+        sig { returns(T.nilable(String)) }
+        attr_accessor :name
+
+        # The digital wallet or merchant that requested the token.
+        sig do
+          params(identifier: String, name: T.nilable(String)).returns(
+            T.attached_class
+          )
+        end
+        def self.new(
+          # The identifier assigned to the token requestor by the card network.
+          identifier:,
+          # The name of the token requestor, for example "Apple Inc.".
+          name:
+        )
+        end
+
+        sig do
+          override.returns({ identifier: String, name: T.nilable(String) })
+        end
+        def to_hash
+        end
+      end
+
       # A constant representing the object's type. For this resource it will always be
       # `digital_wallet_token_request`.
       module Type
@@ -586,6 +854,324 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class Verification < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletTokenRequest::Verification,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Cardholder address provided in the provisioning request and the address on file
+        # we verified it against.
+        sig do
+          returns(
+            Increase::DigitalWalletTokenRequest::Verification::CardholderAddress
+          )
+        end
+        attr_reader :cardholder_address
+
+        sig do
+          params(
+            cardholder_address:
+              Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::OrHash
+          ).void
+        end
+        attr_writer :cardholder_address
+
+        # Fields related to verification of cardholder-provided values.
+        sig do
+          params(
+            cardholder_address:
+              Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::OrHash
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Cardholder address provided in the provisioning request and the address on file
+          # we verified it against.
+          cardholder_address:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              cardholder_address:
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress
+            }
+          )
+        end
+        def to_hash
+        end
+
+        class CardholderAddress < Increase::Internal::Type::BaseModel
+          OrHash =
+            T.type_alias do
+              T.any(
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress,
+                Increase::Internal::AnyHash
+              )
+            end
+
+          # Line 1 of the address on file for the cardholder.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :actual_line1
+
+          # The postal code of the address on file for the cardholder.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :actual_postal_code
+
+          # The cardholder address line 1 provided for verification in the provisioning
+          # request.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :provided_line1
+
+          # The postal code provided for verification in the provisioning request.
+          sig { returns(T.nilable(String)) }
+          attr_accessor :provided_postal_code
+
+          # The address verification result.
+          sig do
+            returns(
+              Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+            )
+          end
+          attr_accessor :result
+
+          # Cardholder address provided in the provisioning request and the address on file
+          # we verified it against.
+          sig do
+            params(
+              actual_line1: T.nilable(String),
+              actual_postal_code: T.nilable(String),
+              provided_line1: T.nilable(String),
+              provided_postal_code: T.nilable(String),
+              result:
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::OrSymbol
+            ).returns(T.attached_class)
+          end
+          def self.new(
+            # Line 1 of the address on file for the cardholder.
+            actual_line1:,
+            # The postal code of the address on file for the cardholder.
+            actual_postal_code:,
+            # The cardholder address line 1 provided for verification in the provisioning
+            # request.
+            provided_line1:,
+            # The postal code provided for verification in the provisioning request.
+            provided_postal_code:,
+            # The address verification result.
+            result:
+          )
+          end
+
+          sig do
+            override.returns(
+              {
+                actual_line1: T.nilable(String),
+                actual_postal_code: T.nilable(String),
+                provided_line1: T.nilable(String),
+                provided_postal_code: T.nilable(String),
+                result:
+                  Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+              }
+            )
+          end
+          def to_hash
+          end
+
+          # The address verification result.
+          module Result
+            extend Increase::Internal::Type::Enum
+
+            TaggedSymbol =
+              T.type_alias do
+                T.all(
+                  Symbol,
+                  Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result
+                )
+              end
+            OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+            # No address information was provided in the authorization request.
+            NOT_CHECKED =
+              T.let(
+                :not_checked,
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+              )
+
+            # Postal code matches, but the street address does not match or was not provided.
+            POSTAL_CODE_MATCH_ADDRESS_NO_MATCH =
+              T.let(
+                :postal_code_match_address_no_match,
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+              )
+
+            # Postal code does not match, but the street address matches or was not provided.
+            POSTAL_CODE_NO_MATCH_ADDRESS_MATCH =
+              T.let(
+                :postal_code_no_match_address_match,
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+              )
+
+            # Postal code and street address match.
+            MATCH =
+              T.let(
+                :match,
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+              )
+
+            # Postal code and street address do not match.
+            NO_MATCH =
+              T.let(
+                :no_match,
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+              )
+
+            # Postal code matches, but the street address was not verified. (deprecated)
+            POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED =
+              T.let(
+                :postal_code_match_address_not_checked,
+                Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+              )
+
+            sig do
+              override.returns(
+                T::Array[
+                  Increase::DigitalWalletTokenRequest::Verification::CardholderAddress::Result::TaggedSymbol
+                ]
+              )
+            end
+            def self.values
+            end
+          end
+        end
+      end
+
+      class Visa < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletTokenRequest::Visa,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # Visa's risk score for the card, based on its transaction history, from 0 to 99.
+        # A higher score indicates a higher risk.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :network_risk_score
+
+        # Visa's risk score for the provisioning request, from 1 to 99. A higher score
+        # indicates a higher risk.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :provisioning_risk_score
+
+        # Risk scores provided by Visa for the provisioning request. This field will be
+        # present in the JSON response if and only if `network` is equal to `visa`.
+        sig do
+          params(
+            network_risk_score: T.nilable(Integer),
+            provisioning_risk_score: T.nilable(Integer)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # Visa's risk score for the card, based on its transaction history, from 0 to 99.
+          # A higher score indicates a higher risk.
+          network_risk_score:,
+          # Visa's risk score for the provisioning request, from 1 to 99. A higher score
+          # indicates a higher risk.
+          provisioning_risk_score:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              network_risk_score: T.nilable(Integer),
+              provisioning_risk_score: T.nilable(Integer)
+            }
+          )
+        end
+        def to_hash
+        end
+      end
+
+      class Wallet < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::DigitalWalletTokenRequest::Wallet,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # The number of days since the email address was added to the cardholder's digital
+        # wallet account, up to 999.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :account_email_age_days
+
+        # An identifier for the cardholder's account with the digital wallet.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :account_identifier
+
+        # How much the digital wallet trusts the cardholder's account, from 1 to 5. A
+        # higher score indicates more trust.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :account_score
+
+        # How much the digital wallet trusts the device the card is being added to, from 1
+        # to 5. A higher score indicates more trust.
+        sig { returns(T.nilable(Integer)) }
+        attr_accessor :device_score
+
+        # A hash of the email address on the cardholder's digital wallet account.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :email_hash
+
+        # Details about the digital wallet.
+        sig do
+          params(
+            account_email_age_days: T.nilable(Integer),
+            account_identifier: T.nilable(String),
+            account_score: T.nilable(Integer),
+            device_score: T.nilable(Integer),
+            email_hash: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # The number of days since the email address was added to the cardholder's digital
+          # wallet account, up to 999.
+          account_email_age_days:,
+          # An identifier for the cardholder's account with the digital wallet.
+          account_identifier:,
+          # How much the digital wallet trusts the cardholder's account, from 1 to 5. A
+          # higher score indicates more trust.
+          account_score:,
+          # How much the digital wallet trusts the device the card is being added to, from 1
+          # to 5. A higher score indicates more trust.
+          device_score:,
+          # A hash of the email address on the cardholder's digital wallet account.
+          email_hash:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              account_email_age_days: T.nilable(Integer),
+              account_identifier: T.nilable(String),
+              account_score: T.nilable(Integer),
+              device_score: T.nilable(Integer),
+              email_hash: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
         end
       end
     end
