@@ -73,6 +73,12 @@ module Increase
       #   @return [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
       required :token_requestor, enum: -> { Increase::DigitalWalletToken::TokenRequestor }
 
+      # @!attribute token_requestor_details
+      #   The digital wallet or merchant that requested the token.
+      #
+      #   @return [Increase::Models::DigitalWalletToken::TokenRequestorDetails]
+      required :token_requestor_details, -> { Increase::DigitalWalletToken::TokenRequestorDetails }
+
       # @!attribute type
       #   A constant representing the object's type. For this resource it will always be
       #   `digital_wallet_token`.
@@ -86,7 +92,13 @@ module Increase
       #   @return [Array<Increase::Models::DigitalWalletToken::Update>]
       required :updates, -> { Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update] }
 
-      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, device:, dynamic_primary_account_number:, primary_account_number_reference_identifier:, status:, token_reference_identifier:, token_requestor:, type:, updates:)
+      # @!attribute wallet
+      #   Details about the digital wallet.
+      #
+      #   @return [Increase::Models::DigitalWalletToken::Wallet]
+      required :wallet, -> { Increase::DigitalWalletToken::Wallet }
+
+      # @!method initialize(id:, account_id:, card_id:, cardholder:, created_at:, device:, dynamic_primary_account_number:, primary_account_number_reference_identifier:, status:, token_reference_identifier:, token_requestor:, token_requestor_details:, type:, updates:, wallet:)
       #   A Digital Wallet Token is created when a user adds a Card to their Apple Pay or
       #   Google Pay app. The Digital Wallet Token can be used for purchases just like a
       #   Card.
@@ -122,11 +134,16 @@ module Increase
       #   @param token_requestor [Symbol, Increase::Models::DigitalWalletToken::TokenRequestor]
       #     The digital wallet app being used.
       #
+      #   @param token_requestor_details [Increase::Models::DigitalWalletToken::TokenRequestorDetails]
+      #     The digital wallet or merchant that requested the token.
+      #
       #   @param type [Symbol, Increase::Models::DigitalWalletToken::Type]
       #     A constant representing the object's type. For this resource it will always be
       #     `digital_wallet_token`.
       #
       #   @param updates [Array<Increase::Models::DigitalWalletToken::Update>] Updates to the Digital Wallet Token.
+      #
+      #   @param wallet [Increase::Models::DigitalWalletToken::Wallet] Details about the digital wallet.
 
       # @see Increase::Models::DigitalWalletToken#cardholder
       class Cardholder < Increase::Internal::Type::BaseModel
@@ -289,6 +306,28 @@ module Increase
         #   @return [Array<Symbol>]
       end
 
+      # @see Increase::Models::DigitalWalletToken#token_requestor_details
+      class TokenRequestorDetails < Increase::Internal::Type::BaseModel
+        # @!attribute identifier
+        #   The identifier assigned to the token requestor by the card network.
+        #
+        #   @return [String]
+        required :identifier, String
+
+        # @!attribute name
+        #   The name of the token requestor, for example "Apple Inc.".
+        #
+        #   @return [String, nil]
+        required :name, String, nil?: true
+
+        # @!method initialize(identifier:, name:)
+        #   The digital wallet or merchant that requested the token.
+        #
+        #   @param identifier [String] The identifier assigned to the token requestor by the card network.
+        #
+        #   @param name [String, nil] The name of the token requestor, for example "Apple Inc.".
+      end
+
       # A constant representing the object's type. For this resource it will always be
       # `digital_wallet_token`.
       #
@@ -348,6 +387,29 @@ module Increase
           # @!method self.values
           #   @return [Array<Symbol>]
         end
+      end
+
+      # @see Increase::Models::DigitalWalletToken#wallet
+      class Wallet < Increase::Internal::Type::BaseModel
+        # @!attribute account_identifier
+        #   An identifier for the cardholder's account with the digital wallet.
+        #
+        #   @return [String, nil]
+        required :account_identifier, String, nil?: true
+
+        # @!attribute email_hash
+        #   A hash of the email address on the cardholder's digital wallet account.
+        #
+        #   @return [String, nil]
+        required :email_hash, String, nil?: true
+
+        # @!method initialize(account_identifier:, email_hash:)
+        #   Details about the digital wallet.
+        #
+        #   @param account_identifier [String, nil]
+        #     An identifier for the cardholder's account with the digital wallet.
+        #
+        #   @param email_hash [String, nil] A hash of the email address on the cardholder's digital wallet account.
       end
     end
   end
