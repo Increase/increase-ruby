@@ -23,8 +23,10 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
         status: Increase::DigitalWalletToken::Status,
         token_reference_identifier: String,
         token_requestor: Increase::DigitalWalletToken::TokenRequestor,
+        token_requestor_details: Increase::DigitalWalletToken::TokenRequestorDetails,
         type: Increase::DigitalWalletToken::Type,
-        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update])
+        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update]),
+        wallet: Increase::DigitalWalletToken::Wallet
       }
     end
   end
@@ -56,8 +58,10 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
         status: Increase::DigitalWalletToken::Status,
         token_reference_identifier: String,
         token_requestor: Increase::DigitalWalletToken::TokenRequestor,
+        token_requestor_details: Increase::DigitalWalletToken::TokenRequestorDetails,
         type: Increase::DigitalWalletToken::Type,
-        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update])
+        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update]),
+        wallet: Increase::DigitalWalletToken::Wallet
       }
     end
   end
@@ -86,8 +90,10 @@ class Increase::Test::Resources::DigitalWalletTokensTest < Increase::Test::Resou
         status: Increase::DigitalWalletToken::Status,
         token_reference_identifier: String,
         token_requestor: Increase::DigitalWalletToken::TokenRequestor,
+        token_requestor_details: Increase::DigitalWalletToken::TokenRequestorDetails,
         type: Increase::DigitalWalletToken::Type,
-        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update])
+        updates: ^(Increase::Internal::Type::ArrayOf[Increase::DigitalWalletToken::Update]),
+        wallet: Increase::DigitalWalletToken::Wallet
       }
     end
   end

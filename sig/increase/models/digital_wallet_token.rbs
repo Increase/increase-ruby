@@ -13,8 +13,10 @@ module Increase
         status: Increase::Models::DigitalWalletToken::status,
         token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
+        token_requestor_details: Increase::DigitalWalletToken::TokenRequestorDetails,
         type: Increase::Models::DigitalWalletToken::type_,
-        updates: ::Array[Increase::DigitalWalletToken::Update]
+        updates: ::Array[Increase::DigitalWalletToken::Update],
+        wallet: Increase::DigitalWalletToken::Wallet
       }
 
     class DigitalWalletToken < Increase::Internal::Type::BaseModel
@@ -40,9 +42,13 @@ module Increase
 
       attr_accessor token_requestor: Increase::Models::DigitalWalletToken::token_requestor
 
+      attr_accessor token_requestor_details: Increase::DigitalWalletToken::TokenRequestorDetails
+
       attr_accessor type: Increase::Models::DigitalWalletToken::type_
 
       attr_accessor updates: ::Array[Increase::DigitalWalletToken::Update]
+
+      attr_accessor wallet: Increase::DigitalWalletToken::Wallet
 
       def initialize: (
         id: String,
@@ -56,8 +62,10 @@ module Increase
         status: Increase::Models::DigitalWalletToken::status,
         token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
+        token_requestor_details: Increase::DigitalWalletToken::TokenRequestorDetails,
         type: Increase::Models::DigitalWalletToken::type_,
-        updates: ::Array[Increase::DigitalWalletToken::Update]
+        updates: ::Array[Increase::DigitalWalletToken::Update],
+        wallet: Increase::DigitalWalletToken::Wallet
       ) -> void
 
       def to_hash: -> {
@@ -72,8 +80,10 @@ module Increase
         status: Increase::Models::DigitalWalletToken::status,
         token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletToken::token_requestor,
+        token_requestor_details: Increase::DigitalWalletToken::TokenRequestorDetails,
         type: Increase::Models::DigitalWalletToken::type_,
-        updates: ::Array[Increase::DigitalWalletToken::Update]
+        updates: ::Array[Increase::DigitalWalletToken::Update],
+        wallet: Increase::DigitalWalletToken::Wallet
       }
 
       type cardholder = { name: String? }
@@ -223,6 +233,18 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::token_requestor]
       end
 
+      type token_requestor_details = { identifier: String, name: String? }
+
+      class TokenRequestorDetails < Increase::Internal::Type::BaseModel
+        attr_accessor identifier: String
+
+        attr_accessor name: String?
+
+        def initialize: (identifier: String, name: String?) -> void
+
+        def to_hash: -> { identifier: String, name: String? }
+      end
+
       type type_ = :digital_wallet_token
 
       module Type
@@ -281,6 +303,21 @@ module Increase
 
           def self?.values: -> ::Array[Increase::Models::DigitalWalletToken::Update::status]
         end
+      end
+
+      type wallet = { account_identifier: String?, email_hash: String? }
+
+      class Wallet < Increase::Internal::Type::BaseModel
+        attr_accessor account_identifier: String?
+
+        attr_accessor email_hash: String?
+
+        def initialize: (
+          account_identifier: String?,
+          email_hash: String?
+        ) -> void
+
+        def to_hash: -> { account_identifier: String?, email_hash: String? }
       end
     end
   end
