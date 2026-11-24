@@ -98,6 +98,20 @@ module Increase
       end
       attr_accessor :currency
 
+      # The address of the transfer's sender.
+      sig do
+        returns(T.nilable(Increase::RealTimePaymentsTransfer::DebtorAddress))
+      end
+      attr_reader :debtor_address
+
+      sig do
+        params(
+          debtor_address:
+            T.nilable(Increase::RealTimePaymentsTransfer::DebtorAddress::OrHash)
+        ).void
+      end
+      attr_writer :debtor_address
+
       # The name of the transfer's sender. If not provided, defaults to the name of the
       # account's entity.
       sig { returns(T.nilable(String)) }
@@ -217,6 +231,10 @@ module Increase
             T.nilable(Increase::RealTimePaymentsTransfer::CreatedBy::OrHash),
           creditor_name: String,
           currency: Increase::RealTimePaymentsTransfer::Currency::OrSymbol,
+          debtor_address:
+            T.nilable(
+              Increase::RealTimePaymentsTransfer::DebtorAddress::OrHash
+            ),
           debtor_name: T.nilable(String),
           end_to_end_identification: T.nilable(String),
           external_account_id: T.nilable(String),
@@ -267,6 +285,8 @@ module Increase
         # The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
         # currency. For real-time payments transfers this is always equal to `USD`.
         currency:,
+        # The address of the transfer's sender.
+        debtor_address:,
         # The name of the transfer's sender. If not provided, defaults to the name of the
         # account's entity.
         debtor_name:,
@@ -336,6 +356,8 @@ module Increase
             creditor_name: String,
             currency:
               Increase::RealTimePaymentsTransfer::Currency::TaggedSymbol,
+            debtor_address:
+              T.nilable(Increase::RealTimePaymentsTransfer::DebtorAddress),
             debtor_name: T.nilable(String),
             end_to_end_identification: T.nilable(String),
             external_account_id: T.nilable(String),
@@ -753,6 +775,92 @@ module Increase
           )
         end
         def self.values
+        end
+      end
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        OrHash =
+          T.type_alias do
+            T.any(
+              Increase::RealTimePaymentsTransfer::DebtorAddress,
+              Increase::Internal::AnyHash
+            )
+          end
+
+        # A second address line, such as an apartment or suite number. The first address
+        # line is separated into `building_number` and `street_name`.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :address_line2
+
+        # The number identifying the position of the building on the street.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :building_number
+
+        # The town or city.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :city
+
+        # The ISO 3166, Alpha-2 country code.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :country
+
+        # The postal code or zip.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :postal_code
+
+        # The US state component of the address.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :state
+
+        # The street name without the street number.
+        sig { returns(T.nilable(String)) }
+        attr_accessor :street_name
+
+        # The address of the transfer's sender.
+        sig do
+          params(
+            address_line2: T.nilable(String),
+            building_number: T.nilable(String),
+            city: T.nilable(String),
+            country: T.nilable(String),
+            postal_code: T.nilable(String),
+            state: T.nilable(String),
+            street_name: T.nilable(String)
+          ).returns(T.attached_class)
+        end
+        def self.new(
+          # A second address line, such as an apartment or suite number. The first address
+          # line is separated into `building_number` and `street_name`.
+          address_line2:,
+          # The number identifying the position of the building on the street.
+          building_number:,
+          # The town or city.
+          city:,
+          # The ISO 3166, Alpha-2 country code.
+          country:,
+          # The postal code or zip.
+          postal_code:,
+          # The US state component of the address.
+          state:,
+          # The street name without the street number.
+          street_name:
+        )
+        end
+
+        sig do
+          override.returns(
+            {
+              address_line2: T.nilable(String),
+              building_number: T.nilable(String),
+              city: T.nilable(String),
+              country: T.nilable(String),
+              postal_code: T.nilable(String),
+              state: T.nilable(String),
+              street_name: T.nilable(String)
+            }
+          )
+        end
+        def to_hash
         end
       end
 
