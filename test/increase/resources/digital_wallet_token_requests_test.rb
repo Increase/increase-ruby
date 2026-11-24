@@ -15,14 +15,21 @@ class Increase::Test::Resources::DigitalWalletTokenRequestsTest < Increase::Test
       response => {
         id: String,
         card_id: String,
+        cardholder: Increase::DigitalWalletTokenRequest::Cardholder,
         created_at: Time,
         declined: Increase::DigitalWalletTokenRequest::Declined | nil,
         device: Increase::DigitalWalletTokenRequest::Device,
+        network: Increase::DigitalWalletTokenRequest::Network,
         outcome: Increase::DigitalWalletTokenRequest::Outcome,
+        primary_account_number_source: Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource | nil,
         provisioned: Increase::DigitalWalletTokenRequest::Provisioned | nil,
         token_reference_identifier: String,
         token_requestor: Increase::DigitalWalletTokenRequest::TokenRequestor,
-        type: Increase::DigitalWalletTokenRequest::Type
+        token_requestor_details: Increase::DigitalWalletTokenRequest::TokenRequestorDetails,
+        type: Increase::DigitalWalletTokenRequest::Type,
+        verification: Increase::DigitalWalletTokenRequest::Verification,
+        visa: Increase::DigitalWalletTokenRequest::Visa | nil,
+        wallet: Increase::DigitalWalletTokenRequest::Wallet
       }
     end
   end
@@ -45,14 +52,21 @@ class Increase::Test::Resources::DigitalWalletTokenRequestsTest < Increase::Test
       row => {
         id: String,
         card_id: String,
+        cardholder: Increase::DigitalWalletTokenRequest::Cardholder,
         created_at: Time,
         declined: Increase::DigitalWalletTokenRequest::Declined | nil,
         device: Increase::DigitalWalletTokenRequest::Device,
+        network: Increase::DigitalWalletTokenRequest::Network,
         outcome: Increase::DigitalWalletTokenRequest::Outcome,
+        primary_account_number_source: Increase::DigitalWalletTokenRequest::PrimaryAccountNumberSource | nil,
         provisioned: Increase::DigitalWalletTokenRequest::Provisioned | nil,
         token_reference_identifier: String,
         token_requestor: Increase::DigitalWalletTokenRequest::TokenRequestor,
-        type: Increase::DigitalWalletTokenRequest::Type
+        token_requestor_details: Increase::DigitalWalletTokenRequest::TokenRequestorDetails,
+        type: Increase::DigitalWalletTokenRequest::Type,
+        verification: Increase::DigitalWalletTokenRequest::Verification,
+        visa: Increase::DigitalWalletTokenRequest::Visa | nil,
+        wallet: Increase::DigitalWalletTokenRequest::Wallet
       }
     end
   end

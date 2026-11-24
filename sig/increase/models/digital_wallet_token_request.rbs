@@ -4,14 +4,21 @@ module Increase
       {
         id: String,
         card_id: String,
+        cardholder: Increase::DigitalWalletTokenRequest::Cardholder,
         created_at: Time,
         declined: Increase::DigitalWalletTokenRequest::Declined?,
         device: Increase::DigitalWalletTokenRequest::Device,
+        network: Increase::Models::DigitalWalletTokenRequest::network,
         outcome: Increase::Models::DigitalWalletTokenRequest::outcome,
+        primary_account_number_source: Increase::Models::DigitalWalletTokenRequest::primary_account_number_source?,
         provisioned: Increase::DigitalWalletTokenRequest::Provisioned?,
         token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor,
-        type: Increase::Models::DigitalWalletTokenRequest::type_
+        token_requestor_details: Increase::DigitalWalletTokenRequest::TokenRequestorDetails,
+        type: Increase::Models::DigitalWalletTokenRequest::type_,
+        verification: Increase::DigitalWalletTokenRequest::Verification,
+        visa: Increase::DigitalWalletTokenRequest::Visa?,
+        wallet: Increase::DigitalWalletTokenRequest::Wallet
       }
 
     class DigitalWalletTokenRequest < Increase::Internal::Type::BaseModel
@@ -19,13 +26,19 @@ module Increase
 
       attr_accessor card_id: String
 
+      attr_accessor cardholder: Increase::DigitalWalletTokenRequest::Cardholder
+
       attr_accessor created_at: Time
 
       attr_accessor declined: Increase::DigitalWalletTokenRequest::Declined?
 
       attr_accessor device: Increase::DigitalWalletTokenRequest::Device
 
+      attr_accessor network: Increase::Models::DigitalWalletTokenRequest::network
+
       attr_accessor outcome: Increase::Models::DigitalWalletTokenRequest::outcome
+
+      attr_accessor primary_account_number_source: Increase::Models::DigitalWalletTokenRequest::primary_account_number_source?
 
       attr_accessor provisioned: Increase::DigitalWalletTokenRequest::Provisioned?
 
@@ -33,33 +46,65 @@ module Increase
 
       attr_accessor token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor
 
+      attr_accessor token_requestor_details: Increase::DigitalWalletTokenRequest::TokenRequestorDetails
+
       attr_accessor type: Increase::Models::DigitalWalletTokenRequest::type_
+
+      attr_accessor verification: Increase::DigitalWalletTokenRequest::Verification
+
+      attr_accessor visa: Increase::DigitalWalletTokenRequest::Visa?
+
+      attr_accessor wallet: Increase::DigitalWalletTokenRequest::Wallet
 
       def initialize: (
         id: String,
         card_id: String,
+        cardholder: Increase::DigitalWalletTokenRequest::Cardholder,
         created_at: Time,
         declined: Increase::DigitalWalletTokenRequest::Declined?,
         device: Increase::DigitalWalletTokenRequest::Device,
+        network: Increase::Models::DigitalWalletTokenRequest::network,
         outcome: Increase::Models::DigitalWalletTokenRequest::outcome,
+        primary_account_number_source: Increase::Models::DigitalWalletTokenRequest::primary_account_number_source?,
         provisioned: Increase::DigitalWalletTokenRequest::Provisioned?,
         token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor,
-        type: Increase::Models::DigitalWalletTokenRequest::type_
+        token_requestor_details: Increase::DigitalWalletTokenRequest::TokenRequestorDetails,
+        type: Increase::Models::DigitalWalletTokenRequest::type_,
+        verification: Increase::DigitalWalletTokenRequest::Verification,
+        visa: Increase::DigitalWalletTokenRequest::Visa?,
+        wallet: Increase::DigitalWalletTokenRequest::Wallet
       ) -> void
 
       def to_hash: -> {
         id: String,
         card_id: String,
+        cardholder: Increase::DigitalWalletTokenRequest::Cardholder,
         created_at: Time,
         declined: Increase::DigitalWalletTokenRequest::Declined?,
         device: Increase::DigitalWalletTokenRequest::Device,
+        network: Increase::Models::DigitalWalletTokenRequest::network,
         outcome: Increase::Models::DigitalWalletTokenRequest::outcome,
+        primary_account_number_source: Increase::Models::DigitalWalletTokenRequest::primary_account_number_source?,
         provisioned: Increase::DigitalWalletTokenRequest::Provisioned?,
         token_reference_identifier: String,
         token_requestor: Increase::Models::DigitalWalletTokenRequest::token_requestor,
-        type: Increase::Models::DigitalWalletTokenRequest::type_
+        token_requestor_details: Increase::DigitalWalletTokenRequest::TokenRequestorDetails,
+        type: Increase::Models::DigitalWalletTokenRequest::type_,
+        verification: Increase::DigitalWalletTokenRequest::Verification,
+        visa: Increase::DigitalWalletTokenRequest::Visa?,
+        wallet: Increase::DigitalWalletTokenRequest::Wallet
       }
+
+      type cardholder = { name: String? }
+
+      class Cardholder < Increase::Internal::Type::BaseModel
+        attr_accessor name: String?
+
+        def initialize: (name: String?) -> void
+
+        def to_hash: -> { name: String? }
+      end
 
       type declined =
         {
@@ -202,6 +247,17 @@ module Increase
         end
       end
 
+      type network = :visa
+
+      module Network
+        extend Increase::Internal::Type::Enum
+
+        # Visa
+        VISA: :visa
+
+        def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::network]
+      end
+
       type outcome = :provisioned | :declined
 
       module Outcome
@@ -214,6 +270,38 @@ module Increase
         DECLINED: :declined
 
         def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::outcome]
+      end
+
+      type primary_account_number_source =
+        :key_entered
+        | :on_file
+        | :mobile_app
+        | :token
+        | :chip_dip
+        | :contactless_tap
+
+      module PrimaryAccountNumberSource
+        extend Increase::Internal::Type::Enum
+
+        # The cardholder entered the card number manually.
+        KEY_ENTERED: :key_entered
+
+        # The card number was already on file with the token requestor.
+        ON_FILE: :on_file
+
+        # The card was added from your mobile app using push provisioning.
+        MOBILE_APP: :mobile_app
+
+        # The card number was sourced from an existing token.
+        TOKEN: :token
+
+        # The card number was read from the chip of the physical card.
+        CHIP_DIP: :chip_dip
+
+        # The card number was read by tapping the physical card on the device.
+        CONTACTLESS_TAP: :contactless_tap
+
+        def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::primary_account_number_source]
       end
 
       type provisioned = { digital_wallet_token_id: String }
@@ -250,6 +338,18 @@ module Increase
         def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::token_requestor]
       end
 
+      type token_requestor_details = { identifier: String, name: String? }
+
+      class TokenRequestorDetails < Increase::Internal::Type::BaseModel
+        attr_accessor identifier: String
+
+        attr_accessor name: String?
+
+        def initialize: (identifier: String, name: String?) -> void
+
+        def to_hash: -> { identifier: String, name: String? }
+      end
+
       type type_ = :digital_wallet_token_request
 
       module Type
@@ -258,6 +358,148 @@ module Increase
         DIGITAL_WALLET_TOKEN_REQUEST: :digital_wallet_token_request
 
         def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::type_]
+      end
+
+      type verification =
+        {
+          cardholder_address: Increase::DigitalWalletTokenRequest::Verification::CardholderAddress
+        }
+
+      class Verification < Increase::Internal::Type::BaseModel
+        attr_accessor cardholder_address: Increase::DigitalWalletTokenRequest::Verification::CardholderAddress
+
+        def initialize: (
+          cardholder_address: Increase::DigitalWalletTokenRequest::Verification::CardholderAddress
+        ) -> void
+
+        def to_hash: -> {
+          cardholder_address: Increase::DigitalWalletTokenRequest::Verification::CardholderAddress
+        }
+
+        type cardholder_address =
+          {
+            :actual_line1 => String?,
+            actual_postal_code: String?,
+            :provided_line1 => String?,
+            provided_postal_code: String?,
+            result: Increase::Models::DigitalWalletTokenRequest::Verification::CardholderAddress::result
+          }
+
+        class CardholderAddress < Increase::Internal::Type::BaseModel
+          attr_accessor actual_line1: String?
+
+          attr_accessor actual_postal_code: String?
+
+          attr_accessor provided_line1: String?
+
+          attr_accessor provided_postal_code: String?
+
+          attr_accessor result: Increase::Models::DigitalWalletTokenRequest::Verification::CardholderAddress::result
+
+          def initialize: (
+            actual_line1: String?,
+            actual_postal_code: String?,
+            provided_line1: String?,
+            provided_postal_code: String?,
+            result: Increase::Models::DigitalWalletTokenRequest::Verification::CardholderAddress::result
+          ) -> void
+
+          def to_hash: -> {
+            :actual_line1 => String?,
+            actual_postal_code: String?,
+            :provided_line1 => String?,
+            provided_postal_code: String?,
+            result: Increase::Models::DigitalWalletTokenRequest::Verification::CardholderAddress::result
+          }
+
+          type result =
+            :not_checked
+            | :postal_code_match_address_no_match
+            | :postal_code_no_match_address_match
+            | :match
+            | :no_match
+            | :postal_code_match_address_not_checked
+
+          module Result
+            extend Increase::Internal::Type::Enum
+
+            # No address information was provided in the authorization request.
+            NOT_CHECKED: :not_checked
+
+            # Postal code matches, but the street address does not match or was not provided.
+            POSTAL_CODE_MATCH_ADDRESS_NO_MATCH: :postal_code_match_address_no_match
+
+            # Postal code does not match, but the street address matches or was not provided.
+            POSTAL_CODE_NO_MATCH_ADDRESS_MATCH: :postal_code_no_match_address_match
+
+            # Postal code and street address match.
+            MATCH: :match
+
+            # Postal code and street address do not match.
+            NO_MATCH: :no_match
+
+            # Postal code matches, but the street address was not verified. (deprecated)
+            POSTAL_CODE_MATCH_ADDRESS_NOT_CHECKED: :postal_code_match_address_not_checked
+
+            def self?.values: -> ::Array[Increase::Models::DigitalWalletTokenRequest::Verification::CardholderAddress::result]
+          end
+        end
+      end
+
+      type visa =
+        { network_risk_score: Integer?, provisioning_risk_score: Integer? }
+
+      class Visa < Increase::Internal::Type::BaseModel
+        attr_accessor network_risk_score: Integer?
+
+        attr_accessor provisioning_risk_score: Integer?
+
+        def initialize: (
+          network_risk_score: Integer?,
+          provisioning_risk_score: Integer?
+        ) -> void
+
+        def to_hash: -> {
+          network_risk_score: Integer?,
+          provisioning_risk_score: Integer?
+        }
+      end
+
+      type wallet =
+        {
+          account_email_age_days: Integer?,
+          account_identifier: String?,
+          account_score: Integer?,
+          device_score: Integer?,
+          email_hash: String?
+        }
+
+      class Wallet < Increase::Internal::Type::BaseModel
+        attr_accessor account_email_age_days: Integer?
+
+        attr_accessor account_identifier: String?
+
+        attr_accessor account_score: Integer?
+
+        attr_accessor device_score: Integer?
+
+        attr_accessor email_hash: String?
+
+        def initialize: (
+          account_email_age_days: Integer?,
+          account_identifier: String?,
+          account_score: Integer?,
+          device_score: Integer?,
+          email_hash: String?
+        ) -> void
+
+        def to_hash: -> {
+          account_email_age_days: Integer?,
+          account_identifier: String?,
+          account_score: Integer?,
+          device_score: Integer?,
+          email_hash: String?
+        }
       end
     end
   end
