@@ -57,6 +57,7 @@ module Increase
         params(
           inbound_wire_transfer_id: String,
           reason: Increase::InboundWireTransferReverseParams::Reason::OrSymbol,
+          amount: Integer,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::InboundWireTransfer)
       end
@@ -65,6 +66,10 @@ module Increase
         inbound_wire_transfer_id,
         # Reason for the reversal.
         reason:,
+        # The amount to return, in USD cents. Defaults to the full amount of the Inbound
+        # Wire Transfer. A transfer can only be reversed once, so any amount you don't
+        # return now stays with the recipient.
+        amount: nil,
         request_options: {}
       )
       end

@@ -7,6 +7,7 @@ module Increase
         source_account_number_id: String,
         unstructured_remittance_information: String,
         ?account_number: String,
+        ?debtor_address: Increase::RealTimePaymentsTransferCreateParams::DebtorAddress,
         ?debtor_name: String,
         ?external_account_id: String,
         ?inbound_real_time_payments_request_for_payment_id: String,

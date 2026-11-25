@@ -26,6 +26,7 @@ class Increase::Test::Resources::Simulations::RealTimePaymentsTransfersTest < In
         created_by: Increase::RealTimePaymentsTransfer::CreatedBy | nil,
         creditor_name: String,
         currency: Increase::RealTimePaymentsTransfer::Currency,
+        debtor_address: Increase::RealTimePaymentsTransfer::DebtorAddress | nil,
         debtor_name: String | nil,
         end_to_end_identification: String | nil,
         external_account_id: String | nil,

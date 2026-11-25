@@ -68,12 +68,17 @@ module Increase
 
       # Reverse an Inbound Wire Transfer
       #
-      # @overload reverse(inbound_wire_transfer_id, reason:, request_options: {})
+      # @overload reverse(inbound_wire_transfer_id, reason:, amount: nil, request_options: {})
       #
       # @param inbound_wire_transfer_id [String] The identifier of the Inbound Wire Transfer to reverse.
       #
       # @param reason [Symbol, Increase::Models::InboundWireTransferReverseParams::Reason]
       #   Reason for the reversal.
+      #
+      # @param amount [Integer]
+      #   The amount to return, in USD cents. Defaults to the full amount of the Inbound
+      #   Wire Transfer. A transfer can only be reversed once, so any amount you don't
+      #   return now stays with the recipient.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #
