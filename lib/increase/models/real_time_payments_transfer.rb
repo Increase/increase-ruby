@@ -76,6 +76,12 @@ module Increase
       #   @return [Symbol, Increase::Models::RealTimePaymentsTransfer::Currency]
       required :currency, enum: -> { Increase::RealTimePaymentsTransfer::Currency }
 
+      # @!attribute debtor_address
+      #   The address of the transfer's sender.
+      #
+      #   @return [Increase::Models::RealTimePaymentsTransfer::DebtorAddress, nil]
+      required :debtor_address, -> { Increase::RealTimePaymentsTransfer::DebtorAddress }, nil?: true
+
       # @!attribute debtor_name
       #   The name of the transfer's sender. If not provided, defaults to the name of the
       #   account's entity.
@@ -192,7 +198,7 @@ module Increase
       #   @return [String]
       required :unstructured_remittance_information, String
 
-      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_name:, end_to_end_identification:, external_account_id:, idempotency_key:, inbound_real_time_payments_request_for_payment_id:, pending_transaction_id:, rejection:, return_of_inbound_real_time_payments_transfer_id:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:, unstructured_remittance_information:)
+      # @!method initialize(id:, account_id:, account_number:, acknowledgement:, amount:, approval:, cancellation:, created_at:, created_by:, creditor_name:, currency:, debtor_address:, debtor_name:, end_to_end_identification:, external_account_id:, idempotency_key:, inbound_real_time_payments_request_for_payment_id:, pending_transaction_id:, rejection:, return_of_inbound_real_time_payments_transfer_id:, routing_number:, source_account_number_id:, status:, submission:, transaction_id:, type:, ultimate_creditor_name:, ultimate_debtor_name:, unstructured_remittance_information:)
       #   Real-Time Payments transfers move funds, within seconds, between your Increase
       #   account and any other account on the Real-Time Payments network.
       #
@@ -230,6 +236,9 @@ module Increase
       #   @param currency [Symbol, Increase::Models::RealTimePaymentsTransfer::Currency]
       #     The [ISO 4217](https://en.wikipedia.org/wiki/ISO_4217) code for the transfer's
       #     currency. For real-time payments transfers this is always equal to `USD`.
+      #
+      #   @param debtor_address [Increase::Models::RealTimePaymentsTransfer::DebtorAddress, nil]
+      #     The address of the transfer's sender.
       #
       #   @param debtor_name [String, nil]
       #     The name of the transfer's sender. If not provided, defaults to the name of the
@@ -485,6 +494,71 @@ module Increase
 
         # @!method self.values
         #   @return [Array<Symbol>]
+      end
+
+      # @see Increase::Models::RealTimePaymentsTransfer#debtor_address
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        # @!attribute address_line2
+        #   A second address line, such as an apartment or suite number. The first address
+        #   line is separated into `building_number` and `street_name`.
+        #
+        #   @return [String, nil]
+        required :address_line2, String, nil?: true
+
+        # @!attribute building_number
+        #   The number identifying the position of the building on the street.
+        #
+        #   @return [String, nil]
+        required :building_number, String, nil?: true
+
+        # @!attribute city
+        #   The town or city.
+        #
+        #   @return [String, nil]
+        required :city, String, nil?: true
+
+        # @!attribute country
+        #   The ISO 3166, Alpha-2 country code.
+        #
+        #   @return [String, nil]
+        required :country, String, nil?: true
+
+        # @!attribute postal_code
+        #   The postal code or zip.
+        #
+        #   @return [String, nil]
+        required :postal_code, String, nil?: true
+
+        # @!attribute state
+        #   The US state component of the address.
+        #
+        #   @return [String, nil]
+        required :state, String, nil?: true
+
+        # @!attribute street_name
+        #   The street name without the street number.
+        #
+        #   @return [String, nil]
+        required :street_name, String, nil?: true
+
+        # @!method initialize(address_line2:, building_number:, city:, country:, postal_code:, state:, street_name:)
+        #   The address of the transfer's sender.
+        #
+        #   @param address_line2 [String, nil]
+        #     A second address line, such as an apartment or suite number. The first address
+        #     line is separated into `building_number` and `street_name`.
+        #
+        #   @param building_number [String, nil] The number identifying the position of the building on the street.
+        #
+        #   @param city [String, nil] The town or city.
+        #
+        #   @param country [String, nil] The ISO 3166, Alpha-2 country code.
+        #
+        #   @param postal_code [String, nil] The postal code or zip.
+        #
+        #   @param state [String, nil] The US state component of the address.
+        #
+        #   @param street_name [String, nil] The street name without the street number.
       end
 
       # @see Increase::Models::RealTimePaymentsTransfer#rejection

@@ -292,6 +292,12 @@ module Increase
 
       # @see Increase::Models::InboundWireTransfer#reversal
       class Reversal < Increase::Internal::Type::BaseModel
+        # @!attribute amount
+        #   The amount that was reversed in USD cents.
+        #
+        #   @return [Integer]
+        required :amount, Integer
+
         # @!attribute reason
         #   The reason for the reversal.
         #
@@ -305,8 +311,10 @@ module Increase
         #   @return [Time]
         required :reversed_at, Time
 
-        # @!method initialize(reason:, reversed_at:)
+        # @!method initialize(amount:, reason:, reversed_at:)
         #   If the transfer is reversed, this will contain details of the reversal.
+        #
+        #   @param amount [Integer] The amount that was reversed in USD cents.
         #
         #   @param reason [Symbol, Increase::Models::InboundWireTransfer::Reversal::Reason]
         #     The reason for the reversal.
@@ -329,6 +337,9 @@ module Increase
 
           # The account cannot currently receive inbound wires.
           TRANSACTION_FORBIDDEN = :transaction_forbidden
+
+          # The inbound wire transfer was fraudulent.
+          FRAUD = :fraud
 
           # @!method self.values
           #   @return [Array<Symbol>]
