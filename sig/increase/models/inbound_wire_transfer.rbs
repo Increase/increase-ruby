@@ -170,26 +170,32 @@ module Increase
 
       type reversal =
         {
+          amount: Integer,
           reason: Increase::Models::InboundWireTransfer::Reversal::reason,
           reversed_at: Time
         }
 
       class Reversal < Increase::Internal::Type::BaseModel
+        attr_accessor amount: Integer
+
         attr_accessor reason: Increase::Models::InboundWireTransfer::Reversal::reason
 
         attr_accessor reversed_at: Time
 
         def initialize: (
+          amount: Integer,
           reason: Increase::Models::InboundWireTransfer::Reversal::reason,
           reversed_at: Time
         ) -> void
 
         def to_hash: -> {
+          amount: Integer,
           reason: Increase::Models::InboundWireTransfer::Reversal::reason,
           reversed_at: Time
         }
 
-        type reason = :duplicate | :creditor_request | :transaction_forbidden
+        type reason =
+          :duplicate | :creditor_request | :transaction_forbidden | :fraud
 
         module Reason
           extend Increase::Internal::Type::Enum
@@ -202,6 +208,9 @@ module Increase
 
           # The account cannot currently receive inbound wires.
           TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+          # The inbound wire transfer was fraudulent.
+          FRAUD: :fraud
 
           def self?.values: -> ::Array[Increase::Models::InboundWireTransfer::Reversal::reason]
         end

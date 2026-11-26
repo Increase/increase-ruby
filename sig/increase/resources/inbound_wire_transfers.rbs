@@ -20,6 +20,7 @@ module Increase
       def reverse: (
         String inbound_wire_transfer_id,
         reason: Increase::Models::InboundWireTransferReverseParams::reason,
+        ?amount: Integer,
         ?request_options: Increase::request_opts
       ) -> Increase::InboundWireTransfer
 
