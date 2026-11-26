@@ -3,7 +3,8 @@ module Increase
     type inbound_wire_transfer_reverse_params =
       {
         inbound_wire_transfer_id: String,
-        reason: Increase::Models::InboundWireTransferReverseParams::reason
+        reason: Increase::Models::InboundWireTransferReverseParams::reason,
+        amount: Integer
       }
       & Increase::Internal::Type::request_parameters
 
@@ -15,19 +16,26 @@ module Increase
 
       attr_accessor reason: Increase::Models::InboundWireTransferReverseParams::reason
 
+      attr_reader amount: Integer?
+
+      def amount=: (Integer) -> Integer
+
       def initialize: (
         inbound_wire_transfer_id: String,
         reason: Increase::Models::InboundWireTransferReverseParams::reason,
+        ?amount: Integer,
         ?request_options: Increase::request_opts
       ) -> void
 
       def to_hash: -> {
         inbound_wire_transfer_id: String,
         reason: Increase::Models::InboundWireTransferReverseParams::reason,
+        amount: Integer,
         request_options: Increase::RequestOptions
       }
 
-      type reason = :duplicate | :creditor_request | :transaction_forbidden
+      type reason =
+        :duplicate | :creditor_request | :transaction_forbidden | :fraud
 
       module Reason
         extend Increase::Internal::Type::Enum
@@ -40,6 +48,9 @@ module Increase
 
         # The account cannot currently receive inbound wires.
         TRANSACTION_FORBIDDEN: :transaction_forbidden
+
+        # The inbound wire transfer was fraudulent.
+        FRAUD: :fraud
 
         def self?.values: -> ::Array[Increase::Models::InboundWireTransferReverseParams::reason]
       end
