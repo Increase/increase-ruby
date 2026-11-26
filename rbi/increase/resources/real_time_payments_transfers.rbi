@@ -11,6 +11,8 @@ module Increase
           source_account_number_id: String,
           unstructured_remittance_information: String,
           account_number: String,
+          debtor_address:
+            Increase::RealTimePaymentsTransferCreateParams::DebtorAddress::OrHash,
           debtor_name: String,
           external_account_id: String,
           inbound_real_time_payments_request_for_payment_id: String,
@@ -33,6 +35,9 @@ module Increase
         unstructured_remittance_information:,
         # The destination account number.
         account_number: nil,
+        # The address of the transfer's sender. If not provided, no debtor address is sent
+        # with the transfer.
+        debtor_address: nil,
         # The name of the transfer's sender. If not provided, defaults to the name of the
         # account's entity.
         debtor_name: nil,
