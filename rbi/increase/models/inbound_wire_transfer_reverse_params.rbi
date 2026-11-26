@@ -24,10 +24,20 @@ module Increase
       end
       attr_accessor :reason
 
+      # The amount to return, in USD cents. Defaults to the full amount of the Inbound
+      # Wire Transfer. A transfer can only be reversed once, so any amount you don't
+      # return now stays with the recipient.
+      sig { returns(T.nilable(Integer)) }
+      attr_reader :amount
+
+      sig { params(amount: Integer).void }
+      attr_writer :amount
+
       sig do
         params(
           inbound_wire_transfer_id: String,
           reason: Increase::InboundWireTransferReverseParams::Reason::OrSymbol,
+          amount: Integer,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -36,6 +46,10 @@ module Increase
         inbound_wire_transfer_id:,
         # Reason for the reversal.
         reason:,
+        # The amount to return, in USD cents. Defaults to the full amount of the Inbound
+        # Wire Transfer. A transfer can only be reversed once, so any amount you don't
+        # return now stays with the recipient.
+        amount: nil,
         request_options: {}
       )
       end
@@ -46,6 +60,7 @@ module Increase
             inbound_wire_transfer_id: String,
             reason:
               Increase::InboundWireTransferReverseParams::Reason::OrSymbol,
+            amount: Integer,
             request_options: Increase::RequestOptions
           }
         )
@@ -81,6 +96,13 @@ module Increase
         TRANSACTION_FORBIDDEN =
           T.let(
             :transaction_forbidden,
+            Increase::InboundWireTransferReverseParams::Reason::TaggedSymbol
+          )
+
+        # The inbound wire transfer was fraudulent.
+        FRAUD =
+          T.let(
+            :fraud,
             Increase::InboundWireTransferReverseParams::Reason::TaggedSymbol
           )
 

@@ -13,6 +13,7 @@ module Increase
         created_by: Increase::RealTimePaymentsTransfer::CreatedBy?,
         creditor_name: String,
         currency: Increase::Models::RealTimePaymentsTransfer::currency,
+        debtor_address: Increase::RealTimePaymentsTransfer::DebtorAddress?,
         debtor_name: String?,
         end_to_end_identification: String?,
         external_account_id: String?,
@@ -54,6 +55,8 @@ module Increase
       attr_accessor creditor_name: String
 
       attr_accessor currency: Increase::Models::RealTimePaymentsTransfer::currency
+
+      attr_accessor debtor_address: Increase::RealTimePaymentsTransfer::DebtorAddress?
 
       attr_accessor debtor_name: String?
 
@@ -101,6 +104,7 @@ module Increase
         created_by: Increase::RealTimePaymentsTransfer::CreatedBy?,
         creditor_name: String,
         currency: Increase::Models::RealTimePaymentsTransfer::currency,
+        debtor_address: Increase::RealTimePaymentsTransfer::DebtorAddress?,
         debtor_name: String?,
         end_to_end_identification: String?,
         external_account_id: String?,
@@ -132,6 +136,7 @@ module Increase
         created_by: Increase::RealTimePaymentsTransfer::CreatedBy?,
         creditor_name: String,
         currency: Increase::Models::RealTimePaymentsTransfer::currency,
+        debtor_address: Increase::RealTimePaymentsTransfer::DebtorAddress?,
         debtor_name: String?,
         end_to_end_identification: String?,
         external_account_id: String?,
@@ -273,6 +278,53 @@ module Increase
         USD: :USD
 
         def self?.values: -> ::Array[Increase::Models::RealTimePaymentsTransfer::currency]
+      end
+
+      type debtor_address =
+        {
+          :address_line2 => String?,
+          building_number: String?,
+          city: String?,
+          country: String?,
+          postal_code: String?,
+          state: String?,
+          street_name: String?
+        }
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor address_line2: String?
+
+        attr_accessor building_number: String?
+
+        attr_accessor city: String?
+
+        attr_accessor country: String?
+
+        attr_accessor postal_code: String?
+
+        attr_accessor state: String?
+
+        attr_accessor street_name: String?
+
+        def initialize: (
+          address_line2: String?,
+          building_number: String?,
+          city: String?,
+          country: String?,
+          postal_code: String?,
+          state: String?,
+          street_name: String?
+        ) -> void
+
+        def to_hash: -> {
+          :address_line2 => String?,
+          building_number: String?,
+          city: String?,
+          country: String?,
+          postal_code: String?,
+          state: String?,
+          street_name: String?
+        }
       end
 
       type rejection =
