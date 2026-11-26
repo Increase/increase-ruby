@@ -7,6 +7,7 @@ module Increase
         source_account_number_id: String,
         unstructured_remittance_information: String,
         account_number: String,
+        debtor_address: Increase::RealTimePaymentsTransferCreateParams::DebtorAddress,
         debtor_name: String,
         external_account_id: String,
         inbound_real_time_payments_request_for_payment_id: String,
@@ -32,6 +33,12 @@ module Increase
       attr_reader account_number: String?
 
       def account_number=: (String) -> String
+
+      attr_reader debtor_address: Increase::RealTimePaymentsTransferCreateParams::DebtorAddress?
+
+      def debtor_address=: (
+        Increase::RealTimePaymentsTransferCreateParams::DebtorAddress
+      ) -> Increase::RealTimePaymentsTransferCreateParams::DebtorAddress
 
       attr_reader debtor_name: String?
 
@@ -67,6 +74,7 @@ module Increase
         source_account_number_id: String,
         unstructured_remittance_information: String,
         ?account_number: String,
+        ?debtor_address: Increase::RealTimePaymentsTransferCreateParams::DebtorAddress,
         ?debtor_name: String,
         ?external_account_id: String,
         ?inbound_real_time_payments_request_for_payment_id: String,
@@ -83,6 +91,7 @@ module Increase
         source_account_number_id: String,
         unstructured_remittance_information: String,
         account_number: String,
+        debtor_address: Increase::RealTimePaymentsTransferCreateParams::DebtorAddress,
         debtor_name: String,
         external_account_id: String,
         inbound_real_time_payments_request_for_payment_id: String,
@@ -92,6 +101,57 @@ module Increase
         ultimate_debtor_name: String,
         request_options: Increase::RequestOptions
       }
+
+      type debtor_address =
+        {
+          city: String,
+          country: String,
+          postal_code: String,
+          state: String,
+          street_name: String,
+          :address_line2 => String,
+          building_number: String
+        }
+
+      class DebtorAddress < Increase::Internal::Type::BaseModel
+        attr_accessor city: String
+
+        attr_accessor country: String
+
+        attr_accessor postal_code: String
+
+        attr_accessor state: String
+
+        attr_accessor street_name: String
+
+        attr_reader address_line2: String?
+
+        def address_line2=: (String) -> String
+
+        attr_reader building_number: String?
+
+        def building_number=: (String) -> String
+
+        def initialize: (
+          city: String,
+          country: String,
+          postal_code: String,
+          state: String,
+          street_name: String,
+          ?address_line2: String,
+          ?building_number: String
+        ) -> void
+
+        def to_hash: -> {
+          city: String,
+          country: String,
+          postal_code: String,
+          state: String,
+          street_name: String,
+          :address_line2 => String,
+          building_number: String
+        }
+      end
     end
   end
 end
