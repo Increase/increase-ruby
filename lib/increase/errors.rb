@@ -162,6 +162,8 @@ module Increase
           Increase::Errors::APIMethodNotFoundError.new(**kwargs)
         in [404, Increase::Errors::ObjectNotFoundError::TYPE]
           Increase::Errors::ObjectNotFoundError.new(**kwargs)
+        in [408, Increase::Errors::RequestTimeoutError::TYPE]
+          Increase::Errors::RequestTimeoutError.new(**kwargs)
         in [409, Increase::Errors::IdempotencyKeyAlreadyUsedError::TYPE]
           Increase::Errors::IdempotencyKeyAlreadyUsedError.new(**kwargs)
         in [409, Increase::Errors::InvalidOperationError::TYPE]
@@ -274,6 +276,10 @@ module Increase
 
     class ObjectNotFoundError < Increase::Errors::NotFoundError
       TYPE = "object_not_found_error"
+    end
+
+    class RequestTimeoutError < Increase::Errors::APIStatusError
+      TYPE = "request_timeout_error"
     end
 
     class IdempotencyKeyAlreadyUsedError < Increase::Errors::ConflictError

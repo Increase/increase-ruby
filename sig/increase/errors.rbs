@@ -142,6 +142,10 @@ module Increase
       TYPE: "object_not_found_error"
     end
 
+    class RequestTimeoutError < Increase::Errors::APIStatusError
+      TYPE: "request_timeout_error"
+    end
+
     class IdempotencyKeyAlreadyUsedError < Increase::Errors::ConflictError
       TYPE: "idempotency_key_already_used_error"
     end

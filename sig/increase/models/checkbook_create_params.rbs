@@ -4,7 +4,8 @@ module Increase
       {
         account_number_id: String,
         mailing_address: Increase::CheckbookCreateParams::MailingAddress,
-        payer: ::Array[Increase::CheckbookCreateParams::Payer]
+        payer: ::Array[Increase::CheckbookCreateParams::Payer],
+        style: Increase::Models::CheckbookCreateParams::style
       }
       & Increase::Internal::Type::request_parameters
 
@@ -18,10 +19,13 @@ module Increase
 
       attr_accessor payer: ::Array[Increase::CheckbookCreateParams::Payer]
 
+      attr_accessor style: Increase::Models::CheckbookCreateParams::style
+
       def initialize: (
         account_number_id: String,
         mailing_address: Increase::CheckbookCreateParams::MailingAddress,
         payer: ::Array[Increase::CheckbookCreateParams::Payer],
+        style: Increase::Models::CheckbookCreateParams::style,
         ?request_options: Increase::request_opts
       ) -> void
 
@@ -29,6 +33,7 @@ module Increase
         account_number_id: String,
         mailing_address: Increase::CheckbookCreateParams::MailingAddress,
         payer: ::Array[Increase::CheckbookCreateParams::Payer],
+        style: Increase::Models::CheckbookCreateParams::style,
         request_options: Increase::RequestOptions
       }
 
@@ -84,6 +89,20 @@ module Increase
         def initialize: (contents: String) -> void
 
         def to_hash: -> { contents: String }
+      end
+
+      type style = :top_tear_pad | :three_ring_binder
+
+      module Style
+        extend Increase::Internal::Type::Enum
+
+        # A 3x6 inch pad of 25 checks, each torn off along a perforation at the top.
+        TOP_TEAR_PAD: :top_tear_pad
+
+        # A half-inch three-ring binder holding 75 pages of checks with 3 checks per page.
+        THREE_RING_BINDER: :three_ring_binder
+
+        def self?.values: -> ::Array[Increase::Models::CheckbookCreateParams::style]
       end
     end
   end

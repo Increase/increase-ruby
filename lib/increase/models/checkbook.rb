@@ -258,6 +258,9 @@ module Increase
       module Style
         extend Increase::Internal::Type::Enum
 
+        # A 3x6 inch pad of 25 checks, each torn off along a perforation at the top.
+        TOP_TEAR_PAD = :top_tear_pad
+
         # A half-inch three-ring binder holding 75 pages of checks with 3 checks per page.
         THREE_RING_BINDER = :three_ring_binder
 

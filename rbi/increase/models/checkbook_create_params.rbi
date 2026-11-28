@@ -34,12 +34,17 @@ module Increase
       sig { returns(T::Array[Increase::CheckbookCreateParams::Payer]) }
       attr_accessor :payer
 
+      # The physical format of the Checkbook.
+      sig { returns(Increase::CheckbookCreateParams::Style::OrSymbol) }
+      attr_accessor :style
+
       sig do
         params(
           account_number_id: String,
           mailing_address:
             Increase::CheckbookCreateParams::MailingAddress::OrHash,
           payer: T::Array[Increase::CheckbookCreateParams::Payer::OrHash],
+          style: Increase::CheckbookCreateParams::Style::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(T.attached_class)
       end
@@ -53,6 +58,8 @@ module Increase
         # check. This should be an array of up to 4 elements, each of which represents a
         # line of the payer.
         payer:,
+        # The physical format of the Checkbook.
+        style:,
         request_options: {}
       )
       end
@@ -63,6 +70,7 @@ module Increase
             account_number_id: String,
             mailing_address: Increase::CheckbookCreateParams::MailingAddress,
             payer: T::Array[Increase::CheckbookCreateParams::Payer],
+            style: Increase::CheckbookCreateParams::Style::OrSymbol,
             request_options: Increase::RequestOptions
           }
         )
@@ -171,6 +179,37 @@ module Increase
 
         sig { override.returns({ contents: String }) }
         def to_hash
+        end
+      end
+
+      # The physical format of the Checkbook.
+      module Style
+        extend Increase::Internal::Type::Enum
+
+        TaggedSymbol =
+          T.type_alias { T.all(Symbol, Increase::CheckbookCreateParams::Style) }
+        OrSymbol = T.type_alias { T.any(Symbol, String) }
+
+        # A 3x6 inch pad of 25 checks, each torn off along a perforation at the top.
+        TOP_TEAR_PAD =
+          T.let(
+            :top_tear_pad,
+            Increase::CheckbookCreateParams::Style::TaggedSymbol
+          )
+
+        # A half-inch three-ring binder holding 75 pages of checks with 3 checks per page.
+        THREE_RING_BINDER =
+          T.let(
+            :three_ring_binder,
+            Increase::CheckbookCreateParams::Style::TaggedSymbol
+          )
+
+        sig do
+          override.returns(
+            T::Array[Increase::CheckbookCreateParams::Style::TaggedSymbol]
+          )
+        end
+        def self.values
         end
       end
     end
