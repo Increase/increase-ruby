@@ -5,7 +5,7 @@ module Increase
     class Checkbooks
       # Create a Checkbook
       #
-      # @overload create(account_number_id:, mailing_address:, payer:, request_options: {})
+      # @overload create(account_number_id:, mailing_address:, payer:, style:, request_options: {})
       #
       # @param account_number_id [String]
       #   The identifier of the Account Number that the checks will draw from. The Account
@@ -18,6 +18,9 @@ module Increase
       #   The payer of the checks. This will be printed on the top-left corner of each
       #   check. This should be an array of up to 4 elements, each of which represents a
       #   line of the payer.
+      #
+      # @param style [Symbol, Increase::Models::CheckbookCreateParams::Style]
+      #   The physical format of the Checkbook.
       #
       # @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}, nil]
       #

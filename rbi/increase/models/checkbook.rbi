@@ -345,6 +345,10 @@ module Increase
           T.type_alias { T.all(Symbol, Increase::Checkbook::Style) }
         OrSymbol = T.type_alias { T.any(Symbol, String) }
 
+        # A 3x6 inch pad of 25 checks, each torn off along a perforation at the top.
+        TOP_TEAR_PAD =
+          T.let(:top_tear_pad, Increase::Checkbook::Style::TaggedSymbol)
+
         # A half-inch three-ring binder holding 75 pages of checks with 3 checks per page.
         THREE_RING_BINDER =
           T.let(:three_ring_binder, Increase::Checkbook::Style::TaggedSymbol)

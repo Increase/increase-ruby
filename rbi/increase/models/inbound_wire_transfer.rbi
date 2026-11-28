@@ -336,6 +336,10 @@ module Increase
             )
           end
 
+        # The amount that was reversed in USD cents.
+        sig { returns(Integer) }
+        attr_accessor :amount
+
         # The reason for the reversal.
         sig do
           returns(Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol)
@@ -350,11 +354,14 @@ module Increase
         # If the transfer is reversed, this will contain details of the reversal.
         sig do
           params(
+            amount: Integer,
             reason: Increase::InboundWireTransfer::Reversal::Reason::OrSymbol,
             reversed_at: Time
           ).returns(T.attached_class)
         end
         def self.new(
+          # The amount that was reversed in USD cents.
+          amount:,
           # The reason for the reversal.
           reason:,
           # The [ISO 8601](https://en.wikipedia.org/wiki/ISO_8601) date and time at which
@@ -366,6 +373,7 @@ module Increase
         sig do
           override.returns(
             {
+              amount: Integer,
               reason:
                 Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol,
               reversed_at: Time
@@ -403,6 +411,13 @@ module Increase
           TRANSACTION_FORBIDDEN =
             T.let(
               :transaction_forbidden,
+              Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol
+            )
+
+          # The inbound wire transfer was fraudulent.
+          FRAUD =
+            T.let(
+              :fraud,
               Increase::InboundWireTransfer::Reversal::Reason::TaggedSymbol
             )
 

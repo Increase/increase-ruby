@@ -10,6 +10,7 @@ module Increase
           mailing_address:
             Increase::CheckbookCreateParams::MailingAddress::OrHash,
           payer: T::Array[Increase::CheckbookCreateParams::Payer::OrHash],
+          style: Increase::CheckbookCreateParams::Style::OrSymbol,
           request_options: Increase::RequestOptions::OrHash
         ).returns(Increase::Checkbook)
       end
@@ -23,6 +24,8 @@ module Increase
         # check. This should be an array of up to 4 elements, each of which represents a
         # line of the payer.
         payer:,
+        # The physical format of the Checkbook.
+        style:,
         request_options: {}
       )
       end

@@ -5,6 +5,7 @@ module Increase
         account_number_id: String,
         mailing_address: Increase::CheckbookCreateParams::MailingAddress,
         payer: ::Array[Increase::CheckbookCreateParams::Payer],
+        style: Increase::Models::CheckbookCreateParams::style,
         ?request_options: Increase::request_opts
       ) -> Increase::Checkbook
 

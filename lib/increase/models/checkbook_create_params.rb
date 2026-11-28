@@ -28,7 +28,13 @@ module Increase
       #   @return [Array<Increase::Models::CheckbookCreateParams::Payer>]
       required :payer, -> { Increase::Internal::Type::ArrayOf[Increase::CheckbookCreateParams::Payer] }
 
-      # @!method initialize(account_number_id:, mailing_address:, payer:, request_options: {})
+      # @!attribute style
+      #   The physical format of the Checkbook.
+      #
+      #   @return [Symbol, Increase::Models::CheckbookCreateParams::Style]
+      required :style, enum: -> { Increase::CheckbookCreateParams::Style }
+
+      # @!method initialize(account_number_id:, mailing_address:, payer:, style:, request_options: {})
       #   @param account_number_id [String]
       #     The identifier of the Account Number that the checks will draw from. The Account
       #     Number must be active.
@@ -40,6 +46,9 @@ module Increase
       #     The payer of the checks. This will be printed on the top-left corner of each
       #     check. This should be an array of up to 4 elements, each of which represents a
       #     line of the payer.
+      #
+      #   @param style [Symbol, Increase::Models::CheckbookCreateParams::Style]
+      #     The physical format of the Checkbook.
       #
       #   @param request_options [Increase::RequestOptions, Hash{Symbol=>Object}]
 
@@ -105,6 +114,20 @@ module Increase
 
         # @!method initialize(contents:)
         #   @param contents [String] The contents of the line.
+      end
+
+      # The physical format of the Checkbook.
+      module Style
+        extend Increase::Internal::Type::Enum
+
+        # A 3x6 inch pad of 25 checks, each torn off along a perforation at the top.
+        TOP_TEAR_PAD = :top_tear_pad
+
+        # A half-inch three-ring binder holding 75 pages of checks with 3 checks per page.
+        THREE_RING_BINDER = :three_ring_binder
+
+        # @!method self.values
+        #   @return [Array<Symbol>]
       end
     end
   end

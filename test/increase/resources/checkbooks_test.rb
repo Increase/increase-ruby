@@ -18,7 +18,8 @@ class Increase::Test::Resources::CheckbooksTest < Increase::Test::ResourceTest
           {contents: "National Phonograph Company"},
           {contents: "33 Liberty Street"},
           {contents: "New York, NY 10045"}
-        ]
+        ],
+        style: :three_ring_binder
       )
 
     assert_pattern do

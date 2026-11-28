@@ -5,7 +5,7 @@ module Increase
     class RealTimePaymentsTransfers
       # Create a Real-Time Payments Transfer
       #
-      # @overload create(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_name: nil, external_account_id: nil, inbound_real_time_payments_request_for_payment_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
+      # @overload create(amount:, creditor_name:, source_account_number_id:, unstructured_remittance_information:, account_number: nil, debtor_address: nil, debtor_name: nil, external_account_id: nil, inbound_real_time_payments_request_for_payment_id: nil, require_approval: nil, routing_number: nil, ultimate_creditor_name: nil, ultimate_debtor_name: nil, request_options: {})
       #
       # @param amount [Integer]
       #   The transfer amount in USD cents. For Real-Time Payments transfers, must be
@@ -20,6 +20,10 @@ module Increase
       #   Unstructured information that will show on the recipient's bank statement.
       #
       # @param account_number [String] The destination account number.
+      #
+      # @param debtor_address [Increase::Models::RealTimePaymentsTransferCreateParams::DebtorAddress]
+      #   The address of the transfer's sender. If not provided, no debtor address is sent
+      #   with the transfer.
       #
       # @param debtor_name [String]
       #   The name of the transfer's sender. If not provided, defaults to the name of the
